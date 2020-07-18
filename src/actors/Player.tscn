@@ -1,0 +1,63 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/sprites/player/idle/player-idle-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/sprites/player/idle/player-idle-4.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sprites/player/idle/player-idle-2.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sprites/player/idle/player-idle-3.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-5.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-3.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-4.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-1.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-2.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/sprites/player/run/player-run-6.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/sprites/player/jump/player-jump-1.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/sprites/player/jump/player-jump-2.png" type="Texture" id=13]
+[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-1.png" type="Texture" id=14]
+[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-2.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.62988, 9.88242 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 1 )
+speed = Vector2( 150, 450 )
+gravity = 1700.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "jump_down"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 6.16511 )
+shape = SubResource( 2 )
