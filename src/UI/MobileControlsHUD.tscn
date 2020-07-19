@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/MobileControlsHUD.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/ui/left-button.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/ui/right-button.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/ui/jump-button.png" type="Texture" id=4]
 
 [node name="MobileControlsHUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -24,22 +27,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="Control/HBoxContainerLeft"]
-margin_right = 20.0
-margin_bottom = 20.0
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
+position = Vector2( -10, -25 )
+normal = ExtResource( 2 )
+action = "move_left"
 
-[node name="RightButton" type="Button" parent="Control/HBoxContainerLeft"]
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 20.0
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RightTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
+position = Vector2( 37, -25 )
+normal = ExtResource( 3 )
+action = "move_right"
 
 [node name="HBoxContainerRight" type="HBoxContainer" parent="Control"]
 anchor_left = 1.0
@@ -52,17 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JumpButton" type="Button" parent="Control/HBoxContainerRight"]
-margin_right = 19.0
-margin_bottom = 20.0
-text = "^"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="button_down" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_button_down"]
-[connection signal="button_up" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_button_up"]
-[connection signal="pressed" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_pressed"]
-[connection signal="button_down" from="Control/HBoxContainerLeft/RightButton" to="." method="_on_RightButton_button_down"]
-[connection signal="button_up" from="Control/HBoxContainerLeft/RightButton" to="." method="_on_RightButton_button_up"]
-[connection signal="button_down" from="Control/HBoxContainerRight/JumpButton" to="." method="_on_JumpButton_button_down"]
-[connection signal="button_up" from="Control/HBoxContainerRight/JumpButton" to="." method="_on_JumpButton_button_up"]
+[node name="JumpTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerRight"]
+position = Vector2( -8, -25 )
+normal = ExtResource( 4 )
+action = "jump"

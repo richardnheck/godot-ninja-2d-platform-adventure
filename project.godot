@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ninja 2d platformer adventure"
-run/main_scene="res://src/levels/CaveLevel.tscn"
+run/main_scene="res://src/levels/WallJumpTestLevel.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -60,4 +60,6 @@ move_left={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
