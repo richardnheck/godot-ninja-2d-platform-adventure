@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/props/shrooms.png" type="Texture" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-traps.tres" type="TileSet" id=7]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/props/crank-up.png" type="Texture" id=8]
+[ext_resource path="res://src/UI/MobileControlsHUD.tscn" type="PackedScene" id=9]
 
 [node name="CaveLevel" type="Node2D"]
+
+[node name="MobileControlsHUD" parent="." instance=ExtResource( 9 )]
 
 [node name="TileMapWorld" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

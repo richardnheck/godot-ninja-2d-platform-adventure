@@ -63,7 +63,6 @@ func _physics_process(delta: float) -> void:
 						
 		if is_on_floor():
 			if abs(_velocity.x) > 0:
-				print ("run")
 				sprite.play("run")
 			else:
 				sprite.play("idle")
