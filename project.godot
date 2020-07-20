@@ -8,14 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "Actor",
-"language": "GDScript",
-"path": "res://src/actors/Actor.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Actor": ""
+
 }
 
 [application]
@@ -23,6 +18,11 @@ _global_script_class_icons={
 config/name="Ninja 2d platformer adventure"
 run/main_scene="res://src/levels/WallJumpTestLevel.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Actions="*res://src/settings/Actions.gd"
+Constants="*res://src/settings/Constants.gd"
 
 [display]
 
@@ -61,5 +61,6 @@ move_left={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"

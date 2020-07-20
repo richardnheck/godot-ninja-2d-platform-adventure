@@ -28,15 +28,15 @@ animations = [ {
 "name": "hurt",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "jump_down",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
@@ -50,6 +50,14 @@ extents = Vector2( 6.62988, 9.88242 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
 script = ExtResource( 1 )
+speed = 18
+wall_jump_speed = 320
+wall_slide_speed = 30
+jump_power = 400
+wall_jump_power = 450
+stopping_friction = 0.0
+running_friction = 0.9
+gravity = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
