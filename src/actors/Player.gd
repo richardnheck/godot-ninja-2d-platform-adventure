@@ -181,6 +181,8 @@ func die():
 	#PlayerData.deaths += 1
 	#get_tree().reload_current_scene()
 
+func celebrate():
+	$AnimatedSprite.play("celebrate")
 
 func next_to_wall():
 	return next_to_left_wall() or next_to_right_wall()

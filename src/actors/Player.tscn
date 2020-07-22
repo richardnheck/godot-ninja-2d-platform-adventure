@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/player-idle-1.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/art/sprites/player/jump/player-jump-2.png" type="Texture" id=13]
 [ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-1.png" type="Texture" id=14]
 [ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-2.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/sprites/player/celebrate/player-celebrate-2.png" type="Texture" id=16]
+[ext_resource path="res://assets/art/sprites/player/celebrate/player-celebrate-1.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -42,12 +44,19 @@ animations = [ {
 "loop": false,
 "name": "jump_up",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.62988, 9.88242 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_mask = 2
 script = ExtResource( 1 )
 speed = 18
@@ -56,13 +65,14 @@ wall_slide_speed = 30
 jump_power = 400
 wall_jump_power = 450
 stopping_friction = 0.0
-running_friction = 0.9
 gravity = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 6.16511 )
