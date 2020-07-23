@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/art/tilesets/sunny-lands/props/shrooms.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/tilesets/sunny-lands/props/sign.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/tilesets/sunny-lands/props/skulls.png" type="Texture" id=4]
+[ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-traps.tres" type="TileSet" id=7]
+[ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/MobileControlsHUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/levels/LevelScene.gd" type="Script" id=10]
+
+[node name="CaveLevel1" type="Node2D"]
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_vertical_guides_": [ 400.0 ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MobileControlsHUD" parent="." instance=ExtResource( 9 )]
+
+[node name="TileMapWorld" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 0, 3, 0, 1, 1, 0, 2, 1, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 3, 0, 65536, -1073741824, 0, 65537, 1, 0, 65538, 1, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 65543, 5, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 5, 0, 65549, 1, 0, 65550, -1610612736, 0, 131072, -1073741824, 0, 131073, 1, 0, 131074, 1, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 1, 0, 131079, 9, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, -1610612736, 0, 196608, -1073741824, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 20, 0, 196619, 22, 0, 196620, 1, 0, 196621, 1, 0, 196622, -1610612736, 0, 262144, -1073741824, 0, 262145, 1, 0, 262146, 8, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 9, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, -1610612736, 0, 327680, -1073741824, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1610612737, 0, 327687, 1610612737, 0, 327688, 1, 0, 327689, 1, 0, 327690, 8, 0, 327693, 1, 0, 327694, -1610612736, 0, 393216, -1073741824, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 20, 0, 393223, 22, 0, 393224, 1, 0, 393225, 1610612737, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1610612754, 0, 458752, -1073741824, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1610612737, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1610612754, 0, 524288, -1073741824, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1610612737, 0, 524295, 1610612737, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 9, 0, 524301, 1, 0, 524302, 1610612754, 0, 589824, 3, 0, 589825, -1073741806, 0, 589826, -1073741806, 0, 589827, -1073741806, 0, 589828, -1073741806, 0, 589829, -1073741806, 0, 589830, -1073741806, 0, 589831, -1073741806, 0, 589832, -1073741806, 0, 589833, -1073741806, 0, 589834, -1073741806, 0, 589835, -1073741806, 0, 589836, -1073741806, 0, 589837, -1073741806, 0, 589838, 3, 0, 655360, 12, 0, 655361, 14, 0, 655362, 14, 0, 655363, 13, 0, 655364, 14, 0, 655365, 12, 0, 655366, 14, 0, 655367, 14, 0, 655368, 14, 0, 655369, 13, 0, 655370, 14, 0, 655371, 14, 0, 655372, 14, 0, 655373, 13, 0, 655374, 13, 0, 720896, 14, 0, 720897, 14, 0, 720898, 14, 0, 720899, 14, 0, 720900, 14, 0, 720901, 14, 0, 720902, 14, 0, 720903, 14, 0, 720904, 14, 0, 720905, 14, 0, 720906, 12, 0, 720907, 14, 0, 720908, 14, 0, 720909, 14, 0, 720910, 14, 0 )
+
+[node name="InteractiveProps" type="Node" parent="."]
+
+[node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
+position = Vector2( 176, 32 )
+frame = 5
+
+[node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
+position = Vector2( 208, 144 )
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="shrooms" type="Sprite" parent="Props"]
+position = Vector2( 88, 136 )
+texture = ExtResource( 2 )
+
+[node name="sign" type="Sprite" parent="Props"]
+position = Vector2( 64, 136 )
+texture = ExtResource( 3 )
+
+[node name="skulls2" type="Sprite" parent="Props"]
+position = Vector2( 168, 144 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( 0, -10 )
+
+[node name="TileMapTraps" type="TileMap" parent="."]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 8 )
+collision_layer = 4
+collision_mask = 0
+format = 1
+
+[node name="EndTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 32, 8 )
+[connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
+[connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
+
+[editable path="Player"]

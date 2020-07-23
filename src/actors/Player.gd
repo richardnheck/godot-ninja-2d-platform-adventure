@@ -76,13 +76,16 @@ func jump():
 		var pressing_against_wall = (next_to_left_wall() and dir.x < 0) or (next_to_right_wall() and dir.x > 0)
 		#if is_on_floor() or pressing_against_wall:
 			# not next to a wall so jump normally
-		
+		print(vel.x)
 		if next_to_wall(): 
 			if is_on_floor():
 				# normal jump
 				vel.y -= jump_power
 			else:
-				vel.y -= wall_jump_power				
+				if (next_to_left_wall() and abs(vel.x) < 30)  or (next_to_right_wall() and abs(vel.x) < 30):
+					vel.y -= 200	
+				else:
+					vel.y -= wall_jump_power				
 			
 		else:
 			# normal jump

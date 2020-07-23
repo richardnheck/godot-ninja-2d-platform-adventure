@@ -25,14 +25,19 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "hurt",
-"speed": 10.0
+"name": "celebrate",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -44,11 +49,6 @@ animations = [ {
 "loop": false,
 "name": "jump_up",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "celebrate",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -60,18 +60,17 @@ extents = Vector2( 6.62988, 9.88242 )
 collision_mask = 2
 script = ExtResource( 1 )
 speed = 18
-wall_jump_speed = 320
+wall_jump_speed = 0
 wall_slide_speed = 30
 jump_power = 400
-wall_jump_power = 450
 stopping_friction = 0.0
-gravity = 30
+gravity = 20
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -101,3 +100,13 @@ position = Vector2( 1, -1 )
 enabled = true
 cast_to = Vector2( -7, 0 )
 collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 100000
+__meta__ = {
+"_edit_group_": true
+}

@@ -8,26 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "LevelBase",
+"language": "GDScript",
+"path": "res://src/levels/LevelBase.gd"
+} ]
 _global_script_class_icons={
-
+"LevelBase": ""
 }
 
 [application]
 
 config/name="Ninja 2d platformer adventure"
-run/main_scene="res://src/levels/WallJumpTestLevel.tscn"
+run/main_scene="res://src/levels/Level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Actions="*res://src/settings/Actions.gd"
 Constants="*res://src/settings/Constants.gd"
+LevelData="*res://src/settings/LevelData.gd"
 
 [display]
 
-window/size/width=400
-window/size/height=240
+window/size/width=240
+window/size/height=160
 window/size/always_on_top=true
 window/size/test_width=800
 window/size/test_height=480
@@ -62,6 +68,10 @@ move_left={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/driver/fallback_to_gles2=true
+quality/2d/use_nvidia_rect_flicker_workaround=true
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
