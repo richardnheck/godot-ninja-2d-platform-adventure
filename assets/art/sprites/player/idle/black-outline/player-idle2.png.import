@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/payer-run.png-788e1a23418808ce22b4d81b2286f9e9.stex"
+path="res://.import/player-idle2.png-b2a63c3c9becc8fcf7641030b4f00df6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/spritesheets/payer-run.png"
-dest_files=[ "res://.import/payer-run.png-788e1a23418808ce22b4d81b2286f9e9.stex" ]
+source_file="res://assets/art/sprites/player/idle/black-outline/player-idle2.png"
+dest_files=[ "res://.import/player-idle2.png-b2a63c3c9becc8fcf7641030b4f00df6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

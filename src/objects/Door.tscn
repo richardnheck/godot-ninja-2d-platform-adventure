@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sounds/evretro__win-video-game-sound.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.14261, 14.0335 )
+extents = Vector2( 5.14261, 0.992892 )
 
 [node name="Door" type="Node2D" groups=[
 "door",
@@ -20,7 +20,7 @@ texture = ExtResource( 1 )
 collision_layer = 2147483656
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, -13.8995 )
+position = Vector2( 0, -0.946008 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

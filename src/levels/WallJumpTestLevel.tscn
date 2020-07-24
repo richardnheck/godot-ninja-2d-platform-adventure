@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/props/shrooms.png" type="Texture" id=2]
@@ -10,6 +10,20 @@
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MobileControlsHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/levels/LevelScene.gd" type="Script" id=10]
+[ext_resource path="res://assets/art/props/torch/torch2.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/props/torch/torch5.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/props/torch/torch4.png" type="Texture" id=13]
+[ext_resource path="res://assets/art/props/torch/torch1.png" type="Texture" id=14]
+[ext_resource path="res://assets/art/props/torch/torch6.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/props/torch/torch3.png" type="Texture" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [node name="CaveLevel" type="Node2D"]
 script = ExtResource( 10 )
@@ -41,7 +55,7 @@ tile_data = PoolIntArray( 0, 3, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 23, 0, 5, 0, 0,
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
 position = Vector2( 144, 40 )
-frame = 3
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 368, 96 )
@@ -68,6 +82,18 @@ texture = ExtResource( 4 )
 position = Vector2( 247, 88 )
 texture = ExtResource( 2 )
 
+[node name="Torch" type="AnimatedSprite" parent="Props"]
+position = Vector2( 152, 144 )
+frames = SubResource( 1 )
+frame = 5
+playing = true
+
+[node name="Torch2" type="AnimatedSprite" parent="Props"]
+position = Vector2( 336, 64 )
+frames = SubResource( 1 )
+frame = 5
+playing = true
+
 [node name="TileMapTraps" type="TileMap" parent="."]
 tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 8 )
@@ -85,7 +111,7 @@ one_shot = true
 position = Vector2( 40, 208 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 0
+frame = 3
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
