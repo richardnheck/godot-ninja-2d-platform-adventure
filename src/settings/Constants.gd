@@ -11,3 +11,4 @@ const SNAP_LENGTH = 16.0		# snap length in pixels
 const GROUP_PLAYER = "player"
 const GROUP_KEY = "key"
 const GROUP_DOOR = "door"
+const GROUP_TRAP = "trap"

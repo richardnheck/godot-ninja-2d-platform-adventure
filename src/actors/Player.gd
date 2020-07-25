@@ -1,6 +1,11 @@
 extends KinematicBody2D
 
 #-----------------------------
+# Signals
+#-----------------------------
+signal collided
+
+#-----------------------------
 # Exports
 #-----------------------------
 # Wall slide speed factor (max = 1)
@@ -52,7 +57,12 @@ func _physics_process(delta: float) -> void:
 	friction()
 	gravity()
 	handle_animation(get_direction())
+	
 	vel = move_and_slide(vel, Vector2.UP)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			emit_signal('collided', collision)
 	
 
 func run(delta):
@@ -178,6 +188,7 @@ func teleport():
 func die():
 	dead = true
 	collision_shape.set_deferred("disabled", true)
+	set_physics_process(false)
 	die_sound.play()
 	hide()
 	yield(die_sound,"finished")

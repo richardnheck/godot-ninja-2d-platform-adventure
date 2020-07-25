@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "FadeScreen",
+"language": "GDScript",
+"path": "res://src/UI/FadeScreen/FadeScreen.gd"
+}, {
 "base": "Node2D",
 "class": "LevelBase",
 "language": "GDScript",
 "path": "res://src/levels/LevelBase.gd"
 } ]
 _global_script_class_icons={
+"FadeScreen": "",
 "LevelBase": ""
 }
 

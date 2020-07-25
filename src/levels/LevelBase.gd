@@ -4,14 +4,28 @@ class_name LevelBase
 onready var key = $InteractiveProps/KamonKey
 onready var door = $InteractiveProps/Door
 onready var endTimer = $EndTimer
-onready var player = $Player
-onready var tileMapWorld = $TileMapWorld
+onready var player:KinematicBody2D = $Player
+onready var tilemapWorld:TileMap = $TileMapWorld
+onready var tilemapTraps:TileMap = $TileMapTraps
+onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
+
+var fadeScreen:FadeScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_player_camera_limits(player, tileMapWorld);
+	print("LevelBase: ready()")
+	
+	fadeScreen = fadeScreenScene.instance()
+	add_child(fadeScreen)
+	
+	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
+	
+	set_player_camera_limits(player, tilemapWorld);
+	
+	
 	
 	door.close()
+	
 
 func goto_next_level() -> void:
 	LevelData.goto_next_level();
