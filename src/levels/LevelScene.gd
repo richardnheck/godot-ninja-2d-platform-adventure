@@ -32,8 +32,6 @@ func _on_Player_collided(collision: KinematicCollision2D) -> void:
 		if tilemap.is_in_group(Constants.GROUP_TRAP):
 			# Player touched a trap so die
 			player.die()
-			yield(get_tree().create_timer(0.5), "timeout")
-			fadeScreen.reload_scene()
 	
 				
 func get_collision_tile_name(collision: KinematicCollision2D) -> String:				

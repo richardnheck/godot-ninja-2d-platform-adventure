@@ -4,6 +4,7 @@ extends KinematicBody2D
 # Signals
 #-----------------------------
 signal collided
+signal died
 
 #-----------------------------
 # Exports
@@ -192,6 +193,7 @@ func die():
 	die_sound.play()
 	hide()
 	yield(die_sound,"finished")
+	emit_signal("died")
 	#PlayerData.deaths += 1
 	#get_tree().reload_current_scene()
 

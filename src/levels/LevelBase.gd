@@ -15,6 +15,9 @@ var fadeScreen:FadeScreen
 func _ready() -> void:
 	print("LevelBase: ready()")
 	
+	# Connect key signals
+	player.connect("died", self, "_on_Player_died")
+	
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
 	
@@ -29,7 +32,12 @@ func _ready() -> void:
 
 func goto_next_level() -> void:
 	LevelData.goto_next_level();
+	
 
+func _on_Player_died() -> void:
+	yield(get_tree().create_timer(0.5), "timeout")
+	fadeScreen.reload_scene()
+	
 
 func set_player_camera_limits(player: KinematicBody2D, tilemap:TileMap) -> void:
 	var camera:Camera2D = player.get_node("Camera2D")
