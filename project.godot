@@ -30,6 +30,10 @@ config/name="Ninja 2d platformer adventure"
 run/main_scene="res://src/levels/Level1.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency=50
+
 [autoload]
 
 Actions="*res://src/settings/Actions.gd"
@@ -38,7 +42,7 @@ LevelData="*res://src/settings/LevelData.gd"
 
 [display]
 
-window/size/width=240
+window/size/width=256
 window/size/height=160
 window/size/always_on_top=true
 window/size/test_width=800
