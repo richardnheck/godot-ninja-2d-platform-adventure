@@ -71,13 +71,13 @@ func _physics_process(delta: float) -> void:
 func run(delta):
 	if Input.is_action_pressed(Actions.MOVE_RIGHT):
 		vel.x += speed
+		vel.x = clamp(vel.x, 100, 150)
 		#sprite.flip_h = false
 	if Input.is_action_pressed(Actions.MOVE_LEFT):
 		vel.x -= speed
+		vel.x = clamp(vel.x, -150, -100)
 		#sprite.flip_h = true
 		
-
-
 # Jump and wall jump by holding down jump and pressing left or right on wall to jump
 func jump():
 	var dir = get_direction()
@@ -177,6 +177,8 @@ func gravity():
 	if vel.y > 500: 
 		vel.y = 500 # clamp falling speed
 	
+	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y > wall_slide_speed:
+		vel.y = wall_slide_speed 
 #	# Wall slide if next to left wall and player is pressing left
 #	if next_to_left_wall() and get_direction().x < 0 and vel.y > wall_slide_speed:
 #		vel.y = wall_slide_speed 

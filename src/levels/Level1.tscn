@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-traps.tres" type="TileSet" id=7]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MobileControlsHUD.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/levels/LevelScene.gd" type="Script" id=10]
+[ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=10]
 [ext_resource path="res://assets/art/props/torch/torch5.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/props/torch/torch2.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/props/torch/torch6.png" type="Texture" id=13]
@@ -64,7 +64,7 @@ tile_data = PoolIntArray( 1114121, 1, 0 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
 position = Vector2( 184, 40 )
-frame = 2
+frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 208, 144 )
@@ -90,7 +90,7 @@ offset = Vector2( 0, -10 )
 [node name="Torch" type="AnimatedSprite" parent="Props"]
 position = Vector2( 184, 112 )
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="EndTimer" type="Timer" parent="."]
@@ -99,6 +99,9 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 32, 32 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 2
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
