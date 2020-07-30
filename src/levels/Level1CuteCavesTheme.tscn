@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://assets/art/tilesets/cute-caves/backgrounds/cave_background_layer_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/props/sign.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=6]
@@ -11,10 +10,9 @@
 [ext_resource path="res://assets/art/props/torch/torch5.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/props/torch/torch2.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/props/torch/torch6.png" type="Texture" id=13]
-[ext_resource path="res://assets/art/tilesets/cute-caves/cute-caves-tileset-brown.tres" type="TileSet" id=14]
+[ext_resource path="res://assets/art/tilesets/cute-caves/cute-caves-tileset.tres" type="TileSet" id=14]
 [ext_resource path="res://assets/art/props/torch/torch3.png" type="Texture" id=15]
 [ext_resource path="res://assets/art/tilesets/cute-caves/backgrounds/cave_background_layer_4.png" type="Texture" id=16]
-[ext_resource path="res://assets/art/tilesets/cute-caves/backgrounds/cave_background_layer_3.png" type="Texture" id=17]
 [ext_resource path="res://assets/art/props/torch/torch4.png" type="Texture" id=19]
 [ext_resource path="res://assets/art/props/torch/torch1.png" type="Texture" id=20]
 
@@ -46,22 +44,10 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 9 )]
 
 [node name="Background" type="Node2D" parent="."]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="cave_background_layer_4" type="Sprite" parent="Background"]
-position = Vector2( 128, 96 )
 texture = ExtResource( 16 )
-
-[node name="cave_background_layer_3" type="Sprite" parent="Background"]
-position = Vector2( 128, 96 )
-texture = ExtResource( 17 )
-
-[node name="cave_background_layer_1" type="Sprite" parent="Background"]
-visible = false
-position = Vector2( 132, 80 )
-texture = ExtResource( 1 )
+centered = false
 
 [node name="TileMapBg" type="TileMap" parent="Background"]
 tile_set = ExtResource( 14 )
@@ -69,7 +55,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 524289, 6, 0, 524302, 6, 0 )
+tile_data = PoolIntArray( -1, 536870912, 65537, -65536, 536870912, 65537, -65535, 536870912, 65537, -65534, 536870912, 65537, -65533, 536870912, 65537, -65532, 536870912, 65537, -65531, 536870912, 65537, -65530, 536870912, 65537, -65529, 536870912, 65537, -65528, 536870912, 65537, -65527, 536870912, 65537, -65526, 536870912, 65537, -65525, 536870912, 65537, -65524, 536870912, 65537, -65523, 536870912, 65537, -65522, 536870912, 65537, -65521, 536870912, 65537, -65520, 536870912, 65537, 65535, 536870912, 65537, 0, 536870912, 65537, 16, 536870912, 65537, 131071, 536870912, 65537, 65536, 536870912, 65537, 65552, 536870912, 65537, 196607, 536870912, 65537, 131072, 536870912, 65537, 131088, 536870912, 65537, 262143, 536870912, 65537, 196608, 536870912, 65537, 196624, 536870912, 65537, 327679, 536870912, 65537, 262144, 536870912, 65537, 262160, 536870912, 65537, 393215, 536870912, 65537, 327680, 536870912, 65537, 327696, 536870912, 65537, 458751, 536870912, 65537, 393216, 536870912, 65537, 393227, 1, 0, 393228, 1, 1, 393229, 1, 1, 393230, 1, 2, 393232, 536870912, 65537, 524287, 536870912, 65537, 458752, 536870912, 65537, 458763, 536870913, 65538, 458764, 1, 65537, 458765, 1, 65537, 458766, 1, 65538, 458768, 536870912, 65537, 589823, 536870912, 65537, 524288, 536870912, 65537, 524289, 6, 0, 524299, 536870913, 65538, 524300, 1, 65537, 524301, 1, 65537, 524302, 1, 65538, 524304, 536870912, 65537, 655359, 536870912, 65537, 589824, 536870912, 65537, 589840, 536870912, 65537, 720895, 536870912, 65537, 655376, 536870912, 65537, 786431, 536870912, 65537, 720896, 536870912, 65537, 720897, 536870912, 65537, 720898, 536870912, 65537, 720899, 536870912, 65537, 720900, 536870912, 65537, 720901, 536870912, 65537, 720902, 536870912, 65537, 720903, 536870912, 65537, 720904, 536870912, 65537, 720905, 536870912, 65537, 720906, 536870912, 65537, 720907, 536870912, 65537, 720908, 536870912, 65537, 720909, 536870912, 65537, 720910, 536870912, 65537, 720911, 536870912, 65537, 720912, 536870912, 65537 )
 
 [node name="TileMapWorld" type="TileMap" parent="."]
 position = Vector2( 1, 0 )
@@ -91,7 +77,7 @@ format = 1
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
 position = Vector2( 184, 40 )
-frame = 0
+frame = 2
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 208, 144 )
@@ -103,8 +89,15 @@ position = Vector2( 64, 136 )
 texture = ExtResource( 3 )
 
 [node name="Torch" type="AnimatedSprite" parent="Props"]
-position = Vector2( 184, 112 )
+position = Vector2( 186, 118 )
 frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="Torch2" type="AnimatedSprite" parent="Props"]
+position = Vector2( 227, 118 )
+frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="EndTimer" type="Timer" parent="."]
@@ -115,7 +108,7 @@ one_shot = true
 position = Vector2( 32, 32 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
+frame = 2
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false
@@ -123,5 +116,7 @@ visible = false
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 [connection signal="collided" from="Player" to="." method="_on_Player_collided"]
+
+[editable path="InteractiveProps/Door"]
 
 [editable path="Player"]
