@@ -5,19 +5,22 @@ signal player_entered
 onready var audioPlayer = $AudioStreamPlayer2D
 onready var sprite = $Sprite
 
-var door_open_image = preload("res://assets/art/props/door/door-open.png")
-var door_closed_image = preload("res://assets/art/props/door/door.png")
-
 export var is_open = false
 
+func _ready() -> void:
+	if is_open:
+		sprite.frame = 1
+	else:
+		sprite.frame = 0
 
 func open() -> void:
 	is_open = true
-	sprite.set_texture(door_open_image) 
+	_set_door_image()
+	
 
 func close() -> void:
 	is_open = false
-	sprite.set_texture(door_closed_image) 
+	_set_door_image()
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
@@ -27,3 +30,8 @@ func _on_Area2D_body_entered(body: Node) -> void:
 			audioPlayer.play()
 			set_physics_process(false)
 
+func _set_door_image():
+	if is_open:
+		sprite.frame = 1
+	else:
+		sprite.frame = 0

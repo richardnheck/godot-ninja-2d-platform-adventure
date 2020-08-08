@@ -77,7 +77,7 @@ format = 1
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
 position = Vector2( 184, 40 )
-frame = 2
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 208, 144 )
@@ -91,13 +91,12 @@ texture = ExtResource( 3 )
 [node name="Torch" type="AnimatedSprite" parent="Props"]
 position = Vector2( 186, 118 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="Torch2" type="AnimatedSprite" parent="Props"]
 position = Vector2( 227, 118 )
 frames = SubResource( 1 )
-frame = 2
+frame = 5
 playing = true
 
 [node name="EndTimer" type="Timer" parent="."]
@@ -108,7 +107,7 @@ one_shot = true
 position = Vector2( 32, 32 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 2
+frame = 3
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false
