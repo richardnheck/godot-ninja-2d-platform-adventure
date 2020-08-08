@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ninja 2d platformer adventure"
-run/main_scene="res://src/levels/Level1CuteCavesTheme.tscn"
+run/main_scene="res://src/levels/CaveLevel1.tscn"
 config/icon="res://icon.png"
 
 [audio]
