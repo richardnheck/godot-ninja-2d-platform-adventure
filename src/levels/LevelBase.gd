@@ -40,6 +40,7 @@ func _on_Key_captured() -> void:
 	
 	
 func _on_Door_player_entered() -> void:
+	print("door entered")
 	# Disable player physics 
 	player.set_physics_process(false)
 	player.celebrate()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cave-door-plain.png-05d0a243077a44c990b492c8dab45e40.stex"
+path="res://.import/cave-crumbling-platform.png-55a471cf148c0e8630f4330186b851a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/props/door/cave-door-plain.png"
-dest_files=[ "res://.import/cave-door-plain.png-05d0a243077a44c990b492c8dab45e40.stex" ]
+source_file="res://assets/art/tilesets/cave-level/cave-crumbling-platform.png"
+dest_files=[ "res://.import/cave-crumbling-platform.png-55a471cf148c0e8630f4330186b851a4.stex" ]
 
 [params]
 

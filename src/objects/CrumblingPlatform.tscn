@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/art/tilesets/cave-level/cave-crumbling-platform.png" type="Texture" id=1]
+[ext_resource path="res://src/objects/CrumblingPlatform.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-5.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-4.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-3.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-1.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=8]
+[ext_resource path="res://assets/sounds/rock-crumble.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/prof-mudkip__8-bit-explosion.wav" type="AudioStream" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.99493, 7.66721 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "shake"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7.00504, 0.548457 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "explode",
+"speed": 20.0
+} ]
+
+[node name="CrumblingPlatform" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 7.95476, 7.75808 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shake = SubResource( 2 )
+
+[node name="TriggerZone" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerZone"]
+position = Vector2( 8, 0.178 )
+shape = SubResource( 4 )
+
+[node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="."]
+position = Vector2( 7.14762, 2.31247 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+animation = "idle"
+
+[node name="CrumbleSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+[connection signal="body_entered" from="TriggerZone" to="." method="_on_TriggerZone_body_entered"]
