@@ -22,7 +22,7 @@ radius = 7.23212
 "key",
 ]]
 frames = SubResource( 1 )
-frame = 6
+frame = 2
 playing = true
 script = ExtResource( 5 )
 

@@ -3,6 +3,7 @@ extends Node
 var levelsArray = [
 	"res://src/levels/CaveLevel1.tscn",
 	"res://src/levels/CrumblingRocksLevel.tscn",
+	"res://src/levels/CrumblingRocksLevel2.tscn",
 	"res://src/levels/Level2CuteCavesTheme.tscn",
 	"res://src/levels/Level2.tscn",
 	"res://src/levels/Level3.tscn",

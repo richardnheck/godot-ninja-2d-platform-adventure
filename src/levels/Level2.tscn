@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/levels/Level1SunnyLandsTheme.tscn" type="PackedScene" id=1]
 
-
 [node name="CaveLevel1" instance=ExtResource( 1 )]
 
 [node name="TileMapWorld" parent="." index="2"]
@@ -13,7 +12,6 @@ tile_data = PoolIntArray(  )
 
 [node name="KamonKey" parent="InteractiveProps" index="0"]
 position = Vector2( 320, 192 )
-frame = 4
 
 [node name="Door" parent="InteractiveProps" index="1"]
 position = Vector2( 304, 32 )
@@ -31,12 +29,12 @@ position = Vector2( 176, 208 )
 
 [node name="Torch" parent="Props" index="3"]
 position = Vector2( 176, 0 )
-frame = 0
+frame = 1
 
 [node name="Player" parent="." index="7"]
 position = Vector2( 48, 64 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 1
+frame = 0
 
 [editable path="Player"]

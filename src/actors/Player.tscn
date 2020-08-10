@@ -37,25 +37,25 @@ animations = [ {
 "name": "celebrate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump_up",
-"speed": 10.0
+"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "jump_down",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -78,35 +78,37 @@ stopping_friction = 0.0
 gravity = 20
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -16 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 6.16511 )
+position = Vector2( 1, -9.83489 )
 shape = SubResource( 2 )
 
 [node name="RightWallRaycast1" type="RayCast2D" parent="."]
-position = Vector2( 1, 14 )
+position = Vector2( 1, -2 )
 enabled = true
 cast_to = Vector2( 7, 0 )
 collision_mask = 2
 
 [node name="RightWallRaycast2" type="RayCast2D" parent="."]
-position = Vector2( 1, -1 )
+position = Vector2( 1, -17 )
 enabled = true
 cast_to = Vector2( 7, 0 )
 collision_mask = 2
 
 [node name="LeftWallRaycast1" type="RayCast2D" parent="."]
-position = Vector2( 1, 14 )
+position = Vector2( 1, -2 )
 enabled = true
 cast_to = Vector2( -7, 0 )
 collision_mask = 2
 
 [node name="LeftWallRaycast2" type="RayCast2D" parent="."]
-position = Vector2( 1, -1 )
+position = Vector2( 1, -17 )
 enabled = true
 cast_to = Vector2( -7, 0 )
 collision_mask = 2
@@ -120,10 +122,6 @@ limit_right = 1000
 limit_bottom = 1000
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-drag_margin_left = 0.1
-drag_margin_top = 0.1
-drag_margin_right = 0.1
-drag_margin_bottom = 0.1
 __meta__ = {
 "_edit_group_": true
 }
@@ -136,5 +134,6 @@ wait_time = 0.3
 one_shot = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -10 )
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
