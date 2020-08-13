@@ -3,17 +3,17 @@
 [ext_resource path="res://assets/art/traps/onigawara-head.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/CrushingRock.gd" type="Script" id=2]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14.8371, 15.3219 )
 
 [node name="CrushingRock" type="RigidBody2D"]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 mode = 2
 mass = 10.0
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 4.0
 contacts_reported = 1
 contact_monitor = true
@@ -26,7 +26,7 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.15749, 0.41741 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CoolOffTimer" type="Timer" parent="."]
 wait_time = 0.1

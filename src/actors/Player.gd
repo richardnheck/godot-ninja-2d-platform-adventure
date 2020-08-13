@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	handle_animation(get_direction())
 	
 	# Must have  infinite_inertia set to false so player can't affect rigid bodies
-	vel = move_and_slide(vel, Vector2.UP, false, 4, 0.8, false)
+	vel = move_and_slide(vel, Vector2.UP, false, 4, PI/4, false)
 		
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)

@@ -7,6 +7,7 @@ var falling:bool = true
 var in_ground_hit_cooloff = false
 var rise_velocity = 50;
 var max_gravity_scale = 6;
+var player = null
 
 export var initial_delay:float = 0.0
 
@@ -19,7 +20,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:		
-	pass
+	linear_velocity.x = 0
+	if !in_ground_hit_cooloff and abs(linear_velocity.y) < 5:
+		if player:
+			player.die()
+		
 #	if !falling:
 #		#linear_velocity = Vector2(0, -rise_velocity)
 #		gravity_scale = max_gravity_scale
@@ -30,7 +35,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_CrushingRock_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-			body.die()
+			player = body
+			if body.position.y > position.y:
+				body.die()
 			return
 	
 	if !in_ground_hit_cooloff:
