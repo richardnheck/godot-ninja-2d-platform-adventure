@@ -27,7 +27,7 @@ func _ready() -> void:
 	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
 	
 	set_player_camera_limits(player, tilemapWorld);
-	
+
 	door.close()
 	
 
@@ -100,3 +100,7 @@ func get_collision_tile_name(collision: KinematicCollision2D) -> String:
 				return tile_name
 				
 		return ""
+
+
+func _on_Button_pressed() -> void:
+	get_tree().reload_current_scene()

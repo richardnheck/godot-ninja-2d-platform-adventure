@@ -54,6 +54,9 @@ var dead: = false
 
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+		
 	run(delta)
 	jump()
 	#dash()
@@ -61,7 +64,9 @@ func _physics_process(delta: float) -> void:
 	gravity()
 	handle_animation(get_direction())
 	
-	vel = move_and_slide(vel, Vector2.UP)
+	# Must have  infinite_inertia set to false so player can't affect rigid bodies
+	vel = move_and_slide(vel, Vector2.UP, false, 4, 0.8, false)
+		
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision:
