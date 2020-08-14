@@ -78,7 +78,7 @@ frame = 0
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 8 )]
 position = Vector2( 184, 40 )
-frame = 3
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 213, 144 )
@@ -91,7 +91,7 @@ one_shot = true
 position = Vector2( 32, 32 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 0
+frame = 1
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false

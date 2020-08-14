@@ -11,6 +11,9 @@ extents = Vector2( 5.14261, 0.992892 )
 "door",
 ]]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -20 )
