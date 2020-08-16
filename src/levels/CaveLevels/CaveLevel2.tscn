@@ -30,12 +30,12 @@ position = Vector2( 176, 208 )
 
 [node name="Torch" parent="Props" index="3"]
 position = Vector2( 176, 0 )
-frame = 5
+frame = 0
 
 [node name="Player" parent="." index="7"]
 position = Vector2( 48, 64 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 2
+frame = 1
 
 [editable path="Player"]

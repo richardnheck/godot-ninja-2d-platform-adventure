@@ -8,9 +8,10 @@
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/art/props/door/cave-door-plain.png" type="Texture" id=7]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/UI/MobileControlsHUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=10]
 [ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=11]
+
 
 [node name="CrumblingRocksLevel" type="Node2D"]
 script = ExtResource( 10 )

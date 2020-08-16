@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/Controls/PlayButton.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/ui/play-button.png" type="Texture" id=2]
+
+[node name="ChangeSceneButton" type="TextureButton"]
+margin_right = 16.0
+margin_bottom = 16.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="." to="." method="_on_button_up"]
