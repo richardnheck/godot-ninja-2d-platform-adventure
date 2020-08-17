@@ -99,7 +99,7 @@ __meta__ = {
 [node name="BackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 100.0
 margin_right = 116.0
-next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
+next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"
 
 [node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
 margin_left = 120.0

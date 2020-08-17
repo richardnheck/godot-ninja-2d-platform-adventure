@@ -12,7 +12,6 @@
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 
-
 [node name="TmpCrushingRocksLevel" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -98,7 +97,7 @@ initial_delay = 0.5
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 184, 40 )
-frame = 1
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 213, 144 )
@@ -120,6 +119,9 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 32, 144 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 1
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false

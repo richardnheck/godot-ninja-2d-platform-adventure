@@ -110,7 +110,7 @@ func jump():
 		
 	# If I'm still going up and have released the jump button - cut off the jump and start falling down
 	if Input.is_action_just_released(Actions.JUMP) and vel.y < 0:
-		vel.y = 0
+		vel.y = vel.y * 0.5
 
 func wall_jump(dir):
 	wallJumpCoolDownTimer.start()

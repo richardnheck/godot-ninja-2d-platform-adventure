@@ -46,4 +46,4 @@ __meta__ = {
 margin_left = 120.0
 margin_right = 136.0
 margin_bottom = 20.0
-next_scene_path = "res://src/levels/CaveLevels/CaveLevel1.tscn"
+next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"

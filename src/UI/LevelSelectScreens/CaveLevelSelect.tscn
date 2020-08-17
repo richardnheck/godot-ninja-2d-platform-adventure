@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/LevelSelectScreens/CaveLevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=3]
+
+[node name="LevelSelect" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_top = 5.0
+margin_right = 40.0
+margin_bottom = 21.0
+text = "Cave Levels"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomHBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -30.0
+margin_bottom = -10.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Control/BottomHBoxContainer" instance=ExtResource( 3 )]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 20.0
+next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
+
+[node name="LevelButtonsContainer" type="GridContainer" parent="Control"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 88.0
+margin_top = -48.0
+margin_right = 168.0
+margin_bottom = 12.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
