@@ -104,28 +104,27 @@ flip_v = true
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 520, 32 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 624, 32 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 688, -17 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 752, -17 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 152, -32 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 40, 80 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 392, 32 )
+frame = 0
 
 [node name="cave-door-plain" type="Sprite" parent="Props"]
 position = Vector2( 32, 144 )
@@ -215,7 +214,6 @@ anims/PingPongPathFollow = SubResource( 1 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 40, 32 )
-frame = 3
 
 [node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 224, 64 )
@@ -238,9 +236,6 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 32, 160 )
-
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 2
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false
