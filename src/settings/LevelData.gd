@@ -10,6 +10,7 @@ var levelsArray = [
 	CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn",
 	
 	"res://src/levels/TmpSpikeyRocksLevel.tscn",
+	"res://src/levels/TmpBambooSpikesLevel.tscn",
 	#"res://src/levels/Level2CuteCavesTheme.tscn",
 	#"res://src/levels/Level2.tscn",
 	#"res://src/levels/Level3.tscn",

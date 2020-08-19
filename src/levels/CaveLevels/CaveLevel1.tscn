@@ -62,27 +62,28 @@ rotation = 3.14159
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -200, -127.999 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -320, 64.0008 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -384, 64.001 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -481, 160.001 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -575.999, 240.001 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -623.999, 432.002 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -527.999, 432.001 )
+frame = 0
 
 [node name="InteractiveProps" type="Node" parent="."]
 
@@ -98,7 +99,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 32 )
+position = Vector2( 32, 40 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 3
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false
