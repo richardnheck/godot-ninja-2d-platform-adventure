@@ -89,7 +89,6 @@ frame = 0
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
-frame = 0
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )
@@ -100,17 +99,9 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 32, 40 )
-
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
-
-[node name="Camera2D" parent="Player" index="6"]
-visible = false
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 [connection signal="collided" from="Player" to="." method="_on_Player_collided"]
 
 [editable path="InteractiveProps/Door"]
-
-[editable path="Player"]

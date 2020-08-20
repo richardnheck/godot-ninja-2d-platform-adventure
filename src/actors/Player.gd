@@ -11,14 +11,17 @@ signal died
 #-----------------------------
 # Wall slide speed factor (max = 1)
 # The smaller the number the slower the slide. When equal to 1 the slide is the same as falling
-export var speed: = 30		# in x direction
+export var speed_old: = 30		# in x direction
+export var speed: = 135		# in x direction
 export var wall_jump_speed = 100 # in x direction
-export var wall_slide_speed = 100
-export var jump_power = 700
-export var wall_jump_power = 400
+export var wall_slide_speed = 50
+export var jump_power = 290
+export var wall_jump_power = 290
+export var gravity: = 13
+
 export var stopping_friction = 0.6
 export var running_friction = 0.9
-export var gravity: = 50
+
 
 #-----------------------------
 # References
@@ -74,16 +77,24 @@ func _physics_process(delta: float) -> void:
 		if collision:
 			emit_signal('collided', collision)
 	
+
+func _get_run_direction() -> float:
+	return Input.get_action_strength(Actions.MOVE_RIGHT) - Input.get_action_strength(Actions.MOVE_LEFT)
 	
 func run(delta):
+	var direction = _get_run_direction()
+	if !wall_jumping:
+		vel.x = speed * direction
+	else:
+		vel.x = wall_jump_speed * direction
+	
+func run_old(delta):
 	if Input.is_action_pressed(Actions.MOVE_RIGHT):
 		vel.x += speed
 		vel.x = clamp(vel.x, 100, 150)
-		#sprite.flip_h = false
 	if Input.is_action_pressed(Actions.MOVE_LEFT):
 		vel.x -= speed
 		vel.x = clamp(vel.x, -150, -100)
-		#sprite.flip_h = true
 		
 # Jump and wall jump by holding down jump and pressing left or right on wall to jump
 func jump(delta):
@@ -113,14 +124,14 @@ func jump(delta):
 	
 	# If I'm still going up and have released the jump button - cut off the jump and start falling down
 	if Input.is_action_just_released(Actions.JUMP) and vel.y < 0:
-		vel.y = vel.y * 0.4
+		vel.y = vel.y * 0.5
 	
 
 func wall_jump(dir):
 	wallJumpCoolDownTimer.start()
 	wall_jumping = true
 	vel.y= -wall_jump_power
-	vel.x+= dir.x * 100	
+	vel.x+= dir.x * wall_jump_speed	
 
 		
 func friction():
