@@ -11,6 +11,7 @@ var levelsArray = [
 	
 	"res://src/levels/TmpSpikeyRocksLevel.tscn",
 	"res://src/levels/TmpBambooSpikesLevel.tscn",
+	CAVE_LEVELS_PATH + "ShapeLikeSWithSpikeyRocks.tscn",
 	#"res://src/levels/Level2CuteCavesTheme.tscn",
 	#"res://src/levels/Level2.tscn",
 	#"res://src/levels/Level3.tscn",

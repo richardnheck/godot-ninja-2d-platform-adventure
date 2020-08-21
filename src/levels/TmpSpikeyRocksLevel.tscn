@@ -13,7 +13,7 @@
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 
-[node name="TmpSpikeyRocksLevel" type="Node2D"]
+[node name="CaveLevel" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
@@ -116,6 +116,7 @@ position = Vector2( 208, 136 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 343.607, 32 )
+frame = 5
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -123,6 +124,9 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 16, 142.165 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 3
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false
