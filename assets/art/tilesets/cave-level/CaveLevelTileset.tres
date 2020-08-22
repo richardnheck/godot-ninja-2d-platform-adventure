@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=42 format=2]
+[gd_resource type="TileSet" load_steps=43 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=1]
 
@@ -118,6 +118,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=39]
 points = PoolVector2Array( 14.2501, 15.8728, 1.19508, 15.8728, 1.06049, 4.16364, 13.9809, 2.95235 )
+
+[sub_resource type="ConvexPolygonShape2D" id=41]
+points = PoolVector2Array( 4, 11, 12, 11, 15, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=40]
 points = PoolVector2Array( 0, 1.68007, 15.8409, 2.08383, 16, 0, 0, 0 )
@@ -403,6 +406,12 @@ resource_local_to_scene = true
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 39 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 41 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
