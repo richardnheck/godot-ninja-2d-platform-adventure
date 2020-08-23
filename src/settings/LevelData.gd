@@ -4,11 +4,10 @@ const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
 var levelsArray = [
 	CAVE_LEVELS_PATH + "1.tscn",
-	CAVE_LEVELS_PATH + "LearnWallJump.tscn",
+	CAVE_LEVELS_PATH + "LearnWallJumpImproved.tscn",
 	CAVE_LEVELS_PATH + "LearnCrumblingRocks.tscn",
 	CAVE_LEVELS_PATH + "CrumblingRocksLevel.tscn",
 	CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn",
-	
 	"res://src/levels/TmpSpikeyRocksLevel.tscn",
 	"res://src/levels/TmpBambooSpikesLevel.tscn",
 	CAVE_LEVELS_PATH + "ShapeLikeSWithSpikeyRocks.tscn",
@@ -27,7 +26,7 @@ func get_levels() -> Array:
 
 func goto_level(levelIndex) -> void:
 	var levelPath = LevelData.get_levels()[levelIndex]
-	current_level_index = levelIndex + 1
+	current_level_index = levelIndex
 	get_tree().change_scene(levelPath)
 
 

@@ -31,3 +31,7 @@ func _on_PausedPlayButton_button_up() -> void:
 func _on_RetryButton_button_up() -> void:
 	self.paused = false
 	scene_tree.reload_current_scene()
+
+
+func _on_LeftTouchArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print(event) # Replace with function body.

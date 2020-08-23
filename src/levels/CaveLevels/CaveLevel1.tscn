@@ -62,33 +62,33 @@ rotation = 3.14159
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -200, -127.999 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -320, 64.0008 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -384, 64.001 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -481, 160.001 )
-frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -575.999, 240.001 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -623.999, 432.002 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -527.999, 432.001 )
-frame = 0
 
 [node name="InteractiveProps" type="Node" parent="."]
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
+frame = 0
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )
