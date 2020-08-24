@@ -66,37 +66,37 @@ format = 1
 [node name="MovingSpikesGroup" type="Node" parent="."]
 
 [node name="MovingBambooSpike" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 72, 160 )
+position = Vector2( 72, 152 )
 
 [node name="MovingBambooSpike2" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 160, 136 )
+position = Vector2( 152, 136 )
 rotation = -1.57079
 
 [node name="MovingBambooSpike3" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 168, 48 )
+position = Vector2( 168, 56 )
 rotation = -3.14159
 
 [node name="MovingBambooSpike4" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 248, 128 )
+position = Vector2( 248, 120 )
 
 [node name="MovingBambooSpike5" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 264, 64 )
+position = Vector2( 264, 72 )
 rotation = -3.14159
 
 [node name="MovingBambooSpike6" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 440, 16 )
+position = Vector2( 440, 24 )
 rotation = -3.14159
 initial_delay = 1.5
 
 [node name="MovingBambooSpike7" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 408, 16 )
+position = Vector2( 408, 24 )
 rotation = -3.14159
 
 [node name="MovingBambooSpike8" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 408, 96 )
+position = Vector2( 408, 88 )
 
 [node name="MovingBambooSpike9" parent="MovingSpikesGroup" instance=ExtResource( 13 )]
-position = Vector2( 440, 96 )
+position = Vector2( 440, 88 )
 initial_delay = 1.5
 
 [node name="Props" type="Node2D" parent="."]
@@ -114,13 +114,14 @@ flip_v = true
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 288, 79.375 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 384, 80 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 496, 127.688 )
+frame = 0
 
 [node name="InteractiveProps" type="Node" parent="."]
 

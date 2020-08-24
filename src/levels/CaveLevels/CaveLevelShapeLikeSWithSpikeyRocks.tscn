@@ -75,24 +75,24 @@ flip_v = true
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 80, 96 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 272, 96 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 153.5, -48 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 384, -192 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 240, -192 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 448, -192 )
-frame = 0
 
 [node name="InteractiveProps" type="Node" parent="."]
 
@@ -130,7 +130,7 @@ position = Vector2( 512, -112 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 153.5, -96 )
-frame = 4
+frame = 0
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 13 )]
 position = Vector2( 392, 72 )
