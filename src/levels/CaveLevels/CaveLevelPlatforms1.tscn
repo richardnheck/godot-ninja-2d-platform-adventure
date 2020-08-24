@@ -33,23 +33,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
-[sub_resource type="Animation" id=5]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.99 ]
-}
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -97,7 +81,23 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.99 ]
+}
+
+[sub_resource type="Animation" id=6]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -171,7 +171,7 @@ tile_set = ExtResource( 5 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 4
 format = 1
-tile_data = PoolIntArray( 196609, -536870910, 196608, 196616, -1073741822, 196608, 196634, -1073741822, 196608, 196651, -536870910, 196608, 262145, -536870910, 196608, 262152, -1073741822, 196608, 262170, -1073741822, 196608, 262187, -536870910, 196608, 327709, 2, 131073, 327710, 2, 131073, 327711, 2, 131073, 327712, 2, 131073, 327713, 2, 131073, 327714, 2, 131073, 327715, 2, 131073, 327716, 2, 131073, 327717, 2, 131073, 327718, 2, 131073, 327719, 2, 131073, 327720, 2, 131073, 327721, 2, 131073, 458796, -1073741822, 196608, 524337, -2147483646, 196608, 655371, 2, 131073, 655372, 2, 131073, 655373, 2, 131073, 655374, 2, 131073, 655375, 2, 131073, 655379, 2, 131073, 655380, 2, 131073, 655381, 2, 131073, 655382, 2, 131073, 655383, 2, 131073, 655384, 2, 131073, 655385, 2, 131073, 720943, -1610612734, 196608, 786479, -1610612734, 196608, 851994, 2, 196608, 852015, -1610612734, 196608, 1048611, 2, 196608, 1048615, 2, 196608, 1048619, 2, 196608, 1310751, 2, 131073, 1310752, 2, 131073, 1310753, 2, 131073, 1310754, 2, 131073, 1310755, 2, 131073, 1310756, 2, 131073, 1310757, 2, 131073, 1310758, 2, 131073, 1310759, 2, 131073, 1310760, 2, 131073, 1310761, 2, 131073, 1310762, 2, 131073, 1310763, 2, 131073, 1310764, 2, 131073, 1310765, 2, 131073, 1310766, 2, 131073, 1310767, 2, 131073, 1310768, 2, 131073, 1310769, 2, 131073 )
+tile_data = PoolIntArray( 196609, -536870910, 196608, 196616, -1073741822, 196608, 196634, -1073741822, 196608, 196651, -536870910, 196608, 262145, -536870910, 196608, 262152, -1073741822, 196608, 262170, -1073741822, 196608, 262187, -536870910, 196608, 327709, 2, 131073, 327710, 2, 131073, 327711, 2, 131073, 327712, 2, 131073, 327713, 2, 131073, 327714, 2, 131073, 327715, 2, 131073, 327716, 2, 131073, 327717, 2, 131073, 327718, 2, 131073, 327719, 2, 131073, 327720, 2, 131073, 327721, 2, 131073, 458796, -1073741822, 196608, 524337, -2147483646, 196608, 655371, 2, 131073, 655372, 2, 131073, 655373, 2, 131073, 655374, 2, 131073, 655375, 2, 131073, 655379, 2, 131073, 655380, 2, 131073, 655381, 2, 131073, 655382, 2, 131073, 655383, 2, 131073, 655384, 2, 131073, 655385, 2, 131073, 720943, -1610612734, 196608, 786479, -1610612734, 196608, 851994, 2, 196608, 852015, -1610612734, 196608, 1048611, 536870914, 196608, 1048615, 536870914, 196608, 1048619, 536870914, 196608, 1310751, 2, 131073, 1310752, 2, 131073, 1310753, 2, 131073, 1310754, 2, 131073, 1310755, 2, 131073, 1310756, 2, 131073, 1310757, 2, 131073, 1310758, 2, 131073, 1310759, 2, 131073, 1310760, 2, 131073, 1310761, 2, 131073, 1310762, 2, 131073, 1310763, 2, 131073, 1310764, 2, 131073, 1310765, 2, 131073, 1310766, 2, 131073, 1310767, 2, 131073, 1310768, 2, 131073, 1310769, 2, 131073 )
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -219,6 +219,9 @@ position = Vector2( 408, 8 )
 [node name="cave-door-plain" type="Sprite" parent="Props"]
 position = Vector2( 48, 144 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="InteractiveProps" type="Node" parent="."]
 
@@ -254,10 +257,10 @@ position = Vector2( -24, 8 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H2" index="2"]
-anims/PingPongPathFollow = SubResource( 5 )
+anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="MovingPlatformCave2H5" parent="InteractiveProps" instance=ExtResource( 12 )]
-position = Vector2( 688, 312 )
+position = Vector2( 680, 312 )
 
 [node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H5" index="0"]
 position = Vector2( 40, -8 )
@@ -271,7 +274,7 @@ position = Vector2( 40, 0 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H5" index="2"]
-anims/PingPongPathFollow = SubResource( 6 )
+anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="MovingPlatformCave2H3" parent="InteractiveProps" instance=ExtResource( 12 )]
 position = Vector2( 608, 72 )
@@ -288,7 +291,7 @@ position = Vector2( 40, 0 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H3" index="2"]
-anims/PingPongPathFollow = SubResource( 3 )
+anims/PingPongPathFollow = SubResource( 4 )
 
 [node name="MovingPlatformCave2H4" parent="InteractiveProps" instance=ExtResource( 12 )]
 position = Vector2( 512, 64 )
@@ -305,7 +308,7 @@ position = Vector2( -24, 8 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H4" index="2"]
-anims/PingPongPathFollow = SubResource( 4 )
+anims/PingPongPathFollow = SubResource( 5 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 280, 112 )
@@ -339,7 +342,7 @@ curve = ExtResource( 10 )
 position = Vector2( 8, 15.274 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave1H2" index="2"]
-anims/PingPongPathFollow = SubResource( 2 )
+anims/PingPongPathFollow = SubResource( 6 )
 
 [node name="MovingPlatformCave1H3" parent="InteractiveProps" instance=ExtResource( 16 )]
 position = Vector2( 768, 272 )
@@ -364,7 +367,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 48, 152 )
+position = Vector2( 48, 160 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
 frame = 1

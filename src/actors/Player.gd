@@ -29,6 +29,7 @@ export var running_friction = 0.9
 onready var die_sound: = $AudioStreamDie
 onready var hit_sound: = $AudioStreamHit
 onready var collision_shape = $CollisionShape2D
+onready var collision_shape_jump = $CollisionShape2DJump
 onready var sprite = $AnimatedSprite
 onready var wallJumpCoolDownTimer = $WallJumpCoolDownTimer 
 
@@ -80,6 +81,7 @@ func _physics_process(delta: float) -> void:
 
 func _get_run_direction() -> float:
 	return Input.get_action_strength(Actions.MOVE_RIGHT) - Input.get_action_strength(Actions.MOVE_LEFT)
+	
 	
 func run(delta):
 	var direction = _get_run_direction()
@@ -163,23 +165,16 @@ func gravity():
 
 func handle_animation(direction):
 	# Handle sprite animation
-	#print(direction.x)	
 	if direction.x == 1:
-		#if sprite.flip_h:
 		sprite.flip_h = false
-		#if sprite.scale.x < 0:
-		#	sprite.scale.x *= -1;	
 	elif direction.x == -1:
-		#if not sprite.flip_h:
 		sprite.flip_h = true
-		#if sprite.scale.x > 0:
-		#	print("flip")
-		#	sprite.scale.x *= -1;	
 
+	print(vel.y)
 	if is_on_floor():
-		#print (abs(vel.x))
 		if int(vel.x) != 0: 
 			if sprite.animation != "run":
+				print("run")
 				sprite.play("run")
 		else:
 			if sprite.animation != "idle":
@@ -187,7 +182,7 @@ func handle_animation(direction):
 	else:
 		if vel.y < 0:
 			sprite.play("jump_up")
-		elif vel.y > 0:
+		elif vel.y > 30:	# any smaller and the player will jitter between jump and idle animation on vertical moving platforms
 			sprite.play("jump_down")	
 
 

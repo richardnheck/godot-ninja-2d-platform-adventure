@@ -83,6 +83,7 @@ func calculate_tilemap_bounds(tilemap: TileMap) -> Rect2:
 	# apply transform
 	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
 
+
 func get_collision_tile_name(collision: KinematicCollision2D) -> String:				
 		if collision.collider is TileMap:
 			var tilemap = collision.collider

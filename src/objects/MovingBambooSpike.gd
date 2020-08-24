@@ -5,7 +5,7 @@ onready var collisionShape = $CollisionShape2D
 onready var sprite = $CollisionShape2D/Sprite
 onready var initialDelayTimer = $InitialDelayTimer
 
-onready var tween_values = [Vector2(0,0), Vector2(0,-14)]
+onready var tween_values = [Vector2(0,8), Vector2(0,-6)]
 
 export var initial_delay:float = 0		# initial delay in seconds
 
