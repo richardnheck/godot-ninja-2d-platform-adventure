@@ -74,13 +74,14 @@ flip_v = true
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 320, -32 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 96, 48 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 272, 48 )
-frame = 0
 
 [node name="cave-door-plain" type="Sprite" parent="Props"]
 position = Vector2( 40, 128 )
@@ -93,7 +94,7 @@ position = Vector2( 357, -16 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 135, -32 )
-frame = 1
+frame = 3
 
 [node name="CrumblingPlatform2" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 192, 112 )

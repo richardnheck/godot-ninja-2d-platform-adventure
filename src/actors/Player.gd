@@ -12,12 +12,12 @@ signal died
 # Wall slide speed factor (max = 1)
 # The smaller the number the slower the slide. When equal to 1 the slide is the same as falling
 export var speed_old: = 30		# in x direction
-export var speed: = 135		# in x direction
-export var wall_jump_speed = 100 # in x direction
+export var speed: = 125		# in x direction
+export var wall_jump_speed = 155 # in x direction
 export var wall_slide_speed = 50
-export var jump_power = 290
-export var wall_jump_power = 290
-export var gravity: = 13
+export var jump_power = 320
+export var wall_jump_power = 295
+export var gravity: = 15
 
 export var stopping_friction = 0.6
 export var running_friction = 0.9
@@ -27,6 +27,7 @@ export var running_friction = 0.9
 # References
 #-----------------------------
 onready var die_sound: = $AudioStreamDie
+onready var land_sound: = $AudioStreamLand
 onready var hit_sound: = $AudioStreamHit
 onready var collision_shape = $CollisionShape2D
 onready var collision_shape_jump = $CollisionShape2DJump
@@ -47,7 +48,8 @@ var jumpPressedRememberTime = 0.2
 var jumpPressedRemember = 0
 var groundedRememberTime = 0.1
 var groundedRemember = 0
-
+var falling = false
+var jumping = false
 
 # Dash
 var dash_direction = Vector2(1,0)
@@ -67,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	jump(delta)
 	#dash()
 	friction()
-	gravity()
+	gravity(delta)
 	handle_animation(get_direction())
 	
 	# Must have  infinite_inertia set to false so player can't affect rigid bodies
@@ -97,7 +99,7 @@ func run_old(delta):
 	if Input.is_action_pressed(Actions.MOVE_LEFT):
 		vel.x -= speed
 		vel.x = clamp(vel.x, -150, -100)
-		
+	
 # Jump and wall jump by holding down jump and pressing left or right on wall to jump
 func jump(delta):
 	jumpPressedRemember -= delta
@@ -105,6 +107,11 @@ func jump(delta):
 	
 	if is_on_floor():
 		groundedRemember = groundedRememberTime
+		if jumping or falling:
+			# Player has landed
+			land_sound.play()
+			jumping = false
+			falling = false
 	
 	var dir = get_direction()
 		
@@ -113,6 +120,7 @@ func jump(delta):
 		
 	# Handle normal jump
 	if (jumpPressedRemember > 0) and (groundedRemember > 0):
+		jumping = true  # set that player is jumping
 		jumpPressedRemember = 0
 		groundedRemember = 0
 		vel.y = -jump_power
@@ -144,14 +152,37 @@ func friction():
 	else:
 		vel.x *= running_friction
 
-func gravity():
-	if not dashing:
+var wall_sliding = false
+var wall_slide_initial_speed = 10
+var wall_slide_gravity = 3
+
+func gravity(delta):
+	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y > wall_slide_initial_speed:
+		if !wall_sliding:
+			# starting wall slide
+			vel.y = wall_slide_initial_speed
+		wall_sliding = true
+	else:
+		wall_sliding = false
+		
+	# Add gravity	
+	if not dashing and not wall_sliding:
 		vel.y += gravity
+	
+	# Add wall sliding gravity
+	if wall_sliding:
+		vel.y += wall_slide_gravity
+	
 	if vel.y > 500: 
 		vel.y = 500 # clamp falling speed
 	
-	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y > wall_slide_speed:
-		vel.y = wall_slide_speed 
+	if vel.y > 250 and !jumping:
+		# Set falling so we can know when to play landed sound
+		falling = true
+		
+	
+		
+		#vel = vel.linear_interpolate(Vector2(0, 50), delta *100)
 #	# Wall slide if next to left wall and player is pressing left
 #	if next_to_left_wall() and get_direction().x < 0 and vel.y > wall_slide_speed:
 #		vel.y = wall_slide_speed 
@@ -170,7 +201,6 @@ func handle_animation(direction):
 	elif direction.x == -1:
 		sprite.flip_h = true
 
-	print(vel.y)
 	if is_on_floor():
 		if int(vel.x) != 0: 
 			if sprite.animation != "run":

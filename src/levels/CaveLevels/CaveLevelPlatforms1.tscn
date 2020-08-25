@@ -312,7 +312,7 @@ anims/PingPongPathFollow = SubResource( 5 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 280, 112 )
-frame = 4
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 696, 192 )
@@ -370,7 +370,7 @@ one_shot = true
 position = Vector2( 48, 160 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 1
+frame = 2
 
 [node name="Camera2D" parent="Player" index="6"]
 visible = false

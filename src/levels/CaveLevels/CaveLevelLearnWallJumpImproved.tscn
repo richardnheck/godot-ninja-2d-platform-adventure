@@ -37,7 +37,6 @@ position = Vector2( 368, -448 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 224, -208 )
-frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 368, -336 )

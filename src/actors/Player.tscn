@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle1.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate3.png" type="Texture" id=22]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate8.png" type="Texture" id=23]
 [ext_resource path="res://assets/sounds/evretro__8-bit-damage.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/sounds/character/jump-land.wav" type="AudioStream" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -31,6 +32,11 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
@@ -41,11 +47,6 @@ animations = [ {
 "loop": true,
 "name": "celebrate",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
@@ -69,11 +70,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 125
-wall_jump_speed = 155
-jump_power = 320
-wall_jump_power = 295
-gravity = 15
 stopping_friction = 0.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -136,5 +132,8 @@ one_shot = true
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 visible = false
 position = Vector2( 0, -10 )
+
+[node name="AudioStreamLand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 25 )
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
