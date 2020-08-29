@@ -77,7 +77,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 centered = false
 
@@ -135,5 +135,10 @@ position = Vector2( 0, -10 )
 
 [node name="AudioStreamLand" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 25 )
+
+[node name="WallClampTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="WallClampTimer" to="." method="_on_WallClampTimer_timeout"]

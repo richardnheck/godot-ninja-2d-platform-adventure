@@ -33,6 +33,7 @@ onready var collision_shape = $CollisionShape2D
 onready var collision_shape_jump = $CollisionShape2DJump
 onready var sprite = $AnimatedSprite
 onready var wallJumpCoolDownTimer = $WallJumpCoolDownTimer 
+onready var wall_clamp_timer = $WallClampTimer;
 
 #-----------------------------
 # Variables
@@ -50,6 +51,10 @@ var groundedRememberTime = 0.1
 var groundedRemember = 0
 var falling = false
 var jumping = false
+var wall_sliding = false
+var wall_slide_initial_speed = 1
+var wall_slide_gravity = 3
+
 
 # Dash
 var dash_direction = Vector2(1,0)
@@ -136,11 +141,23 @@ func jump(delta):
 	if Input.is_action_just_released(Actions.JUMP) and vel.y < 0:
 		vel.y = vel.y * 0.5
 	
+	if jumping and Input.is_action_just_released(Actions.JUMP):
+		ready_to_dash = true
+
+var ready_to_dash = false
 
 func wall_jump(dir):
 	wallJumpCoolDownTimer.start()
 	wall_jumping = true
-	vel.y= -wall_jump_power
+	if(vel.y < 60):
+		# Full wall jump power because we have slid down to fast
+		# ie. full power if roughly still clamped to the wall
+		vel.y= -wall_jump_power
+	else:
+		# Have started sliding so wall jump power is no longer maximum
+		# This means you wall jump sideways
+		vel.y = -wall_jump_power * 0.7
+		
 	vel.x+= dir.x * wall_jump_speed	
 
 		
@@ -152,16 +169,16 @@ func friction():
 	else:
 		vel.x *= running_friction
 
-var wall_sliding = false
-var wall_slide_initial_speed = 10
-var wall_slide_gravity = 3
+var wall_clamped = false
 
 func gravity(delta):
-	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y > wall_slide_initial_speed:
+	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y >= wall_slide_initial_speed:
 		if !wall_sliding:
 			# starting wall slide
+			wall_clamped = true
+			wall_sliding = true
 			vel.y = wall_slide_initial_speed
-		wall_sliding = true
+			wall_clamp_timer.start()
 	else:
 		wall_sliding = false
 		
@@ -170,7 +187,7 @@ func gravity(delta):
 		vel.y += gravity
 	
 	# Add wall sliding gravity
-	if wall_sliding:
+	if wall_sliding and !wall_clamped:
 		vel.y += wall_slide_gravity
 	
 	if vel.y > 500: 
@@ -192,7 +209,25 @@ func gravity(delta):
 #		vel.y = wall_slide_speed 
 #	#if next_to_wall() and vel.y > 100: 
 		
+func dash():
+	if is_on_floor():
+		can_dash = true # recharges when player touches the floor
+		ready_to_dash = false
 
+	if Input.is_action_pressed(Actions.MOVE_RIGHT):
+		dash_direction = Vector2(1,0)
+	if Input.is_action_pressed(Actions.MOVE_LEFT):
+		dash_direction = Vector2(-1,0)
+
+	if ready_to_dash and Input.is_action_just_pressed(Actions.JUMP) and can_dash:
+		
+		vel = dash_direction.normalized() * 1000
+		can_dash = false
+		
+		dashing = true # turn off gravity while dashing
+		yield(get_tree().create_timer(0.5), "timeout")
+		dashing = false
+		
 
 func handle_animation(direction):
 	# Handle sprite animation
@@ -273,3 +308,7 @@ func _on_WallJumpCoolDownTimer_timeout() -> void:
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	die()
+
+
+func _on_WallClampTimer_timeout() -> void:
+	wall_clamped = false
