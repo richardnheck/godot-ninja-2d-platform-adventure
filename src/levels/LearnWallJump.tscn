@@ -32,7 +32,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( 224, 128 )
-frame = 4
+frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 336, 80 )
@@ -62,7 +62,7 @@ format = 1
 position = Vector2( 96, 224 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 2
+frame = 0
 
 [node name="Props" type="Node2D" parent="."]
 

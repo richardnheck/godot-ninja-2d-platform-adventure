@@ -1,0 +1,171 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle3.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle4.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run3.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run4.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run2.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump2.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump1.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle1.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-1.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-2.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate4.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate7.png" type="Texture" id=13]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate1.png" type="Texture" id=14]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate2.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle2.png" type="Texture" id=16]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run1.png" type="Texture" id=17]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run5.png" type="Texture" id=18]
+[ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run6.png" type="Texture" id=19]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate6.png" type="Texture" id=20]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate8.png" type="Texture" id=21]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate3.png" type="Texture" id=22]
+[ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate5.png" type="Texture" id=23]
+[ext_resource path="res://assets/sounds/character/jump-land.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/sounds/evretro__8-bit-damage.wav" type="AudioStream" id=25]
+[ext_resource path="res://src/actors/player/player_state_machine.gd" type="Script" id=26]
+[ext_resource path="res://src/actors/player/states/motion/on_ground/idle.gd" type="Script" id=27]
+[ext_resource path="res://src/actors/player/states/motion/on_ground/move.gd" type="Script" id=28]
+[ext_resource path="res://src/actors/player/states/motion/in_air/jump.gd" type="Script" id=29]
+[ext_resource path="res://src/actors/player/states/debug/state_name_displayer.gd" type="Script" id=30]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 16 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.13996, 8.84988 )
+
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 26 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 27 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 28 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 29 )
+
+[node name="Die" type="Node" parent="StateMachine"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -15, -32 )
+z_index = 1000
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -8.835 )
+shape = SubResource( 2 )
+
+[node name="RightWallRaycast1" type="RayCast2D" parent="."]
+position = Vector2( 1, -2 )
+enabled = true
+cast_to = Vector2( 7, 0 )
+collision_mask = 2
+
+[node name="RightWallRaycast2" type="RayCast2D" parent="."]
+position = Vector2( 1, -17 )
+enabled = true
+cast_to = Vector2( 7, 0 )
+collision_mask = 2
+
+[node name="LeftWallRaycast1" type="RayCast2D" parent="."]
+position = Vector2( 1, -2 )
+enabled = true
+cast_to = Vector2( -7, 0 )
+collision_mask = 2
+
+[node name="LeftWallRaycast2" type="RayCast2D" parent="."]
+position = Vector2( 1, -17 )
+enabled = true
+cast_to = Vector2( -7, 0 )
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 1, 0 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1000
+limit_bottom = 1000
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AudioStreamDie" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+
+[node name="WallJumpCoolDownTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+
+[node name="AudioStreamLand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 24 )
+
+[node name="WallClampTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="StateNameDisplayer" type="Label" parent="."]
+margin_left = -15.0
+margin_top = -39.0
+margin_right = 18.0
+margin_bottom = -25.0
+align = 1
+script = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="state_changed" from="StateMachine" to="StateNameDisplayer" method="_on_StateMachine_state_changed"]
+[connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="WallClampTimer" to="." method="_on_WallClampTimer_timeout"]
