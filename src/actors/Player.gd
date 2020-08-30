@@ -115,6 +115,12 @@ func jump(delta):
 		if jumping or falling:
 			# Player has landed
 			land_sound.play()
+			
+			# Show some animated just on landing
+			var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
+			landing_dust_scene.global_position = global_position
+			get_parent().add_child(landing_dust_scene)		
+			
 			jumping = false
 			falling = false
 	
@@ -149,14 +155,31 @@ var ready_to_dash = false
 func wall_jump(dir):
 	wallJumpCoolDownTimer.start()
 	wall_jumping = true
-	if(vel.y < 60):
-		# Full wall jump power because we have slid down to fast
-		# ie. full power if roughly still clamped to the wall
-		vel.y= -wall_jump_power
-	else:
-		# Have started sliding so wall jump power is no longer maximum
-		# This means you wall jump sideways
-		vel.y = -wall_jump_power * 0.7
+	
+	vel.y= -wall_jump_power
+	# Show some animated effect when walljumping
+	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
+	var rotation = 0
+	var offset = 0
+	if next_to_left_wall(): 
+		rotation = -120
+		offset = -4
+	if next_to_right_wall(): 
+		rotation = 120
+		offset = 4
+	landing_dust_scene.global_position = Vector2(global_position.x+offset, global_position.y-16)
+	landing_dust_scene.rotation_degrees = rotation
+	landing_dust_scene.scale = Vector2(0.5,2)
+	get_parent().add_child(landing_dust_scene)		
+#	
+	#if(vel.y < 60):
+#		# Full wall jump power because we have slid down to fast
+#		# ie. full power if roughly still clamped to the wall
+#		vel.y= -wall_jump_power
+#	else:
+#		# Have started sliding so wall jump power is no longer maximum
+#		# This means you wall jump sideways
+#		vel.y = -wall_jump_power * 0.7
 		
 	vel.x+= dir.x * wall_jump_speed	
 
@@ -196,7 +219,6 @@ func gravity(delta):
 	if vel.y > 250 and !jumping:
 		# Set falling so we can know when to play landed sound
 		falling = true
-		
 	
 		
 		#vel = vel.linear_interpolate(Vector2(0, 50), delta *100)
