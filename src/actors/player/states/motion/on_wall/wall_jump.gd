@@ -1,38 +1,33 @@
 extends "../motion.gd"
 
-export var jump_power = 320
+export var wall_jump_power = 295
+export var wall_jump_horizontal_speed = 155
 
-export(float) var base_max_horizontal_speed = 125
-
-#export(float) var air_acceleration = 10.0
-#export(float) var air_deceleration = 20.0
-#export(float) var air_steering_power = 0.5
-
-#export(float) var gravity = 15
-
-var enter_velocity = Vector2()
-
-var max_horizontal_speed = 0.0
-#var horizontal_speed = 0.0
-#var horizontal_velocity = Vector2()
-
-#var vertical_speed = 0.0
-#var height = 0.0
 
 func initialize(speed, velocity):
 	pass
-#	horizontal_speed = speed
-#	max_horizontal_speed = speed if speed > 0.0 else base_max_horizontal_speed
-#	enter_velocity = velocity
 
 func enter():
-	var input_direction = get_input_direction()
-	update_look_direction(input_direction)
+	# Set the horizontal speed for wall jump
+	horizontal_speed = wall_jump_horizontal_speed
 	
-	velocity.y = -jump_power
+	velocity.y = -wall_jump_power
 	
-#	horizontal_velocity = enter_velocity if input_direction else Vector2()
-#	vertical_speed = 600.0
+	# Show some animated effect when walljumping
+	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
+	var rotation = 0
+	var offset = 0
+	if next_to_left_wall(): 
+		rotation = -120
+		offset = -4
+	if next_to_right_wall(): 
+		rotation = 120
+		offset = 4
+	landing_dust_scene.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16)
+	landing_dust_scene.rotation_degrees = rotation
+	landing_dust_scene.scale = Vector2(0.5,2)
+	get_parent().add_child(landing_dust_scene)	
+	
 
 func update(delta):
 	# Handle movement	
@@ -64,9 +59,8 @@ func update(delta):
 	
 	# Handle state transitions	
 	# ------------------------
-	detectAndTransitionToWallSlide()
-	
 	if owner.is_on_floor(): 
 		# Exit jump state if on the floor
 		emit_signal("finished", "move")
-	
+		
+	# TODO: Detect wall jump but not immediately
