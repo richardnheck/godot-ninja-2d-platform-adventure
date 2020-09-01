@@ -59,8 +59,5 @@ func update(delta):
 	
 	# Handle state transitions	
 	# ------------------------
-	if owner.is_on_floor(): 
-		# Exit jump state if on the floor
-		emit_signal("finished", "move")
-		
-	# TODO: Detect wall jump but not immediately
+	detectAndTransitionToWallSlide()
+	detectAndTransitionToGround(input_direction)

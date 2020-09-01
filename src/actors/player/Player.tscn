@@ -55,14 +55,14 @@ animations = [ {
 "name": "jump_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": false,
 "name": "jump_up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 10.0
 } ]
 

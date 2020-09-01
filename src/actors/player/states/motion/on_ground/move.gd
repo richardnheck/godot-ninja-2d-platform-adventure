@@ -11,6 +11,9 @@ func enter():
 	update_look_direction(input_direction)
 	owner.get_node("AnimatedSprite").play("run")
 
+func initialize(_jumpPressedRemember):
+	jumpPressedRemember = _jumpPressedRemember
+
 
 func handle_input(event):
 	return .handle_input(event)
@@ -18,8 +21,7 @@ func handle_input(event):
 
 func update(_delta):
 	var input_direction = get_input_direction()
-	if not input_direction:
-		emit_signal("finished", "idle")
+	
 	update_look_direction(input_direction)
 	apply_gravity()
 
@@ -37,6 +39,10 @@ func update(_delta):
 #		return
 #	if speed == max_run_speed and collision_info.collider.is_in_group("environment"):
 #		return null
+	if owner.is_on_floor() and !input_direction:
+		emit_signal("finished", "idle")
+		
+	detectAndTransitionToJump(_delta)
 
 func move(vel):	
 	velocity = owner.move_and_slide(vel, Vector2.UP, false, 4, PI/4, false)

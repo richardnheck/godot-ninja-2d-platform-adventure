@@ -9,17 +9,22 @@ func _ready():
 		"wall_jump" : $WallJump
 	}
 
+var jumpPressedRemember = 0
 
 func _change_state(state_name):
+	print("change_state: " + state_name)
 	# The base state_machine interface this node extends does most of the work.
 	if not _active:
 		return
 	if state_name in ["jump"]:
 		states_stack.push_front(states_map[state_name])
+		#print(states_stack)
 	if state_name == "jump" and current_state == $Move:
 		$Jump.initialize($Move.speed, $Move.velocity)
-	if state_name == "jump" and current_state == $Idle:
-		$Jump.initialize($Move.speed, $Move.velocity)
+	if state_name == "move" and current_state == $Jump:
+		$Move.initialize($Jump.jumpPressedRemember)
+	if state_name == "idle" and current_state == $Jump:
+		$Idle.initialize($Jump.jumpPressedRemember)
 	._change_state(state_name)
 
 

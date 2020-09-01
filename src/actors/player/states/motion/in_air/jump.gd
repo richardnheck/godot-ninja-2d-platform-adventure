@@ -26,6 +26,7 @@ func initialize(speed, velocity):
 #	enter_velocity = velocity
 
 func enter():
+	print("enter jump")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	
@@ -34,7 +35,11 @@ func enter():
 #	horizontal_velocity = enter_velocity if input_direction else Vector2()
 #	vertical_speed = 600.0
 
-func update(delta):
+func handle_input(event):
+	return .handle_input(event)
+	
+
+func update(_delta):
 	# Handle movement	
 	# ------------------------
 	var input_direction = get_input_direction()
@@ -66,7 +71,10 @@ func update(delta):
 	# ------------------------
 	detectAndTransitionToWallSlide()
 	
-	if owner.is_on_floor(): 
-		# Exit jump state if on the floor
-		emit_signal("finished", "move")
+	# Keep this up to date for jump detection even though we are currently jumping
+	# This is to subsequent states (idle or move) via their initialise() method
+	jumpPressedRemember -= _delta	
+	
+	detectAndTransitionToGround(input_direction)
+	
 	

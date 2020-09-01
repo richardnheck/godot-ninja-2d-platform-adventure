@@ -7,10 +7,15 @@ export(float) var horizontal_speed = 125
 var speed = 0.0
 var velocity = Vector2()
 
+var groundedRememberTime = 0.15
+var groundedRemember = 0
+var jumpPressedRememberTime = 0.2
+var jumpPressedRemember = 0
+
 func handle_input(event):
-	pass
-	#if event.is_action_pressed("simulate_damage"):
-	#	emit_signal("finished", "stagger")
+	if event.is_action_pressed(Actions.JUMP):
+		jumpPressedRemember = jumpPressedRememberTime
+	return .handle_input(event)
 
 
 func get_input_direction():
@@ -61,9 +66,42 @@ func next_to_right_wall():
 	var rightWallRaycast2 = owner.get_node("RightWallRaycast2")
 	return rightWallRaycast1.is_colliding() or rightWallRaycast2.is_colliding()
 
+
 func detectAndTransitionToWallSlide():
-	if Input.is_action_pressed(Actions.JUMP) and !owner.is_on_floor():
+	if Input.is_action_pressed(Actions.JUMP) and !owner.is_on_floor() and (velocity.y > -100 || velocity.y > 1):
 			# Wall jump occurs when user holds down jump
 			if next_to_left_wall() or next_to_right_wall():
 				# Transition to wall slide state
 				emit_signal("finished", "wall_slide")
+
+
+func detectAndTransitionToJump(_delta):
+	if detect_jump(_delta):
+		emit_signal("finished", "jump")
+
+func detectAndTransitionToGround(input_direction):
+	if owner.is_on_floor():
+		# Exit jump state if on the floor
+		if !input_direction: 
+			# No directional user input so transition to idle
+			emit_signal("finished", "idle")
+		else: 
+			# There is directional user input so transition to move
+			emit_signal("finished", "move")
+
+func detect_jump(_delta) -> bool:
+	jumpPressedRemember -= _delta
+	groundedRemember -= _delta
+
+	if owner.is_on_floor():
+		groundedRemember = groundedRememberTime
+
+	if (jumpPressedRemember > 0) and (groundedRemember > 0):
+		# Transition to jump state
+		jumpPressedRemember = 0
+		groundedRemember = 0
+		return true
+	else:
+		return false
+	
+	
