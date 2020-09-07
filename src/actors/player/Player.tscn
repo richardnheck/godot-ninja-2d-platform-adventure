@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle3.png" type="Texture" id=2]
@@ -9,8 +9,8 @@
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump2.png" type="Texture" id=7]
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump1.png" type="Texture" id=8]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle1.png" type="Texture" id=9]
-[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-1.png" type="Texture" id=10]
-[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-2.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/sprites/player/die/player-die1.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/sprites/player/die/player-die2.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate4.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate7.png" type="Texture" id=13]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate1.png" type="Texture" id=14]
@@ -32,12 +32,18 @@
 [ext_resource path="res://src/actors/player/states/debug/state_name_displayer.gd" type="Script" id=30]
 [ext_resource path="res://src/actors/player/states/motion/on_wall/wall_slide.gd" type="Script" id=31]
 [ext_resource path="res://src/actors/player/states/motion/on_wall/wall_jump.gd" type="Script" id=32]
+[ext_resource path="res://src/actors/player/states/die.gd" type="Script" id=33]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 16 ), ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "die",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
@@ -54,11 +60,6 @@ animations = [ {
 "loop": true,
 "name": "jump_down",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": false,
@@ -88,6 +89,7 @@ script = ExtResource( 28 )
 script = ExtResource( 29 )
 
 [node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 33 )
 
 [node name="WallSlide" type="Node" parent="StateMachine"]
 script = ExtResource( 31 )
@@ -100,7 +102,6 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 3
 playing = true
 centered = false
 
@@ -164,6 +165,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="StateNameDisplayer" type="Label" parent="."]
+visible = false
 margin_left = -15.0
 margin_top = -39.0
 margin_right = 18.0
@@ -174,6 +176,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="state_changed" from="StateMachine" to="StateNameDisplayer" method="_on_StateMachine_state_changed"]
+[connection signal="animation_finished" from="AnimatedSprite" to="StateMachine" method="_on_animation_finished"]
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="WallClampTimer" to="." method="_on_WallClampTimer_timeout"]

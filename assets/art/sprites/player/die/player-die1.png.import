@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player-hurt-2.png-e7f3beff50f08e8094d98b5d0e4d2c4a.stex"
+path="res://.import/player-die1.png-26975ffdb2cad913080c44e000c51d5a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/sprites/player/hurt/player-hurt-2.png"
-dest_files=[ "res://.import/player-hurt-2.png-e7f3beff50f08e8094d98b5d0e4d2c4a.stex" ]
+source_file="res://assets/art/sprites/player/die/player-die1.png"
+dest_files=[ "res://.import/player-die1.png-26975ffdb2cad913080c44e000c51d5a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

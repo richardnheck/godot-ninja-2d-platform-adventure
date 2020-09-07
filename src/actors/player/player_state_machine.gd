@@ -6,7 +6,8 @@ func _ready():
 		"move": $Move,
 		"jump": $Jump,
 		"wall_slide" : $WallSlide,
-		"wall_jump" : $WallJump
+		"wall_jump" : $WallJump,
+		"die" : $Die
 	}
 
 var jumpPressedRemember = 0
@@ -16,6 +17,9 @@ func _change_state(state_name):
 	# The base state_machine interface this node extends does most of the work.
 	if not _active:
 		return
+	if current_state == $Die:
+		return
+		
 	if state_name in ["jump"]:
 		states_stack.push_front(states_map[state_name])
 		#print(states_stack)
@@ -37,3 +41,6 @@ func _input(event):
 #		_change_state("attack")
 #		return
 	current_state.handle_input(event)
+
+
+

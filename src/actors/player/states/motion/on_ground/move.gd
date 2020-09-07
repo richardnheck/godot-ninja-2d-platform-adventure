@@ -43,6 +43,3 @@ func update(_delta):
 		emit_signal("finished", "idle")
 		
 	detectAndTransitionToJump(_delta)
-
-func move(vel):	
-	velocity = owner.move_and_slide(vel, Vector2.UP, false, 4, PI/4, false)
