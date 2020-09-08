@@ -4,16 +4,24 @@ class_name LevelBase
 onready var key = $InteractiveProps/KamonKey
 onready var door = $InteractiveProps/Door
 onready var endTimer = $EndTimer
-onready var player:KinematicBody2D = $Player
+
 onready var tilemapWorld:TileMap = $TileMapWorld
 onready var tilemapTraps:TileMap = $TileMapTraps
 onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 
+onready var player_spawn_position = $PlayerSpawnPosition;
+onready var player_scene = preload("res://src/actors/player/Player.tscn")
+onready var start_door = get_node("Props/DoorStart")
+
+var player:KinematicBody2D
 var fadeScreen:FadeScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("LevelBase: ready()")
+	
+	# Spawn the player
+	player = _spawn_player()
 	
 	# Connect signals
 	player.connect("died", self, "_on_Player_died")
@@ -30,6 +38,19 @@ func _ready() -> void:
 
 	door.close()
 	
+func _spawn_player() -> KinematicBody2D:
+	var spawn_point = Vector2.ZERO
+	if player_spawn_position != null:
+		spawn_point = player_spawn_position.position
+	elif  start_door != null:
+		spawn_point = start_door.position	
+	
+	var player_instance = player_scene.instance()
+	player_instance.position = spawn_point
+	player_instance.z_index = 10000
+	add_child(player_instance)
+	return player_instance
+
 
 func goto_next_level() -> void:
 	LevelData.goto_next_level();
@@ -40,10 +61,9 @@ func _on_Key_captured() -> void:
 	
 	
 func _on_Door_player_entered() -> void:
-	print("door entered")
-	# Disable player physics 
-	player.set_physics_process(false)
-	player.celebrate()
+	print("here1")
+	player.celebrate();
+	print("here2")
 	yield(get_tree().create_timer(2), "timeout")
 	goto_next_level()
 

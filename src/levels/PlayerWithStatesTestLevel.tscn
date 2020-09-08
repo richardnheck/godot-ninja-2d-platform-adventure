@@ -59,7 +59,7 @@ tile_data = PoolIntArray( 1835016, 2, 131073, 1835017, 2, 131073 )
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="CaveDoorStart" parent="Props" instance=ExtResource( 7 )]
+[node name="DoorStart" parent="Props" instance=ExtResource( 7 )]
 position = Vector2( 96, 208 )
 
 [node name="EndTimer" type="Timer" parent="."]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-traps.tres" type="TileSet" id=3]
-[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/SpikeyRock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=7]
@@ -101,7 +100,7 @@ initial_delay = 1.5
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="CaveDoorStart" parent="Props" instance=ExtResource( 12 )]
+[node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( 16, 128 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
@@ -141,17 +140,12 @@ position = Vector2( 208, 136 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 343.607, 32 )
-frame = 6
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 16, 144 )
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
-[connection signal="collided" from="Player" to="." method="_on_Player_collided"]
 
 [editable path="Props/CaveDoorBackground"]
 

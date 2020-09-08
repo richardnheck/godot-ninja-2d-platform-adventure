@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
@@ -32,7 +31,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 224, 128 )
-frame = 3
+frame = 6
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 336, 80 )
@@ -58,12 +57,9 @@ cell_size = Vector2( 16, 8 )
 collision_layer = 4
 format = 1
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 48, 224 )
-
 [node name="Props" type="Node2D" parent="."]
 
-[node name="CaveDoorStart" parent="Props" instance=ExtResource( 9 )]
+[node name="DoorStart" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 48, 208 )
 
 [node name="EndTimer" type="Timer" parent="."]

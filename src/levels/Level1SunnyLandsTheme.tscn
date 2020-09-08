@@ -64,6 +64,7 @@ tile_data = PoolIntArray( 1114121, 1, 0 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 184, 40 )
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 208, 144 )
@@ -99,7 +100,7 @@ one_shot = true
 position = Vector2( 32, 32 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
+frame = 1
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

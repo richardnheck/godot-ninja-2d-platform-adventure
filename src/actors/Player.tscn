@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle1.png" type="Texture" id=2]
@@ -13,8 +13,6 @@
 [ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run6.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump2.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump1.png" type="Texture" id=13]
-[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-1.png" type="Texture" id=14]
-[ext_resource path="res://assets/art/sprites/player/hurt/player-hurt-2.png" type="Texture" id=15]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate4.png" type="Texture" id=16]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate7.png" type="Texture" id=17]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate1.png" type="Texture" id=18]
@@ -33,6 +31,16 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "celebrate",
@@ -42,21 +50,6 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 15.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "jump_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump_up",
-"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]

@@ -25,10 +25,6 @@ var dead: = false
 var look_direction = Vector2.RIGHT setget set_look_direction
 
 
-func celebrate():
-	$AnimatedSprite.play("celebrate")
-
-
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	die()
 
@@ -41,14 +37,20 @@ func take_damage(attacker, amount, effect = null):
 
 # Start the dieing process
 func die():
-	print("Player:die()")
 	set_dead(true)
 	$StateMachine._change_state("die")
+	die_sound.play()
+
+	
+func celebrate():
+	$StateMachine._change_state("celebrate")
+
 
 func set_dead(value):
 	set_process_input(not value)
 	set_physics_process(not value)
 	collision_shape.set_deferred("disabled", true)
+
 	
 #func die():
 #	dead = true

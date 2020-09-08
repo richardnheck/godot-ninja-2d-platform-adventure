@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/JapaneseLamp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=7]
@@ -37,7 +36,6 @@ position = Vector2( 368, -448 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 224, -208 )
-frame = 5
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 368, -336 )
@@ -67,12 +65,9 @@ collision_layer = 4
 format = 1
 tile_data = PoolIntArray( 1835037, 2, 131073, 1835038, 2, 131073, 1835039, 2, 131073, 1835040, 2, 131073, 1835041, 2, 131073, 1835042, 2, 131073 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 48, 224 )
-
 [node name="Props" type="Node2D" parent="."]
 
-[node name="CaveDoorStart" parent="Props" instance=ExtResource( 9 )]
+[node name="DoorStart" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 48, 208 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 5 )]
@@ -86,5 +81,4 @@ wait_time = 2.0
 one_shot = true
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
-[connection signal="collided" from="Player" to="." method="_on_Player_collided"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

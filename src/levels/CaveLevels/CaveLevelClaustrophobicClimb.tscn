@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/JapaneseLamp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=7]
@@ -157,15 +156,12 @@ collision_layer = 4
 format = 1
 tile_data = PoolIntArray( -3014656, -1610612734, 196608, -2752510, -2147483646, 196608, -2228224, -1610612734, 196608, -2097152, -1610612734, 196608, -1966078, -2147483646, 196608, -1966075, -1610612734, 196608, -1835006, -2147483646, 196608, -1835003, -1610612734, 196608, -1179648, 2, 196608, -1179641, 2, 196608, -720895, -1610612734, 196608, -655359, -1610612734, 196608, -524283, 2, 196608, -524282, 2, 196608, -524281, 11, 0, 524289, -536870910, 196608, 524294, -1073741822, 196608, 589830, -1073741822, 196608, 655361, -536870910, 196608, 655366, -1073741822, 196608, 720897, -536870910, 196608, 786433, -536870910, 196608, 786438, -1073741822, 196608, 851969, -536870910, 196608, 917505, -536870910, 196608, 917510, -1073741822, 196608, 983041, -536870910, 196608, 1048577, -536870910, 196608, 1048582, -1073741822, 196608, 1114113, -536870910, 196608, 1179649, -536870910, 196608, 1179654, -1073741822, 196608, 1245185, -536870910, 196608, 1310721, -536870910, 196608, 1310726, -1073741822, 196608, 1376257, -536870910, 196608, 1441793, -536870910, 196608, 1441798, -1073741822, 196608, 1507329, -536870910, 196608, 1572865, -536870910, 196608, 1572870, -1073741822, 196608 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 64, 224 )
-
 [node name="Props" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CaveDoorStart" parent="Props" instance=ExtResource( 9 )]
+[node name="DoorStart" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 63, 208 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 5 )]
@@ -179,7 +175,6 @@ wait_time = 2.0
 one_shot = true
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
-[connection signal="collided" from="Player" to="." method="_on_Player_collided"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/MovingPlatformCave1H"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/sunny-lands/props/shrooms.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/art/tilesets/sunny-lands/sunnylands-traps.tres" type="TileSet" id=7]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=10]
 [ext_resource path="res://assets/art/props/torch/torch2.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/props/torch/torch5.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/props/torch/torch4.png" type="Texture" id=13]
@@ -44,7 +43,6 @@ animations = [ {
 } ]
 
 [node name="CaveLevel" type="Node2D"]
-script = ExtResource( 10 )
 __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
@@ -114,13 +112,11 @@ texture = ExtResource( 2 )
 [node name="Torch" type="AnimatedSprite" parent="Props"]
 position = Vector2( 192, 64 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Torch2" type="AnimatedSprite" parent="Props"]
 position = Vector2( 336, 64 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="TileMapTraps" type="TileMap" parent="."]
@@ -139,7 +135,7 @@ one_shot = true
 position = Vector2( 40, 208 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 1
+frame = 0
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
