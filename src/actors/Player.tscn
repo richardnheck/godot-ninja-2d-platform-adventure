@@ -31,16 +31,6 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump_up",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "jump_down",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "celebrate",
@@ -50,6 +40,16 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -70,7 +70,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 centered = false
 
@@ -111,6 +111,10 @@ limit_right = 1000
 limit_bottom = 1000
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 __meta__ = {
 "_edit_group_": true
 }

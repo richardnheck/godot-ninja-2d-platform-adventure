@@ -4,7 +4,7 @@ onready var spike_collision_shape: CollisionShape2D = $CollisionShape2D
 onready var animatedSprite: = $AnimatedSprite
 onready var animationPlayer: = $AnimationPlayer
 
-export var gravity: = 50
+var gravity: = 20
 
 var triggered:bool = false
 var vel:Vector2 = Vector2.ZERO

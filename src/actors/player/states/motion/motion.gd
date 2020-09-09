@@ -58,6 +58,7 @@ func move(vel):
 # ----------------------------------------------------------------
 func next_to_wall():
 	return next_to_left_wall() or next_to_right_wall()
+
 	
 func next_to_left_wall():
 	var leftWallRaycast1 = owner.get_node("LeftWallRaycast1")
@@ -71,19 +72,26 @@ func next_to_right_wall():
 	return rightWallRaycast1.is_colliding() or rightWallRaycast2.is_colliding()
 
 
-func detectAndTransitionToWallSlide():
-	if Input.is_action_pressed(Actions.JUMP) and !owner.is_on_floor() and (velocity.y > -100 || velocity.y > 1):
-			# Wall jump occurs when user holds down jump
+func detect_and_transition_to_wall_slide():
+	if Input.is_action_pressed(Actions.JUMP) and !owner.is_on_floor() and velocity.y > 0:
+			# Wall slide occurs when user holds down jump against a wall and they are travelling downwards
 			if next_to_left_wall() or next_to_right_wall():
 				# Transition to wall slide state
 				emit_signal("finished", "wall_slide")
 
+func detect_and_transition_to_wall_jump(input_direction):
+		# Wall Jump is triggered when user presses away from the wall while holding jump
+		if Input.is_action_pressed(Actions.JUMP) and (next_to_left_wall() and (input_direction.x == 1)) or (next_to_right_wall() and (input_direction.x == -1)):			
+			print("goto wall jump")
+			emit_signal("finished", "wall_jump") 
 
-func detectAndTransitionToJump(_delta):
+
+func detect_and_transition_to_jump(_delta):
 	if detect_jump(_delta):
 		emit_signal("finished", "jump")
 
-func detectAndTransitionToGround(input_direction):
+
+func detect_and_transition_to_ground(input_direction):
 	if owner.is_on_floor():
 		# Exit jump state if on the floor
 		if !input_direction: 
@@ -92,6 +100,7 @@ func detectAndTransitionToGround(input_direction):
 		else: 
 			# There is directional user input so transition to move
 			emit_signal("finished", "move")
+
 
 func detect_jump(_delta) -> bool:
 	jumpPressedRemember -= _delta

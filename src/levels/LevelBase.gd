@@ -9,7 +9,8 @@ onready var tilemapWorld:TileMap = $TileMapWorld
 onready var tilemapTraps:TileMap = $TileMapTraps
 onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 
-onready var player_spawn_position = $PlayerSpawnPosition;
+onready var player_spawn_position = get_node("PlayerSpawnPosition")
+onready var temp_spawn_position = get_node("TempSpawnPosition");
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
@@ -37,10 +38,18 @@ func _ready() -> void:
 	set_player_camera_limits(player, tilemapWorld);
 
 	door.close()
-	
+
+#func _get_configuration_warning():
+#	if temp_spawn_position != null:
+#		return 'Remove Temporary Spawn Position!!!'
+#	else:
+#		return ''
+				
 func _spawn_player() -> KinematicBody2D:
 	var spawn_point = Vector2.ZERO
-	if player_spawn_position != null:
+	if temp_spawn_position != null:
+		spawn_point = temp_spawn_position.position
+	elif player_spawn_position != null:
 		spawn_point = player_spawn_position.position
 	elif  start_door != null:
 		spawn_point = start_door.position	

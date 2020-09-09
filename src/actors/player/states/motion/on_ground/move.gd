@@ -42,4 +42,5 @@ func update(_delta):
 	if owner.is_on_floor() and !input_direction:
 		emit_signal("finished", "idle")
 		
-	detectAndTransitionToJump(_delta)
+	detect_and_transition_to_jump(_delta)
+	detect_and_transition_to_wall_slide()

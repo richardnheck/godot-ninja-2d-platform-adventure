@@ -21,4 +21,4 @@ func update(_delta):
 	if input_direction:
 		emit_signal("finished", "move")
 	
-	detectAndTransitionToJump(_delta)
+	detect_and_transition_to_jump(_delta)

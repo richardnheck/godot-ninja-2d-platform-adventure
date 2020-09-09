@@ -69,12 +69,13 @@ func update(_delta):
 	
 	# Handle state transitions	
 	# ------------------------
-	detectAndTransitionToWallSlide()
+	detect_and_transition_to_wall_slide()
+	detect_and_transition_to_wall_jump(input_direction)
 	
 	# Keep this up to date for jump detection even though we are currently jumping
 	# This is to subsequent states (idle or move) via their initialise() method
 	jumpPressedRemember -= _delta	
 	
-	detectAndTransitionToGround(input_direction)
+	detect_and_transition_to_ground(input_direction)
 	
 	

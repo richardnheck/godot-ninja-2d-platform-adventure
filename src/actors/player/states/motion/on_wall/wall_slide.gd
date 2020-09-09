@@ -29,11 +29,7 @@ func update(_delta):
 			velocity.y += wall_slide_gravity
 			move(velocity)
 						
-		# Detect Wall Jump
-		# Wall Jump is triggered when user presses away from the wall while holding jump
-		if (next_to_left_wall() and (input_direction.x == 1)) or (next_to_right_wall() and (input_direction.x == -1)):			
-			print("goto wall jump")
-			emit_signal("finished", "wall_jump") 
+		detect_and_transition_to_wall_jump(input_direction)
 			
 		if owner.is_on_floor() or not next_to_wall():
 			goto_move_state()
@@ -41,8 +37,6 @@ func update(_delta):
 		# No longer holding jump so end slide
 		goto_move_state()
 		
-	
-	
 
 func goto_move_state():
 	emit_signal("finished", "move")
