@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/art/props/spikes-top.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/traps/falling-stalectite.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/FallingSpike.gd" type="Script" id=2]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-5.png" type="Texture" id=3]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=4]
@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.13506, 4.94958 )
+extents = Vector2( 3.2996, 4.61069 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "shake"
@@ -33,7 +33,7 @@ tracks/0/keys = {
 extents = Vector2( 8.01099, 38.963 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6.33877, 5.13327 )
+extents = Vector2( 3.42131, 5.13327 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -56,19 +56,18 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 7.26422, 5.1591 )
 shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
 centered = false
-offset = Vector2( 1, 0 )
+offset = Vector2( -1, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shake = SubResource( 2 )
 
 [node name="TriggerZone" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerZone"]
@@ -76,10 +75,11 @@ position = Vector2( 7.23629, 39.134 )
 shape = SubResource( 3 )
 
 [node name="HitZone" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
-position = Vector2( 7.24218, 5.7644 )
+position = Vector2( 7.5635, 5.38982 )
 shape = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
