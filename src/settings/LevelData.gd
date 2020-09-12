@@ -21,6 +21,8 @@ var levelsArray = [
 	#"res://src/levels/WallJumpTestLevel.tscn"
 ]
 
+var level_checkpoint_reached = false
+
 var current_level_index = 0;
 
 func get_levels() -> Array:
@@ -30,6 +32,7 @@ func get_levels() -> Array:
 func goto_level(levelIndex) -> void:
 	var levelPath = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
+	level_checkpoint_reached = false
 	get_tree().change_scene(levelPath)
 
 
@@ -39,4 +42,5 @@ func goto_next_level() -> void:
 	else:
 		current_level_index = 0
 			
+	level_checkpoint_reached = false
 	get_tree().change_scene(levelsArray[current_level_index])

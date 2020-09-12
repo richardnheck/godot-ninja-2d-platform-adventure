@@ -11,11 +11,13 @@ onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
+onready var check_point = get_node("InteractiveProps/CheckPoint")
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
 var player:KinematicBody2D
 var fadeScreen:FadeScreen
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +31,8 @@ func _ready() -> void:
 	player.connect("collided", self, "_on_Player_collided")
 	key.connect("captured", self, "_on_Key_captured")
 	door.connect("player_entered", self, "_on_Door_player_entered");
+	if(check_point != null):
+		check_point.connect("reached", self, "_on_CheckPoint_reached")
 	
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
@@ -49,9 +53,11 @@ func _spawn_player() -> KinematicBody2D:
 	var spawn_point = Vector2.ZERO
 	if temp_spawn_position != null:
 		spawn_point = temp_spawn_position.position
+	elif LevelData.level_checkpoint_reached:
+		spawn_point = check_point.get_position_in_parent()
 	elif player_spawn_position != null:
 		spawn_point = player_spawn_position.position
-	elif  start_door != null:
+	elif start_door != null:
 		spawn_point = start_door.position	
 	
 	var player_instance = player_scene.instance()
@@ -70,9 +76,7 @@ func _on_Key_captured() -> void:
 	
 	
 func _on_Door_player_entered() -> void:
-	print("here1")
 	player.celebrate();
-	print("here2")
 	yield(get_tree().create_timer(2), "timeout")
 	goto_next_level()
 
@@ -90,6 +94,9 @@ func _on_Player_died() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fadeScreen.reload_scene()
 
+func _on_CheckPoint_reached() -> void:
+	print("reached checkpoint")
+	LevelData.level_checkpoint_reached = true
 
 
 #-------------------------------------------
