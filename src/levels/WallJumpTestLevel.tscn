@@ -113,13 +113,11 @@ texture = ExtResource( 2 )
 [node name="Torch" type="AnimatedSprite" parent="Props"]
 position = Vector2( 192, 64 )
 frames = SubResource( 2 )
-frame = 5
 playing = true
 
 [node name="Torch2" type="AnimatedSprite" parent="Props"]
 position = Vector2( 336, 64 )
 frames = SubResource( 2 )
-frame = 5
 playing = true
 
 [node name="TileMapTraps" type="TileMap" parent="."]
@@ -136,9 +134,6 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 40, 208 )
-
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 2
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

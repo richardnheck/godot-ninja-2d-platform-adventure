@@ -52,6 +52,7 @@ func move(vel):
 		var collision = owner.get_slide_collision(i)
 		if collision:
 			owner.emit_signal('collided', collision)
+	return velocity
 
 
 # Helpers
@@ -93,6 +94,7 @@ func detect_and_transition_to_jump(_delta):
 
 func detect_and_transition_to_ground(input_direction):
 	if owner.is_on_floor():
+		owner.do_landing()
 		# Exit jump state if on the floor
 		if !input_direction: 
 			# No directional user input so transition to idle
@@ -115,6 +117,4 @@ func detect_jump(_delta) -> bool:
 		groundedRemember = 0
 		return true
 	else:
-		return false
-	
-	
+		return false	

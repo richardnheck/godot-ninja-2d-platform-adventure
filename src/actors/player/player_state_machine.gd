@@ -30,6 +30,7 @@ func _change_state(state_name):
 		$Move.initialize($Jump.jumpPressedRemember)
 	if state_name == "idle" and current_state == $Jump:
 		$Idle.initialize($Jump.jumpPressedRemember)
+		
 	._change_state(state_name)
 
 

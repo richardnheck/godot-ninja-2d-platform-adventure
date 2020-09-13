@@ -11,7 +11,7 @@ onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
-onready var check_point = get_node("InteractiveProps/CheckPoint")
+onready var check_point:Area2D = get_node("InteractiveProps/CheckPoint")
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
@@ -54,7 +54,7 @@ func _spawn_player() -> KinematicBody2D:
 	if temp_spawn_position != null:
 		spawn_point = temp_spawn_position.position
 	elif LevelData.level_checkpoint_reached:
-		spawn_point = check_point.get_position_in_parent()
+		spawn_point = check_point.position
 	elif player_spawn_position != null:
 		spawn_point = player_spawn_position.position
 	elif start_door != null:

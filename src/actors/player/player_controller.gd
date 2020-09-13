@@ -51,6 +51,14 @@ func set_dead(value):
 	set_physics_process(not value)
 	collision_shape.set_deferred("disabled", true)
 
+func do_landing():
+	# Player has landed
+	land_sound.play()
+	
+	# Show some animated dust just on landing
+	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
+	landing_dust_scene.global_position = global_position
+	get_parent().add_child(landing_dust_scene)		
 	
 #func die():
 #	dead = true

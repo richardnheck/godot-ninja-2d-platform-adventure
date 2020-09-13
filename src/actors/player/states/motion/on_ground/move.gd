@@ -2,8 +2,13 @@ extends "on_ground.gd"
 
 #export(float) var max_walk_speed = 450
 #export(float) var max_run_speed = 700
+var just_landed = false
+var on_ground = true
 
 func enter():
+	.enter()
+	just_landed = false
+	
 	speed = 0.0
 	velocity = Vector2()
 
@@ -30,15 +35,21 @@ func update(_delta):
 	move(velocity)
 	
 	if owner.is_on_floor():
+		if not on_ground:
+			just_landed = true
+			on_ground = true
+		else:
+			just_landed = false
+			
 		owner.get_node("AnimatedSprite").play("run")
 	else:
+		on_ground = false
 		owner.get_node("AnimatedSprite").play("jump_down")
-#	speed = max_run_speed if Input.is_action_pressed("run") else max_walk_speed
-#	var collision_info = move(speed, input_direction)
-#	if not collision_info:
-#		return
-#	if speed == max_run_speed and collision_info.collider.is_in_group("environment"):
-#		return null
+#	
+	if just_landed:
+		owner.do_landing()	
+		
+		
 	if owner.is_on_floor() and !input_direction:
 		emit_signal("finished", "idle")
 		

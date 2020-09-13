@@ -4,9 +4,9 @@ func enter():
 	owner.get_node("AnimatedSprite").play("idle")
 
 
-func initialize(_jumpPressRemember):
+func initialize(_jumpPressRemember:float):
 	jumpPressedRemember = _jumpPressRemember
-
+	
 
 func handle_input(event):
 	return .handle_input(event)

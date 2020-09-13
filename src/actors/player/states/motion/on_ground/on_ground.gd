@@ -1,5 +1,13 @@
 extends "../motion.gd"
 
+func enter():
+	if owner.is_on_floor():
+		# This is entered when player starts moving on the ground
+		# TODO: animate a start run burst of dust
+		pass
+		
+
+
 #var groundedRememberTime = 0.2
 #var groundedRemember = 0
 #var jumpPressedRememberTime = 0.2
