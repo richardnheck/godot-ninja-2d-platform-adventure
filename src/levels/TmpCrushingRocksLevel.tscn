@@ -90,6 +90,7 @@ initial_delay = 0.5
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 184, 40 )
+frame = 0
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 213, 144 )

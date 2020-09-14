@@ -15,6 +15,7 @@ var levelsArray = [
 	CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn",
 	CAVE_LEVELS_PATH + "ClaustrophobicClimb.tscn",
 	CAVE_LEVELS_PATH + "StairwayOfTrouble.tscn",
+	CAVE_LEVELS_PATH + "BossScene.tscn",
 	#"res://src/levels/Level2CuteCavesTheme.tscn",
 	#"res://src/levels/Level2.tscn",
 	#"res://src/levels/Level3.tscn",

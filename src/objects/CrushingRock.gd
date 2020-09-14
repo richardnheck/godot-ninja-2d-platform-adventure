@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:		
-	linear_velocity.x = 0
+	#linear_velocity.x = 0
 	if !in_ground_hit_cooloff and abs(linear_velocity.y) < 5:
 		if player:
 			player.die()

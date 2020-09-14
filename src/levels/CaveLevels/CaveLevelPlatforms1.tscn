@@ -175,36 +175,33 @@ tile_data = PoolIntArray( 196609, -536870910, 196608, 196616, -1073741822, 19660
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 520, 8 )
-frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 568, 240 )
-frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 696, 240 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 632, 8 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 664, 176 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 720, 176 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 80, 32 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 80, 32 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 408, 8 )
+frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 1 )]
 position = Vector2( 48, 144 )
@@ -249,14 +246,14 @@ anims/PingPongPathFollow = SubResource( 2 )
 position = Vector2( 680, 312 )
 
 [node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H5" index="0"]
-position = Vector2( 40, -8 )
+position = Vector2( 55.2728, -8 )
 
 [node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H5" index="1"]
 position = Vector2( 0, -8 )
 curve = ExtResource( 9 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H5/Path2D" index="0"]
-position = Vector2( 40, 0 )
+position = Vector2( 55.2728, 0 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H5" index="2"]
@@ -266,14 +263,14 @@ anims/PingPongPathFollow = SubResource( 3 )
 position = Vector2( 608, 72 )
 
 [node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H3" index="0"]
-position = Vector2( 40, -8 )
+position = Vector2( 55.2728, -8 )
 
 [node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H3" index="1"]
 position = Vector2( 0, -8 )
 curve = ExtResource( 9 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H3/Path2D" index="0"]
-position = Vector2( 40, 0 )
+position = Vector2( 55.2728, 0 )
 offset = 0.0
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H3" index="2"]
@@ -298,7 +295,6 @@ anims/PingPongPathFollow = SubResource( 5 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 280, 112 )
-frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 696, 192 )
