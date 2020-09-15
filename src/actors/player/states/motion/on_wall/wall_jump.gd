@@ -60,4 +60,5 @@ func update(delta):
 	# Handle state transitions	
 	# ------------------------
 	detect_and_transition_to_wall_slide()
+	detect_and_transition_to_wall_jump(input_direction)
 	detect_and_transition_to_ground(input_direction)

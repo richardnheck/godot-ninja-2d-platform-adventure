@@ -116,6 +116,10 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_5="boss"
 2d_physics/layer_6="boss-world"
 
+[physics]
+
+common/physics_jitter_fix=0.5
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
