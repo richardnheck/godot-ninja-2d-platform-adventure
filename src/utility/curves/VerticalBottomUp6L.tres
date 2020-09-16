@@ -2,5 +2,5 @@
 
 [resource]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 8, 16, 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, 8, -32 )
+"points": PoolVector2Array( 0, 0, 0, 0, 8, 16, 0, 0, 0, 0, 8, 8, 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, 8, -32 )
 }

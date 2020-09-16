@@ -24,16 +24,6 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-collision_layer = 8
-motion/sync_to_physics = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-centered = false
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = null
 
@@ -44,6 +34,19 @@ loop = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
 remote_path = NodePath("../../../KinematicBody2D")
+
+[node name="TrackSprite" type="Sprite" parent="Path2D"]
+show_behind_parent = true
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 8
+motion/sync_to_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "PingPongPathFollow"

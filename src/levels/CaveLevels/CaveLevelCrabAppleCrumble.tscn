@@ -164,30 +164,36 @@ position = Vector2( 1104, 208 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 328.476, -96 )
-frame = 5
+frame = 0
 
 [node name="MovingPlatformCave2H" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( 624, 344 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H" index="0"]
-position = Vector2( -23.274, 8 )
-
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H" index="1"]
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H" index="0"]
 curve = ExtResource( 13 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H/Path2D" index="0"]
 position = Vector2( -23.2741, 8 )
 
+[node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave2H/Path2D" index="1"]
+offset = Vector2( 8, 8 )
+
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H" index="1"]
+position = Vector2( -23.274, 8 )
+
 [node name="MovingPlatformCave2H2" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( 800, 352 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H2" index="0"]
-position = Vector2( 54.5469, 0 )
-
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H2" index="1"]
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H2" index="0"]
 curve = ExtResource( 14 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H2/Path2D" index="0"]
+position = Vector2( 54.5469, 0 )
+
+[node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave2H2/Path2D" index="1"]
+offset = Vector2( 23, 0 )
+
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H2" index="1"]
 position = Vector2( 54.5469, 0 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H2" index="2"]
