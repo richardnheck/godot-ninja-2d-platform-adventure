@@ -72,5 +72,7 @@ func do_landing():
 
 
 func set_look_direction(value):
+	print("look_direction" + str(value))
 	look_direction = value
+	
 	emit_signal("direction_changed", value)

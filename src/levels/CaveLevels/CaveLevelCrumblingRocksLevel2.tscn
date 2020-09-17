@@ -219,6 +219,7 @@ anims/PingPongPathFollow = SubResource( 1 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 40, 32 )
+frame = 5
 
 [node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 224, 64 )

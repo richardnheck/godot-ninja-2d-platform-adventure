@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://src/UI/Controls/RetryButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/Controls/PausedPlayButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 10 )
 
 [node name="MobileControlsHUD" type="CanvasLayer"]
 pause_mode = 2
@@ -29,22 +35,35 @@ margin_right = 0.0
 [node name="HBoxContainerLeft" type="HBoxContainer" parent="Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -17.0
-margin_right = 44.0
+margin_top = -64.0
+margin_right = 120.0
+margin_bottom = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
-position = Vector2( -20, -12 )
+position = Vector2( 0, 35 )
 normal = ExtResource( 4 )
 action = "move_left"
 
 [node name="RightTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
-position = Vector2( 36, -12 )
+position = Vector2( 52, 35 )
 normal = ExtResource( 2 )
 action = "move_right"
+
+[node name="LeftButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
+modulate = Color( 0.380392, 0.337255, 0.337255, 1 )
+margin_right = 48.0
+margin_bottom = 63.0
+texture = ExtResource( 10 )
+
+[node name="RightButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
+modulate = Color( 0.392157, 0.34902, 0.34902, 1 )
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 63.0
+texture = ExtResource( 11 )
 
 [node name="HBoxContainerRight" type="HBoxContainer" parent="Control"]
 anchor_left = 1.0
@@ -61,6 +80,31 @@ __meta__ = {
 position = Vector2( -8, -12 )
 normal = ExtResource( 3 )
 action = "jump"
+
+[node name="JumpButtonArea2D" type="Area2D" parent="Control"]
+visible = false
+modulate = Color( 0.0431373, 0.352941, 0.133333, 1 )
+self_modulate = Color( 0.560784, 0.0627451, 0.0627451, 1 )
+position = Vector2( 232, 136 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/JumpButtonArea2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/JumpButtonArea2D"]
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 20 )
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color( 0.407843, 0.376471, 0.376471, 1 )
+margin_left = 208.0
+margin_top = 112.0
+margin_right = 256.0
+margin_bottom = 144.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false
@@ -109,5 +153,10 @@ margin_right = 136.0
 margin_left = 140.0
 margin_right = 156.0
 [connection signal="button_up" from="Control/PauseButton" to="." method="_on_PauseButton_button_up"]
+[connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]
+[connection signal="gui_input" from="Control/HBoxContainerLeft/RightButton" to="." method="_on_RightButton_gui_input"]
+[connection signal="input_event" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_input_event"]
+[connection signal="mouse_entered" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_mouse_entered"]
+[connection signal="gui_input" from="Control/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="button_up" from="PauseOverlay/HBoxContainer/PausedPlayButton" to="." method="_on_PausedPlayButton_button_up"]
 [connection signal="button_up" from="PauseOverlay/HBoxContainer/RetryButton" to="." method="_on_RetryButton_button_up"]

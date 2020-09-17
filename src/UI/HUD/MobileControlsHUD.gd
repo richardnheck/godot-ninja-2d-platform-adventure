@@ -35,3 +35,55 @@ func _on_RetryButton_button_up() -> void:
 
 func _on_LeftTouchArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	print(event) # Replace with function body.
+
+
+func _on_JumpButtonArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print("viewport: ", viewport)
+	print("event: ", event)
+	print("shape_idx: ", shape_idx)
+	print("============")
+	if (event is InputEventMouseButton && event.pressed):
+		print("pressed")
+
+
+func _on_JumpButtonArea2D_mouse_entered() -> void:
+	print("jump mouse entered")
+
+
+func _on_TextureRect_gui_input(event: InputEvent) -> void:
+	if (event is InputEventMouseButton && event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "jump"
+		ev.pressed = true
+		Input.parse_input_event(ev)
+	if (event is InputEventMouseButton && !event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "jump"
+		ev.pressed = false
+		Input.parse_input_event(ev)
+
+
+func _on_LeftButton_gui_input(event: InputEvent) -> void:
+	if (event is InputEventMouseButton && event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "move_left"
+		ev.pressed = true
+		Input.parse_input_event(ev)
+	if (event is InputEventMouseButton && !event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "move_left"
+		ev.pressed = false
+		Input.parse_input_event(ev)
+
+
+func _on_RightButton_gui_input(event: InputEvent) -> void:
+	if (event is InputEventMouseButton && event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "move_right"
+		ev.pressed = true
+		Input.parse_input_event(ev)
+	if (event is InputEventMouseButton && !event.pressed):
+		var ev = InputEventAction.new()
+		ev.action = "move_right"
+		ev.pressed = false
+		Input.parse_input_event(ev)

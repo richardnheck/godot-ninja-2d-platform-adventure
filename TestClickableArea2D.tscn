@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=1]
+[ext_resource path="res://TestClickableArea2D.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 10 )
+
+[node name="TestClickableArea2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="JumpButtonArea2D" type="Area2D" parent="."]
+modulate = Color( 0.0431373, 0.352941, 0.133333, 1 )
+self_modulate = Color( 0.560784, 0.0627451, 0.0627451, 1 )
+position = Vector2( 232, 136 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpButtonArea2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="JumpButtonArea2D"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 20 )
+[connection signal="input_event" from="JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_input_event"]
