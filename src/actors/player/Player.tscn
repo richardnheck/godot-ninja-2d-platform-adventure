@@ -43,25 +43,25 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
-"name": "die",
-"speed": 10.0
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "celebrate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "jump_down",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "die",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": false,
@@ -140,7 +140,6 @@ cast_to = Vector2( -7, 0 )
 collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 32.396, 0 )
 offset = Vector2( 0, -12 )
 current = true
 limit_left = 0

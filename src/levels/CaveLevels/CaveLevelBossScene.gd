@@ -33,3 +33,13 @@ func _process(delta: float) -> void:
 #
 	#if boss.direction_to(player):
 		#pass
+
+
+func _on_FallingSpikesArea_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		boss.set_state("updown_slam")
+
+
+func _on_FallingSpikesArea_body_exited(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		boss.set_state("run")

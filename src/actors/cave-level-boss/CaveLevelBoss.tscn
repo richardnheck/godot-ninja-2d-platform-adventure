@@ -12,7 +12,7 @@ extents = Vector2( 16, 16 )
 [node name="CaveLevelBoss" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
 collision_layer = 16
-collision_mask = 32
+collision_mask = 33
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

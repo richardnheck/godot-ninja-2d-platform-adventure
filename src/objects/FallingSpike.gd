@@ -23,17 +23,19 @@ func _physics_process(delta: float) -> void:
 			animatedSprite.play("explode")
 			yield(animatedSprite, "animation_finished")
 			queue_free()
-	
+
+func trigger() -> void:
+	animationPlayer.play("shake")
+	yield(animationPlayer,"animation_finished")
+	triggered = true	
 	
 func _on_TriggerZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		# Player has entered the trigger zone so make it fall
-		print("player triggerd")
-		animationPlayer.play("shake")
-		yield(animationPlayer,"animation_finished")
-		triggered = true	
+		trigger()
 
 func _on_HitZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		print("HIT!!!")
 		body.die()
+

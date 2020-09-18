@@ -7,7 +7,6 @@ func _ready():
 
 
 func screen_shake(shake_length, shake_power, shake_priority):
-	print("screen_shake")
 	if shake_priority > current_shake_priority:
 		current_shake_priority = shake_priority
 		$Tween.interpolate_method(self, "_move_camera", Vector2(shake_power, shake_power), Vector2(0,0), shake_length, Tween.TRANS_SINE, Tween.EASE_OUT, 0)

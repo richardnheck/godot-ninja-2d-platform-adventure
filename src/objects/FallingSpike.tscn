@@ -48,7 +48,9 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="FallingSpike" type="KinematicBody2D"]
+[node name="FallingSpike" type="KinematicBody2D" groups=[
+"falling_spike",
+]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 2 )

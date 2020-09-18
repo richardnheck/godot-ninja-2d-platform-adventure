@@ -53,15 +53,16 @@ normal = ExtResource( 2 )
 action = "move_right"
 
 [node name="LeftButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
+visible = false
 modulate = Color( 0.380392, 0.337255, 0.337255, 1 )
 margin_right = 48.0
 margin_bottom = 63.0
 texture = ExtResource( 10 )
 
 [node name="RightButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
+visible = false
 modulate = Color( 0.392157, 0.34902, 0.34902, 1 )
-margin_left = 52.0
-margin_right = 100.0
+margin_right = 48.0
 margin_bottom = 63.0
 texture = ExtResource( 11 )
 
@@ -96,6 +97,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 50, 20 )
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 modulate = Color( 0.407843, 0.376471, 0.376471, 1 )
 margin_left = 208.0
 margin_top = 112.0
