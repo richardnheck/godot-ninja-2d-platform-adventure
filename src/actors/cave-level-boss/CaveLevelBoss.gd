@@ -31,11 +31,17 @@ var state_changed = false
 # var a: int = 2
 # var b: String = "text"
 
+var player:KinematicBody2D = null
+var ground_global_position:Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#set_state(STATE_RUN_AND_JUMP)
-	set_state(STATE_RUN)
+	print("Boss Ready")
+	
+	ground_global_position = global_position
+	
+	set_state(STATE_RUN_AND_JUMP)
+	#set_state(STATE_RUN)
 	do_jump = true
 	run_and_jump_timer.start()
 
@@ -44,6 +50,9 @@ func set_state(state):
 	current_state = state
 	state_changed = true
 
+func set_player(player_ref):
+	player = player_ref;
+	
 func _just_entered_state():
 	return state_changed
 	
@@ -100,22 +109,30 @@ func _shake_screen() -> void:
 
 func _spawn_slam_blast() -> void:
 	var instance = preload("res://src/actors/cave-level-boss/SlamBlast.tscn").instance()
-	instance.global_position = global_position + Vector2(0, 32)
+	instance.global_position = global_position
 	get_parent().add_child(instance)		
 
 func _spawn_falling_spikes_array() -> void:
-	var instance = preload("res://src/actors/cave-level-boss/BossFallingSpikeArray.tscn").instance()
+	var spikes_instance = preload("res://src/actors/cave-level-boss/BossFallingSpikeArray.tscn").instance()
+	var spikes_width = spikes_instance.get_width()
 	var viewport_height = get_viewport().size.y
+	print("viewport_height:" + str(viewport_height))
 	
-#	var space_state = get_world_2d().direct_space_state
-#	var result = space_state.intersect_ray(global_position, global_position + Vector2(500, 0),[self])  # use global coordinates, not local to node
-#	if result:
-#		print("Hit at point: ", result.position)
-#		print(result.collider)
-	print("global_position=" + str(global_position))
-	instance.global_position = Vector2(global_position.x+100, 100)
-	get_parent().add_child(instance)
-	instance.trigger()		
+	# get the distance to the player
+	var distance_to_player = position.distance_to(player.position)
+	print(distance_to_player)
+	# place the spikes array directly over the player
+	var spikes_offset = distance_to_player
+	if player.position.x < position.x:
+		# player is behind boss so adjust offset to be in other direction
+		spikes_offset *= -1
+
+	# i.e so the player is in the middle of the spikes array
+	spikes_instance.global_position = Vector2(global_position.x + spikes_offset, ground_global_position.y - viewport_height + (3*16))
+	
+	# add the instance and trigger the spikes
+	get_parent().add_child(spikes_instance)
+	spikes_instance.trigger()		
 		
 	
 func _on_body_entered(body: Node) -> void:

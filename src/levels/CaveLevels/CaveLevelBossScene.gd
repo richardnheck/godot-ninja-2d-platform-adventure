@@ -8,7 +8,9 @@ var boss_speed = 20;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Boss Scene: ready()")
-	#._ready()
+	
+	# Pass the boss a reference to the player
+	boss.set_player(player)
 	
 	
 
