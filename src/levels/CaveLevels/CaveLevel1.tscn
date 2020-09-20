@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://src/objects/CheckPoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=4]
@@ -76,9 +77,6 @@ position = Vector2( -320, 64.0008 )
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -384, 64.001 )
 
-[node name="JapaneseLamp3" parent="Props" instance=ExtResource( 6 )]
-position = Vector2( -481, 160.001 )
-
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 6 )]
 position = Vector2( -575.999, 240.001 )
 frame = 0
@@ -94,10 +92,13 @@ position = Vector2( -527.999, 432.001 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
-frame = 6
+frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )
+
+[node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 1 )]
+position = Vector2( 478.941, -128.5 )
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
