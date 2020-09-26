@@ -8,7 +8,8 @@ func _ready():
 		"wall_slide" : $WallSlide,
 		"wall_jump" : $WallJump,
 		"die" : $Die,
-		"celebrate" : $Celebrate
+		"celebrate" : $Celebrate,
+		"air_jump" : $AirJump
 	}
 
 var jumpPressedRemember = 0
@@ -30,7 +31,8 @@ func _change_state(state_name):
 		$Move.initialize($Jump.jumpPressedRemember)
 	if state_name == "idle" and current_state == $Jump:
 		$Idle.initialize($Jump.jumpPressedRemember)
-		
+	if state_name == "air_jump" and current_state == $Jump:
+		$AirJump.initialize($Jump.speed, $Jump.velocity)	
 	._change_state(state_name)
 
 

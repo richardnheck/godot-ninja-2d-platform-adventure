@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle3.png" type="Texture" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://src/actors/player/states/die.gd" type="Script" id=33]
 [ext_resource path="res://src/actors/player/states/celebrate.gd" type="Script" id=34]
 [ext_resource path="res://src/actors/player/Pivot.gd" type="Script" id=35]
+[ext_resource path="res://src/actors/player/states/motion/in_air/air_jump.gd" type="Script" id=36]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -42,11 +43,6 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
 "loop": true,
@@ -57,6 +53,11 @@ animations = [ {
 "loop": true,
 "name": "die",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -102,12 +103,15 @@ script = ExtResource( 32 )
 [node name="Celebrate" type="Node" parent="StateMachine"]
 script = ExtResource( 34 )
 
+[node name="AirJump" type="Node" parent="StateMachine"]
+script = ExtResource( 36 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 centered = false
 

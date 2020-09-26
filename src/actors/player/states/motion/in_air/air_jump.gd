@@ -1,6 +1,6 @@
 extends "../motion.gd"
 
-export var jump_power = 320
+export var jump_power = 300
 
 export(float) var base_max_horizontal_speed = 125
 
@@ -19,17 +19,19 @@ var max_horizontal_speed = 0.0
 #var vertical_speed = 0.0
 #var height = 0.0
 
-func initialize(speed, velocity):
-	pass
+func initialize(_speed, _velocity):
+	velocity = _velocity
+	speed = _speed
 #	horizontal_speed = speed
 #	max_horizontal_speed = speed if speed > 0.0 else base_max_horizontal_speed
 #	enter_velocity = velocity
 
 func enter():
-	print("enter jump")
+	print("enter air jump")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	
+	#velocity.y = -jump_power
 	velocity.y = -jump_power
 	
 #	horizontal_velocity = enter_velocity if input_direction else Vector2()
@@ -69,8 +71,6 @@ func update(_delta):
 	
 	# Handle state transitions	
 	# ------------------------
-	detect_and_transition_to_air_jump()
-	
 	detect_and_transition_to_wall_slide()
 	detect_and_transition_to_wall_jump(input_direction)
 	

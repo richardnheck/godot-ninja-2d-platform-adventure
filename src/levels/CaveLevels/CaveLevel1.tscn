@@ -11,6 +11,7 @@
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=9]
 
 [node name="CaveLevel1" type="Node2D"]
+position = Vector2( 1, 0 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
@@ -92,7 +93,7 @@ position = Vector2( -527.999, 432.001 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
-frame = 3
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )

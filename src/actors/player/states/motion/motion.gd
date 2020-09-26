@@ -92,6 +92,14 @@ func detect_and_transition_to_jump(_delta):
 		emit_signal("finished", "jump")
 
 
+func detect_and_transition_to_air_jump() -> bool:
+	if Input.is_action_just_pressed(Actions.JUMP):
+		emit_signal("finished", "air_jump") 
+		return true
+	else:
+		return false
+
+
 func detect_and_transition_to_ground(input_direction):
 	if owner.is_on_floor():
 		owner.do_landing()
