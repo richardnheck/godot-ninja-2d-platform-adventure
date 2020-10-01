@@ -44,24 +44,24 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
-"name": "celebrate",
-"speed": 5.0
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "die",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "jump_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "celebrate",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -111,7 +111,6 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 centered = false
 
@@ -153,9 +152,7 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_speed = 0.0
 drag_margin_left = 0.1
-drag_margin_top = 0.1
 drag_margin_right = 0.1
-drag_margin_bottom = 0.1
 editor_draw_drag_margin = true
 __meta__ = {
 "_edit_group_": true
