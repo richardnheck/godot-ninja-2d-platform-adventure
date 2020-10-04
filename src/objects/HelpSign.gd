@@ -7,7 +7,9 @@ onready var label:Label = $Label
 var helpMessages = [
 	"Press ^ to jump",
 	"Press ^ twice to double jump",
-	"Need a key to open door"
+	"Need a key to open door",
+	"Hold ^ against a press arrow away\n from wall to walljump",
+	"Walljump off one wall only"
 ];
 
 func _ready() -> void:

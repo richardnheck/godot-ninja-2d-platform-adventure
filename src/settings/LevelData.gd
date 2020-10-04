@@ -3,7 +3,7 @@ extends Node
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
 var levelsArray = [
-	CAVE_LEVELS_PATH + "JumpIntro.tscn",
+	CAVE_LEVELS_PATH + "LearningMechanics.tscn",
 	CAVE_LEVELS_PATH + "1.tscn",
 	CAVE_LEVELS_PATH + "GoAheadJump.tscn",
 	CAVE_LEVELS_PATH + "LearnWallJumpImproved.tscn",

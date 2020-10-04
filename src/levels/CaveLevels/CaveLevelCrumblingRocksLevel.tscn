@@ -92,7 +92,7 @@ position = Vector2( 357, -16 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 135, -32 )
-frame = 4
+frame = 1
 
 [node name="CrumblingPlatform2" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 192, 112 )
