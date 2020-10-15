@@ -4,6 +4,7 @@ const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
 var levelsArray = [
 	CAVE_LEVELS_PATH + "LearningMechanics.tscn",
+	CAVE_LEVELS_PATH + "ArtOfJumping.tscn",
 	CAVE_LEVELS_PATH + "GoAheadJump.tscn",
 	CAVE_LEVELS_PATH + "OfWallAndSlide.tscn",
 	CAVE_LEVELS_PATH + "1.tscn",
