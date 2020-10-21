@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "LevelBase",
 "language": "GDScript",
 "path": "res://src/levels/LevelBase.gd"
+}, {
+"base": "Node2D",
+"class": "MiniBossSlamBlast",
+"language": "GDScript",
+"path": "res://src/actors/cave-level-mini-boss/MiniBossSlamBlast.gd"
 } ]
 _global_script_class_icons={
 "FadeScreen": "",
 "Geometry2D": "",
-"LevelBase": ""
+"LevelBase": "",
+"MiniBossSlamBlast": ""
 }
 
 [application]
