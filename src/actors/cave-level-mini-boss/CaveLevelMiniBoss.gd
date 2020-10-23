@@ -3,36 +3,41 @@
 #------------------
 extends KinematicBody2D
 
-onready var run_and_jump_timer = $RunAndJumpTimer
+
+# Exports
+export var gravity = 7
+export var jump_power = 200
+
+export(int) var vertical_direction = 1
+
+onready var jump_timer = $JumpTimer
+onready var pause_timer = $PauseTimer
 
 var velocity = Vector2(40,0)
-var speed = 60
-var direction = 1
-var vertical_direction = 1
+
 var vertical_speed = 200
 
-var speed_updown_slam = 10
-var vertical_speed_updown_slam = 350
-
 # Jump state settings
-export var gravity = 10;
-export var jump_power = 300
 var do_jump = false
 var landing = false
 
-const STATE_UP_DOWN = "updown"
-const STATE_UP_DOWN_SLAM = "updown_slam"
-const STATE_JUMP = "jump"
-const STATE_RUN = "run"
-const STATE_RUN_AND_JUMP = "run_and_jump"
+# Up down state settings
+var paused = false
 
+enum State { 
+	UP_DOWN = 0,
+	JUMP = 1
+}
 
-var previous_state = null
-var current_state = null
+enum Dir {
+	UP = -1,
+	DOWN = 1
+}
+
+export(State) var current_state = State.JUMP
+
 var state_changed = false
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+
 
 var player:KinematicBody2D = null
 var ground_global_position:Vector2 = Vector2.ZERO
@@ -44,55 +49,51 @@ func _ready() -> void:
 	print("Mini Boss Ready")
 	
 	ground_global_position = global_position
-	
-	set_state(STATE_RUN_AND_JUMP)
-	
-	do_jump = true
-	run_and_jump_timer.start()
+		
+	if current_state == State.JUMP:
+		do_jump = true
+		jump_timer.start()
+
 
 func set_state(state):
-	previous_state = current_state
 	current_state = state
-	state_changed = true
+
 
 func set_player(player_ref):
 	player = player_ref;
 	
-func _just_entered_state():
-	return state_changed
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	match current_state:
-		STATE_UP_DOWN:
-			var velx = speed * direction
-			var vely = vertical_speed * vertical_direction
-			velocity.x = velx
-			velocity.y = vely
-			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
-		
-			if is_on_ceiling() or is_on_floor():
-				vertical_direction = vertical_direction * -1;
-		STATE_UP_DOWN_SLAM:
-			if _just_entered_state():
-				print("spawning spikes")
-				state_changed = false
+		State.UP_DOWN:
+			if not paused:
+				if vertical_direction == 1:
+					# Moving down
+					vertical_speed = 250
+				else:
+					# Moving up
+					vertical_speed = 100
+				var vely = vertical_speed * vertical_direction
 				
+				velocity.x = 0
+				velocity.y = vely
+				velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
+		
+		
+				if is_on_ceiling() or is_on_floor():
+					paused = true
+					pause_timer.start()
+					vertical_direction = vertical_direction * -1;
+					if is_on_floor():
+						_shake_screen()
+						_spawn_slam_blast()
 				
-			var velx = speed_updown_slam * direction
-			var vely = vertical_speed_updown_slam * vertical_direction
-			velocity.x = velx
-			velocity.y = vely
-			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
 		
-			if is_on_ceiling() or is_on_floor():
-				vertical_direction = vertical_direction * -1;
-				_shake_screen()
-		
-		STATE_RUN_AND_JUMP:
+		State.JUMP:
 			if do_jump:
 				velocity.y = -jump_power
-				$RunAndJumpTimer.start()
+				jump_timer.start()
 				do_jump = false
 				landing = true	
 			
@@ -117,23 +118,26 @@ func _spawn_slam_blast() -> void:
 	# Rightwards blast
 	var instance = MiniBossSlamBlastScene.instance() 
 	instance.scale = Vector2(0.5,0.5)
-	instance.global_position = global_position
+	instance.global_position = global_position + Vector2(0,-1)
 	(instance as MiniBossSlamBlast).set_direction(1)  # rightwards
 	get_parent().add_child(instance)		
 	
 	# Leftwards blast
 	var instance2 = MiniBossSlamBlastScene.instance()
 	instance2.scale = Vector2(0.5,0.5)
-	instance2.global_position = global_position + Vector2(-32,0)
+	instance2.global_position = global_position + Vector2(-32,-1)
 	get_parent().add_child(instance2)		
 	(instance2 as MiniBossSlamBlast).set_direction(-1) # leftwards
 	
 
-		
-	
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
 
-func _on_RunAndJumpTimer_timeout() -> void:
+
+func _on_JumpTimer_timeout() -> void:
 	do_jump = true
+
+
+func _on_PauseTimer_timeout() -> void:
+	paused = false
