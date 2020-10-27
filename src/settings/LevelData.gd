@@ -3,6 +3,20 @@ extends Node
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
 var levelsArray = [
+	{ "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn" },
+	{ "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn" },
+	{ "name" : "Go Ahead Jump", "scene_path" : CAVE_LEVELS_PATH + "GoAheadJump.tscn"},
+	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn"},
+	{ "name" : "S for Squish", "scene_path" : CAVE_LEVELS_PATH + "ShapeLikeSWithSpikeyRocks.tscn"},
+	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn"},
+	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn"},
+	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "StairwayOfTrouble.tscn"},
+	{ "name" : "Claustrophic Caverns", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns.tscn"},
+	{ "name" : "Cave Level Boss", "scene_path" : CAVE_LEVELS_PATH + "BossScene.tscn", "is_boss" : true}
+];
+
+	
+var levelsArray2 = [
 	CAVE_LEVELS_PATH + "LearningMechanics.tscn",
 	CAVE_LEVELS_PATH + "ArtOfJumping.tscn",
 	CAVE_LEVELS_PATH + "GoAheadJump.tscn",
@@ -36,13 +50,17 @@ var current_level_index = 0;
 
 func get_levels() -> Array:
 	return levelsArray
-	
 
+func goto_boss_level() -> void:
+	for i in range(0, levelsArray.size()):
+		if levelsArray[i].has("is_boss"):
+			goto_level(i)
+	 
 func goto_level(levelIndex) -> void:
-	var levelPath = LevelData.get_levels()[levelIndex]
+	var level = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
 	level_checkpoint_reached = false
-	get_tree().change_scene(levelPath)
+	get_tree().change_scene(level.scene_path)
 
 
 func goto_next_level() -> void:
@@ -52,4 +70,26 @@ func goto_next_level() -> void:
 		current_level_index = 0
 			
 	level_checkpoint_reached = false
-	get_tree().change_scene(levelsArray[current_level_index])
+	get_tree().change_scene(levelsArray[current_level_index].scene_path)
+
+	
+# https://gdscript.com/how-to-save-and-load-godot-game-data
+# func save():
+#	var file = File.new()
+#	file.open(FILE_NAME, File.WRITE)
+#	file.store_string(to_json(player))
+#	file.close()
+#
+#func load():
+#	var file = File.new()
+#	if file.file_exists(FILE_NAME):
+#		file.open(FILE_NAME, File.READ)
+#		var data = parse_json(file.get_as_text())
+#		file.close()
+#		if typeof(data) == TYPE_DICTIONARY:
+#			player = data
+#		else:
+#			printerr("Corrupted data!")
+#	else:
+#		printerr("No saved data!")
+		

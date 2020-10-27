@@ -7,6 +7,7 @@ onready var buttonContainer = $Control/LevelButtonsContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var levelsCount = LevelData.get_levels().size()
+	levelsCount = levelsCount - 1;	 # Don't use boss scene
 	for levelIndex in range(0, levelsCount):
 		var button = Button.new()
 		button.text = str(levelIndex + 1)
@@ -15,3 +16,7 @@ func _ready() -> void:
 	
 func _level_button_pressed(levelIndex):
 	LevelData.goto_level(levelIndex)
+
+
+func _on_BossButton_button_up() -> void:
+	LevelData.goto_boss_level()
