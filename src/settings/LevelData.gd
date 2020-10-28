@@ -5,9 +5,9 @@ const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 var levelsArray = [
 	{ "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn" },
 	{ "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn" },
-	{ "name" : "Go Ahead Jump", "scene_path" : CAVE_LEVELS_PATH + "GoAheadJump.tscn"},
+	{ "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn"},
 	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn"},
-	{ "name" : "S for Squish", "scene_path" : CAVE_LEVELS_PATH + "ShapeLikeSWithSpikeyRocks.tscn"},
+	{ "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn"},
 	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn"},
 	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn"},
 	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "StairwayOfTrouble.tscn"},
