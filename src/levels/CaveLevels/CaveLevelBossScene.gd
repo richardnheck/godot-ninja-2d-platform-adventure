@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	# Pass the boss a reference to the player
 	boss.set_player(player)
-	
+	boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 	
 
 
@@ -36,12 +36,19 @@ func _process(delta: float) -> void:
 	#if boss.direction_to(player):
 		#pass
 
+var next_boss_state = null
 
 func _on_FallingSpikesArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		boss.set_state("updown_slam")
+		next_boss_state = "updown_slam"
 
 
 func _on_FallingSpikesArea_body_exited(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		boss.set_state("run")
+		next_boss_state = "run_and_jump"
+
+func _on_boss_state_cycle_finished(state) -> void:
+	print("boss state cycle finished: " + state)
+	if next_boss_state != null:
+		boss.set_state(next_boss_state)
+		next_boss_state = null
