@@ -42,7 +42,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="SlamRunTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="TouchFloorCoolOffTimer" type="Timer" parent="."]

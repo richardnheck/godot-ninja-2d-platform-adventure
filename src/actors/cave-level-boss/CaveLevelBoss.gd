@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 				slam_mode = MODE_SLAM
 				print(">> enter UP_DOWN_SLAM spawning spikes")
 				state_changed = false
-				_spawn_falling_spikes_array()
+				#_spawn_falling_spikes_array()
 			
 			if slam_mode == MODE_SLAM:	
 				var velx = speed_updown_slam * direction
@@ -160,7 +160,7 @@ func _spawn_falling_spikes_array() -> void:
 func _on_falling_spikes_finished():
 	if current_state == STATE_UP_DOWN_SLAM:
 		emit_signal("state_cycle_finished", STATE_UP_DOWN_SLAM)
-		_spawn_falling_spikes_array()
+		#_spawn_falling_spikes_array()
 	
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
@@ -180,6 +180,11 @@ func _on_SlamRunTimer_timeout() -> void:
 
 func _on_TouchFloorCoolOffTimer_timeout() -> void:
 	slam_count = slam_count + 1
+	
+	if slam_count == 1:
+		_spawn_falling_spikes_array()
+		
+
 	if slam_count == 3:
 		slam_count = 0
 		slam_mode = MODE_RUN

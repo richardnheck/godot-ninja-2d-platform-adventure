@@ -11,15 +11,19 @@ script = ExtResource( 2 )
 
 [node name="FallingSpike4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 90.7874, 0.603149 )
+collision_mask = 33
 
 [node name="FallingSpike3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 26.7874, 0.603149 )
+collision_mask = 33
 
 [node name="FallingSpike2" parent="." instance=ExtResource( 1 )]
 position = Vector2( -37.2126, 0.603149 )
+collision_mask = 33
 
 [node name="FallingSpike1" parent="." instance=ExtResource( 1 )]
 position = Vector2( -93.2126, 0.603149 )
+collision_mask = 33
 
 [node name="WidthMeasurement" type="CollisionShape2D" parent="."]
 position = Vector2( 5.78745, 0.603149 )
