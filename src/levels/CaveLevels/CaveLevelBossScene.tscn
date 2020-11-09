@@ -7,9 +7,10 @@
 [ext_resource path="res://src/levels/CaveLevels/CaveLevelBossScene.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=6]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=7]
-[ext_resource path="res://src/actors/cave-level-boss/CaveLevelBoss.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBoss.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/utility/Geometry2D.gd" type="Script" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 536, 168 )

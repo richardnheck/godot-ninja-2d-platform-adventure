@@ -3,12 +3,13 @@
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/actors/cave-level-mini-boss/CaveLevelMiniBoss.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=9]
+
 
 [node name="CaveLevel1" type="Node2D"]
 script = ExtResource( 6 )

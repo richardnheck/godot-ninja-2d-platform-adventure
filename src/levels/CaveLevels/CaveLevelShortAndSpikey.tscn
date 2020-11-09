@@ -131,7 +131,7 @@ position = Vector2( 528, -176 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 153.5, -96 )
-frame = 6
+frame = 3
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 392, 72 )

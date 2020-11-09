@@ -1,6 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/art/props/lights/japanese-lamp.png" type="Texture" id=1]
+[ext_resource path="res://src/objects/JapaneseLamp.png" type="Texture" id=1]
+
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

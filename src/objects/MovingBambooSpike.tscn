@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/art/traps/moving-bambo-spike.png" type="Texture" id=1]
+[ext_resource path="res://src/objects/MovingBambooSpikeBase.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/MovingBambooSpike.gd" type="Script" id=2]
-[ext_resource path="res://assets/art/traps/bamboo-spike-block.png" type="Texture" id=3]
+[ext_resource path="res://src/objects/MovingBambooSpike.png" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( -4, 0, -4, -11, 1, -14, 4, -11, 4, 0 )
@@ -15,7 +15,7 @@ position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 
 [node name="Tween" type="Tween" parent="."]
@@ -24,7 +24,7 @@ offset = Vector2( 0, -8 )
 one_shot = true
 
 [node name="SpriteBlock" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
 [connection signal="timeout" from="InitialDelayTimer" to="." method="_on_InitialDelayTimer_timeout"]
