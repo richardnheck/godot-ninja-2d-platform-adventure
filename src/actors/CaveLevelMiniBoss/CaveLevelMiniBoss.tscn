@@ -3,7 +3,6 @@
 [ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.png" type="Texture" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14.8371, 15.3219 )
 
