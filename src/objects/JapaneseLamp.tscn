@@ -24,5 +24,6 @@ frame = 1
 playing = true
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( -9.53674e-07, 0 )
 scale = Vector2( 1.6, 1.6 )
