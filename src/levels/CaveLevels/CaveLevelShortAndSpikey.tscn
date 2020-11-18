@@ -18,7 +18,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
+[node name="TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 440, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -139,7 +139,7 @@ position = Vector2( 528, -176 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 153.5, -96 )
-frame = 4
+frame = 5
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 392, 72 )
