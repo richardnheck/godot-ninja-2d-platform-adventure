@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/UI/SplashScreen/SplashScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/UI/SplashScreen/parabol-ink-logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/dogica/dogica.tres" type="DynamicFont" id=4]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 2 )
@@ -20,12 +22,13 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.129412, 0.14902, 0.14902, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -34,11 +37,16 @@ margin_left = -68.0
 margin_top = -4.0
 margin_right = 68.0
 margin_bottom = 4.0
-text = "Parabol Ink Games"
+custom_fonts/font = ExtResource( 4 )
+text = "PARABOL INK GAMES"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="Control"]
+position = Vector2( 144, 86 )
+texture = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
