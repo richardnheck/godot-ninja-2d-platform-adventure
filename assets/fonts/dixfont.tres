@@ -2,7 +2,5 @@
 
 [ext_resource path="res://assets/dlxfont.ttf" type="DynamicFontData" id=1]
 
-
-
 [resource]
 font_data = ExtResource( 1 )
