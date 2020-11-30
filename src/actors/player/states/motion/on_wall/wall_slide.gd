@@ -9,7 +9,7 @@ func enter():
 	velocity = Vector2()
 
 	sliding = false	
-	owner.get_node("AnimatedSprite").play("jump_down")
+	owner.get_node("AnimatedSprite").play("slide")
 	yield(get_tree().create_timer(wall_clamp_time), "timeout")
 	sliding = true
 	

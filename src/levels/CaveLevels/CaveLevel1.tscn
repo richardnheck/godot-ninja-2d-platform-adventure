@@ -38,6 +38,7 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 3 )]
 
 [node name="TileMapBg" type="TileMap" parent="."]
+modulate = Color( 0.992157, 0.992157, 0.992157, 1 )
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 0
@@ -93,7 +94,7 @@ frame = 0
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
-frame = 5
+frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )
