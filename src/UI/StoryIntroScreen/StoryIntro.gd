@@ -6,16 +6,22 @@ signal continue_sig
 var continue_flag: bool = false
 
 enum State { 
-	START_WALK_IN = 0,
-	WALKING_IN = 1,
-	START_WALK_OUT = 2,
-	WALKING_OUT = 3,
-	JUMP = 4,
-	JUMPING = 5
+	START_WALK_IN,
+	DOING_WALK_IN,
+	START_DIALOG1,
+	DOING_DIALOG1,
+	START_DIALOG2,
+	DOING_DIALOG2,
+	START_WALK_OUT,
+	DOING_WALK_OUT,
+	START_JUMP,
+	DOING_JUMP,
+	
 }
 	
 var state: int
 
+var step: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,41 +35,51 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if state == State.START_WALK_IN:
 		$AnimationPlayer.play("walk-in")
-		state = State.WALKING_IN
+		state = State.DOING_WALK_IN
+		
+	if state == State.DOING_WALK_IN:
+		# Wait until player walks to centre	
+		yield($AnimationPlayer, "animation_finished")
+		$AnimatedSprite.play("idle")
+		state = State.START_DIALOG1
 
+	if state == State.START_DIALOG1:
+		$Control/DialogBox1.show()
+		state = State.DOING_DIALOG1
+
+	if state == State.DOING_DIALOG1:
+		yield(self, "continue_sig")
+		$Control/DialogBox1.hide()
+		state = State.START_DIALOG2
+		
+	if state == State.START_DIALOG2:
+		$Control/DialogBox2.show()
+		state = State.DOING_DIALOG2
+	
+	if state == State.DOING_DIALOG2:
+		yield(self, "continue_sig")
+		$Control/DialogBox2.hide()
+		state = State.START_WALK_OUT
+		
 	if state == State.START_WALK_OUT:
+		$AnimatedSprite.play("walk")
 		$AnimationPlayer.play("walk-out")
-		state = State.WALKING_OUT	
-
-	if state == State.JUMP:
+		state = State.DOING_WALK_OUT
+	
+	if state == State.DOING_WALK_OUT:
+		# Wait for walk out animation to finish
+		yield($AnimationPlayer, "animation_finished")
+		
+		# Pause at hole a bit then jump
+		$AnimatedSprite.play("idle")
+		yield(get_tree().create_timer(0.8), "timeout")
+		state = State.START_JUMP
+		
+	if state == State.START_JUMP:
 		$AnimationPlayer.play("jump")
-		state = State.JUMPING
-				
-	# Wait until player walks to centre	
-	yield($AnimationPlayer, "animation_finished")
+		state == State.DOING_JUMP
 	
-	# Player is in centre
-	$AnimatedSprite.play("idle")
-	yield(get_tree().create_timer(0.5), "timeout")
 	
-	# Start talking
-	$Control/DialogBox1.show()
-	yield(self, "continue_sig")
-	$Control/DialogBox1.hide()
-	$Control/DialogBox2.show()
-	
-	# Wait for using input to finish talking
-	yield(self, "continue_sig")
-	
-	# Start walk out to hole
-	$AnimatedSprite.play("walk")
-	state = State.START_WALK_OUT
-	yield($AnimationPlayer, "animation_finished")
-	
-	# At hole, pause then jump
-	yield(get_tree().create_timer(0.5), "timeout")
-	state = State.JUMP
-	yield($AnimationPlayer, "animation_finished")
 	
 
 func continue() -> void:

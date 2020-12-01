@@ -1,4 +1,6 @@
 extends KinematicBody2D
+class_name Player
+
 # The Player is a KinematicBody2D, in other words a physics-driven object.
 # It can move, collide with the world, etc...
 # The player has a state machine, but the body and the state machine are separate.
@@ -70,9 +72,18 @@ func do_landing():
 #	emit_signal("died")
 
 
-
 func set_look_direction(value):
 	print("look_direction" + str(value))
 	look_direction = value
 	
 	emit_signal("direction_changed", value)
+
+#----------------------------------------------
+# Functions for CutScenes
+#----------------------------------------------
+func move_right():
+	var ev = InputEventAction.new()
+	ev.action = "move_right"
+	ev.pressed = true
+	Input.parse_input_event(ev)
+	#$StateMachine._change_state("move")

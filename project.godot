@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "MiniBossSlamBlast",
 "language": "GDScript",
 "path": "res://src/actors/CaveLevelMiniBoss/MiniBossSlamBlast.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/actors/player/player_controller.gd"
 } ]
 _global_script_class_icons={
 "FadeScreen": "",
 "Geometry2D": "",
 "LevelBase": "",
-"MiniBossSlamBlast": ""
+"MiniBossSlamBlast": "",
+"Player": ""
 }
 
 [application]
