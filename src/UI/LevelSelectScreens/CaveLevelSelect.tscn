@@ -17,8 +17,8 @@ __meta__ = {
 }
 
 [node name="bg" type="Sprite" parent="Control"]
-position = Vector2( 144, 88 )
 texture = ExtResource( 4 )
+centered = false
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -54,19 +54,20 @@ __meta__ = {
 }
 
 [node name="BackButton" parent="Control/BottomHBoxContainer" instance=ExtResource( 3 )]
-margin_left = 136.0
-margin_right = 152.0
+margin_left = 152.0
+margin_right = 168.0
 margin_bottom = 20.0
-next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
+next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 
 [node name="LevelButtonsContainer" type="GridContainer" parent="Control"]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 112.0
-margin_top = -52.0
-margin_right = -104.0
-margin_bottom = 4.0
+margin_left = -34.0
+margin_top = -42.0
+margin_right = 36.0
+margin_bottom = 14.0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,8 +85,21 @@ __meta__ = {
 }
 
 [node name="BossButton" type="Button" parent="Control/HBoxContainer"]
-margin_left = 123.0
-margin_right = 165.0
+margin_left = 139.0
+margin_right = 181.0
 margin_bottom = 24.0
 text = "Boss"
+
+[node name="IntroButton" type="Button" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -9.0
+margin_top = 10.0
+margin_right = 9.0
+margin_bottom = 18.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_up" from="Control/HBoxContainer/BossButton" to="." method="_on_BossButton_button_up"]
+[connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]

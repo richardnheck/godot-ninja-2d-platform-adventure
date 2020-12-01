@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/UI/WorldSelectScreen/WorldSelect.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/LevelSelectScreens/bg.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/Controls/PlayButton.gd" type="Script" id=6]
+[ext_resource path="res://assets/art/ui/back-button.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=8]
+
+[node name="WorldSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 144, 88 )
+texture = ExtResource( 5 )
+
+[node name="BackButton" type="TextureButton" parent="." instance=ExtResource( 8 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -20.0
+texture_normal = ExtResource( 7 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -118.5
+margin_top = -80.0
+margin_right = 118.5
+margin_bottom = 80.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World1Button" type="Button" parent="HBoxContainer"]
+margin_top = 52.0
+margin_right = 237.0
+margin_bottom = 70.0
+text = "Beneath the castle"
+
+[node name="World2Button" type="Button" parent="HBoxContainer"]
+margin_top = 74.0
+margin_right = 237.0
+margin_bottom = 92.0
+disabled = true
+text = "Inside the walls"
+
+[node name="World3Button" type="Button" parent="HBoxContainer"]
+margin_top = 96.0
+margin_right = 237.0
+margin_bottom = 114.0
+disabled = true
+text = "The final mystery"
+[connection signal="button_up" from="BackButton" to="BackButton" method="_on_button_up"]
+[connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]

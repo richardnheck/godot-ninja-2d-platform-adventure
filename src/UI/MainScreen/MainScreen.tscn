@@ -19,8 +19,8 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="Control"]
 
 [node name="bg" type="Sprite" parent="Control/Sprite"]
-position = Vector2( 144, 88 )
 texture = ExtResource( 4 )
+centered = false
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -60,7 +60,7 @@ __meta__ = {
 }
 
 [node name="ChangeSceneButton" parent="Control/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 136.0
-margin_right = 152.0
+margin_left = 152.0
+margin_right = 168.0
 margin_bottom = 20.0
-next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"
+next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"

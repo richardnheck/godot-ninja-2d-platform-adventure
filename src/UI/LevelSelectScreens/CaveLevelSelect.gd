@@ -20,3 +20,7 @@ func _level_button_pressed(levelIndex):
 
 func _on_BossButton_button_up() -> void:
 	LevelData.goto_boss_level()
+
+
+func _on_IntroButton_button_up() -> void:
+	get_tree().change_scene("res://src/UI/StoryIntroScreen/StoryIntro.tscn")

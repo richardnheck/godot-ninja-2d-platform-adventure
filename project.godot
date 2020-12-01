@@ -54,10 +54,10 @@ LevelData="*res://src/settings/LevelData.gd"
 
 [display]
 
-window/size/width=288
+window/size/width=320
 window/size/height=176
 window/size/always_on_top=true
-window/size/test_width=864
+window/size/test_width=960
 window/size/test_height=528
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
