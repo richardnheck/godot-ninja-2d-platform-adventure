@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/world1.png-56b18c990678db1373b247e6645f86eb.stex"
+path="res://.import/world1-buttons-pressed3.png-71957a0e1a1edebf64adb666769aa3b1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/WorldSelectScreen/world1.png"
-dest_files=[ "res://.import/world1.png-56b18c990678db1373b247e6645f86eb.stex" ]
+source_file="res://src/UI/WorldSelectScreen/world1-buttons-pressed3.png"
+dest_files=[ "res://.import/world1-buttons-pressed3.png-71957a0e1a1edebf64adb666769aa3b1.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/world3.png-ccbab6a9bd3ddc6c83be93d087af5d13.stex"
+path="res://.import/HelpSign.png-4bad1743e826f5fec99f1d0c10d5218b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/WorldSelectScreen/world3.png"
-dest_files=[ "res://.import/world3.png-ccbab6a9bd3ddc6c83be93d087af5d13.stex" ]
+source_file="res://src/objects/help-sign/HelpSign.png"
+dest_files=[ "res://.import/HelpSign.png-4bad1743e826f5fec99f1d0c10d5218b.stex" ]
 
 [params]
 

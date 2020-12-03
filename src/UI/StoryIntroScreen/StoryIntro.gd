@@ -6,16 +6,16 @@ signal continue_sig
 var continue_flag: bool = false
 
 enum State { 
-	START_WALK_IN,
-	DOING_WALK_IN,
-	START_DIALOG1,
-	DOING_DIALOG1,
-	START_DIALOG2,
-	DOING_DIALOG2,
-	START_WALK_OUT,
-	DOING_WALK_OUT,
-	START_JUMP,
-	DOING_JUMP,
+	START_WALK_IN = 0,   
+	DOING_WALK_IN = 1,
+	START_DIALOG1 = 2,
+	DOING_DIALOG1 = 3,
+	START_DIALOG2 = 4,
+	DOING_DIALOG2 = 5,
+	START_WALK_OUT = 6,
+	DOING_WALK_OUT = 7,
+	START_JUMP = 8,
+	DOING_JUMP = 9,
 	
 }
 	
@@ -33,53 +33,54 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if state == State.START_WALK_IN:
-		$AnimationPlayer.play("walk-in")
-		state = State.DOING_WALK_IN
-		
-	if state == State.DOING_WALK_IN:
-		# Wait until player walks to centre	
-		yield($AnimationPlayer, "animation_finished")
-		$AnimatedSprite.play("idle")
-		state = State.START_DIALOG1
+	print(state)
+	match state:
+		State.START_WALK_IN:
+			$AnimationPlayer.play("walk-in")
+			state = State.DOING_WALK_IN
+	
+		State.DOING_WALK_IN:
+			# Wait until player walks to centre	
+			yield($AnimationPlayer, "animation_finished")
+			$AnimatedSprite.play("idle")
+			state = State.START_DIALOG1
+			
+		State.START_DIALOG1:
+			$Control/DialogBox1.show()
+			state = State.DOING_DIALOG1
 
-	if state == State.START_DIALOG1:
-		$Control/DialogBox1.show()
-		state = State.DOING_DIALOG1
-
-	if state == State.DOING_DIALOG1:
-		yield(self, "continue_sig")
-		$Control/DialogBox1.hide()
-		state = State.START_DIALOG2
+		State.DOING_DIALOG1:
+			yield(self, "continue_sig")
+			$Control/DialogBox1.hide()		# Hide first dialog
+			state = State.START_DIALOG2
 		
-	if state == State.START_DIALOG2:
-		$Control/DialogBox2.show()
-		state = State.DOING_DIALOG2
+		State.START_DIALOG2:
+			yield(get_tree().create_timer(0.3), "timeout")  # Wait a bit before shoing next dialog
+			$Control/DialogBox2.show()
+			state = State.DOING_DIALOG2
 	
-	if state == State.DOING_DIALOG2:
-		yield(self, "continue_sig")
-		$Control/DialogBox2.hide()
-		state = State.START_WALK_OUT
+		State.DOING_DIALOG2:
+			yield(self, "continue_sig")
+			$Control/DialogBox2.hide()
+			state = State.START_WALK_OUT
 		
-	if state == State.START_WALK_OUT:
-		$AnimatedSprite.play("walk")
-		$AnimationPlayer.play("walk-out")
-		state = State.DOING_WALK_OUT
+		State.START_WALK_OUT:
+			$AnimatedSprite.play("walk")
+			$AnimationPlayer.play("walk-out")
+			state = State.DOING_WALK_OUT
 	
-	if state == State.DOING_WALK_OUT:
-		# Wait for walk out animation to finish
-		yield($AnimationPlayer, "animation_finished")
+		State.DOING_WALK_OUT:
+			# Wait for walk out animation to finish
+			yield($AnimationPlayer, "animation_finished")
+			
+			# Pause at hole a bit then jump
+			$AnimatedSprite.play("idle")
+			yield(get_tree().create_timer(0.8 ), "timeout")
+			state = State.START_JUMP
 		
-		# Pause at hole a bit then jump
-		$AnimatedSprite.play("idle")
-		yield(get_tree().create_timer(0.8), "timeout")
-		state = State.START_JUMP
-		
-	if state == State.START_JUMP:
-		$AnimationPlayer.play("jump")
-		state == State.DOING_JUMP
-	
-	
+		State.START_JUMP:
+			$AnimationPlayer.play("jump")
+			state = State.DOING_JUMP
 	
 
 func continue() -> void:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HelpSign.png-e315a48b7297dac197b9a1dc789ab7a9.stex"
+path="res://.import/cave-level-button-textures-normal1.png-42199ebf52df212f85836dcee6c8559e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/HelpSign.png"
-dest_files=[ "res://.import/HelpSign.png-e315a48b7297dac197b9a1dc789ab7a9.stex" ]
+source_file="res://assets/themes/cave-level/cave-level-button-textures-normal1.png"
+dest_files=[ "res://.import/cave-level-button-textures-normal1.png-42199ebf52df212f85836dcee6c8559e.stex" ]
 
 [params]
 
