@@ -12,7 +12,9 @@ func _ready() -> void:
 		var button = Button.new()
 		button.text = str(levelIndex + 1)
 		button.connect("button_up", self, "_level_button_pressed", [levelIndex])
+		#button.set_size(Vector2(40,18));  #doesn't work
 		buttonContainer.add_child(button)
+		
 	
 func _level_button_pressed(levelIndex):
 	LevelData.goto_level(levelIndex)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/JapaneseLamp.png-fee16977ad78bf46abaa550c2bc6adb9.stex"
+path="res://.import/JapaneseLamp.png-adfb69dc3556d700917158df332b2929.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/JapaneseLamp.png"
-dest_files=[ "res://.import/JapaneseLamp.png-fee16977ad78bf46abaa550c2bc6adb9.stex" ]
+source_file="res://src/objects/japanese-lamp/JapaneseLamp.png"
+dest_files=[ "res://.import/JapaneseLamp.png-adfb69dc3556d700917158df332b2929.stex" ]
 
 [params]
 

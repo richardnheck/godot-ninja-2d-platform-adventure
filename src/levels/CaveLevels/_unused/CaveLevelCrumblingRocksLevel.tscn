@@ -9,7 +9,8 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/objects/JapaneseLamp.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=11]
+
 
 [node name="CrumblingRocksLevel" type="Node2D"]
 script = ExtResource( 5 )

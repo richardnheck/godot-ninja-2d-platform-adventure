@@ -8,7 +8,7 @@
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/objects/JapaneseLamp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
@@ -19,23 +19,8 @@
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=17]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=18]
 
-[sub_resource type="Animation" id=1]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.99 ]
-}
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -84,6 +69,22 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.99 ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -243,7 +244,7 @@ position = Vector2( 1104, 208 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 560, -144 )
-frame = 3
+frame = 0
 
 [node name="MovingPlatformCave2H" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( 624, 344 )
@@ -294,7 +295,7 @@ offset = Vector2( 8, 8 )
 position = Vector2( -23.2741, 8 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H5" index="2"]
-anims/PingPongPathFollow = SubResource( 5 )
+anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="MovingPlatformCave2H4" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( -144, 88 )
@@ -313,7 +314,7 @@ offset = Vector2( 8, 8 )
 position = Vector2( 54.5461, 0 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H4" index="2"]
-anims/PingPongPathFollow = SubResource( 2 )
+anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="MovingPlatformCave2H2" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( 800, 352 )
@@ -331,7 +332,7 @@ offset = Vector2( 23, 0 )
 position = Vector2( 54.5461, 0 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H2" index="2"]
-anims/PingPongPathFollow = SubResource( 3 )
+anims/PingPongPathFollow = SubResource( 4 )
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 320, 320 )
@@ -380,7 +381,7 @@ position = Vector2( 8, -8 )
 position = Vector2( 8, -32 )
 
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave1H2" index="2"]
-anims/PingPongPathFollow = SubResource( 4 )
+anims/PingPongPathFollow = SubResource( 5 )
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 136, 120 )
