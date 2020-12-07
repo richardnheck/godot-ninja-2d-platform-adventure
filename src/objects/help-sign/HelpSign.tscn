@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/pixeloperator8-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/objects/help-sign/HelpSign.gd" type="Script" id=2]
 [ext_resource path="res://src/objects/help-sign/HelpSign.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/help-sign/help-sign-texture.png" type="Texture" id=4]
-[ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=5]
+[ext_resource path="res://src/objects/help-sign/help-jump-button.png" type="Texture" id=6]
+[ext_resource path="res://src/objects/help-sign/help-left-button.png" type="Texture" id=7]
+[ext_resource path="res://src/objects/help-sign/help-right-button.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -29,9 +31,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0565
+margin_left = -41.0
 margin_top = -59.0
-margin_right = 49.9435
+margin_right = 42.0
 margin_bottom = -30.0
 texture = ExtResource( 4 )
 patch_margin_left = 5
@@ -47,22 +49,20 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -9.90276
+margin_left = -12.5862
 margin_top = -17.6189
-margin_right = 49.0972
+margin_right = 46.4137
 margin_bottom = -2.6189
 custom_fonts/normal_font = ExtResource( 1 )
 text = "to jump"
-fit_content_height = true
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Sprite" type="Sprite" parent="Panels/0"]
-position = Vector2( 21.0812, 14.3764 )
-scale = Vector2( 0.601475, 0.601475 )
-texture = ExtResource( 5 )
+position = Vector2( 17.4614, 15 )
+texture = ExtResource( 6 )
 
 [node name="1" type="NinePatchRect" parent="Panels"]
 visible = false
@@ -72,7 +72,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -58.0
 margin_top = -59.0
-margin_right = 62.0
+margin_right = 50.0
 margin_bottom = -30.0
 texture = ExtResource( 4 )
 patch_margin_left = 5
@@ -88,10 +88,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -21.0
-margin_top = -23.0
-margin_right = 58.0
-margin_bottom = 4.0
+margin_left = -25.0
+margin_top = -24.0
+margin_right = 54.0
+margin_bottom = 3.0
 custom_fonts/normal_font = ExtResource( 1 )
 text = "twice to double jump"
 fit_content_height = true
@@ -101,19 +101,19 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="Panels/1"]
-position = Vector2( 21.0812, 14.3764 )
-scale = Vector2( 0.601475, 0.601475 )
-texture = ExtResource( 5 )
+position = Vector2( 16.0812, 14.3764 )
+texture = ExtResource( 6 )
 
 [node name="2" type="NinePatchRect" parent="Panels"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -67.0
-margin_right = 50.0
-margin_bottom = -30.0
+margin_left = -62.0516
+margin_top = -86.4484
+margin_right = 61.9484
+margin_bottom = -27.4484
 texture = ExtResource( 4 )
 patch_margin_left = 5
 patch_margin_top = 5
@@ -128,21 +128,80 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -9.90276
-margin_top = -17.6189
-margin_right = 49.0972
-margin_bottom = -2.6189
+margin_left = -58.0
+margin_top = -53.0
+margin_right = 35.0
+margin_bottom = -43.0
 custom_fonts/normal_font = ExtResource( 1 )
+text = "Jump and hold"
 fit_content_height = true
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Panels/2"]
-position = Vector2( 21.0812, 14.3764 )
-scale = Vector2( 0.601475, 0.601475 )
-texture = ExtResource( 5 )
+[node name="Label2" type="RichTextLabel" parent="Panels/2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -42.0
+margin_right = 47.0
+margin_bottom = -33.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "on wall to grab"
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpSprite" type="Sprite" parent="Panels/2"]
+position = Vector2( 101, 10.274 )
+texture = ExtResource( 6 )
+
+[node name="LeftSprite" type="Sprite" parent="Panels/2"]
+position = Vector2( 44.7224, 38.3811 )
+texture = ExtResource( 7 )
+
+[node name="Label4" type="RichTextLabel" parent="Panels/2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -25.0
+margin_right = 59.0
+margin_bottom = -15.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Then      or     away"
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="RichTextLabel" parent="Panels/2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -14.0
+margin_right = 59.0
+margin_bottom = -3.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "from wall to jump"
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightSprite" type="Sprite" parent="Panels/2"]
+position = Vector2( 80.5, 38.3811 )
+texture = ExtResource( 8 )
 
 [node name="3" type="NinePatchRect" parent="Panels"]
 visible = false
@@ -150,10 +209,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0565
-margin_top = -78.6886
-margin_right = 49.9435
-margin_bottom = -49.6886
+margin_left = -44.6471
+margin_top = -55.2472
+margin_right = 44.3529
+margin_bottom = -26.2472
 texture = ExtResource( 4 )
 patch_margin_left = 5
 patch_margin_top = 5
@@ -168,21 +227,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -9.90276
-margin_top = -17.6189
-margin_right = 49.0972
-margin_bottom = -2.6189
+margin_left = -39.1691
+margin_top = -24.2472
+margin_right = 52.8309
+margin_bottom = -6.24719
 custom_fonts/normal_font = ExtResource( 1 )
+text = "Wall jump up 
+single wall"
 fit_content_height = true
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="Panels/3"]
-position = Vector2( 21.0812, 14.3764 )
-scale = Vector2( 0.601475, 0.601475 )
-texture = ExtResource( 5 )
 
 [node name="4" type="NinePatchRect" parent="Panels"]
 visible = false
@@ -190,10 +246,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0565
-margin_top = -78.6886
-margin_right = 49.9435
-margin_bottom = -49.6886
+margin_left = -47.4972
+margin_top = -55.5586
+margin_right = 46.5028
+margin_bottom = -26.5586
 texture = ExtResource( 4 )
 patch_margin_left = 5
 patch_margin_top = 5
@@ -208,20 +264,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -9.90276
-margin_top = -17.6189
-margin_right = 49.0972
-margin_bottom = -2.6189
+margin_left = -42.0
+margin_top = -22.5586
+margin_right = 51.0
+margin_bottom = -4.55859
 custom_fonts/normal_font = ExtResource( 1 )
+text = "Find a key to open the door"
 fit_content_height = true
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="Panels/4"]
-position = Vector2( 21.0812, 14.3764 )
-scale = Vector2( 0.601475, 0.601475 )
-texture = ExtResource( 5 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
