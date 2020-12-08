@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/actors/player/player_controller.gd"
+}, {
+"base": "Node2D",
+"class": "ScreenShake",
+"language": "GDScript",
+"path": "res://src/objects/camera-effects/ScreenShake.gd"
 } ]
 _global_script_class_icons={
 "FadeScreen": "",
 "Geometry2D": "",
 "LevelBase": "",
 "MiniBossSlamBlast": "",
-"Player": ""
+"Player": "",
+"ScreenShake": ""
 }
 
 [application]

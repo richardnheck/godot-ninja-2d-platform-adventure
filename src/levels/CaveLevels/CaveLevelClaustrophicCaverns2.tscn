@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=12]
 [ext_resource path="res://src/objects/MovingBambooSpike.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -39,7 +38,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 752, 656 )
+position = Vector2( 1360, 1040 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -81,7 +80,7 @@ tile_data = PoolIntArray( 786444, 1073741826, 0, 786448, 1073741826, 0, 786452, 
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1113, 727 )
-frame = 4
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 864, 1024 )
@@ -173,9 +172,6 @@ current_state = 0
 position = Vector2( 1200, 1088 )
 vertical_direction = -1
 current_state = 0
-
-[node name="ScreenShake" parent="." instance=ExtResource( 20 )]
-position = Vector2( 1, -1 )
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

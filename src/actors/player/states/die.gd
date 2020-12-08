@@ -7,12 +7,16 @@ func enter():
 	print("Die state:enter")
 	finished = false
 	owner.set_dead(true)
+	owner.emit_signal("start_die");
 	yield(get_tree().create_timer(0.5), "timeout")
 	finished = true
 	
 func update(_delta):
 	var sprite = owner.get_node("AnimatedSprite")
 	sprite.play("die")
+	
+	var deathEffect = owner.get_node("DeathEffect")
+	deathEffect.play("default")
 	
 	if finished:
 		owner.emit_signal("died")

@@ -20,6 +20,7 @@ onready var sprite = $AnimatedSprite
 #-----------------------------
 signal direction_changed(new_direction)
 signal collided
+signal start_die
 signal died
 
 var dead: = false

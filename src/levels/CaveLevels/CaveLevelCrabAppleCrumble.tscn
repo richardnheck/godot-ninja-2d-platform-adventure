@@ -19,7 +19,6 @@
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=17]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=18]
 
-
 [sub_resource type="Animation" id=1]
 length = 2.0
 loop = true

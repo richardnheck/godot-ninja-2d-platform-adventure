@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sprites/player/idle/black-outline/player-idle1.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/art/sprites/player/run/black-outline/player-run6.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump2.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/sprites/player/jump/black-outline/player-jump1.png" type="Texture" id=13]
+[ext_resource path="res://src/actors/player/sprites/death-effect.png" type="Texture" id=14]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate4.png" type="Texture" id=16]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate7.png" type="Texture" id=17]
 [ext_resource path="res://assets/art/sprites/player/celebrate/black-outline/player-celebrate1.png" type="Texture" id=18]
@@ -41,18 +42,46 @@ animations = [ {
 "name": "run",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "jump_down",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
 "name": "jump_up",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 14 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 14 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 14 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 14 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 5.13996, 8.84988 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -70,13 +99,18 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 centered = false
 
+[node name="DeathEffect" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -10 )
+frames = SubResource( 7 )
+frame = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -8.835 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="RightWallRaycast1" type="RayCast2D" parent="."]
 position = Vector2( 1, -2 )

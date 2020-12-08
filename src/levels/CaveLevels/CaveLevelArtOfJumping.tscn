@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=9]
 
-
 [node name="CaveLevel1" type="Node2D"]
 script = ExtResource( 4 )
 __meta__ = {
@@ -40,6 +39,7 @@ position = Vector2( 2720, -240 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1472, -186 )
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 2720, -320 )
@@ -70,62 +70,70 @@ tile_data = PoolIntArray( -1834893, 2, 131073, -1834892, 2, 131073, -1703829, 2,
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2688, -336 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 704, 64 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 784, 64 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 864, 64 )
+frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1072, -80 )
+frame = 0
 
 [node name="JapaneseLamp12" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1385, -17 )
+frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1496, -48 )
-frame = 0
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1408, -137 )
-frame = 0
 
 [node name="JapaneseLamp15" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2200, -169 )
+frame = 0
 
 [node name="JapaneseLamp16" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2280, -200 )
+frame = 0
 
 [node name="JapaneseLamp17" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2376, -265 )
+frame = 0
 
 [node name="JapaneseLamp18" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2488, -344 )
-frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 976, -48 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 201, 160 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 297, 160 )
+frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 560, 95 )
-frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 464, 159 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 2752, -336 )
+frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 48, 208 )

@@ -8,6 +8,7 @@ onready var endTimer = $EndTimer
 onready var tilemapWorld:TileMap = $TileMapWorld
 onready var tilemapTraps:TileMap = $TileMapTraps
 onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
+onready var screenShakeScene = preload("res://src/objects/camera-effects/ScreenShake.tscn")
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
@@ -17,7 +18,7 @@ onready var start_door = get_node("Props/DoorStart")
 
 var player:KinematicBody2D
 var fadeScreen:FadeScreen
-
+var screenShake:ScreenShake
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	player = _spawn_player()
 	
 	# Connect signals
+	player.connect("start_die", self, "_on_Player_start_die")
 	player.connect("died", self, "_on_Player_died")
 	player.connect("collided", self, "_on_Player_collided")
 	key.connect("captured", self, "_on_Key_captured")
@@ -36,6 +38,10 @@ func _ready() -> void:
 	
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
+	
+	# Add the screen shake scene
+	screenShake = screenShakeScene.instance()
+	add_child(screenShake)
 	
 	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
 	
@@ -89,7 +95,11 @@ func _on_Player_collided(collision: KinematicCollision2D) -> void:
 			# Player touched a trap so die
 			player.die()
 
+# Called at the start of the die process
+func _on_Player_start_die() -> void:
+	screenShake.screen_shake(0.05, 8, 200)
 
+# Called when player animation and stuff have finished
 func _on_Player_died() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fadeScreen.reload_scene()
