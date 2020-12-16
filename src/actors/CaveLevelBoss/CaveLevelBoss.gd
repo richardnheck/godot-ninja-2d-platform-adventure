@@ -102,9 +102,7 @@ func _process(delta: float) -> void:
 				velocity.x = 100 * direction
 				velocity.y += gravity
 				velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
-					
-	
-						
+									
 		STATE_RUN:
 			velocity = move_and_slide(Vector2(speed * direction, 0), Vector2.UP, false, 4, PI/4, false)
 		STATE_RUN_AND_JUMP:
