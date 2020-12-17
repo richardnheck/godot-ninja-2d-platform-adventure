@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/Controls/SkipButton/SkipButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/Controls/ContinueButton/ContinueButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.gd" type="Script" id=3]
+
+[node name="CutSceneBase" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkipButton" parent="Control" instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -35.0
+margin_top = 2.0
+margin_right = 0.0
+margin_bottom = 16.0
+
+[node name="ContinueButton" parent="Control" instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -21.0
+margin_right = -1.0
+margin_bottom = -1.0
+[connection signal="button_down" from="Control/SkipButton" to="." method="_on_SkipButton_button_down"]
+[connection signal="button_up" from="Control/ContinueButton" to="." method="_on_ContinueButton_button_up"]

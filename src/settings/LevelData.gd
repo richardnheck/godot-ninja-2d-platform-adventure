@@ -13,7 +13,7 @@ var levelsArray = [
 	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "StairwayOfTrouble.tscn"},
 	{ "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn"},
 	{ "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn"},
-	{ "name" : "Cave Level Boss", "scene_path" : CAVE_LEVELS_PATH + "BossScene.tscn", "is_boss" : true}
+	{ "name" : "Cave Level Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
 ];
 
 	
