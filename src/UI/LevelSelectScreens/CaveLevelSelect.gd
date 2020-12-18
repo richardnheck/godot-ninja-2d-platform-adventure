@@ -3,6 +3,7 @@ extends CanvasLayer
 
 onready var buttonContainer = $Control/LevelButtonsContainer
 
+export(String, FILE) var intro_scene_path:String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,4 +26,4 @@ func _on_BossButton_button_up() -> void:
 
 
 func _on_IntroButton_button_up() -> void:
-	get_tree().change_scene("res://src/UI/StoryIntroScreen/StoryIntro.tscn")
+	get_tree().change_scene(intro_scene_path)

@@ -14,6 +14,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ClickRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SkipButton" parent="Control" instance=ExtResource( 1 )]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -31,5 +39,6 @@ margin_left = -58.0
 margin_top = -21.0
 margin_right = -1.0
 margin_bottom = -1.0
+[connection signal="gui_input" from="Control/ClickRect" to="." method="_on_ClickRect_gui_input"]
 [connection signal="button_down" from="Control/SkipButton" to="." method="_on_SkipButton_button_down"]
 [connection signal="button_up" from="Control/ContinueButton" to="." method="_on_ContinueButton_button_up"]

@@ -23,6 +23,8 @@ var state: int
 
 var step: int = 0
 
+onready var cut_scene_base = $CutSceneBase
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Control/DialogBox1.hide()
@@ -30,10 +32,12 @@ func _ready() -> void:
 	$AnimatedSprite.play("walk")
 	state = State.START_WALK_IN
 	
+	cut_scene_base.show_continue(false)
+	cut_scene_base.connect("on_continue", self, "continue")
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(state)
 	match state:
 		State.START_WALK_IN:
 			$AnimationPlayer.play("walk-in")
@@ -47,21 +51,25 @@ func _process(delta: float) -> void:
 			
 		State.START_DIALOG1:
 			$Control/DialogBox1.show()
+			cut_scene_base.show_continue(true)
 			state = State.DOING_DIALOG1
 
 		State.DOING_DIALOG1:
 			yield(self, "continue_sig")
 			$Control/DialogBox1.hide()		# Hide first dialog
+			cut_scene_base.show_continue(false)
 			state = State.START_DIALOG2
 		
 		State.START_DIALOG2:
 			yield(get_tree().create_timer(0.3), "timeout")  # Wait a bit before shoing next dialog
 			$Control/DialogBox2.show()
+			cut_scene_base.show_continue(true)
 			state = State.DOING_DIALOG2
 	
 		State.DOING_DIALOG2:
 			yield(self, "continue_sig")
 			$Control/DialogBox2.hide()
+			cut_scene_base.show_continue(false)
 			state = State.START_WALK_OUT
 		
 		State.START_WALK_OUT:
@@ -92,17 +100,5 @@ func jump_up() -> void:
 func jump_down() -> void:
 	$AnimatedSprite.play("jump-down")
 
-
-func _on_SkipButton_button_up() -> void:
-	get_tree().change_scene("res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn")
-
-
-func _on_ClickRect_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			self.continue()
-
-
-func _on_ContinueButton_button_up() -> void:
-	self.continue()
-
+func goto_next_scene()->void:
+	cut_scene_base.goto_next_scene()

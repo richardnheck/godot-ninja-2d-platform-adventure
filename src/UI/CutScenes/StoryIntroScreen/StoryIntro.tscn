@@ -1,12 +1,12 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/UI/StoryIntroScreen/dialogbox.png" type="Texture" id=5]
-[ext_resource path="res://src/UI/StoryIntroScreen/background.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=6]
 [ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=7]
-[ext_resource path="res://src/UI/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
-[ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=9]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
@@ -26,35 +26,35 @@ region = Rect2( 99, 0, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 64, 33, 32 )
+region = Rect2( 33, 64, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
-region = Rect2( 33, 64, 33, 32 )
+region = Rect2( 0, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 32, 33, 32 )
+region = Rect2( 33, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 7 )
-region = Rect2( 33, 32, 33, 32 )
+region = Rect2( 66, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
-region = Rect2( 66, 32, 33, 32 )
+region = Rect2( 99, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 7 )
-region = Rect2( 99, 32, 33, 32 )
+region = Rect2( 132, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 7 )
-region = Rect2( 132, 32, 33, 32 )
+region = Rect2( 165, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 7 )
-region = Rect2( 165, 32, 33, 32 )
+region = Rect2( 0, 64, 33, 32 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
@@ -65,18 +65,18 @@ animations = [ {
 }, {
 "frames": [ SubResource( 5 ) ],
 "loop": true,
-"name": "jump-up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ) ],
-"loop": true,
 "name": "jump-down",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "jump-up",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=14]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "method": "jump_down"
 }, {
 "args": [  ],
-"method": "_on_SkipButton_button_up"
+"method": "goto_next_scene"
 } ]
 }
 tracks/1/type = "bezier"
@@ -206,25 +206,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control"]
-margin_left = 120.0
-margin_top = 160.0
-margin_right = 195.0
-margin_bottom = 174.0
-custom_fonts/font = ExtResource( 1 )
-text = "Tap to continue"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ClickRect" type="ColorRect" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="BackButton" parent="Control" instance=ExtResource( 4 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -232,21 +213,6 @@ margin_left = 5.0
 margin_top = -20.0
 margin_right = 21.0
 next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
-
-[node name="SkipButton" type="Button" parent="Control"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -47.0
-margin_top = -23.0
-margin_right = -5.0
-margin_bottom = -5.0
-theme = ExtResource( 9 )
-text = "Skip"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 216, 127.144 )
@@ -259,20 +225,7 @@ anims/jump = SubResource( 14 )
 anims/walk-in = SubResource( 15 )
 anims/walk-out = SubResource( 16 )
 
-[node name="ContinueButton" type="Button" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -223.0
-margin_top = -22.0
-margin_right = -205.0
-margin_bottom = -4.0
-theme = ExtResource( 9 )
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="gui_input" from="Control/ClickRect" to="." method="_on_ClickRect_gui_input"]
-[connection signal="button_up" from="Control/SkipButton" to="." method="_on_SkipButton_button_up"]
-[connection signal="button_up" from="ContinueButton" to="." method="_on_ContinueButton_button_up"]
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
+
+[editable path="CutSceneBase"]

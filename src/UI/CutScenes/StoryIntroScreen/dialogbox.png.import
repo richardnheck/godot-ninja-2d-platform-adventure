@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dialogbox.png-1ea2ae8cd89d476a578ea50c9308bba3.stex"
+path="res://.import/dialogbox.png-24ac5ca9bd8ba1d911a0e87b037aa252.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/StoryIntroScreen/dialogbox.png"
-dest_files=[ "res://.import/dialogbox.png-1ea2ae8cd89d476a578ea50c9308bba3.stex" ]
+source_file="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png"
+dest_files=[ "res://.import/dialogbox.png-24ac5ca9bd8ba1d911a0e87b037aa252.stex" ]
 
 [params]
 
