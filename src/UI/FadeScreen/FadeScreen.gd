@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 class_name FadeScreen
 
 signal changing_scene
@@ -6,13 +6,17 @@ signal fading_finished
 signal fading_started
 
 #Child nodes
-onready var fade_player = $Control/FadePlayer
+onready var fade_player = $CanvasLayer/Control/FadePlayer
+onready var rect = $CanvasLayer/Control/BlackRectBottom
 
 var scene_to_go : String
 var is_reload_scene_call = false
 
 func _ready() -> void:
-	print("FadeScreen ready")
+	# rect is hidden in scene so it doesn't block the view of other scenes
+	# in the editor.  Since it is hidden, make it visible when loaded
+	rect.visible = true
+	
 
 func go_to_scene(var target : String):
 	scene_to_go = target
@@ -35,6 +39,10 @@ func reload_scene():
 	print('Reloading scene: ' + str(get_tree().current_scene.get_path()))
 	
 	emit_signal("changing_scene")
+
+func fade_in_current_scene():
+	fade_player.play("Fade In")
+	
 
 func _on_AnimationPlayer_animation_finished(anim_name : String):
 	if anim_name == "Fade Out":

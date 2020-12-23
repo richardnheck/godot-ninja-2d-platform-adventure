@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/UI/SplashScreen/SplashScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/UI/SplashScreen/parabol-ink-logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/dogica/dogica.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 2 )
@@ -62,4 +63,8 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="FadeScreen" parent="." instance=ExtResource( 5 )]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="FadeScreen"]

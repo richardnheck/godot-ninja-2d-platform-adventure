@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -11,6 +11,15 @@
 [ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25, 115 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 40, 85, 40, 85, -100, 0, -100 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( -40, 40, 50, 40, 50, -100, -40, -100 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 10 )
@@ -45,11 +54,16 @@ __meta__ = {
 [node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 0, 35 )
 normal = ExtResource( 4 )
+shape = SubResource( 3 )
+passby_press = true
 action = "move_left"
 
 [node name="RightTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 52, 35 )
 normal = ExtResource( 2 )
+shape = SubResource( 5 )
+shape_centered = false
+passby_press = true
 action = "move_right"
 
 [node name="LeftButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
@@ -80,6 +94,8 @@ __meta__ = {
 [node name="JumpTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerRight"]
 position = Vector2( -8, -12 )
 normal = ExtResource( 3 )
+shape = SubResource( 4 )
+shape_centered = false
 action = "jump"
 
 [node name="JumpButtonArea2D" type="Area2D" parent="Control"]

@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/UI/CutScenes/CutSceneBase.gd"
 }, {
-"base": "CanvasLayer",
+"base": "Node2D",
 "class": "FadeScreen",
 "language": "GDScript",
 "path": "res://src/UI/FadeScreen/FadeScreen.gd"

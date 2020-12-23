@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-hover2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-normal1.png" type="Texture" id=6]
 [ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-locked4.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=9]
 
 [node name="WorldSelect" type="Control"]
 anchor_right = 1.0
@@ -69,4 +70,6 @@ margin_bottom = 129.0
 disabled = true
 texture_normal = ExtResource( 7 )
 texture_disabled = ExtResource( 7 )
+
+[node name="FadeScreen" parent="." instance=ExtResource( 9 )]
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]
