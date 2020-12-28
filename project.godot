@@ -69,6 +69,7 @@ output_latency=50
 Actions="*res://src/settings/Actions.gd"
 Constants="*res://src/settings/Constants.gd"
 LevelData="*res://src/settings/LevelData.gd"
+Global="*res://src/UI/Global.tscn"
 
 [display]
 
