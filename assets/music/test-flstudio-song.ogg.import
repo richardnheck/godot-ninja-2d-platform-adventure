@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/test-flstudio-song.ogg-7e49e1d4c57c2497e89cb477332fcd98.oggstr"
+
+[deps]
+
+source_file="res://assets/music/test-flstudio-song.ogg"
+dest_files=[ "res://.import/test-flstudio-song.ogg-7e49e1d4c57c2497e89cb477332fcd98.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

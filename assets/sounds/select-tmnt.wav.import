@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/select-tmnt.wav-5c2ee024a121a14972ebec81f6b4f798.sample"
+
+[deps]
+
+source_file="res://assets/sounds/select-tmnt.wav"
+dest_files=[ "res://.import/select-tmnt.wav-5c2ee024a121a14972ebec81f6b4f798.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

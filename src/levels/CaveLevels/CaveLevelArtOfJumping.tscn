@@ -39,7 +39,7 @@ position = Vector2( 2720, -240 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1792, -215 )
-frame = 6
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 2720, -320 )

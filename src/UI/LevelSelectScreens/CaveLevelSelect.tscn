@@ -747,9 +747,11 @@ __meta__ = {
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 7 )]
 position = Vector2( 64, 120 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 7 )]
 position = Vector2( 256, 120 )
+frame = 0
 
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
 [connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]

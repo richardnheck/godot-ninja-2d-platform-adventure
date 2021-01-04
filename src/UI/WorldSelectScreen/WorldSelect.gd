@@ -17,4 +17,5 @@ func _ready() -> void:
 	
 
 func _on_World1Button_button_up() -> void:
+	Global.play_general_select_sound()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn")

@@ -12,16 +12,16 @@
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 25, 115 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 40, 85, 40, 85, -100, 0, -100 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( -40, 40, 50, 40, 50, -100, -40, -100 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 10 )
 
 [node name="MobileControlsHUD" type="CanvasLayer"]
@@ -54,14 +54,14 @@ __meta__ = {
 [node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 0, 35 )
 normal = ExtResource( 4 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 passby_press = true
 action = "move_left"
 
 [node name="RightTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 52, 35 )
 normal = ExtResource( 2 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 shape_centered = false
 passby_press = true
 action = "move_right"
@@ -94,7 +94,7 @@ __meta__ = {
 [node name="JumpTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerRight"]
 position = Vector2( -8, -12 )
 normal = ExtResource( 3 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 shape_centered = false
 action = "jump"
 
@@ -105,7 +105,7 @@ self_modulate = Color( 0.560784, 0.0627451, 0.0627451, 1 )
 position = Vector2( 232, 136 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/JumpButtonArea2D"]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Control/JumpButtonArea2D"]
 texture = ExtResource( 9 )

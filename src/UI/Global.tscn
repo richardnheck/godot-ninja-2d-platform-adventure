@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/music/test-song.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/sounds/select-tmnt.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sounds/select-blip2.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/UI/Global.gd" type="Script" id=4]
+[ext_resource path="res://assets/sounds/pause.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/select-blip.wav" type="AudioStream" id=6]
 
 [node name="Node" type="Node"]
+pause_mode = 2
+script = ExtResource( 4 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -20.264
 autoplay = true
+
+[node name="GameStartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="GeneralSelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="PauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -9.0
+
+[node name="BasicBlipSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

@@ -21,14 +21,17 @@ func set_paused(value:bool) -> void:
 	pause_overlay.visible = value
 	
 func _on_PauseButton_button_up() -> void:
+	Global.play_pause_sound()	
 	self.paused = true
 
 
 func _on_PausedPlayButton_button_up() -> void:
+	Global.play_basic_blip_sound()
 	self.paused = false
 
 
 func _on_RetryButton_button_up() -> void:
+	Global.play_basic_blip_sound()
 	self.paused = false
 	scene_tree.reload_current_scene()
 
