@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb3-SD.wav-6261cc134d5d5f959ca076b161fcea79.sample"
+
+[deps]
+
+source_file="res://assets/music/smb3-SD.wav"
+dest_files=[ "res://.import/smb3-SD.wav-6261cc134d5d5f959ca076b161fcea79.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
