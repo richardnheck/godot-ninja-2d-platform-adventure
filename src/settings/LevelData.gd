@@ -9,8 +9,8 @@ var levelsArray = [
 	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn"},
 	{ "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn"},
 	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn"},
-	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn"},
 	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn"},
+	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn"},
 	{ "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn"},
 	{ "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn"},
 	{ "name" : "Cave Level Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
