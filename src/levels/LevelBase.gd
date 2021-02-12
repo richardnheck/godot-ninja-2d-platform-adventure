@@ -56,14 +56,19 @@ func _ready() -> void:
 #		return ''
 				
 func _spawn_player() -> KinematicBody2D:
+	print("spawning at:")
 	var spawn_point = Vector2.ZERO
 	if temp_spawn_position != null:
+		print("temp spawn position")
 		spawn_point = temp_spawn_position.position
 	elif LevelData.level_checkpoint_reached:
+		print("check point position")
 		spawn_point = check_point.position
 	elif player_spawn_position != null:
+		print("player spawn position")
 		spawn_point = player_spawn_position.position
 	elif start_door != null:
+		print("start door position")
 		spawn_point = start_door.position	
 	
 	var player_instance = player_scene.instance()
@@ -105,7 +110,6 @@ func _on_Player_died() -> void:
 	fadeScreen.reload_scene()
 
 func _on_CheckPoint_reached() -> void:
-	print("reached checkpoint")
 	LevelData.level_checkpoint_reached = true
 
 

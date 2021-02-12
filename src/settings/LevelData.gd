@@ -69,7 +69,6 @@ func goto_next_level() -> void:
 		current_level_index += 1
 	else:
 		current_level_index = 0
-			
 	level_checkpoint_reached = false
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
