@@ -8,78 +8,78 @@
 [ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 7 )
 region = Rect2( 33, 0, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 7 )
 region = Rect2( 66, 0, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=52]
 atlas = ExtResource( 7 )
 region = Rect2( 99, 0, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=53]
 atlas = ExtResource( 7 )
 region = Rect2( 33, 64, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=54]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=55]
 atlas = ExtResource( 7 )
 region = Rect2( 33, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=56]
 atlas = ExtResource( 7 )
 region = Rect2( 66, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=57]
 atlas = ExtResource( 7 )
 region = Rect2( 99, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=58]
 atlas = ExtResource( 7 )
 region = Rect2( 132, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=59]
 atlas = ExtResource( 7 )
 region = Rect2( 165, 32, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=60]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 64, 33, 32 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=61]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
 "loop": true,
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 5 ) ],
+"frames": [ SubResource( 53 ) ],
 "loop": true,
 "name": "jump-down",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 12 ) ],
+"frames": [ SubResource( 60 ) ],
 "loop": true,
 "name": "jump-up",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=62]
 resource_name = "jump"
 step = 0.05
 tracks/0/type = "method"
@@ -123,7 +123,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.3, 1 )
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=63]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:position")
@@ -138,7 +138,7 @@ tracks/0/keys = {
 "values": [ Vector2( 16, 128 ), Vector2( 136, 128 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=64]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:position")
 tracks/0/interp = 1
@@ -216,14 +216,14 @@ next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 216, 127.144 )
-frames = SubResource( 13 )
+frames = SubResource( 61 )
 animation = "jump-down"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/jump = SubResource( 14 )
-anims/walk-in = SubResource( 15 )
-anims/walk-out = SubResource( 16 )
+anims/jump = SubResource( 62 )
+anims/walk-in = SubResource( 63 )
+anims/walk-out = SubResource( 64 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"

@@ -1,13 +1,14 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -647,30 +648,205 @@ resource_local_to_scene = true
 } ]
 16/z_index = 0
 
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 8 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 8 )
+region = Rect2( 66, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 8 )
+region = Rect2( 99, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 8 )
+region = Rect2( 33, 64, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 8 )
+region = Rect2( 33, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 8 )
+region = Rect2( 66, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 8 )
+region = Rect2( 99, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 8 )
+region = Rect2( 132, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 8 )
+region = Rect2( 165, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 64, 33, 32 )
+
+[sub_resource type="SpriteFrames" id=61]
+animations = [ {
+"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 53 ) ],
+"loop": true,
+"name": "jump-down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 60 ) ],
+"loop": true,
+"name": "jump-up",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=62]
+resource_name = "walk-in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 112 ), Vector2( 144, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_dialog"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "walk-out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 144, 112 ), Vector2( 248, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boss:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7, 1.2 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 128, -16 ), Vector2( 128, 80 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shake_screen"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="BossIntroCutScene" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Control2" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Control2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -84.0
-margin_top = -7.0
-margin_right = 84.0
-margin_bottom = 7.0
-custom_fonts/font = ExtResource( 3 )
-text = "Cave Level Boss Intro"
-
-[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 88 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 
 [node name="TileMapBg" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -690,20 +866,82 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InteractiveProps" type="Node" parent="."]
-
-[node name="CaveLevelBossForCutScene" parent="InteractiveProps" instance=ExtResource( 6 )]
+[node name="Boss" parent="." instance=ExtResource( 6 )]
 position = Vector2( 128, -16 )
 scale = Vector2( 2, 2 )
 
-[node name="Player" parent="InteractiveProps" instance=ExtResource( 8 )]
-position = Vector2( 152, 144 )
+[node name="MainControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Camera2D" parent="InteractiveProps/Player" index="8"]
-current = false
+[node name="DialogBox1" type="Sprite" parent="MainControl"]
+position = Vector2( 126, 80 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox1"]
+margin_left = -117.0
+margin_top = -27.0
+margin_right = 377.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Looks like I finally passed the underground
+caverns and am about to enter the castle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox2" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 126, 80 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox2"]
+margin_left = -116.0
+margin_top = -27.0
+margin_right = 378.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "I was actually expecting a bit more resistance.  
+I don't know what everyone was worried about.
+Oh, well. Onwards to the castle."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
+
+[node name="ClickRect" parent="CutSceneBase/Control" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -88.0
+margin_right = 160.0
+margin_bottom = 88.0
 
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
-[editable path="CutSceneBase"]
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 112 )
+frames = SubResource( 61 )
+animation = "walk"
+frame = 3
+playing = true
+centered = false
 
-[editable path="InteractiveProps/Player"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walk-in = SubResource( 62 )
+anims/walk-out = SubResource( 63 )
+
+[editable path="CutSceneBase"]

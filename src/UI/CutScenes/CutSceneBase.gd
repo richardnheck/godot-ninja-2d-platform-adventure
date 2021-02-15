@@ -35,6 +35,8 @@ func goto_next_scene() -> void:
 func show_continue(visible)->void:
 	continue_button.visible = visible
 
+func is_continue_button_showing()->bool:
+	return continue_button.visible
 
 func _on_SkipButton_button_down() -> void:
 	self.goto_next_scene()
