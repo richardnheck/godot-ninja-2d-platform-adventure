@@ -1,12 +1,12 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=10]
 
@@ -648,77 +648,6 @@ resource_local_to_scene = true
 } ]
 16/z_index = 0
 
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 8 )
-region = Rect2( 33, 0, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 8 )
-region = Rect2( 66, 0, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=52]
-atlas = ExtResource( 8 )
-region = Rect2( 99, 0, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 8 )
-region = Rect2( 33, 64, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=54]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=55]
-atlas = ExtResource( 8 )
-region = Rect2( 33, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=56]
-atlas = ExtResource( 8 )
-region = Rect2( 66, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=57]
-atlas = ExtResource( 8 )
-region = Rect2( 99, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=58]
-atlas = ExtResource( 8 )
-region = Rect2( 132, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=59]
-atlas = ExtResource( 8 )
-region = Rect2( 165, 32, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=60]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 64, 33, 32 )
-
-[sub_resource type="SpriteFrames" id=61]
-animations = [ {
-"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
-"loop": true,
-"name": "idle",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 53 ) ],
-"loop": true,
-"name": "jump-down",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 60 ) ],
-"loop": true,
-"name": "jump-up",
-"speed": 5.0
-} ]
-
 [sub_resource type="Animation" id=62]
 resource_name = "walk-in"
 length = 1.5
@@ -744,7 +673,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ "walk", "idle" ]
+"values": [ "walk", "talk" ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -775,7 +704,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=63]
 resource_name = "walk-out"
-length = 1.5
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
@@ -795,10 +724,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1.3, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ "walk", "idle" ]
+"values": [ "walk", "shock", "idle" ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Boss:position")
@@ -819,11 +748,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.2, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "_shake_screen"
+}, {
+"args": [  ],
+"method": "_goto_next_scene"
 } ]
 }
 tracks/4/type = "value"
@@ -833,7 +765,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 1.5 ),
+"times": PoolRealArray( 2.2 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -933,12 +865,13 @@ margin_bottom = 88.0
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
 [node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 112 )
-frames = SubResource( 61 )
+position = Vector2( 144, 112 )
+frames = ExtResource( 3 )
 animation = "walk"
 frame = 3
 playing = true
 centered = false
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/walk-in = SubResource( 62 )

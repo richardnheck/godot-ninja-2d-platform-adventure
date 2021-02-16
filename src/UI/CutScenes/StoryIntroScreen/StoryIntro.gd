@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		State.DOING_WALK_IN:
 			# Wait until player walks to centre	
 			yield($AnimationPlayer, "animation_finished")
-			$AnimatedSprite.play("idle")
+			$AnimatedSprite.play("talk")
 			state = State.START_DIALOG1
 			
 		State.START_DIALOG1:

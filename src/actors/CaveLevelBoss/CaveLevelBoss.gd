@@ -7,7 +7,7 @@ onready var touch_floor_cooloff_timer = $TouchFloorCoolOffTimer
 signal state_cycle_finished
 
 var velocity = Vector2(40,0)
-var speed = 60
+var speed = 55
 var direction = 1
 var vertical_direction = 1
 var vertical_speed = 200
@@ -49,6 +49,10 @@ func _ready() -> void:
 	ground_global_position = global_position
 	
 	set_state(STATE_RUN_AND_JUMP)
+	
+	# wait a bit before starting
+	yield(get_tree().create_timer(1.5), "timeout")
+	
 	#set_state(STATE_RUN)
 	do_jump = true
 	run_and_jump_timer.start()
