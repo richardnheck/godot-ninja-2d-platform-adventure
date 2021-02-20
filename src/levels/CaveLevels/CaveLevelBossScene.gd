@@ -28,8 +28,10 @@ func _process(delta: float) -> void:
 	var ap = boss.position.direction_to(player.position)
 	if ap.x > 0:
 		boss.direction = 1
+		boss.set_sprite_animation("look-right")
 	elif ap.x < 0:
 		boss.direction = -1
+		boss.set_sprite_animation("look-left")
 	else:
 		boss.direction = 0
 #

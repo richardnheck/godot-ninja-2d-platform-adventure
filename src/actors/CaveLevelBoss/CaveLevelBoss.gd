@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var run_and_jump_timer = $RunAndJumpTimer
 onready var slam_run_timer = $SlamRunTimer
 onready var touch_floor_cooloff_timer = $TouchFloorCoolOffTimer
+onready var animated_sprite = $AnimatedSprite
 
 signal state_cycle_finished
 
@@ -133,9 +134,10 @@ func _shake_screen() -> void:
 
 
 func _spawn_slam_blast() -> void:
-	var instance = preload("res://src/actors/CaveLevelBoss/SlamBlast.tscn").instance()
+	var instance:SlamBlast = preload("res://src/actors/CaveLevelBoss/SlamBlast.tscn").instance()
 	instance.global_position = global_position
 	get_parent().add_child(instance)		
+	instance.set_direction(self.direction)
 
 func _spawn_falling_spikes_array() -> void:
 	var spikes_instance = preload("res://src/actors/CaveLevelBoss/BossFallingSpikeArray.tscn").instance()
@@ -175,7 +177,6 @@ func _on_RunAndJumpTimer_timeout() -> void:
 
 
 func _on_SlamRunTimer_timeout() -> void:
-	print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>slam run timeout")
 	slam_count = 0
 	slam_mode = MODE_SLAM
 
@@ -191,3 +192,6 @@ func _on_TouchFloorCoolOffTimer_timeout() -> void:
 		slam_count = 0
 		slam_mode = MODE_RUN
 		slam_run_timer.start()
+
+func set_sprite_animation(animation) -> void:
+	animated_sprite.animation = animation

@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "ScreenShake",
 "language": "GDScript",
 "path": "res://src/objects/camera-effects/ScreenShake.gd"
+}, {
+"base": "Area2D",
+"class": "SlamBlast",
+"language": "GDScript",
+"path": "res://src/actors/CaveLevelBoss/SlamBlast.gd"
 } ]
 _global_script_class_icons={
 "CutSceneBase": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "LevelBase": "",
 "MiniBossSlamBlast": "",
 "Player": "",
-"ScreenShake": ""
+"ScreenShake": "",
+"SlamBlast": ""
 }
 
 [application]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/CutScenes/mini-dialogbox.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -701,6 +702,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Boss/AnimatedSprite:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "asleep" ]
+}
 
 [sub_resource type="Animation" id=50]
 resource_name = "walk-out"
@@ -770,6 +783,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Boss/AnimatedSprite:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "awake", "look-right" ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MainControl/DialogBox3:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="BossIntroCutScene" type="Node"]
 script = ExtResource( 1 )
@@ -801,6 +838,9 @@ __meta__ = {
 [node name="Boss" parent="." instance=ExtResource( 6 )]
 position = Vector2( 128, -16 )
 
+[node name="AnimatedSprite" parent="Boss" index="0"]
+animation = "awake"
+
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -813,37 +853,56 @@ __meta__ = {
 }
 
 [node name="DialogBox1" type="Sprite" parent="MainControl"]
-position = Vector2( 126, 80 )
-texture = ExtResource( 10 )
+visible = false
+position = Vector2( 130, 80 )
+texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox1"]
-margin_left = -117.0
-margin_top = -27.0
-margin_right = 377.0
-margin_bottom = 14.0
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 11.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Looks like I finally passed the underground
-caverns and am about to enter the castle"
+text = "I get the feeling that I have finally passed 
+the underground caverns and should be
+soon within the grounds of the castle."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DialogBox2" type="Sprite" parent="MainControl"]
 visible = false
-position = Vector2( 126, 80 )
-texture = ExtResource( 10 )
+position = Vector2( 130, 80 )
+texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox2"]
-margin_left = -116.0
-margin_top = -27.0
-margin_right = 378.0
-margin_bottom = 36.0
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 33.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "I was actually expecting a bit more resistance.  
-I don't know what everyone was worried about.
-Oh, well. Onwards to the castle."
+text = "That was almost too easy.  I was expecting
+a bit more danger based on the rumours
+about this place.
+Oh well...onwards to the castle.  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox3" type="Sprite" parent="MainControl"]
+position = Vector2( 232.272, 105.271 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox3"]
+margin_left = -20.242
+margin_top = -23.4594
+margin_right = 473.758
+margin_bottom = 39.5406
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Mummy!!!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -867,6 +926,7 @@ margin_bottom = 88.0
 position = Vector2( 144, 112 )
 frames = ExtResource( 3 )
 animation = "walk"
+frame = 3
 playing = true
 centered = false
 flip_h = true
@@ -874,5 +934,7 @@ flip_h = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/walk-in = SubResource( 49 )
 anims/walk-out = SubResource( 50 )
+
+[editable path="Boss"]
 
 [editable path="CutSceneBase"]

@@ -4,8 +4,11 @@ extends Node
 onready var cut_scene_base = $CutSceneBase
 onready var dialog1 = $MainControl/DialogBox1
 onready var dialog2 = $MainControl/DialogBox2
+onready var dialog3 = $MainControl/DialogBox3
 onready var animationPlayer = $AnimationPlayer
 onready var screen_shake = $ScreenShake
+onready var boss_animated_sprite = $Boss/AnimatedSprite
+
 signal continue_sig
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +24,7 @@ func _ready() -> void:
 	# Hide dialogs
 	dialog1.hide()
 	dialog2.hide()
+	dialog3.hide()
 	
 	# Walk player in to middle of the screen under boss
 	_walk_in()
@@ -44,12 +48,14 @@ func _start_dialog() -> void:
 	# Walk player out
 	dialog2.hide()
 	show_continue_button(false)
+	boss_animated_sprite.animation = "awake"
 	yield(get_tree().create_timer(0.3), "timeout")
+	
 	_walk_out()
 
 func _walk_out() -> void:
 	animationPlayer.play("walk-out")
-
+	
 func _goto_next_scene() -> void:
 	
 	$CutSceneBase.goto_next_scene()

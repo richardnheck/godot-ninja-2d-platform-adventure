@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/onigawara-jd-5.jpg-b8b9798ae753c491bd37091c4d146574.stex"
+path="res://.import/mini-dialogbox.png-d3b94343960da9a487c6374988d19d5d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/actors/CaveLevelBoss/onigawara-jd-5.jpg"
-dest_files=[ "res://.import/onigawara-jd-5.jpg-b8b9798ae753c491bd37091c4d146574.stex" ]
+source_file="res://src/UI/CutScenes/mini-dialogbox.png"
+dest_files=[ "res://.import/mini-dialogbox.png-d3b94343960da9a487c6374988d19d5d.stex" ]
 
 [params]
 

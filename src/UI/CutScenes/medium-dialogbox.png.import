@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/18169e096bf6c1f8c3e3fb94f8a36753.jpg-1cbc650a5439d668baee08a6993c2db7.stex"
+path="res://.import/medium-dialogbox.png-d202fa418454e2fc1237f82ac4bca4d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/actors/CaveLevelBoss/18169e096bf6c1f8c3e3fb94f8a36753.jpg"
-dest_files=[ "res://.import/18169e096bf6c1f8c3e3fb94f8a36753.jpg-1cbc650a5439d668baee08a6993c2db7.stex" ]
+source_file="res://src/UI/CutScenes/medium-dialogbox.png"
+dest_files=[ "res://.import/medium-dialogbox.png-d202fa418454e2fc1237f82ac4bca4d9.stex" ]
 
 [params]
 
