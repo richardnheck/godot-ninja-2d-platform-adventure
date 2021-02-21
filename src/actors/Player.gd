@@ -96,14 +96,7 @@ func run(delta):
 		vel.x = speed * direction
 	else:
 		vel.x = wall_jump_speed * direction
-	
-func run_old(delta):
-	if Input.is_action_pressed(Actions.MOVE_RIGHT):
-		vel.x += speed
-		vel.x = clamp(vel.x, 100, 150)
-	if Input.is_action_pressed(Actions.MOVE_LEFT):
-		vel.x -= speed
-		vel.x = clamp(vel.x, -150, -100)
+
 	
 # Jump and wall jump by holding down jump and pressing left or right on wall to jump
 func jump(delta):

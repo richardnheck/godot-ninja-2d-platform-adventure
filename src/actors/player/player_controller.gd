@@ -82,9 +82,32 @@ func set_look_direction(value):
 #----------------------------------------------
 # Functions for CutScenes
 #----------------------------------------------
+func disable_input(disabled)->void:
+	#???????????
+	pass
+	
 func move_right():
+	_move_right(true)
+
+func move_left():
+	_move_left(true)
+
+func move_stop():
+	_move_right(false)
+	_move_left(false)
+
+
+func _move_right(pressed):
 	var ev = InputEventAction.new()
 	ev.action = "move_right"
-	ev.pressed = true
+	ev.pressed = pressed
 	Input.parse_input_event(ev)
 	#$StateMachine._change_state("move")
+
+func _move_left(pressed):
+	var ev = InputEventAction.new()
+	ev.action = "move_left"
+	ev.pressed = pressed
+	Input.parse_input_event(ev)
+	#$StateMachine._change_state("move")
+

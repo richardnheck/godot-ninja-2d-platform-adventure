@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 115 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
@@ -54,7 +54,7 @@ __meta__ = {
 [node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 0, 35 )
 normal = ExtResource( 4 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 passby_press = true
 action = "move_left"
 
