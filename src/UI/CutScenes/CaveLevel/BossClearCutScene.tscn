@@ -1,8 +1,8 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
@@ -650,157 +650,45 @@ resource_local_to_scene = true
 16/z_index = 0
 
 [sub_resource type="Animation" id=49]
-resource_name = "walk-in"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player:position")
+resource_name = "walk_in"
+length = 2.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 112 ), Vector2( 144, 112 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "walk", "talk" ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_start_dialog"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Player:flip_h")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Boss/AnimatedSprite:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "asleep" ]
-}
-
-[sub_resource type="Animation" id=50]
-resource_name = "walk-out"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 144, 112 ), Vector2( 248, 112 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.3, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ "walk", "shock", "idle" ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Boss:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.7, 1.2 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ Vector2( 128, -16 ), Vector2( 128, 80 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 1.2, 3.8 ),
+"times": PoolRealArray( 0, 2.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "_shake_screen"
+"method": "move_right"
 }, {
 "args": [  ],
-"method": "_goto_next_scene"
+"method": "move_stop"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Player:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 2.2 ),
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.5 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Boss/AnimatedSprite:animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 1.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "awake", "look-right" ]
+"values": [ {
+"args": [  ],
+"method": "look_left"
+} ]
 }
 
 [node name="BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Player2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 32, 144 )
+[node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 11, 144 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, 88 )
@@ -821,13 +709,13 @@ tile_set = SubResource( 48 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 0, 0, 1, 1, 0, 1, 2, 0, 2, 3, 0, 3, 4, 16, 0, 5, 16, 0, 6, 16, 0, 7, 0, 131072, 12, 0, 131075, 13, 16, 0, 14, 16, 0, 15, 16, 0, 16, 0, 0, 17, 0, 1, 18, 0, 1, 19, 0, 1, 65539, 0, 131076, 65540, 0, 2, 65541, 0, 3, 65542, 16, 0, 65543, 0, 65541, 65548, 0, 131075, 65549, 16, 0, 65550, 0, 0, 65551, 0, 1, 65552, 0, 131077, 131077, 0, 131076, 131078, 0, 1, 131079, 0, 131077, 131084, 0, 131076, 131085, 0, 1, 131086, 0, 131077, 524289, 536870914, 65540, 524294, 2, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589831, 0, 196610, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196610, 589837, 0, 196610, 589838, 0, 196610, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 13, 3, 655374, 13, 3, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
+tile_data = PoolIntArray( 0, 0, 1, 1, 0, 1, 2, 0, 2, 3, 0, 3, 4, 16, 0, 5, 16, 0, 6, 16, 0, 7, 0, 131072, 12, 0, 131075, 13, 16, 0, 14, 16, 0, 15, 16, 0, 16, 0, 0, 17, 0, 1, 18, 0, 1, 19, 0, 1, 65539, 0, 131076, 65540, 0, 2, 65541, 0, 3, 65542, 16, 0, 65543, 0, 65541, 65548, 0, 131075, 65549, 16, 0, 65550, 0, 0, 65551, 0, 1, 65552, 0, 131077, 131077, 0, 131076, 131078, 0, 1, 131079, 0, 131077, 131084, 0, 131076, 131085, 0, 1, 131086, 0, 131077, 524289, 536870914, 65540, 524294, 2, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589838, 0, 196610, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 13, 3, 655374, 13, 3, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Boss" parent="." instance=ExtResource( 6 )]
-position = Vector2( 128, -16 )
+position = Vector2( -144, 80 )
 
 [node name="AnimatedSprite" parent="Boss" index="0"]
 animation = "awake"
@@ -897,18 +785,31 @@ margin_bottom = 88.0
 
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
-[node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 144, 112 )
-frames = ExtResource( 3 )
-animation = "walk"
-frame = 5
-playing = true
-centered = false
-flip_h = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/walk-in = SubResource( 49 )
-anims/walk-out = SubResource( 50 )
+anims/walk_in = SubResource( 49 )
+
+[node name="InteractiveProps" type="Node" parent="."]
+
+[node name="CrumblingPlatform" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 112, 144 )
+
+[node name="CrumblingPlatform2" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 128, 144 )
+
+[node name="CrumblingPlatform3" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 144, 144 )
+
+[node name="CrumblingPlatform4" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 160, 144 )
+
+[node name="CrumblingPlatform5" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 176, 144 )
+
+[node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 192, 144 )
+
+[node name="CrumblingPlatform7" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 208, 144 )
 
 [editable path="Boss"]
 

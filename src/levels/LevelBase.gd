@@ -16,7 +16,7 @@ onready var check_point:Area2D = get_node("InteractiveProps/CheckPoint")
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
-var player:KinematicBody2D
+var player:Player
 var fadeScreen:FadeScreen
 var screenShake:ScreenShake
 
@@ -24,6 +24,8 @@ var screenShake:ScreenShake
 func _ready() -> void:
 	print("LevelBase: ready()")
 	
+	Actions.use_normal_actions()		# Use normal input actions
+		
 	# Spawn the player
 	player = _spawn_player()
 	

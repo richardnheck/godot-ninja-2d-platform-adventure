@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/sounds/prof-mudkip__8-bit-explosion.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.99493, 7.66721 )
+extents = Vector2( 7.99493, 7.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "shake"
@@ -50,9 +50,6 @@ animations = [ {
 [node name="CrumblingPlatform" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -62,12 +59,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 7.95476, 7.75808 )
+position = Vector2( 8, 7.5 )
 shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shake = SubResource( 2 )
