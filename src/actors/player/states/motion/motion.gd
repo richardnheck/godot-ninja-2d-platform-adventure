@@ -13,20 +13,14 @@ var jumpPressedRememberTime = 0.2
 var jumpPressedRemember = 0
 
 func handle_input(event):
-	if event.is_action_pressed(Actions.JUMP):
+	if event.is_action_pressed(Actions.get_action_jump()):
 		jumpPressedRemember = jumpPressedRememberTime
 	return .handle_input(event)
 
 
 func get_input_direction():
 	var input_direction = Vector2()
-	input_direction.x = Input.get_action_strength(Actions.MOVE_RIGHT) - Input.get_action_strength(Actions.MOVE_LEFT)
-	#input_direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-#	if Input.is_action_just_pressed(Actions.JUMP) and (owner.is_on_floor()):  #????or next_to_wall()):# I can jump when I'm on floor or next to the wall
-#		input_direction.y = -1.0
-#	else:
-#		input_direction.y =  1.0
-
+	input_direction.x = Input.get_action_strength(Actions.get_action_move_right()) - Input.get_action_strength(Actions.get_action_move_left())
 	return input_direction
 
 
@@ -74,7 +68,7 @@ func next_to_right_wall():
 
 
 func detect_and_transition_to_wall_slide():
-	if Input.is_action_pressed(Actions.JUMP) and !owner.is_on_floor() and velocity.y > 0:
+	if Input.is_action_pressed(Actions.get_action_jump()) and !owner.is_on_floor() and velocity.y > 0:
 			# Wall slide occurs when user holds down jump against a wall and they are travelling downwards
 			if next_to_left_wall() or next_to_right_wall():
 				# Transition to wall slide state
@@ -82,7 +76,7 @@ func detect_and_transition_to_wall_slide():
 
 func detect_and_transition_to_wall_jump(input_direction):
 		# Wall Jump is triggered when user presses away from the wall while holding jump
-		if Input.is_action_pressed(Actions.JUMP) and (next_to_left_wall() and (input_direction.x == 1)) or (next_to_right_wall() and (input_direction.x == -1)):			
+		if Input.is_action_pressed(Actions.get_action_jump()) and (next_to_left_wall() and (input_direction.x == 1)) or (next_to_right_wall() and (input_direction.x == -1)):			
 			print("goto wall jump")
 			emit_signal("finished", "wall_jump") 
 
@@ -93,7 +87,7 @@ func detect_and_transition_to_jump(_delta):
 
 
 func detect_and_transition_to_air_jump() -> bool:
-	if Input.is_action_just_pressed(Actions.JUMP):
+	if Input.is_action_just_pressed(Actions.get_action_jump()):
 		emit_signal("finished", "air_jump") 
 		return true
 	else:

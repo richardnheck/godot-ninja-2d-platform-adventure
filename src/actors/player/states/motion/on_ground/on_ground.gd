@@ -14,7 +14,7 @@ func enter():
 #var jumpPressedRemember = 0
 #
 #func handle_input(event):
-#	if event.is_action_pressed(Actions.JUMP):
+#	if event.is_action_pressed(Actions.get_action_jump():
 #		jumpPressedRemember = jumpPressedRememberTime
 #
 #	return .handle_input(event)

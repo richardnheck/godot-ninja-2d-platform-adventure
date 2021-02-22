@@ -15,7 +15,7 @@ func enter():
 	
 
 func handle_input(event):
-#	if !event.is_action_pressed(Actions.JUMP):
+#	if !event.is_action_pressed(Actions.get_action_jump():
 #		print("not pressing jump")
 #		emit_signal("finished", "move")
 	return .handle_input(event)
@@ -24,7 +24,7 @@ func handle_input(event):
 func update(_delta):
 	var input_direction = get_input_direction()
 	
-	if Input.is_action_pressed(Actions.JUMP):
+	if Input.is_action_pressed(Actions.get_action_jump()):
 		if sliding and next_to_wall():
 			velocity.y += wall_slide_gravity
 			move(velocity)

@@ -43,7 +43,7 @@ func update(delta):
 	.apply_gravity()
 	
 	# If I'm still going up and have released the jump button - cut off the jump and start falling down
-	if Input.is_action_just_released(Actions.JUMP) and velocity.y < 0:
+	if Input.is_action_just_released(Actions.get_action_jump()) and velocity.y < 0:
 		velocity.y = velocity.y * 0.5
 	
 	move(velocity)

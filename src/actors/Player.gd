@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func _get_run_direction() -> float:
-	return Input.get_action_strength(Actions.MOVE_RIGHT) - Input.get_action_strength(Actions.MOVE_LEFT)
+	return Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
 	
 func run(delta):
@@ -119,7 +119,7 @@ func jump(delta):
 	
 	var dir = get_direction()
 		
-	if Input.is_action_just_pressed(Actions.JUMP):# and jumps_left > 0:
+	if Input.is_action_just_pressed(Actions.get_action_jump()):# and jumps_left > 0:
 		jumpPressedRemember = jumpPressedRememberTime
 		
 	# Handle normal jump
@@ -130,17 +130,17 @@ func jump(delta):
 		vel.y = -jump_power
 	
 	# Handle wall jump
-	if Input.is_action_pressed(Actions.JUMP):
+	if Input.is_action_pressed(Actions.get_action_jump()):
 		# Wall jump occurs when user holds down jump
 		if not wall_jumping:
 			if (next_to_left_wall() and (dir.x == 1)) or (next_to_right_wall() and (dir.x == -1)):
 				wall_jump(dir)				
 	
 	# If I'm still going up and have released the jump button - cut off the jump and start falling down
-	if Input.is_action_just_released(Actions.JUMP) and vel.y < 0:
+	if Input.is_action_just_released(Actions.get_action_jump()) and vel.y < 0:
 		vel.y = vel.y * 0.5
 	
-	if jumping and Input.is_action_just_released(Actions.JUMP):
+	if jumping and Input.is_action_just_released(Actions.get_action_jump()):
 		ready_to_dash = true
 
 var ready_to_dash = false
@@ -179,7 +179,7 @@ func wall_jump(dir):
 		
 func friction():
 	# When I hold the key
-	var running = Input.is_action_pressed(Actions.MOVE_LEFT) or Input.is_action_pressed(Actions.MOVE_RIGHT)
+	var running = Input.is_action_pressed(Actions.get_action_move_left()) or Input.is_action_pressed(Actions.get_action_move_right())
 	if not running and is_on_floor():
 		vel.x *= stopping_friction
 	else:
@@ -188,7 +188,7 @@ func friction():
 var wall_clamped = false
 
 func gravity(delta):
-	if next_to_wall() and  Input.is_action_pressed(Actions.JUMP) and vel.y >= wall_slide_initial_speed:
+	if next_to_wall() and  Input.is_action_pressed(Actions.get_action_jump()) and vel.y >= wall_slide_initial_speed:
 		if !wall_sliding:
 			# starting wall slide
 			wall_clamped = true
@@ -229,12 +229,12 @@ func dash():
 		can_dash = true # recharges when player touches the floor
 		ready_to_dash = false
 
-	if Input.is_action_pressed(Actions.MOVE_RIGHT):
+	if Input.is_action_pressed(Actions.get_action_move_right()):
 		dash_direction = Vector2(1,0)
-	if Input.is_action_pressed(Actions.MOVE_LEFT):
+	if Input.is_action_pressed(Actions.get_action_move_left()):
 		dash_direction = Vector2(-1,0)
 
-	if ready_to_dash and Input.is_action_just_pressed(Actions.JUMP) and can_dash:
+	if ready_to_dash and Input.is_action_just_pressed(Actions.get_action_jump()) and can_dash:
 		
 		vel = dash_direction.normalized() * 1000
 		can_dash = false
@@ -267,9 +267,9 @@ func handle_animation(direction):
 
 
 func get_direction() -> Vector2:
-	var x = Input.get_action_strength(Actions.MOVE_RIGHT)	- Input.get_action_strength(Actions.MOVE_LEFT)
+	var x = Input.get_action_strength(Actions.get_action_move_right())	- Input.get_action_strength(Actions.get_action_move_left())
 	var y = 0.0
-	if Input.is_action_just_pressed(Actions.JUMP) and (is_on_floor() or next_to_wall()):# I can jump when I'm on floor or next to the wall
+	if Input.is_action_just_pressed(Actions.get_action_jump()) and (is_on_floor() or next_to_wall()):# I can jump when I'm on floor or next to the wall
 		y = -1.0
 	else:
 		y =  1.0
