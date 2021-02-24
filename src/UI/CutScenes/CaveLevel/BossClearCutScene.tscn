@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/actors/CaveLevelBoss/cave_level_boss_spritesheet.tres" type="SpriteFrames" id=11]
+[ext_resource path="res://src/UI/CutScenes/CaveLevel/BossRigidBody.gd" type="Script" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -684,6 +686,16 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="RectangleShape2D" id=50]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Curve" id=52]
+_data = [ Vector2( 0.477419, 0.795455 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=51]
+width = 50
+curve = SubResource( 52 )
+
 [node name="BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
 
@@ -709,7 +721,7 @@ tile_set = SubResource( 48 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 0, 0, 1, 1, 0, 1, 2, 0, 2, 3, 0, 3, 4, 16, 0, 5, 16, 0, 6, 16, 0, 7, 0, 131072, 12, 0, 131075, 13, 16, 0, 14, 16, 0, 15, 16, 0, 16, 0, 0, 17, 0, 1, 18, 0, 1, 19, 0, 1, 65539, 0, 131076, 65540, 0, 2, 65541, 0, 3, 65542, 16, 0, 65543, 0, 65541, 65548, 0, 131075, 65549, 16, 0, 65550, 0, 0, 65551, 0, 1, 65552, 0, 131077, 131077, 0, 131076, 131078, 0, 1, 131079, 0, 131077, 131084, 0, 131076, 131085, 0, 1, 131086, 0, 131077, 524289, 536870914, 65540, 524294, 2, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589838, 0, 196610, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 13, 3, 655374, 13, 3, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
+tile_data = PoolIntArray( 0, 0, 1, 1, 0, 1, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, 13, 0, 2, 14, 0, 2, 15, 0, 2, 16, 0, 2, 17, 0, 1, 18, 0, 1, 19, 0, 1, 524289, 536870914, 65540, 524294, 2, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589838, 0, 196610, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 13, 3, 655374, 13, 3, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -810,6 +822,31 @@ position = Vector2( 192, 144 )
 
 [node name="CrumblingPlatform7" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 208, 144 )
+
+[node name="BossRigidBody" type="RigidBody2D" parent="."]
+position = Vector2( 65.3427, 106.334 )
+mode = 2
+gravity_scale = 10.0
+can_sleep = false
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BossRigidBody"]
+frames = ExtResource( 11 )
+animation = "awake"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossRigidBody"]
+modulate = Color( 0.243137, 0.454902, 0.133333, 1 )
+position = Vector2( 0, 6 )
+shape = SubResource( 50 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 116.509, 64.2325 )
+scale = Vector2( 0.587966, 25.3475 )
+texture = SubResource( 51 )
+centered = false
 
 [editable path="Boss"]
 
