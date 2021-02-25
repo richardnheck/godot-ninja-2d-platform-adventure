@@ -839,7 +839,7 @@ __meta__ = {
 position = Vector2( 128, -16 )
 
 [node name="AnimatedSprite" parent="Boss" index="0"]
-animation = "awake"
+animation = "asleep"
 
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -923,13 +923,12 @@ margin_bottom = 88.0
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
 [node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 144, 112 )
+position = Vector2( 0, 112 )
 frames = ExtResource( 3 )
 animation = "walk"
-frame = 3
+frame = 1
 playing = true
 centered = false
-flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/walk-in = SubResource( 49 )
