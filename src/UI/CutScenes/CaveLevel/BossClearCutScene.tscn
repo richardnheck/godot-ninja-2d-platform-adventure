@@ -1,10 +1,11 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/CutScenes/stage-clear-text.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
@@ -722,6 +723,65 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=52]
+resource_name = "hover"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("StageClearText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.63728, 0.65 ),
+"update": 0,
+"values": [ Vector2( 160, 87 ), Vector2( 160, 90 ) ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("StageClearText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hover_text"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StageClearText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
 
@@ -821,6 +881,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StageClearText" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 160, 87 )
+texture = ExtResource( 6 )
+
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
 
@@ -865,6 +930,12 @@ position = Vector2( 192, 144 )
 
 [node name="CrumblingPlatform7" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 208, 144 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hover = SubResource( 52 )
+anims/show = SubResource( 53 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="CutSceneBase"]

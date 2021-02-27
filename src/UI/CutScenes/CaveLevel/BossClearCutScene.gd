@@ -3,7 +3,10 @@ extends Node
 onready var player:Player = $Player
 onready var boss:RigidBody2D = $Boss
 onready var animation_player:AnimationPlayer = $AnimationPlayer
+onready var text_animation_player:AnimationPlayer = $TextAnimationPlayer
 onready var screen_shake = $ScreenShake
+onready var stage_clear_text = $StageClearText
+onready var tween = $Tween
 
 var _move_player_right:bool = false
 var _move_player_left:bool = false
@@ -13,8 +16,9 @@ var _move_boss_right:bool = false
 func _ready() -> void:
 	Actions.use_cutscene_actions()
 	screen_shake.set_camera_node("Camera2D")
-	
+	stage_clear_text.visible = false
 	animation_player.play("walk_in")	
+	
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,8 +47,14 @@ func do_boss_jump() -> void:
 func do_ending() -> void:
 	screen_shake.screen_shake(1,4,100)		
 	yield(get_tree().create_timer(1), "timeout")
+	show_text()
 	player.celebrate()
 		
+func show_text() -> void:
+	text_animation_player.play("show")
+	
+func hover_text() -> void:
+	text_animation_player.play("hover")
 
 func move_player_right() -> void:
 	_move_player_right = true
