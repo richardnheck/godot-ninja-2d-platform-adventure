@@ -19,8 +19,7 @@ func _ready() -> void:
 	stage_clear_text.visible = false
 	animation_player.play("walk_in")	
 	
-	
-	
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if _move_player_right:
@@ -45,10 +44,13 @@ func do_boss_jump() -> void:
 	do_ending()
 	
 func do_ending() -> void:
-	screen_shake.screen_shake(1,4,100)		
+	screen_shake.screen_shake(2,4,100)		
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()
+	yield(get_tree().create_timer(4), "timeout")		
+	get_tree().change_scene("res://src/UI/TemporaryEndScene.tscn")
+		
 		
 func show_text() -> void:
 	text_animation_player.play("show")
@@ -72,8 +74,6 @@ func look_player_left() -> void:
 	move_player_left()
 	yield(get_tree().create_timer(0.05), "timeout")
 	move_player_stop()
-
-
 
 func move_boss_right() -> void:
 	_move_boss_right = true
