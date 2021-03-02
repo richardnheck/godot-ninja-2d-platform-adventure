@@ -33,8 +33,10 @@ func _ready() -> void:
 	player.connect("start_die", self, "_on_Player_start_die")
 	player.connect("died", self, "_on_Player_died")
 	player.connect("collided", self, "_on_Player_collided")
-	key.connect("captured", self, "_on_Key_captured")
-	door.connect("player_entered", self, "_on_Door_player_entered");
+	if key: 
+		key.connect("captured", self, "_on_Key_captured")
+	if door:
+		door.connect("player_entered", self, "_on_Door_player_entered");
 	if(check_point != null):
 		check_point.connect("reached", self, "_on_CheckPoint_reached")
 	
@@ -49,7 +51,8 @@ func _ready() -> void:
 	
 	set_player_camera_limits(player, tilemapWorld);
 
-	door.close()
+	if door:
+		door.close()
 
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:

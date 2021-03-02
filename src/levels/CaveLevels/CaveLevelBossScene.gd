@@ -59,3 +59,8 @@ func _on_Door_player_entered() -> void:
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
 	get_tree().change_scene("res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn")
+
+
+func _on_EndArea_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		get_tree().change_scene("res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn")
