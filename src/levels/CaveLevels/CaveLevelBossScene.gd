@@ -54,3 +54,8 @@ func _on_boss_state_cycle_finished(state) -> void:
 	if next_boss_state != null:
 		boss.set_state(next_boss_state)
 		next_boss_state = null
+
+func _on_Door_player_entered() -> void:
+	player.celebrate();
+	yield(get_tree().create_timer(2), "timeout")
+	get_tree().change_scene("res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn")

@@ -1,5 +1,6 @@
 extends Node
 
+onready var cut_scene_base:CutSceneBase = $CutSceneBase
 onready var player:Player = $Player
 onready var boss:RigidBody2D = $Boss
 onready var animation_player:AnimationPlayer = $AnimationPlayer
@@ -14,6 +15,7 @@ var _move_boss_right:bool = false
 
 
 func _ready() -> void:
+	cut_scene_base.show_continue(false)
 	Actions.use_cutscene_actions()
 	screen_shake.set_camera_node("Camera2D")
 	stage_clear_text.visible = false
