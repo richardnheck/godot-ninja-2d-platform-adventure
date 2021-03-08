@@ -674,7 +674,6 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 784, 64 )
-frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1696, -272 )
@@ -713,46 +712,51 @@ tile_data = PoolIntArray( -2621344, 2, 131073, -2490278, 2, 131073, -2359212, 2,
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1664, -288 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 704, 64 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 864, 64 )
+frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1072, -80 )
+frame = 0
 
 [node name="JapaneseLamp12" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1504, -336 )
+frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1401, -336 )
-frame = 0
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1232, -272.946 )
-frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 976, -48 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 201, 180 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 297, 180 )
+frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 560, 95 )
-frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 464, 180 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 1728, -288 )
+frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 48, 208 )

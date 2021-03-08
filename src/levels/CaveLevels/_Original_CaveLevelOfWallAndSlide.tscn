@@ -245,39 +245,30 @@ position = Vector2( -24, 0 )
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 568, 240 )
-frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 696, 240 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 1544, -320 )
-frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 1608, -320 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 472, 400 )
-frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 472 )
-frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 256, 472 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 312, 112 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 8 )
-frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 1 )]
 position = Vector2( 64, 144 )
