@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=7]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/objects/Coin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=15]
 [ext_resource path="res://assets/art/backgrounds/cave_background_layer_1.png" type="Texture" id=16]
 
@@ -41,7 +42,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1799.87, -520.662 )
-frame = 0
+frame = 3
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1744, -383.946 )
@@ -155,6 +156,27 @@ position = Vector2( 880, 96 )
 scale = Vector2( 1, 1.2787 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
+
+[node name="Stalectites" type="Node2D" parent="."]
+modulate = Color( 0.0941176, 0.0901961, 0.101961, 1 )
+
+[node name="Sprite" type="Sprite" parent="Stalectites"]
+position = Vector2( 160, 128 )
+texture = ExtResource( 10 )
+
+[node name="Sprite2" type="Sprite" parent="Stalectites"]
+position = Vector2( 1032, -16 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 10 )
+
+[node name="Sprite4" type="Sprite" parent="Stalectites"]
+position = Vector2( 1120, 0 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 10 )
+
+[node name="Sprite3" type="Sprite" parent="Stalectites"]
+position = Vector2( 552, 88 )
+texture = ExtResource( 10 )
 
 [node name="TileMapWorld" type="TileMap" parent="."]
 z_index = 2
