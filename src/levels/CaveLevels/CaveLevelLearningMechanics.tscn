@@ -58,7 +58,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1799.87, -520.662 )
-frame = 4
+frame = 5
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1744, -383.946 )
@@ -204,8 +204,6 @@ texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="Stalectites" type="Node2D" parent="."]
-visible = false
-modulate = Color( 0.0941176, 0.0901961, 0.101961, 1 )
 
 [node name="Sprite" type="Sprite" parent="Stalectites"]
 position = Vector2( 160, 128 )
@@ -213,16 +211,22 @@ texture = ExtResource( 10 )
 
 [node name="Sprite2" type="Sprite" parent="Stalectites"]
 position = Vector2( 1032, -16 )
-scale = Vector2( -1, 1 )
 texture = ExtResource( 10 )
 
 [node name="Sprite4" type="Sprite" parent="Stalectites"]
 position = Vector2( 1120, 0 )
-scale = Vector2( -1, 1 )
+texture = ExtResource( 10 )
+
+[node name="Sprite6" type="Sprite" parent="Stalectites"]
+position = Vector2( 1822, -516 )
 texture = ExtResource( 10 )
 
 [node name="Sprite3" type="Sprite" parent="Stalectites"]
-position = Vector2( 552, 88 )
+position = Vector2( 577, 88 )
+texture = ExtResource( 10 )
+
+[node name="Sprite5" type="Sprite" parent="Stalectites"]
+position = Vector2( 904, -21.8023 )
 texture = ExtResource( 10 )
 
 [node name="TileMapWorld" type="TileMap" parent="."]
