@@ -58,7 +58,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1799.87, -520.662 )
-frame = 5
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1744, -383.946 )
@@ -91,7 +91,6 @@ format = 1
 tile_data = PoolIntArray( -786402, 1, 0, -786401, 1, 0, -786400, 1, 0, -786399, 1, 0, -786398, 1, 0, -786397, 1, 0, -786396, 1, 0, -786395, 1, 0, -786394, 1, 0, -720866, 1, 0, -720865, 1, 0, -720864, 1, 0, -720863, 1, 0, -720862, 1, 0, -720861, 1, 0, -720860, 1, 0, -720859, 1, 0, -720858, 1, 0, -655330, 1, 0, -655329, 1, 0, -655328, 1, 0, -655327, 1, 0, -655326, 1, 0, -655325, 1, 0, -655324, 1, 0, -655323, 1, 0, -655322, 1, 0, -589794, 1, 0, -589793, 1, 0, -589792, 1, 0, -589791, 1, 0, -589790, 1, 0, -589789, 1, 0, -589788, 1, 0, -589787, 1, 0, -589786, 1, 0, -524258, 1, 0, -524257, 1, 0, -524256, 1, 0, -524255, 1, 0, -524254, 1, 0, -524253, 1, 0, -524252, 1, 0, -524251, 1, 0, -524250, 1, 0, -458725, 1, 0, -458724, 1, 0, -458723, 1, 0, -458722, 1, 0, -458721, 1, 0, -458720, 1, 0, -458719, 1, 0, -393189, 1, 0, -393188, 1, 0, -393187, 1, 0, -393186, 1, 0, -393185, 1, 0, -393184, 1, 0, -393183, 1, 0, -327654, 1, 0, -327653, 1, 0, -327652, 1, 0, -327651, 1, 0, -262118, 1, 0, -262117, 1, 0, -262116, 1, 0, -262115, 1, 0, -196582, 1, 0, -196581, 1, 0, -196580, 1, 0, -196579, 1, 0, -131055, 1, 0, -131054, 1, 0, -131053, 1, 0, -131052, 1, 0, -131046, 1, 0, -131045, 1, 0, -131044, 1, 0, -131043, 1, 0, -65521, 1, 0, -65520, 1, 0, -65519, 1, 0, -65518, 1, 0, -65517, 1, 0, -65516, 1, 0, -65515, 1, 0, -65514, 1, 0, -65513, 1, 0, -65512, 1, 0, -65511, 1, 0, -65510, 1, 0, -65509, 1, 0, -65508, 1, 0, -65507, 1, 0, -65506, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 65536, 1, 0, 65537, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 1, 0, 65562, 1, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196622, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0 )
 
 [node name="Stalecmites" type="Node2D" parent="."]
-modulate = Color( 0.57, 0.47291, 0.1539, 1 )
 
 [node name="round-stalecmite" type="Sprite" parent="Stalecmites"]
 position = Vector2( -71.9449, 212.546 )
@@ -109,17 +108,47 @@ texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="round-stalecmite6" type="Sprite" parent="Stalecmites"]
-position = Vector2( 85, 222.386 )
+position = Vector2( 84.5028, 239.335 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
-[node name="round-stalecmite4" type="Sprite" parent="Stalecmites"]
-position = Vector2( 95, 218 )
+[node name="round-stalecmite9" type="Sprite" parent="Stalecmites"]
+position = Vector2( 719, 159 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite14" type="Sprite" parent="Stalecmites"]
+position = Vector2( 1389, 75 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite24" type="Sprite" parent="Stalecmites"]
+position = Vector2( 1377, 87 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite25" type="Sprite" parent="Stalecmites"]
+position = Vector2( 1156, 92 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite26" type="Sprite" parent="Stalecmites"]
+position = Vector2( 1166, 95 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite27" type="Sprite" parent="Stalecmites"]
+position = Vector2( 1181, 91 )
+texture = ExtResource( 15 )
+offset = Vector2( -0.055069, 3.33484 )
+
+[node name="round-stalecmite10" type="Sprite" parent="Stalecmites"]
+position = Vector2( 731, 156 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="round-stalecmite5" type="Sprite" parent="Stalecmites"]
-position = Vector2( 103.906, 222.386 )
+position = Vector2( 104, 232 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
@@ -362,35 +391,34 @@ position = Vector2( 1370.82, 27.3871 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 48, 144 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 240, 144 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 472, 99.594 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 848, 16 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 976, 15.3871 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1248, 48 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1472, -288 )
-frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1712, -400 )
+frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1776, -400 )
+frame = 0
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
