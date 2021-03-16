@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MovingBambooSpike.png-1c56fc79be40f802b7e5a32c698b1d87.stex"
+path="res://.import/SpikeyRock.png-fb94e90ef555f13a0418c6ae8ed233ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/MovingBambooSpike.png"
-dest_files=[ "res://.import/MovingBambooSpike.png-1c56fc79be40f802b7e5a32c698b1d87.stex" ]
+source_file="res://src/objects/spikey-rock/SpikeyRock.png"
+dest_files=[ "res://.import/SpikeyRock.png-fb94e90ef555f13a0418c6ae8ed233ba.stex" ]
 
 [params]
 

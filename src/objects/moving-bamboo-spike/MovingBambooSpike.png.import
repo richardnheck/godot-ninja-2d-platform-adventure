@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FallingSpike.png-694f9031604e84ea1fc0b7aa82dd9003.stex"
+path="res://.import/MovingBambooSpike.png-197053b4194fb60b3cefb3b968cdaade.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/FallingSpike.png"
-dest_files=[ "res://.import/FallingSpike.png-694f9031604e84ea1fc0b7aa82dd9003.stex" ]
+source_file="res://src/objects/moving-bamboo-spike/MovingBambooSpike.png"
+dest_files=[ "res://.import/MovingBambooSpike.png-197053b4194fb60b3cefb3b968cdaade.stex" ]
 
 [params]
 

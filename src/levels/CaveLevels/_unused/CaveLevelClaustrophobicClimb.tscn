@@ -9,10 +9,12 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/objects/Gem.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/objects/SpikeyRock.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/objects/MovingBambooSpike.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/objects/spikey-rock/SpikeyRock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=14]
+
+
 
 
 [node name="CaveLevel1" type="Node2D"]

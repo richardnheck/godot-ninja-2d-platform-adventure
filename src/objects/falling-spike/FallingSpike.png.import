@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpikeyRock.png-ef6bcd70e3cec804c622f4e9c1ba4460.stex"
+path="res://.import/FallingSpike.png-76b4bfbaf34f46f2943fd599dc207567.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/SpikeyRock.png"
-dest_files=[ "res://.import/SpikeyRock.png-ef6bcd70e3cec804c622f4e9c1ba4460.stex" ]
+source_file="res://src/objects/falling-spike/FallingSpike.png"
+dest_files=[ "res://.import/FallingSpike.png-76b4bfbaf34f46f2943fd599dc207567.stex" ]
 
 [params]
 

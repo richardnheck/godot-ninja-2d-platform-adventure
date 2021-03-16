@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/crumbling-platform/CrumblingPlatform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/levels/CaveLevels/CaveLevelBossScene.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=6]
@@ -8,8 +8,10 @@
 [ext_resource path="res://src/actors/CaveLevelBoss/CaveLevelBoss.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/utility/Geometry2D.gd" type="Script" id=10]
-[ext_resource path="res://src/objects/MovingBambooSpike.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=12]
+
+
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 80 )

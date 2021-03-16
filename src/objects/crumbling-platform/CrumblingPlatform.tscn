@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://src/objects/CrumblingPlatform.png" type="Texture" id=1]
-[ext_resource path="res://src/objects/CrumblingPlatform.gd" type="Script" id=2]
+[ext_resource path="res://src/objects/crumbling-platform/CrumblingPlatform.png" type="Texture" id=1]
+[ext_resource path="res://src/objects/crumbling-platform/CrumblingPlatform.gd" type="Script" id=2]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-5.png" type="Texture" id=3]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-4.png" type="Texture" id=5]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=8]
 [ext_resource path="res://assets/sounds/rock-crumble.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/prof-mudkip__8-bit-explosion.wav" type="AudioStream" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.99493, 7.5 )

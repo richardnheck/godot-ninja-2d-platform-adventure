@@ -3,22 +3,26 @@
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/objects/FallingSpike.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/objects/crumbling-platform/CrumblingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/objects/falling-spike/FallingSpike.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/objects/SpikeyRock.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/objects/spikey-rock/SpikeyRock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=12]
 [ext_resource path="res://src/utility/curves/HorizontalLeftRight64.tres" type="Curve2D" id=13]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=15]
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=16]
-[ext_resource path="res://src/objects/CheckPoint.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.tscn" type="PackedScene" id=19]
+
+
+
+
 
 [sub_resource type="Animation" id=1]
 length = 2.0

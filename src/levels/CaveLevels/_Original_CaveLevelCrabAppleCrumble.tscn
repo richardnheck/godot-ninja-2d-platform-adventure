@@ -2,9 +2,9 @@
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
-[ext_resource path="res://src/objects/MovingBambooSpike.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/objects/CheckPoint.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/objects/CrumblingPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/objects/crumbling-platform/CrumblingPlatform.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]
@@ -14,10 +14,14 @@
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/utility/curves/HorizontalLeftRight64.tres" type="Curve2D" id=13]
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=14]
-[ext_resource path="res://src/objects/FallingSpike.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/objects/falling-spike/FallingSpike.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=17]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=18]
+
+
+
+
 
 [sub_resource type="Animation" id=1]
 length = 2.0
