@@ -57,6 +57,7 @@ normal = ExtResource( 4 )
 shape = SubResource( 1 )
 passby_press = true
 action = "move_left"
+visibility_mode = 1
 
 [node name="RightTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 52, 35 )
@@ -65,6 +66,7 @@ shape = SubResource( 2 )
 shape_centered = false
 passby_press = true
 action = "move_right"
+visibility_mode = 1
 
 [node name="LeftButton" type="TextureRect" parent="Control/HBoxContainerLeft"]
 visible = false
@@ -97,6 +99,7 @@ normal = ExtResource( 3 )
 shape = SubResource( 3 )
 shape_centered = false
 action = "jump"
+visibility_mode = 1
 
 [node name="JumpButtonArea2D" type="Area2D" parent="Control"]
 visible = false
