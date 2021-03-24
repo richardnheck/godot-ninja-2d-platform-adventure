@@ -233,7 +233,7 @@ position = Vector2( 528, 304 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 560, -144 )
-frame = 5
+frame = 4
 
 [node name="MovingPlatformCave2H3" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( -128, 240 )
@@ -342,11 +342,38 @@ position = Vector2( 136, 120 )
 position = Vector2( 32, 48 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
-position = Vector2( -144, 168 )
+position = Vector2( -119, 272 )
+
+[node name="JapaneseLamp4" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( -120, 120 )
+frame = 0
+
+[node name="JapaneseLamp6" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( -120, 29 )
+
+[node name="JapaneseLamp8" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 32, -80 )
+
+[node name="JapaneseLamp9" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 112, -80 )
+
+[node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 104, 16 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 9 )]
-position = Vector2( 295.148, 248 )
+position = Vector2( 184, 313 )
 frame = 0
+
+[node name="JapaneseLamp10" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 319, 272 )
+frame = 0
+
+[node name="JapaneseLamp11" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 480, -136 )
+
+[node name="JapaneseLamp12" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 336, -136 )
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 496, 288 )
