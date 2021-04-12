@@ -10,6 +10,7 @@ class_name Player
 #-----------------------------
 onready var die_sound: = $AudioStreamDie
 onready var land_sound: = $AudioStreamLand
+onready var jump_sound:= $AudioStreamJump
 onready var hit_sound: = $AudioStreamHit
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $AnimatedSprite
@@ -63,6 +64,15 @@ func do_landing():
 	landing_dust_scene.global_position = global_position
 	get_parent().add_child(landing_dust_scene)		
 	
+func on_jump():
+	jump_sound.play()
+	
+func on_wall_jump():
+	jump_sound.play()
+	
+func on_air_jump():
+	jump_sound.play()
+
 #func die():
 #	dead = true
 #	collision_shape.set_deferred("disabled", true)

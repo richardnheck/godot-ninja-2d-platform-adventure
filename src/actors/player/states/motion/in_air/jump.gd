@@ -32,6 +32,8 @@ func enter():
 	
 	velocity.y = -jump_power
 	
+	owner.on_jump()
+	
 #	horizontal_velocity = enter_velocity if input_direction else Vector2()
 #	vertical_speed = 600.0
 

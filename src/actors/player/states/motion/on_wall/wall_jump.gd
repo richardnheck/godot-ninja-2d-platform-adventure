@@ -13,6 +13,8 @@ func enter():
 	
 	velocity.y = -wall_jump_power
 	
+	owner.on_wall_jump()
+	
 	# Show some animated effect when walljumping
 	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
 	var rotation = 0
