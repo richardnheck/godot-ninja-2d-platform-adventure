@@ -88,13 +88,19 @@ func goto_next_level() -> void:
 		
 
 func _on_Key_captured() -> void:
-	door.open()
+	if door:
+		door.open()
 	
 	
 func _on_Door_player_entered() -> void:
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
 	goto_next_level()
+
+
+func _on_EndArea_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		goto_next_level()
 
 
 func _on_Player_collided(collision: KinematicCollision2D) -> void:
@@ -160,3 +166,5 @@ func get_collision_tile_name(collision: KinematicCollision2D) -> String:
 
 func _on_Button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+

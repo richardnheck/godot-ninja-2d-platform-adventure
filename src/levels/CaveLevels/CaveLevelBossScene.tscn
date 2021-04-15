@@ -11,12 +11,10 @@
 [ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=12]
 
-
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 80 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 575, 168 )
 
 [node name="CaveLevelBossScene" type="Node2D"]
@@ -52,7 +50,7 @@ __meta__ = {
 position = Vector2( 1440, 248 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveProps/EndArea"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="CrumblingPlatform" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( -240, 144 )
@@ -168,7 +166,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/FallingSpikesArea"]
 modulate = Color( 1, 1, 1, 0.0980392 )
 position = Vector2( 576, 160 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 script = ExtResource( 10 )
 color = Color( 0.345098, 0.592157, 0.388235, 1 )
 [connection signal="body_entered" from="InteractiveProps/EndArea" to="." method="_on_EndArea_body_entered"]
