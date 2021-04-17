@@ -11,10 +11,13 @@ class_name Player
 onready var die_sound: = $AudioStreamDie
 onready var land_sound: = $AudioStreamLand
 onready var jump_sound:= $AudioStreamJump
+onready var air_jump_sound:= $AudioStreamAirJump
+onready var wall_slide_sound:= $AudioStreamWallSlide
 onready var hit_sound: = $AudioStreamHit
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $AnimatedSprite
-
+onready var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn")
+onready var air_jump_effect_scene = preload("res://src/objects/effects/AirJumpEffect.tscn")
 
 #-----------------------------
 # Signals
@@ -60,9 +63,9 @@ func do_landing():
 	land_sound.play()
 	
 	# Show some animated dust just on landing
-	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
-	landing_dust_scene.global_position = global_position
-	get_parent().add_child(landing_dust_scene)		
+	var instance = landing_dust_scene.instance()
+	instance.global_position = global_position
+	get_parent().add_child(instance)		
 	
 func on_jump():
 	jump_sound.play()
@@ -71,8 +74,22 @@ func on_wall_jump():
 	jump_sound.play()
 	
 func on_air_jump():
-	jump_sound.play()
+	air_jump_sound.play()
+	
+	# Show an effect when air jumping
+	var instance = air_jump_effect_scene.instance()
+	instance.global_position = global_position
+	instance.play()
+	get_parent().add_child(instance)		
+	
+func on_wall_land():
+	land_sound.play()
 
+func on_wall_slide_start():
+	wall_slide_sound.play()
+	
+func on_wall_slide_end():
+	wall_slide_sound.stop()
 #func die():
 #	dead = true
 #	collision_shape.set_deferred("disabled", true)

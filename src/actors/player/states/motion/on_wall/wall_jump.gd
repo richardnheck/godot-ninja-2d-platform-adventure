@@ -3,6 +3,8 @@ extends "../motion.gd"
 export var wall_jump_power = 295
 export var wall_jump_horizontal_speed = 155
 
+onready var air_jump_effect_scene = preload("res://src/objects/effects/AirJumpEffect.tscn")
+
 
 func initialize(speed, velocity):
 	pass
@@ -15,20 +17,19 @@ func enter():
 	
 	owner.on_wall_jump()
 	
-	# Show some animated effect when walljumping
-	var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn").instance()
+	var instance = air_jump_effect_scene.instance()
 	var rotation = 0
 	var offset = 0
 	if next_to_left_wall(): 
-		rotation = -120
-		offset = -4
+		rotation = 90
+		offset = -20
 	if next_to_right_wall(): 
-		rotation = 120
-		offset = 4
-	landing_dust_scene.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16)
-	landing_dust_scene.rotation_degrees = rotation
-	landing_dust_scene.scale = Vector2(0.5,2)
-	get_parent().add_child(landing_dust_scene)	
+		rotation = -90
+		offset = 22
+	instance.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16)
+	instance.rotation_degrees = rotation
+	instance.play()
+	get_parent().add_child(instance)	
 	
 
 func update(delta):
@@ -62,5 +63,4 @@ func update(delta):
 	# Handle state transitions	
 	# ------------------------
 	detect_and_transition_to_wall_slide()
-	detect_and_transition_to_wall_jump(input_direction)
 	detect_and_transition_to_ground(input_direction)
