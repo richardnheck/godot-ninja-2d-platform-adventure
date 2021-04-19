@@ -4,11 +4,12 @@ onready var tween = $Tween
 onready var collisionShape = $CollisionShape2D
 onready var sprite = $CollisionShape2D/Sprite
 onready var initialDelayTimer = $InitialDelayTimer
-
+onready var sound = $AudioStreamPlayer2D
 onready var tween_values = [Vector2(0,8), Vector2(0,-6)]
 
 export var initial_delay:float = 0		# initial delay in seconds
 
+var spike_moving_out = true;
 
 func _ready():
 	if initial_delay > 0:
@@ -24,8 +25,11 @@ func _start_tween():
 
 
 func _on_tween_completed(object, key):
+	if spike_moving_out:
+		sound.play()
 	tween_values.invert()
 	_start_tween()
+	spike_moving_out = !spike_moving_out
 
 
 func _on_InitialDelayTimer_timeout() -> void:

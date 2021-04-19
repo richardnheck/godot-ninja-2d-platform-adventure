@@ -8,6 +8,7 @@ export var up_down = true
 # Node References
 # ------------------------------------------------------
 onready var sprite: = $Sprite
+onready var sound = $AudioStreamPlayer2D
 
 # Variables
 # ------------------------------------------------------
@@ -26,11 +27,13 @@ func _process(delta: float) -> void:
 		vel.y += gravity * direction;
 		vel = move_and_slide(vel, Vector2.UP)
 		if is_on_floor() or is_on_ceiling():
+			sound.play()
 			direction *= -1
 	else:
 		vel.x += gravity * direction;
 		vel = move_and_slide(vel, Vector2.UP)
 		if is_on_wall():
+			sound.play()
 			direction *= -1
 
 func handle_body_entered(body: Node) -> void:
