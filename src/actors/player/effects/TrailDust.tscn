@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Curve" id=1]
+min_value = 1.0
+max_value = 3.0
+bake_resolution = 2
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.990581, 3 ), 0.829428, 0.0, 0, 0 ]
+
+[node name="Particles2D" type="CPUParticles2D"]
+amount = 3
+lifetime = 1.2
+speed_scale = 0.99
+explosiveness = 0.1
+lifetime_randomness = 0.03
+draw_order = 1
+direction = Vector2( 0, 0 )
+spread = 4.2
+gravity = Vector2( -10, -2 )
+initial_velocity_random = 0.04
+scale_amount_curve = SubResource( 1 )
