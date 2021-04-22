@@ -1,12 +1,9 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/player/sprites/death-effect.png" type="Texture" id=3]
-[ext_resource path="res://assets/sounds/character/jump.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sounds/character/wall_slide.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sounds/character/jump-land.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/sounds/evretro__8-bit-damage.wav" type="AudioStream" id=25]
+[ext_resource path="res://assets/sounds/sfx/character/die.wav" type="AudioStream" id=25]
 [ext_resource path="res://src/actors/player/player_state_machine.gd" type="Script" id=26]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/idle.gd" type="Script" id=27]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/move.gd" type="Script" id=28]
@@ -347,6 +344,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 60 )
 animation = "idle"
+frame = 3
 playing = true
 centered = false
 
@@ -405,23 +403,6 @@ one_shot = true
 visible = false
 position = Vector2( 0, -10 )
 
-[node name="AudioStreamLand" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 24 )
-volume_db = 3.0
-
-[node name="AudioStreamJump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-volume_db = -6.0
-pitch_scale = 1.2
-
-[node name="AudioStreamAirJump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-volume_db = -6.0
-pitch_scale = 1.4
-
-[node name="AudioStreamWallSlide" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-
 [node name="WallClampTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -471,6 +452,7 @@ spread = 30.0
 gravity = Vector2( 1, 10 )
 initial_velocity = 10.0
 scale_amount_curve = SubResource( 62 )
+
 [connection signal="state_changed" from="StateMachine" to="StateNameDisplayer" method="_on_StateMachine_state_changed"]
 [connection signal="animation_finished" from="AnimatedSprite" to="StateMachine" method="_on_animation_finished"]
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]

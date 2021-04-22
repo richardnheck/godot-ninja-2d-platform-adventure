@@ -24,7 +24,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 880, 128 )
+position = Vector2( 1008, 64 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -43,7 +43,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 832, 32 )
-frame = 3
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1600, 128 )
@@ -142,6 +142,7 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

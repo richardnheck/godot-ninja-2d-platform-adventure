@@ -9,11 +9,6 @@ class_name Player
 # References
 #-----------------------------
 onready var die_sound: = $AudioStreamDie
-onready var land_sound: = $AudioStreamLand
-onready var jump_sound:= $AudioStreamJump
-onready var air_jump_sound:= $AudioStreamAirJump
-onready var wall_slide_sound:= $AudioStreamWallSlide
-onready var hit_sound: = $AudioStreamHit
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $AnimatedSprite
 onready var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn")
@@ -46,7 +41,11 @@ func take_damage(attacker, amount, effect = null):
 func die():
 	set_dead(true)
 	$StateMachine._change_state("die")
+	
 	die_sound.play()
+	
+	# TODO: If I use this then it plays die on scene reload as well
+	#Game_AudioManager.sfx_character_player_die.play()
 
 	
 func celebrate():
@@ -60,7 +59,8 @@ func set_dead(value):
 
 func do_landing():
 	# Player has landed
-	land_sound.play()
+	#land_sound.play()
+	Game_AudioManager.sfx_character_player_land.play()
 	
 	# Show some animated dust just on landing
 	var instance = landing_dust_scene.instance()
@@ -68,13 +68,16 @@ func do_landing():
 	get_parent().add_child(instance)		
 	
 func on_jump():
-	jump_sound.play()
+	Game_AudioManager.sfx_character_player_jump.play()
+	#jump_sound.play()
 	
 func on_wall_jump():
-	jump_sound.play()
+	Game_AudioManager.sfx_character_player_jump.play()
+	#jump_sound.play()
 	
 func on_air_jump():
-	air_jump_sound.play()
+	Game_AudioManager.sfx_character_player_air_jump.play()
+	#air_jump_sound.play()
 	
 	# Show an effect when air jumping
 	var instance = air_jump_effect_scene.instance()
@@ -83,13 +86,16 @@ func on_air_jump():
 	get_parent().add_child(instance)		
 	
 func on_wall_land():
-	land_sound.play()
+	Game_AudioManager.sfx_character_player_land.play()
+	#land_sound.play()
 
 func on_wall_slide_start():
-	wall_slide_sound.play()
+	Game_AudioManager.sfx_character_player_wall_slide.play()
+	#wall_slide_sound.play()
 	
 func on_wall_slide_end():
-	wall_slide_sound.stop()
+	Game_AudioManager.sfx_character_player_wall_slide.stop()
+	#wall_slide_sound.stop()
 #func die():
 #	dead = true
 #	collision_shape.set_deferred("disabled", true)

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/jump-land.wav-9a88030dfe576cacee2a8cf2afefb3cb.sample"
+path="res://.import/land.wav-95f81527a3d66c5a4c991d102a249faa.sample"
 
 [deps]
 
-source_file="res://assets/sounds/character/jump-land.wav"
-dest_files=[ "res://.import/jump-land.wav-9a88030dfe576cacee2a8cf2afefb3cb.sample" ]
+source_file="res://assets/sounds/sfx/character/land.wav"
+dest_files=[ "res://.import/land.wav-95f81527a3d66c5a4c991d102a249faa.sample" ]
 
 [params]
 

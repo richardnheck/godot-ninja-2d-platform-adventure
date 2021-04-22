@@ -76,6 +76,7 @@ Actions="*res://src/settings/Actions.gd"
 Constants="*res://src/settings/Constants.gd"
 LevelData="*res://src/settings/LevelData.gd"
 Global="*res://src/UI/Global.tscn"
+Game_AudioManager="*res://src/lib/AudioManager/AudioManager.tscn"
 
 [display]
 
@@ -169,9 +170,10 @@ pointing/emulate_touch_from_mouse=true
 
 quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
-quality/2d/use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
+quality/2d/use_nvidia_rect_flicker_workaround=true
+quality/2d/use_pixel_snap=true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cave boss theme.mp3-a4f042af02dd69fa381aac9747c23dfa.mp3str"
+
+[deps]
+
+source_file="res://assets/music/cave boss theme.mp3"
+dest_files=[ "res://.import/cave boss theme.mp3-a4f042af02dd69fa381aac9747c23dfa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
