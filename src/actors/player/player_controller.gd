@@ -8,7 +8,6 @@ class_name Player
 #-----------------------------
 # References
 #-----------------------------
-onready var die_sound: = $AudioStreamDie
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $AnimatedSprite
 onready var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn")
@@ -26,9 +25,15 @@ var dead: = false
 
 var look_direction = Vector2.RIGHT setget set_look_direction
 
+func _ready() -> void:
+	print("Player ready")		
+	$VisibilityNotifier2D.connect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
 
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	die()
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:	
+	if !dead:
+		die()
+
 
 func take_damage(attacker, amount, effect = null):
 	pass
@@ -39,13 +44,10 @@ func take_damage(attacker, amount, effect = null):
 
 # Start the dieing process
 func die():
+	print("die")
 	set_dead(true)
 	$StateMachine._change_state("die")
-	
-	die_sound.play()
-	
-	# TODO: If I use this then it plays die on scene reload as well
-	#Game_AudioManager.sfx_character_player_die.play()
+	Game_AudioManager.sfx_character_player_die.play()
 
 	
 func celebrate():
@@ -53,13 +55,13 @@ func celebrate():
 
 
 func set_dead(value):
+	dead = true
 	set_process_input(not value)
 	set_physics_process(not value)
 	collision_shape.set_deferred("disabled", true)
 
 func do_landing():
 	# Player has landed
-	#land_sound.play()
 	Game_AudioManager.sfx_character_player_land.play()
 	
 	# Show some animated dust just on landing
@@ -67,17 +69,17 @@ func do_landing():
 	instance.global_position = global_position
 	get_parent().add_child(instance)		
 	
+	
 func on_jump():
 	Game_AudioManager.sfx_character_player_jump.play()
-	#jump_sound.play()
+	
 	
 func on_wall_jump():
 	Game_AudioManager.sfx_character_player_jump.play()
-	#jump_sound.play()
+	
 	
 func on_air_jump():
 	Game_AudioManager.sfx_character_player_air_jump.play()
-	#air_jump_sound.play()
 	
 	# Show an effect when air jumping
 	var instance = air_jump_effect_scene.instance()
@@ -85,25 +87,17 @@ func on_air_jump():
 	instance.play()
 	get_parent().add_child(instance)		
 	
+	
 func on_wall_land():
 	Game_AudioManager.sfx_character_player_land.play()
-	#land_sound.play()
+
 
 func on_wall_slide_start():
 	Game_AudioManager.sfx_character_player_wall_slide.play()
-	#wall_slide_sound.play()
+	
 	
 func on_wall_slide_end():
 	Game_AudioManager.sfx_character_player_wall_slide.stop()
-	#wall_slide_sound.stop()
-#func die():
-#	dead = true
-#	collision_shape.set_deferred("disabled", true)
-#	set_physics_process(false)
-#	die_sound.play()
-#	hide()
-#	yield(die_sound,"finished")
-#	emit_signal("died")
 
 
 func set_look_direction(value):
@@ -118,8 +112,10 @@ func set_look_direction(value):
 func move_right():
 	_move_right(true)
 
+
 func move_left():
 	_move_left(true)
+
 
 func move_stop():
 	_move_right(false)
@@ -132,6 +128,7 @@ func _move_right(pressed):
 	ev.pressed = pressed
 	Input.parse_input_event(ev)
 	#$StateMachine._change_state("move")
+
 
 func _move_left(pressed):
 	var ev = InputEventAction.new()

@@ -20,10 +20,11 @@ var player:Player
 var fadeScreen:FadeScreen
 var screenShake:ScreenShake
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("LevelBase: ready()")
-	
+	print(player_instance)
 	Actions.use_normal_actions()		# Use normal input actions
 		
 	# Spawn the player
@@ -33,6 +34,7 @@ func _ready() -> void:
 	player.connect("start_die", self, "_on_Player_start_die")
 	player.connect("died", self, "_on_Player_died")
 	player.connect("collided", self, "_on_Player_collided")
+	
 	if key: 
 		key.connect("captured", self, "_on_Key_captured")
 	if door:
@@ -59,7 +61,7 @@ func _ready() -> void:
 #		return 'Remove Temporary Spawn Position!!!'
 #	else:
 #		return ''
-				
+var player_instance = null			
 func _spawn_player() -> KinematicBody2D:
 	print("spawning at:")
 	var spawn_point = Vector2.ZERO
@@ -76,7 +78,7 @@ func _spawn_player() -> KinematicBody2D:
 		print("start door position")
 		spawn_point = start_door.position	
 	
-	var player_instance = player_scene.instance()
+	player_instance = player_scene.instance()
 	player_instance.position = spawn_point
 	player_instance.z_index = 10000
 	add_child(player_instance)

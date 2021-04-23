@@ -344,7 +344,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 60 )
 animation = "idle"
-frame = 3
+frame = 2
 playing = true
 centered = false
 
@@ -456,5 +456,4 @@ scale_amount_curve = SubResource( 62 )
 [connection signal="state_changed" from="StateMachine" to="StateNameDisplayer" method="_on_StateMachine_state_changed"]
 [connection signal="animation_finished" from="AnimatedSprite" to="StateMachine" method="_on_animation_finished"]
 [connection signal="timeout" from="WallJumpCoolDownTimer" to="." method="_on_WallJumpCoolDownTimer_timeout"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="WallClampTimer" to="." method="_on_WallClampTimer_timeout"]

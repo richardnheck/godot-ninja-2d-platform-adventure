@@ -2,7 +2,8 @@ extends Node2D
 class_name FadeScreen
 
 signal changing_scene
-signal fading_finished
+signal fading_in_finished
+signal fading_out_finished
 signal fading_started
 
 #Child nodes
@@ -51,10 +52,13 @@ func _on_AnimationPlayer_animation_finished(anim_name : String):
 			get_tree().reload_current_scene()
 		else:
 			get_tree().change_scene(scene_to_go)
+			
+		emit_signal("fading_out_finished")
 	if anim_name == "Fade In":
 		get_tree().paused = false
+		emit_signal("fading_in_finished")
 	
-	emit_signal("fading_finished")
+	
 
 func _on_AnimationPlayer_animation_started(anim_name : String):
 	if anim_name == "Fade In":
