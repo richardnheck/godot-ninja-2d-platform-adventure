@@ -72,4 +72,5 @@ texture_normal = ExtResource( 7 )
 texture_disabled = ExtResource( 7 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 9 )]
+
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]

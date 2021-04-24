@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/basic-blip-select.wav-edf274c3ed5251793d8d0a6c14b6af6b.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/ui/basic-blip-select.wav"
+dest_files=[ "res://.import/basic-blip-select.wav-edf274c3ed5251793d8d0a6c14b6af6b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

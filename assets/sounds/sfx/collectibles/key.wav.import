@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/rock-crumble.wav-b72c77b4bd183d42bebcce7b95f90ba8.sample"
+path="res://.import/key.wav-fa367df73f43f2c9f7fa8817dc3637c1.sample"
 
 [deps]
 
-source_file="res://assets/sounds/rock-crumble.wav"
-dest_files=[ "res://.import/rock-crumble.wav-b72c77b4bd183d42bebcce7b95f90ba8.sample" ]
+source_file="res://assets/sounds/sfx/collectibles/key.wav"
+dest_files=[ "res://.import/key.wav-fa367df73f43f2c9f7fa8817dc3637c1.sample" ]
 
 [params]
 

@@ -173,6 +173,7 @@ margin_right = 136.0
 [node name="RetryButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 140.0
 margin_right = 156.0
+
 [connection signal="button_up" from="Control/PauseButton" to="." method="_on_PauseButton_button_up"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/RightButton" to="." method="_on_RightButton_gui_input"]

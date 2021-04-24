@@ -95,6 +95,7 @@ func _on_Key_captured() -> void:
 	
 	
 func _on_Door_player_entered() -> void:
+	Game_AudioManager.sfx_ui_level_clear.play()
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
 	goto_next_level()

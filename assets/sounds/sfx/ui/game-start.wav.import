@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/select-blip2.wav-cf488ed379b4fe2a5c3e6b13a72bc2de.sample"
+path="res://.import/game-start.wav-b4a57f03d953dedb9e96794530f87d5b.sample"
 
 [deps]
 
-source_file="res://assets/sounds/select-blip2.wav"
-dest_files=[ "res://.import/select-blip2.wav-cf488ed379b4fe2a5c3e6b13a72bc2de.sample" ]
+source_file="res://assets/sounds/sfx/ui/game-start.wav"
+dest_files=[ "res://.import/game-start.wav-b4a57f03d953dedb9e96794530f87d5b.sample" ]
 
 [params]
 

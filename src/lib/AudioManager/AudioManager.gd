@@ -101,25 +101,21 @@ onready var sfx_character_player_die : AudioStreamPlayer = $SFX/Character/Sfx_Pl
 onready var sfx_character_player_jump : AudioStreamPlayer = $SFX/Character/Sfx_PlayerJump
 onready var sfx_character_player_air_jump : AudioStreamPlayer = $SFX/Character/Sfx_PlayerAirJump
 onready var sfx_character_player_wall_slide : AudioStreamPlayer = $SFX/Character/Sfx_PlayerWallSlide
+#
+onready var sfx_collectibles_key: AudioStreamPlayer = $SFX/Collectibles/Sfx_Key
+#
+onready var sfx_env_spikey_rock_thud : AudioStreamPlayer2D = $SFX/Environments/Sfx_SpikeyRockThud
+onready var sfx_env_crumbling_platform_crumble : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformCrumble
+onready var sfx_env_crumbling_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformExplode
+onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
 
 #
-#onready var sfx_collectibles_coin : AudioStreamPlayer = $SFX/Collectibles/Sfx_Coin
-#onready var sfx_collectibles_diamond : AudioStreamPlayer = $SFX/Collectibles/Sfx_Diamond
-#onready var sfx_collectibles_item : AudioStreamPlayer = $SFX/Collectibles/Sfx_Item
-#
-#onready var sfx_env_boss_door : AudioStreamPlayer = $SFX/Environments/Sfx_BossDoor
-#onready var sfx_env_coin_landing : AudioStreamPlayer = $SFX/Environments/Sfx_CoinLanding
-#onready var sfx_env_diamond_landing : AudioStreamPlayer = $SFX/Environments/Sfx_DiamondLanding
-#onready var sfx_env_enter_door : AudioStreamPlayer = $SFX/Environments/Sfx_EnterDoor
-#onready var sfx_env_fan : AudioStreamPlayer = $SFX/Environments/Sfx_Fan
-#onready var sfx_env_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_PlatformExplode
-#onready var sfx_env_platform_fall : AudioStreamPlayer = $SFX/Environments/Sfx_PlatformFall
-#onready var sfx_env_platform_scramble : AudioStreamPlayer = $SFX/Environments/Sfx_PlatformScramble
-#
-#onready var sfx_ui_boss_fill_hp : AudioStreamPlayer = $SFX/UI/Sfx_BossFillHp
-#onready var sfx_ui_game_start : AudioStreamPlayer = $SFX/UI/Sfx_GameStart
-#onready var sfx_ui_level_up : AudioStreamPlayer = $SFX/UI/Sfx_LevelUp
-#onready var sfx_ui_one_up : AudioStreamPlayer = $SFX/UI/Sfx_OneUp
+onready var sfx_ui_level_clear : AudioStreamPlayer = $SFX/UI/Sfx_LevelClear
+onready var sfx_ui_pause : AudioStreamPlayer = $SFX/UI/Sfx_Pause
+onready var sfx_ui_game_start : AudioStreamPlayer = $SFX/UI/Sfx_GameStart
+onready var sfx_ui_general_select : AudioStreamPlayer = $SFX/UI/Sfx_GeneralSelect
+onready var sfx_ui_basic_blip_select : AudioStreamPlayer = $SFX/UI/Sfx_BasicBlipSelect
+
 #
 #onready var sfx_unc_serious_damage : AudioStreamPlayer = $SFX/Uncategorized/Sfx_SeriousDamage
 

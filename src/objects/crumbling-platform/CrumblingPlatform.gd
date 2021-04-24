@@ -3,8 +3,8 @@ extends KinematicBody2D
 onready var spike_collision_shape: CollisionShape2D = $CollisionShape2D
 onready var explosion: = $AnimatedSpriteExplosion
 onready var animationPlayer: = $AnimationPlayer
-onready var explodeSound:= $ExplodeSound
-onready var crumbleSound:= $CrumbleSound
+onready var explodeSound:= Game_AudioManager.sfx_env_crumbling_platform_explode
+onready var crumbleSound:= Game_AudioManager.sfx_env_crumbling_platform_crumble
 
 export var gravity: = 50
 
@@ -25,6 +25,7 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 		print("player triggerd")
 		animationPlayer.play("shake")
 		yield(animationPlayer,"animation_finished")
+		crumbleSound.stop()
 		triggered = true	
 		explodeSound.play()
 		explosion.play("explode")

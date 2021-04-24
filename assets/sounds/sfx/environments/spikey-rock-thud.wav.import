@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spikey-rock-thud.wav-c61b335a56dcd7452674a88daf00839d.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/environments/spikey-rock-thud.wav"
+dest_files=[ "res://.import/spikey-rock-thud.wav-c61b335a56dcd7452674a88daf00839d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

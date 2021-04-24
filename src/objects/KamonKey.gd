@@ -2,7 +2,6 @@ extends AnimatedSprite
 
 signal captured
 
-onready var audioPlayer = $AudioStreamPlayer2D
 onready var collisionShape = $Area2D/CollisionShape2D
 
 func _on_Area2D_body_entered(body: Node) -> void:
@@ -10,7 +9,6 @@ func _on_Area2D_body_entered(body: Node) -> void:
 		# The player has captured the key
 		collisionShape.set_deferred("disabled", true)
 		emit_signal("captured")
-		audioPlayer.play()
+		Game_AudioManager.sfx_collectibles_key.play()
 		visible = false
-		yield(audioPlayer, "finished")
 		queue_free()		

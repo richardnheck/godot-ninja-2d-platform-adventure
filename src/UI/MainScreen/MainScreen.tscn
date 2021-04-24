@@ -67,4 +67,4 @@ margin_left = 152.0
 margin_right = 168.0
 margin_bottom = 20.0
 next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
-sound = "GameStartSound"
+sound = "SFX/UI/Sfx_GameStart"

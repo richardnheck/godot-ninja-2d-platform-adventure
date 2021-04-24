@@ -1,9 +1,8 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/player/sprites/death-effect.png" type="Texture" id=3]
-[ext_resource path="res://assets/sounds/sfx/character/die.wav" type="AudioStream" id=25]
 [ext_resource path="res://src/actors/player/player_state_machine.gd" type="Script" id=26]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/idle.gd" type="Script" id=27]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/move.gd" type="Script" id=28]
@@ -344,7 +343,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 60 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 centered = false
 
@@ -391,9 +390,6 @@ editor_draw_drag_margin = true
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="AudioStreamDie" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 25 )
 
 [node name="WallJumpCoolDownTimer" type="Timer" parent="."]
 wait_time = 0.3

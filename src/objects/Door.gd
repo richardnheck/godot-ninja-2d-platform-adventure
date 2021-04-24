@@ -2,7 +2,6 @@ extends Node2D
 
 signal player_entered
 
-onready var audioPlayer = $AudioStreamPlayer2D
 onready var sprite = $Sprite
 
 export var is_open = false
@@ -27,7 +26,6 @@ func _on_Area2D_body_entered(body: Node) -> void:
 		# The player has come in contact with the door
 		if is_open:
 			emit_signal("player_entered")
-			audioPlayer.play()
 			set_physics_process(false)
 
 func _set_door_image():

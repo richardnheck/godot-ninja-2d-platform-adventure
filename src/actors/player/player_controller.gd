@@ -22,13 +22,19 @@ signal start_die
 signal died
 
 var dead: = false
+var sfx_die:AudioStreamPlayer
 
 var look_direction = Vector2.RIGHT setget set_look_direction
 
 func _ready() -> void:
-	print("Player ready")		
+	print("Player ready")
 	$VisibilityNotifier2D.connect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
 
+	# Add the die sound to the player so the sound is cleared when player is removed
+	# Need to do this because the visiblity notifier fires annoyingly and triggers the die
+	# sound when using the global sound
+	sfx_die = Game_AudioManager.sfx_character_player_die.duplicate()
+	add_child(sfx_die)		
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:	
 	if !dead:
@@ -47,7 +53,7 @@ func die():
 	print("die")
 	set_dead(true)
 	$StateMachine._change_state("die")
-	Game_AudioManager.sfx_character_player_die.play()
+	sfx_die.play()
 
 	
 func celebrate():

@@ -328,7 +328,7 @@ position = Vector2( 528, 304 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 560, -128 )
-frame = 3
+frame = 0
 
 [node name="MovingPlatformCave2H3" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( -128, 240 )
@@ -438,68 +438,62 @@ position = Vector2( 33, 48 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( -119, 272 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( -120, 120 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( -120, 29 )
-frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 32, -80 )
-frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 112, -80 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 104, 16 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 184, 313 )
+frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 319, 245 )
+frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 320, 152 )
+frame = 0
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 320, 59 )
-frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 480, -136 )
-frame = 0
 
 [node name="JapaneseLamp12" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 336, -136 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 496, 288 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 9 )]
 position = Vector2( 560, 288 )
-frame = 0
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/Door"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H3"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H5"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H4"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H2"]

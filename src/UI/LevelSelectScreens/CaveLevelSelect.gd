@@ -18,7 +18,7 @@ func _ready() -> void:
 		
 	
 func _level_button_pressed(levelIndex):
-	Global.play_general_select_sound()
+	Game_AudioManager.sfx_ui_general_select.play()
 	LevelData.goto_level(levelIndex)
 
 
@@ -27,5 +27,5 @@ func _on_BossButton_button_up() -> void:
 
 
 func _on_IntroButton_button_up() -> void:
-	Global.play_general_select_sound()
+	Game_AudioManager.sfx_ui_general_select.play()
 	get_tree().change_scene(intro_scene_path)
