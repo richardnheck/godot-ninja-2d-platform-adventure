@@ -21,7 +21,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-offset = Vector2( 0, -10 )
+offset = Vector2( 0, -11 )
 
 [node name="Panels" type="Node2D" parent="."]
 
@@ -275,5 +275,6 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
