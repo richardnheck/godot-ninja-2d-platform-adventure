@@ -77,7 +77,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1736, 1440 )
+position = Vector2( 1727.55, 1088 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -396,7 +396,7 @@ tile_data = PoolIntArray( 786444, 1073741826, 0, 786448, 1073741826, 0, 786452, 
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1560, 968 )
-frame = 1
+frame = 4
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 384, 576 )
@@ -642,12 +642,11 @@ current_state = 0
 position = Vector2( 1200, 1088 )
 vertical_direction = -1
 current_state = 0
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="body_entered" from="InteractiveProps/EndArea" to="." method="_on_EndArea_body_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/MovingPlatformCave2H3"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H4"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H5"]
