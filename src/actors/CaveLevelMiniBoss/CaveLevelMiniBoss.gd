@@ -12,6 +12,7 @@ export(int) var vertical_direction = 1
 
 onready var jump_timer = $JumpTimer
 onready var pause_timer = $PauseTimer
+onready var main_sprite = $SpriteMain
 
 var velocity = Vector2(40,0)
 
@@ -88,6 +89,7 @@ func _process(delta: float) -> void:
 					if is_on_floor():
 						_shake_screen()
 						_spawn_slam_blast()
+						_flash_sprite()
 				
 		
 		State.JUMP:
@@ -106,6 +108,7 @@ func _process(delta: float) -> void:
 				if landing:
 					_shake_screen()
 					_spawn_slam_blast()
+					_flash_sprite()
 					landing = false
 
 func _shake_screen() -> void:
@@ -129,6 +132,10 @@ func _spawn_slam_blast() -> void:
 	get_parent().add_child(instance2)		
 	(instance2 as MiniBossSlamBlast).set_direction(-1) # leftwards
 	
+func _flash_sprite():
+	main_sprite.hide()
+	yield(get_tree().create_timer(0.1), "timeout")
+	main_sprite.show()
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
