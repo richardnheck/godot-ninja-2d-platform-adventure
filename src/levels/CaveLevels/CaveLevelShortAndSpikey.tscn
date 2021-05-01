@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
@@ -147,32 +147,30 @@ flip_v = true
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 96, 104 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 262.021, 104 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 152, -40 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 384, -192 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 240, -192 )
+frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 448, -57 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 10, -30.9989 )
-frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 5 )]
 position = Vector2( 448, -192 )
-frame = 0
 
 [node name="InteractiveProps" type="Node" parent="."]
 
@@ -210,6 +208,7 @@ position = Vector2( 523, -144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 153.5, -96 )
+frame = 3
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 392, 72 )

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://src/objects/KamonKey.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=4]
@@ -38,8 +38,8 @@ __meta__ = {
 [node name="PlayerSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 48, 112 )
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1282.59, 49.8828 )
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1648, -402.853 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -58,7 +58,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1799.87, -520.662 )
-frame = 0
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1744, -383.946 )
