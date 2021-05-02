@@ -305,7 +305,7 @@ margin_bottom = 88.0
 position = Vector2( 0, 112 )
 frames = ExtResource( 3 )
 animation = "walk"
-frame = 5
+frame = 3
 playing = true
 centered = false
 
@@ -314,5 +314,4 @@ anims/walk-in = SubResource( 1 )
 anims/walk-out = SubResource( 2 )
 
 [editable path="Boss"]
-
 [editable path="CutSceneBase"]

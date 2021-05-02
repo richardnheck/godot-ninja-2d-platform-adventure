@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/air-jump-sprite-sheet.png-c1958fe836d5372b4a5062c1610f4bb4.stex"
+path="res://.import/jump.png-caa70a30f555bb1e5b100b76cd9e8ab8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/effects/player/air-jump/air-jump-sprite-sheet.png"
-dest_files=[ "res://.import/air-jump-sprite-sheet.png-c1958fe836d5372b4a5062c1610f4bb4.stex" ]
+source_file="res://src/actors/player/effects/jump/jump.png"
+dest_files=[ "res://.import/jump.png-caa70a30f555bb1e5b100b76cd9e8ab8.stex" ]
 
 [params]
 

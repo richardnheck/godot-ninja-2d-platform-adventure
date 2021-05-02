@@ -10,9 +10,9 @@ class_name Player
 #-----------------------------
 onready var collision_shape = $CollisionShape2D
 onready var sprite = $AnimatedSprite
-onready var landing_dust_scene = preload("res://src/objects/effects/LandingDust.tscn")
-onready var air_jump_effect_scene = preload("res://src/objects/effects/AirJumpEffect.tscn")
-
+onready var landing_dust_scene = preload("res://src/actors/player/effects/landing-dust/LandingDust.tscn")
+onready var air_jump_effect_scene = preload("res://src/actors/player/effects/air-jump/AirJumpEffect.tscn")
+onready var jump_effect_scene = preload("res://src/actors/player/effects/jump/JumpEffect.tscn")
 #-----------------------------
 # Signals
 #-----------------------------
@@ -79,6 +79,11 @@ func do_landing():
 func on_jump():
 	Game_AudioManager.sfx_character_player_jump.play()
 	
+	# Show an effect when jumping
+	var instance = jump_effect_scene.instance()
+	instance.global_position = Vector2(global_position.x+8, global_position.y)
+	get_parent().add_child(instance)		
+	
 	
 func on_wall_jump():
 	Game_AudioManager.sfx_character_player_jump.play()
@@ -90,7 +95,6 @@ func on_air_jump():
 	# Show an effect when air jumping
 	var instance = air_jump_effect_scene.instance()
 	instance.global_position = global_position
-	instance.play()
 	get_parent().add_child(instance)		
 	
 	

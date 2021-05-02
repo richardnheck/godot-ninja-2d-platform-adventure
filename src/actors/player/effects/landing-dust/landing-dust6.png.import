@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/landing-dust1.png-cda854b411e54a6de34b3f9ffc757b56.stex"
+path="res://.import/landing-dust6.png-b57cb304e7ce549cbec1b775950fae11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/effects/player/landing-dust/landing-dust1.png"
-dest_files=[ "res://.import/landing-dust1.png-cda854b411e54a6de34b3f9ffc757b56.stex" ]
+source_file="res://src/actors/player/effects/landing-dust/landing-dust6.png"
+dest_files=[ "res://.import/landing-dust6.png-b57cb304e7ce549cbec1b775950fae11.stex" ]
 
 [params]
 

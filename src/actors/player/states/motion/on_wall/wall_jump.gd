@@ -3,7 +3,7 @@ extends "../motion.gd"
 export var wall_jump_power = 295
 export var wall_jump_horizontal_speed = 155
 
-onready var air_jump_effect_scene = preload("res://src/objects/effects/AirJumpEffect.tscn")
+onready var air_jump_effect_scene = preload("res://src/actors/player/effects/air-jump/AirJumpEffect.tscn")
 
 
 func initialize(speed, velocity):

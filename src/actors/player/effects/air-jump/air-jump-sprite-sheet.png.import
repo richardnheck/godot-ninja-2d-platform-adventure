@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/landing-dust4.png-b200df92dcdce30d94255fe2c4f0d8ae.stex"
+path="res://.import/air-jump-sprite-sheet.png-c731041d83c04c4b6350e43f60bbae85.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/effects/player/landing-dust/landing-dust4.png"
-dest_files=[ "res://.import/landing-dust4.png-b200df92dcdce30d94255fe2c4f0d8ae.stex" ]
+source_file="res://src/actors/player/effects/air-jump/air-jump-sprite-sheet.png"
+dest_files=[ "res://.import/air-jump-sprite-sheet.png-c731041d83c04c4b6350e43f60bbae85.stex" ]
 
 [params]
 

@@ -961,6 +961,7 @@ position = Vector2( 208, 144 )
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hover = SubResource( 52 )
 anims/show = SubResource( 53 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="CutSceneBase"]
