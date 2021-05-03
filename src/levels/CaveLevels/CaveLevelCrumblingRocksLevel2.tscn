@@ -219,27 +219,28 @@ tile_data = PoolIntArray( -393244, 2, 131073, -393243, 2, 131073, -393242, 2, 13
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 520, 32 )
+frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 624, 32 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 648, -48 )
-frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 712, -48 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 152, -32 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 40, 128 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 392, 32 )
-frame = 0
 
 [node name="FallingSpike2" parent="Props" instance=ExtResource( 10 )]
 position = Vector2( 16, -80 )
@@ -363,7 +364,6 @@ anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 32, 32 )
-frame = 6
 
 [node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 224, 64 )

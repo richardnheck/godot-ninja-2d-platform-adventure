@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cave-mini-boss-slam.wav-b7c45b7fb04d88000323be24c92c3e84.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/environments/cave-mini-boss-slam.wav"
+dest_files=[ "res://.import/cave-mini-boss-slam.wav-b7c45b7fb04d88000323be24c92c3e84.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

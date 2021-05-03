@@ -45,9 +45,13 @@ var ground_global_position:Vector2 = Vector2.ZERO
 
 var MiniBossSlamBlastScene = preload("res://src/actors/CaveLevelMiniBoss/MiniBossSlamBlast.tscn")
 
+var slam_sound:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Mini Boss Ready")
+	slam_sound =  Game_AudioManager.sfx_env_cave_mini_boss_slam.duplicate()
+	add_child(slam_sound)
 	
 	ground_global_position = global_position
 		
@@ -87,9 +91,7 @@ func _process(delta: float) -> void:
 					pause_timer.start()
 					vertical_direction = vertical_direction * -1;
 					if is_on_floor():
-						_shake_screen()
-						_spawn_slam_blast()
-						_flash_sprite()
+						_on_land()
 				
 		
 		State.JUMP:
@@ -106,11 +108,16 @@ func _process(delta: float) -> void:
 			
 			if is_on_floor():
 				if landing:
-					_shake_screen()
-					_spawn_slam_blast()
-					_flash_sprite()
+					_on_land()
 					landing = false
 
+func _on_land():
+	slam_sound.play()
+	_flash_sprite()
+	_shake_screen()
+	_spawn_slam_blast()
+	
+	
 func _shake_screen() -> void:
 	var screen_shake_node = get_parent().get_node("ScreenShake")
 	if screen_shake_node:

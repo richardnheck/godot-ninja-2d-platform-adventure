@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/sounds/sfx/ui/general-select.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sounds/sfx/ui/basic-blip-select.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sounds/sfx/ui/level-clear.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/sfx/environments/cave-mini-boss-slam.wav" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -164,14 +165,21 @@ max_distance = 120.0
 attenuation = 1.68
 bus = "SFX"
 
+[node name="Sfx_CaveMiniBossSlam" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 16 )
+volume_db = 1.0
+max_distance = 200.0
+attenuation = 1.22983
+bus = "SFX"
+
 [node name="Sfx_CrumblingPlatformCrumble" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 8 )
-volume_db = -3.0
+volume_db = -6.0
 bus = "SFX"
 
 [node name="Sfx_CrumblingPlatformExplode" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 9 )
-volume_db = -9.0
+volume_db = -12.0
 bus = "SFX"
 
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]

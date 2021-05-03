@@ -328,7 +328,7 @@ position = Vector2( 528, 304 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 560, -128 )
-frame = 0
+frame = 6
 
 [node name="MovingPlatformCave2H3" parent="InteractiveProps" instance=ExtResource( 6 )]
 position = Vector2( -128, 240 )
