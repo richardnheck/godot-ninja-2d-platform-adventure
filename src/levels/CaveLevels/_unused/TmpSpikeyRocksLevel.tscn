@@ -6,7 +6,7 @@
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/objects/cave-level-door/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 

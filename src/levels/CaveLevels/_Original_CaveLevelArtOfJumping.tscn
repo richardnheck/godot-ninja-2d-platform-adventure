@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/objects/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/cave-level-door/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=4]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/Gem.tscn" type="PackedScene" id=6]

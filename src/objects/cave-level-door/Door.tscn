@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/art/props/door/cave-door.png" type="Texture" id=1]
-[ext_resource path="res://src/objects/Door.gd" type="Script" id=2]
+[ext_resource path="res://src/objects/cave-level-door/Door.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.14261, 0.992892 )
