@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cave-sliding-door.wav-f7ead43f3b6c9d34637ef9a3862b1cb0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/environments/cave-sliding-door.wav"
+dest_files=[ "res://.import/cave-sliding-door.wav-f7ead43f3b6c9d34637ef9a3862b1cb0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

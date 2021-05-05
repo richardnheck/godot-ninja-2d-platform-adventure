@@ -109,6 +109,7 @@ onready var sfx_env_cave_mini_boss_slam : AudioStreamPlayer2D = $SFX/Environment
 onready var sfx_env_crumbling_platform_crumble : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformCrumble
 onready var sfx_env_crumbling_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformExplode
 onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
+onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
 
 #
 onready var sfx_ui_level_clear : AudioStreamPlayer = $SFX/UI/Sfx_LevelClear

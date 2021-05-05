@@ -25,4 +25,8 @@ func _on_Area2D_body_entered(body: Node) -> void:
 			opened = true
 			# Play door open animation
 			animation_player.play("open")
+			Game_AudioManager.sfx_env_cave_sliding_door.play()
 			
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	Game_AudioManager.sfx_env_cave_sliding_door.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sounds/sfx/ui/basic-blip-select.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sounds/sfx/ui/level-clear.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sounds/sfx/environments/cave-mini-boss-slam.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/sfx/environments/cave-sliding-door.wav" type="AudioStream" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -184,6 +185,11 @@ bus = "SFX"
 
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 10 )
+bus = "SFX"
+
+[node name="Sfx_CaveSlidingDoor" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 17 )
+volume_db = 3.0
 bus = "SFX"
 
 [node name="UI" type="Node" parent="SFX"]
