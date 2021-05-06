@@ -46,11 +46,16 @@ func do_boss_jump() -> void:
 	do_ending()
 	
 func do_ending() -> void:
+	# Boss lands so play a crash sound and shake the screen
+	Game_AudioManager.sfx_env_cave_boss_cutscene_crash.play()
 	screen_shake.screen_shake(2,4,100)		
+	
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()
-	yield(get_tree().create_timer(4), "timeout")		
+	yield(get_tree().create_timer(4), "timeout")
+	
+	# Show the temporary end scene for the demo		
 	get_tree().change_scene("res://src/UI/TemporaryEndScene.tscn")
 		
 		
@@ -84,5 +89,9 @@ func move_boss_stop() -> void:
 	boss.linear_velocity = Vector2(0,0)
 	_move_boss_right = false
 
+func play_boss_fall() -> void:
+	Game_AudioManager.sfx_env_cave_boss_cutscene_fall.play()
+	
+		
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	print(anim_name + " animation finished")

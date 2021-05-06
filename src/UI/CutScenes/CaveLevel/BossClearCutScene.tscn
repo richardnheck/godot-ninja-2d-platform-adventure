@@ -672,7 +672,7 @@ extents = Vector2( 32, 32 )
 
 [sub_resource type="Animation" id=50]
 resource_name = "boss_walk_in"
-length = 3.0
+length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -680,14 +680,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1.6, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "move_boss_right"
 }, {
 "args": [  ],
 "method": "do_boss_jump"
+}, {
+"args": [  ],
+"method": "play_boss_fall"
 } ]
 }
 

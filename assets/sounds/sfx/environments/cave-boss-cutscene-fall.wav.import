@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cave-boss-cutscene-fall.wav-42c12ddf546d6242910c2e4ea702d544.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/environments/cave-boss-cutscene-fall.wav"
+dest_files=[ "res://.import/cave-boss-cutscene-fall.wav-42c12ddf546d6242910c2e4ea702d544.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

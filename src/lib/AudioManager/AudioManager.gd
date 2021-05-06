@@ -110,7 +110,9 @@ onready var sfx_env_crumbling_platform_crumble : AudioStreamPlayer = $SFX/Enviro
 onready var sfx_env_crumbling_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformExplode
 onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
-
+onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam
+onready var sfx_env_cave_boss_cutscene_crash : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneCrash
+onready var sfx_env_cave_boss_cutscene_fall: AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneFall
 #
 onready var sfx_ui_level_clear : AudioStreamPlayer = $SFX/UI/Sfx_LevelClear
 onready var sfx_ui_pause : AudioStreamPlayer = $SFX/UI/Sfx_Pause

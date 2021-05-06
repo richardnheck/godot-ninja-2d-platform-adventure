@@ -61,7 +61,10 @@ func _goto_next_scene() -> void:
 	$CutSceneBase.goto_next_scene()
 
 func _shake_screen() -> void:
-	print("Shake Screen")
+	# Play the boss slam sound
+	Game_AudioManager.sfx_env_cave_boss_cutscene_slam.play()
+	
+	# Shake the screen
 	screen_shake.screen_shake(2,4,100)		
 
 func _on_continue()->void:
