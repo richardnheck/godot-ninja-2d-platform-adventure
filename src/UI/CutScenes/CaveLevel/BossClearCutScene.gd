@@ -20,6 +20,7 @@ func _ready() -> void:
 	screen_shake.set_camera_node("Camera2D")
 	stage_clear_text.visible = false
 	animation_player.play("walk_in")	
+	player.get_node("Camera2D").current = false  # make sure the player's camera is not used
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +54,7 @@ func do_ending() -> void:
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()
+	Game_AudioManager.sfx_ui_level_clear.play()
 	yield(get_tree().create_timer(4), "timeout")
 	
 	# Show the temporary end scene for the demo		
