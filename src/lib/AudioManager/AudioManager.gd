@@ -106,7 +106,9 @@ onready var sfx_collectibles_key: AudioStreamPlayer = $SFX/Collectibles/Sfx_Key
 #
 onready var sfx_env_spikey_rock_thud : AudioStreamPlayer2D = $SFX/Environments/Sfx_SpikeyRockThud
 onready var sfx_env_cave_mini_boss_slam : AudioStreamPlayer2D = $SFX/Environments/Sfx_CaveMiniBossSlam
+onready var sfx_env_cave_boss_slam : AudioStreamPlayer2D = $SFX/Environments/Sfx_CaveBossSlam
 onready var sfx_env_crumbling_platform_crumble : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformCrumble
+onready var sfx_env_falling_spike : AudioStreamPlayer = $SFX/Environments/Sfx_FallingSpike
 onready var sfx_env_crumbling_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformExplode
 onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor

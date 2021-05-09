@@ -7,6 +7,7 @@ onready var animationPlayer: = $AnimationPlayer
 var gravity: = 20
 
 var triggered:bool = false
+var crashed:bool = false
 var vel:Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -18,15 +19,20 @@ func _physics_process(delta: float) -> void:
 		vel.y += gravity
 		vel = move_and_slide(vel)
 		if vel.y == 0:
-			# spike has landed so destroy
-			# set_collision_mask_bit(Constants.MASK_PLAYER, false)
-			animatedSprite.play("explode")
-			yield(animatedSprite, "animation_finished")
-			queue_free()
+			if !crashed:
+				crashed = true
+				# spike has landed so destroy
+				# set_collision_mask_bit(Constants.MASK_PLAYER, false)
+				Game_AudioManager.sfx_env_falling_spike.stop()
+				Game_AudioManager.sfx_env_crumbling_platform_explode.play()
+				animatedSprite.play("explode")
+				yield(animatedSprite, "animation_finished")
+				queue_free()
 
 func trigger() -> void:
 	animationPlayer.play("shake")
 	yield(animationPlayer,"animation_finished")
+	Game_AudioManager.sfx_env_falling_spike.play()
 	triggered = true	
 	
 func _on_TriggerZone_body_entered(body: Node) -> void:

@@ -98,6 +98,7 @@ func _process(delta: float) -> void:
 				
 				if is_on_ceiling() or is_on_floor():
 					vertical_direction = vertical_direction * -1;
+					Game_AudioManager.sfx_env_cave_boss_slam.play()
 					_shake_screen()
 					if is_on_floor():
 						if touch_floor_cooloff_timer.is_stopped():
@@ -124,6 +125,7 @@ func _process(delta: float) -> void:
 			
 			if is_on_floor():
 				if landing:
+					Game_AudioManager.sfx_env_cave_boss_slam.play()
 					_shake_screen()
 					_spawn_slam_blast()
 					emit_signal("state_cycle_finished", STATE_RUN_AND_JUMP)

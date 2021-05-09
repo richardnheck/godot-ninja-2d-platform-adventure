@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/cave-boss-cutscene-slam.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/sounds/sfx/environments/cave-boss-cutscene-crash.wav" type="AudioStream" id=19]
 [ext_resource path="res://assets/sounds/sfx/environments/cave-boss-cutscene-fall.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/sounds/sfx/environments/falling-spike.wav" type="AudioStream" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -186,11 +187,20 @@ stream = ExtResource( 9 )
 volume_db = -12.0
 bus = "SFX"
 
+[node name="Sfx_FallingSpike" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 21 )
+volume_db = -12.0
+bus = "SFX"
+
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 10 )
 bus = "SFX"
 
 [node name="Sfx_CaveBossCutsceneSlam" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 18 )
+bus = "SFX"
+
+[node name="Sfx_CaveBossSlam" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 18 )
 bus = "SFX"
 

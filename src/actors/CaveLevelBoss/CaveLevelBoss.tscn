@@ -48,6 +48,7 @@ one_shot = true
 [node name="TouchFloorCoolOffTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="timeout" from="RunAndJumpTimer" to="." method="_on_RunAndJumpTimer_timeout"]
 [connection signal="timeout" from="SlamRunTimer" to="." method="_on_SlamRunTimer_timeout"]

@@ -833,9 +833,11 @@ tile_data = PoolIntArray( 0, 13, 3, 1, 13, 3, 2, 13, 3, 3, 13, 0, 4, 0, 131072, 
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 300, 99 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 28, 99 )
+frame = 0
 
 [node name="Boss" type="RigidBody2D" parent="."]
 position = Vector2( -35, 106 )

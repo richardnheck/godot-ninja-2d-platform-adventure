@@ -89,5 +89,6 @@ position = Vector2( 7.14762, 2.31247 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 5 )
 animation = "idle"
+
 [connection signal="body_entered" from="TriggerZone" to="." method="_on_TriggerZone_body_entered"]
 [connection signal="body_entered" from="HitZone" to="." method="_on_HitZone_body_entered"]

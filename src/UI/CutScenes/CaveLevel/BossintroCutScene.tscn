@@ -305,6 +305,7 @@ margin_bottom = 88.0
 position = Vector2( 144, 112 )
 frames = ExtResource( 3 )
 animation = "walk"
+frame = 3
 playing = true
 centered = false
 flip_h = true
