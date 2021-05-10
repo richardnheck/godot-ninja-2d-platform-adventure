@@ -94,6 +94,8 @@ signal bgm_just_started(bgm_name)
 #BGM (Background Music)
 onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
 onready var bgm_property_setter_player : AnimationPlayer = $BGM/BgmCore_DONT_TOUCH_THIS/PropertySetterPlayer
+onready var bgm_cave_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossTheme
+onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
 
 #Sfx (Sound Effects)
 onready var sfx_character_player_land : AudioStreamPlayer = $SFX/Character/Sfx_PlayerLand
@@ -128,15 +130,21 @@ onready var sfx_ui_basic_blip_select : AudioStreamPlayer = $SFX/UI/Sfx_BasicBlip
 
 var current_bgm : String #Path
 
+func play_bgm_from_player(bgm_player:AudioStreamPlayer):
+	var stream = bgm_player.stream
+	var volume_db = bgm_player.volume_db
+	play_bgm(stream, volume_db)
+	
+
 #Call by Level.
-func play_bgm(var what_bgm : AudioStreamOGGVorbis):
+func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int):
 	if what_bgm == null:
 		return
 	
 	var new_bgm_path : String = what_bgm.get_path()
 	
 	if new_bgm_path != current_bgm:
-		bgm_core.volume_db = 0
+		bgm_core.volume_db = volume_db
 		bgm_core.set_stream(what_bgm)
 		bgm_core.play()
 		current_bgm = new_bgm_path

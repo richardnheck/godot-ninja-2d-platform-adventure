@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cave level theme song.ogg-2c17255b98d965fdfc49259a1b106b14.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/cave level theme song.ogg"
+dest_files=[ "res://.import/cave level theme song.ogg-2c17255b98d965fdfc49259a1b106b14.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

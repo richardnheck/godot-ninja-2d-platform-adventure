@@ -8,4 +8,3 @@ pause_mode = 2
 [node name="BackgroundSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -20.264
-autoplay = true
