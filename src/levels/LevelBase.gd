@@ -24,7 +24,11 @@ var screenShake:ScreenShake
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("LevelBase: ready()")
-	print(player_instance)
+	var current_level_path = get_tree().current_scene.filename
+	var bgm = LevelData.get_level_bgm(current_level_path)
+	if bgm != "":
+		Game_AudioManager.play_bgm_by_node_name(bgm)
+	
 	Actions.use_normal_actions()		# Use normal input actions
 		
 	# Spawn the player

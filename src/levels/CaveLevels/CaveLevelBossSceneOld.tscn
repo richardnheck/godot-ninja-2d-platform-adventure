@@ -40,6 +40,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 504, 104 )
+frame = 6
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1592, 224 )
@@ -103,6 +104,7 @@ position = Vector2( 1392, 168 )
 shape = SubResource( 1 )
 script = ExtResource( 8 )
 color = Color( 0.345098, 0.592157, 0.388235, 1 )
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

@@ -13,7 +13,7 @@ func _ready() -> void:
 	boss.set_player(player)
 	boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 	
-	Game_AudioManager.play_bgm_from_player(Game_AudioManager.bgm_cave_level_boss_theme)
+	Game_AudioManager.play_bgm_cave_level_boss()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

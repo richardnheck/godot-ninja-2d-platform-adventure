@@ -282,7 +282,7 @@ tile_data = PoolIntArray( -262047, -536870910, 196608, -196511, -536870910, 1966
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 544, 232 )
-frame = 4
+frame = 16
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 368, 576 )

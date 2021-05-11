@@ -96,6 +96,7 @@ onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
 onready var bgm_property_setter_player : AnimationPlayer = $BGM/BgmCore_DONT_TOUCH_THIS/PropertySetterPlayer
 onready var bgm_cave_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossTheme
 onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
+onready var bgm_main_theme : AudioStreamPlayer = $BGM/Bgm_MainTheme
 
 #Sfx (Sound Effects)
 onready var sfx_character_player_land : AudioStreamPlayer = $SFX/Character/Sfx_PlayerLand
@@ -126,8 +127,16 @@ onready var sfx_ui_basic_blip_select : AudioStreamPlayer = $SFX/UI/Sfx_BasicBlip
 
 #
 #onready var sfx_unc_serious_damage : AudioStreamPlayer = $SFX/Uncategorized/Sfx_SeriousDamage
+func play_bgm_main_theme():
+	self.play_bgm_from_player(self.bgm_main_theme)
+	
+func play_bgm_cave_level_boss():
+	self.play_bgm_from_player(self.bgm_cave_level_boss_theme)
 
-
+func play_bgm_by_node_name(node_name):
+	var bgm_player = get_node("BGM/" + node_name)
+	self.play_bgm_from_player(bgm_player)
+	
 var current_bgm : String #Path
 
 func play_bgm_from_player(bgm_player:AudioStreamPlayer):

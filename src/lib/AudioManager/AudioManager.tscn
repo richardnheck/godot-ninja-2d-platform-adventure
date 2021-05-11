@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/falling-spike.wav" type="AudioStream" id=21]
 [ext_resource path="res://assets/sounds/bgm/cave boss theme.ogg" type="AudioStream" id=22]
 [ext_resource path="res://assets/sounds/bgm/cave level theme song.ogg" type="AudioStream" id=23]
+[ext_resource path="res://assets/sounds/bgm/main theme song (idea #2).ogg" type="AudioStream" id=24]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -132,10 +133,17 @@ anims/Undim = SubResource( 5 )
 [node name="Bgm_CaveLevelBossTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 22 )
 volume_db = -15.0
+bus = "BGM"
 
 [node name="Bgm_CaveLevelTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 23 )
 volume_db = -15.0
+bus = "BGM"
+
+[node name="Bgm_MainTheme" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 24 )
+volume_db = -15.0
+bus = "BGM"
 
 [node name="SFX" type="Node" parent="."]
 

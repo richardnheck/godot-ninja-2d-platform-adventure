@@ -2,17 +2,20 @@ extends Node
 
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
+# The name of the AudioStreamPlayer node of the background music in AudioManager
+const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
+
 var levelsArray = [
-	{ "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn" },
-	{ "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn" },
-	{ "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn"},
-	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn"},
-	{ "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn"},
-	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn"},
-	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn"},
-	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn"},
-	{ "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn"},
-	{ "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn"},
+	{ "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{ "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{ "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{ "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{ "name" : "Cave Level Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
 ];
 
@@ -72,7 +75,11 @@ func goto_next_level() -> void:
 	level_checkpoint_reached = false
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
-	
+func get_level_bgm(level_scene_path) -> String:
+	for i in range(0, levelsArray.size()):
+		if levelsArray[i]["scene_path"] == level_scene_path:
+			return levelsArray[i]["bgm"]
+	return ""
 # https://gdscript.com/how-to-save-and-load-godot-game-data
 # func save():
 #	var file = File.new()
