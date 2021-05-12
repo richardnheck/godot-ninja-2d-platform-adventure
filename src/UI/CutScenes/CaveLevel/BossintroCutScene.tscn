@@ -209,16 +209,18 @@ animation = "awake"
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 96, 112 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 16, 112 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 304, 112 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 11 )]
 position = Vector2( 224, 112 )
+frame = 0
 
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -305,7 +307,7 @@ margin_bottom = 88.0
 position = Vector2( 144, 112 )
 frames = ExtResource( 3 )
 animation = "walk"
-frame = 3
+frame = 2
 playing = true
 centered = false
 flip_h = true

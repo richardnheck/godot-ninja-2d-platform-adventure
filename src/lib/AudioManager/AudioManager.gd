@@ -95,6 +95,7 @@ signal bgm_just_started(bgm_name)
 onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
 onready var bgm_property_setter_player : AnimationPlayer = $BGM/BgmCore_DONT_TOUCH_THIS/PropertySetterPlayer
 onready var bgm_cave_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossTheme
+onready var bgm_cave_level_boss_intro : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossIntro
 onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
 onready var bgm_main_theme : AudioStreamPlayer = $BGM/Bgm_MainTheme
 
@@ -127,9 +128,18 @@ onready var sfx_ui_basic_blip_select : AudioStreamPlayer = $SFX/UI/Sfx_BasicBlip
 
 #
 #onready var sfx_unc_serious_damage : AudioStreamPlayer = $SFX/Uncategorized/Sfx_SeriousDamage
+# Play the main theme from the start of the song
 func play_bgm_main_theme():
 	self.play_bgm_from_player(self.bgm_main_theme)
-	
+
+# Play the main theme but skip the intro i.e start 7.5 second in
+func play_bgm_main_theme_skip_start():
+	self.play_bgm_from_player(self.bgm_main_theme, 7.5)
+
+# Play the cave level boss intro cutscene music 
+func play_cave_level_boss_intro():
+	self.play_bgm_from_player(self.bgm_cave_level_boss_intro)
+		
 func play_bgm_cave_level_boss():
 	self.play_bgm_from_player(self.bgm_cave_level_boss_theme)
 
@@ -139,14 +149,14 @@ func play_bgm_by_node_name(node_name):
 	
 var current_bgm : String #Path
 
-func play_bgm_from_player(bgm_player:AudioStreamPlayer):
+func play_bgm_from_player(var bgm_player:AudioStreamPlayer,var offset:float = 0):
 	var stream = bgm_player.stream
 	var volume_db = bgm_player.volume_db
-	play_bgm(stream, volume_db)
+	play_bgm(stream, volume_db, offset)
 	
 
 #Call by Level.
-func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int):
+func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int, var offset:float = 0):
 	if what_bgm == null:
 		return
 	
@@ -155,7 +165,7 @@ func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int):
 	if new_bgm_path != current_bgm:
 		bgm_core.volume_db = volume_db
 		bgm_core.set_stream(what_bgm)
-		bgm_core.play()
+		bgm_core.play(offset)
 		current_bgm = new_bgm_path
 		emit_signal("bgm_just_started", what_bgm.get_path().replace("res://Audio/Bgm/", "").replace(".ogg", ""))
 

@@ -7,6 +7,8 @@ export(String, FILE) var intro_scene_path:String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Game_AudioManager.play_bgm_main_theme_skip_start()
+	
 	var levelsCount = LevelData.get_levels().size()
 	levelsCount = levelsCount - 1;	 # Don't use boss scene
 	for levelIndex in range(0, levelsCount):

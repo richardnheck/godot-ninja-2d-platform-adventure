@@ -8,7 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Game_AudioManager.play_bgm_main_theme_skip_start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

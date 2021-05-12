@@ -13,6 +13,8 @@ signal continue_sig
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Game_AudioManager.play_cave_level_boss_intro()
+	
 	cut_scene_base.connect("on_continue", self, "_on_continue")
 	
 	# Set the camera for the screen shake
