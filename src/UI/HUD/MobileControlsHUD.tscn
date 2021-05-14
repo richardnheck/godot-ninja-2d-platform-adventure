@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/Controls/SoundButton.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 115 )
@@ -141,10 +142,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -25.5
-margin_top = -7.0
-margin_right = 25.5
-margin_bottom = 7.0
+margin_left = -24.0
+margin_top = -32.0
+margin_right = 27.0
+margin_bottom = -18.0
 text = "PAUSED"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -162,17 +163,28 @@ __meta__ = {
 }
 
 [node name="BackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 100.0
-margin_right = 116.0
+margin_left = 132.0
+margin_right = 148.0
 next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"
 
 [node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 120.0
-margin_right = 136.0
+margin_left = 152.0
+margin_right = 168.0
 
 [node name="RetryButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 140.0
-margin_right = 156.0
+margin_left = 172.0
+margin_right = 188.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PauseOverlay"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -16.0
+alignment = 1
+
+[node name="SoundButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 12 )]
+margin_left = 152.0
+margin_right = 168.0
 
 [connection signal="button_up" from="Control/PauseButton" to="." method="_on_PauseButton_button_up"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]

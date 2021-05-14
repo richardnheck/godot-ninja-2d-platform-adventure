@@ -89,7 +89,19 @@
 
 extends Node
 
+const MST_BUS = 0; 	# Master Bus
+const SFX_BUS = 1;  # Sound FX Bus
+const BGM_BUS = 2;  # Background Music Bus
+
 signal bgm_just_started(bgm_name)
+
+func toggle_sound_fx():
+	print(AudioServer.get_bus_index("SFX"))
+	AudioServer.set_bus_mute(SFX_BUS, not AudioServer.is_bus_mute(SFX_BUS))
+
+func toggle_music():
+	AudioServer.set_bus_mute(BGM_BUS, not AudioServer.is_bus_mute(BGM_BUS))
+
 
 #BGM (Background Music)
 onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
