@@ -96,7 +96,6 @@ const BGM_BUS = 2;  # Background Music Bus
 signal bgm_just_started(bgm_name)
 
 func toggle_sound_fx():
-	print(AudioServer.get_bus_index("SFX"))
 	AudioServer.set_bus_mute(SFX_BUS, not AudioServer.is_bus_mute(SFX_BUS))
 
 func toggle_music():
