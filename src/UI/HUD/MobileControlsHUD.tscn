@@ -148,7 +148,6 @@ __meta__ = {
 }
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.247059 )
@@ -197,12 +196,14 @@ margin_bottom = 17.0
 alignment = 1
 
 [node name="SoundButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 12 )]
-margin_left = 142.0
+margin_left = 140.0
 margin_right = 158.0
+margin_bottom = 18.0
 
 [node name="MusicButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 13 )]
 margin_left = 162.0
-margin_right = 178.0
+margin_right = 180.0
+margin_bottom = 18.0
 
 [connection signal="button_up" from="Control/PauseButton" to="." method="_on_PauseButton_button_up"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]

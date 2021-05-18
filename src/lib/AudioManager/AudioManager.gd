@@ -101,7 +101,12 @@ func toggle_sound_fx():
 func toggle_music():
 	AudioServer.set_bus_mute(BGM_BUS, not AudioServer.is_bus_mute(BGM_BUS))
 
+func is_music_muted():
+	return AudioServer.is_bus_mute(BGM_BUS)
 
+func is_sound_fx_muted():
+	return AudioServer.is_bus_mute(SFX_BUS)
+		
 #BGM (Background Music)
 onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
 onready var bgm_property_setter_player : AnimationPlayer = $BGM/BgmCore_DONT_TOUCH_THIS/PropertySetterPlayer
