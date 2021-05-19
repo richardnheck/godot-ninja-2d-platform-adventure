@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "TextureButton",
+"class": "BackButton",
+"language": "GDScript",
+"path": "res://src/UI/Controls/PlayButton.gd"
+}, {
 "base": "CanvasLayer",
 "class": "CutSceneBase",
 "language": "GDScript",
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://src/actors/CaveLevelBoss/SlamBlast.gd"
 } ]
 _global_script_class_icons={
+"BackButton": "",
 "CutSceneBase": "",
 "FadeScreen": "",
 "Geometry2D": "",

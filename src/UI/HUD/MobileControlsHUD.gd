@@ -6,8 +6,8 @@ onready var pause_overlay:ColorRect = $PauseOverlay
 var paused: = false setget set_paused
 
 func _ready() -> void:
-	pass
-	#ause_overlay.visible = false
+	# Ensure that the pause overlay is always hidden
+	pause_overlay.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

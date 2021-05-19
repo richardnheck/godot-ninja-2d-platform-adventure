@@ -1,5 +1,6 @@
 tool
 extends TextureButton
+class_name BackButton
 
 export(String, FILE) var next_scene_path:String = ""
 export(String) var sound:String = ""
