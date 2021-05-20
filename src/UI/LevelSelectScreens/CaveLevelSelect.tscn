@@ -55,17 +55,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BottomHBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="BackButton" parent="Control" instance=ExtResource( 3 )]
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -24.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BackButton" parent="Control/BottomHBoxContainer" instance=ExtResource( 3 )]
-margin_bottom = 24.0
+margin_left = 5.0
+margin_top = -20.0
 next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 
 [node name="IntroButton" type="Button" parent="Control"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/art/ui/play-button1.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/ui/play-button2.png" type="Texture" id=2]
+[ext_resource path="res://src/UI/Controls/PlayButton.gd" type="Script" id=3]
+
+[node name="MainPlayButton" type="TextureButton"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

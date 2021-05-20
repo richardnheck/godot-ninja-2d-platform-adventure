@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/UI/Controls/ChangeSceneButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/dixfont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/UI/MainScreen/ideas/bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
+[ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
 
 [node name="MainScreen" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -53,20 +54,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -64.0
-margin_bottom = -44.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.5
+margin_top = -22.0
+margin_right = 19.5
+margin_bottom = 22.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChangeSceneButton" parent="Control/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 152.0
-margin_right = 168.0
+[node name="MainPlayButton" parent="Control/VBoxContainer" instance=ExtResource( 7 )]
+margin_right = 39.0
 margin_bottom = 20.0
 next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 sound = "SFX/UI/Sfx_GameStart"
+
+[node name="SettingsButton" parent="Control/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 24.0
+margin_right = 39.0
+margin_bottom = 44.0
