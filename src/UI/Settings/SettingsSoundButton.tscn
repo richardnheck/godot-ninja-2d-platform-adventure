@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/art/ui/sound-button1.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/Controls/SoundButton.gd" type="Script" id=3]
+
+[node name="SettingsSoundButton" type="TextureButton"]
+margin_right = 16.0
+margin_bottom = 16.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+NORMAL_TEXTURE = "res://src/UI/Settings/settings-sound-btn1.png"
+NORMAL_PRESSED_TEXTURE = "res://src/UI/Settings/settings-sound-btn2.png"
+MUTED_TEXTURE = "res://src/UI/Settings/settings-sound-btn3.png"
+MUTED_PRESSED_TEXTURE = "res://src/UI/Settings/settings-sound-btn4.png"
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]

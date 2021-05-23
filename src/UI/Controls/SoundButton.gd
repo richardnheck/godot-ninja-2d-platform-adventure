@@ -1,9 +1,9 @@
 extends TextureButton
 
-const NORMAL_TEXTURE ="res://assets/art/ui/sound-button1.png"
-const NORMAL_PRESSED_TEXTURE ="res://assets/art/ui/sound-button2.png"
-const MUTED_TEXTURE ="res://assets/art/ui/sound-button3.png"
-const MUTED_PRESSED_TEXTURE ="res://assets/art/ui/sound-button4.png"
+export var NORMAL_TEXTURE ="res://assets/art/ui/sound-button1.png"
+export var NORMAL_PRESSED_TEXTURE ="res://assets/art/ui/sound-button2.png"
+export var MUTED_TEXTURE ="res://assets/art/ui/sound-button3.png"
+export var MUTED_PRESSED_TEXTURE ="res://assets/art/ui/sound-button4.png"
 
 func _ready() -> void:
 	if not Game_AudioManager.is_sound_fx_muted():
