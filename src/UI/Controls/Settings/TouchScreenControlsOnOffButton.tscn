@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/Controls/Settings/settings-button-icons.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/Controls/Settings/TouchScreenControlsOnOffButton.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 30, 14, 14 )
+
+[node name="TouchScreenControlsOnOffButton" type="Button"]
+margin_right = 16.0
+margin_bottom = 16.0
+focus_mode = 0
+size_flags_vertical = 3
+enabled_focus_mode = 0
+icon = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

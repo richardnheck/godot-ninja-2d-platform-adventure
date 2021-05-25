@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
 
 [node name="MainScreen" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -78,3 +79,8 @@ sound = "SFX/UI/Sfx_GameStart"
 margin_top = 24.0
 margin_right = 39.0
 margin_bottom = 44.0
+
+[node name="Settings" parent="." instance=ExtResource( 8 )]
+position = Vector2( 19, 5 )
+
+[connection signal="button_up" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_button_up"]
