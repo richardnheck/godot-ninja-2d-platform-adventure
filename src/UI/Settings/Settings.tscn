@@ -61,4 +61,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="Control/BackButton" to="." method="_on_BackButton_button_up"]
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_BackButton_pressed"]

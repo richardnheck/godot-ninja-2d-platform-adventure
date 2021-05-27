@@ -17,7 +17,7 @@ func _ready() -> void:
 	_update_icon()
 
 
-func _on_button_up() -> void:
+func _on_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	Game_AudioManager.toggle_sound_fx()
 	_update_icon()

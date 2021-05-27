@@ -76,6 +76,7 @@ __meta__ = {
 
 [node name="LeftTouchScreenButton" type="TouchScreenButton" parent="Control/HBoxContainerLeft"]
 position = Vector2( 0, 35 )
+z_as_relative = false
 normal = ExtResource( 4 )
 shape = SubResource( 1 )
 passby_press = true
@@ -214,11 +215,12 @@ margin_left = 162.0
 margin_right = 180.0
 margin_bottom = 18.0
 
-[connection signal="button_up" from="Control/PauseButton" to="." method="_on_PauseButton_button_up"]
+[connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/RightButton" to="." method="_on_RightButton_gui_input"]
 [connection signal="input_event" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_input_event"]
 [connection signal="mouse_entered" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_mouse_entered"]
 [connection signal="gui_input" from="Control/TextureRect" to="." method="_on_TextureRect_gui_input"]
-[connection signal="button_up" from="PauseOverlay/HBoxContainer/PausedPlayButton" to="." method="_on_PausedPlayButton_button_up"]
-[connection signal="button_up" from="PauseOverlay/HBoxContainer/RetryButton" to="." method="_on_RetryButton_button_up"]
+[connection signal="pressed" from="PauseOverlay/HBoxContainer/BigBackButton" to="PauseOverlay/HBoxContainer/BigBackButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseOverlay/HBoxContainer/PausedPlayButton" to="." method="_on_PausedPlayButton_pressed"]
+[connection signal="pressed" from="PauseOverlay/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]

@@ -16,6 +16,6 @@ func _ready() -> void:
 #	pass
 
 
-func _on_BackButton_button_up() -> void:
+func _on_BackButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	visible = false

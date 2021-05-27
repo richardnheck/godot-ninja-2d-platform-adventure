@@ -59,6 +59,7 @@ func _ready() -> void:
 
 	if door:
 		door.close()
+		
 
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:
@@ -130,7 +131,7 @@ func _on_Player_died() -> void:
 func _on_CheckPoint_reached() -> void:
 	LevelData.level_checkpoint_reached = true
 
-
+	
 #-------------------------------------------
 # Helper Functions
 #-------------------------------------------
