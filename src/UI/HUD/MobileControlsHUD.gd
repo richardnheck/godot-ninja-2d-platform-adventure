@@ -2,6 +2,10 @@ extends CanvasLayer
 
 onready var scene_tree: = get_tree()
 onready var pause_overlay:ColorRect = $PauseOverlay
+onready var left_touch_screen_button = $Control/HBoxContainerLeft/LeftTouchScreenButton
+onready var right_touch_screen_button = $Control/HBoxContainerLeft/RightTouchScreenButton
+onready var jump_touch_screen_button = $Control/HBoxContainerRight/JumpTouchScreenButton
+onready var pause_button = $Control/PauseButton
 
 var paused: = false setget set_paused
 
@@ -19,14 +23,13 @@ func _ready() -> void:
 #	
 func _on_controls_changed() -> void:
 	var controls_visible = Settings.touch_screen_controls_visible
-	$Control/HBoxContainerLeft/LeftTouchScreenButton.visible = controls_visible
-	$Control/HBoxContainerLeft/RightTouchScreenButton.visible = controls_visible
-	$Control/HBoxContainerRight/JumpTouchScreenButton.visible = controls_visible
+	_show_touch_screen_controls(controls_visible)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		self.paused = not paused
 		scene_tree.set_input_as_handled()
+
 
 func set_paused(value:bool) -> void:
 	print ("set_paused: " + str(value))
@@ -34,13 +37,34 @@ func set_paused(value:bool) -> void:
 	scene_tree.paused = value
 	pause_overlay.visible = value
 	
+	
 func _on_PauseButton_pressed() -> void:
-	Game_AudioManager.sfx_ui_pause.play()	
+	Game_AudioManager.sfx_ui_pause.play()
+	
+	# Hide the pause button so it does confuse user when pause screen is showing
+	pause_button.visible = false
+		
+	# Pause	
 	self.paused = true
 
+
+func _on_CloseButton_pressed() -> void:
+	_on_PausedPlayButton_pressed()
+
+
+func _show_touch_screen_controls(controls_visible:bool):
+	left_touch_screen_button.visible = controls_visible
+	right_touch_screen_button.visible = controls_visible
+	jump_touch_screen_button.visible = controls_visible
+	
 	
 func _on_PausedPlayButton_pressed() -> void:
-	Game_AudioManager.sfx_ui_basic_blip_select.play()
+	Game_AudioManager.sfx_ui_basic_blip_select.play()	
+	
+	# Show the pause button again when leaving pause
+	pause_button.visible = true
+	
+	# Unpause
 	self.paused = false
 
 

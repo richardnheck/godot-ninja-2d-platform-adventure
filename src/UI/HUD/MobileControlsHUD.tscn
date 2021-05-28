@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/UI/Controls/PauseButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/Controls/RetryButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/Controls/PausedPlayButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/Controls/CloseButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
@@ -159,6 +160,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CloseButton" parent="PauseOverlay" instance=ExtResource( 8 )]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = 18.0
+
 [node name="PausedText" type="Sprite" parent="PauseOverlay"]
 position = Vector2( 160, 90 )
 texture = ExtResource( 14 )
@@ -221,6 +231,7 @@ margin_bottom = 18.0
 [connection signal="input_event" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_input_event"]
 [connection signal="mouse_entered" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_mouse_entered"]
 [connection signal="gui_input" from="Control/TextureRect" to="." method="_on_TextureRect_gui_input"]
+[connection signal="pressed" from="PauseOverlay/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="PauseOverlay/HBoxContainer/BigBackButton" to="PauseOverlay/HBoxContainer/BigBackButton" method="_on_pressed"]
 [connection signal="pressed" from="PauseOverlay/HBoxContainer/PausedPlayButton" to="." method="_on_PausedPlayButton_pressed"]
 [connection signal="pressed" from="PauseOverlay/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]

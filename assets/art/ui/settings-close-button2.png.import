@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pause-button.png-8420ab9a3689a3e7f26d35dc243dcdc1.stex"
+path="res://.import/settings-close-button2.png-8301137ac11db8682b9f9f3e3595a2ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/pause-button.png"
-dest_files=[ "res://.import/pause-button.png-8420ab9a3689a3e7f26d35dc243dcdc1.stex" ]
+source_file="res://assets/art/ui/settings-close-button2.png"
+dest_files=[ "res://.import/settings-close-button2.png-8301137ac11db8682b9f9f3e3595a2ae.stex" ]
 
 [params]
 
