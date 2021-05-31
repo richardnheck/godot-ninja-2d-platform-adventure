@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -11,10 +11,14 @@
 [ext_resource path="res://assets/art/ui/jump-mobile-button.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/ui/left-mobile-button.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/ui/right-mobile-button.png" type="Texture" id=11]
-[ext_resource path="res://src/UI/Controls/SoundButton.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/UI/Controls/MusicButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/UI/Controls/Settings/TouchScreenControlsOnOffButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/UI/HUD/paused-text.png" type="Texture" id=14]
 [ext_resource path="res://src/UI/Controls/BigBackButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/UI/Controls/Settings/SoundButton.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/UI/Controls/Settings/MusicButton.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/themes/pause/pause_theme.tres" type="Theme" id=18]
+[ext_resource path="res://assets/themes/pause/touch-screen-controls-text.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 115 )
@@ -209,21 +213,38 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -53.0
-margin_bottom = -35.0
+margin_bottom = -33.0
+theme = ExtResource( 18 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 12 )]
-margin_left = 140.0
-margin_right = 158.0
-margin_bottom = 18.0
+[node name="SoundButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 16 )]
+margin_left = 123.0
+margin_right = 141.0
+margin_bottom = 20.0
 
-[node name="MusicButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 13 )]
-margin_left = 162.0
-margin_right = 180.0
-margin_bottom = 18.0
+[node name="MusicButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 17 )]
+margin_left = 145.0
+margin_right = 163.0
+margin_bottom = 20.0
+
+[node name="EmptySpacerLabel" type="Label" parent="PauseOverlay/HBoxContainer2"]
+margin_left = 167.0
+margin_right = 175.0
+margin_bottom = 20.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 13 )
+
+[node name="TouchScreenControlsOnOffButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 12 )]
+margin_left = 179.0
+margin_right = 197.0
+margin_bottom = 20.0
+
+[node name="Sprite" type="Sprite" parent="PauseOverlay/HBoxContainer2"]
+position = Vector2( 213.883, 10.4848 )
+texture = ExtResource( 19 )
 
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="gui_input" from="Control/HBoxContainerLeft/LeftButton" to="." method="_on_LeftButton_gui_input"]
