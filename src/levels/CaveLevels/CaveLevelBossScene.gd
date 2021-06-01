@@ -2,7 +2,7 @@ extends LevelBase
 
 onready var boss:KinematicBody2D = $Boss;
 
-
+var next_boss_state = null
 var boss_speed = 20;
 
 # Called when the node enters the scene tree for the first time.
@@ -18,28 +18,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-#	var ap = boss.position.distance_to(player.position)
-#	print(ap)
-#	if ap > 0:
-#		boss.direction = 1
-#	elif ap < 0:
-#		boss.direction = -1
-#	else:
-#		boss.direction = 0
-	var ap = boss.position.direction_to(player.position)
-	if ap.x > 0:
-		boss.direction = 1
-		boss.set_sprite_animation("look-right")
-	elif ap.x < 0:
-		boss.direction = -1
-		boss.set_sprite_animation("look-left")
-	else:
-		boss.direction = 0
-#
-	#if boss.direction_to(player):
-		#pass
+	pass
+	
 
-var next_boss_state = null
 
 func _on_FallingSpikesArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):

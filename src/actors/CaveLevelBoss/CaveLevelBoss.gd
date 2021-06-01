@@ -42,6 +42,7 @@ var state_changed = false
 
 var player:KinematicBody2D = null
 var ground_global_position:Vector2 = Vector2.ZERO
+var can_change_direction = true   # Indicates whether boss can change direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,14 +65,19 @@ func set_state(state):
 		current_state = state
 		state_changed = true
 
+
 func set_player(player_ref):
 	player = player_ref;
+
 	
 func _just_entered_state():
 	return state_changed
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	_update_direction()
+	
 	match current_state:
 		STATE_UP_DOWN:
 			var velx = speed * direction
@@ -131,6 +137,32 @@ func _process(delta: float) -> void:
 					emit_signal("state_cycle_finished", STATE_RUN_AND_JUMP)
 					landing = false
 
+
+
+func _update_direction() -> void:
+	if can_change_direction:
+		var direction_before = direction
+		var ap = position.direction_to(player.position)
+		if ap.x > 0:
+			direction = 1
+			set_sprite_animation("look-right")
+		elif ap.x < 0:
+			direction = -1
+			set_sprite_animation("look-left")
+		else:
+			direction = 0
+			
+		if direction != direction_before:
+			# The direction has changed so start cool timer to prevent
+			# direction from being changed again too quickly
+			can_change_direction = false
+			$ChangeDirectionCoolOffTimer.start()
+
+
+func _on_ChangeDirectionCoolOffTimer_timeout() -> void:
+	can_change_direction = true
+
+
 func _shake_screen() -> void:
 	get_parent().get_node("ScreenShake").screen_shake(0.5,2,100)		
 
@@ -140,6 +172,7 @@ func _spawn_slam_blast() -> void:
 	instance.global_position = global_position
 	get_parent().add_child(instance)		
 	instance.set_direction(self.direction)
+
 
 func _spawn_falling_spikes_array() -> void:
 	var spikes_instance = preload("res://src/actors/CaveLevelBoss/BossFallingSpikeArray.tscn").instance()
@@ -162,16 +195,17 @@ func _spawn_falling_spikes_array() -> void:
 	
 	# add the instance and trigger the spikes
 	get_parent().add_child(spikes_instance)
+
 		
 func _on_falling_spikes_finished():
 	if current_state == STATE_UP_DOWN_SLAM:
 		emit_signal("state_cycle_finished", STATE_UP_DOWN_SLAM)
 		#_spawn_falling_spikes_array()
+
 	
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
-
 
 
 func _on_RunAndJumpTimer_timeout() -> void:
@@ -197,3 +231,5 @@ func _on_TouchFloorCoolOffTimer_timeout() -> void:
 
 func set_sprite_animation(animation) -> void:
 	animated_sprite.animation = animation
+
+

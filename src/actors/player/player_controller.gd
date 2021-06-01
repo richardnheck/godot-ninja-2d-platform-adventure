@@ -65,6 +65,10 @@ func set_dead(value):
 	set_process_input(not value)
 	set_physics_process(not value)
 	collision_shape.set_deferred("disabled", true)
+	
+	
+func is_dead() -> bool:
+	return dead
 
 func do_landing():
 	# Player has landed
@@ -87,7 +91,7 @@ func on_jump():
 	
 func on_wall_jump():
 	Game_AudioManager.sfx_character_player_jump.play()
-	
+
 	
 func on_air_jump():
 	Game_AudioManager.sfx_character_player_air_jump.play()

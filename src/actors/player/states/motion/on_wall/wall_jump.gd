@@ -3,8 +3,8 @@ extends "../motion.gd"
 export var wall_jump_power = 295
 export var wall_jump_horizontal_speed = 155
 
-onready var air_jump_effect_scene = preload("res://src/actors/player/effects/air-jump/AirJumpEffect.tscn")
-
+#onready var air_jump_effect_scene = preload("res://src/actors/player/effects/air-jump/AirJumpEffect.tscn")
+onready var jump_effect_scene = preload("res://src/actors/player/effects/jump/JumpEffect.tscn")
 
 func initialize(speed, velocity):
 	pass
@@ -17,19 +17,37 @@ func enter():
 	
 	owner.on_wall_jump()
 	
-	var instance = air_jump_effect_scene.instance()
+	var instance = jump_effect_scene.instance()
 	var rotation = 0
 	var offset = 0
+	var yoffset = 0
 	if next_to_left_wall(): 
 		rotation = 90
-		offset = -20
+		offset = -6
+		yoffset = 8
 	if next_to_right_wall(): 
 		rotation = -90
-		offset = 22
-	instance.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16)
+		offset = 6
+	instance.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16+yoffset)
 	instance.rotation_degrees = rotation
 	instance.play()
 	get_parent().add_child(instance)	
+	
+#	var instance = air_jump_effect_scene.instance()
+#	var rotation = 0
+#	var offset = 0
+#	if next_to_left_wall(): 
+#		rotation = 90
+#		offset = -20
+#	if next_to_right_wall(): 
+#		rotation = -90
+#		offset = 22
+#	instance.global_position = Vector2(owner.global_position.x+offset, owner.global_position.y-16)
+#	instance.rotation_degrees = rotation
+#	instance.play()
+#	get_parent().add_child(instance)	
+	
+	
 	
 
 func update(delta):
