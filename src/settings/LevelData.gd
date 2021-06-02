@@ -1,59 +1,51 @@
 extends Node
 
+const WORLD1 = 1	# Cave Levels
+const WORLD2 = 2
+const WORLD3 = 3
+
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
 
+
 var levelsArray = [
-	{ "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
-	{ "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
-	{ "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{ "name" : "Cave Level Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
+	{"world": WORLD1, "name" : "Learning Mechanics",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{"world": WORLD1, "name" : "Art Of Jumping" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Short and Spikey", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Of Wall and Slide", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Crab Apple Crumble", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Claustrophic Caverns #1", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Claustrophic Caverns #2", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Cave Level Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
 ];
 
-	
-var levelsArray2 = [
-	CAVE_LEVELS_PATH + "LearningMechanics.tscn",
-	CAVE_LEVELS_PATH + "ArtOfJumping.tscn",
-	CAVE_LEVELS_PATH + "GoAheadJump.tscn",
-	CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn",
-	CAVE_LEVELS_PATH + "ShapeLikeSWithSpikeyRocks.tscn",
-	CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn",
-	CAVE_LEVELS_PATH + "OfWallAndSlide.tscn",
-	CAVE_LEVELS_PATH + "StairwayOfTrouble.tscn",
-	CAVE_LEVELS_PATH + "ClaustrophicCaverns.tscn",
-	CAVE_LEVELS_PATH + "BossScene.tscn",
-	
-	CAVE_LEVELS_PATH + "LearnWallJumpImproved.tscn",
-	CAVE_LEVELS_PATH + "LearnCrumblingRocks.tscn",
-	CAVE_LEVELS_PATH + "CrumblingRocksLevel.tscn",
-	"res://src/levels/TmpSpikeyRocksLevel.tscn",
-	"res://src/levels/TmpBambooSpikesLevel.tscn",
-	CAVE_LEVELS_PATH + "Platforms1.tscn",
-	CAVE_LEVELS_PATH + "1.tscn",
-	CAVE_LEVELS_PATH + "ClaustrophobicClimb.tscn",
-	
-	
-	#"res://src/levels/Level2CuteCavesTheme.tscn",
-	#"res://src/levels/Level2.tscn",
-	#"res://src/levels/Level3.tscn",
-	#"res://src/levels/WallJumpTestLevel.tscn"
-]
 
 var level_checkpoint_reached = false
 
 var current_level_index = 0;
 
+# Get all levels
 func get_levels() -> Array:
 	return levelsArray
+
+
+# Get levels by world
+func get_levels_by_world(world) -> Array:
+	if world == WORLD1:
+		return ArrayUtil.filter(levelsArray, funcref(self, "is_world1_level"))
+	else:
+		return []
+
+
+# Filter func to return only world one levels
+func is_world1_level(levelObj) -> bool:
+	return levelObj["world"] == WORLD1
+	
 
 func goto_boss_level() -> void:
 	for i in range(0, levelsArray.size()):

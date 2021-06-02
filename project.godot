@@ -84,6 +84,8 @@ LevelData="*res://src/settings/LevelData.gd"
 Global="*res://src/UI/Global.tscn"
 Game_AudioManager="*res://src/lib/AudioManager/AudioManager.tscn"
 Settings="*res://src/settings/Settings.gd"
+ArrayUtil="*res://src/utility/ArrayUtil.gd"
+GameState="*res://src/settings/GameState.gd"
 
 [display]
 
