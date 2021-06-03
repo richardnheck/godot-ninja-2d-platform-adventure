@@ -90,27 +90,34 @@ func _spawn_player() -> KinematicBody2D:
 	return player_instance
 
 
+
+
+func _on_Door_player_entered() -> void:
+	Game_AudioManager.sfx_ui_level_clear.play()
+	player.celebrate();
+	yield(get_tree().create_timer(2), "timeout")
+	_progress_player_and_goto_next_level()
+
+
+func _on_EndArea_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		_progress_player_and_goto_next_level()
+		
+	
+func _progress_player_and_goto_next_level() -> void:
+	GameState.progress_current_level(LevelData.current_level_index + 1)
+	goto_next_level()
+	
+	
 func goto_next_level() -> void:
 	LevelData.goto_next_level();
 		
-
+			
 func _on_Key_captured() -> void:
 	if door:
 		door.open()
 	
 	
-func _on_Door_player_entered() -> void:
-	Game_AudioManager.sfx_ui_level_clear.play()
-	player.celebrate();
-	yield(get_tree().create_timer(2), "timeout")
-	goto_next_level()
-
-
-func _on_EndArea_body_entered(body: Node) -> void:
-	if body.is_in_group(Constants.GROUP_PLAYER):
-		goto_next_level()
-
-
 func _on_Player_collided(collision: KinematicCollision2D) -> void:
 	# Confirm the colliding body is a TileMap
 	if collision.collider is TileMap:

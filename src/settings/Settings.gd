@@ -3,6 +3,7 @@ extends Node
 signal controls_changed
 
 var touch_screen_controls_visible:bool = true setget set_touch_screen_controls_visible, get_touch_screen_controls_visible
+var cheat_mode:bool = false setget set_cheat_mode, get_cheat_mode
 
 func set_touch_screen_controls_visible(new_value) -> void: 
 	touch_screen_controls_visible = new_value
@@ -11,6 +12,13 @@ func set_touch_screen_controls_visible(new_value) -> void:
 func get_touch_screen_controls_visible() -> bool:
 	return touch_screen_controls_visible 
 	
+	
+func set_cheat_mode(new_value) -> void: 
+	cheat_mode = new_value
+
+func get_cheat_mode() -> bool:
+	return cheat_mode
+		
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
