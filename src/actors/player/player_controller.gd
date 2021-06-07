@@ -107,11 +107,13 @@ func on_wall_land():
 
 
 func on_wall_slide_start():
-	Game_AudioManager.sfx_character_player_wall_slide.play()
+	pass
+	#Game_AudioManager.sfx_character_player_wall_slide.play()
 	
 	
 func on_wall_slide_end():
-	Game_AudioManager.sfx_character_player_wall_slide.stop()
+	pass
+	#Game_AudioManager.sfx_character_player_wall_slide.stop()
 
 
 func set_look_direction(value):

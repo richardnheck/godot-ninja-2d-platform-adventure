@@ -47,18 +47,22 @@ func is_world1_level(levelObj) -> bool:
 	return levelObj["world"] == WORLD1
 	
 
+# Goto the bos level
 func goto_boss_level() -> void:
 	for i in range(0, levelsArray.size()):
 		if levelsArray[i].has("is_boss"):
 			goto_level(i)
-	 
+	
+	
+# Goto the level specified by its index 
 func goto_level(levelIndex) -> void:
 	var level = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
 	level_checkpoint_reached = false
 	get_tree().change_scene(level.scene_path)
 
-
+ 
+# Goto the next level
 func goto_next_level() -> void:
 	print("goto_next_level")
 	if current_level_index < levelsArray.size() - 1:
@@ -72,11 +76,16 @@ func goto_next_level() -> void:
 	level_checkpoint_reached = false
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
+
+# Get the background music (bgm) for the specified level
 func get_level_bgm(level_scene_path) -> String:
 	for i in range(0, levelsArray.size()):
 		if levelsArray[i]["scene_path"] == level_scene_path:
 			return levelsArray[i]["bgm"]
 	return ""
+	
+	
+	
 # https://gdscript.com/how-to-save-and-load-godot-game-data
 # func save():
 #	var file = File.new()

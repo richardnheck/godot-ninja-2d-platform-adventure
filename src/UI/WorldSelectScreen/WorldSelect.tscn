@@ -27,7 +27,9 @@ centered = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = -20.0
+margin_top = -21.0
+margin_right = 21.0
+margin_bottom = -5.0
 next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -73,5 +75,4 @@ texture_disabled = ExtResource( 7 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 9 )]
 
-[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]

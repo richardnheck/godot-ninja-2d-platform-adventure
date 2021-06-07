@@ -111,6 +111,5 @@ frame = 0
 
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
 
-[connection signal="pressed" from="Control/BackButton" to="Control/BackButton" method="_on_pressed"]
 [connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]
 [connection signal="button_up" from="Control/BossButton" to="." method="_on_BossButton_button_up"]

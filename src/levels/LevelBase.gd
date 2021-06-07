@@ -43,7 +43,9 @@ func _ready() -> void:
 		key.connect("captured", self, "_on_Key_captured")
 	if door:
 		door.connect("player_entered", self, "_on_Door_player_entered");
+	
 	if(check_point != null):
+		check_point.set_on(LevelData.level_checkpoint_reached)
 		check_point.connect("reached", self, "_on_CheckPoint_reached")
 	
 	fadeScreen = fadeScreenScene.instance()

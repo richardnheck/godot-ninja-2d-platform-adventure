@@ -8,6 +8,10 @@ var sliding = false
 # This is required to know because it is possible to have exited already when the timer yields
 var in_state: bool = false
 
+# This mode means there wall grab is permanent
+# Then to slide release jump while holding against the wall
+var sliding_mode_new = true
+
 func enter():
 	in_state = true
 	speed = 0.0
@@ -18,7 +22,9 @@ func enter():
 	sliding = false	
 	owner.get_node("AnimatedSprite").play("slide")
 	yield(get_tree().create_timer(wall_clamp_time), "timeout")
-	sliding = true
+	if !sliding_mode_new:
+		# Enable sliding after a period of time
+		sliding = true
 	
 	if in_state:
 		# still in the state after timeout so handle slide start (i.e. play sound)
@@ -49,8 +55,15 @@ func update(_delta):
 		if owner.is_on_floor() or not next_to_wall():
 			goto_move_state()
 	else:
-		# No longer holding jump so end slide
-		goto_move_state()
+		if !sliding_mode_new:
+			goto_move_state()
+		else:
+			# No longer holding jump so end slide
+			if (Input.is_action_pressed(Actions.get_action_move_right()) and next_to_right_wall() or (Input.is_action_pressed(Actions.get_action_move_left()) and next_to_left_wall())):
+				velocity.y += wall_slide_gravity
+				move(velocity)	
+			else:
+				goto_move_state()
 		
 
 func goto_move_state():

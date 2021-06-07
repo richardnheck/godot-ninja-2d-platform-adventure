@@ -34,7 +34,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 2384, 128 )
-frame = 3
+frame = 23
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 3616, 160 )
@@ -69,6 +69,7 @@ position = Vector2( 48, 208 )
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
