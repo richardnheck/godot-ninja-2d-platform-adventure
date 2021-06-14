@@ -67,7 +67,7 @@ anchor_bottom = 1.0
 margin_left = -18.0
 margin_top = 2.0
 margin_right = -2.0
-margin_bottom = 18.0
+margin_bottom = -158.0
 
 [node name="HBoxContainerLeft" type="HBoxContainer" parent="Control"]
 anchor_top = 1.0
@@ -171,7 +171,7 @@ anchor_bottom = 1.0
 margin_left = -18.0
 margin_top = 2.0
 margin_right = -2.0
-margin_bottom = 18.0
+margin_bottom = -158.0
 
 [node name="PausedText" type="Sprite" parent="PauseOverlay"]
 position = Vector2( 160, 90 )
