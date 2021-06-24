@@ -68,7 +68,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ninja 2d platformer adventure"
+config/name="Castle Oni"
 run/main_scene="res://src/UI/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
 

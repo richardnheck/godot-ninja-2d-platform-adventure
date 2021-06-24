@@ -1,13 +1,31 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/dixfont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/UI/MainScreen/ideas/bg.png" type="Texture" id=4]
+[ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hover"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/title-screen-text:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.812253, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+}
 
 [node name="MainScreen" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -28,6 +46,11 @@ __meta__ = {
 [node name="bg" type="Sprite" parent="Control/Sprite"]
 texture = ExtResource( 4 )
 centered = false
+
+[node name="title-screen-text" type="Sprite" parent="Control"]
+position = Vector2( 159, 87.1999 )
+texture = ExtResource( 9 )
+offset = Vector2( 0, -9.58405 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -61,9 +84,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -19.5
-margin_top = -22.0
+margin_top = 38.0
 margin_right = 19.5
-margin_bottom = 22.0
+margin_bottom = 82.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,5 +106,11 @@ margin_bottom = 44.0
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 19, 5 )
+
+[node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Hover"
+playback_process_mode = 0
+method_call_mode = 1
+anims/Hover = SubResource( 1 )
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
