@@ -15,14 +15,14 @@ resource_name = "Hover"
 length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Control/title-screen-text:offset")
+tracks/0/path = NodePath("TitleScreenText:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 0.812253, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
 }
@@ -32,6 +32,14 @@ script = ExtResource( 6 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 5 )]
 
+[node name="bg" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="TitleScreenText" type="Sprite" parent="."]
+position = Vector2( 159, 83.8325 )
+texture = ExtResource( 9 )
+
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,17 +48,6 @@ theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="Control"]
-
-[node name="bg" type="Sprite" parent="Control/Sprite"]
-texture = ExtResource( 4 )
-centered = false
-
-[node name="title-screen-text" type="Sprite" parent="Control"]
-position = Vector2( 159, 87.1999 )
-texture = ExtResource( 9 )
-offset = Vector2( 0, -9.58405 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -108,9 +105,11 @@ visible = false
 position = Vector2( 19, 5 )
 
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Hover"
 playback_process_mode = 0
 method_call_mode = 1
 anims/Hover = SubResource( 1 )
 
+[node name="TitleTween" type="Tween" parent="."]
+
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

@@ -31,6 +31,7 @@ texture = ExtResource( 1 )
 stream = ExtResource( 4 )
 max_distance = 120.0
 attenuation = 2.2974
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
 [connection signal="timeout" from="InitialDelayTimer" to="." method="_on_InitialDelayTimer_timeout"]
