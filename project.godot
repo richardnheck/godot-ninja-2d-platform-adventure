@@ -68,7 +68,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Castle Oni"
+config/name="Castle Yokai"
 run/main_scene="res://src/UI/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
 

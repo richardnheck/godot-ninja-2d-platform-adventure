@@ -193,19 +193,19 @@ __meta__ = {
 }
 
 [node name="BigBackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 15 )]
-margin_left = 106.0
-margin_right = 136.0
+margin_left = 77.0
+margin_right = 116.0
 margin_bottom = 20.0
 next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"
 
 [node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 140.0
-margin_right = 179.0
+margin_left = 120.0
+margin_right = 175.0
 margin_bottom = 20.0
 
 [node name="RetryButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 183.0
-margin_right = 213.0
+margin_left = 179.0
+margin_right = 242.0
 margin_bottom = 20.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PauseOverlay"]
