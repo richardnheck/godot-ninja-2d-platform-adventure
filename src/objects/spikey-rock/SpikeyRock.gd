@@ -7,7 +7,8 @@ export var up_down = true
 
 # Node References
 # ------------------------------------------------------
-onready var sprite: = $Sprite
+onready var spriteUpDown = $SpriteUpDown
+onready var spriteLeftRight = $SpriteLeftRight
 
 # Variables
 # ------------------------------------------------------
@@ -22,6 +23,8 @@ func _ready() -> void:
 	direction = start_direction
 	sfx_thud =  Game_AudioManager.sfx_env_spikey_rock_thud.duplicate()
 	add_child(sfx_thud)
+	spriteUpDown.visible = up_down
+	spriteLeftRight.visible = not up_down
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

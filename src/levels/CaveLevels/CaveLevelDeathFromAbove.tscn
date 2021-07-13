@@ -64,7 +64,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 544, -208 )
+position = Vector2( -224, -776 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -83,7 +83,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 608, -199.967 )
-frame = 5
+frame = 1
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 57, -800 )
@@ -153,17 +153,17 @@ position = Vector2( 320, 160 )
 
 [node name="SpikeyRock" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 368.946, 214.243 )
-rotation = 1.57079
+rotation = -1.57079
 up_down = false
 
 [node name="SpikeyRock2" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 544, -144 )
-rotation = 1.57079
+rotation = 4.71238
 up_down = false
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( -168.045, -568 )
-rotation = 1.57079
+rotation = -1.57079
 up_down = false
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 11 )]
@@ -504,14 +504,12 @@ frame = 0
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/MovingPlatformCave1H"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H2"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H3"]
