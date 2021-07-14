@@ -10,6 +10,8 @@ var triggered:bool = false
 var crashed:bool = false
 var vel:Vector2 = Vector2.ZERO
 
+var fire_yokai:FireYokai = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -32,6 +34,11 @@ func _physics_process(delta: float) -> void:
 func trigger() -> void:
 	animationPlayer.play("shake")
 	yield(animationPlayer,"animation_finished")
+	
+	fire_yokai = preload("res://src/objects/fire-yokai/FireYokai.tscn").instance()
+	fire_yokai.global_position = global_position
+	get_parent().add_child(fire_yokai)		
+
 	Game_AudioManager.sfx_env_falling_spike.play()
 	triggered = true	
 	
@@ -44,4 +51,3 @@ func _on_HitZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		print("HIT!!!")
 		body.die()
-

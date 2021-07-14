@@ -17,7 +17,6 @@
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=16]
 
-
 [sub_resource type="Animation" id=1]
 length = 2.0
 loop = true
@@ -246,30 +245,39 @@ position = Vector2( -24, 0 )
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 568, 240 )
+frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 696, 240 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 1544, -320 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 1608, -320 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 472, 400 )
+frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 472 )
+frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 256, 472 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 312, 112 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 8 )
+frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 1 )]
 position = Vector2( 64, 144 )
@@ -361,7 +369,7 @@ anims/PingPongPathFollow = SubResource( 4 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 824, 296 )
-frame = 4
+frame = 10
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1552, -304 )
@@ -513,29 +521,19 @@ position = Vector2( 1617, -22 )
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/MovingPlatformCave2H"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H2"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H5"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H6"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H2"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H7"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H6"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H4"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H5"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H3"]
-
 [editable path="InteractiveProps/MovingPlatformCave1H8"]

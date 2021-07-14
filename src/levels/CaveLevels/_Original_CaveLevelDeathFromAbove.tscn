@@ -18,11 +18,6 @@
 [ext_resource path="res://src/utility/curves/HorizontalLeftRight64.tres" type="Curve2D" id=16]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=17]
 
-
-
-
-
-
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 55.2728, 0, 0, 0, 0, 0, -8.72717, 0 )
@@ -86,7 +81,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 608, -199.967 )
-frame = 4
+frame = 11
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 80, -864 )
@@ -96,6 +91,9 @@ position = Vector2( 544, -175.967 )
 
 [node name="FallingSpike" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 96, 128 )
+
+[node name="FallingSpike7" parent="InteractiveProps" instance=ExtResource( 4 )]
+position = Vector2( 72, 144 )
 
 [node name="FallingSpike2" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 144, 80 )
@@ -300,6 +298,9 @@ position = Vector2( -16.4792, -874 )
 [node name="SpikeyRock8" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 24.1476, -917.182 )
 
+[node name="FallingSpike9" parent="InteractiveProps" instance=ExtResource( 4 )]
+position = Vector2( 64, 160 )
+
 [node name="TileMapBg" type="TileMap" parent="."]
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
@@ -324,10 +325,10 @@ tile_data = PoolIntArray( -2555917, 2, 131073, -2555916, 2, 131073, -2555915, 2,
 
 [node name="JapaneseLamp" parent="." instance=ExtResource( 15 )]
 position = Vector2( 112, -880 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="." instance=ExtResource( 15 )]
 position = Vector2( 48, -880 )
-frame = 0
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -337,14 +338,12 @@ position = Vector2( 48, 208 )
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
 [editable path="InteractiveProps/MovingPlatformCave1H"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H2"]
-
 [editable path="InteractiveProps/MovingPlatformCave2H3"]
