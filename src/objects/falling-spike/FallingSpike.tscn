@@ -90,5 +90,11 @@ scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 5 )
 animation = "idle"
 
+[node name="AddFireYokaiTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="TriggerZone" to="." method="_on_TriggerZone_body_entered"]
 [connection signal="body_entered" from="HitZone" to="." method="_on_HitZone_body_entered"]
+[connection signal="timeout" from="AddFireYokaiTimer" to="." method="_on_AddFireYokaiTimer_timeout"]

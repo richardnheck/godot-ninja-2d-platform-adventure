@@ -20,8 +20,13 @@ animations = [ {
 } ]
 
 [node name="FireYokai" type="AnimatedSprite"]
+self_modulate = Color( 1, 1, 1, 0.619608 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
+centered = false
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
