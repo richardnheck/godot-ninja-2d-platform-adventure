@@ -81,7 +81,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 608, -199.967 )
-frame = 11
+frame = 13
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 80, -864 )
@@ -325,10 +325,10 @@ tile_data = PoolIntArray( -2555917, 2, 131073, -2555916, 2, 131073, -2555915, 2,
 
 [node name="JapaneseLamp" parent="." instance=ExtResource( 15 )]
 position = Vector2( 112, -880 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="." instance=ExtResource( 15 )]
 position = Vector2( 48, -880 )
-frame = 0
 
 [node name="Props" type="Node2D" parent="."]
 

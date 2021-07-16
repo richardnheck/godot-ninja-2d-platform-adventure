@@ -1,6 +1,7 @@
 extends LevelBase
 
 onready var boss:KinematicBody2D = $Boss;
+onready var ceiling_position = $CeilingPosition2D
 
 var next_boss_state = null
 var boss_speed = 20;
@@ -11,6 +12,7 @@ func _ready() -> void:
 	
 	# Pass the boss a reference to the player
 	boss.set_player(player)
+	boss.set_ceiling_position(ceiling_position)
 	boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 	
 	Game_AudioManager.play_bgm_cave_level_boss()

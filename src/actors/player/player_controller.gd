@@ -64,7 +64,6 @@ func set_dead(value):
 	dead = true
 	set_process_input(not value)
 	set_physics_process(not value)
-	collision_shape.set_deferred("disabled", true)
 	
 	
 func is_dead() -> bool:

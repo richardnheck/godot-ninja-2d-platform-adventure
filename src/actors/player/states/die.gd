@@ -1,10 +1,12 @@
-extends "res://src/utility/state_machine/state.gd"
+extends "./motion/motion.gd"
+#extends "res://src/utility/state_machine/state.gd"
 
 var finished = false
 
 # Initialize the state. E.g. change the animation.
 func enter():
 	print("Die state:enter")
+	velocity = Vector2(0,0)
 	finished = false
 	owner.set_dead(true)
 	owner.emit_signal("start_die");
@@ -12,6 +14,9 @@ func enter():
 	finished = true
 	
 func update(_delta):
+	.apply_gravity()
+	move(velocity)
+	
 	var sprite = owner.get_node("AnimatedSprite")
 	sprite.play("die")
 	

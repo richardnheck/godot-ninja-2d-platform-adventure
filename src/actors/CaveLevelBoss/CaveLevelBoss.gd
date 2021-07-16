@@ -43,6 +43,7 @@ var state_changed = false
 var player:KinematicBody2D = null
 var ground_global_position:Vector2 = Vector2.ZERO
 var can_change_direction = true   # Indicates whether boss can change direction
+var ceiling_position:Position2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,6 +70,10 @@ func set_state(state):
 func set_player(player_ref):
 	player = player_ref;
 
+# Set the position of the ceiling
+# This position is used to place the spikes array in the scene
+func set_ceiling_position(ceiling_pos):
+	ceiling_position = ceiling_pos;
 	
 func _just_entered_state():
 	return state_changed
@@ -178,8 +183,7 @@ func _spawn_falling_spikes_array() -> void:
 	var spikes_instance = preload("res://src/actors/CaveLevelBoss/BossFallingSpikeArray.tscn").instance()
 	spikes_instance.connect("finished", self, "_on_falling_spikes_finished")
 	var spikes_width = spikes_instance.get_width()
-	var viewport_height = get_viewport().size.y
-	print("viewport_height:" + str(viewport_height))
+	
 	
 	# get the distance to the player
 	var distance_to_player = position.distance_to(player.position)
@@ -191,7 +195,12 @@ func _spawn_falling_spikes_array() -> void:
 		spikes_offset *= -1
 
 	# i.e so the player is in the middle of the spikes array
-	spikes_instance.global_position = Vector2(global_position.x + spikes_offset, ground_global_position.y - viewport_height + (3*16))
+	# Also place the spikes array on the ceiling
+	spikes_instance.global_position = Vector2(global_position.x + spikes_offset, ceiling_position.global_position.y)
+	
+	# Using viewport (NB: only works when stretch mode = Viewport)
+	#var viewport_height = get_viewport().size.y
+	#spikes_instance.global_position = Vector2(global_position.x + spikes_offset, ground_global_position.y - viewport_height + (3*16))
 	
 	# add the instance and trigger the spikes
 	get_parent().add_child(spikes_instance)

@@ -10,7 +10,7 @@ var triggered:bool = false
 var crashed:bool = false
 var vel:Vector2 = Vector2.ZERO
 
-var fire_yokai:FireYokai = null
+onready var fire_yokai:FireYokai = $FireYokai
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +34,12 @@ func _physics_process(delta: float) -> void:
 
 func trigger() -> void:
 	# Trigger the fire yokai to fly off
+	# But first reparent it so it doesn't move with this spike
 	if is_instance_valid(fire_yokai): 
-		fire_yokai.trigger()
+		self.remove_child(fire_yokai)
+		self.get_tree().current_scene.call_deferred("add_child",fire_yokai)
+		fire_yokai.global_position = Vector2(global_position.x, global_position.y - 11)
+		fire_yokai.call_deferred("trigger")
 	
 	# Shake the spike
 	animationPlayer.play("shake")
@@ -55,7 +59,7 @@ func _on_HitZone_body_entered(body: Node) -> void:
 		body.die()
 
 func _on_AddFireYokaiTimer_timeout() -> void:
-	_add_fire_yokai()
+	pass #_add_fire_yokai()
 
 func _add_fire_yokai() -> void:
 	fire_yokai = preload("res://src/objects/fire-yokai/FireYokai.tscn").instance()
