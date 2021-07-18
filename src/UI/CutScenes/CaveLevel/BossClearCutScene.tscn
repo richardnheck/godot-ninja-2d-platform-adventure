@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossRigidBody.gd" type="Script" id=12]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=14]
+[ext_resource path="res://src/objects/demon-seal/DemonSeal.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -830,6 +831,9 @@ format = 1
 tile_data = PoolIntArray( 0, 13, 3, 1, 13, 3, 2, 13, 3, 3, 13, 0, 4, 0, 131072, 15, 0, 65539, 16, 13, 1, 17, 13, 0, 18, 13, 0, 19, 13, 3, 65536, 13, 3, 65537, 13, 0, 65538, 0, 0, 65539, 0, 2, 65540, 0, 131077, 65551, 0, 131076, 65552, 0, 2, 65553, 0, 3, 65554, 13, 3, 65555, 13, 3, 131072, 13, 0, 131073, 13, 0, 131074, 0, 131072, 131075, 2, 3, 131076, 2, 4, 131087, 536870914, 3, 131088, 536870914, 4, 131089, 0, 65539, 131090, 13, 2, 131091, 13, 0, 196608, 0, 2, 196609, 0, 2, 196610, 0, 131077, 196625, 0, 131076, 196626, 0, 1, 196627, 0, 1, 262144, 2, 3, 262145, 17, 0, 262161, 536870914, 3, 262162, 17, 0, 524289, 536870914, 65540, 524291, 2, 65540, 524307, 536870914, 65540, 655355, 0, 196610, 655356, 0, 196610, 655357, 0, 196610, 655358, 0, 196610, 655359, 0, 196610, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 16, 3, 589838, 16, 1, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 0, 65541, 655374, 0, 65539, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
 
 [node name="Props" type="Node" parent="."]
+
+[node name="DemonSeal" parent="Props" instance=ExtResource( 15 )]
+position = Vector2( 256, 99 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 300, 99 )

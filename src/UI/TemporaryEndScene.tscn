@@ -1,27 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/fonts/dogica/dogica.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=5]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
 
 [node name="TemporaryEndScene" type="CanvasLayer"]
 
+[node name="title-screen-bg" type="Sprite" parent="."]
+position = Vector2( 160, 88 )
+texture = ExtResource( 5 )
+
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
