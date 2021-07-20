@@ -676,7 +676,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 784, 64 )
-frame = 2
+frame = 22
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1696, -272 )

@@ -10,8 +10,6 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=8]
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=9]
 
-
-
 [node name="CaveLevel1" type="Node2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 9 )
@@ -96,6 +94,7 @@ position = Vector2( -527.999, 432.001 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 184, 40 )
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 232, 144 )
@@ -106,6 +105,7 @@ position = Vector2( 478.941, -128.5 )
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

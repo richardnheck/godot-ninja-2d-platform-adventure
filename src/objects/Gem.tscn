@@ -66,7 +66,7 @@
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0025.png" type="Texture" id=64]
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0041.png" type="Texture" id=65]
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0042.png" type="Texture" id=66]
-[ext_resource path="res://assets/sounds/511385__mrthenoronha__power-up-8-bit.wav" type="AudioStream" id=67]
+[ext_resource path="res://assets/sounds/sfx/collectibles/demon_seal.wav" type="AudioStream" id=67]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.1875
@@ -88,8 +88,8 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
 texture = ExtResource( 1 )
-vframes = 5
 hframes = 5
+vframes = 5
 frame = 2
 
 [node name="EffectAnimation" type="AnimatedSprite" parent="."]
@@ -99,6 +99,7 @@ frames = SubResource( 2 )
 
 [node name="EffectSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 67 )
+
 [connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]
 [connection signal="animation_finished" from="EffectAnimation" to="." method="_on_EffectAnimation_animation_finished"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]

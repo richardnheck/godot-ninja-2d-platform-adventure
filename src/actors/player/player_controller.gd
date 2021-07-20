@@ -50,10 +50,11 @@ func take_damage(attacker, amount, effect = null):
 
 # Start the dieing process
 func die():
-	print("die")
-	set_dead(true)
-	$StateMachine._change_state("die")
-	sfx_die.play()
+	if not dead:
+
+		set_dead(true)
+		$StateMachine._change_state("die")
+		sfx_die.play()
 
 	
 func celebrate():

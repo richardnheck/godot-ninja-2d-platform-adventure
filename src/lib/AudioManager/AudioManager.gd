@@ -123,6 +123,7 @@ onready var sfx_character_player_air_jump : AudioStreamPlayer = $SFX/Character/S
 onready var sfx_character_player_wall_slide : AudioStreamPlayer = $SFX/Character/Sfx_PlayerWallSlide
 #
 onready var sfx_collectibles_key: AudioStreamPlayer = $SFX/Collectibles/Sfx_Key
+onready var sfx_collectibles_demon_seal: AudioStreamPlayer = $SFX/Collectibles/Sfx_DemonSeal
 #
 onready var sfx_env_spikey_rock_thud : AudioStreamPlayer2D = $SFX/Environments/Sfx_SpikeyRockThud
 onready var sfx_env_cave_mini_boss_slam : AudioStreamPlayer2D = $SFX/Environments/Sfx_CaveMiniBossSlam
