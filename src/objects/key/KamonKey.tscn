@@ -70,7 +70,7 @@ extents = Vector2( 14.3291, 10.1046 )
 "key",
 ]]
 frames = SubResource( 14 )
-frame = 3
+frame = 8
 playing = true
 script = ExtResource( 5 )
 

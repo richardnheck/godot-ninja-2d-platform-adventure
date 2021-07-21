@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/objects/demon-seal/demon-seal.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/demon-seal/DemonSeal.gd" type="Script" id=2]
@@ -67,22 +67,54 @@
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0046.png" type="Texture" id=65]
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0016.png" type="Texture" id=66]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.375, 11.75 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 33, 33 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 33, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 66, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 99, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 132, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 165, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 198, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 231, 0, 33, 33 )
+
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 19 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 59 ), ExtResource( 42 ), ExtResource( 32 ), ExtResource( 35 ), ExtResource( 62 ), ExtResource( 58 ), ExtResource( 29 ), ExtResource( 21 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 20 ), ExtResource( 66 ), ExtResource( 49 ), ExtResource( 44 ), ExtResource( 38 ), ExtResource( 57 ), ExtResource( 25 ), ExtResource( 34 ), ExtResource( 64 ), ExtResource( 48 ), ExtResource( 40 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 63 ), ExtResource( 55 ), ExtResource( 30 ), ExtResource( 24 ), ExtResource( 50 ), ExtResource( 27 ), ExtResource( 61 ), ExtResource( 28 ), ExtResource( 33 ), ExtResource( 60 ), ExtResource( 45 ), ExtResource( 53 ), ExtResource( 41 ), ExtResource( 52 ), ExtResource( 36 ), ExtResource( 39 ), ExtResource( 43 ), ExtResource( 65 ), ExtResource( 54 ), ExtResource( 47 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 26 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 23 ) ],
 "loop": false,
@@ -95,17 +127,25 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 11 )
+frame = 22
+playing = true
+centered = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AnimatedSprite"]
+frames = SubResource( 11 )
+frame = 17
+playing = true
 centered = false
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="EffectAnimation" type="AnimatedSprite" parent="."]
 position = Vector2( -7, -5 )
-frames = SubResource( 4 )
+frames = SubResource( 12 )
 centered = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

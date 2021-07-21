@@ -40,17 +40,28 @@ func do_boss_walk_in() -> void:
 	animation_player.play("boss_walk_in")
 	
 func do_boss_jump() -> void:
+	# Move the boss
 	move_boss_stop()
+	
+	# Apply an impulse to make the boss jump
 	boss.apply_central_impulse( Vector2(45,-200))
+	
+	# Wait long enough for the boss to have fallen down the gap
 	yield(get_tree().create_timer(4), "timeout")
 	boss.queue_free()
-	do_ending()
 	
-func do_ending() -> void:
 	# Boss lands so play a crash sound and shake the screen
 	Game_AudioManager.sfx_env_cave_boss_cutscene_crash.play()
-	screen_shake.screen_shake(2,4,100)		
+	screen_shake.screen_shake(2,4,100)
 	
+	# Wait a few moments after crash before walking to grab talisman
+	yield(get_tree().create_timer(2), "timeout")
+	do_grab_talisman()
+
+func do_grab_talisman() -> void:
+	animation_player.play("grab_talisman")
+	
+func do_ending() -> void:
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()

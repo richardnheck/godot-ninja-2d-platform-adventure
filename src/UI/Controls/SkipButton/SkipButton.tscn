@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/UI/Controls/SkipButton/skip-button.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/Controls/SkipButton/skip-button1.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/Controls/SkipButton/skip-button2.png" type="Texture" id=2]
 
 [node name="TextureButton" type="TextureButton"]
 margin_right = 35.0
 margin_bottom = 14.0
+action_mode = 0
 texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

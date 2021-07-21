@@ -38,9 +38,8 @@ func show_continue(visible)->void:
 func is_continue_button_showing()->bool:
 	return continue_button.visible
 
-func _on_SkipButton_button_down() -> void:
+func _on_SkipButton_pressed() -> void:
 	self.goto_next_scene()
-
 
 func _on_ContinueButton_button_up() -> void:
 	self.do_continue()
@@ -52,3 +51,6 @@ func _on_ClickRect_gui_input(event: InputEvent) -> void:
 
 func do_continue():
 	emit_signal("on_continue")
+
+
+
