@@ -7,7 +7,7 @@ func enter():
 	
 func update(_delta):
 	var sprite = owner.get_node("AnimatedSprite")
-	sprite.play("celebrate")
+	sprite.play("talk")
 
 func _on_animation_finished(_anim_name):
 	pass

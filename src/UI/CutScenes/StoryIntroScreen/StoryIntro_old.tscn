@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro_old.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "jump"
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.45, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump_up"
+}, {
+"args": [  ],
+"method": "jump_down"
+}, {
+"args": [  ],
+"method": "goto_next_scene"
+} ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("AnimatedSprite:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 216, -0.25, 0, 0.322586, -0.323685, 238.828, -0.606788, 6.84804, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("AnimatedSprite:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 127.144, -0.25, 0, 0.25, 0, 104.01, -0.25, 0, 0.25, 0, 186.051, -0.219303, 5.55554, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 1 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 128 ), Vector2( 136, 128 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 136, 128 ), Vector2( 216, 128 ) ]
+}
+
+[node name="StoryIntro Old" type="CanvasLayer"]
+script = ExtResource( 7 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="Control"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="DialogBox1" type="Sprite" parent="Control"]
+position = Vector2( 126, 80 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Control/DialogBox1"]
+margin_left = -118.0
+margin_top = -24.0
+margin_right = 376.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "The Daimyo castle behind me has been shrouded
+ in mystery for centuries and it is said to be
+ cursed by demons.  My lord has sent many ninja
+ to investigate, but none have ever returned."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox2" type="Sprite" parent="Control"]
+position = Vector2( 126, 80 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Control/DialogBox2"]
+margin_left = -116.0
+margin_top = -27.0
+margin_right = 378.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "I'll uncover the castle's secrets for my lord
+ and will be rewarded handsomely.  The castle
+ is impenetrable from the outside, so I will have
+ to enter by the underground caverns beneath.
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Control" instance=ExtResource( 4 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -20.0
+margin_right = 21.0
+next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 216, 127.144 )
+frames = ExtResource( 3 )
+animation = "jump-down"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/jump = SubResource( 1 )
+anims/walk-in = SubResource( 2 )
+anims/walk-out = SubResource( 3 )
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
+
+[editable path="CutSceneBase"]

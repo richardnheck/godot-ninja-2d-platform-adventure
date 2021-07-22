@@ -59,7 +59,7 @@ func die():
 	
 func celebrate():
 	$StateMachine._change_state("celebrate")
-
+	
 
 func set_dead(value):
 	dead = true
@@ -136,6 +136,16 @@ func move_left():
 func move_stop():
 	_move_right(false)
 	_move_left(false)
+	
+func jump():
+	_jump(true)
+
+	
+func talk():
+	$StateMachine._change_state("talk")
+
+func move():
+	$StateMachine._change_state("move")
 
 
 func _move_right(pressed):
@@ -153,3 +163,8 @@ func _move_left(pressed):
 	Input.parse_input_event(ev)
 	#$StateMachine._change_state("move")
 
+func _jump(pressed):
+	var ev = InputEventAction.new()
+	ev.action = Actions.JUMP_CUTSCENE
+	ev.pressed = pressed
+	Input.parse_input_event(ev)

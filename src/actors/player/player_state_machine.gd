@@ -9,7 +9,8 @@ func _ready():
 		"wall_jump" : $WallJump,
 		"die" : $Die,
 		"celebrate" : $Celebrate,
-		"air_jump" : $AirJump
+		"air_jump" : $AirJump,
+		"talk" : $Talk
 	}
 
 var jumpPressedRemember = 0

@@ -5,100 +5,80 @@ signal continue_sig
 # Declare member variables here. Examples:
 var continue_flag: bool = false
 
-enum State { 
-	START_WALK_IN = 0,   
-	DOING_WALK_IN = 1,
-	START_DIALOG1 = 2,
-	DOING_DIALOG1 = 3,
-	START_DIALOG2 = 4,
-	DOING_DIALOG2 = 5,
-	START_WALK_OUT = 6,
-	DOING_WALK_OUT = 7,
-	START_JUMP = 8,
-	DOING_JUMP = 9,
-	
-}
-	
-var state: int
-
-var step: int = 0
 
 onready var cut_scene_base = $CutSceneBase
+onready var player:Player = $Player
+onready var animation_player = $AnimationPlayer
+onready var dialog1 = $Control/DialogBox1
+onready var dialog2 = $Control/DialogBox2
 
+var _move_player_right:bool = false
+var _move_player_left:bool = false
+
+var dialog_index = 0
+var dialogs = null
+ 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Control/DialogBox1.hide()
-	$Control/DialogBox2.hide()
-	$AnimatedSprite.play("walk")
-	state = State.START_WALK_IN
-	
+	Actions.use_cutscene_actions()
 	cut_scene_base.show_continue(false)
-	cut_scene_base.connect("on_continue", self, "continue")
+	cut_scene_base.connect("on_continue", self, "handle_continue")
+	
+	dialogs = [ dialog1, dialog2]
+	
+	# hide all dialogs
+	for i in range(0, dialogs.size()):
+		dialogs[i].hide()
+	
+	animation_player.play("walk-in")	
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	match state:
-		State.START_WALK_IN:
-			$AnimationPlayer.play("walk-in")
-			state = State.DOING_WALK_IN
+	if _move_player_right:
+		player.move_right()
+	elif _move_player_left:
+		player.move_left()
+	else:
+		player.move_stop()
+
+func start_dialog():
+	player.talk()
+	dialogs[dialog_index].show()
+	cut_scene_base.show_continue(true)
 	
-		State.DOING_WALK_IN:
-			# Wait until player walks to centre	
-			yield($AnimationPlayer, "animation_finished")
-			$AnimatedSprite.play("talk")
-			state = State.START_DIALOG1
+func handle_continue() -> void:
+	if dialog_index < dialogs.size():
+		# Show next dialog 
+		dialogs[dialog_index].hide()
+		dialog_index = dialog_index + 1
+		if dialog_index < dialogs.size():
+			dialogs[dialog_index].show()
+		else:
+			start_walk_out()
+	else:
+		# No more dialog to show so move on
+		start_walk_out()
+		
+func start_walk_out():
+	player.move()
+	animation_player.play("walk-out")
+	
+func jump():
+	animation_player.play("jump")
+	player.jump()
 			
-		State.START_DIALOG1:
-			$Control/DialogBox1.show()
-			cut_scene_base.show_continue(true)
-			state = State.DOING_DIALOG1
+func move_player_right():
+	_move_player_right = true
+	_move_player_left = false
 
-		State.DOING_DIALOG1:
-			yield(self, "continue_sig")
-			$Control/DialogBox1.hide()		# Hide first dialog
-			cut_scene_base.show_continue(false)
-			state = State.START_DIALOG2
-		
-		State.START_DIALOG2:
-			yield(get_tree().create_timer(0.3), "timeout")  # Wait a bit before shoing next dialog
-			$Control/DialogBox2.show()
-			cut_scene_base.show_continue(true)
-			state = State.DOING_DIALOG2
+func move_player_left():
+	_move_player_right = false
+	_move_player_left = true
 	
-		State.DOING_DIALOG2:
-			yield(self, "continue_sig")
-			$Control/DialogBox2.hide()
-			cut_scene_base.show_continue(false)
-			state = State.START_WALK_OUT
-		
-		State.START_WALK_OUT:
-			$AnimatedSprite.play("walk")
-			$AnimationPlayer.play("walk-out")
-			state = State.DOING_WALK_OUT
-	
-		State.DOING_WALK_OUT:
-			# Wait for walk out animation to finish
-			yield($AnimationPlayer, "animation_finished")
+func move_player_stop():
+	_move_player_right = false
+	_move_player_left = false
 			
-			# Pause at hole a bit then jump
-			$AnimatedSprite.play("idle")
-			yield(get_tree().create_timer(0.8 ), "timeout")
-			state = State.START_JUMP
-		
-		State.START_JUMP:
-			$AnimationPlayer.play("jump")
-			state = State.DOING_JUMP
-	
-
-func continue() -> void:
-	emit_signal("continue_sig")
-
-func jump_up() -> void:
-	$AnimatedSprite.play("jump-up")
-
-func jump_down() -> void:
-	$AnimatedSprite.play("jump-down")
-
 func goto_next_scene()->void:
 	cut_scene_base.goto_next_scene()
