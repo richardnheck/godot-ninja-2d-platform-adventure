@@ -20,6 +20,7 @@ signal direction_changed(new_direction)
 signal collided
 signal start_die
 signal died
+signal screen_exited
 
 var dead: = false
 var sfx_die:AudioStreamPlayer
@@ -38,6 +39,7 @@ func _ready() -> void:
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:	
 	if !dead:
+		emit_signal("screen_exited")
 		die()
 
 

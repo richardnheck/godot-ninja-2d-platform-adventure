@@ -1,22 +1,21 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=9]
 
-[sub_resource type="ConvexPolygonShape2D" id=48]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=49]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=50]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
@@ -151,7 +150,7 @@ points = PoolVector2Array( 4, 11, 12, 11, 15, 16, 0, 16 )
 [sub_resource type="ConvexPolygonShape2D" id=47]
 points = PoolVector2Array( 0, 1.68007, 15.8409, 2.08383, 16, 0, 0, 0 )
 
-[sub_resource type="TileSet" id=51]
+[sub_resource type="TileSet" id=48]
 resource_local_to_scene = true
 0/name = "these-are-walls"
 0/texture = ExtResource( 9 )
@@ -170,26 +169,26 @@ resource_local_to_scene = true
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 48 )
+0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 48 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 49 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 50 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
@@ -662,8 +661,7 @@ resource_local_to_scene = true
 17/shapes = [  ]
 17/z_index = 0
 
-[sub_resource type="Animation" id=1]
-resource_name = "jump"
+[sub_resource type="Animation" id=49]
 step = 0.05
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -683,7 +681,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=50]
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -717,7 +715,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=51]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -750,14 +748,20 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="StoryIntro" type="CanvasLayer"]
+[node name="StoryIntro" type="Node"]
 script = ExtResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 88 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 16, 144 )
 
 [node name="TileMapWorld" type="TileMap" parent="."]
-tile_set = SubResource( 51 )
+tile_set = SubResource( 48 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
@@ -809,20 +813,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" parent="Control" instance=ExtResource( 4 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = -20.0
-margin_right = 21.0
-next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/jump = SubResource( 1 )
-anims/walk-in = SubResource( 2 )
-anims/walk-out = SubResource( 3 )
+anims/jump = SubResource( 49 )
+anims/walk-in = SubResource( 50 )
+anims/walk-out = SubResource( 51 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
+
+[connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 
 [editable path="CutSceneBase"]

@@ -1,5 +1,6 @@
-extends CanvasLayer
+extends Node
 
+# local signal to yield on
 signal continue_sig
 
 # Declare member variables here. Examples:
@@ -22,7 +23,13 @@ var dialogs = null
 func _ready() -> void:
 	Actions.use_cutscene_actions()
 	cut_scene_base.show_continue(false)
-	cut_scene_base.connect("on_continue", self, "handle_continue")
+	
+	cut_scene_base.connect("on_continue", self, "_on_continue")
+	
+	# make sure the player's camera is not used
+	player.get_node("Camera2D").current = false 
+	
+	player.connect("screen_exited", self, "_on_player_screen_exited")
 	
 	dialogs = [ dialog1, dialog2]
 	
@@ -35,30 +42,41 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if _move_player_right:
-		player.move_right()
-	elif _move_player_left:
-		player.move_left()
-	else:
-		player.move_stop()
+	if is_instance_valid(player):
+		if _move_player_right:
+			player.move_right()
+		elif _move_player_left:
+			player.move_left()
+		else:
+			player.move_stop()
 
 func start_dialog():
 	player.talk()
-	dialogs[dialog_index].show()
+
+	# Show dialog 1 and wait for continue
+	dialog1.show()
 	cut_scene_base.show_continue(true)
+	yield(self, "continue_sig")
 	
-func handle_continue() -> void:
-	if dialog_index < dialogs.size():
-		# Show next dialog 
-		dialogs[dialog_index].hide()
-		dialog_index = dialog_index + 1
-		if dialog_index < dialogs.size():
-			dialogs[dialog_index].show()
-		else:
-			start_walk_out()
-	else:
-		# No more dialog to show so move on
-		start_walk_out()
+	# Show dialog 2 and wait for continue
+	dialog1.hide()
+	dialog2.show()
+	yield(self, "continue_sig")
+	
+	# Walk player out
+	dialog2.hide()
+	cut_scene_base.show_continue(true)
+	start_walk_out()
+	
+func _on_player_screen_exited() -> void:
+	player.queue_free()
+	
+	# Goto the next scene
+	cut_scene_base.goto_next_scene()
+	
+func _on_continue()->void:
+	if cut_scene_base.is_continue_button_showing():
+		emit_signal("continue_sig")
 		
 func start_walk_out():
 	player.move()
