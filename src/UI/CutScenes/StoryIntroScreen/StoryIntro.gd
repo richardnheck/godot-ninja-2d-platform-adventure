@@ -12,6 +12,7 @@ onready var player:Player = $Player
 onready var animation_player = $AnimationPlayer
 onready var dialog1 = $Control/DialogBox1
 onready var dialog2 = $Control/DialogBox2
+onready var dialog3 = $Control/DialogBox3
 
 var _move_player_right:bool = false
 var _move_player_left:bool = false
@@ -31,12 +32,14 @@ func _ready() -> void:
 	
 	player.connect("screen_exited", self, "_on_player_screen_exited")
 	
-	dialogs = [ dialog1, dialog2]
+	dialogs = [ dialog1, dialog2, dialog3]
 	
 	# hide all dialogs
 	for i in range(0, dialogs.size()):
 		dialogs[i].hide()
 	
+	# wait a bit before starting walk in
+	yield(get_tree().create_timer(0.25), "timeout")
 	animation_player.play("walk-in")	
 	
 	
@@ -63,8 +66,13 @@ func start_dialog():
 	dialog2.show()
 	yield(self, "continue_sig")
 	
-	# Walk player out
+	# Show dialog 3 and wait for continue
 	dialog2.hide()
+	dialog3.show()
+	yield(self, "continue_sig")
+	
+	# Walk player out
+	dialog3.hide()
 	cut_scene_base.show_continue(true)
 	start_walk_out()
 	

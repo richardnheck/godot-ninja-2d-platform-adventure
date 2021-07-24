@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/art/ui/back-button.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/ui/back-button1.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/Controls/PlayButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/ui/back-button2.png" type="Texture" id=3]
 
 [node name="BackButton" type="TextureButton"]
 margin_right = 16.0
 margin_bottom = 16.0
 texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
