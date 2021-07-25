@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/dixfont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
@@ -36,7 +37,7 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="TitleScreenText" type="Sprite" parent="."]
-position = Vector2( 159, 95.8325 )
+position = Vector2( 159, 82.8325 )
 texture = ExtResource( 9 )
 
 [node name="Control" type="Control" parent="."]
@@ -79,25 +80,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -50.0
-margin_top = 29.0
+margin_top = 19.0
 margin_right = 51.0
-margin_bottom = 78.0
+margin_bottom = 72.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MainPlayButton" parent="Control/VBoxContainer" instance=ExtResource( 7 )]
-margin_top = 7.0
 margin_right = 101.0
-margin_bottom = 22.0
+margin_bottom = 15.0
 next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 sound = "SFX/UI/Sfx_GameStart"
 
 [node name="SettingsButton" parent="Control/VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 34.0
+margin_top = 19.0
 margin_right = 101.0
-margin_bottom = 41.0
+margin_bottom = 34.0
+
+[node name="QuitButton" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 38.0
+margin_bottom = 53.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 visible = false
@@ -111,4 +115,5 @@ anims/Hover = SubResource( 1 )
 [node name="TitleTween" type="Tween" parent="."]
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/MainScreen/title-screen-quit-button1.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/MainScreen/title-screen-quit-button2.png" type="Texture" id=2]
+
+[node name="QuitButton" type="TextureButton"]
+margin_right = 101.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

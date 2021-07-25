@@ -27,3 +27,7 @@ func _on_SettingsButton_pressed() -> void:
 func _on_TitleTween_tween_completed(object: Object, key: NodePath) -> void:
 	tween_values.invert()
 	_start_tween()
+
+
+func _on_QuitButton_pressed() -> void:
+	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
