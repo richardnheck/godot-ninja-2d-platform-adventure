@@ -9,12 +9,15 @@ onready var tilemapWorld:TileMap = $TileMapWorld
 onready var tilemapTraps:TileMap = $TileMapTraps
 onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 onready var screenShakeScene = preload("res://src/objects/camera-effects/ScreenShake.tscn")
+onready var intro_title_scene = preload("res://src/UI/Controls/LevelIntroTitle/LevelIntroTitle.tscn")
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
 onready var check_point:Area2D = get_node("InteractiveProps/CheckPoint")
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
+
+onready var intro_title = null
 
 var player:Player
 var fadeScreen:FadeScreen
@@ -24,6 +27,7 @@ var screenShake:ScreenShake
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("LevelBase: ready()")
+	
 	var current_level_path = get_tree().current_scene.filename
 	var bgm = LevelData.get_level_bgm(current_level_path)
 	if bgm != "":
@@ -61,6 +65,16 @@ func _ready() -> void:
 
 	if door:
 		door.close()
+	
+	if not LevelData.is_reload:
+		Actions.use_cutscene_actions()		# Disable player input actions
+		intro_title = intro_title_scene.instance()
+		add_child(intro_title)
+		intro_title.set_deferred("text", LevelData.get_level_name(current_level_path))
+		yield(intro_title, "finished")
+		intro_title.queue_free()
+		Actions.use_normal_actions()		# Enable player input actions
+		LevelData.is_reload = false
 		
 
 #func _get_configuration_warning():
@@ -136,6 +150,7 @@ func _on_Player_start_die() -> void:
 func _on_Player_died() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fadeScreen.reload_scene()
+	LevelData.is_reload = true
 
 func _on_CheckPoint_reached() -> void:
 	LevelData.level_checkpoint_reached = true

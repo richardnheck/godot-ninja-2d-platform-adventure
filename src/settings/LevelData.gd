@@ -29,6 +29,8 @@ var level_checkpoint_reached = false
 
 var current_level_index = 0;
 
+var is_reload = false
+
 # Get all levels
 func get_levels() -> Array:
 	return levelsArray
@@ -59,14 +61,14 @@ func goto_level(levelIndex) -> void:
 	var level = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
 	level_checkpoint_reached = false
+	is_reload = false
 	get_tree().change_scene(level.scene_path)
 
  
 # Goto the next level
 func goto_next_level() -> void:
 	print("goto_next_level")
-	if current_level_index < levelsArray.size() - 1:
-		
+	if current_level_index < levelsArray.size() - 1:	
 		current_level_index += 1
 	else:
 		current_level_index = 0
@@ -84,7 +86,12 @@ func get_level_bgm(level_scene_path) -> String:
 			return levelsArray[i]["bgm"]
 	return ""
 	
-	
+# Get the name for the specified level
+func get_level_name(level_scene_path) -> String:
+	for i in range(0, levelsArray.size()):
+		if levelsArray[i]["scene_path"] == level_scene_path:
+			return levelsArray[i]["name"]
+	return ""	
 	
 # https://gdscript.com/how-to-save-and-load-godot-game-data
 # func save():
