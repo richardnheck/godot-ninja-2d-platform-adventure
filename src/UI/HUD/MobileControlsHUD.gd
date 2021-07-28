@@ -72,6 +72,7 @@ func _on_RetryButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	self.paused = false
 	scene_tree.reload_current_scene()
+	LevelData.is_reload = false
 
 
 func _on_LeftTouchArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
