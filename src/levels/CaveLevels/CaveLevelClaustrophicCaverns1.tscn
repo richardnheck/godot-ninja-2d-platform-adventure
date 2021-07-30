@@ -93,7 +93,7 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 7 )]
 
 [node name="TileMapBg" type="TileMap" parent="."]
-modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 48, 48 )
 format = 1
@@ -282,7 +282,7 @@ tile_data = PoolIntArray( -262047, -536870910, 196608, -196511, -536870910, 1966
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 544, 232 )
-frame = 11
+frame = 4
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 368, 576 )

@@ -657,7 +657,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 1295.42, -308.595 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -686,13 +686,13 @@ position = Vector2( 1536, -319 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 784, 64 )
-frame = 4
+frame = 2
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1696, -272 )
 
 [node name="TileMapBg" type="TileMap" parent="."]
-modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 48, 48 )
 format = 1

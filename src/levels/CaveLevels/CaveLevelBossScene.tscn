@@ -98,7 +98,7 @@ position = Vector2( 336, 224 )
 position = Vector2( 416, 192 )
 
 [node name="TileMapBg" type="TileMap" parent="."]
-modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
 tile_set = ExtResource( 7 )
 cell_size = Vector2( 32, 32 )
 format = 1

@@ -202,7 +202,7 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 11 )]
 
 [node name="TileMapBg" type="TileMap" parent="."]
-modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 48, 48 )
 collision_layer = 0
@@ -357,41 +357,49 @@ position = Vector2( -24, 0 )
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 568, 240 )
+frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 696, 240 )
+frame = 0
 
 [node name="JapaneseLamp12" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 800, 160.5 )
+frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 800, 48 )
-frame = 0
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 864, -24 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 936, 0 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 1000, 0 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 472, 400 )
+frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 472 )
+frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 256, 472 )
+frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 312, 112 )
+frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 14 )]
 position = Vector2( 184, 8 )
+frame = 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 1 )]
 position = Vector2( 64, 144 )
@@ -483,7 +491,7 @@ anims/PingPongPathFollow = SubResource( 4 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 984, 296 )
-frame = 18
+frame = 11
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 944, 16 )

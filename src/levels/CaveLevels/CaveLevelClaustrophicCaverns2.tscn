@@ -96,7 +96,7 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 7 )]
 
 [node name="TileMapBg" type="TileMap" parent="."]
-modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
 z_index = -2
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 48, 48 )
@@ -399,7 +399,7 @@ tile_data = PoolIntArray( 786444, 1073741826, 0, 786448, 1073741826, 0, 786452, 
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1560, 968 )
-frame = 0
+frame = 9
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 384, 576 )
