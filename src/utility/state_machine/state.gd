@@ -24,5 +24,5 @@ func update(_delta):
 	pass
 
 
-func _on_animation_finished(_anim_name):
+func _on_animation_finished():
 	pass

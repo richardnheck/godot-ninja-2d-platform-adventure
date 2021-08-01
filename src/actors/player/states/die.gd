@@ -26,5 +26,5 @@ func update(_delta):
 	if finished:
 		owner.emit_signal("died")
 
-func _on_animation_finished(_anim_name):
+func _on_animation_finished():
 	pass

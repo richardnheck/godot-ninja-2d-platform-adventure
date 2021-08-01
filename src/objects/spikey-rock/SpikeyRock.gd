@@ -9,6 +9,7 @@ export var up_down = true
 # ------------------------------------------------------
 onready var spriteUpDown = $SpriteUpDown
 onready var spriteLeftRight = $SpriteLeftRight
+onready var blinkTimer = $BlinkTimer
 
 # Variables
 # ------------------------------------------------------
@@ -18,13 +19,24 @@ var direction = 1
 var gravity:= 8
 var sfx_thud:AudioStreamPlayer2D = null
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
+	
 	direction = start_direction
 	sfx_thud =  Game_AudioManager.sfx_env_spikey_rock_thud.duplicate()
 	add_child(sfx_thud)
 	spriteUpDown.visible = up_down
+	spriteUpDown.playing = up_down
 	spriteLeftRight.visible = not up_down
+	spriteLeftRight.playing = not up_down
+	
+	# Start blink timer at a random time
+	var t = rand_range(0,3)
+	yield(get_tree().create_timer(t),"timeout")
+	blinkTimer.start()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,3 +66,20 @@ func _on_BottomSpikesArea_body_entered(body: Node) -> void:
 
 func _play_thud_sound() -> void:
 	sfx_thud.play()
+
+
+func _on_BlinkTimer_timeout() -> void:
+	if up_down:
+		spriteUpDown.play("blink")
+	else:
+		spriteLeftRight.play("blink")
+	
+
+func _on_SpriteLeftRight_animation_finished() -> void:
+	if spriteLeftRight.animation == "blink":
+		spriteLeftRight.play("default")
+
+
+func _on_SpriteUpDown_animation_finished() -> void:
+	if spriteUpDown.animation == "blink":
+		spriteUpDown.play("default")
