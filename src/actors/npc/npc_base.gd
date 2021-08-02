@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name NpcBase
 
 export var look_at_player_enabled:bool = true
 
@@ -14,6 +15,7 @@ var velocity = Vector2()
 
 onready var area2D:Area2D = $Pivot/Area2D
 onready var animatedSprite:AnimatedSprite = $Pivot/AnimatedSprite
+onready var tween:Tween = $Tween
 
 # Reference to the player
 onready var player:Player = null
