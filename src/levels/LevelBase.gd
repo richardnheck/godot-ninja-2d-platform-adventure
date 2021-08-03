@@ -67,11 +67,13 @@ func _ready() -> void:
 		door.close()
 	
 	if not LevelData.is_reload:
-		intro_title = intro_title_scene.instance()
-		add_child(intro_title)
-		intro_title.set_deferred("text", LevelData.get_level_name(current_level_path))
-		yield(intro_title, "finished")
-		intro_title.queue_free()
+		var level_name = LevelData.get_level_name(current_level_path)
+		if level_name != "":
+			intro_title = intro_title_scene.instance()
+			add_child(intro_title)
+			intro_title.set_deferred("text", level_name)
+			yield(intro_title, "finished")
+			intro_title.queue_free()
 		LevelData.is_reload = false
 		
 
