@@ -91,7 +91,6 @@ __meta__ = {
 [node name="MainPlayButton" parent="Control/VBoxContainer" instance=ExtResource( 7 )]
 margin_right = 101.0
 margin_bottom = 15.0
-next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 sound = "SFX/UI/Sfx_GameStart"
 
 [node name="SettingsButton" parent="Control/VBoxContainer" instance=ExtResource( 1 )]

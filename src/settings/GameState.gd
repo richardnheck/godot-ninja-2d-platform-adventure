@@ -2,12 +2,21 @@ extends Node
 
 const SAVE_FILE_PATH := "user://castle-yokai-game.save"
 
+const KEY_CURRENT_WORLD = "current_world"
+const KEY_CURRENT_LEVEL = "current_level"
+const KEY_WATCH_INTRO = "has_watched_story_intro"
+
+
 # Store the player progress
 var progress = {
-	"current_world" : LevelData.WORLD1,
+	# The current world number
+	KEY_CURRENT_WORLD : LevelData.WORLD1,
 	
 	# Index in levelsArray of current level reached
-	"current_level" : 0			
+	KEY_CURRENT_LEVEL : 0,
+	
+	# Indicates whether user has watched the story intro
+	KEY_WATCH_INTRO : false	
 }
 
 func _ready():
@@ -32,6 +41,10 @@ func load_save() -> void:
 	
 		# Apply the saved progress to the local progress
 		progress = data["progress"]
+		
+		# Handle new state additions that weren't part of first save
+		progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
+		print("progress state", progress)
 	else:
 		print("failed", status)
 
@@ -51,23 +64,32 @@ func save() -> void:
 	print("done")
  
 func set_current_world(world) -> void:
-	progress["current_world"] = world
+	progress[KEY_CURRENT_WORLD] = world
 	
 	
 func set_current_level(level_index) -> void:
-	progress["current_level"] = level_index
+	progress[KEY_CURRENT_LEVEL] = level_index
 
 
 # Progress the players current level
 # Only if the level index is greater than current level will it be set
 func progress_current_level(level_index) -> void:
-	if level_index > progress["current_level"]:
+	if level_index > progress[KEY_CURRENT_LEVEL]:
 		# Set the current level
 		set_current_level(level_index)
 		
 	# Save the updated game state to file
 	save()		
 
+# Set whether player has watched the story intro
+func set_has_watched_story_intro(watched) -> void:
+	progress[KEY_WATCH_INTRO] = watched
+	save()
+	
+# Get whether player has watched the story intro
+func get_has_watched_story_intro() -> bool:
+	return progress[KEY_WATCH_INTRO]
+	
 
 var prev_progress = null
 func cheat(value):

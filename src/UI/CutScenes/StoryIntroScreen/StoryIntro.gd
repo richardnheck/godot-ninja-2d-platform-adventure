@@ -40,7 +40,11 @@ func _ready() -> void:
 	
 	# wait a bit before starting walk in
 	yield(get_tree().create_timer(0.25), "timeout")
-	animation_player.play("walk-in")	
+	animation_player.play("walk-in")
+	
+	# indicate in game state that player has watched the story intro
+	# even if they haven't watched it to the end
+	GameState.set_has_watched_story_intro(true)	
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
