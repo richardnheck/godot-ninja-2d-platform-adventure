@@ -86,7 +86,8 @@ config/icon="res://icon.png"
 
 [audio]
 
-output_latency=100
+output_latency=50
+output_latency.web=100
 
 [autoload]
 

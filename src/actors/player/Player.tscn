@@ -1,8 +1,9 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://src/actors/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/player/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/player/sprites/death-effect.png" type="Texture" id=3]
+[ext_resource path="res://src/actors/player/states/talk.gd" type="Script" id=4]
 [ext_resource path="res://src/actors/player/player_state_machine.gd" type="Script" id=26]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/idle.gd" type="Script" id=27]
 [ext_resource path="res://src/actors/player/states/motion/on_ground/move.gd" type="Script" id=28]
@@ -241,31 +242,31 @@ region = Rect2( 99, 192, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=56]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 33, 32 )
+region = Rect2( 0, 64, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=57]
 atlas = ExtResource( 2 )
-region = Rect2( 33, 32, 33, 32 )
+region = Rect2( 0, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=58]
 atlas = ExtResource( 2 )
-region = Rect2( 66, 32, 33, 32 )
+region = Rect2( 33, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=59]
 atlas = ExtResource( 2 )
-region = Rect2( 99, 32, 33, 32 )
+region = Rect2( 66, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=60]
 atlas = ExtResource( 2 )
-region = Rect2( 132, 32, 33, 32 )
+region = Rect2( 99, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=61]
 atlas = ExtResource( 2 )
-region = Rect2( 165, 32, 33, 32 )
+region = Rect2( 132, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=62]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 64, 33, 32 )
+region = Rect2( 165, 32, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=63]
 atlas = ExtResource( 2 )
@@ -298,15 +299,15 @@ animations = [ {
 "name": "talk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 62 ) ],
+"frames": [ SubResource( 56 ) ],
 "loop": false,
 "name": "jump_up",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ SubResource( 63 ) ],
 "loop": true,
@@ -353,7 +354,7 @@ script = ExtResource( 32 )
 script = ExtResource( 34 )
 
 [node name="Talk" type="Node" parent="StateMachine"]
-script = ExtResource( 34 )
+script = ExtResource( 4 )
 
 [node name="AirJump" type="Node" parent="StateMachine"]
 script = ExtResource( 36 )
@@ -367,6 +368,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 64 )
 animation = "talk"
+frame = 2
 playing = true
 centered = false
 
