@@ -59,11 +59,12 @@ func _walk_out() -> void:
 	animationPlayer.play("walk-out")
 	
 func _goto_next_scene() -> void:
-	
 	$CutSceneBase.goto_next_scene()
 
+# Shake the screen when the boss hits the ground
 func _shake_screen() -> void:
 	# Play the boss slam sound
+	Game_AudioManager.stop_bgm()
 	Game_AudioManager.sfx_env_cave_boss_cutscene_slam.play()
 	
 	# Shake the screen

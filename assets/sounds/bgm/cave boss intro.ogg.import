@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cave boss intro.ogg-d380cd91f0c63c26e3a5e583d6e31086.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/cave boss intro.ogg"
+dest_files=[ "res://.import/cave boss intro.ogg-d380cd91f0c63c26e3a5e583d6e31086.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

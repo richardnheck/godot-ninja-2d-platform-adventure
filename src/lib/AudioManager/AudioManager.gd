@@ -114,6 +114,7 @@ onready var bgm_cave_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelBo
 onready var bgm_cave_level_boss_intro : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossIntro
 onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
 onready var bgm_main_theme : AudioStreamPlayer = $BGM/Bgm_MainTheme
+onready var bgm_story_intro : AudioStreamPlayer = $BGM/Bgm_StoryIntro
 
 #Sfx (Sound Effects)
 onready var sfx_character_player_land : AudioStreamPlayer = $SFX/Character/Sfx_PlayerLand
@@ -153,6 +154,10 @@ func play_bgm_main_theme():
 func play_bgm_main_theme_skip_start():
 	self.play_bgm_from_player(self.bgm_main_theme, 7.5)
 
+# Play the song for the story intro cutscene
+func play_story_intro():
+	self.play_bgm_from_player(self.bgm_story_intro)
+	
 # Play the cave level boss intro cutscene music 
 func play_cave_level_boss_intro():
 	self.play_bgm_from_player(self.bgm_cave_level_boss_intro)

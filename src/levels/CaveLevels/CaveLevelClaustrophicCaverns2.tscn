@@ -79,7 +79,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1913, 1424 )
+position = Vector2( 1694, 1432 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -399,7 +399,7 @@ tile_data = PoolIntArray( 786444, 1073741826, 0, 786448, 1073741826, 0, 786452, 
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1560, 968 )
-frame = 21
+frame = 24
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 384, 576 )

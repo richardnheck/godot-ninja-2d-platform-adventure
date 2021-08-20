@@ -22,6 +22,7 @@ var dialogs = null
  
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Game_AudioManager.play_story_intro()
 	Actions.use_cutscene_actions()
 	cut_scene_base.show_continue(false)
 	
