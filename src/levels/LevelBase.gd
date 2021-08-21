@@ -28,6 +28,9 @@ var screenShake:ScreenShake
 func _ready() -> void:
 	print("LevelBase: ready()")
 	
+	# Preload the world screen to prevent HTML5 audio stutter when transitioning
+	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
+	
 	var current_level_path = get_tree().current_scene.filename
 	var bgm = LevelData.get_level_bgm(current_level_path)
 	if bgm != "":

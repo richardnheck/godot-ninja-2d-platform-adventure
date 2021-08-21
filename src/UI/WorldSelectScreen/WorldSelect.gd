@@ -8,6 +8,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Preload the mainscreen to prevent HTML5 audio stutter when transitioning
+	preload("res://src/UI/MainScreen/MainScreen.tscn")
+	
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 
 
@@ -19,4 +22,3 @@ func _ready() -> void:
 func _on_World1Button_button_up() -> void:
 	Game_AudioManager.sfx_ui_general_select.play()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn")
-

@@ -103,8 +103,7 @@ margin_top = 38.0
 margin_bottom = 53.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 19, 5 )
+position = Vector2( 19, 6 )
 
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0

@@ -11,6 +11,9 @@ const this_world = LevelData.WORLD1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Preload the world select to prevent HTML5 audio stutter when transitioning
+	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
+	
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 	
 	# Get the current progress of the game

@@ -4,6 +4,7 @@ onready var main_play_button := $Control/VBoxContainer/MainPlayButton
 onready var title = $TitleScreenText
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
+var settings = preload("res://src/UI/Settings/Settings.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
