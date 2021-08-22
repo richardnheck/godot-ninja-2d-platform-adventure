@@ -16,3 +16,4 @@ func _on_CheatButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	Settings.cheat_mode = not Settings.cheat_mode
 	GameState.cheat(Settings.cheat_mode)
+

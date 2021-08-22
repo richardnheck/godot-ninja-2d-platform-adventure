@@ -110,6 +110,4 @@ func move_player_left():
 func move_player_stop():
 	_move_player_right = false
 	_move_player_left = false
-			
-func goto_next_scene()->void:
-	cut_scene_base.goto_next_scene()
+		

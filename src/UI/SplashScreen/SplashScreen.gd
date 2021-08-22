@@ -3,6 +3,9 @@ extends CanvasLayer
 onready var fade_screen = $FadeScreen
 
 func _ready() -> void:
+	print(OS.get_name())
+	$Control/DebugLabel.text = OS.get_name()
+	
 	# Preload the mainscreen to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/MainScreen/MainScreen.tscn")
 	

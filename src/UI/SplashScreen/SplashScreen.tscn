@@ -42,6 +42,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DebugLabel" type="Label" parent="Control"]
+visible = false
+margin_left = 128.0
+margin_top = 32.0
+margin_right = 168.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true

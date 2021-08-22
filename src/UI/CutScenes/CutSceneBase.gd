@@ -29,6 +29,12 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 #	pass
 func goto_next_scene() -> void:
+	if Settings.is_html5_build():
+		# Prevent HTML5 Audio stutter by stopping background music before transitioning
+		# to the level
+		Game_AudioManager.stop_bgm()
+		yield(get_tree().create_timer(1), "timeout")	
+		
 	fadeScreen.go_to_scene(skip_to_scene_path)
 	
 # Show/Hide the continue button/message
@@ -39,6 +45,12 @@ func is_continue_button_showing()->bool:
 	return continue_button.visible
 
 func _on_SkipButton_pressed() -> void:
+	if Settings.is_html5_build():
+		# Prevent HTML5 Audio stutter by stopping background music before transitioning
+		# to the level
+		Game_AudioManager.stop_bgm()
+		yield(get_tree().create_timer(1), "timeout")	
+		
 	self.goto_next_scene()
 
 func _on_ContinueButton_button_up() -> void:

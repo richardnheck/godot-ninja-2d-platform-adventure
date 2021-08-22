@@ -192,6 +192,7 @@ func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int, var offset
 		emit_signal("bgm_just_started", what_bgm.get_path().replace("res://Audio/Bgm/", "").replace(".ogg", ""))
 
 func stop_bgm():
+	bgm_core.volume_db = -30
 	bgm_core.stop()
 	current_bgm = ""
 

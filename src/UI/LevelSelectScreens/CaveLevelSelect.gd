@@ -43,6 +43,13 @@ func _ready() -> void:
 	
 func _level_button_pressed(levelIndex):
 	Game_AudioManager.sfx_ui_general_select.play()
+	
+	if Settings.is_html5_build():
+		# Prevent HTML5 Audio stutter by stopping background music before transitioning
+		# to the level
+		Game_AudioManager.stop_bgm()
+		yield(get_tree().create_timer(1), "timeout")	
+	
 	LevelData.goto_level(levelIndex)
 
 
