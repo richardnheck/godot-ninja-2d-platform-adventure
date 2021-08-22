@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 onready var main_play_button := $Control/VBoxContainer/MainPlayButton
+onready var quit_button := $Control/VBoxContainer/QuitButton
 onready var title = $TitleScreenText
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
@@ -9,6 +10,9 @@ var settings = preload("res://src/UI/Settings/Settings.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Settings.visible = false
+	quit_button.visible = not Settings.is_html5_build()
+	
 	if GameState.get_has_watched_story_intro():
 		# If user has watched the story intro then show the world select screen
 		main_play_button.next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn";
@@ -16,7 +20,7 @@ func _ready() -> void:
 		# User hasn't watched the story intro so show it
 		main_play_button.next_scene_path = "res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.tscn";		
 			
-	$Settings.visible = false
+	
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 
 	_start_tween()

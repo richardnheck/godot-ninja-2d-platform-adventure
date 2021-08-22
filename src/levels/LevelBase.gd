@@ -89,7 +89,8 @@ var player_instance = null
 func _spawn_player() -> KinematicBody2D:
 	print("spawning at:")
 	var spawn_point = Vector2.ZERO
-	if temp_spawn_position != null:
+	if temp_spawn_position != null and OS.is_debug_build():
+		# Temp Spawn position is only allowed for debug builds
 		print("temp spawn position")
 		spawn_point = temp_spawn_position.position
 	elif LevelData.level_checkpoint_reached:

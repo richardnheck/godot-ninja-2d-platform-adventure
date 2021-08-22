@@ -10,8 +10,7 @@ func _ready() -> void:
 	preload("res://src/UI/MainScreen/MainScreen.tscn")
 	
 	fade_screen.fade_in_current_scene();
-	Game_AudioManager.play_bgm_main_theme()
-
-
+	
 func _on_Timer_timeout() -> void:
+	Game_AudioManager.play_bgm_main_theme()
 	fade_screen.go_to_scene("res://src/UI/MainScreen/MainScreen.tscn")
