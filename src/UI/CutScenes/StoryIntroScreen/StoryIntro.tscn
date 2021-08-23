@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -603,6 +603,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=13]
+length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -610,7 +611,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+"times": PoolRealArray( 0, 1.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -627,13 +628,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "jump"
 } ]
 }
+
+[sub_resource type="RectangleShape2D" id=14]
 
 [node name="StoryIntro" type="Node"]
 script = ExtResource( 8 )
@@ -736,6 +739,14 @@ anims/walk-out = SubResource( 13 )
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
 
+[node name="StopPointArea2D" type="Area2D" parent="."]
+position = Vector2( -45, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StopPointArea2D"]
+position = Vector2( 262, 135.165 )
+shape = SubResource( 14 )
+
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
+[connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
 
 [editable path="CutSceneBase"]

@@ -3,6 +3,8 @@ extends CanvasLayer
 
 onready var buttonContainer = $Control/LevelButtonsContainer
 onready var boss_button = $Control/BossButton
+onready var loading_indicator = $Control/LoadingIndicator
+onready var fadeScreen = $FadeScreen
 
 export(String, FILE) var intro_scene_path:String = ""
 
@@ -13,6 +15,8 @@ const this_world = LevelData.WORLD1
 func _ready() -> void:
 	# Preload the world select to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
+	
+	loading_indicator.visible = false
 	
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 	
@@ -48,13 +52,20 @@ func _level_button_pressed(levelIndex):
 		# Prevent HTML5 Audio stutter by stopping background music before transitioning
 		# to the level
 		Game_AudioManager.stop_bgm()
-		yield(get_tree().create_timer(1), "timeout")	
-	
-	LevelData.goto_level(levelIndex)
+		loading_indicator.visible = true  				# Show loading message on this screen so it doesn't appear that game freezes when background music stops
+		yield(get_tree().create_timer(1), "timeout")	# Need to wait otherwise it still has a quiet clicking stutter	
+		_fade_goto_scene(levelIndex, true)				# Show additional loading message on the fadescreen because on slow devices it looks like nothing is happening	
+	else:
+		_fade_goto_scene(levelIndex, false)	
+
+func _fade_goto_scene(levelIndex, show_loading_message) -> void:
+	var scene_path = LevelData.goto_level(levelIndex, false)
+	fadeScreen.go_to_scene(scene_path, show_loading_message)
 
 
 func _on_BossButton_button_up() -> void:
-	LevelData.goto_boss_level()
+	var scene_path = LevelData.goto_boss_level(false)
+	fadeScreen.go_to_scene(scene_path)
 
 
 func _on_IntroButton_button_up() -> void:

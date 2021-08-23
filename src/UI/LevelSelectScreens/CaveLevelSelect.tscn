@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/LevelSelectScreens/CaveLevelSelect.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=6]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=9]
 
 [node name="CaveLevelSelect" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -99,15 +100,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LoadingIndicator" parent="Control" instance=ExtResource( 9 )]
+visible = false
+
 [node name="Props" type="Node" parent="."]
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 7 )]
 position = Vector2( 64, 120 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 7 )]
 position = Vector2( 256, 120 )
-frame = 0
 
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
 

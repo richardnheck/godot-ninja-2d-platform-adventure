@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=14]
 [ext_resource path="res://src/objects/demon-seal/DemonSeal.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -607,7 +608,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=14]
-length = 2.5
+length = 3.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -615,7 +616,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.2 ),
+"times": PoolRealArray( 0, 2.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -632,7 +633,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.5 ),
+"times": PoolRealArray( 2.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -646,7 +647,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 2.5 ),
+"times": PoolRealArray( 2.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -710,6 +711,8 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
+
+[sub_resource type="RectangleShape2D" id=17]
 
 [node name="BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
@@ -827,7 +830,7 @@ position = Vector2( 160, 89.2877 )
 texture = ExtResource( 6 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
+skip_to_scene_path = "res://src/UI/TemporaryEndScene.tscn"
 
 [node name="ClickRect" parent="CutSceneBase/Control" index="0"]
 anchor_left = 0.5
@@ -878,7 +881,17 @@ position = Vector2( 208, 144 )
 anims/hover = SubResource( 15 )
 anims/show = SubResource( 16 )
 
+[node name="FadeScreen" parent="." instance=ExtResource( 16 )]
+
+[node name="StopPointArea2D" type="Area2D" parent="."]
+position = Vector2( 6, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StopPointArea2D"]
+position = Vector2( 262, 135.165 )
+shape = SubResource( 17 )
+
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
 
 [editable path="CutSceneBase"]

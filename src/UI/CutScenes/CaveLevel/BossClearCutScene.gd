@@ -8,6 +8,7 @@ onready var text_animation_player:AnimationPlayer = $TextAnimationPlayer
 onready var screen_shake = $ScreenShake
 onready var stage_clear_text = $StageClearText
 onready var tween = $Tween
+onready var fade_screen = $FadeScreen
 
 var _move_player_right:bool = false
 var _move_player_left:bool = false
@@ -62,6 +63,7 @@ func do_grab_talisman() -> void:
 	animation_player.play("grab_talisman")
 	
 func do_ending() -> void:
+	Game_AudioManager.stop_bgm() 
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()
@@ -69,7 +71,7 @@ func do_ending() -> void:
 	yield(get_tree().create_timer(4), "timeout")
 	
 	# Show the temporary end scene for the demo		
-	get_tree().change_scene("res://src/UI/TemporaryEndScene.tscn")
+	fade_screen.go_to_scene("res://src/UI/TemporaryEndScene.tscn")
 		
 		
 func show_text() -> void:
@@ -108,3 +110,11 @@ func play_boss_fall() -> void:
 		
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	print(anim_name + " animation finished")
+
+# This Stop Point Area ensures that the player stops at the exact spot
+# This is required because on HTML5 build it can walk further and therefore
+# be off the screen when player collects the gem
+func _on_StopPointArea2D_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		move_player_stop()
+		$StopPointArea2D/CollisionShape2D.set_deferred("disabled", true)

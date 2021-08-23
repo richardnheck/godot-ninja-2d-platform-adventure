@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fade In"
@@ -90,6 +91,9 @@ pause_mode = 2
 autoplay = "Fade In"
 "anims/Fade In" = SubResource( 1 )
 "anims/Fade Out" = SubResource( 2 )
+
+[node name="LoadingIndicator" parent="CanvasLayer/Control" instance=ExtResource( 2 )]
+visible = false
 
 [connection signal="animation_finished" from="CanvasLayer/Control/FadePlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="CanvasLayer/Control/FadePlayer" to="." method="_on_AnimationPlayer_animation_started"]

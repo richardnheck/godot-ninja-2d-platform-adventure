@@ -34,8 +34,7 @@ var is_reload = false
 # Get all levels
 func get_levels() -> Array:
 	return levelsArray
-
-
+	
 # Get levels by world
 func get_levels_by_world(world) -> Array:
 	if world == WORLD1:
@@ -49,21 +48,22 @@ func is_world1_level(levelObj) -> bool:
 	return levelObj["world"] == WORLD1
 	
 
-# Goto the bos level
-func goto_boss_level() -> void:
+# Goto the boss level
+func goto_boss_level(changeScene = true) -> String:
 	for i in range(0, levelsArray.size()):
 		if levelsArray[i].has("is_boss"):
-			goto_level(i)
-	
+			return goto_level(i, changeScene)
+	return ""
 	
 # Goto the level specified by its index 
-func goto_level(levelIndex) -> void:
+func goto_level(levelIndex, changeScene = true) -> String:
 	var level = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
 	level_checkpoint_reached = false
 	is_reload = false
-	get_tree().change_scene(level.scene_path)
-
+	if changeScene:
+		get_tree().change_scene(level.scene_path)
+	return level.scene_path
  
 # Goto the next level
 func goto_next_level() -> void:

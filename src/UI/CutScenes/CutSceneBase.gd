@@ -25,17 +25,16 @@ func _ready() -> void:
 	add_child(screenShake)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
-func goto_next_scene() -> void:
+func goto_next_scene(show_loading_message = false) -> void:
 	if Settings.is_html5_build():
 		# Prevent HTML5 Audio stutter by stopping background music before transitioning
 		# to the level
 		Game_AudioManager.stop_bgm()
-		yield(get_tree().create_timer(1), "timeout")	
-		
-	fadeScreen.go_to_scene(skip_to_scene_path)
+		if get_tree():
+			yield(get_tree().create_timer(1), "timeout")
+			fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message)
+	else:		
+		fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message)
 	
 # Show/Hide the continue button/message
 func show_continue(visible)->void:
@@ -45,13 +44,8 @@ func is_continue_button_showing()->bool:
 	return continue_button.visible
 
 func _on_SkipButton_pressed() -> void:
-	if Settings.is_html5_build():
-		# Prevent HTML5 Audio stutter by stopping background music before transitioning
-		# to the level
-		Game_AudioManager.stop_bgm()
-		yield(get_tree().create_timer(1), "timeout")	
-		
-	self.goto_next_scene()
+	var show_loading_message = Settings.is_html5_build()		# Show additional loading message for slow devices on HTML5 build	
+	self.goto_next_scene(show_loading_message)
 
 func _on_ContinueButton_button_up() -> void:
 	self.do_continue()

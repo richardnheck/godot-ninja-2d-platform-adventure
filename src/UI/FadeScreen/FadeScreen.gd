@@ -6,20 +6,28 @@ signal fading_in_finished
 signal fading_out_finished
 signal fading_started
 
+
 #Child nodes
 onready var fade_player = $CanvasLayer/Control/FadePlayer
 onready var rect = $CanvasLayer/Control/BlackRectBottom
+onready var loading_indicator = $CanvasLayer/Control/LoadingIndicator
 
 var scene_to_go : String
 var is_reload_scene_call = false
 
 func _ready() -> void:
+	# Hide the loading indicator message by default
+	loading_indicator.visible = false
+	
 	# rect is hidden in scene so it doesn't block the view of other scenes
 	# in the editor.  Since it is hidden, make it visible when loaded
 	rect.visible = true
 	
 
-func go_to_scene(var target : String):
+func go_to_scene(var target : String, show_loading_message = false):
+	if show_loading_message:
+		loading_indicator.visible = true
+		
 	scene_to_go = target
 	fade_player.play("Fade Out")
 	

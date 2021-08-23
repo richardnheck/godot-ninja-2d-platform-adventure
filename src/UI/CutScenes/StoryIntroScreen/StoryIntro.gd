@@ -13,6 +13,7 @@ onready var animation_player = $AnimationPlayer
 onready var dialog1 = $Control/DialogBox1
 onready var dialog2 = $Control/DialogBox2
 onready var dialog3 = $Control/DialogBox3
+onready var fade_screen
 
 var _move_player_right:bool = false
 var _move_player_left:bool = false
@@ -85,7 +86,8 @@ func _on_player_screen_exited() -> void:
 	player.queue_free()
 	
 	# Goto the next scene
-	cut_scene_base.goto_next_scene()
+	var show_loading_message = Settings.is_html5_build()		# Show additional loading message for slow devices on HTML5 build
+	cut_scene_base.goto_next_scene(show_loading_message)
 	
 func _on_continue()->void:
 	if cut_scene_base.is_continue_button_showing():
@@ -111,3 +113,11 @@ func move_player_stop():
 	_move_player_right = false
 	_move_player_left = false
 		
+
+# This Stop Point Area ensures that the player stops at the exact spot
+# This is required because on HTML5 builds on slower machines to ensure the player
+# always walks to the same spot irrespective of machine timing
+func _on_StopPointArea2D_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		move_player_stop()
+		$StopPointArea2D/CollisionShape2D.set_deferred("disabled", true)
