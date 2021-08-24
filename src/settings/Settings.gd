@@ -28,11 +28,17 @@ func is_html5_build() -> bool:
 	var is_html5 = OS.get_name() == "HTML5"
 	print("isHtml5 build", is_html5)
 	return is_html5
+
+
+# Determine device has touch screen
+func has_touchscreen() -> bool:
+	return OS.has_touchscreen_ui_hint()
 	
 		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Set touch screen controls to visible at start if device has a touch screen
+	touch_screen_controls_visible = has_touchscreen()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
