@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cave boss outro.ogg-98607891088d612b6b3a752d6fd3e8d1.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/cave boss outro.ogg"
+dest_files=[ "res://.import/cave boss outro.ogg-98607891088d612b6b3a752d6fd3e8d1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
