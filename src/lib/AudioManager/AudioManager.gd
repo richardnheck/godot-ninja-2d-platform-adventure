@@ -112,6 +112,7 @@ onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS
 onready var bgm_property_setter_player : AnimationPlayer = $BGM/BgmCore_DONT_TOUCH_THIS/PropertySetterPlayer
 onready var bgm_cave_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossTheme
 onready var bgm_cave_level_boss_intro : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossIntro
+onready var bgm_cave_level_boss_outro : AudioStreamPlayer = $BGM/Bgm_CaveLevelBossOutro
 onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
 onready var bgm_main_theme : AudioStreamPlayer = $BGM/Bgm_MainTheme
 onready var bgm_story_intro : AudioStreamPlayer = $BGM/Bgm_StoryIntro
@@ -161,6 +162,10 @@ func play_story_intro():
 # Play the cave level boss intro cutscene music 
 func play_cave_level_boss_intro():
 	self.play_bgm_from_player(self.bgm_cave_level_boss_intro)
+	
+# Play the cave level boss outro cutscene music 
+func play_cave_level_boss_outro():
+	self.play_bgm_from_player(self.bgm_cave_level_boss_outro)
 		
 func play_bgm_cave_level_boss():
 	self.play_bgm_from_player(self.bgm_cave_level_boss_theme)

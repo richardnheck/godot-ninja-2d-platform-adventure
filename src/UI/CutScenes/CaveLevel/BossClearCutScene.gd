@@ -16,6 +16,9 @@ var _move_boss_right:bool = false
 
 
 func _ready() -> void:
+	# Stop the current background music
+	Game_AudioManager.stop_bgm()
+	
 	cut_scene_base.show_continue(false)
 	Actions.use_cutscene_actions()
 	screen_shake.set_camera_node("Camera2D")
@@ -35,7 +38,9 @@ func _process(delta: float) -> void:
 		
 	if _move_boss_right:
 		boss.linear_velocity = Vector2(90,0)
-	
+
+func play_bgm() -> void:
+	Game_AudioManager.play_cave_level_boss_outro()	
 		
 func do_boss_walk_in() -> void:
 	animation_player.play("boss_walk_in")
@@ -63,13 +68,12 @@ func do_grab_talisman() -> void:
 	animation_player.play("grab_talisman")
 	
 func do_ending() -> void:
-	Game_AudioManager.stop_bgm() 
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
 	player.celebrate()
-	Game_AudioManager.sfx_ui_level_clear.play()
-	yield(get_tree().create_timer(4), "timeout")
-	
+	yield(get_tree().create_timer(2.8), "timeout")
+	Game_AudioManager.stop_bgm()
+	yield(get_tree().create_timer(1), "timeout")
 	# Show the temporary end scene for the demo		
 	fade_screen.go_to_scene("res://src/UI/TemporaryEndScene.tscn")
 		

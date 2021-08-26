@@ -131,13 +131,12 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 11 )
-frame = 22
 playing = true
 centered = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AnimatedSprite"]
 frames = SubResource( 11 )
-frame = 17
+frame = 18
 playing = true
 centered = false
 

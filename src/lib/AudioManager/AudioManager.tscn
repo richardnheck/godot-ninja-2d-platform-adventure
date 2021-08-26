@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/sounds/sfx/collectibles/demon_seal.wav" type="AudioStream" id=25]
 [ext_resource path="res://assets/sounds/bgm/story intro theme.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/bgm/cave boss intro.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/sounds/bgm/cave boss outro.ogg" type="AudioStream" id=28]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -56,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -60.0, 0.0 ]
+"values": [ -60.0, -15.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -60.0 ]
+"values": [ -15.0, -60.0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -86,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -60.0 ]
+"values": [ -15.0, -60.0 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -157,6 +158,11 @@ stream = ExtResource( 27 )
 volume_db = -15.0
 bus = "BGM"
 
+[node name="Bgm_CaveLevelBossOutro" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 28 )
+volume_db = -15.0
+bus = "BGM"
+
 [node name="SFX" type="Node" parent="."]
 
 [node name="Character" type="Node" parent="SFX"]
@@ -194,6 +200,7 @@ bus = "SFX"
 
 [node name="Sfx_DemonSeal" type="AudioStreamPlayer" parent="SFX/Collectibles"]
 stream = ExtResource( 25 )
+volume_db = -9.0
 bus = "SFX"
 
 [node name="Environments" type="Node" parent="SFX"]
@@ -241,6 +248,7 @@ bus = "SFX"
 
 [node name="Sfx_CaveBossCutsceneCrash" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 19 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="Sfx_CaveBossCutsceneFall" type="AudioStreamPlayer" parent="SFX/Environments"]
