@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slice1@2x.png-5ad05d60b3c0751dd55bfb500d336e5f.stex"
+path="res://.import/CaveLevelBoss.png-1f41879f3e2e8d95b3c507f5f0500bce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/promotion/final/slice1@2x.png"
-dest_files=[ "res://.import/slice1@2x.png-5ad05d60b3c0751dd55bfb500d336e5f.stex" ]
+source_file="res://assets/art/promotion/CaveLevelBoss.png"
+dest_files=[ "res://.import/CaveLevelBoss.png-1f41879f3e2e8d95b3c507f5f0500bce.stex" ]
 
 [params]
 
