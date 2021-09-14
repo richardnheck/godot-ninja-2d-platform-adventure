@@ -187,7 +187,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 824, 302 )
+position = Vector2( 192, 511.273 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100

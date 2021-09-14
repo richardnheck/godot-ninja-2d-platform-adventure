@@ -64,7 +64,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( -224, -776 )
+position = Vector2( 432, -238 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -83,7 +83,7 @@ __meta__ = {
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 608, -199.967 )
-frame = 3
+frame = 22
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 57, -800 )
@@ -444,10 +444,10 @@ tile_data = PoolIntArray( -2555917, 2, 131073, -2555916, 2, 131073, -2555915, 2,
 
 [node name="JapaneseLamp" parent="." instance=ExtResource( 15 )]
 position = Vector2( 89, -816 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="." instance=ExtResource( 15 )]
 position = Vector2( 25, -816 )
+frame = 0
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -456,47 +456,50 @@ position = Vector2( 48, 208 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 137, 136 )
+frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 185, 80 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 249, 32 )
+frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 336, 184 )
+frame = 0
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 416, 184 )
-frame = 0
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 488, 35 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 536, -14 )
+frame = 0
 
 [node name="JapaneseLamp9" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 560, -264 )
-frame = 0
 
 [node name="JapaneseLamp10" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 359, -262 )
+frame = 0
 
 [node name="JapaneseLamp12" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 136, -351 )
+frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( -80, -896 )
-frame = 0
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( -168, -896 )
+frame = 0
 
 [node name="JapaneseLamp11" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 248, -294 )
+frame = 0
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
