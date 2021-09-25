@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/UI/Controls/Settings/MusicButton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/themes/pause/pause_theme.tres" type="Theme" id=18]
 [ext_resource path="res://assets/themes/pause/touch-screen-controls-text.png" type="Texture" id=19]
+[ext_resource path="res://src/UI/HUD/hud-key.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 115 )
@@ -155,6 +156,10 @@ texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Key" type="Sprite" parent="Control"]
+position = Vector2( 286, 10 )
+texture = ExtResource( 20 )
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false

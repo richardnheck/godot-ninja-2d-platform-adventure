@@ -67,7 +67,13 @@ func _ready() -> void:
 	set_player_camera_limits(player, tilemapWorld);
 
 	if door:
-		door.close()
+		if LevelData.has_key:
+			door.open()
+			if key:
+				key.visible = false
+		else: 
+			door.close()
+		
 	
 	if not LevelData.is_reload:
 		var level_name = LevelData.get_level_name(current_level_path)
@@ -134,6 +140,7 @@ func goto_next_level() -> void:
 		
 			
 func _on_Key_captured() -> void:
+	LevelData.has_key = true
 	if door:
 		door.open()
 	
@@ -155,6 +162,10 @@ func _on_Player_died() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fadeScreen.reload_scene()
 	LevelData.is_reload = true
+	
+	if not LevelData.level_checkpoint_reached and LevelData.has_key:
+		# Clear the key status if the play did not reach a checkpoint with the key
+		LevelData.has_key = false
 
 func _on_CheckPoint_reached() -> void:
 	LevelData.level_checkpoint_reached = true

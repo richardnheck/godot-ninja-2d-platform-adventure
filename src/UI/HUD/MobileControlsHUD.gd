@@ -6,6 +6,7 @@ onready var left_touch_screen_button = $Control/HBoxContainerLeft/LeftTouchScree
 onready var right_touch_screen_button = $Control/HBoxContainerLeft/RightTouchScreenButton
 onready var jump_touch_screen_button = $Control/HBoxContainerRight/JumpTouchScreenButton
 onready var pause_button = $Control/PauseButton
+onready var hud_key = $Control/Key
 
 var paused: = false setget set_paused
 
@@ -18,12 +19,21 @@ func _ready() -> void:
 	
 	# Update controls from settings to get initial values
 	_on_controls_changed()
+	
+	# Listen for key status changes in LevelData
+	hud_key.visible = LevelData.has_key 	# default value in LevelData
+	LevelData.connect("key_status_changed", self, "_on_key_status_changed")
 # 
 # Handle when controls in the settings are changed
 #	
 func _on_controls_changed() -> void:
 	var controls_visible = Settings.touch_screen_controls_visible
 	_show_touch_screen_controls(controls_visible)
+
+# Handle when the key status has changed
+func _on_key_status_changed(has_key: bool) -> void:
+	# Show the hud key if the player has the key
+	hud_key.visible = has_key
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

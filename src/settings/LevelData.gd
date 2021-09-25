@@ -1,4 +1,5 @@
 extends Node
+signal key_status_changed
 
 const WORLD1 = 1	# Cave Levels
 const WORLD2 = 2
@@ -31,6 +32,8 @@ var current_level_index = 0;
 
 var is_reload = false
 
+var has_key: = false setget set_has_key
+
 # Get all levels
 func get_levels() -> Array:
 	return levelsArray
@@ -61,6 +64,7 @@ func goto_level(levelIndex, changeScene = true) -> String:
 	current_level_index = levelIndex
 	level_checkpoint_reached = false
 	is_reload = false
+	has_key = false
 	if changeScene:
 		get_tree().change_scene(level.scene_path)
 	return level.scene_path
@@ -76,6 +80,7 @@ func goto_next_level() -> void:
 	print("current_level_index = " + String(current_level_index))
 	
 	level_checkpoint_reached = false
+	has_key = false
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
 
@@ -93,6 +98,9 @@ func get_level_name(level_scene_path) -> String:
 			return levelsArray[i]["name"]
 	return ""	
 	
+func set_has_key(value:bool) -> void:
+	has_key = value
+	emit_signal("key_status_changed", has_key)
 # https://gdscript.com/how-to-save-and-load-godot-game-data
 # func save():
 #	var file = File.new()
