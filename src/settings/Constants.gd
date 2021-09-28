@@ -12,7 +12,12 @@ const GROUP_PLAYER = "player"
 const GROUP_KEY = "key"
 const GROUP_DOOR = "door"
 const GROUP_TRAP = "trap"
+const GROUP_CHECKPOINT = "checkpoint"
 
 # Masks
 # -------------------------------------------
 const MASK_PLAYER = 0		# Bit 0
+
+# Checkpoints
+# -------------------------------------------
+const NO_CHECKPOINT = ""

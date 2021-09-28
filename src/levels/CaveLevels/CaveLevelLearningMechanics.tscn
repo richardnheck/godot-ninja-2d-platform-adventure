@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=6]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=7]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=8]
+[ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/textures/GOLDROCKS.png" type="Texture" id=11]
 [ext_resource path="res://src/objects/tutorial/JumpDot.tscn" type="PackedScene" id=12]
@@ -59,7 +60,6 @@ layer = 0
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1799.87, -520.662 )
-frame = 23
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1744, -383.946 )
@@ -84,6 +84,9 @@ messageIndex = 3
 [node name="HelpSignKey" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 1680, -384 )
 messageIndex = 4
+
+[node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 9 )]
+position = Vector2( 974, 80 )
 
 [node name="TileMapBg" type="TileMap" parent="."]
 modulate = Color( 0.145098, 0.247059, 0.521569, 1 )

@@ -26,7 +26,8 @@ var levelsArray = [
 ];
 
 
-var level_checkpoint_reached = false
+# An identifier of the checkpoint reached, empty string if no checkpoints reached
+var level_checkpoint_reached = Constants.NO_CHECKPOINT
 
 var current_level_index = 0;
 
@@ -62,7 +63,7 @@ func goto_boss_level(changeScene = true) -> String:
 func goto_level(levelIndex, changeScene = true) -> String:
 	var level = LevelData.get_levels()[levelIndex]
 	current_level_index = levelIndex
-	level_checkpoint_reached = false
+	level_checkpoint_reached = Constants.NO_CHECKPOINT
 	is_reload = false
 	has_key = false
 	if changeScene:
@@ -79,11 +80,18 @@ func goto_next_level() -> void:
 	
 	print("current_level_index = " + String(current_level_index))
 	
-	level_checkpoint_reached = false
+	level_checkpoint_reached = Constants.NO_CHECKPOINT
 	has_key = false
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
-
+# Reload the level
+func reload_level() -> void:
+	LevelData.is_reload = true
+	
+	if LevelData.level_checkpoint_reached == Constants.NO_CHECKPOINT and LevelData.has_key:
+		# Clear the key status if the player did not reach a checkpoint with the key
+		LevelData.has_key = false
+	
 # Get the background music (bgm) for the specified level
 func get_level_bgm(level_scene_path) -> String:
 	for i in range(0, levelsArray.size()):
@@ -101,23 +109,3 @@ func get_level_name(level_scene_path) -> String:
 func set_has_key(value:bool) -> void:
 	has_key = value
 	emit_signal("key_status_changed", has_key)
-# https://gdscript.com/how-to-save-and-load-godot-game-data
-# func save():
-#	var file = File.new()
-#	file.open(FILE_NAME, File.WRITE)
-#	file.store_string(to_json(player))
-#	file.close()
-#
-#func load():
-#	var file = File.new()
-#	if file.file_exists(FILE_NAME):
-#		file.open(FILE_NAME, File.READ)
-#		var data = parse_json(file.get_as_text())
-#		file.close()
-#		if typeof(data) == TYPE_DICTIONARY:
-#			player = data
-#		else:
-#			printerr("Corrupted data!")
-#	else:
-#		printerr("No saved data!")
-		

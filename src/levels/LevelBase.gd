@@ -13,7 +13,6 @@ onready var intro_title_scene = preload("res://src/UI/Controls/LevelIntroTitle/L
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
-onready var check_point:Area2D = get_node("InteractiveProps/CheckPoint")
 onready var player_scene = preload("res://src/actors/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
@@ -22,7 +21,7 @@ onready var intro_title = null
 var player:Player
 var fadeScreen:FadeScreen
 var screenShake:ScreenShake
-
+var checkpoints:Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +36,12 @@ func _ready() -> void:
 		Game_AudioManager.play_bgm_by_node_name(bgm)
 	
 	Actions.use_normal_actions()		# Use normal input actions
+	
+	# Initialise checkpoints
+	get_tree().call_group(Constants.GROUP_CHECKPOINT, "set_on", LevelData.level_checkpoint_reached)
+	checkpoints = get_tree().get_nodes_in_group(Constants.GROUP_CHECKPOINT)
+	for checkpoint in checkpoints:
+		checkpoint.connect("reached", self, "_on_CheckPoint_reached")
 		
 	# Spawn the player
 	player = _spawn_player()
@@ -51,10 +56,6 @@ func _ready() -> void:
 	if door:
 		door.connect("player_entered", self, "_on_Door_player_entered");
 	
-	if(check_point != null):
-		check_point.set_on(LevelData.level_checkpoint_reached)
-		check_point.connect("reached", self, "_on_CheckPoint_reached")
-	
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
 	
@@ -68,9 +69,10 @@ func _ready() -> void:
 
 	if door:
 		if LevelData.has_key:
+			# The player has already grabbed the key so open the door and dont show the key
 			door.open()
 			if key:
-				key.visible = false
+				key.show_key(false)
 		else: 
 			door.close()
 		
@@ -99,9 +101,12 @@ func _spawn_player() -> KinematicBody2D:
 		# Temp Spawn position is only allowed for debug builds
 		print("temp spawn position")
 		spawn_point = temp_spawn_position.position
-	elif LevelData.level_checkpoint_reached:
-		print("check point position")
-		spawn_point = check_point.position
+	elif LevelData.level_checkpoint_reached != Constants.NO_CHECKPOINT:
+		var checkpoint_id = LevelData.level_checkpoint_reached
+		print("check point position:", checkpoint_id)
+		var checkpoint = _get_checkpoint(checkpoint_id)
+		print(checkpoint)
+		spawn_point = checkpoint.position
 	elif player_spawn_position != null:
 		print("player spawn position")
 		spawn_point = player_spawn_position.position
@@ -161,14 +166,28 @@ func _on_Player_start_die() -> void:
 func _on_Player_died() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fadeScreen.reload_scene()
-	LevelData.is_reload = true
-	
-	if not LevelData.level_checkpoint_reached and LevelData.has_key:
-		# Clear the key status if the play did not reach a checkpoint with the key
-		LevelData.has_key = false
+	LevelData.reload_level()
 
-func _on_CheckPoint_reached() -> void:
-	LevelData.level_checkpoint_reached = true
+# Called when a checkpoint has been reached by the player
+func _on_CheckPoint_reached(checkpoint_id) -> void:
+	print("Checkpoint reached: ", checkpoint_id)
+	
+	# Turn off all checkpoints first
+	# NB: Need to specifically call in real time otherwise they are called deferred
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, Constants.GROUP_CHECKPOINT, "set_on", Constants.NO_CHECKPOINT)
+	
+	# Turn on the checkpoint just reached
+	_get_checkpoint(checkpoint_id).set_on(checkpoint_id)
+	
+	# Remember which checkpoint has been reached
+	LevelData.level_checkpoint_reached = checkpoint_id
+
+# Get a checkpoint by its id
+func _get_checkpoint(id:String)-> Checkpoint:
+	for check_point in checkpoints:
+		if check_point.id == id:
+			return check_point
+	return null
 
 	
 #-------------------------------------------
