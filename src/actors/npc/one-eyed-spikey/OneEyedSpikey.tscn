@@ -10,7 +10,7 @@ radius = 6.29384
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="Pivot" index="0"]
-frame = 19
+frame = 13
 playing = true
 
 [node name="CollisionShape2D" parent="Pivot/Area2D" index="0"]

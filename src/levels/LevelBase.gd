@@ -180,7 +180,7 @@ func _on_CheckPoint_reached(checkpoint_id) -> void:
 	_get_checkpoint(checkpoint_id).set_on(checkpoint_id)
 	
 	# Remember which checkpoint has been reached
-	LevelData.level_checkpoint_reached = checkpoint_id
+	LevelData.set_checkpoint_reached(checkpoint_id)
 
 # Get a checkpoint by its id
 func _get_checkpoint(id:String)-> Checkpoint:

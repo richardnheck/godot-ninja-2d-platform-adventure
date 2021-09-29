@@ -28,6 +28,7 @@ var levelsArray = [
 
 # An identifier of the checkpoint reached, empty string if no checkpoints reached
 var level_checkpoint_reached = Constants.NO_CHECKPOINT
+var checkpoint_reached_with_key = false
 
 var current_level_index = 0;
 
@@ -61,11 +62,15 @@ func goto_boss_level(changeScene = true) -> String:
 	
 # Goto the level specified by its index 
 func goto_level(levelIndex, changeScene = true) -> String:
-	var level = LevelData.get_levels()[levelIndex]
+	var level = get_levels()[levelIndex]
 	current_level_index = levelIndex
+	
+	# Reset flags
 	level_checkpoint_reached = Constants.NO_CHECKPOINT
-	is_reload = false
 	has_key = false
+	checkpoint_reached_with_key = false
+	is_reload = false
+	
 	if changeScene:
 		get_tree().change_scene(level.scene_path)
 	return level.scene_path
@@ -80,17 +85,30 @@ func goto_next_level() -> void:
 	
 	print("current_level_index = " + String(current_level_index))
 	
+	# Reset flags
 	level_checkpoint_reached = Constants.NO_CHECKPOINT
 	has_key = false
+	checkpoint_reached_with_key = false
+	is_reload = false
+	
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
 # Reload the level
 func reload_level() -> void:
-	LevelData.is_reload = true
+	is_reload = true
 	
-	if LevelData.level_checkpoint_reached == Constants.NO_CHECKPOINT and LevelData.has_key:
+	if level_checkpoint_reached == Constants.NO_CHECKPOINT and has_key:
 		# Clear the key status if the player did not reach a checkpoint with the key
-		LevelData.has_key = false
+		has_key = false
+	elif level_checkpoint_reached != Constants.NO_CHECKPOINT and has_key and not checkpoint_reached_with_key:
+		# Player has a key and has hit a checkpoint, but they did not have the key for that checkpoint
+		# So on reload they do not have the key
+		has_key = false
+		
+# Set the checkpoint that has been reached
+func set_checkpoint_reached(checkpoint_id:String) -> void:
+	level_checkpoint_reached = checkpoint_id
+	checkpoint_reached_with_key = has_key
 	
 # Get the background music (bgm) for the specified level
 func get_level_bgm(level_scene_path) -> String:
