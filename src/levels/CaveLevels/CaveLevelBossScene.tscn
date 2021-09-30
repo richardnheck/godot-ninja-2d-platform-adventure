@@ -64,10 +64,6 @@ position = Vector2( -224, 176 )
 position = Vector2( -296, 168 )
 initial_delay = 1.5
 
-[node name="MovingBambooSpike3" parent="InteractiveProps" instance=ExtResource( 11 )]
-position = Vector2( 1064, 184 )
-initial_delay = 1.5
-
 [node name="MovingBambooSpike2" parent="InteractiveProps" instance=ExtResource( 11 )]
 position = Vector2( -280, 168 )
 initial_delay = 1.5
