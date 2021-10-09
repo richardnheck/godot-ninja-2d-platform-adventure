@@ -64,7 +64,7 @@ func update(_delta):
 				move(velocity)	
 			else:
 				goto_move_state()
-		
+
 
 func goto_move_state():
 	emit_signal("finished", "move")
