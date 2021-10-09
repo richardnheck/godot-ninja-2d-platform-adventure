@@ -3,6 +3,7 @@ extends Node2D
 
 const COLOR_WHITE = Color("#FFFFFF")
 const COLOR_ORANGE = Color("#FF7700")
+const MAX_FIREBALLS = 4
 
 enum RotationStyle { 
 	SPIN = 0,		# Spins in a continous circle
@@ -21,46 +22,75 @@ export(int, 0, 1) var rotation_style:int = 0
 export(int, 1, 4) var length:int = 4 setget _set_length
 
 # Specifies whether there is a gap between the fireballs
-export var gap:bool = false
+export var gap:bool = false setget _set_gap
 
 # The number of fireball chains that can spin
-export(int, 1, 3) var chains:int = 1
+export(int, 1, 3) var chains:int = 1 setget _set_chains
 
 onready var pivot:=$Pivot
 
-onready var fire_balls:Array = [
-	$Pivot/FireBall1,
-	$Pivot/FireBall2,
-	$Pivot/FireBall3,
-	$Pivot/FireBall4
-]
+var delta_for_draw:float = 0
+var dot_rotation_degrees_for_draw = 0
 
 var radius = 16
+
+var fire_balls_chain1:Array = []
 
 func _ready() -> void:
 	if Engine.editor_hint:
 		return
-		
-	for i in len(fire_balls):
+	
+	# Chain 1
+	for i in MAX_FIREBALLS:
 		var dist = radius + i * radius
-		var fire_ball = fire_balls[i]
+		var fire_ball:FireBall = preload("res://src/objects/fire-spinner/FireBall.tscn").instance()
 		fire_ball.position = Vector2(dist, 0).rotated(deg2rad(-start_direction))
 		fire_ball.visible = i < length
+		fire_ball.index = i
+		fire_balls_chain1.append(fire_ball)
+		pivot.add_child(fire_ball)
 
 
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
+		delta_for_draw = delta
+		dot_rotation_degrees_for_draw += speed * delta
+		update()
 		return
-	pivot.rotation_degrees += speed * delta 
+	
+	# Adjust rotation
+	if speed != 0:
+		pivot.rotation_degrees += speed * delta
+	
+	# Adjust visibility of fireballs
+	for i in len(fire_balls_chain1):
+		var fire_ball = fire_balls_chain1[i]
+		fire_ball.visible = i < length
+		if fire_ball.visible and gap:
+			# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
+			fire_ball.visible = not i % 2 == 0
+			
 
 func _set_length(value) -> void:
 	length = value
 	update()
+
 	
 func _set_start_direction(value) -> void:
 	start_direction = value
 	update()
+
 	
+func _set_gap(value) -> void:
+	gap = value
+	update()
+	
+
+func _set_chains(value) -> void:
+	chains = value
+	update()
+	
+
 func _draw():
 	if not Engine.editor_hint:
 		return
@@ -68,11 +98,29 @@ func _draw():
 	#draw_line(Vector2(), Vector2(100,100), COLOR_WHITE, 4.0, true)
 	#draw_circle(Vector2(),radius + length * radius, COLOR_WHITE)
 	
-	draw_empty_circle(Vector2(), Vector2(0, (radius/2) + radius + ((length - 1)  * radius)), COLOR_WHITE, 1)
+	# Draw the outer circle around the outmost fireball
+	var outer_circle_radius = (radius/2) + radius + ((length - 1)  * radius)
+	draw_empty_circle(Vector2(), Vector2(0, outer_circle_radius), COLOR_WHITE, 1)
 	
+	# Draw the circle indicating speed of rotation
+	draw_circle(Vector2(0, outer_circle_radius).rotated(deg2rad(dot_rotation_degrees_for_draw)), 3, COLOR_WHITE)
+	
+	# Draw the fireballs for chain 1
 	for i in range(0, length):
-		var dist = radius + i * radius
+		draw_fireball(i)
+
+
+func draw_fireball(index) -> void:
+	var dist = radius + index * radius
+	var draw_fireball = true
+	
+	# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
+	if gap and index % 2 == 0:
+		draw_fireball = false
+		
+	if draw_fireball:
 		draw_circle(Vector2(dist, 0).rotated(deg2rad(-start_direction)), radius/2, COLOR_ORANGE)
+
 
 func draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Color, resolution:int):
 	var draw_counter = 1
@@ -88,6 +136,7 @@ func draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Color
 
 	line_end = circle_radius.rotated(deg2rad(360)) + circle_center
 	draw_line(line_origin, line_end, color)
+
 
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	var nb_points = 32

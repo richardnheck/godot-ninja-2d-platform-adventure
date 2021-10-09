@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/UI/FadeScreen/FadeScreen.gd"
 }, {
+"base": "Node2D",
+"class": "FireBall",
+"language": "GDScript",
+"path": "res://src/objects/fire-spinner/FireBall.gd"
+}, {
 "base": "AnimatedSprite",
 "class": "FireYokai",
 "language": "GDScript",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "Checkpoint": "",
 "CutSceneBase": "",
 "FadeScreen": "",
+"FireBall": "",
 "FireYokai": "",
 "Geometry2D": "",
 "LevelBase": "",
