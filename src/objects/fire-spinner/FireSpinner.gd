@@ -30,46 +30,55 @@ export(int, 1, 3) var chains:int = 1 setget _set_chains
 onready var pivot:=$Pivot
 
 var delta_for_draw:float = 0
-var dot_rotation_degrees_for_draw = 0
+var rotation_degrees_for_draw = 0
 
-var radius = 16
-
-var fire_balls_chain1:Array = []
+var radius = 18   # This is big enough to allow the player through a gap
 
 func _ready() -> void:
 	if Engine.editor_hint:
 		return
 	
-	# Chain 1
-	for i in MAX_FIREBALLS:
-		var dist = radius + i * radius
-		var fire_ball:FireBall = preload("res://src/objects/fire-spinner/FireBall.tscn").instance()
-		fire_ball.position = Vector2(dist, 0).rotated(deg2rad(-start_direction))
-		fire_ball.visible = i < length
-		fire_ball.index = i
-		fire_balls_chain1.append(fire_ball)
-		pivot.add_child(fire_ball)
+	# Add the fireballs for chains == 1
+	for i in range(0, length):
+		add_fireball(i, -start_direction)
+
+	# Add the fireballs for chains == 2
+	# The second chain is in the opposite direction to the first chain
+	if chains == 2:
+		for i in range(0, length):
+			add_fireball(i, -start_direction + 180)
+			
+	# Add the fireballs for chains == 3
+	# All chains are 120 degrees apart
+	if chains == 3:
+		for i in range(0, length):
+			add_fireball(i, -start_direction + 120)
+		for i in range(0, length):
+			add_fireball(i, -start_direction + 240)
 
 
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
+		# Remember values so editor can animate the speed of the rotation
 		delta_for_draw = delta
-		dot_rotation_degrees_for_draw += speed * delta
+		rotation_degrees_for_draw += speed * delta
 		update()
 		return
 	
 	# Adjust rotation
 	if speed != 0:
 		pivot.rotation_degrees += speed * delta
-	
-	# Adjust visibility of fireballs
-	for i in len(fire_balls_chain1):
-		var fire_ball = fire_balls_chain1[i]
-		fire_ball.visible = i < length
-		if fire_ball.visible and gap:
-			# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
-			fire_ball.visible = not i % 2 == 0
-			
+
+
+func add_fireball(index, start_angle) -> void:
+	var dist = radius + index * radius
+	var fire_ball:FireBall = preload("res://src/objects/fire-spinner/FireBall.tscn").instance()
+	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
+	fire_ball.show_fireball(index < length)
+	if fire_ball._showing and gap:
+		# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
+		fire_ball.show_fireball(not index % 2 == 0)
+	pivot.add_child(fire_ball)		
 
 func _set_length(value) -> void:
 	length = value
@@ -103,14 +112,28 @@ func _draw():
 	draw_empty_circle(Vector2(), Vector2(0, outer_circle_radius), COLOR_WHITE, 1)
 	
 	# Draw the circle indicating speed of rotation
-	draw_circle(Vector2(0, outer_circle_radius).rotated(deg2rad(dot_rotation_degrees_for_draw)), 3, COLOR_WHITE)
+	draw_circle(Vector2(0, outer_circle_radius).rotated(deg2rad(rotation_degrees_for_draw)), 3, COLOR_WHITE)
 	
-	# Draw the fireballs for chain 1
+	# Draw the fireballs for chains == 1
 	for i in range(0, length):
-		draw_fireball(i)
+		draw_fireball(i, -start_direction)
+		
+	# Draw the fireballs for chains == 2
+	# The second chain is in the opposite direction to the first chain
+	if chains == 2:
+		for i in range(0, length):
+			draw_fireball(i, -start_direction + 180)
+			
+	# Draw the fireballs for chains == 3
+	# All chains are 120 degrees apart
+	if chains == 3:
+		for i in range(0, length):
+			draw_fireball(i, -start_direction + 120)
+		for i in range(0, length):
+			draw_fireball(i, -start_direction + 240)
 
 
-func draw_fireball(index) -> void:
+func draw_fireball(index, start_angle) -> void:
 	var dist = radius + index * radius
 	var draw_fireball = true
 	
@@ -119,7 +142,7 @@ func draw_fireball(index) -> void:
 		draw_fireball = false
 		
 	if draw_fireball:
-		draw_circle(Vector2(dist, 0).rotated(deg2rad(-start_direction)), radius/2, COLOR_ORANGE)
+		draw_circle(Vector2(dist, 0).rotated(deg2rad(start_angle)), radius/2, COLOR_ORANGE)
 
 
 func draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Color, resolution:int):
