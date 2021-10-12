@@ -8,9 +8,10 @@ script = ExtResource( 2 )
 
 [node name="FireSpinner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 120, 80 )
-speed = 90
-rotation_style = 1
-chains = 4
+speed = 180
+start_direction = 90
+swing_degrees = 45
+swing_speed = 100
 
 [node name="Button" type="Button" parent="."]
 margin_right = 55.0

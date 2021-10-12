@@ -24,6 +24,9 @@ export(int, 0, 1) var rotation_style:int = 0 setget _set_rotation_style
 # The swing angle (in degrees) either side of start direction
 export(int, 0, 90, 45) var swing_degrees:int = 90 setget _set_swing_degrees
 
+# The swing speed 
+export(int, -100, 100, 25) var swing_speed:int = 50 setget _set_swing_speed
+
 # Number of spinning fire balls in the same line 
 export(int, 1, 5) var length:int = 4 setget _set_length
 
@@ -35,10 +38,33 @@ export(int, 1, 4) var chains:int = 1 setget _set_chains
 
 onready var pivot:=$Pivot
 
+
 var delta_for_draw:float = 0
 var rotation_degrees_for_draw = 0
 
 var radius = 18   # This is big enough to allow the player through a gap
+
+# Tween for Swing
+onready var swing_tween:=$SwingTween
+onready var swing_tween_values = [0, 0]
+
+
+func _start_swing_tween():
+	if(swing_tween_values[0] == 0):
+		swing_tween_values = [-swing_degrees, swing_degrees]
+		
+	var time = float(100/swing_speed)
+	print("swing speed", swing_speed)
+	print("time", time)
+	swing_tween.interpolate_property(pivot, "rotation_degrees", swing_tween_values[0], swing_tween_values[1], time, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	swing_tween.start()	
+
+
+func _on_SwingTween_tween_completed(object: Object, key: NodePath) -> void:
+	print ("tween completed")
+	swing_tween_values.invert()
+	_start_swing_tween()
+
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -48,6 +74,9 @@ func _ready() -> void:
 		for i in range(0, length):
 			var angle = c * (360 / chains)
 			add_fireball(i, -start_direction + angle)
+			
+	if rotation_style == RotationStyle.SWING:
+		_start_swing_tween()
 
 
 func _process(delta: float) -> void:
@@ -58,9 +87,10 @@ func _process(delta: float) -> void:
 		update()
 		return
 	
-	# Adjust rotation
-	if speed != 0:
-		pivot.rotation_degrees += speed * delta
+	if rotation_style == RotationStyle.SPIN:
+		# Adjust rotation for spin mode
+		if speed != 0:
+			pivot.rotation_degrees += speed * delta
 
 
 func _set_length(value) -> void:
@@ -88,6 +118,11 @@ func _set_rotation_style(value) -> void:
 
 func _set_swing_degrees(value) -> void:
 	swing_degrees = value
+	swing_tween_values = [-swing_degrees, swing_degrees]#		
+	update()
+	
+func _set_swing_speed(value) -> void:
+	swing_speed = value	
 	update()
 
 func _draw():
@@ -112,6 +147,10 @@ func _draw():
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
 		
+		# Draw the line that shows the swing motion
+		line_end = Vector2(dist, 0).rotated(deg2rad(start_direction)).rotated(deg2rad(-swing_degrees/2))
+		draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
+		draw_circle(line_end, 3, COLOR_WHITE)
 	
 	# Draw the fireballs
 	for c in range(0, chains):
@@ -172,3 +211,4 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 
 	for index_point in range(nb_points):
 		draw_line(points_arc[index_point], points_arc[index_point + 1], color)
+
