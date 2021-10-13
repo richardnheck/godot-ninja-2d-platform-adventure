@@ -51,7 +51,7 @@ onready var swing_tween_values = [0, 0]
 
 func _start_swing_tween():
 	if(swing_tween_values[0] == 0):
-		swing_tween_values = [-swing_degrees, swing_degrees]
+		swing_tween_values = [-swing_degrees + start_direction, swing_degrees + start_direction]
 		
 	var time = float(100/swing_speed)
 	print("swing speed", swing_speed)
@@ -59,6 +59,8 @@ func _start_swing_tween():
 	swing_tween.interpolate_property(pivot, "rotation_degrees", swing_tween_values[0], swing_tween_values[1], time, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	swing_tween.start()	
 
+func r(vector: Vector2):
+	print("vector=", vector)
 
 func _on_SwingTween_tween_completed(object: Object, key: NodePath) -> void:
 	print ("tween completed")
@@ -67,7 +69,7 @@ func _on_SwingTween_tween_completed(object: Object, key: NodePath) -> void:
 
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.editor_hint:	
 		return
 	
 	for c in range(0, chains):
@@ -78,21 +80,44 @@ func _ready() -> void:
 	if rotation_style == RotationStyle.SWING:
 		_start_swing_tween()
 
+var forward = true
 
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
 		# Remember values so editor can animate the speed of the rotation
 		delta_for_draw = delta
-		rotation_degrees_for_draw += speed * delta
+		if rotation_style == RotationStyle.SPIN:
+			rotation_degrees_for_draw += speed * delta
+		else:
+			if rotation_degrees_for_draw < -swing_degrees:
+				rotation_degrees_for_draw += speed * delta
+			elif rotation_degrees_for_draw > swing_degrees:
+				rotation_degrees_for_draw -= speed * delta
+		
 		update()
 		return
+		
+	# Temp code to figure out how to draw swing
+	# =============================
+	var spd = 45
+	if rotation_degrees_for_draw > swing_degrees and forward:
+		forward = false
+	if rotation_degrees_for_draw < -swing_degrees and not forward:
+		forward = true
+	
+	if forward:
+		rotation_degrees_for_draw += spd * delta
+	else:
+		rotation_degrees_for_draw -= spd * delta
+	update()
+	# =============================
 	
 	if rotation_style == RotationStyle.SPIN:
 		# Adjust rotation for spin mode
 		if speed != 0:
 			pivot.rotation_degrees += speed * delta
-
-
+			
+	
 func _set_length(value) -> void:
 	length = value
 	update()
@@ -122,12 +147,20 @@ func _set_swing_degrees(value) -> void:
 	update()
 	
 func _set_swing_speed(value) -> void:
+	rotation_degrees_for_draw = 0
 	swing_speed = value	
 	update()
 
 func _draw():
-	if not Engine.editor_hint:
-		return
+	# Temporarily removed to debug drawing for siwng
+	#if not Engine.editor_hint:
+	#	return
+		
+	# Draw the fireballs
+	for c in range(0, chains):
+		for i in range(0, length):
+			var angle = c * (360 / chains)
+			draw_fireball(i, -start_direction + angle)
 		
 	if rotation_style == RotationStyle.SPIN:
 		# Draw the outer circle around the outmost fireball
@@ -139,28 +172,19 @@ func _draw():
 	elif rotation_style == RotationStyle.SWING:
 		# Draw boundary lines for range of swing
 		var dist = radius + length * radius
-		var line_end = Vector2(dist, 0).rotated(deg2rad(start_direction)).rotated(deg2rad(-swing_degrees/2))
+		var line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(-swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
 		
-		line_end = Vector2(dist, 0).rotated(deg2rad(start_direction)).rotated(deg2rad(swing_degrees/2))
+		line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
 		
 		# Draw the line that shows the swing motion
-		line_end = Vector2(dist, 0).rotated(deg2rad(start_direction)).rotated(deg2rad(-swing_degrees/2))
+		line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(rotation_degrees_for_draw))
 		draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
 		draw_circle(line_end, 3, COLOR_WHITE)
 	
-	# Draw the fireballs
-	for c in range(0, chains):
-		for i in range(0, length):
-			var angle = c * (360 / chains)
-			draw_fireball(i, -start_direction + angle)
-			
-	#draw_line(Vector2(), Vector2(100,100), COLOR_WHITE, 4.0, true)
-	#draw_circle(Vector2(),radius + length * radius, COLOR_WHITE)
-
 # Add a fireball to the pivot node
 func add_fireball(index, start_angle) -> void:
 	var dist = radius + index * radius
