@@ -47,23 +47,36 @@ var radius = 18   # This is big enough to allow the player through a gap
 # Tween for Swing
 onready var swing_tween:=$SwingTween
 onready var swing_tween_values = [0, 0]
-
+var tween_start: bool = true
+var easing = Tween.EASE_OUT		# We don't want ease in to start with
 
 func _start_swing_tween():
 	if(swing_tween_values[0] == 0):
-		swing_tween_values = [-swing_degrees + start_direction, swing_degrees + start_direction]
+		# Start from the start direction and swing to one side of the swing range
+		# NB: Only for the first time do we start from the start direction.  After
+		# the tween has completed the tween values need to updated to include the
+		# full range
+		swing_tween_values = [start_direction, start_direction + swing_degrees]
+	
+	# Tweak factor gives roughly same fireball speeds as "Burny Whirler" in LevelHead
+	var tweak_factor = 0.6	
+	var time = float(100.0/swing_speed) + float(tweak_factor * float(100.0/swing_speed));
+	 
+	if not tween_start:
+		# When tween between the entire swing range we want to ease in and out
+		easing = Tween.EASE_IN_OUT
 		
-	var time = float(100/swing_speed)
-	print("swing speed", swing_speed)
-	print("time", time)
-	swing_tween.interpolate_property(pivot, "rotation_degrees", swing_tween_values[0], swing_tween_values[1], time, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	swing_tween.interpolate_property(pivot, "rotation_degrees", swing_tween_values[0], swing_tween_values[1], time, Tween.TRANS_QUAD, easing)
 	swing_tween.start()	
 
-func r(vector: Vector2):
-	print("vector=", vector)
 
 func _on_SwingTween_tween_completed(object: Object, key: NodePath) -> void:
-	print ("tween completed")
+	# Update the tween values to include the entire swing range
+	if tween_start:
+		swing_tween_values = [-swing_degrees + start_direction, start_direction + swing_degrees]
+		tween_start = false
+	
+	# Flip the array to tween back in the other direction
 	swing_tween_values.invert()
 	_start_swing_tween()
 
@@ -99,7 +112,7 @@ func _process(delta: float) -> void:
 		
 	# Temp code to figure out how to draw swing
 	# =============================
-	var spd = 45
+	var spd = swing_speed * 1.5
 	if rotation_degrees_for_draw > swing_degrees and forward:
 		forward = false
 	if rotation_degrees_for_draw < -swing_degrees and not forward:
