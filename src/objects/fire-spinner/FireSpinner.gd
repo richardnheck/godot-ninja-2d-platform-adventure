@@ -94,6 +94,7 @@ func _ready() -> void:
 		_start_swing_tween()
 
 var forward = true
+var t = 0.0
 
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
@@ -112,16 +113,38 @@ func _process(delta: float) -> void:
 		
 	# Temp code to figure out how to draw swing
 	# =============================
-	var spd = swing_speed * 1.5
+	var tweak_factor = 0.6	
+	var time = float(100.0/swing_speed) + float(tweak_factor * float(100.0/swing_speed));
+	
+	var spd = swing_speed * 1.1
 	if rotation_degrees_for_draw > swing_degrees and forward:
 		forward = false
 	if rotation_degrees_for_draw < -swing_degrees and not forward:
 		forward = true
-	
+# ---------------------------------------------
+# Attempt at quad inout easing
+#	t += delta / time
+#	#print(t)
+#	if abs(t) > time:
+#		t = 0
+#
+#	#t => t<.5 ? 2*t*t : -1+(4-2*t)*t,   // quad inout easing
+#	var v =  2*t*t if t<.5 else -1+(4-2*t)*t
+#	if v >= 1:
+#		forward = not forward
+#		t=0
+#	if forward:
+#		rotation_degrees_for_draw = swing_speed * v
+#	else:
+#		rotation_degrees_for_draw = -swing_speed * v
+		
+#	
+# ---------------------------------------------
+	tweak_factor = 1.1
 	if forward:
-		rotation_degrees_for_draw += spd * delta
+		rotation_degrees_for_draw += swing_speed * tweak_factor * delta
 	else:
-		rotation_degrees_for_draw -= spd * delta
+		rotation_degrees_for_draw -= swing_speed * tweak_factor * delta
 	update()
 	# =============================
 	
