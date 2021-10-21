@@ -12,7 +12,3 @@ swing_degrees = 50
 texture = ExtResource( 3 )
 
 [node name="Pivot" type="Node2D" parent="."]
-
-[node name="SwingTween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="SwingTween" to="." method="_on_SwingTween_tween_completed"]

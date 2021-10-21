@@ -1,4 +1,3 @@
-tool
 extends Node2D
 
 const COLOR_WHITE = Color("#FFFFFF")
@@ -40,46 +39,24 @@ onready var pivot:=$Pivot
 
 
 var delta_for_draw:float = 0
-var rotation_degrees_for_draw = 0
+var actual_rotation_degrees = 0
 
 var radius = 18   # This is big enough to allow the player through a gap
 
-# Tween for Swing
-onready var swing_tween:=$SwingTween
-onready var swing_tween_values = [0, 0]
-var tween_start: bool = true
-var easing = Tween.EASE_OUT		# We don't want ease in to start with
+# Easing variables for Swing
+var ease_offset: float = Time.time_passed
+var ease_start  := 0.0
+var ease_target := 0.0
+var ease_length := 0.0    # time in seconds to complete swing from one boundary to the other
 
-func _start_swing_tween():
-	if(swing_tween_values[0] == 0):
-		# Start from the start direction and swing to one side of the swing range
-		# NB: Only for the first time do we start from the start direction.  After
-		# the tween has completed the tween values need to updated to include the
-		# full range
-		swing_tween_values = [start_direction, start_direction + swing_degrees]
-	
-	# Tweak factor gives roughly same fireball speeds as "Burny Whirler" in LevelHead
-	var tweak_factor = 0.6	
-	var time = float(100.0/swing_speed) + float(tweak_factor * float(100.0/swing_speed));
-	 
-	if not tween_start:
-		# When tween between the entire swing range we want to ease in and out
-		easing = Tween.EASE_IN_OUT
-		
-	swing_tween.interpolate_property(pivot, "rotation_degrees", swing_tween_values[0], swing_tween_values[1], time, Tween.TRANS_QUAD, easing)
-	swing_tween.start()	
+# Determines if it is the start of the swing cycle starting from start_direction
+var is_start = true
 
+# Indicates whether the current direction of swing is clockwise.
+# When false the current swing direction is anti-clockwise
+var clockwise = true
 
-func _on_SwingTween_tween_completed(object: Object, key: NodePath) -> void:
-	# Update the tween values to include the entire swing range
-	if tween_start:
-		swing_tween_values = [-swing_degrees + start_direction, start_direction + swing_degrees]
-		tween_start = false
-	
-	# Flip the array to tween back in the other direction
-	swing_tween_values.invert()
-	_start_swing_tween()
-
+var time_passed:float = 0.0
 
 func _ready() -> void:
 	if Engine.editor_hint:	
@@ -88,71 +65,71 @@ func _ready() -> void:
 	for c in range(0, chains):
 		for i in range(0, length):
 			var angle = c * (360 / chains)
-			add_fireball(i, -start_direction + angle)
-			
-	if rotation_style == RotationStyle.SWING:
-		_start_swing_tween()
+			add_fireball(i, angle)
+	
+	if rotation_style == RotationStyle.SPIN:
+		# Set the start direction of the fireballs
+		pass
+	else:
+		clockwise = swing_speed < 0
+		set_ease_range()
+	
+		if swing_speed == 0:
+			# Speed is zero just make one call to show it in the start position
+			actual_rotation_degrees = start_direction
+			update()
 
-var forward = true
-var t = 0.0
 
 func _process(delta: float) -> void:
-	if Engine.editor_hint:
-		# Remember values so editor can animate the speed of the rotation
-		delta_for_draw = delta
-		if rotation_style == RotationStyle.SPIN:
-			rotation_degrees_for_draw += speed * delta
-		else:
-			if rotation_degrees_for_draw < -swing_degrees:
-				rotation_degrees_for_draw += speed * delta
-			elif rotation_degrees_for_draw > swing_degrees:
-				rotation_degrees_for_draw -= speed * delta
-		
-		update()
-		return
-		
-	# Temp code to figure out how to draw swing
-	# =============================
-	var tweak_factor = 0.6	
-	var time = float(100.0/swing_speed) + float(tweak_factor * float(100.0/swing_speed));
-	
-	var spd = swing_speed * 1.1
-	if rotation_degrees_for_draw > swing_degrees and forward:
-		forward = false
-	if rotation_degrees_for_draw < -swing_degrees and not forward:
-		forward = true
-# ---------------------------------------------
-# Attempt at quad inout easing
-#	t += delta / time
-#	#print(t)
-#	if abs(t) > time:
-#		t = 0
-#
-#	#t => t<.5 ? 2*t*t : -1+(4-2*t)*t,   // quad inout easing
-#	var v =  2*t*t if t<.5 else -1+(4-2*t)*t
-#	if v >= 1:
-#		forward = not forward
-#		t=0
-#	if forward:
-#		rotation_degrees_for_draw = swing_speed * v
-#	else:
-#		rotation_degrees_for_draw = -swing_speed * v
-		
-#	
-# ---------------------------------------------
-	tweak_factor = 1.1
-	if forward:
-		rotation_degrees_for_draw += swing_speed * tweak_factor * delta
-	else:
-		rotation_degrees_for_draw -= swing_speed * tweak_factor * delta
-	update()
-	# =============================
+	if time_passed == null:
+		time_passed = 0.0 
+	time_passed += delta
+	delta_for_draw = delta
 	
 	if rotation_style == RotationStyle.SPIN:
 		# Adjust rotation for spin mode
 		if speed != 0:
-			pivot.rotation_degrees += speed * delta
+			actual_rotation_degrees += speed * delta
+			if not Engine.editor_hint:
+				# Rotate the actual flames in the game
+				pivot.rotation_degrees = -start_direction + actual_rotation_degrees
+			else:
+				# Draw the rotation in the editor
+				update()
+	else:
+		# Swing back and forth
+		var ease_output = 0
+		if is_start:
+			# The swing starts at the start direction (middle of total swing range)
+			ease_start = start_direction
 			
+			# Start without easing in
+			ease_output = Ease.easeOutSine(time_passed, ease_offset, ease_length / 2.0)
+		else:
+			ease_output = Ease.easeInOutSine(time_passed, ease_offset, ease_length)
+		
+		# Calculate the actual rotation in degrees	
+		actual_rotation_degrees = (ease_start + (ease_output * (ease_target - ease_start)))
+		
+		# Rotate the fireballs
+		pivot.rotation_degrees = -actual_rotation_degrees
+		
+		update()
+
+		if ease_output == 1:
+			# swing in one direction is complete so:
+			# mark that this is no longer the start of the swing
+			is_start = false
+			
+			# swing in the other direction
+			clockwise = not clockwise
+			
+			# Reset the time offset to effectively start again  
+			ease_offset = time_passed
+			
+			# Recalculate the ease settings range
+			set_ease_range()		
+	
 	
 func _set_length(value) -> void:
 	length = value
@@ -178,14 +155,29 @@ func _set_rotation_style(value) -> void:
 	update()
 
 func _set_swing_degrees(value) -> void:
-	swing_degrees = value
-	swing_tween_values = [-swing_degrees, swing_degrees]#		
+	swing_degrees = value	
 	update()
 	
 func _set_swing_speed(value) -> void:
-	rotation_degrees_for_draw = 0
+	actual_rotation_degrees = 0
 	swing_speed = value	
 	update()
+
+# Set the ease variables for the swing
+func set_ease_range():
+	if swing_speed == 0:
+		return 
+		
+	ease_length = swing_degrees * 2.0 / abs(swing_speed)    # time = distance(in degrees) / speed(degrees per second)
+	
+	if clockwise:
+		# swing in the clockwise direction
+		ease_start = start_direction + swing_degrees
+		ease_target = start_direction - swing_degrees
+	else:
+		# swing in the anti-clockwise direction
+		ease_start = start_direction - swing_degrees
+		ease_target = start_direction + swing_degrees
 
 func _draw():
 	# Temporarily removed to debug drawing for siwng
@@ -204,22 +196,26 @@ func _draw():
 		draw_empty_circle(Vector2(), Vector2(0, outer_circle_radius), COLOR_WHITE, 1)
 		
 		# Draw the circle indicating speed of rotation
-		draw_circle(Vector2(0, outer_circle_radius).rotated(deg2rad(rotation_degrees_for_draw)), 3, COLOR_WHITE)
+		draw_circle(Vector2(0, outer_circle_radius).rotated(deg2rad(actual_rotation_degrees)), 3, COLOR_WHITE)
 	elif rotation_style == RotationStyle.SWING:
 		# Draw boundary lines for range of swing
 		var dist = radius + length * radius
-		var line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(-swing_degrees))
+		var line_end = dist * Vector2.RIGHT.rotated(deg2rad(-start_direction)).rotated(deg2rad(-swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
 		
-		line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(swing_degrees))
+		line_end = dist * Vector2.RIGHT.rotated(deg2rad(-start_direction)).rotated(deg2rad(swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
 		
 		# Draw the line that shows the swing motion
-		line_end = Vector2(dist, 0).rotated(deg2rad(-start_direction)).rotated(deg2rad(rotation_degrees_for_draw))
+		line_end = dist * Vector2.RIGHT.rotated(deg2rad(-actual_rotation_degrees))
 		draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
 		draw_circle(line_end, 3, COLOR_WHITE)
+
+		# Draw the start direction
+		line_end = dist * Vector2.RIGHT.rotated(deg2rad(-start_direction))
+		draw_line(Vector2(), line_end, COLOR_ORANGE, 1, true)
 	
 # Add a fireball to the pivot node
 func add_fireball(index, start_angle) -> void:
