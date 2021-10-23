@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "FireBall",
 "language": "GDScript",
-"path": "res://src/objects/fire-spinner/FireBall.gd"
+"path": "res://src/objects/fireball-spinner/FireBall.gd"
 }, {
 "base": "AnimatedSprite",
 "class": "FireYokai",

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FireBall.png-5906964d60520cf31cc5dcc7a828975d.stex"
+path="res://.import/FireSpinnerBase.png-a98c88b4185966097eca9a0acbc11c09.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/fire-spinner/FireBall.png"
-dest_files=[ "res://.import/FireBall.png-5906964d60520cf31cc5dcc7a828975d.stex" ]
+source_file="res://src/objects/fireball-spinner/FireSpinnerBase.png"
+dest_files=[ "res://.import/FireSpinnerBase.png-a98c88b4185966097eca9a0acbc11c09.stex" ]
 
 [params]
 

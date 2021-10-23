@@ -135,10 +135,14 @@ func _process_swing(delta: float) -> void:
 	else:
 		# Draw the rotation in the editor
 		update()
+		
+		
 
 	# Handle when a swing in one direction is finished
 	# An easings output is from 0 (start) to 1 (end)
 	if ease_output == 1:
+		get_tree().call_group("fireball", "change_direction", is_swing_clockwise)
+		
 		# mark that this is no longer the start of the swing
 		is_swing_start = false
 		
@@ -247,7 +251,8 @@ func _set_ease_range():
 # Add a real fireball node to the pivot node
 func _add_fireball(index, start_angle) -> void:
 	var dist = radius + index * radius
-	var fire_ball:FireBall = preload("res://src/objects/fire-spinner/FireBall.tscn").instance()
+	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
+	fire_ball.add_to_group("fireball")
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
 	fire_ball.show_fireball(index < length)
 	if fire_ball._showing and gap:
