@@ -129,6 +129,8 @@ func _process_swing(delta: float) -> void:
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
 
+	get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise)
+	
 	if not Engine.editor_hint:
 		# Rotate the fireballs in the game
 		pivot.rotation_degrees = -actual_rotation_degrees
@@ -141,7 +143,7 @@ func _process_swing(delta: float) -> void:
 	# Handle when a swing in one direction is finished
 	# An easings output is from 0 (start) to 1 (end)
 	if ease_output == 1:
-		get_tree().call_group("fireball", "change_direction", is_swing_clockwise)
+		# get_tree().call_group("fireball", "change_direction", is_swing_clockwise)
 		
 		# mark that this is no longer the start of the swing
 		is_swing_start = false
@@ -227,6 +229,9 @@ func _reset_swing() -> void:
 	if swing_speed == 0:
 		# Speed is zero just make one call to show it in the start position
 		actual_rotation_degrees = start_direction
+		if not Engine.editor_hint:
+			if is_instance_valid(pivot):	
+				pivot.rotation_degrees = -actual_rotation_degrees	
 	
 	update()
 	
@@ -254,6 +259,8 @@ func _add_fireball(index, start_angle) -> void:
 	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
 	fire_ball.add_to_group("fireball")
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
+	print(start_angle)
+	fire_ball.rotation_degrees = start_direction		# Ensure the fireball is upright to start with
 	fire_ball.show_fireball(index < length)
 	if fire_ball._showing and gap:
 		# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
