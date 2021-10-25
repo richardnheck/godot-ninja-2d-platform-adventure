@@ -27,12 +27,30 @@ func show_fireball(value:bool) -> void:
 	_showing = value
 	visible = value	
 
+var rotate_threshold = 0.8
+var normalize_factor = 1/ (1 - rotate_threshold)
 
-func rotate_fireball(clockwise: bool) -> void:
+# This basically works but the rotation is too fast
+func rotate_fireball(clockwise: bool, ease_output:float) -> void:
 	if clockwise:
-		rotation_degrees = 0
+		if ease_output < rotate_threshold:
+			rotation_degrees = 0
+		else:
+			var factor = (rotate_threshold - ease_output) * normalize_factor
+			rotation_degrees = factor * 180
 	else:
-		rotation_degrees = 180
+		if ease_output < rotate_threshold:
+			rotation_degrees = 180
+		else:
+			var factor = (rotate_threshold - ease_output) * normalize_factor
+			rotation_degrees = 180 - factor * 180
+		
+#func rotate_fireball(clockwise: bool, ease_output:float) -> void:
+#	if clockwise:
+#		rotation_degrees = 0
+#	else:
+#		rotation_degrees = 180
+		
 
 # TODO (maybe useful)
 # ------------------------------------------

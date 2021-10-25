@@ -109,6 +109,7 @@ func _process_spin(delta: float) -> void:
 		# Draw the rotation in the editor
 		update()
 
+var prev_rotation_degrees = 0
 
 # Process swinging the fireballs
 func _process_swing(delta: float) -> void:
@@ -128,8 +129,12 @@ func _process_swing(delta: float) -> void:
 	
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
+	var delta_rotation_degrees = abs(actual_rotation_degrees - prev_rotation_degrees)
+	#print(delta_rotation_degrees/delta)
+	
+	prev_rotation_degrees = actual_rotation_degrees
 
-	get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise)
+	get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise, ease_output)
 	
 	if not Engine.editor_hint:
 		# Rotate the fireballs in the game
