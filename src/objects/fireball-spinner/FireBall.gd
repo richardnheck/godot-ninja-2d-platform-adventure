@@ -5,6 +5,8 @@ var _showing:bool = false setget _set_showing, _get_showing
 
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 
+onready var tween:Tween = $Tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = _showing
@@ -26,6 +28,40 @@ func _get_showing() -> bool:
 func show_fireball(value:bool) -> void:
 	_showing = value
 	visible = value	
+
+
+func rotate_90_degrees(clockwise: bool):
+	var tween_values = []
+	if clockwise:
+		tween_values = [rotation_degrees , 0]
+	else:
+		tween_values = [rotation_degrees, 180]
+		
+	if not tween.is_active():	
+		tween.interpolate_property(self, "rotation_degrees", tween_values[0], tween_values[1], 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.start()	
+
+func rotate_to_end(clockwise: bool):
+	var tween_values = []
+	if clockwise:
+		tween_values = [rotation_degrees , rotation_degrees - 90]
+	else:
+		tween_values = [rotation_degrees , rotation_degrees + 90]
+	
+	if not tween.is_active():	
+		tween.interpolate_property(self, "rotation_degrees", tween_values[0], tween_values[1], 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.start()	
+		
+func rotate_at_start(clockwise: bool):
+	var tween_values = []
+	if not clockwise:
+		tween_values = [rotation_degrees , rotation_degrees - 90]
+	else:
+		tween_values = [rotation_degrees , rotation_degrees + 90]
+		
+	if not tween.is_active():	
+		tween.interpolate_property(self, "rotation_degrees", tween_values[0], tween_values[1], 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.start()	
 
 var rotate_threshold = 0.8
 var normalize_factor = 1/ (1 - rotate_threshold)

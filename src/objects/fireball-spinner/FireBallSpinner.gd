@@ -115,6 +115,14 @@ var prev_rotation_degrees = 0
 func _process_swing(delta: float) -> void:
 	if swing_speed == 0:
 		return
+	#print(start_direction - swing_degrees)
+	if int(actual_rotation_degrees) == start_direction and is_swing_start:
+		get_tree().call_group("fireball", "rotate_90_degrees", is_swing_clockwise)
+		print(">>>START")
+	if actual_rotation_degrees == start_direction + swing_degrees:
+		print(">>>BOUNDARY:1")
+	if  actual_rotation_degrees == start_direction - swing_degrees:
+		print(">>>BOUNDARY:2")
 		
 	# Swing back and forth
 	var ease_output = 0
@@ -127,6 +135,15 @@ func _process_swing(delta: float) -> void:
 	else:
 		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
 	
+	if ease_output == 1:
+		print(">EASE_END")
+	if ease_output > 0.9 and ease_output < 0.91:
+		get_tree().call_group("fireball", "rotate_to_end", is_swing_clockwise)
+		print(">PRE EASE_END")
+	if ease_output > 0 and ease_output < 0.01:
+		get_tree().call_group("fireball", "rotate_at_start", is_swing_clockwise)
+		print(">EASE_START")
+		
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
 	var delta_rotation_degrees = abs(actual_rotation_degrees - prev_rotation_degrees)
@@ -134,7 +151,8 @@ func _process_swing(delta: float) -> void:
 	
 	prev_rotation_degrees = actual_rotation_degrees
 
-	get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise, ease_output)
+	# This works but isn't very natural
+	# get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise, ease_output)
 	
 	if not Engine.editor_hint:
 		# Rotate the fireballs in the game
@@ -225,7 +243,7 @@ func _reset_spin() -> void:
 
 # Reset the swing so it starts with the newly configured values
 func _reset_swing() -> void:
-	actual_rotation_degrees = 0
+	actual_rotation_degrees = start_direction
 	is_swing_start = true
 	is_swing_clockwise = swing_speed < 0
 	_set_ease_range()		
@@ -233,7 +251,6 @@ func _reset_swing() -> void:
 	
 	if swing_speed == 0:
 		# Speed is zero just make one call to show it in the start position
-		actual_rotation_degrees = start_direction
 		if not Engine.editor_hint:
 			if is_instance_valid(pivot):	
 				pivot.rotation_degrees = -actual_rotation_degrees	

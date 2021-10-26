@@ -44,7 +44,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -2 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -54,5 +53,7 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Rotate = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
