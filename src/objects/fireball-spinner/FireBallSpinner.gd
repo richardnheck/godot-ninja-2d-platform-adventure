@@ -75,16 +75,15 @@ func _ready() -> void:
 	if Engine.editor_hint:	
 		return
 	
-	for c in range(0, chains):
-		for i in range(0, length):
-			var angle = c * (360 / chains)
-			_add_fireball(i, angle)
-	
 	if rotation_style == RotationStyle.SPIN:
 		_reset_spin()
 	else:
 		_reset_swing()
 
+	for c in range(0, chains):
+		for i in range(0, length):
+			var angle = c * (360 / chains)
+			_add_fireball(i, angle, is_swing_clockwise)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: 
@@ -115,14 +114,13 @@ var prev_rotation_degrees = 0
 func _process_swing(delta: float) -> void:
 	if swing_speed == 0:
 		return
-	#print(start_direction - swing_degrees)
-	if int(actual_rotation_degrees) == start_direction and is_swing_start:
-		get_tree().call_group("fireball", "rotate_90_degrees", is_swing_clockwise)
-		print(">>>START")
-	if actual_rotation_degrees == start_direction + swing_degrees:
-		print(">>>BOUNDARY:1")
-	if  actual_rotation_degrees == start_direction - swing_degrees:
-		print(">>>BOUNDARY:2")
+	
+#	if int(actual_rotation_degrees) == start_direction and is_swing_start:
+#		print(">>>START")
+#	if actual_rotation_degrees == start_direction + swing_degrees:
+#		print(">>>BOUNDARY:1")
+#	if  actual_rotation_degrees == start_direction - swing_degrees:
+#		print(">>>BOUNDARY:2")
 		
 	# Swing back and forth
 	var ease_output = 0
@@ -135,14 +133,9 @@ func _process_swing(delta: float) -> void:
 	else:
 		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
 	
-	if ease_output == 1:
-		print(">EASE_END")
-	if ease_output > 0.9 and ease_output < 0.91:
-		get_tree().call_group("fireball", "rotate_to_end", is_swing_clockwise)
-		print(">PRE EASE_END")
-	if ease_output > 0 and ease_output < 0.01:
-		get_tree().call_group("fireball", "rotate_at_start", is_swing_clockwise)
-		print(">EASE_START")
+	# When swing rotation is almost complete then start rotating the fireball smoothly to change direction
+	if ease_output > 0.92 and ease_output < 0.93:
+		get_tree().call_group("fireball", "change_direction", is_swing_clockwise, swing_ease_length)
 		
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
@@ -276,13 +269,12 @@ func _set_ease_range():
 
 
 # Add a real fireball node to the pivot node
-func _add_fireball(index, start_angle) -> void:
+func _add_fireball(index, start_angle, clockwise) -> void:
 	var dist = radius + index * radius
 	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
 	fire_ball.add_to_group("fireball")
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
-	print(start_angle)
-	fire_ball.rotation_degrees = start_direction		# Ensure the fireball is upright to start with
+	fire_ball.rotation_degrees = start_angle - 90 if clockwise else start_angle + 90		# Ensure the fireball points in the correct direction
 	fire_ball.show_fireball(index < length)
 	if fire_ball._showing and gap:
 		# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
