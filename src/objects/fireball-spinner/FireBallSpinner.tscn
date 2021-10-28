@@ -12,3 +12,5 @@ swing_degrees = 50
 texture = ExtResource( 3 )
 
 [node name="Pivot" type="Node2D" parent="."]
+
+[node name="FireBallRotationTween" type="Tween" parent="."]

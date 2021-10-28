@@ -28,7 +28,7 @@ export(int, -180, 180, 45) var speed:int = 45 setget _set_speed
 export(int, -180, 180, 45) var start_direction:int = 0 setget _set_start_direction
 
 # The style rotation (spin or swing)
-export(int, 0, 1) var rotation_style:int = 0 setget _set_rotation_style
+export(RotationStyle) var rotation_style:int = 0 setget _set_rotation_style
 
 # The swing angle (in degrees) either side of start direction
 export(int, 45, 135, 45) var swing_degrees:int = 90 setget _set_swing_degrees
@@ -48,7 +48,10 @@ export(int, 1, 4) var chains:int = 1 setget _set_chains
 # ------------------------------------------------------------------------
 
 # The rotation pivot
-onready var pivot:=$Pivot
+onready var pivot := $Pivot
+
+# The tween for rotating the fireballs when rotate style is swing
+onready var tween := $FireBallRotationTween
 
 # Represents the actual rotation in degrees that the pivot is rotated
 var actual_rotation_degrees = 0
@@ -71,113 +74,12 @@ var is_swing_clockwise = true
 # The time that has passed
 var time_passed:float = 0.0
 
-func _ready() -> void:
-	if Engine.editor_hint:	
-		return
-	
-	if rotation_style == RotationStyle.SPIN:
-		_reset_spin()
-	else:
-		_reset_swing()
-
-	for c in range(0, chains):
-		for i in range(0, length):
-			var angle = c * (360 / chains)
-			_add_fireball(i, angle, is_swing_clockwise)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void: 
-	time_passed += delta
-	
-	if rotation_style == RotationStyle.SPIN:
-		_process_spin(delta)
-	else:
-		_process_swing(delta)
-
-
-# Process spinning the fireballs
-func _process_spin(delta: float) -> void:
-	if speed == 0:
-		return
-	
-	actual_rotation_degrees += speed * delta
-	if not Engine.editor_hint:
-		# Rotate the actual flames in the game
-		pivot.rotation_degrees = -start_direction + actual_rotation_degrees
-	else:
-		# Draw the rotation in the editor
-		update()
-
-var prev_rotation_degrees = 0
-
-# Process swinging the fireballs
-func _process_swing(delta: float) -> void:
-	if swing_speed == 0:
-		return
-	
-#	if int(actual_rotation_degrees) == start_direction and is_swing_start:
-#		print(">>>START")
-#	if actual_rotation_degrees == start_direction + swing_degrees:
-#		print(">>>BOUNDARY:1")
-#	if  actual_rotation_degrees == start_direction - swing_degrees:
-#		print(">>>BOUNDARY:2")
-		
-	# Swing back and forth
-	var ease_output = 0
-	if is_swing_start:
-		# The swing starts at the start direction (middle of total swing range)
-		swing_ease_start = start_direction
-		
-		# Start without easing in
-		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0)
-	else:
-		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
-	
-	# When swing rotation is almost complete then start rotating the fireball smoothly to change direction
-	if ease_output > 0.92 and ease_output < 0.93:
-		get_tree().call_group("fireball", "change_direction", is_swing_clockwise, swing_ease_length)
-		
-	# Calculate the actual rotation in degrees	
-	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
-	var delta_rotation_degrees = abs(actual_rotation_degrees - prev_rotation_degrees)
-	#print(delta_rotation_degrees/delta)
-	
-	prev_rotation_degrees = actual_rotation_degrees
-
-	# This works but isn't very natural
-	# get_tree().call_group("fireball", "rotate_fireball", is_swing_clockwise, ease_output)
-	
-	if not Engine.editor_hint:
-		# Rotate the fireballs in the game
-		pivot.rotation_degrees = -actual_rotation_degrees
-	else:
-		# Draw the rotation in the editor
-		update()
-		
-		
-
-	# Handle when a swing in one direction is finished
-	# An easings output is from 0 (start) to 1 (end)
-	if ease_output == 1:
-		# get_tree().call_group("fireball", "change_direction", is_swing_clockwise)
-		
-		# mark that this is no longer the start of the swing
-		is_swing_start = false
-		
-		# swing in the other direction
-		is_swing_clockwise = not is_swing_clockwise
-		
-		# Reset the time offset to effectively start again  
-		swing_ease_offset = time_passed
-		
-		# Recalculate the ease settings range
-		_set_ease_range()			
-	
 
 # Set the length or number of fireballs in a chain	
 func _set_length(value) -> void:
 	length = value
 	update()
+
 
 # Set the speed of the spin
 # Only relevant when in SPIN mode
@@ -250,6 +152,98 @@ func _reset_swing() -> void:
 	
 	update()
 	
+
+func _ready() -> void:
+	if Engine.editor_hint:	
+		return
+	
+	if rotation_style == RotationStyle.SPIN:
+		_reset_spin()
+	else:
+		_reset_swing()
+
+	for c in range(0, chains):
+		for i in range(0, length):
+			var angle = c * (360 / chains)
+			_add_fireball(i, angle, is_swing_clockwise)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void: 
+	time_passed += delta
+	
+	if rotation_style == RotationStyle.SPIN:
+		_process_spin(delta)
+	else:
+		_process_swing(delta)
+
+
+# Process spinning the fireballs
+func _process_spin(delta: float) -> void:
+	if speed == 0:
+		return
+	
+	actual_rotation_degrees += speed * delta
+	if not Engine.editor_hint:
+		# Rotate the actual flames in the game
+		pivot.rotation_degrees = -start_direction + actual_rotation_degrees
+	else:
+		# Draw the rotation in the editor
+		update()
+
+
+# Process swinging the fireballs
+func _process_swing(delta: float) -> void:
+	if swing_speed == 0:
+		return
+	
+#	if int(actual_rotation_degrees) == start_direction and is_swing_start:
+#		print(">>>START")
+#	if actual_rotation_degrees == start_direction + swing_degrees:
+#		print(">>>BOUNDARY:1")
+#	if  actual_rotation_degrees == start_direction - swing_degrees:
+#		print(">>>BOUNDARY:2")
+		
+	# Swing back and forth
+	var ease_output = 0
+	if is_swing_start:
+		# The swing starts at the start direction (middle of total swing range)
+		swing_ease_start = start_direction
+		
+		# Start without easing in
+		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0)
+	else:
+		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
+	
+	# When swing rotation is almost complete then start rotating the fireball smoothly to change direction
+	if ease_output > 0.92 and ease_output < 0.93:
+		if not Engine.editor_hint:
+			_change_fireball_direction(is_swing_clockwise, swing_ease_length)
+		
+	# Calculate the actual rotation in degrees	
+	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
+	
+	if not Engine.editor_hint:
+		# Rotate the fireballs in the game
+		pivot.rotation_degrees = -actual_rotation_degrees
+	else:
+		# Draw the rotation in the editor
+		update()
+		
+	# Handle when a swing in one direction is finished
+	# An easings output is from 0 (start) to 1 (end)
+	if ease_output == 1:
+		# mark that this is no longer the start of the swing
+		is_swing_start = false
+		
+		# swing in the other direction
+		is_swing_clockwise = not is_swing_clockwise
+		
+		# Reset the time offset to effectively start again  
+		swing_ease_offset = time_passed
+		
+		# Recalculate the ease settings range
+		_set_ease_range()			
+		
 	
 # Set the swing ease variables
 func _set_ease_range():
@@ -275,12 +269,47 @@ func _add_fireball(index, start_angle, clockwise) -> void:
 	fire_ball.add_to_group("fireball")
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
 	fire_ball.rotation_degrees = start_angle - 90 if clockwise else start_angle + 90		# Ensure the fireball points in the correct direction
+	fire_ball.remember_current_rotation()		# Remember the current rotation so it can be adjusted incrementally in order to rotate the fireball at the end of the swing
 	fire_ball.show_fireball(index < length)
 	if fire_ball._showing and gap:
 		# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
 		fire_ball.show_fireball(not index % 2 == 0)
 	pivot.add_child(fire_ball)		
+
+
+# Change the direction of the fireball so it smoothly rotates to the opposite direction
+# This is only used when rotation style is SWING
+# NB: It is more performant to have a single tween here and updating the rotation of all
+# fireballs instead of having each fireball mantain a tween and update its own rotation	
+func _change_fireball_direction(clockwise: bool, swing_time: float) -> void:
+	# Set the tween length based on the time in takes to complete a full swing
+	# This value has been tweaked until the rotation speeds looks natural
+	var tween_length = swing_time / 2.0;
 	
+	# Rotate the first 90 degrees
+	var tween_values = []
+	if clockwise:
+		tween_values = [0 , -180]
+	else:
+		tween_values = [0 , 180]
+	
+	tween.interpolate_property(self, "fireball_rotation_offset", tween_values[0], tween_values[1], tween_length, Tween.TRANS_LINEAR)
+	tween.start()	
+
+	yield(tween, "tween_completed")
+	
+	# Call a function of the fireball to remember its current rotation
+	get_tree().call_group("fireball", "remember_current_rotation")
+
+
+# The property that is being tweened in order to rotate the fireballs
+var fireball_rotation_offset = 0 setget _set_fireball_rotation_offset
+
+# Set the rotation offset of the fireball
+func _set_fireball_rotation_offset(value:float) -> void:
+	fireball_rotation_offset = value
+	get_tree().call_group("fireball", "adjust_rotation", fireball_rotation_offset)
+
 
 # Draw to the screen
 # Used for drawing in the editor only
@@ -351,14 +380,16 @@ func _draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Colo
 
 
 # Easing function: ease out sine
-func _easeOutSine(x: float, offset: float=0, length: float=1) -> float:
+# NB: The easing function need to be defined in this node for it to work in the editor
+func _easeOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
    x -= offset
-   x /= length
+   x /= ease_length
    return (0.0 if x < 0 else (1.0 if x > 1.0 else sin((x * PI) / 2.0)))
 
 
 # Easing function: ease in out sine
-func _easeInOutSine(x: float, offset: float=0, length: float=1) -> float:
+# NB: The easing function need to be defined in this node for it to work in the editor
+func _easeInOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
    x -= offset
-   x /= length
+   x /= ease_length
    return (0.0 if x < 0 else (1.0 if x > 1.0 else -(cos(PI * x) - 1.0) / 2.0))
