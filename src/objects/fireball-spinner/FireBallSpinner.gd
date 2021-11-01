@@ -35,7 +35,11 @@ export(int, 45, 135, 45) var swing_degrees:int = 90 setget _set_swing_degrees
 
 # The swing speed in degrees per second
 # Positive speeds rotate in an anti-clockwise direction, negative speeds rotate in a clockwise direction 
-export(int, -100, 100, 25) var swing_speed:int = 50 setget _set_swing_speed
+export(int, -100, 100, 10) var swing_speed:int = 50 setget _set_swing_speed
+
+# The swing time offset in seconds to reach start direction
+# NB: I couldn't really figure out what the LevelHead swing time offset was 
+export(int, 0, 30, 0.25) var swing_time_offset:int = 0 setget _set_swing_time_offset
 
 # Number of spinning fire balls in the same line 
 export(int, 1, 5) var length:int = 4 setget _set_length
@@ -130,6 +134,12 @@ func _set_swing_speed(value) -> void:
 	_reset_swing()
 
 
+# Set the swing speed
+func _set_swing_time_offset(value) -> void:
+	swing_time_offset = value	
+	_reset_swing()
+
+
 # Reset the spin so it starts with the newly configured values
 func _reset_spin() -> void:
 	actual_rotation_degrees = 0
@@ -142,7 +152,7 @@ func _reset_swing() -> void:
 	is_swing_start = true
 	is_swing_clockwise = swing_speed < 0
 	_set_ease_range()		
-	swing_ease_offset = time_passed	# Start swing ease from the beginning
+	swing_ease_offset = time_passed		# Start swing ease from the beginning
 	
 	if swing_speed == 0:
 		# Speed is zero just make one call to show it in the start position
@@ -151,6 +161,7 @@ func _reset_swing() -> void:
 				pivot.rotation_degrees = -actual_rotation_degrees	
 	
 	update()
+	_rotate_by_swing_time_offset()
 	
 
 func _ready() -> void:
@@ -191,17 +202,26 @@ func _process_spin(delta: float) -> void:
 		update()
 
 
+var dbg_full_swing_time = 0		# time to complete a full swing from one boundar to the other
+
+
 # Process swinging the fireballs
 func _process_swing(delta: float) -> void:
 	if swing_speed == 0:
 		return
 	
-#	if int(actual_rotation_degrees) == start_direction and is_swing_start:
-#		print(">>>START")
-#	if actual_rotation_degrees == start_direction + swing_degrees:
-#		print(">>>BOUNDARY:1")
-#	if  actual_rotation_degrees == start_direction - swing_degrees:
-#		print(">>>BOUNDARY:2")
+	# For timing debugging
+	#----------------------------------------------------------------------
+	dbg_full_swing_time += delta
+	if int(actual_rotation_degrees) == start_direction:
+		print(">>>START: ")
+	if actual_rotation_degrees == start_direction + swing_degrees:
+		print(">>>BOUNDARY1: ", dbg_full_swing_time)
+		dbg_full_swing_time = 0
+	if  actual_rotation_degrees == start_direction - swing_degrees:
+		print(">>>BOUNDARY2: " , dbg_full_swing_time)
+		dbg_full_swing_time = 0
+	#----------------------------------------------------------------------
 		
 	# Swing back and forth
 	var ease_output = 0
@@ -261,6 +281,29 @@ func _set_ease_range():
 		swing_ease_start = start_direction - swing_degrees
 		swing_ease_target = start_direction + swing_degrees
 
+func _rotate_by_swing_time_offset() -> void:
+	var number_of_degrees = swing_speed * swing_time_offset
+	print("number of degrees: ", number_of_degrees)
+	var degrees_left = number_of_degrees
+	var offset_degrees = 0
+	# if swing_speed > 0 then starts rotating anti-clockwise
+	# anti-clockwise rotation in godot is negative
+	var direction_sign = -1 if swing_speed > 0 else 1
+	var i = 0
+	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop
+		if (offset_degrees - degrees_left < - swing_degrees) or (offset_degrees + degrees_left > swing_degrees):
+			# angle offset has reached swing boundary range
+			var delta = swing_degrees - offset_degrees
+			offset_degrees += delta * direction_sign		# account for direction
+			degrees_left -= delta
+			direction_sign *= -1   	# change direction since boundary reached
+		else:
+			# angle offset is within the within swing boundary range
+			offset_degrees += degrees_left * direction_sign
+			degrees_left = 0
+			
+		i += 1
+	print(offset_degrees)
 
 # Add a real fireball node to the pivot node
 func _add_fireball(index, start_angle, clockwise) -> void:
@@ -332,6 +375,7 @@ func _draw():
 		draw_circle(Vector2(outer_circle_radius, 0).rotated(deg2rad(-start_direction + actual_rotation_degrees)), 3, COLOR_WHITE)
 	elif rotation_style == RotationStyle.SWING:
 		# Draw boundary lines for range of swing
+		# NB: Negative rotation is anti-clockwise, positive rotation is clockwise
 		var dist = radius + length * radius
 		var line_end = dist * Vector2.RIGHT.rotated(deg2rad(-start_direction)).rotated(deg2rad(-swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
