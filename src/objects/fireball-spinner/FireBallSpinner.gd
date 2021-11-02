@@ -39,7 +39,7 @@ export(int, -100, 100, 10) var swing_speed:int = 50 setget _set_swing_speed
 
 # The swing time offset in seconds to reach start direction
 # NB: I couldn't really figure out what the LevelHead swing time offset was 
-export(int, 0, 30, 0.25) var swing_time_offset:int = 0 setget _set_swing_time_offset
+export(float, 0, 30, 0.1) var swing_time_offset:float = 0 setget _set_swing_time_offset
 
 # Number of spinning fire balls in the same line 
 export(int, 1, 5) var length:int = 4 setget _set_length
@@ -229,8 +229,17 @@ func _process_swing(delta: float) -> void:
 		# The swing starts at the start direction (middle of total swing range)
 		swing_ease_start = start_direction
 		
+		# Add necessary adjustments determined by swing_time_offset
+		# Adjust the start direction by the rotation offset
+		swing_ease_start += swing_time_offset_degrees
+		
+		# Adjust the time for the easing based on the rotation offset
+		var offset_time =  (abs(swing_time_offset_degrees)/(swing_degrees*2.0))*swing_ease_length
+		print(">>", (swing_time_offset/(swing_degrees*2.0)))
+		print("offset_time: ", offset_time)
+		
 		# Start without easing in
-		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0)
+		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0 + offset_time)
 	else:
 		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
 	
@@ -281,8 +290,11 @@ func _set_ease_range():
 		swing_ease_start = start_direction - swing_degrees
 		swing_ease_target = start_direction + swing_degrees
 
+
+var swing_time_offset_degrees = 0
+
 func _rotate_by_swing_time_offset() -> void:
-	var number_of_degrees = swing_speed * swing_time_offset
+	var number_of_degrees = float(swing_speed) * swing_time_offset
 	print("number of degrees: ", number_of_degrees)
 	var degrees_left = number_of_degrees
 	var offset_degrees = 0
@@ -291,25 +303,32 @@ func _rotate_by_swing_time_offset() -> void:
 	var direction_sign = -1 if swing_speed > 0 else 1
 	var i = 0
 	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop
+		print("i = ", i)
 		if (offset_degrees - degrees_left < - swing_degrees) or (offset_degrees + degrees_left > swing_degrees):
+			print("boundary reached")
 			# angle offset has reached swing boundary range
 			var delta = swing_degrees - offset_degrees
 			offset_degrees += delta * direction_sign		# account for direction
 			degrees_left -= delta
 			direction_sign *= -1   	# change direction since boundary reached
 		else:
+			print("within boundary")
 			# angle offset is within the within swing boundary range
-			offset_degrees += degrees_left * direction_sign
+			offset_degrees += degrees_left * direction_sign  # -1 because time offset delays time to reach start so need to rotate offset in opposite direction
 			degrees_left = 0
 			
 		i += 1
-	print(offset_degrees)
+	swing_time_offset_degrees = offset_degrees
 
+func _get_fireball_group()-> String:
+	return "fireball" + String(self.get_instance_id())
+	
+	
 # Add a real fireball node to the pivot node
 func _add_fireball(index, start_angle, clockwise) -> void:
 	var dist = radius + index * radius
 	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
-	fire_ball.add_to_group("fireball")
+	fire_ball.add_to_group(_get_fireball_group())
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
 	fire_ball.rotation_degrees = start_angle - 90 if clockwise else start_angle + 90		# Ensure the fireball points in the correct direction
 	fire_ball.remember_current_rotation()		# Remember the current rotation so it can be adjusted incrementally in order to rotate the fireball at the end of the swing
@@ -342,7 +361,7 @@ func _change_fireball_direction(clockwise: bool, swing_time: float) -> void:
 	yield(tween, "tween_completed")
 	
 	# Call a function of the fireball to remember its current rotation
-	get_tree().call_group("fireball", "remember_current_rotation")
+	get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
 
 
 # The property that is being tweened in order to rotate the fireballs
@@ -351,7 +370,7 @@ var fireball_rotation_offset = 0 setget _set_fireball_rotation_offset
 # Set the rotation offset of the fireball
 func _set_fireball_rotation_offset(value:float) -> void:
 	fireball_rotation_offset = value
-	get_tree().call_group("fireball", "adjust_rotation", fireball_rotation_offset)
+	get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation_offset)
 
 
 # Draw to the screen
