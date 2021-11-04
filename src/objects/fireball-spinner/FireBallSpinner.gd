@@ -232,15 +232,24 @@ func _process_swing(delta: float) -> void:
 	if is_swing_start:
 		# The swing starts at the start direction (middle of total swing range)
 		swing_ease_start = start_direction
-		print(swing_time_offset_degrees)
+		
 		# Add necessary adjustments determined by swing_time_offset
 		# Adjust the start direction by the rotation offset
 		swing_ease_start += swing_time_offset_degrees
 		
-		# Adjust the time for the easing based on the rotation offset
-		var offset_time =  (abs(swing_time_offset_degrees)/(swing_degrees*2.0))*swing_ease_length
-		print(">>", (swing_time_offset/(swing_degrees*2.0)))
-		print("offset_time: ", offset_time)
+		# Adjust the time for the easing based on the rotation offset and direction sign
+		var offset_time =  (abs(swing_time_offset_degrees) / (swing_degrees * 2.0)) * swing_ease_length
+		
+		# Determine if the offset increases or decreases the initial swing length
+		# ????????
+		if swing_speed > 0 and swing_time_offset_degrees < start_direction and swing_time_offset_sign > 0:
+			# add offset time
+			pass
+		if swing_speed > 0 and swing_time_offset_degrees < start_direction and swing_time_offset_sign < 0:
+			# minus offset time
+			offset_time *= -1
+			pass
+		# ???????????
 		
 		# Start without easing in
 		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0 + offset_time)
@@ -278,7 +287,11 @@ func _process_swing(delta: float) -> void:
 		_set_ease_range()			
 
 
+# The offset in degrees from the start direction as a result of the swing time offset
 var swing_time_offset_degrees = 0
+
+# The sign(positive or negative) of the starting rotation as a result of the swing time offset
+var swing_time_offset_sign = 0
 
 func _rotate_by_swing_time_offset() -> void:
 	# Determine the total number of degrees in rotation that the swing time offset result in at the given swing speed
@@ -289,30 +302,35 @@ func _rotate_by_swing_time_offset() -> void:
 	var degrees_left = number_of_degrees
 	var offset_degrees = 0
 	
-	# if swing_speed > 0 then starts rotating anti-clockwise
-	# but in Godot anticlockwise is a negative rotation
-	var direction_sign = -1 if swing_speed > 0 else 1
+	# if swing_speed > 0 (positive) then swing starts rotating clockwise
+	# however the time offset results in a delay so we need to first rotate in 
+	# the opposite direction so the offset swing is behind the normal swing 
+	var offset_sign = -1 if swing_speed > 0 else 1
 	
 	var i = 0
 	# Loop through the number of degrees to determine the starting offset of the swing cycle as well as the starting direction of rotation
 	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop
-		print("i = ", i)
-		if (offset_degrees - degrees_left < -swing_degrees) or (offset_degrees + degrees_left > swing_degrees):
-			print("boundary reached")
+		print(">> i = ", i, ", offset_degrees: ", offset_degrees)
+		var reached_boundary_anticlockwise = offset_sign == -1 and offset_degrees - degrees_left < -swing_degrees
+		var reached_boundary_clockwise = offset_sign == 1 and (offset_degrees + degrees_left > swing_degrees)
+		print("ACLK boundary: ", reached_boundary_anticlockwise, ", CLK boundary: ", reached_boundary_clockwise)
+		if reached_boundary_anticlockwise or reached_boundary_clockwise:
 			# angle offset has reached swing boundary range
 			var delta = swing_degrees - offset_degrees
-			offset_degrees += delta * direction_sign		# account for direction
-			degrees_left -= delta
-			direction_sign *= -1   	# change direction since boundary reached
+			offset_degrees += delta * offset_sign		# account for direction
+			degrees_left -= abs(delta)
+			print("delta: ", delta, ", offset_degrees: ", offset_degrees, ", degrees_left:", degrees_left)
+			offset_sign *= -1   	# change direction since boundary reached
 		else:
 			print("within boundary")
 			# angle offset is within the within swing boundary range
-			offset_degrees += degrees_left * direction_sign  # -1 because time offset delays time to reach start so need to rotate offset in opposite direction
+			offset_degrees += degrees_left * offset_sign  # -1 because time offset delays time to reach start so need to rotate offset in opposite direction
 			degrees_left = 0
 			
 		i += 1
 	swing_time_offset_degrees = offset_degrees
-	print("swing_time_offset_degrees", offset_degrees)
+	swing_time_offset_sign = offset_sign
+	print("swing_time_offset_degrees: ", swing_time_offset_degrees, ", swing_time_offset_sign: ", offset_sign)
 		
 	
 # Set the swing ease variables
