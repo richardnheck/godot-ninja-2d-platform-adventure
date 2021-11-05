@@ -163,9 +163,19 @@ func _reset_swing() -> void:
 			if is_instance_valid(pivot):	
 				pivot.rotation_degrees = actual_rotation_degrees	
 	
+	if swing_time_offset > 0:
+		# Calculate the offset rotation and direction caused by the swing time offset
+		_rotate_by_swing_time_offset()
+		
+		# Adjust the rotation direction based on the swing time offset
+		# A negative swing time offset sign means swing starts in anti-clockwise direction
+		# i.e The swing time offset sign overrides the default rotation direction
+		is_swing_clockwise = false if swing_time_offset_sign < 0 else true
+				
+		# Based on a potential override of rotation direction recalculate the ease range
+		_set_ease_range()
+		
 	update()
-	_rotate_by_swing_time_offset()
-	
 
 func _ready() -> void:
 	if Engine.editor_hint:	
@@ -180,6 +190,7 @@ func _ready() -> void:
 	for c in range(0, chains):
 		for i in range(0, length):
 			var angle = c * (360 / chains)
+			
 			_add_fireball(i, angle, is_swing_clockwise)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -230,29 +241,24 @@ func _process_swing(delta: float) -> void:
 	# Swing back and forth
 	var ease_output = 0
 	if is_swing_start:
-		# The swing starts at the start direction (middle of total swing range)
-		swing_ease_start = start_direction
+		var swing_time = 0
+		if swing_time_offset == 0:
+			# The swing starts at the start direction (middle of total swing range)
+			swing_ease_start = start_direction
+			swing_time = swing_ease_length / 2.0		# Because it starts in the middle 
+		else:
+			# Add necessary adjustments determined by swing_time_offset
+			# Adjust the start direction by the rotation offset
+			swing_ease_start = start_direction + swing_time_offset_degrees
 		
-		# Add necessary adjustments determined by swing_time_offset
-		# Adjust the start direction by the rotation offset
-		swing_ease_start += swing_time_offset_degrees
-		
-		# Adjust the time for the easing based on the rotation offset and direction sign
-		var offset_time =  (abs(swing_time_offset_degrees) / (swing_degrees * 2.0)) * swing_ease_length
-		
-		# Determine if the offset increases or decreases the initial swing length
-		# ????????
-		if swing_speed > 0 and swing_time_offset_degrees < start_direction and swing_time_offset_sign > 0:
-			# add offset time
-			pass
-		if swing_speed > 0 and swing_time_offset_degrees < start_direction and swing_time_offset_sign < 0:
-			# minus offset time
-			offset_time *= -1
-			pass
-		# ???????????
+			# TODO: This works when swing_degrees = 90, but time is not correct when 45 or 135
+			if is_swing_clockwise:
+				swing_time = abs((90 - swing_time_offset_degrees) / swing_speed)
+			else:
+				swing_time = abs((90 + swing_time_offset_degrees) / swing_speed) 
 		
 		# Start without easing in
-		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_ease_length / 2.0 + offset_time)
+		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_time)
 	else:
 		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
 	
@@ -329,8 +335,10 @@ func _rotate_by_swing_time_offset() -> void:
 			
 		i += 1
 	swing_time_offset_degrees = offset_degrees
-	swing_time_offset_sign = offset_sign
-	print("swing_time_offset_degrees: ", swing_time_offset_degrees, ", swing_time_offset_sign: ", offset_sign)
+	# Since the swing time is delayed the offset sign must be negated so the swing traces back through all
+	# the degrees it was offset
+	swing_time_offset_sign = -offset_sign
+	print("swing_time_offset_degrees: ", swing_time_offset_degrees, ", swing_time_offset_sign: ", swing_time_offset_sign)
 		
 	
 # Set the swing ease variables
