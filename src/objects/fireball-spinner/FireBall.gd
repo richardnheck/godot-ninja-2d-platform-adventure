@@ -26,8 +26,12 @@ func _get_showing() -> bool:
 func show_fireball(value:bool) -> void:
 	_showing = value
 	visible = value	
+	 
 	
-	
+func rotate2(degrees:float) -> void:
+	rotation_degrees = degrees	
+
+
 # Remember the current rotation so it can be adjusted incrementally
 func remember_current_rotation() -> void:
 	_current_rotation_degrees = rotation_degrees

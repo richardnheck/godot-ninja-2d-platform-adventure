@@ -8,8 +8,9 @@ script = ExtResource( 2 )
 
 [node name="FireBallSpinner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 80, 104 )
+start_direction = -90
 swing_degrees = 90
-swing_speed = 90
+swing_speed = 100
 swing_time_offset = 0.5
 length = 3
 

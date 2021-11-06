@@ -253,9 +253,9 @@ func _process_swing(delta: float) -> void:
 		
 			# TODO: This works when swing_degrees = 90, but time is not correct when 45 or 135
 			if is_swing_clockwise:
-				swing_time = abs((90 - swing_time_offset_degrees) / swing_speed)
+				swing_time = abs((swing_degrees - swing_time_offset_degrees) / swing_speed)
 			else:
-				swing_time = abs((90 + swing_time_offset_degrees) / swing_speed) 
+				swing_time = abs((swing_degrees + swing_time_offset_degrees) / swing_speed) 
 		
 		# Start without easing in
 		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_time)
@@ -265,7 +265,9 @@ func _process_swing(delta: float) -> void:
 	# When swing rotation is almost complete then start rotating the fireball smoothly to change direction
 	if ease_output > 0.92 and ease_output < 0.93:
 		if not Engine.editor_hint:
-			_change_fireball_direction(is_swing_clockwise, swing_ease_length)
+			pass
+			# TEMP: commented out to try alternate solution _rotate_fireballs()
+			#_change_fireball_direction(is_swing_clockwise, swing_ease_length)
 		
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
@@ -273,6 +275,7 @@ func _process_swing(delta: float) -> void:
 	if not Engine.editor_hint:
 		# Rotate the spinner in the actual game
 		pivot.rotation_degrees = actual_rotation_degrees
+		_rotate_fireballs()
 	else:
 		# Draw the rotation in the editor
 		update()
@@ -291,7 +294,55 @@ func _process_swing(delta: float) -> void:
 		
 		# Recalculate the ease settings range
 		_set_ease_range()			
+var prev_dist_degrees = 0
+var is_clockwise_start = false
+var is_clockwise_start_set = false
+func _rotate_fireballs(): # Call a function of the fireball to remember its current rotation
+	var dist_degrees_to_boundary = 0
+	dist_degrees_to_boundary = swing_degrees - abs(actual_rotation_degrees-start_direction)
+	
+	# NB: This works for only one chain
+	var fireball_rotation = 0
+	
+		
+	#get_tree().call_group(_get_fireball_group(), "rotate2", fireball_rotation)
+	
+	var threshold = 30.0  # threshold 10 degrees from boundary to start rotation
+	
+	
+	# Handle rotation of fireballs when near the boundary of the swing
+	var dist = 0
+	if dist_degrees_to_boundary <= threshold:
+		if not is_clockwise_start_set:
+			is_clockwise_start_set = true
+			is_clockwise_start = is_swing_clockwise
+			
+		if dist_degrees_to_boundary < prev_dist_degrees:
+			# Moving closer to boundary
+			dist = - dist_degrees_to_boundary
+		else:
+			# Moving away from boundary
+			dist = dist_degrees_to_boundary
+		
+		
+		fireball_rotation = (90/threshold * dist + 90)
+		if is_clockwise_start:
+			fireball_rotation = -fireball_rotation
+		
+		
+		print("dist: ", dist, "rotation: ", fireball_rotation)
+		get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
+	else: 
+		is_clockwise_start_set = false
+		if is_swing_clockwise:
+			fireball_rotation = -90
+		else:
+			fireball_rotation = 90
 
+		get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
+
+	
+	prev_dist_degrees = dist_degrees_to_boundary
 
 # The offset in degrees from the start direction as a result of the swing time offset
 var swing_time_offset_degrees = 0
