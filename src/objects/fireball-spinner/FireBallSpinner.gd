@@ -80,6 +80,9 @@ var is_swing_clockwise = true
 # The time that has passed
 var time_passed:float = 0.0
 
+# Utility for trigger once behaviour
+const Once = preload("res://src/utility/Once.gd")
+
 
 # Set the length or number of fireballs in a chain	
 func _set_length(value) -> void:
@@ -177,6 +180,7 @@ func _reset_swing() -> void:
 		
 	update()
 
+
 func _ready() -> void:
 	if Engine.editor_hint:	
 		return
@@ -192,6 +196,7 @@ func _ready() -> void:
 			var angle = c * (360 / chains)
 			
 			_add_fireball(i, angle, is_swing_clockwise)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: 
@@ -293,55 +298,57 @@ func _process_swing(delta: float) -> void:
 		swing_ease_offset = time_passed
 		
 		# Recalculate the ease settings range
-		_set_ease_range()			
+		_set_ease_range()		
+		
+			
 var prev_dist_degrees = 0
 var is_clockwise_start = false
-var is_clockwise_start_set = false
-func _rotate_fireballs(): # Call a function of the fireball to remember its current rotation
+var threshold_reached = Once.new()		# A trigger once object until reset
+var outside_threshold = Once.new()
+
+func _rotate_fireballs(): 
 	var dist_degrees_to_boundary = 0
-	dist_degrees_to_boundary = swing_degrees - abs(actual_rotation_degrees-start_direction)
-	
-	# NB: This works for only one chain
 	var fireball_rotation = 0
+	var threshold = 30.0  # threshold degrees from boundary to start rotation
 	
-		
-	#get_tree().call_group(_get_fireball_group(), "rotate2", fireball_rotation)
-	
-	var threshold = 30.0  # threshold 10 degrees from boundary to start rotation
-	
+	# Calculate the distance (in degrees) how far the swing is from the swing boundary
+	# This creates a positive range of values
+	dist_degrees_to_boundary = swing_degrees - abs(actual_rotation_degrees - start_direction)
 	
 	# Handle rotation of fireballs when near the boundary of the swing
 	var dist = 0
 	if dist_degrees_to_boundary <= threshold:
-		if not is_clockwise_start_set:
-			is_clockwise_start_set = true
+		# For the fireball rotation equation to work make the distance values 
+		# negative when approaching and keep them positive when
+		var moving_closer_to_boundary = dist_degrees_to_boundary < prev_dist_degrees
+		dist = -dist_degrees_to_boundary if moving_closer_to_boundary else dist_degrees_to_boundary
+		
+		if threshold_reached.run_once():
+			outside_threshold.reset()
+			print("> threshold reached", " moving_closer:" , moving_closer_to_boundary)
 			is_clockwise_start = is_swing_clockwise
 			
-		if dist_degrees_to_boundary < prev_dist_degrees:
-			# Moving closer to boundary
-			dist = - dist_degrees_to_boundary
-		else:
-			# Moving away from boundary
-			dist = dist_degrees_to_boundary
-		
-		
+		# Equation to determine the relative rotation required
+		# Currently fireball rotation is linear y = mx + b
+		# NB: Because of the swing ease in out that occurs at the boundaries a linear
+		# equation is not great as rotation at the boundary is too slow
+		# TODO: Change the equation so it rotates faster at the boundary
 		fireball_rotation = (90/threshold * dist + 90)
+		
+		# Flip the rotation if swing rotation is clockwise when entering threshold
 		if is_clockwise_start:
 			fireball_rotation = -fireball_rotation
 		
-		
-		print("dist: ", dist, "rotation: ", fireball_rotation)
+		#print("dist: ", dist, "rotation: ", fireball_rotation)
 		get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
-	else: 
-		is_clockwise_start_set = false
-		if is_swing_clockwise:
-			fireball_rotation = -90
-		else:
-			fireball_rotation = 90
-
-		get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
-
-	
+	else:
+		# Swing position is no longer within the threshold distance from the boundary
+		if outside_threshold.run_once():
+			threshold_reached.reset() 	# Reset the threshold reached trigger
+			
+			# Call all fireballs to remember their current rotation
+			get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
+			
 	prev_dist_degrees = dist_degrees_to_boundary
 
 # The offset in degrees from the start direction as a result of the swing time offset
