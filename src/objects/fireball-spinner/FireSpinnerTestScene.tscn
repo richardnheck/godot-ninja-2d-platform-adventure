@@ -11,7 +11,7 @@ position = Vector2( 80, 104 )
 start_direction = -90
 swing_degrees = 90
 swing_speed = 90
-swing_time_offset = 0.9
+swing_time_offset = 1.0
 length = 3
 chains = 2
 

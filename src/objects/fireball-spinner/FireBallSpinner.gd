@@ -19,7 +19,7 @@ enum RotationStyle {
 	SWING = 1		# Swings through an arc of a specified angular range
 }
 
-# Configurable properties of the Fire Spinner
+# FireSpinner Configurable Properties
 # ------------------------------------------------------------------------
 # Speed of rotation (degrees per second)
 export(int, -180, 180, 45) var speed:int = 45 setget _set_speed
@@ -53,7 +53,20 @@ export var gap:bool = false setget _set_gap
 export(int, 1, 4) var chains:int = 1 setget _set_chains
 # ------------------------------------------------------------------------
 
-# The rotation pivot
+
+# Additional Configuration
+# ------------------------------------------------------------------------
+# This is the threshold (in degrees) that starts the fireballs rotating
+# when they get this close to the boundary
+var start_rotation_threshold = 30.0 
+
+# This the maximum size of a fireball
+var radius = 18   # This is big enough to allow the player through a gap 
+# ------------------------------------------------------------------------
+
+
+# The rotation pivot node
+# The fireballs are programatically added to this node
 onready var pivot := $Pivot
 
 # The tween for rotating the fireballs when rotate style is swing
@@ -63,13 +76,12 @@ onready var tween := $FireBallRotationTween
 # Positive rotation results in clockwise rotation
 var actual_rotation_degrees = 0
 
-var radius = 18   # This is big enough to allow the player through a gap
-
 # Easing variables for Swing
-var swing_ease_offset: float = 0.0
-var swing_ease_start: float = 0.0
-var swing_ease_target: float = 0.0
-var swing_ease_length: float = 0.1    # time in seconds to complete swing from one boundary to the other (initialise non-zer
+# These are calculated to give a smooth easing as swing approaches the swing boundary
+var swing_ease_offset: float = 0.0		# current ease offset time between start and end of easing
+var swing_ease_start: float = 0.0		# start value of the easing
+var swing_ease_target: float = 0.0		# end or targe value of the easing
+var swing_ease_length: float = 0.1    	# time in seconds to complete swing from one boundary to the other (initialise non-zero)
 
 # Determines if it is the start of the swing cycle starting from start_direction
 var is_swing_start = true
@@ -83,21 +95,41 @@ var time_passed:float = 0.0
 # Utility for trigger once behaviour
 const Once = preload("res://src/utility/Once.gd")
 
+#
+# Variables used for rotating the fireballs near the swing boundary
+#
+var is_clockwise_start = false			# Indicates if swing direction is clockwise at the start when swing enters threshold region
+var threshold_reached = Once.new()		# A trigger when swing is inside the threshold region
+var outside_threshold = Once.new()		# A trigger when sing is outside the threshold region
+var prev_distance_to_boundary = null	# The previous distance to the boundary.  Used to determine if swing is approaching or moving away from the boundary
+var skip_rotation = false
 
+#
+# Variables relating to swing time offset
+#
+var swing_time_offset_degrees = 0		# The offset in degrees from the start direction as a result of the swing time offset
+var swing_time_offset_sign = 0			# The sign(positive or negative) of the starting rotation as a result of the swing time offset
+
+# ------------------------------------------------------------------------------
 # Set the length or number of fireballs in a chain	
+# ------------------------------------------------------------------------------
 func _set_length(value) -> void:
 	length = value
 	update()
 
 
+# ------------------------------------------------------------------------------
 # Set the speed of the spin
 # Only relevant when in SPIN mode
+# ------------------------------------------------------------------------------
 func _set_speed(value) -> void:
 	speed = value
 	_reset_spin()
 	
 	
+# ------------------------------------------------------------------------------	
 # Set the start direction of the fireballs
+# ------------------------------------------------------------------------------
 func _set_start_direction(value) -> void:
 	start_direction = value
 	if rotation_style == RotationStyle.SPIN:
@@ -106,19 +138,25 @@ func _set_start_direction(value) -> void:
 		_reset_swing()
 
 
+# ------------------------------------------------------------------------------
 # Set whether there is a gap or not
+# ------------------------------------------------------------------------------
 func _set_gap(value) -> void:
 	gap = value
 	update()
 	
 
+# ------------------------------------------------------------------------------
 # Set the number of chains
+# ------------------------------------------------------------------------------
 func _set_chains(value) -> void:
 	chains = value
 	update()
 	
-
+	
+# ------------------------------------------------------------------------------
 # Set the rotation style
+# ------------------------------------------------------------------------------
 func _set_rotation_style(value) -> void:
 	rotation_style = value
 	if rotation_style == RotationStyle.SPIN:
@@ -127,32 +165,42 @@ func _set_rotation_style(value) -> void:
 		_reset_swing()
 
 
+# ------------------------------------------------------------------------------
 # Set the swing degrees
+# ------------------------------------------------------------------------------
 func _set_swing_degrees(value) -> void:
 	swing_degrees = value	
 	_reset_swing()
 	
 	
+# ------------------------------------------------------------------------------	
 # Set the swing speed
+# ------------------------------------------------------------------------------
 func _set_swing_speed(value) -> void:
 	swing_speed = value	
 	_reset_swing()
 
 
+# ------------------------------------------------------------------------------
 # Set the swing speed
+# ------------------------------------------------------------------------------
 func _set_swing_time_offset(value) -> void:
 	swing_time_offset = value	
 	_reset_swing()
 
 
+# ------------------------------------------------------------------------------
 # Reset the spin so it starts with the newly configured values
+# ------------------------------------------------------------------------------
 func _reset_spin() -> void:
 	actual_rotation_degrees = 0
 	is_swing_clockwise = speed > 0   # Positive speed starts swing in clockwise direction
 	update()
 
 
+# ------------------------------------------------------------------------------
 # Reset the swing so it starts with the newly configured values
+# ------------------------------------------------------------------------------
 func _reset_swing() -> void:
 	is_swing_start = true
 	actual_rotation_degrees = start_direction
@@ -168,7 +216,7 @@ func _reset_swing() -> void:
 	
 	if swing_time_offset > 0:
 		# Calculate the offset rotation and direction caused by the swing time offset
-		_rotate_by_swing_time_offset()
+		calculate_adjustments_caused_by_swing_time_offset()
 		
 		# Adjust the rotation direction based on the swing time offset
 		# A negative swing time offset sign means swing starts in anti-clockwise direction
@@ -181,6 +229,9 @@ func _reset_swing() -> void:
 	update()
 
 
+# ------------------------------------------------------------------------------
+# The ready function for initialisation
+# ------------------------------------------------------------------------------
 func _ready() -> void:
 	if Engine.editor_hint:	
 		return
@@ -198,7 +249,9 @@ func _ready() -> void:
 			_add_fireball(i, angle, is_swing_clockwise)
 
 
+# ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# ------------------------------------------------------------------------------
 func _process(delta: float) -> void: 
 	time_passed += delta
 	
@@ -208,7 +261,9 @@ func _process(delta: float) -> void:
 		_process_swing(delta)
 
 
+# ------------------------------------------------------------------------------
 # Process spinning the fireballs
+# ------------------------------------------------------------------------------
 func _process_spin(delta: float) -> void:
 	if speed == 0:
 		return
@@ -224,8 +279,9 @@ func _process_spin(delta: float) -> void:
 
 var dbg_full_swing_time = 0		# time to complete a full swing from one boundar to the other
 
-
+# ------------------------------------------------------------------------------
 # Process swinging the fireballs
+# ------------------------------------------------------------------------------
 func _process_swing(delta: float) -> void:
 	if swing_speed == 0:
 		return
@@ -299,65 +355,67 @@ func _process_swing(delta: float) -> void:
 		
 		# Recalculate the ease settings range
 		_set_ease_range()		
-		
-			
-var prev_dist_degrees = 0
-var is_clockwise_start = false
-var threshold_reached = Once.new()		# A trigger once object until reset
-var outside_threshold = Once.new()
 
+
+# ------------------------------------------------------------------------------
+# Rotate the fireballs as they approach the swing boundary
+# ------------------------------------------------------------------------------
 func _rotate_fireballs(): 
-	var dist_degrees_to_boundary = 0
-	var fireball_rotation = 0
-	var threshold = 30.0  # threshold degrees from boundary to start rotation
-	
 	# Calculate the distance (in degrees) how far the swing is from the swing boundary
-	# This creates a positive range of values
-	dist_degrees_to_boundary = swing_degrees - abs(actual_rotation_degrees - start_direction)
+	# This creates a positive range of values that descend to 0 when boundary is reached
+	var distance_to_boundary = swing_degrees - abs(actual_rotation_degrees - start_direction)
 	
 	# Handle rotation of fireballs when near the boundary of the swing
-	var dist = 0
-	if dist_degrees_to_boundary <= threshold:
+	# NB: Need to check that the previous distance to boundary is set as well so we can determine
+	# if swing is approaching or moving away from the boundary at the start
+	if distance_to_boundary <= start_rotation_threshold and prev_distance_to_boundary != null:
+		# Determine if swing is approaching the boundary
+		var moving_closer_to_boundary = distance_to_boundary < prev_distance_to_boundary
+		
 		# For the fireball rotation equation to work make the distance values 
 		# negative when approaching and keep them positive when
-		var moving_closer_to_boundary = dist_degrees_to_boundary < prev_dist_degrees
-		dist = -dist_degrees_to_boundary if moving_closer_to_boundary else dist_degrees_to_boundary
+		var dist = -distance_to_boundary if moving_closer_to_boundary else distance_to_boundary
 		
 		if threshold_reached.run_once():
+			# Run this code only once as the swing has reached the rotation threshold region
 			outside_threshold.reset()
-			print("> threshold reached", " moving_closer:" , moving_closer_to_boundary)
 			is_clockwise_start = is_swing_clockwise
+			
+			# Skip rotation if swing is in threshold region but moving away from the boundary at the start
+			# This may occur when setting swing_time_offset
+			# In this case we need to skip the rotation of the fireball near the boundary because it is already moving away from it 
+			skip_rotation = not moving_closer_to_boundary	
 			
 		# Equation to determine the relative rotation required
 		# Currently fireball rotation is linear y = mx + b
 		# NB: Because of the swing ease in out that occurs at the boundaries a linear
 		# equation is not great as rotation at the boundary is too slow
 		# TODO: Change the equation so it rotates faster at the boundary
-		fireball_rotation = (90/threshold * dist + 90)
-		
-		# Flip the rotation if swing rotation is clockwise when entering threshold
-		if is_clockwise_start:
-			fireball_rotation = -fireball_rotation
-		
-		#print("dist: ", dist, "rotation: ", fireball_rotation)
-		get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
+		if not skip_rotation:
+			var fireball_rotation = (90/start_rotation_threshold * dist + 90)
+			
+			# Flip the rotation if swing rotation is clockwise when entering threshold region
+			if is_clockwise_start:
+				fireball_rotation = -fireball_rotation
+			
+			# Call all fireballs to adjust their rotation
+			get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
 	else:
 		# Swing position is no longer within the threshold distance from the boundary
 		if outside_threshold.run_once():
 			threshold_reached.reset() 	# Reset the threshold reached trigger
+			skip_rotation = false 		# Reset the flag indicating whether rotation should be skipped
 			
 			# Call all fireballs to remember their current rotation
 			get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
 			
-	prev_dist_degrees = dist_degrees_to_boundary
+	prev_distance_to_boundary = distance_to_boundary
 
-# The offset in degrees from the start direction as a result of the swing time offset
-var swing_time_offset_degrees = 0
 
-# The sign(positive or negative) of the starting rotation as a result of the swing time offset
-var swing_time_offset_sign = 0
+# ------------------------------------------------------------------------------
 
-func _rotate_by_swing_time_offset() -> void:
+# ------------------------------------------------------------------------------
+func calculate_adjustments_caused_by_swing_time_offset() -> void:
 	# Determine the total number of degrees in rotation that the swing time offset result in at the given swing speed
 	# This is the number of degrees we need to delay before the swing reaches its normal 'start direction' given no offset 
 	var number_of_degrees = abs(swing_speed) * swing_time_offset
@@ -398,8 +456,10 @@ func _rotate_by_swing_time_offset() -> void:
 	swing_time_offset_sign = -offset_sign
 	print("swing_time_offset_degrees: ", swing_time_offset_degrees, ", swing_time_offset_sign: ", swing_time_offset_sign)
 		
-	
+		
+# ------------------------------------------------------------------------------	
 # Set the swing ease variables
+# ------------------------------------------------------------------------------
 func _set_ease_range():
 	if swing_speed == 0:
 		return 
@@ -418,12 +478,20 @@ func _set_ease_range():
 		swing_ease_target = start_direction - swing_degrees
 
 
-
+# ------------------------------------------------------------------------------
+# Get the name of the fireball group
+# ------------------------------------------------------------------------------
 func _get_fireball_group()-> String:
 	return "fireball" + String(self.get_instance_id())
 	
-	
+
+# ------------------------------------------------------------------------------
 # Add a real fireball node to the pivot node
+
+# @param index 			The index of the fireball on the chain
+# @param start_angle	The starting angle of the chain
+# @param clockwise		Indicates the starting direction of rotation
+# ------------------------------------------------------------------------------
 func _add_fireball(index, start_angle, clockwise) -> void:
 	var dist = radius + index * radius
 	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
@@ -440,10 +508,12 @@ func _add_fireball(index, start_angle, clockwise) -> void:
 	pivot.add_child(fire_ball)		
 
 
+# ------------------------------------------------------------------------------
 # Change the direction of the fireball so it smoothly rotates to the opposite direction
 # This is only used when rotation style is SWING
 # NB: It is more performant to have a single tween here and updating the rotation of all
-# fireballs instead of having each fireball mantain a tween and update its own rotation	
+# fireballs instead of having each fireball mantain a tween and update its own rotation
+# ------------------------------------------------------------------------------	
 func _change_fireball_direction(clockwise: bool, swing_time: float) -> void:
 	# Set the tween length based on the time in takes to complete a full swing
 	# This value has been tweaked until the rotation speeds looks natural
@@ -474,8 +544,9 @@ func _set_fireball_rotation_offset(value:float) -> void:
 	get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation_offset)
 
 
-# Draw to the screen
-# Used for drawing in the editor only
+# ------------------------------------------------------------------------------
+# Draw to the screen in the editor
+# ------------------------------------------------------------------------------
 func _draw():
 	if not Engine.editor_hint:
 		return
@@ -510,9 +581,11 @@ func _draw():
 		draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
 		draw_circle(line_end, 3, COLOR_WHITE)
 
-	
+
+# ------------------------------------------------------------------------------	
 # Draw a fireball (represented by a circle) to the screen
 # Used for drawing in the editor only
+# ------------------------------------------------------------------------------
 func _draw_fireball(index, start_angle) -> void:
 	var dist = radius + index * radius
 	var _draw_fireball = true
@@ -525,8 +598,10 @@ func _draw_fireball(index, start_angle) -> void:
 		draw_circle(Vector2(dist, 0).rotated(deg2rad(start_angle)), radius/2, COLOR_ORANGE)
 
 
+# ------------------------------------------------------------------------------
 # Draw an empty circle to the screen
 # Used for drawing in the editor only
+# ------------------------------------------------------------------------------
 func _draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Color, resolution:int):
 	var draw_counter = 1
 	var line_origin = Vector2()
@@ -543,16 +618,20 @@ func _draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Colo
 	draw_line(line_origin, line_end, color)
 
 
+# ------------------------------------------------------------------------------
 # Easing function: ease out sine
 # NB: The easing function need to be defined in this node for it to work in the editor
+# ------------------------------------------------------------------------------
 func _easeOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
    x -= offset
    x /= ease_length
    return (0.0 if x < 0 else (1.0 if x > 1.0 else sin((x * PI) / 2.0)))
 
 
+# ------------------------------------------------------------------------------
 # Easing function: ease in out sine
 # NB: The easing function need to be defined in this node for it to work in the editor
+# ------------------------------------------------------------------------------
 func _easeInOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
    x -= offset
    x /= ease_length
