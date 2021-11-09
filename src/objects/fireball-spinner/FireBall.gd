@@ -1,7 +1,7 @@
 extends Node2D
 class_name FireBall
 
-var _showing:bool = false setget _set_showing, _get_showing
+var _showing:bool = false setget set_showing, get_showing
 var _current_rotation_degrees = 0
 
 
@@ -9,28 +9,29 @@ var _current_rotation_degrees = 0
 func _ready() -> void:
 	visible = _showing
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-# Set whether the fireball is showing (when showing fireball is visible)
-func _set_showing(value:bool) -> void:
+
+# Setter for showing
+# Sets whether the fireball is showing (when showing fireball is visible)
+func set_showing(value:bool) -> void:
 	_showing = value
 	visible = value	
 
 
-func _get_showing() -> bool:
+# Getter for showing
+func get_showing() -> bool:
 	return _showing
 
 
+# Show/hide the fireball
 func show_fireball(value:bool) -> void:
 	_showing = value
 	visible = value	
 	 
-	
-func rotate2(degrees:float) -> void:
-	rotation_degrees = degrees	
-
 
 # Remember the current rotation so it can be adjusted incrementally
 func remember_current_rotation() -> void:

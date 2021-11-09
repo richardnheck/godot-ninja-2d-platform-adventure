@@ -51,17 +51,23 @@ export var gap:bool = false setget _set_gap
 
 # The number of fireball chains that can spin
 export(int, 1, 4) var chains:int = 1 setget _set_chains
+
+# Sets whether the rotation is animated in the editor or not
+export var animate_in_editor:bool = true setget _set_animate_in_editor
 # ------------------------------------------------------------------------
 
 
 # Additional Configuration
 # ------------------------------------------------------------------------
-# This is the threshold (in degrees) that starts the fireballs rotating
-# when they get this close to the boundary
-var start_rotation_threshold = 30.0 
+# This is the spacing between the fireballs
+# It is the distance in pixels from the centre of one fireball to the next
+# Make this big enough to allow the player through a gap
+var fireball_spacing = 18   
 
-# This the maximum size of a fireball
-var radius = 18   # This is big enough to allow the player through a gap 
+# This is the threshold distance (in degrees) that starts the fireballs rotating
+# When the swing is within this threshold distance from the swing boundary,
+# then the fireball starts rotating
+var start_rotation_threshold = 30.0  
 # ------------------------------------------------------------------------
 
 
@@ -109,6 +115,7 @@ var skip_rotation = false
 #
 var swing_time_offset_degrees = 0		# The offset in degrees from the start direction as a result of the swing time offset
 var swing_time_offset_sign = 0			# The sign(positive or negative) of the starting rotation as a result of the swing time offset
+
 
 # ------------------------------------------------------------------------------
 # Set the length or number of fireballs in a chain	
@@ -188,6 +195,15 @@ func _set_swing_time_offset(value) -> void:
 	swing_time_offset = value	
 	_reset_swing()
 
+# ------------------------------------------------------------------------------
+# Set whether rotation is animated in editor or not
+# ------------------------------------------------------------------------------
+func _set_animate_in_editor(value) -> void:
+	animate_in_editor = value
+	if rotation_style == RotationStyle.SPIN:
+		_reset_spin()
+	else:
+		_reset_swing()
 
 # ------------------------------------------------------------------------------
 # Reset the spin so it starts with the newly configured values
@@ -241,7 +257,6 @@ func _ready() -> void:
 	else:
 		_reset_swing()
 
-	print("ready", is_swing_clockwise)
 	for c in range(0, chains):
 		for i in range(0, length):
 			var angle = c * (360 / chains)
@@ -275,9 +290,7 @@ func _process_spin(delta: float) -> void:
 	else:
 		# Draw the rotation in the editor
 		update()
-
-
-var dbg_full_swing_time = 0		# time to complete a full swing from one boundar to the other
+		
 
 # ------------------------------------------------------------------------------
 # Process swinging the fireballs
@@ -285,19 +298,6 @@ var dbg_full_swing_time = 0		# time to complete a full swing from one boundar to
 func _process_swing(delta: float) -> void:
 	if swing_speed == 0:
 		return
-	
-	# For timing debugging
-	#----------------------------------------------------------------------
-	dbg_full_swing_time += delta
-#	if int(actual_rotation_degrees) == start_direction:
-#		print(">>>START: ")
-#	if actual_rotation_degrees == start_direction + swing_degrees:
-#		print(">>>BOUNDARY1: ", dbg_full_swing_time)
-#		dbg_full_swing_time = 0
-#	if  actual_rotation_degrees == start_direction - swing_degrees:
-#		print(">>>BOUNDARY2: " , dbg_full_swing_time)
-#		dbg_full_swing_time = 0
-	#----------------------------------------------------------------------
 		
 	# Swing back and forth
 	var ease_output = 0
@@ -306,29 +306,20 @@ func _process_swing(delta: float) -> void:
 		if swing_time_offset == 0:
 			# The swing starts at the start direction (middle of total swing range)
 			swing_ease_start = start_direction
-			swing_time = swing_ease_length / 2.0		# Because it starts in the middle 
+			swing_time = swing_ease_length / 2.0		# swing time is halved because it starts in the middle 
 		else:
 			# Add necessary adjustments determined by swing_time_offset
 			# Adjust the start direction by the rotation offset
 			swing_ease_start = start_direction + swing_time_offset_degrees
 		
-			# TODO: This works when swing_degrees = 90, but time is not correct when 45 or 135
 			if is_swing_clockwise:
 				swing_time = abs((swing_degrees - swing_time_offset_degrees) / swing_speed)
 			else:
 				swing_time = abs((swing_degrees + swing_time_offset_degrees) / swing_speed) 
 		
-		# Start without easing in
-		ease_output = _easeOutSine(time_passed, swing_ease_offset, swing_time)
+		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_time)
 	else:
 		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
-	
-	# When swing rotation is almost complete then start rotating the fireball smoothly to change direction
-	if ease_output > 0.92 and ease_output < 0.93:
-		if not Engine.editor_hint:
-			pass
-			# TEMP: commented out to try alternate solution _rotate_fireballs()
-			#_change_fireball_direction(is_swing_clockwise, swing_ease_length)
 		
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
@@ -369,6 +360,7 @@ func _rotate_fireballs():
 	# NB: Need to check that the previous distance to boundary is set as well so we can determine
 	# if swing is approaching or moving away from the boundary at the start
 	if distance_to_boundary <= start_rotation_threshold and prev_distance_to_boundary != null:
+		
 		# Determine if swing is approaching the boundary
 		var moving_closer_to_boundary = distance_to_boundary < prev_distance_to_boundary
 		
@@ -386,13 +378,10 @@ func _rotate_fireballs():
 			# In this case we need to skip the rotation of the fireball near the boundary because it is already moving away from it 
 			skip_rotation = not moving_closer_to_boundary	
 			
-		# Equation to determine the relative rotation required
-		# Currently fireball rotation is linear y = mx + b
-		# NB: Because of the swing ease in out that occurs at the boundaries a linear
-		# equation is not great as rotation at the boundary is too slow
-		# TODO: Change the equation so it rotates faster at the boundary
 		if not skip_rotation:
-			var fireball_rotation = (90/start_rotation_threshold * dist + 90)
+			# Using an easeInOutCirc gives the smoothest rotation as when the swing is at its slowest
+			# near the boundary the ease curve changes the most rapidly
+			var fireball_rotation = _easeInOutCirc(dist, -start_rotation_threshold, start_rotation_threshold*2) * 180
 			
 			# Flip the rotation if swing rotation is clockwise when entering threshold region
 			if is_clockwise_start:
@@ -400,6 +389,9 @@ func _rotate_fireballs():
 			
 			# Call all fireballs to adjust their rotation
 			get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
+		else:
+			# Just flip the rotation direction 180 degrees
+			get_tree().call_group(_get_fireball_group(), "adjust_rotation", 180)
 	else:
 		# Swing position is no longer within the threshold distance from the boundary
 		if outside_threshold.run_once():
@@ -413,13 +405,19 @@ func _rotate_fireballs():
 
 
 # ------------------------------------------------------------------------------
-
+# Calculate the adjustments caused by swing time offset
+# Swing time offset represents the time by which the swing is delayed before it 
+# would normally reach its normal start position in the middle
+# 
+# When swing_time_offset == 0 the swing starts in the middle
+# When swing_time_offset > 0 an adjustments needs to be made to:
+# 1. The angle at the which the swing starts
+# 2. The initial direction of rotation of the swing 
 # ------------------------------------------------------------------------------
 func calculate_adjustments_caused_by_swing_time_offset() -> void:
 	# Determine the total number of degrees in rotation that the swing time offset result in at the given swing speed
 	# This is the number of degrees we need to delay before the swing reaches its normal 'start direction' given no offset 
 	var number_of_degrees = abs(swing_speed) * swing_time_offset
-	print("number of degrees: ", number_of_degrees)
 	
 	var degrees_left = number_of_degrees
 	var offset_degrees = 0
@@ -432,30 +430,28 @@ func calculate_adjustments_caused_by_swing_time_offset() -> void:
 	var i = 0
 	# Loop through the number of degrees to determine the starting offset of the swing cycle as well as the starting direction of rotation
 	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop
-		print(">> i = ", i, ", offset_degrees: ", offset_degrees)
 		var reached_boundary_anticlockwise = offset_sign == -1 and offset_degrees - degrees_left < -swing_degrees
 		var reached_boundary_clockwise = offset_sign == 1 and (offset_degrees + degrees_left > swing_degrees)
-		print("ACLK boundary: ", reached_boundary_anticlockwise, ", CLK boundary: ", reached_boundary_clockwise)
+		
 		if reached_boundary_anticlockwise or reached_boundary_clockwise:
 			# angle offset has reached swing boundary range
 			var delta = swing_degrees - offset_degrees
 			offset_degrees += delta * offset_sign		# account for direction
 			degrees_left -= abs(delta)
-			print("delta: ", delta, ", offset_degrees: ", offset_degrees, ", degrees_left:", degrees_left)
 			offset_sign *= -1   	# change direction since boundary reached
 		else:
-			print("within boundary")
 			# angle offset is within the within swing boundary range
 			offset_degrees += degrees_left * offset_sign  # -1 because time offset delays time to reach start so need to rotate offset in opposite direction
 			degrees_left = 0
 			
 		i += 1
+		
 	swing_time_offset_degrees = offset_degrees
+	
 	# Since the swing time is delayed the offset sign must be negated so the swing traces back through all
 	# the degrees it was offset
 	swing_time_offset_sign = -offset_sign
-	print("swing_time_offset_degrees: ", swing_time_offset_degrees, ", swing_time_offset_sign: ", swing_time_offset_sign)
-		
+	
 		
 # ------------------------------------------------------------------------------	
 # Set the swing ease variables
@@ -493,55 +489,26 @@ func _get_fireball_group()-> String:
 # @param clockwise		Indicates the starting direction of rotation
 # ------------------------------------------------------------------------------
 func _add_fireball(index, start_angle, clockwise) -> void:
-	var dist = radius + index * radius
+	# Calculate the dist the centre of the fireball is away from the pivot 
+	var dist = fireball_spacing + index * fireball_spacing
 	var fire_ball:FireBall = preload("res://src/objects/fireball-spinner/FireBall.tscn").instance()
 	fire_ball.add_to_group(_get_fireball_group())
 	fire_ball.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
 	fire_ball.rotation_degrees = start_angle - 90 if clockwise else start_angle + 90		# Ensure the fireball points in the correct direction
-	print("start_angle", start_angle)
-	print("rotation", fire_ball.rotation_degrees)
-	fire_ball.remember_current_rotation()		# Remember the current rotation so it can be adjusted incrementally in order to rotate the fireball at the end of the swing
+	
+	# Remember the current rotation so it can be adjusted incrementally in order to rotate the fireball at the end of the swing
+	fire_ball.remember_current_rotation()		
+	
+	# Show only the fireballs up to the specified length
 	fire_ball.show_fireball(index < length)
-	if fire_ball._showing and gap:
+	
+	# Handle alternately showing fireballs when gap is set
+	if fire_ball.get_showing() and gap:
 		# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
 		fire_ball.show_fireball(not index % 2 == 0)
+	
+	# Add the fireball to the pivot
 	pivot.add_child(fire_ball)		
-
-
-# ------------------------------------------------------------------------------
-# Change the direction of the fireball so it smoothly rotates to the opposite direction
-# This is only used when rotation style is SWING
-# NB: It is more performant to have a single tween here and updating the rotation of all
-# fireballs instead of having each fireball mantain a tween and update its own rotation
-# ------------------------------------------------------------------------------	
-func _change_fireball_direction(clockwise: bool, swing_time: float) -> void:
-	# Set the tween length based on the time in takes to complete a full swing
-	# This value has been tweaked until the rotation speeds looks natural
-	var tween_length = swing_time / 2.0;
-	
-	# Rotate the first 90 degrees
-	var tween_values = []
-	if clockwise:
-		tween_values = [0 , -180]
-	else:
-		tween_values = [0 , 180]
-	
-	tween.interpolate_property(self, "fireball_rotation_offset", tween_values[0], tween_values[1], tween_length, Tween.TRANS_LINEAR)
-	tween.start()	
-
-	yield(tween, "tween_completed")
-	
-	# Call a function of the fireball to remember its current rotation
-	get_tree().call_group(_get_fireball_group(), "remember_current_rotation")
-
-
-# The property that is being tweened in order to rotate the fireballs
-var fireball_rotation_offset = 0 setget _set_fireball_rotation_offset
-
-# Set the rotation offset of the fireball
-func _set_fireball_rotation_offset(value:float) -> void:
-	fireball_rotation_offset = value
-	get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation_offset)
 
 
 # ------------------------------------------------------------------------------
@@ -559,15 +526,17 @@ func _draw():
 		
 	if rotation_style == RotationStyle.SPIN:
 		# Draw the outer circle around the outmost fireball
-		var outer_circle_radius = (radius/2) + radius + ((length - 1)  * radius)
-		_draw_empty_circle(Vector2(), Vector2(0, outer_circle_radius), COLOR_WHITE, 1)
+		var outer_circle_fireball_spacing = (fireball_spacing/2) + fireball_spacing + ((length - 1)  * fireball_spacing)
+		_draw_empty_circle(Vector2(), Vector2(0, outer_circle_fireball_spacing), COLOR_WHITE, 1)
 		
 		# Draw the circle indicating speed of rotation
-		draw_circle(Vector2(outer_circle_radius, 0).rotated(deg2rad(start_direction + actual_rotation_degrees)), 3, COLOR_WHITE)
+		if animate_in_editor:
+			draw_circle(Vector2(outer_circle_fireball_spacing, 0).rotated(deg2rad(start_direction + actual_rotation_degrees)), 3, COLOR_WHITE)
+	
 	elif rotation_style == RotationStyle.SWING:
 		# Draw boundary lines for range of swing
 		# NB: In Godot: Positive rotation is clockwise
-		var dist = radius + length * radius
+		var dist = fireball_spacing + length * fireball_spacing
 		var line_end = dist * Vector2.RIGHT.rotated(deg2rad(start_direction)).rotated(deg2rad(-swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
@@ -577,17 +546,20 @@ func _draw():
 		draw_circle(line_end, 3, COLOR_BLUE)
 
 		# Draw the line that shows the swing motion
-		line_end = dist * Vector2.RIGHT.rotated(deg2rad(actual_rotation_degrees))
-		draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
-		draw_circle(line_end, 3, COLOR_WHITE)
+		if animate_in_editor:
+			line_end = dist * Vector2.RIGHT.rotated(deg2rad(actual_rotation_degrees))
+			draw_line(Vector2(), line_end, COLOR_WHITE, 1, true)
+			draw_circle(line_end, 3, COLOR_WHITE)
 
 
 # ------------------------------------------------------------------------------	
 # Draw a fireball (represented by a circle) to the screen
 # Used for drawing in the editor only
+# @param index			The current index of the fireball (0 is closest to centre)
+# @param start_angle	The start angle (degrees) of the fireball chain
 # ------------------------------------------------------------------------------
-func _draw_fireball(index, start_angle) -> void:
-	var dist = radius + index * radius
+func _draw_fireball(index:int, start_angle:float) -> void:
+	var dist = fireball_spacing + index * fireball_spacing
 	var _draw_fireball = true
 	
 	# When gap is true, then the 2nd, 4th fireball is not shown to leave a gap
@@ -595,37 +567,27 @@ func _draw_fireball(index, start_angle) -> void:
 		_draw_fireball = false
 		
 	if _draw_fireball:
-		draw_circle(Vector2(dist, 0).rotated(deg2rad(start_angle)), radius/2, COLOR_ORANGE)
+		draw_circle(Vector2(dist, 0).rotated(deg2rad(start_angle)), fireball_spacing/2, COLOR_ORANGE)
 
 
 # ------------------------------------------------------------------------------
 # Draw an empty circle to the screen
 # Used for drawing in the editor only
 # ------------------------------------------------------------------------------
-func _draw_empty_circle(circle_center:Vector2, circle_radius:Vector2, color:Color, resolution:int):
+func _draw_empty_circle(circle_center:Vector2, circle_fireball_spacing:Vector2, color:Color, resolution:int):
 	var draw_counter = 1
 	var line_origin = Vector2()
 	var line_end = Vector2()
-	line_origin = circle_radius + circle_center
+	line_origin = circle_fireball_spacing + circle_center
 
 	while draw_counter <= 360:
-		line_end = circle_radius.rotated(deg2rad(draw_counter)) + circle_center
+		line_end = circle_fireball_spacing.rotated(deg2rad(draw_counter)) + circle_center
 		draw_line(line_origin, line_end, color)
 		draw_counter += 1 / resolution
 		line_origin = line_end
 
-	line_end = circle_radius.rotated(deg2rad(360)) + circle_center
+	line_end = circle_fireball_spacing.rotated(deg2rad(360)) + circle_center
 	draw_line(line_origin, line_end, color)
-
-
-# ------------------------------------------------------------------------------
-# Easing function: ease out sine
-# NB: The easing function need to be defined in this node for it to work in the editor
-# ------------------------------------------------------------------------------
-func _easeOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
-   x -= offset
-   x /= ease_length
-   return (0.0 if x < 0 else (1.0 if x > 1.0 else sin((x * PI) / 2.0)))
 
 
 # ------------------------------------------------------------------------------
@@ -636,3 +598,17 @@ func _easeInOutSine(x: float, offset: float=0, ease_length: float=1) -> float:
    x -= offset
    x /= ease_length
    return (0.0 if x < 0 else (1.0 if x > 1.0 else -(cos(PI * x) - 1.0) / 2.0))
+
+
+# ------------------------------------------------------------------------------
+# Easing function: ease in out circ
+# This easing is used to rotate the fireballs. This easing function is defined
+# here instead of using an easing library because the above easing functions 
+# needed to be included in this node to work in the editor, and so it felt overkill
+# to use an easing library for just one function
+# ------------------------------------------------------------------------------
+func _easeInOutCirc(x: float, offset: float=0, length: float=1) -> float:
+   x -= offset
+   x /= length
+   return (0.0 if x < 0 else (1.0 if x > 1.0 else ((1.0 - sqrt(1.0 - pow(2 * x, 2))) / 2.0 if x < 0.5 else (sqrt(1.0 - pow(-2.0 * x + 2, 2)) + 1.0) / 2.0)))
+   
