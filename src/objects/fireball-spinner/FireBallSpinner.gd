@@ -290,7 +290,7 @@ func _process_spin(delta: float) -> void:
 	else:
 		# Draw the rotation in the editor
 		update()
-		
+	
 
 # ------------------------------------------------------------------------------
 # Process swinging the fireballs
@@ -359,39 +359,33 @@ func _rotate_fireballs():
 	# Handle rotation of fireballs when near the boundary of the swing
 	# NB: Need to check that the previous distance to boundary is set as well so we can determine
 	# if swing is approaching or moving away from the boundary at the start
-	if distance_to_boundary <= start_rotation_threshold and prev_distance_to_boundary != null:
-		
+	if _is_near_clockwise_boundary() or _is_near_anticlockwise_boundary():
 		# Determine if swing is approaching the boundary
-		var moving_closer_to_boundary = distance_to_boundary < prev_distance_to_boundary
+		var is_approaching_boundary = _is_approaching_clockwise_boundary() or _is_approaching_anticlockwise_boundary()
 		
 		# For the fireball rotation equation to work make the distance values 
-		# negative when approaching and keep them positive when
-		var dist = -distance_to_boundary if moving_closer_to_boundary else distance_to_boundary
+		# negative when approaching and keep them positive when moving away from the boundary
+		var dist = -distance_to_boundary if is_approaching_boundary else distance_to_boundary
 		
 		if threshold_reached.run_once():
 			# Run this code only once as the swing has reached the rotation threshold region
 			outside_threshold.reset()
-			is_clockwise_start = is_swing_clockwise
+			is_clockwise_start = is_swing_clockwise		# remember the rotation direction at the start
 			
-			# Skip rotation if swing is in threshold region but moving away from the boundary at the start
-			# This may occur when setting swing_time_offset
-			# In this case we need to skip the rotation of the fireball near the boundary because it is already moving away from it 
-			skip_rotation = not moving_closer_to_boundary	
+			# Skip rotation of the fireball if swing starts in threshold region but is moving away from the boundary
+			skip_rotation = not is_approaching_boundary	
 			
 		if not skip_rotation:
 			# Using an easeInOutCirc gives the smoothest rotation as when the swing is at its slowest
 			# near the boundary the ease curve changes the most rapidly
 			var fireball_rotation = _easeInOutCirc(dist, -start_rotation_threshold, start_rotation_threshold*2) * 180
 			
-			# Flip the rotation if swing rotation is clockwise when entering threshold region
+			# Flip the rotation direction depending on whether rotation starts clockwise or anti-clockwise
 			if is_clockwise_start:
 				fireball_rotation = -fireball_rotation
 			
 			# Call all fireballs to adjust their rotation
 			get_tree().call_group(_get_fireball_group(), "adjust_rotation", fireball_rotation)
-		else:
-			# Just flip the rotation direction 180 degrees
-			get_tree().call_group(_get_fireball_group(), "adjust_rotation", 180)
 	else:
 		# Swing position is no longer within the threshold distance from the boundary
 		if outside_threshold.run_once():
@@ -404,6 +398,36 @@ func _rotate_fireballs():
 	prev_distance_to_boundary = distance_to_boundary
 
 
+# ------------------------------------------------------------------------------
+# Determine if swing rotation is near the clockwise swing boundary
+# This is used to determine when to rotate the fireballs
+# ------------------------------------------------------------------------------
+func _is_near_clockwise_boundary() -> bool:
+	return actual_rotation_degrees <= start_direction + swing_degrees and actual_rotation_degrees > start_direction + swing_degrees - start_rotation_threshold
+
+
+# ------------------------------------------------------------------------------
+# Determine if swing rotation is near the anit-clockwise swing boundary
+# This is used to determine when to rotate the fireballs
+# ------------------------------------------------------------------------------
+func _is_near_anticlockwise_boundary() -> bool:
+	return actual_rotation_degrees >= start_direction - swing_degrees and actual_rotation_degrees < start_direction - swing_degrees + start_rotation_threshold
+
+
+# ------------------------------------------------------------------------------
+# Determine if swing is near the clockwise boundary and approaching it
+# ------------------------------------------------------------------------------
+func _is_approaching_clockwise_boundary() -> bool:
+	return _is_near_clockwise_boundary() and is_swing_clockwise
+	
+
+# ------------------------------------------------------------------------------
+# Determine if swing is near the anti-clockwise boundary and approaching it
+# ------------------------------------------------------------------------------
+func _is_approaching_anticlockwise_boundary() -> bool:
+	return _is_near_anticlockwise_boundary() and not is_swing_clockwise	
+	
+	
 # ------------------------------------------------------------------------------
 # Calculate the adjustments caused by swing time offset
 # Swing time offset represents the time by which the swing is delayed before it 
