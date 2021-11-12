@@ -41,7 +41,7 @@ export(int, -100, 100, 10) var swing_speed:int = 50 setget _set_swing_speed
 
 # The swing time offset in seconds to reach start direction
 # NB: I couldn't really figure out what the LevelHead swing time offset was 
-export(float, 0, 30, 0.1) var swing_time_offset:float = 0 setget _set_swing_time_offset
+export(float, 0, 30, 0.1) var swing_ease_time_offset:float = 0 setget _set_swing_ease_time_offset
 
 # Number of spinning fire balls in the same line 
 export(int, 1, 5) var length:int = 4 setget _set_length
@@ -84,10 +84,16 @@ var actual_rotation_degrees = 0
 
 # Easing variables for Swing
 # These are calculated to give a smooth easing as swing approaches the swing boundary
-var swing_ease_offset: float = 0.0		# current ease offset time between start and end of easing
-var swing_ease_start: float = 0.0		# start value of the easing
-var swing_ease_target: float = 0.0		# end or targe value of the easing
-var swing_ease_length: float = 0.1    	# time in seconds to complete swing from one boundary to the other (initialise non-zero)
+var swing_ease_offset: float = 0.0			# current ease offset time between start and end of easing
+var swing_ease_start_angle: float = 0.0		# start value of the easing
+var swing_ease_target_angle: float = 0.0	# end or targe value of the easing
+var swing_ease_time: float = 0.1			# time in seconds for the swing ease (needs to be non-zero for code in editor to work)
+
+#
+# Variables relating to swing time offset
+#
+var swing_ease_time_offset_degrees = 0		# The offset in degrees from the start direction as a result of the swing time offset
+var swing_ease_time_offset_sign = 0			# The sign(positive or negative) of the starting rotation as a result of the swing time offset
 
 # Determines if it is the start of the swing cycle starting from start_direction
 var is_swing_start = true
@@ -109,12 +115,6 @@ var threshold_reached = Once.new()		# A trigger when swing is inside the thresho
 var outside_threshold = Once.new()		# A trigger when sing is outside the threshold region
 var prev_distance_to_boundary = null	# The previous distance to the boundary.  Used to determine if swing is approaching or moving away from the boundary
 var skip_rotation = false
-
-#
-# Variables relating to swing time offset
-#
-var swing_time_offset_degrees = 0		# The offset in degrees from the start direction as a result of the swing time offset
-var swing_time_offset_sign = 0			# The sign(positive or negative) of the starting rotation as a result of the swing time offset
 
 
 # ------------------------------------------------------------------------------
@@ -191,8 +191,8 @@ func _set_swing_speed(value) -> void:
 # ------------------------------------------------------------------------------
 # Set the swing speed
 # ------------------------------------------------------------------------------
-func _set_swing_time_offset(value) -> void:
-	swing_time_offset = value	
+func _set_swing_ease_time_offset(value) -> void:
+	swing_ease_time_offset = value	
 	_reset_swing()
 
 # ------------------------------------------------------------------------------
@@ -230,20 +230,63 @@ func _reset_swing() -> void:
 			if is_instance_valid(pivot):	
 				pivot.rotation_degrees = actual_rotation_degrees	
 	
-	if swing_time_offset > 0:
+	if swing_ease_time_offset > 0:
 		# Calculate the offset rotation and direction caused by the swing time offset
-		calculate_adjustments_caused_by_swing_time_offset()
+		calculate_adjustments_caused_by_swing_ease_time_offset()
 		
 		# Adjust the rotation direction based on the swing time offset
 		# A negative swing time offset sign means swing starts in anti-clockwise direction
 		# i.e The swing time offset sign overrides the default rotation direction
-		is_swing_clockwise = false if swing_time_offset_sign < 0 else true
+		is_swing_clockwise = false if swing_ease_time_offset_sign < 0 else true
 				
 		# Based on a potential override of rotation direction recalculate the ease range
 		_set_ease_range()
 		
 	update()
-
+	
+	
+# ------------------------------------------------------------------------------	
+# Set the swing ease variables
+# ------------------------------------------------------------------------------
+func _set_ease_range():
+	if swing_speed == 0:
+		return 
+		
+	# Calculate the time for a full swing from one boundary to the other 	
+	var swing_ease_full_time = swing_degrees * 2.0 / abs(swing_speed)    # time = distance(in degrees) / speed(degrees per second)
+	
+	if is_swing_clockwise:
+		# Swing starts in the clockwise direction
+		# NB: In Godot positive angle is clockwise
+		swing_ease_start_angle = start_direction - swing_degrees
+		swing_ease_target_angle = start_direction + swing_degrees
+	else:
+		# Swing starts in the anti-clockwise direction
+		# NB: In Godot egative angle is anti-clockwise
+		swing_ease_start_angle = start_direction + swing_degrees
+		swing_ease_target_angle = start_direction - swing_degrees
+	
+	# Now that the base ease settings for a full swing have been calculated above,
+	# Calculate the adjustments necessary for the start of the swing.  
+	# - When there is no swing time offset, the swing in the middle.   
+	# - When there is a swing time offset, the swing may start anywhere and also
+	#   start in the opposite direction	
+	if is_swing_start:
+		if swing_ease_time_offset == 0:
+			# The swing starts at the start direction (middle of total swing range)
+			swing_ease_start_angle = start_direction
+			swing_ease_time = swing_ease_full_time / 2.0		# swing time is halved because it starts in the middle 
+		else:
+			# Add necessary adjustments determined by swing_ease_time_offset
+			# Adjust the start direction by the rotation offset
+			swing_ease_start_angle = start_direction + swing_ease_time_offset_degrees
+		
+			if is_swing_clockwise:
+				swing_ease_time = abs((swing_degrees - swing_ease_time_offset_degrees) / swing_speed)
+			else:
+				swing_ease_time = abs((swing_degrees + swing_ease_time_offset_degrees) / swing_speed) 
+	else:
+		swing_ease_time = swing_ease_full_time
 
 # ------------------------------------------------------------------------------
 # The ready function for initialisation
@@ -300,29 +343,10 @@ func _process_swing(delta: float) -> void:
 		return
 		
 	# Swing back and forth
-	var ease_output = 0
-	if is_swing_start:
-		var swing_time = 0
-		if swing_time_offset == 0:
-			# The swing starts at the start direction (middle of total swing range)
-			swing_ease_start = start_direction
-			swing_time = swing_ease_length / 2.0		# swing time is halved because it starts in the middle 
-		else:
-			# Add necessary adjustments determined by swing_time_offset
-			# Adjust the start direction by the rotation offset
-			swing_ease_start = start_direction + swing_time_offset_degrees
-		
-			if is_swing_clockwise:
-				swing_time = abs((swing_degrees - swing_time_offset_degrees) / swing_speed)
-			else:
-				swing_time = abs((swing_degrees + swing_time_offset_degrees) / swing_speed) 
-		
-		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_time)
-	else:
-		ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_length)
+	var	ease_output = _easeInOutSine(time_passed, swing_ease_offset, swing_ease_time)
 		
 	# Calculate the actual rotation in degrees	
-	actual_rotation_degrees = (swing_ease_start + (ease_output * (swing_ease_target - swing_ease_start)))
+	actual_rotation_degrees = (swing_ease_start_angle + (ease_output * (swing_ease_target_angle - swing_ease_start_angle)))
 	
 	if not Engine.editor_hint:
 		# Rotate the spinner in the actual game
@@ -433,15 +457,15 @@ func _is_approaching_anticlockwise_boundary() -> bool:
 # Swing time offset represents the time by which the swing is delayed before it 
 # would normally reach its normal start position in the middle
 # 
-# When swing_time_offset == 0 the swing starts in the middle
-# When swing_time_offset > 0 an adjustments needs to be made to:
+# When swing_ease_time_offset == 0 the swing starts in the middle
+# When swing_ease_time_offset > 0 an adjustments needs to be made to:
 # 1. The angle at the which the swing starts
 # 2. The initial direction of rotation of the swing 
 # ------------------------------------------------------------------------------
-func calculate_adjustments_caused_by_swing_time_offset() -> void:
+func calculate_adjustments_caused_by_swing_ease_time_offset() -> void:
 	# Determine the total number of degrees in rotation that the swing time offset result in at the given swing speed
 	# This is the number of degrees we need to delay before the swing reaches its normal 'start direction' given no offset 
-	var number_of_degrees = abs(swing_speed) * swing_time_offset
+	var number_of_degrees = abs(swing_speed) * swing_ease_time_offset
 	
 	var degrees_left = number_of_degrees
 	var offset_degrees = 0
@@ -453,11 +477,11 @@ func calculate_adjustments_caused_by_swing_time_offset() -> void:
 	
 	var i = 0
 	# Loop through the number of degrees to determine the starting offset of the swing cycle as well as the starting direction of rotation
-	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop
-		var reached_boundary_anticlockwise = offset_sign == -1 and offset_degrees - degrees_left < -swing_degrees
-		var reached_boundary_clockwise = offset_sign == 1 and (offset_degrees + degrees_left > swing_degrees)
+	while degrees_left > 0 or i > 5:  # i check is to prevent infinite loop just in case
+		var exceeded_boundary_anticlockwise = offset_sign == -1 and offset_degrees - degrees_left < -swing_degrees
+		var exceeded_boundary_clockwise = offset_sign == 1 and (offset_degrees + degrees_left > swing_degrees)
 		
-		if reached_boundary_anticlockwise or reached_boundary_clockwise:
+		if exceeded_boundary_anticlockwise or exceeded_boundary_clockwise:
 			# angle offset has reached swing boundary range
 			var delta = swing_degrees - offset_degrees
 			offset_degrees += delta * offset_sign		# account for direction
@@ -470,34 +494,13 @@ func calculate_adjustments_caused_by_swing_time_offset() -> void:
 			
 		i += 1
 		
-	swing_time_offset_degrees = offset_degrees
+	swing_ease_time_offset_degrees = offset_degrees
 	
 	# Since the swing time is delayed the offset sign must be negated so the swing traces back through all
 	# the degrees it was offset
-	swing_time_offset_sign = -offset_sign
+	swing_ease_time_offset_sign = -offset_sign
 	
-		
-# ------------------------------------------------------------------------------	
-# Set the swing ease variables
-# ------------------------------------------------------------------------------
-func _set_ease_range():
-	if swing_speed == 0:
-		return 
-		
-	swing_ease_length = swing_degrees * 2.0 / abs(swing_speed)    # time = distance(in degrees) / speed(degrees per second)
 	
-	if is_swing_clockwise:
-		# swing in the clockwise direction
-		# NB: In Godot positive angle is clockwise
-		swing_ease_start = start_direction - swing_degrees
-		swing_ease_target = start_direction + swing_degrees
-	else:
-		# swing in the anti-clockwise direction
-		# NB: In Godot egative angle is anti-clockwise
-		swing_ease_start = start_direction + swing_degrees
-		swing_ease_target = start_direction - swing_degrees
-
-
 # ------------------------------------------------------------------------------
 # Get the name of the fireball group
 # ------------------------------------------------------------------------------
