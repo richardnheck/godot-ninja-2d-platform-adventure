@@ -72,6 +72,7 @@ func goto_level(levelIndex, changeScene = true) -> String:
 	is_reload = false
 	
 	if changeScene:
+		#warning-ignore:return_value_discarded
 		get_tree().change_scene(level.scene_path)
 	return level.scene_path
  
@@ -90,7 +91,7 @@ func goto_next_level() -> void:
 	has_key = false
 	checkpoint_reached_with_key = false
 	is_reload = false
-	
+	#warning-ignore:return_value_discarded
 	get_tree().change_scene(levelsArray[current_level_index].scene_path)
 
 # Reload the level

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
-[ext_resource path="res://src/actors/npc/test-npcs/enemy-hornet/EnemyHornet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/characters/enemies/test-enemies/enemy-hornet/EnemyHornet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]

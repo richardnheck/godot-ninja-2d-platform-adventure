@@ -17,8 +17,8 @@
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=17]
-[ext_resource path="res://src/actors/npc/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/actors/npc/creepy-crawly/CreepyCrawly.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/characters/enemies/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/characters/enemies/creepy-crawly/CreepyCrawly.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=1]
 length = 2.0

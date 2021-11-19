@@ -57,8 +57,10 @@ func _on_AnimationPlayer_animation_finished(anim_name : String):
 	if anim_name == "Fade Out":
 		#Choose between go_to_scene or reloading current
 		if is_reload_scene_call:
+			#warning-ignore:return_value_discarded
 			get_tree().reload_current_scene()
 		else:
+			#warning-ignore:return_value_discarded
 			get_tree().change_scene(scene_to_go)
 			
 		emit_signal("fading_out_finished")

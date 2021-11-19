@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/characters/enemies/CaveLevelBoss/cave_level_boss_spritesheet.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://src/characters/enemies/CaveLevelBoss/CaveLevelBoss.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.8371, 15.3219 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 33.7789 )
+
+[node name="CaveLevelBoss" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -32, -75 )
+frames = ExtResource( 1 )
+animation = "look-right"
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -15 )
+shape = SubResource( 1 )
+
+[node name="CoolOffTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="InitialDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -34 )
+shape = SubResource( 2 )
+
+[node name="RunAndJumpTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SlamRunTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TouchFloorCoolOffTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ChangeDirectionCoolOffTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="RunAndJumpTimer" to="." method="_on_RunAndJumpTimer_timeout"]
+[connection signal="timeout" from="SlamRunTimer" to="." method="_on_SlamRunTimer_timeout"]
+[connection signal="timeout" from="TouchFloorCoolOffTimer" to="." method="_on_TouchFloorCoolOffTimer_timeout"]
+[connection signal="timeout" from="ChangeDirectionCoolOffTimer" to="." method="_on_ChangeDirectionCoolOffTimer_timeout"]

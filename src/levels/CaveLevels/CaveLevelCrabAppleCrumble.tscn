@@ -20,8 +20,8 @@
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=18]
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=19]
 [ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=20]
-[ext_resource path="res://src/actors/npc/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/actors/npc/creepy-crawly/CreepyCrawly.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/characters/enemies/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/characters/enemies/creepy-crawly/CreepyCrawly.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Animation" id=1]
 length = 2.0

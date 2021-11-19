@@ -58,6 +58,7 @@ func save() -> void:
 	print(data_as_string);
 	
 	var file := File.new()
+	#warning-ignore:return_value_discarded
 	file.open(SAVE_FILE_PATH, File.WRITE)
 	file.store_string(data_as_string)
 	file.close()

@@ -13,7 +13,7 @@ onready var intro_title_scene = preload("res://src/UI/Controls/LevelIntroTitle/L
 
 onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
-onready var player_scene = preload("res://src/actors/player/Player.tscn")
+onready var player_scene = preload("res://src/characters/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 
 onready var intro_title = null

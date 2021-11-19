@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/Controls/BigBackButton.tscn" type="PackedScene" id=6]

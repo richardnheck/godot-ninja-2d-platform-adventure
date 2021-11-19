@@ -18,7 +18,7 @@
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=16]
 [ext_resource path="res://src/objects/moving-bamboo-spike/MovingBambooSpike.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/actors/CaveLevelMiniBoss/CaveLevelMiniBoss.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/characters/enemies/CaveLevelMiniBoss/CaveLevelMiniBoss.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=20]
 
 

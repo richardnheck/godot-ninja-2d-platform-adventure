@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=13]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/actors/npc/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/characters/enemies/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=15]
 
 [node name="CaveLevelShortAndSpikey" type="Node2D"]
 script = ExtResource( 9 )
