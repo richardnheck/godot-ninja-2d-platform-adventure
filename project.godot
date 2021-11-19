@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/UI/Controls/PlayButton.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/Character.gd"
+}, {
 "base": "Area2D",
 "class": "Checkpoint",
 "language": "GDScript",
@@ -28,6 +33,26 @@ _global_script_classes=[ {
 "class": "CutSceneBase",
 "language": "GDScript",
 "path": "res://src/UI/CutScenes/CutSceneBase.gd"
+}, {
+"base": "Area2D",
+"class": "DamageZone",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/DamageZone.gd"
+}, {
+"base": "State",
+"class": "Death",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/states/motion/combat/death.gd"
+}, {
+"base": "Node2D",
+"class": "Draw",
+"language": "GDScript",
+"path": "res://src/tools/draw.gd"
+}, {
+"base": "Character",
+"class": "Eagle",
+"language": "GDScript",
+"path": "res://src/actors/npc/test-npcs/eagle/Eagle.gd"
 }, {
 "base": "Node2D",
 "class": "FadeScreen",
@@ -49,6 +74,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/utility/Geometry2D.gd"
 }, {
+"base": "State",
+"class": "GettingHit",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/states/motion/combat/getting-hit.gd"
+}, {
+"base": "Node2D",
+"class": "Health",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/Health.gd"
+}, {
 "base": "Node2D",
 "class": "LevelBase",
 "language": "GDScript",
@@ -59,10 +94,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/actors/CaveLevelMiniBoss/MiniBossSlamBlast.gd"
 }, {
+"base": "Node2D",
+"class": "Momentum",
+"language": "GDScript",
+"path": "res://src/engine/Momentum.gd"
+}, {
+"base": "State",
+"class": "Motion",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/states/motion/motion.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "NpcBase",
 "language": "GDScript",
 "path": "res://src/actors/npc/npc_base.gd"
+}, {
+"base": "Motion",
+"class": "OnGround",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/states/motion/on-ground/on-ground.gd"
+}, {
+"base": "Node2D",
+"class": "Physics2D",
+"language": "GDScript",
+"path": "res://src/engine/Physics2D.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -78,23 +133,50 @@ _global_script_classes=[ {
 "class": "SlamBlast",
 "language": "GDScript",
 "path": "res://src/actors/CaveLevelBoss/SlamBlast.gd"
+}, {
+"base": "Character",
+"class": "Slime",
+"language": "GDScript",
+"path": "res://src/actors/npc/test-npcs/slime/Slime.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/actors/npc/commons/states/state.gd"
 } ]
 _global_script_class_icons={
 "BackButton": "",
+"Character": "",
 "Checkpoint": "",
 "CommonNode": "",
 "CutSceneBase": "",
+"DamageZone": "",
+"Death": "",
+"Draw": "",
+"Eagle": "",
 "FadeScreen": "",
 "FireBall": "",
 "FireYokai": "",
 "Geometry2D": "",
+"GettingHit": "",
+"Health": "",
 "LevelBase": "",
 "MiniBossSlamBlast": "",
+"Momentum": "",
+"Motion": "",
 "NpcBase": "",
+"OnGround": "",
+"Physics2D": "",
 "Player": "",
 "ScreenShake": "",
-"SlamBlast": ""
+"SlamBlast": "",
+"Slime": "",
+"State": ""
 }
+
+[Debug]
+
+debug_mode=true
 
 [application]
 
@@ -216,6 +298,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_5="boss"
 2d_physics/layer_6="boss-world"
 2d_physics/layer_7="boss-spikes-world"
+2d_physics/layer_8="enemies"
 
 [rendering]
 

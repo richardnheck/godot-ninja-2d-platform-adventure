@@ -51,6 +51,9 @@ func _ready() -> void:
 	player.connect("died", self, "_on_Player_died")
 	player.connect("collided", self, "_on_Player_collided")
 	
+	# Pass the player to the enemies
+	get_tree().call_group("enemy", "set_player", player)
+	
 	if key: 
 		key.connect("captured", self, "_on_Key_captured")
 	if door:
