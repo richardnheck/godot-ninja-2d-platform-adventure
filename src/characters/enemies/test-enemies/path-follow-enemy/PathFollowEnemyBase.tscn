@@ -1,25 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/characters/enemies/test-enemies/path-follow-enemy/PathFollowEnemyBase.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
-
-[sub_resource type="Animation" id=2]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.99 ]
-}
 
 [node name="PathFollowEnemyBase" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,11 +29,6 @@ collision_layer = 8
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_process_mode = 0
-playback_speed = 0.5
-anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
 

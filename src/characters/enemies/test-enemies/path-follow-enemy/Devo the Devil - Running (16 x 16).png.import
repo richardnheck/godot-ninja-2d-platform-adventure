@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Running (16 x 16).png-7ff977a9725626a1a1c006b2340d791e.stex"
+path="res://.import/Devo the Devil - Running (16 x 16).png-34873f88c58f0557b9f2a1aeb5bd1e92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/characters/enemies/test-enemies/path-follow-enemy/Running (16 x 16).png"
-dest_files=[ "res://.import/Running (16 x 16).png-7ff977a9725626a1a1c006b2340d791e.stex" ]
+source_file="res://src/characters/enemies/test-enemies/path-follow-enemy/Devo the Devil - Running (16 x 16).png"
+dest_files=[ "res://.import/Devo the Devil - Running (16 x 16).png-34873f88c58f0557b9f2a1aeb5bd1e92.stex" ]
 
 [params]
 
