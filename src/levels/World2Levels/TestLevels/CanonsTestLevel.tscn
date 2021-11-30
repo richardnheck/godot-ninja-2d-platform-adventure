@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://src/objects/cave-level-door/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=10]
+[ext_resource path="res://src/objects/test-objects/Guns/Pistol.tscn" type="PackedScene" id=11]
+
+[node name="TmpBambooSpikesLevel" type="Node2D"]
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_vertical_guides_": [ 400.0 ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MobileControlsHUD" parent="." instance=ExtResource( 5 )]
+
+[node name="TileMapBg" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -65537, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -131062, 0, 1, -131061, 0, 1, -131060, 0, 1, -131059, 0, 1, -131058, 0, 1, -131057, 0, 1, -131056, 0, 1, -131055, 0, 1, -1, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 1, 65546, 0, 1, 65547, 0, 1, 65548, 0, 1, 65549, 0, 1, 65550, 0, 1, 65551, 0, 1, 65552, 0, 1, 65553, 0, 1, 196607, 0, 1, 131072, 0, 1, 131073, 0, 1, 131074, 0, 1, 131075, 0, 1, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 131081, 0, 1, 131082, 0, 1, 131083, 0, 1, 131084, 0, 1, 131085, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 262143, 0, 1, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 1, 196612, 0, 1, 196613, 0, 1, 196614, 0, 1, 196615, 0, 1, 196616, 0, 1, 196617, 0, 1, 196618, 0, 1, 196619, 0, 1, 196620, 0, 1, 196621, 0, 1, 196622, 0, 1, 196623, 0, 1, 196624, 0, 1, 196625, 0, 1, 327679, 0, 1, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, 262159, 0, 1, 262160, 0, 1, 262161, 0, 1, 458751, 0, 327683, 524287, 0, 327683, 589823, 0, 327683, 655359, 0, 327683, 720895, 0, 327683, 786431, 0, 327683, 720896, 0, 327683, 720897, 0, 327683, 720898, 0, 327683, 720899, 0, 327683, 720900, 0, 327683, 720901, 0, 327683, 720902, 0, 327683, 720903, 0, 327683, 720904, 0, 327683, 720905, 0, 327683, 720906, 0, 327683, 720907, 0, 327683, 720908, 0, 327683, 720909, 0, 327683, 720910, 0, 327683, 720911, 0, 327683, 720912, 0, 327683 )
+
+[node name="TileMapWorld" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( -262146, 11, 0, -262145, 11, 0, -327680, 11, 0, -327679, 11, 0, -327678, 11, 0, -327677, 11, 0, -327676, 11, 0, -327675, 11, 0, -327674, 11, 0, -327673, 11, 0, -327672, 11, 0, -327671, 11, 0, -327670, 11, 0, -327669, 11, 0, -327668, 11, 0, -327667, 11, 0, -327666, 11, 0, -327665, 11, 0, -327664, 11, 0, -327663, 11, 0, -327662, 11, 0, -327661, 11, 0, -327660, 11, 0, -327659, 11, 0, -327658, 11, 0, -327657, 11, 0, -327656, 11, 0, -327655, 11, 0, -327654, 11, 0, -327653, 11, 0, -327652, 11, 0, -327651, 11, 0, -327650, 11, 0, -327649, 11, 0, -327648, 11, 0, -327647, 11, 0, -327646, 11, 0, -327645, 11, 0, -196610, 11, 0, -262109, 11, 0, -131074, 11, 0, -196573, 11, 0, -65538, 11, 0, -131037, 11, 0, -2, 11, 0, -65501, 11, 0, 65533, 13, 2, 65534, 11, 0, 35, 11, 0, 131069, 13, 2, 131070, 11, 0, 65554, 2, 0, 65555, 2, 0, 65556, 2, 0, 65557, 2, 0, 65558, 2, 0, 65571, 11, 0, 196605, 13, 2, 196606, 11, 0, 131107, 11, 0, 262141, 13, 2, 262142, 11, 0, 196643, 11, 0, 327677, 13, 2, 327678, 11, 0, 262171, 12, 0, 262175, 12, 0, 262179, 11, 0, 393213, 13, 2, 393214, 11, 0, 327715, 11, 0, 458749, 13, 2, 458750, 11, 0, 393251, 11, 0, 524285, 13, 2, 524286, 11, 0, 458787, 11, 0, 589821, 13, 2, 589822, 11, 0, 524289, 536870914, 65540, 524323, 11, 0, 655357, 13, 2, 655358, 11, 0, 655359, 11, 0, 589824, 11, 0, 589825, 11, 0, 589826, 11, 0, 589827, 11, 0, 589828, 11, 0, 589829, 11, 0, 589830, 11, 0, 589831, 11, 0, 589832, 11, 0, 589833, 11, 0, 589834, 11, 0, 589835, 11, 0, 589836, 11, 0, 589837, 11, 0, 589838, 11, 0, 589839, 11, 0, 589840, 11, 0, 589841, 11, 0, 589842, 11, 0, 589843, 11, 0, 589844, 11, 0, 589845, 11, 0, 589846, 11, 0, 589847, 11, 0, 589848, 11, 0, 589849, 11, 0, 589850, 11, 0, 589851, 11, 0, 589852, 11, 0, 589853, 11, 0, 589854, 11, 0, 589855, 11, 0, 589856, 11, 0, 589857, 11, 0, 589858, 11, 0, 589859, 11, 0, 720893, 13, 2, 720894, 13, 2, 720895, 13, 2, 655360, 13, 2, 655361, 13, 2, 655362, 13, 2, 655363, 13, 2, 655364, 13, 2, 655365, 13, 2, 655366, 13, 2, 655367, 13, 2, 655368, 13, 2, 655369, 13, 2, 655370, 13, 2, 655371, 13, 2, 655372, 13, 2, 655373, 13, 2, 655374, 13, 2, 655375, 13, 2, 655376, 13, 2, 655377, 13, 2, 655378, 13, 2, 655379, 13, 2, 655380, 13, 2, 655381, 13, 2, 655382, 13, 2, 655383, 13, 2, 655384, 13, 2, 655385, 13, 2, 655386, 13, 2, 655387, 13, 2, 655388, 13, 2, 655389, 13, 2, 655390, 13, 2, 655391, 13, 2, 655392, 13, 2, 655393, 13, 2, 655394, 13, 2, 655395, 13, 2 )
+
+[node name="TileMapTraps" type="TileMap" parent="." groups=["trap"]]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 8 )
+collision_layer = 4
+format = 1
+
+[node name="MovingSpikesGroup" type="Node" parent="."]
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="DoorStart" parent="Props" instance=ExtResource( 9 )]
+position = Vector2( 16, 128 )
+
+[node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( -240, -144 )
+
+[node name="cave-door-background" parent="Props/CaveDoorBackground" index="0"]
+position = Vector2( 1.52588e-05, 64 )
+flip_v = true
+
+[node name="JapaneseLamp" parent="Props" instance=ExtResource( 4 )]
+position = Vector2( 288, 79.375 )
+frame = 0
+
+[node name="JapaneseLamp3" parent="Props" instance=ExtResource( 4 )]
+position = Vector2( 384, 80 )
+
+[node name="JapaneseLamp2" parent="Props" instance=ExtResource( 4 )]
+position = Vector2( 496, 127.688 )
+frame = 0
+
+[node name="InteractiveProps" type="Node" parent="."]
+
+[node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( 528, 144 )
+
+[node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
+position = Vector2( 343.607, 32 )
+frame = 19
+
+[node name="Pistol" parent="InteractiveProps" instance=ExtResource( 11 )]
+position = Vector2( 8, 128 )
+shoot_rate = 1.0
+mode = 3
+
+[node name="Pistol2" parent="InteractiveProps" instance=ExtResource( 11 )]
+position = Vector2( 8, 64 )
+shoot_rate = 1.0
+delay_time = 0.5
+mode = 3
+
+[node name="EndTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
+
+[editable path="Props/CaveDoorBackground"]
+[editable path="InteractiveProps/Door"]
