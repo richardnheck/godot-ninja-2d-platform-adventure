@@ -5,9 +5,11 @@ export var speed := 3500
 
 var damage := 1
 var direction := Vector2.RIGHT setget set_direction
-
+onready var collision_shape = $CollisionShape2D
+var explosion:AnimatedSprite = null
 
 func _ready() -> void:
+	explosion = get_node("ExplosionAnimatedSprite")
 	set_as_toplevel(true)
 	connect("body_entered", self, "hit_body")
 
@@ -23,9 +25,21 @@ func hit_body(body) -> void:
 
 
 func _destroy() -> void:
-	queue_free()
+	if explosion:
+		do_explosion()
+	else:
+		queue_free()
 
 
 func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction
 	rotation = new_direction.angle()
+
+func do_explosion() -> void:
+	collision_shape.set_deferred("disabled", true)
+	$AnimatedSprite.visible = false
+	explosion.visible = true
+	explosion.play()
+
+func _on_ExplosionAnimatedSprite_animation_finished() -> void:
+	queue_free()
