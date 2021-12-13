@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key.png-dd04181580472183822950e61f909f33.stex"
+path="res://.import/world2-prototype-tileset.png-697971b7807b7f59c8581e36e2d372bb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/key/key.png"
-dest_files=[ "res://.import/key.png-dd04181580472183822950e61f909f33.stex" ]
+source_file="res://src/levels/World2Levels/tiled/world2-prototype-tileset.png"
+dest_files=[ "res://.import/world2-prototype-tileset.png-697971b7807b7f59c8581e36e2d372bb.stex" ]
 
 [params]
 

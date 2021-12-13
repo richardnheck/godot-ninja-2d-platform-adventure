@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/world2-prototype-tileset.tsx-59ad0ae6c80de89b9198424818bc30ae.res"
+
+[deps]
+
+source_file="res://src/levels/World2Levels/tiled/world2-prototype-tileset.tsx"
+dest_files=[ "res://.import/world2-prototype-tileset.tsx-59ad0ae6c80de89b9198424818bc30ae.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

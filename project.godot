@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/objects/checkpoint/CheckPoint.gd"
 }, {
-"base": "GraphNode",
-"class": "CommonNode",
-"language": "GDScript",
-"path": "res://addons/project_map/pm_common_node.gd"
-}, {
 "base": "CanvasLayer",
 "class": "CutSceneBase",
 "language": "GDScript",
@@ -168,6 +163,11 @@ _global_script_classes=[ {
 "class": "State",
 "language": "GDScript",
 "path": "res://src/statemachine/states/state.gd"
+}, {
+"base": "Node2D",
+"class": "TiledLevelBase",
+"language": "GDScript",
+"path": "res://src/levels/TiledLevelBase.gd"
 } ]
 _global_script_class_icons={
 "AreaBullet": "",
@@ -175,7 +175,6 @@ _global_script_class_icons={
 "Character": "",
 "Character2": "",
 "Checkpoint": "",
-"CommonNode": "",
 "CutSceneBase": "",
 "DamageZone": "",
 "Death": "",
@@ -201,7 +200,8 @@ _global_script_class_icons={
 "SimpleEnemy": "",
 "SlamBlast": "",
 "Slime": "",
-"State": ""
+"State": "",
+"TiledLevelBase": ""
 }
 
 [Debug]
@@ -246,7 +246,7 @@ window/stretch=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/project_map/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/project_map/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
 
 [importer_defaults]
 
@@ -347,3 +347,7 @@ vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
 quality/2d/use_nvidia_rect_flicker_workaround=true
 quality/2d/use_pixel_snap=true
+
+[tiled_importer]
+
+enable_json_format=true

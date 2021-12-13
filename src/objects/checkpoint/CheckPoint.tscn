@@ -9,20 +9,18 @@ extents = Vector2( 12.7551, 26.8028 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "off",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "on",
+"speed": 5.0
 } ]
 
-[node name="CheckPoint" type="Area2D" groups=[
-"checkpoint",
-]]
+[node name="CheckPoint" type="Area2D" groups=["checkpoint"]]
 z_index = 1
 script = ExtResource( 2 )
 
@@ -35,5 +33,6 @@ shape = SubResource( 1 )
 position = Vector2( 0, -27 )
 frames = SubResource( 2 )
 animation = "off"
+offset = Vector2( 0, 1 )
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

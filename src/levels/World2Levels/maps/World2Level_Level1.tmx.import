@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/World2Level_Level1.tmx-9cc0949c2249795bd88de8267bf7ada0.scn"
+
+[deps]
+
+source_file="res://src/levels/World2Levels/maps/World2Level_Level1.tmx"
+dest_files=[ "res://.import/World2Level_Level1.tmx-9cc0949c2249795bd88de8267bf7ada0.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+uv_clip=true
+image_flags=3
+collision_layer=2
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://src/levels/import.gd"
