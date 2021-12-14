@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/objects/checkpoint/CheckPoint.gd"
 }, {
+"base": "GraphNode",
+"class": "CommonNode",
+"language": "GDScript",
+"path": "res://addons/project_map/pm_common_node.gd"
+}, {
 "base": "CanvasLayer",
 "class": "CutSceneBase",
 "language": "GDScript",
@@ -175,6 +180,7 @@ _global_script_class_icons={
 "Character": "",
 "Character2": "",
 "Checkpoint": "",
+"CommonNode": "",
 "CutSceneBase": "",
 "DamageZone": "",
 "Death": "",

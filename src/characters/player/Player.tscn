@@ -68,22 +68,6 @@ region = Rect2( 66, 0, 33, 32 )
 atlas = ExtResource( 2 )
 region = Rect2( 99, 0, 33, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 192, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
-region = Rect2( 33, 192, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 2 )
-region = Rect2( 66, 192, 33, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
-region = Rect2( 99, 192, 33, 32 )
-
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 96, 33, 32 )
@@ -240,6 +224,22 @@ region = Rect2( 957, 128, 33, 32 )
 atlas = ExtResource( 2 )
 region = Rect2( 990, 128, 33, 32 )
 
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 33, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 66, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 99, 192, 33, 32 )
+
 [sub_resource type="AtlasTexture" id=56]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 64, 33, 32 )
@@ -284,11 +284,6 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "talk",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": false,
 "name": "die",
@@ -298,6 +293,11 @@ animations = [ {
 "loop": false,
 "name": "celebrate",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "talk",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 56 ) ],
 "loop": false,
@@ -323,9 +323,7 @@ min_value = 1.0
 max_value = 3.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 2.97727 ), 0.0, 0.0, 0, 0 ]
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 2
 script = ExtResource( 1 )
 

@@ -39,6 +39,7 @@ func _ready() -> void:
 	# Initialise checkpoints
 	get_tree().call_group(Constants.GROUP_CHECKPOINT, "set_on", LevelData.level_checkpoint_reached)
 	checkpoints = get_tree().get_nodes_in_group(Constants.GROUP_CHECKPOINT)
+	print("checkpoints", checkpoints)
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_CheckPoint_reached")
 		

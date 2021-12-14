@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <tileset firstgid="1" source="../world2-prototype-tileset.tsx"/>
+ <object gid="22" width="16" height="16">
+  <properties>
+   <property name="group" value="checkpoint"/>
+   <property name="id" value="2"/>
+   <property name="path" value="res://src/objects/checkpoint/CheckPoint.tscn"/>
+  </properties>
+ </object>
+</template>

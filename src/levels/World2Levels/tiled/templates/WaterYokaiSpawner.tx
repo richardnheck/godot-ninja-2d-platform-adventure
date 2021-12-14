@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <tileset firstgid="1" source="../world2-prototype-tileset.tsx"/>
+ <object name="WaterYokaiSpawner" gid="39" width="16" height="16">
+  <properties>
+   <property name="path" value="res://src/objects/water-jump-yokai/WaterJumpYokaiSpawner.tscn"/>
+   <property name="shoot_rate" type="float" value="5"/>
+   <property name="delay_time" type="float" value="0"/>
+  </properties>
+ </object>
+</template>
