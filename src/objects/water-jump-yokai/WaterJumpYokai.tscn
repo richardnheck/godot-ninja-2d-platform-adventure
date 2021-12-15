@@ -25,6 +25,7 @@ height = 1.45934
 
 [node name="WaterJumpYokai" type="RigidBody2D"]
 collision_layer = 8
+gravity_scale = 5.97
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )

@@ -10,7 +10,6 @@ shoot_rate = 3.0
 mode = 3
 max_charge_time = 0.0
 direction = Vector2( 0, -1 )
-impulse = 150
 
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true

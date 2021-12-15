@@ -10,7 +10,7 @@ export (MODE) var mode := MODE.NORMAL
 export var max_charge_time := 2.0
 export var spread_angle := 0.0
 export (Vector2) var direction := Vector2.RIGHT
-export var impulse := 1000
+export var impulse := 300
 
 var charge_time := 0.0
 var is_charging := false

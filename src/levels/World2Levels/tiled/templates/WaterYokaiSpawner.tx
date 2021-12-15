@@ -4,8 +4,9 @@
  <object name="WaterYokaiSpawner" gid="39" width="16" height="16">
   <properties>
    <property name="path" value="res://src/objects/water-jump-yokai/WaterJumpYokaiSpawner.tscn"/>
-   <property name="shoot_rate" type="float" value="5"/>
+   <property name="shoot_rate" type="float" value="2"/>
    <property name="delay_time" type="float" value="0"/>
+   <property name="impulse" type="float" value="380"/>
   </properties>
  </object>
 </template>

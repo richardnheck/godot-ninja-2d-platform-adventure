@@ -31,7 +31,11 @@ func spawn_object(object):
 		var node = load(path).instance()
 		scene.add_child(node)
 		node.set_owner(scene)
-		node.position = object.position + Vector2(0,0)
+		
+		# Offset the position from the bottom left of the itle so the actual object
+		# is centred
+		var position_offset = Vector2(8,-8)
+		node.position = object.position + position_offset 
 		
 		for meta in object.get_meta_list():
 			if meta in default_meta:
