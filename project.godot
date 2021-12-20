@@ -110,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://src/statemachine/states/motion/ia-motion.gd"
 }, {
 "base": "Node2D",
+"class": "LdtkLevelBase",
+"language": "GDScript",
+"path": "res://src/levels/LdtkLevelBase.gd"
+}, {
+"base": "Node2D",
 "class": "LevelBase",
 "language": "GDScript",
 "path": "res://src/levels/LevelBase.gd"
@@ -195,6 +200,7 @@ _global_script_class_icons={
 "Gun": "",
 "Health": "",
 "IAMotion": "",
+"LdtkLevelBase": "",
 "LevelBase": "",
 "MiniBossSlamBlast": "",
 "Momentum": "",
@@ -252,7 +258,7 @@ window/stretch=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/project_map/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/LDtk-Importer/plugin.cfg", "res://addons/project_map/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
 
 [importer_defaults]
 
