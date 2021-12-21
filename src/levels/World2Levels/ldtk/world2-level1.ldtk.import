@@ -11,7 +11,7 @@ dest_files=[ "res://.import/world2-level1.ldtk-340e038b3d4353e817fa4b0424c979fc.
 
 [params]
 
-Import_Collisions=true
+Import_Collisions=false
 Import_Custom_Entities=true
 Import_Metadata=true
 Import_YSort_Entities_Layer=false

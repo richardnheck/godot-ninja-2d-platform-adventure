@@ -5,7 +5,9 @@ onready var key = $Map/Key
 onready var door = $Map/Door
 onready var endTimer = $EndTimer
 
-onready var tilemapWorld:TileMap = $Map/Level_0/Collisions
+onready var tilemapWorld:TileMap = $Map/Level_0/World
+onready var tilemapTraps:TileMap = $Map/Level_0/Traps
+
 onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 onready var screenShakeScene = preload("res://src/objects/camera-effects/ScreenShake.tscn")
 onready var intro_title_scene = preload("res://src/UI/Controls/LevelIntroTitle/LevelIntroTitle.tscn")
@@ -67,6 +69,8 @@ func _ready() -> void:
 	add_child(screenShake)
 	
 	set_player_camera_limits(player, tilemapWorld);
+	
+	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
 
 	if door:
 		if LevelData.has_key:

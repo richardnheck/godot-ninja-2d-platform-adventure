@@ -1,0 +1,17 @@
+[remap]
+
+importer="LDtk.import"
+type="PackedScene"
+path="res://.import/0001-Level_1.ldtkl-4c8e383e308c19dc9c7e1ce11f866a0e.tscn"
+
+[deps]
+
+source_file="res://src/levels/World2Levels/ldtk/world2-level1/0001-Level_1.ldtkl"
+dest_files=[ "res://.import/0001-Level_1.ldtkl-4c8e383e308c19dc9c7e1ce11f866a0e.tscn" ]
+
+[params]
+
+Import_Collisions=false
+Import_Custom_Entities=true
+Import_Metadata=true
+Import_YSort_Entities_Layer=false

@@ -125,7 +125,16 @@ func new_tilemap(tilemap_data, level):
 	tilemap.position = Vector2(level.worldX, level.worldY)
 	tilemap.cell_size = Vector2(tilemap_data.__gridSize, tilemap_data.__gridSize)
 	tilemap.modulate = Color(1,1,1, tilemap_data.__opacity)
-	print(tilemap.cell_size)
+	
+	# RH ----------------------------------------
+	if tilemap.name == 'World':
+		tilemap.set_collision_layer_bit(0, false)  # unset default collision bit
+		tilemap.set_collision_layer_bit(1, true)   # Set world bit
+	elif tilemap.name == 'Traps':
+		tilemap.set_collision_layer_bit(0, false)  # unset default collision bit
+		tilemap.set_collision_layer_bit(2, true)   # Set traps bit
+	# RH ----------------------------------------
+	
 	match tilemap_data.__type:
 		'Tiles':
 			for tile in tilemap_data.gridTiles:
@@ -175,7 +184,17 @@ func new_tileset(tilemap_data, tileset_data):
 						tileset.tile_set_light_occluder(tileId, get_tile_light_occluder_custom_shape(tileId, jsonObj.light_occluder_shape))
 					elif "light_occluder" in jsonObj and jsonObj.light_occluder == true: 
 						tileset.tile_set_light_occluder(tileId, get_tile_light_occluder(tileId, tileset_data))
-
+					
+					# RH-------------------------------------------
+					elif "collision" in data.data:
+						
+						# Add a collision to the tileset
+						var shape = ConvexPolygonShape2D.new()
+						var tile_size = tileset_data.tileGridSize
+						shape.points = [Vector2(0,0), Vector2(0, tile_size), Vector2(tile_size, tile_size), Vector2(tile_size, 0)]
+						var one_way_collision = false
+						tileset.tile_add_shape(tileId, shape, Transform2D(0.0, Vector2(0,0)), one_way_collision)
+					# RH-------------------------------------------
 	return tileset
 
 

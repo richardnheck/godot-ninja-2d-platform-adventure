@@ -27,7 +27,7 @@ func get_resource_type():
 
 
 func get_recognized_extensions():
-	return ["ldtk"]
+	return ["ldtk", "ldtkl"]
 
 
 func get_save_extension():
