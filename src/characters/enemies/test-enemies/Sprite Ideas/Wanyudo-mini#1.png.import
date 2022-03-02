@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Devo the Devil - Running (16 x 16).png-34873f88c58f0557b9f2a1aeb5bd1e92.stex"
+path="res://.import/Wanyudo-mini#1.png-5c36cd6cf67955264d1cd9f19b31d52f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/characters/enemies/test-enemies/path-follow-enemy/Devo the Devil - Running (16 x 16).png"
-dest_files=[ "res://.import/Devo the Devil - Running (16 x 16).png-34873f88c58f0557b9f2a1aeb5bd1e92.stex" ]
+source_file="res://src/characters/enemies/test-enemies/Sprite Ideas/Wanyudo-mini#1.png"
+dest_files=[ "res://.import/Wanyudo-mini#1.png-5c36cd6cf67955264d1cd9f19b31d52f.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

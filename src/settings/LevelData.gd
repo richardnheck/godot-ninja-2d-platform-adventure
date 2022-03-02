@@ -1,17 +1,18 @@
 extends Node
 signal key_status_changed
 
-const WORLD1 = 1	# Cave Levels
-const WORLD2 = 2
-const WORLD3 = 3
+const WORLD1 = 1	# World1 - Cave Levels
+const WORLD2 = 2	# World2 - Within the Wals
+const WORLD3 = 3    # World3 - The Tower
 
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
-
+const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
 
 
 var levelsArray = [
+	# World 1
 	{"world": WORLD1, "name" : "Time to learn young Grasshopper",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
 	{"world": WORLD1, "name" : "Master thyself and Jump" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
 	{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -22,7 +23,16 @@ var levelsArray = [
 	{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Claustrophobic Caverns", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Thundercrush", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true}
+	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true},
+	
+	# World 2
+	{"world": WORLD2, "name" : "Level1", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Level2", "scene_path" : WORLD2_LEVELS_PATH + "Level2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Level3", "scene_path" : WORLD2_LEVELS_PATH + "Level3.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Level4", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Level5", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Level6", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "", "scene_path" : "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true},
 ];
 
 
@@ -44,14 +54,19 @@ func get_levels() -> Array:
 func get_levels_by_world(world) -> Array:
 	if world == WORLD1:
 		return ArrayUtil.filter(levelsArray, funcref(self, "is_world1_level"))
+	elif world == WORLD2:
+		return ArrayUtil.filter(levelsArray, funcref(self, "is_world2_level"))
 	else:
 		return []
 
 
-# Filter func to return only world one levels
+# Filter func to return only world 1 levels
 func is_world1_level(levelObj) -> bool:
 	return levelObj["world"] == WORLD1
 	
+# Filter func to return only world 2 levels
+func is_world2_level(levelObj) -> bool:
+	return levelObj["world"] == WORLD2
 
 # Goto the boss level
 func goto_boss_level(changeScene = true) -> String:

@@ -58,7 +58,6 @@ __meta__ = {
 margin_left = 121.0
 margin_right = 199.0
 margin_bottom = 129.0
-disabled = true
 texture_normal = ExtResource( 7 )
 texture_disabled = ExtResource( 7 )
 __meta__ = {
@@ -76,3 +75,4 @@ texture_disabled = ExtResource( 7 )
 [node name="FadeScreen" parent="." instance=ExtResource( 9 )]
 
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]
+[connection signal="pressed" from="HBoxContainer/World2Button" to="." method="_on_World2Button_pressed"]

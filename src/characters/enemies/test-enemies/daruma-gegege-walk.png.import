@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bub - Running (16 x 16).png-f2c25d30ed8b32056d8afeed44311c06.stex"
+path="res://.import/daruma-gegege-walk.png-8623b54c1449b7d94735845679743302.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/characters/enemies/test-enemies/path-follow-enemy/Bub - Running (16 x 16).png"
-dest_files=[ "res://.import/Bub - Running (16 x 16).png-f2c25d30ed8b32056d8afeed44311c06.stex" ]
+source_file="res://src/characters/enemies/test-enemies/daruma-gegege-walk.png"
+dest_files=[ "res://.import/daruma-gegege-walk.png-8623b54c1449b7d94735845679743302.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

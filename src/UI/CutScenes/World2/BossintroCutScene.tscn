@@ -1,0 +1,322 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=4]
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=5]
+[ext_resource path="res://src/characters/enemies/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/UI/CutScenes/mini-dialogbox.png" type="Texture" id=10]
+[ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "walk-in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 112 ), Vector2( 144, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "talk" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_dialog"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Boss/AnimatedSprite:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "asleep" ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "walk-out"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 144, 112 ), Vector2( 248, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.3, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "walk", "shock", "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boss:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7, 1.2 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 128, -16 ), Vector2( 128, 80 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.2, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shake_screen"
+}, {
+"args": [  ],
+"method": "_goto_next_scene"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Boss/AnimatedSprite:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "awake", "look-right" ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MainControl/DialogBox3:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="BossIntroCutScene" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 88 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="TileMapBg" type="TileMap" parent="."]
+modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 458751, 0, 327683, 524287, 0, 327683, 589823, 0, 327683, 655359, 0, 327683, 720895, 0, 327683, 786431, 0, 327683, 720896, 0, 327683, 720897, 0, 327683, 720898, 0, 327683, 720899, 0, 327683, 720900, 0, 327683, 720901, 0, 327683, 720902, 0, 327683, 720903, 0, 327683, 720904, 0, 327683, 720905, 0, 327683, 720906, 0, 327683, 720907, 0, 327683, 720908, 0, 327683, 720909, 0, 327683, 720910, 0, 327683, 720911, 0, 327683, 720912, 0, 327683 )
+
+[node name="TileMapWorld" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 0, 0, 1, 1, 0, 1, 2, 0, 2, 3, 0, 3, 4, 13, 0, 5, -1610612723, 0, 6, -1610612723, 0, 7, 0, 131072, 12, 0, 131075, 13, 13, 0, 14, 1610612749, 0, 15, 13, 0, 16, 0, 0, 17, 0, 1, 18, 0, 1, 19, 0, 1, 65539, 0, 131076, 65540, 0, 2, 65541, 0, 3, 65542, 1610612749, 0, 65543, 0, 65541, 65548, 0, 131075, 65549, -1073741811, 0, 65550, 0, 0, 65551, 0, 1, 65552, 0, 131077, 131077, 0, 131076, 131078, 0, 1, 131079, 0, 131077, 131084, 0, 131076, 131085, 0, 1, 131086, 0, 131077, 196615, 18, 0, 196620, 18, 0, 262151, 18, 131072, 262156, 536870930, 131072, 327687, 18, 131072, 327692, 18, 131072, 393223, 18, 131072, 393228, 18, 131072, 458759, 18, 65536, 458764, 18, 65536, 524289, 536870914, 65540, 524294, 2, 65540, 524295, 18, 262144, 524300, 18, 262144, 589824, 0, 196609, 589825, 0, 196610, 589826, 0, 196609, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589831, 0, 196609, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196609, 589837, 0, 196610, 589838, 0, 196609, 589839, 0, 196610, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196609, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 13, 3, 655374, 13, 3, 655375, 13, 3, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Boss" parent="." instance=ExtResource( 6 )]
+position = Vector2( 128, -16 )
+
+[node name="AnimatedSprite" parent="Boss" index="0"]
+animation = "awake"
+
+[node name="Props" type="Node" parent="."]
+
+[node name="JapaneseLamp" parent="Props" instance=ExtResource( 11 )]
+position = Vector2( 96, 112 )
+
+[node name="JapaneseLamp3" parent="Props" instance=ExtResource( 11 )]
+position = Vector2( 16, 112 )
+frame = 0
+
+[node name="JapaneseLamp4" parent="Props" instance=ExtResource( 11 )]
+position = Vector2( 304, 112 )
+frame = 0
+
+[node name="JapaneseLamp2" parent="Props" instance=ExtResource( 11 )]
+position = Vector2( 224, 112 )
+frame = 0
+
+[node name="MainControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox1" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 130, 80 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox1"]
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "I get the feeling that I have finally passed 
+the underground caverns and should be
+soon within the grounds of the castle."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox2" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 130, 80 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox2"]
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "That was almost too easy.  I was expecting
+a bit more danger based on the rumours
+about this place.
+Oh well...onwards to the castle.  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox3" type="Sprite" parent="MainControl"]
+position = Vector2( 232.272, 105.271 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox3"]
+margin_left = -20.242
+margin_top = -23.4594
+margin_right = 473.758
+margin_bottom = 39.5406
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Mummy!!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
+
+[node name="ClickRect" parent="CutSceneBase/Control" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -88.0
+margin_right = 160.0
+margin_bottom = 88.0
+
+[node name="ScreenShake" parent="." instance=ExtResource( 7 )]
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 144, 112 )
+frames = ExtResource( 3 )
+animation = "walk"
+frame = 1
+playing = true
+centered = false
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walk-in = SubResource( 1 )
+anims/walk-out = SubResource( 2 )
+
+[connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
+
+[editable path="Boss"]
+[editable path="CutSceneBase"]

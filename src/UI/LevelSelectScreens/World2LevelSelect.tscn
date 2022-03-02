@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/UI/LevelSelectScreens/World2LevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/LevelSelectScreens/bg.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=5]
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=6]
+[ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=9]
+
+[node name="World2LevelSelect" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="TileMapBg" type="TileMap" parent="."]
+modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -1, 0, 327683, 65535, 0, 327683, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 131071, 0, 327683, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 196607, 0, 327683, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 262143, 0, 327683, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 327679, 0, 327683, 393215, 0, 327683, 458751, 0, 327683, 524287, 0, 327683, 589823, 0, 327683, 655359, 0, 327683, 720895, 0, 327683, 786431, 0, 327683, 720896, 0, 327683, 720897, 0, 327683, 720898, 0, 327683, 720899, 0, 327683, 720900, 0, 327683, 720901, 0, 327683, 720902, 0, 327683, 720903, 0, 327683, 720904, 0, 327683, 720905, 0, 327683, 720906, 0, 327683, 720907, 0, 327683, 720908, 0, 327683, 720909, 0, 327683, 720910, 0, 327683, 720911, 0, 327683, 720912, 0, 327683 )
+
+[node name="TileMapWorld" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 1, 2, 0, 2, 3, 20, 0, 4, 0, 2, 5, 26, 0, 6, 20, 0, 7, 0, 1, 8, 0, 2, 9, 20, 0, 10, 0, 1, 11, 0, 2, 12, 0, 1, 13, 0, 2, 14, 22, 0, 15, 20, 0, 16, 0, 1, 17, 0, 2, 18, 0, 1, 19, 0, 3, 65536, 0, 65541, 65537, 536870914, 3, 65538, 33, 0, 65540, 536870914, 4, 65542, 2, 4, 65543, 27, 0, 65549, 1073741826, 5, 65552, 2, 3, 65553, 30, 0, 65555, 0, 65539, 131072, 0, 131072, 131091, 0, 65540, 196608, 0, 65541, 196627, 0, 65539, 262144, 0, 131072, 262163, 0, 65540, 327680, 0, 65541, 327699, 0, 65539, 393216, 0, 131072, 393235, 0, 65540, 458752, 0, 65541, 458771, 0, 65539, 524288, 0, 131072, 524289, 536870914, 65540, 524294, 2, 65540, 524305, 536870914, 65540, 524307, 0, 65540, 589824, 0, 196608, 589825, 0, 196610, 589826, 0, 196609, 589827, 0, 196610, 589828, 0, 196609, 589829, 0, 196610, 589830, 0, 196609, 589831, 0, 196610, 589832, 0, 196609, 589833, 0, 196610, 589834, 0, 196609, 589835, 0, 196610, 589836, 0, 196609, 589837, 0, 196610, 589838, 0, 196609, 589839, 0, 196609, 589840, 0, 196609, 589841, 0, 196609, 589842, 0, 196609, 589843, 0, 196611, 655360, 536870912, 327682, 655361, 536870912, 327680, 655362, 536870912, 327680, 655363, 536870912, 327681, 655364, 0, 327683, 655365, 0, 327683, 655366, 0, 327683, 655367, -2147483648, 327680, 655368, 0, 327683, 655369, 0, 327683, 655370, 0, 327683, 655371, 1610612736, 327681, 655372, 0, 327683, 655373, 536870925, 0, 655374, 536870925, 0, 655375, 536870925, 0, 655376, 1610612749, 1, 655377, 1610612749, 2, 655378, 1610612749, 2, 655379, 1610612749, 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Sprite" parent="Control"]
+visible = false
+texture = ExtResource( 4 )
+centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 21.0
+text = "Cave Levels"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Control" instance=ExtResource( 3 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -20.0
+next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
+
+[node name="IntroButton" type="Button" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -9.0
+margin_top = 23.0
+margin_right = 9.0
+margin_bottom = 41.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelButtonsContainer" type="GridContainer" parent="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 47.0
+margin_top = -34.0
+margin_right = -25.0
+margin_bottom = 22.0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 34
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossButton" type="Button" parent="Control"]
+margin_left = 139.0
+margin_top = 119.0
+margin_right = 181.0
+margin_bottom = 137.0
+text = "Boss"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingIndicator" parent="Control" instance=ExtResource( 9 )]
+visible = false
+
+[node name="Props" type="Node" parent="."]
+
+[node name="JapaneseLamp" parent="Props" instance=ExtResource( 7 )]
+position = Vector2( 64, 120 )
+frame = 0
+
+[node name="JapaneseLamp2" parent="Props" instance=ExtResource( 7 )]
+position = Vector2( 256, 120 )
+frame = 0
+
+[node name="FadeScreen" parent="." instance=ExtResource( 8 )]
+
+[connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]
+[connection signal="button_up" from="Control/BossButton" to="." method="_on_BossButton_button_up"]
