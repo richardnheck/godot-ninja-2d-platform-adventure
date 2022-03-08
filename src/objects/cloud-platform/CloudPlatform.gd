@@ -33,7 +33,7 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 		crumbleSound.play()
 		print("player triggerd")
 		animationPlayer.play("shake")
-		yield(animationPlayer,"animation_finished")
+		yield(get_tree().create_timer(0.4), "timeout")
 		crumbleSound.stop()
 		triggered = true	
 		explodeSound.play()
@@ -46,9 +46,10 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 		
 func _show_cloud(show: bool) -> void:
 	self.visible = show
-	
 	collision_shape.set_deferred("disabled", !show)
-	
+	if show:
+		yield(get_tree().create_timer(0.3), "timeout")
+		animationPlayer.stop()
 
 func _on_RespawnTimer_timeout() -> void:
 	_respawn_when_clear_of_player()	
