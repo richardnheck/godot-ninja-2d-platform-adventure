@@ -10,7 +10,7 @@ export (MODE) var mode := MODE.NORMAL
 export var max_charge_time := 2.0
 export var spread_angle := 0.0
 export (Vector2) var direction := Vector2.RIGHT
-export var impulse := 300
+export var impulse := 370
 
 var charge_time := 0.0
 var is_charging := false
@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 
 func _shoot() -> void:
 	print("Shoot")
+	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 
 	var bullet = bullet_scene.instance()
