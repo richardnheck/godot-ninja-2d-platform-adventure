@@ -119,7 +119,7 @@ func on_wall_slide_end():
 
 
 func set_look_direction(value):
-	print("look_direction" + str(value))
+	#print("look_direction" + str(value))
 	look_direction = value
 	
 	emit_signal("direction_changed", value)

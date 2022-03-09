@@ -70,7 +70,7 @@ position = Vector2( 224, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 128, 48 )
-frame = 18
+frame = 17
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
