@@ -12,3 +12,14 @@ texture = ExtResource( 3 )
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="FireBallRotationTween" type="Tween" parent="."]
+
+[node name="ReceivingChannelLabel" type="Label" parent="."]
+visible = false
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 6.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

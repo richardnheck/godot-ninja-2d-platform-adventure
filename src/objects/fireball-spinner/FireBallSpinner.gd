@@ -58,6 +58,10 @@ export var animate_in_editor:bool = true setget _set_animate_in_editor
 # The guides are normally shown in the editor and not in the game
 # Set this to true if you want to see them in the game
 export var show_editor_guides:bool = false setget _set_show_editor_guides
+
+# The channel it listens on for switching on and off
+# 0 = None
+export(int, 0, 1000) var receiving_channel:int = 0 setget _set_receiving_channel
 # ------------------------------------------------------------------------
 
 
@@ -220,6 +224,16 @@ func _set_animate_in_editor(value) -> void:
 func _set_show_editor_guides(value) -> void:
 	show_editor_guides = value
 	
+	
+# ------------------------------------------------------------------------------
+# Set the receiving channel
+# ------------------------------------------------------------------------------
+func _set_receiving_channel(value) -> void:
+	receiving_channel = value
+	$ReceivingChannelLabel.text = String(value)
+	$ReceivingChannelLabel.visible = value > 0
+	update()
+	
 # ------------------------------------------------------------------------------
 # Reset the spin so it starts with the newly configured values
 # ------------------------------------------------------------------------------
@@ -352,8 +366,20 @@ func _ready() -> void:
 	if Engine.editor_hint:	
 		return
 	reset()
+	
+	# Connect to any switches on the same channel
+	if receiving_channel > 0:
+		var switches = get_tree().get_nodes_in_group("switch")
+		for switch in switches:
+			if switch.sending_channel == receiving_channel:
+				print("Connecting to switch channel:", switch.sending_channel)
+				switch.connect("switched", self, "_on_Switch_switched")
 
 
+func _on_Switch_switched(active) -> void:
+	print("switched", active)
+	get_tree().call_group(_get_fireball_group(), "show_fireball", active)
+	
 # ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------

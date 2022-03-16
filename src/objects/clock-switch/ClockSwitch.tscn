@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/objects/clock-switch/ClockSwitch.gd" type="Script" id=1]
+[ext_resource path="res://src/objects/clock-switch/clock-switch.png" type="Texture" id=2]
+
+[node name="ClockSwitch" type="Node2D" groups=["switch"]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="SendingChannelLabel" type="Label" parent="."]
+margin_left = -8.0
+margin_top = -32.0
+margin_right = 8.0
+margin_bottom = -18.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="OffTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="OnTimer" to="." method="_on_OnTimer_timeout"]
+[connection signal="timeout" from="OffTimer" to="." method="_on_OffTimer_timeout"]
