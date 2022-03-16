@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -45,7 +45,6 @@ func adjust_rotation(degrees:float) -> void:
 	
 # Handle when a body enters the object
 func _on_body_entered(body: Node) -> void:
-	if body.is_in_group(Constants.GROUP_PLAYER) and _showing:
-		# The body is the player so the player dies
-		body.die()
+	# Add code here to handle player touching a fireball
+	pass
 
