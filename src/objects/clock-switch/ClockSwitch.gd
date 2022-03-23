@@ -34,12 +34,16 @@ func _ready() -> void:
 	on_timer.wait_time = on_seconds
 	off_timer.wait_time = off_seconds
 	
-	if start_state == true: 
-		# active
+	print("Start state = ", String(start_state))
+	
+	# Start the appropriate timer based on whether the start state is active or inactive
+	if start_state == true:
+		# Start state is active so start the on (active) timer
 		on_timer.start()
-		emit_signal("switched", true)
+	else:
+		# Start state is inactive so start the off (inactive) timer
+		off_timer.start()
 		
-
 
 func _set_sending_channel(value) -> void:
 	sending_channel = value

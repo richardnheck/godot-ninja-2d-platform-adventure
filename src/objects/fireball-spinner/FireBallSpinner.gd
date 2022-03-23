@@ -231,7 +231,7 @@ func _set_show_editor_guides(value) -> void:
 func _set_receiving_channel(value) -> void:
 	receiving_channel = value
 	$ReceivingChannelLabel.text = String(value)
-	$ReceivingChannelLabel.visible = value > 0
+	$ReceivingChannelLabel.visible = value > 0 && Engine.editor_hint
 	update()
 	
 # ------------------------------------------------------------------------------
@@ -374,10 +374,11 @@ func _ready() -> void:
 			if switch.sending_channel == receiving_channel:
 				print("Connecting to switch channel:", switch.sending_channel)
 				switch.connect("switched", self, "_on_Switch_switched")
+				_on_Switch_switched(switch.start_state)		# initialize to start state of switch
 
 
 func _on_Switch_switched(active) -> void:
-	print("switched", active)
+	print("on switched: ", active)
 	get_tree().call_group(_get_fireball_group(), "show_fireball", active)
 	
 # ------------------------------------------------------------------------------
