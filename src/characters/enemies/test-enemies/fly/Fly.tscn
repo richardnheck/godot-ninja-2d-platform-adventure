@@ -35,7 +35,6 @@ shape = SubResource( 3 )
 position = Vector2( 0, 0.5 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 flip_h = true
 

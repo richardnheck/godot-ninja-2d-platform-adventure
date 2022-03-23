@@ -26,10 +26,13 @@ export(float, 0, 1, 0.1) var offset = 0
 # The delay before enemy starts moving
 export(float) var delay:float = 0
 
+export(float) var oscillation_amplitude:float = 0
+
 onready var tween = $Tween
 onready var path2d = $Path2D
 onready var path_follow_2d = $Path2D/PathFollow2D
 onready var animated_sprite = $Area2D/AnimatedSprite
+onready var oscillation_tween = $OscillationTween
 
 onready var tween_values = [0, 1]
 
@@ -52,9 +55,20 @@ func _ready() -> void:
 		# Start the movement immediately
 		_start_tween()
 
+#-------------
+# Oscillation experiment
+var frequency = 20
+var amplitude = 20
+#------------
 func _process(delta: float) -> void:
-	pass
-	#print(path_follow_2d.unit_offset)
+	
+	#-------------
+	# Oscillation experiment
+	if oscillation_amplitude > 0:
+		var vert_offset = amplitude * 4
+		self.position.y = amplitude * cos(path_follow_2d.unit_offset*frequency) + vert_offset
+	#-------------
+	
 
 func _start_tween():
 	print("start tween")

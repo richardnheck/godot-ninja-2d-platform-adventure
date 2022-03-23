@@ -32,4 +32,6 @@ shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="OscillationTween" type="Tween" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
