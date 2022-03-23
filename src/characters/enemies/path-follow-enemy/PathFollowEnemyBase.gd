@@ -57,16 +57,19 @@ func _ready() -> void:
 
 #-------------
 # Oscillation experiment
-var frequency = 20
-var amplitude = 20
+var frequency = 5.0
+var amplitude = 20.0
+var time_passed:float = 0.0
 #------------
 func _process(delta: float) -> void:
 	
 	#-------------
 	# Oscillation experiment
 	if oscillation_amplitude > 0:
+		time_passed += delta
 		var vert_offset = amplitude * 4
-		self.position.y = amplitude * cos(path_follow_2d.unit_offset*frequency) + vert_offset
+		#self.position.y = amplitude * cos(path_follow_2d.unit_offset*frequency) + vert_offset
+		self.position.y = amplitude * cos(time_passed*frequency) + vert_offset
 	#-------------
 	
 

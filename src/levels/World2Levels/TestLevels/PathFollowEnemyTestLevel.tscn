@@ -71,7 +71,7 @@ animations = [ {
 
 [sub_resource type="Curve2D" id=20]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -88, -1.52588e-05, 0, 0, 0, 0, -88, -1.52588e-05, 0, 0, 0, 0, 0, -1.52588e-05, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, -1.52588e-05, 0, 0, 0, 0, -112, -1.52588e-05 )
 }
 
 [sub_resource type="Curve2D" id=14]
@@ -168,7 +168,7 @@ position = Vector2( 528, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 343.607, 32 )
-frame = 9
+frame = 7
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -262,11 +262,10 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/Bub/Area2D" index="1"]
 frames = SubResource( 13 )
-frame = 1
+frame = 3
 
 [node name="FloatingBub" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 264, 88 )
-tween_transition_type = 0
 oscillation_amplitude = 1.0
 
 [node name="Path2D" parent="Enemies/FloatingBub" index="0"]
@@ -280,7 +279,7 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/FloatingBub/Area2D" index="1"]
 frames = SubResource( 13 )
-frame = 1
+frame = 3
 
 [node name="VerticalBub" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( -48, 18 )
@@ -303,7 +302,7 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/VerticalBub/Area2D" index="1"]
 frames = SubResource( 13 )
-frame = 4
+frame = 0
 
 [node name="HyakumeLarge1" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 184, 16 )
