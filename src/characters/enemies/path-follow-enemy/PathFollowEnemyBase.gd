@@ -1,8 +1,18 @@
 extends Node2D
+class_name PathFollowEnemyBase
 
 enum TransitionType {
-	TRANS_LINEAR = 0, #The animation is interpolated linearly.
-	TRANS_SINE = 1 #The animation is interpolated using a sine function.
+	TRANS_LINEAR = 0, 	#The animation is interpolated linearly.
+	TRANS_SINE = 1, 		#The animation is interpolated using a sine function.
+	TRANS_QUINT = 2, # The animation is interpolated with a quintic (to the power of 5) function.
+	TRANS_QUART = 3,  # The animation is interpolated with a quartic (to the power of 4) function.
+	TRANS_QUAD = 4,  # The animation is interpolated with a quadratic (to the power of 2) function.
+	TRANS_EXPO = 5,  # The animation is interpolated with an exponential (to the power of x) function.
+	TRANS_ELASTIC = 6, # The animation is interpolated with elasticity, wiggling around the edges.
+	TRANS_CUBIC = 7,  # The animation is interpolated with a cubic (to the power of 3) function.
+	TRANS_CIRC = 8,  # The animation is interpolated with a function using square roots.
+	TRANS_BOUNCE = 9,  # The animation is interpolated by bouncing at the end.
+	TRANS_BACK = 10  # The animation is interpolated backing out at ends.
 }
 
 enum FollowPathType {
@@ -27,6 +37,7 @@ export(float, 0, 1, 0.1) var offset = 0
 export(float) var delay:float = 0
 
 export(float) var oscillation_amplitude:float = 0
+export(float) var oscillation_frequency:float = 0
 
 onready var tween = $Tween
 onready var path2d = $Path2D
@@ -38,38 +49,37 @@ onready var tween_values = [0, 1]
 
 var start:bool = true
 
+# For oscillation
+var time_passed:float = 0.0
+var initial_position_y:float
+
 # Called when the node enters the scene tree for the first time.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:		
+	initial_position_y = self.position.y
+	
 	tween.connect("tween_completed", self, "_on_tween_completed")
-	
-	
 	
 	if delay > 0:
 		# Wait for the delay period before starting the movement
 		animated_sprite.playing = false
 		yield(get_tree().create_timer(delay), "timeout")
 		animated_sprite.playing = true
-		_start_tween()
+		call_deferred("start_tween")
 	else:
-		# Start the movement immediately
-		_start_tween()
+		# Start the movement immediately though defer to allow for sub classes to override exported vars
+		call_deferred("_start_tween")
 
-#-------------
-# Oscillation experiment
-var frequency = 5.0
-var amplitude = 20.0
-var time_passed:float = 0.0
-#------------
+
+
+
 func _process(delta: float) -> void:
 	
 	#-------------
-	# Oscillation experiment
+	# Oscillation
 	if oscillation_amplitude > 0:
 		time_passed += delta
-		var vert_offset = amplitude * 4
-		#self.position.y = amplitude * cos(path_follow_2d.unit_offset*frequency) + vert_offset
-		self.position.y = amplitude * cos(time_passed*frequency) + vert_offset
+		self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
 	#-------------
 	
 

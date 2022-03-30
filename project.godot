@@ -145,6 +145,11 @@ _global_script_classes=[ {
 "path": "res://src/characters/commons/states/motion/on-ground/on-ground.gd"
 }, {
 "base": "Node2D",
+"class": "PathFollowEnemyBase",
+"language": "GDScript",
+"path": "res://src/characters/enemies/path-follow-enemy/PathFollowEnemyBase.gd"
+}, {
+"base": "Node2D",
 "class": "Physics2D",
 "language": "GDScript",
 "path": "res://src/engine/Physics2D.gd"
@@ -212,6 +217,7 @@ _global_script_class_icons={
 "Momentum": "",
 "Motion": "",
 "OnGround": "",
+"PathFollowEnemyBase": "",
 "Physics2D": "",
 "Player": "",
 "ScreenShake": "",
