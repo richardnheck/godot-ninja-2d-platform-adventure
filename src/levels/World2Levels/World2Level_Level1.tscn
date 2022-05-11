@@ -28,7 +28,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 1767.15, 88 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -89,7 +89,7 @@ position = Vector2( 2408, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 1192, 24 )
-frame = 23
+frame = 24
 
 [node name="CloudPlatform3" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 1096, 96 )
@@ -187,9 +187,6 @@ position = Vector2( 31.2741, 6 )
 
 [node name="Area2D" parent="Enemies/Kappa" index="1"]
 position = Vector2( 31.274, 6 )
-
-[node name="AnimatedSprite" parent="Enemies/Kappa/Area2D" index="1"]
-frame = 0
 
 [node name="Kappa3" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 1912, 96 )
