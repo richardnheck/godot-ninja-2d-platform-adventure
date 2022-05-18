@@ -41,8 +41,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0, 1616.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 2128, -144 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1512, 120 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -99,7 +99,7 @@ position = Vector2( 2640, -160 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2200, -232 )
-frame = 22
+frame = 0
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 1488, 144 )
