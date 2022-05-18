@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/characters/enemies/shirime/Shirime.gd" type="Script" id=1]
+[ext_resource path="res://src/characters/enemies/shirime/ShirimeSpriteSheet.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "asleep",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "look-left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "look-right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "awake",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.8371, 15.3219 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 15.8895 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 84, 9.19595 )
+
+[node name="Shirime" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -16, -32 )
+frames = SubResource( 5 )
+animation = "look-right"
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -15 )
+shape = SubResource( 1 )
+
+[node name="CoolOffTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="InitialDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -16.1105 )
+shape = SubResource( 2 )
+
+[node name="RunAndJumpTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SlamRunTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TouchFloorCoolOffTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ChangeDirectionCoolOffTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="DetectionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+position = Vector2( -4, -8.80405 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="RunAndJumpTimer" to="." method="_on_RunAndJumpTimer_timeout"]
+[connection signal="timeout" from="SlamRunTimer" to="." method="_on_SlamRunTimer_timeout"]
+[connection signal="timeout" from="TouchFloorCoolOffTimer" to="." method="_on_TouchFloorCoolOffTimer_timeout"]
+[connection signal="timeout" from="ChangeDirectionCoolOffTimer" to="." method="_on_ChangeDirectionCoolOffTimer_timeout"]
+[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_DetectionArea2D_body_entered"]
+[connection signal="body_exited" from="DetectionArea2D" to="." method="_on_DetectionArea2D_body_exited"]

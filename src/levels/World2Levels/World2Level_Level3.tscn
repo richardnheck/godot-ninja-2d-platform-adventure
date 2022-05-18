@@ -99,7 +99,7 @@ position = Vector2( 2640, -160 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2200, -232 )
-frame = 18
+frame = 22
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 1488, 144 )
@@ -142,7 +142,7 @@ position = Vector2( 0.725926, 0 )
 position = Vector2( 0.725922, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/ZukaiKotsu/Area2D" index="1"]
-frame = 2
+frame = 0
 
 [node name="Hyakume" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 632, 88 )
@@ -168,6 +168,9 @@ position = Vector2( 0.727178, 0 )
 
 [node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
 position = Vector2( 0.727173, 0 )
+
+[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu2/Area2D" index="1"]
+frame = 2
 
 [node name="FireBallSpinner4" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 888, -72 )
