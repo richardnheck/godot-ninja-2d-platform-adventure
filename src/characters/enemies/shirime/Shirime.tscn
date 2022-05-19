@@ -49,7 +49,7 @@ extents = Vector2( 14.8371, 15.3219 )
 extents = Vector2( 16, 15.8895 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 84, 9.19595 )
+extents = Vector2( 84, 52.1959 )
 
 [node name="Shirime" type="KinematicBody2D"]
 collision_layer = 16
@@ -99,7 +99,7 @@ one_shot = true
 [node name="DetectionArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2( -4, -8.80405 )
+position = Vector2( -4, -51.8041 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
