@@ -19,7 +19,6 @@ func _process(_delta: float) -> void:
 # Setter for showing
 # Sets whether the fireball is showing (when showing fireball is visible)
 func set_showing(value:bool) -> void:
-	print("fireball set_showing", value)
 	_showing = value
 	visible = value
 	if is_instance_valid(collision_shape):

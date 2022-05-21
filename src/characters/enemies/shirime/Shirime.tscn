@@ -3,10 +3,6 @@
 [ext_resource path="res://src/characters/enemies/shirime/Shirime.gd" type="Script" id=1]
 [ext_resource path="res://src/characters/enemies/shirime/ShirimeSpriteSheet.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 96, 32, 32 )
@@ -19,13 +15,12 @@ region = Rect2( 0, 64, 32, 32 )
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 32, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 6 ) ],
-"loop": true,
-"name": "asleep",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "look-left",
@@ -39,6 +34,11 @@ animations = [ {
 "frames": [ SubResource( 4 ) ],
 "loop": true,
 "name": "awake",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "asleep",
 "speed": 5.0
 } ]
 
@@ -93,7 +93,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="ChangeDirectionCoolOffTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.3
 one_shot = true
 
 [node name="DetectionArea2D" type="Area2D" parent="."]

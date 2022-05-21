@@ -378,7 +378,6 @@ func _ready() -> void:
 
 
 func _on_Switch_switched(active) -> void:
-	print("on switched: ", active)
 	get_tree().call_group(_get_fireball_group(), "show_fireball", active)
 	
 # ------------------------------------------------------------------------------

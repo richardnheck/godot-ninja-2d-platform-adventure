@@ -57,20 +57,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _shoot() -> void:
-	print("Shoot")
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 
-	var bullet = bullet_scene.instance()
-	print(bullet)
+	var bullet = bullet_scene.instance()	
 	#bullet.direction = direction.rotated(rand_range(-spread_angle, spread_angle))
 	bullet.direction = direction
-	print("bullet direction", bullet.direction)
 	Projectiles.add_child(bullet)
 	bullet.global_position = _shoot_position.global_position
 
 	if "charge" in bullet:
-		print("charge", charge_time)
 		bullet.charge = charge_time / max_charge_time
 
 	if "impulse" in bullet:
@@ -85,7 +81,6 @@ func _can_shoot() -> bool:
 
 
 func _on_ShootTimer_timeout() -> void:
-	print("timeout")
 	if mode == MODE.TIMED:
 		_shoot()
 

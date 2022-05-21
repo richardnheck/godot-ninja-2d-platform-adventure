@@ -43,7 +43,7 @@ var state_changed = false
 
 var player:KinematicBody2D = null
 var ground_global_position:Vector2 = Vector2.ZERO
-var can_change_direction = true   # Indicates whether boss can change direction
+var can_change_direction = false   # Indicates whether enemy can change direction
 var ceiling_position:Position2D = null
 
 # Called when the node enters the scene tree for the first time.
@@ -82,7 +82,6 @@ func _just_entered_state():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_update_direction()
-	print(current_state)
 	
 	match current_state:
 		STATE_IDLE:
@@ -109,29 +108,48 @@ func _process(delta: float) -> void:
 					emit_signal("state_cycle_finished", STATE_RUN_AND_JUMP)
 					landing = false
 
-
+var new_direction = 0
 
 func _update_direction() -> void:
-	if can_change_direction:
-		var direction_before = direction
-		var ap = position.direction_to(player.position)
-		if ap.x > 0:
-			direction = 1
-			set_sprite_animation("look-right")
-		elif ap.x < 0:
-			direction = -1
-			set_sprite_animation("look-left")
-		else:
-			direction = 0
-			
-		if direction != direction_before:
-			# The direction has changed so start cool timer to prevent
-			# direction from being changed again too quickly
+	_apply_direction_change_if_possible()
+	
+	var direction_before = direction
+	var tmp_direction = direction
+	var ap = position.direction_to(player.position)
+	if ap.x > 0:
+		tmp_direction = 1
+		#set_sprite_animation("look-right")
+	elif ap.x < 0:
+		tmp_direction = -1
+		#set_sprite_animation("look-left")
+	else:
+		tmp_direction = 0
+		
+	if tmp_direction != direction_before:
+		if $ChangeDirectionCoolOffTimer.is_stopped():
+			print("direction change required")
+			new_direction = tmp_direction
+		
+			# The direction needs to be changed
+			# Start cool timer to prevent direction from being changed immediately
 			can_change_direction = false
 			$ChangeDirectionCoolOffTimer.start()
+	
 
+
+func _apply_direction_change_if_possible() -> void:
+	if can_change_direction:
+		print("changing direction" , new_direction)
+		# Apply the direction change
+		direction = new_direction	
+		if direction == 1:
+			set_sprite_animation("look-right")
+		elif direction == -1:
+			set_sprite_animation("look-left")
+	
 
 func _on_ChangeDirectionCoolOffTimer_timeout() -> void:
+	print("change direction timeout")
 	can_change_direction = true
 
 	

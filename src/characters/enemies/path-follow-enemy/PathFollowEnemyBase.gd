@@ -84,7 +84,6 @@ func _process(delta: float) -> void:
 	
 
 func _start_tween():
-	print("start tween")
 	if path2d.curve:
 		var curve_length = path2d.curve.get_baked_length() 
 		
