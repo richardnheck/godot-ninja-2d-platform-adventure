@@ -89,7 +89,7 @@ position = Vector2( 2408, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 1192, 24 )
-frame = 24
+frame = 23
 
 [node name="CloudPlatform3" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 1096, 96 )
@@ -189,7 +189,7 @@ position = Vector2( 31.2741, 6 )
 position = Vector2( 31.274, 6 )
 
 [node name="AnimatedSprite" parent="Enemies/Kappa/Area2D" index="1"]
-frame = 1
+frame = 3
 
 [node name="Kappa3" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 1912, 96 )
@@ -205,6 +205,9 @@ position = Vector2( 31.2741, 6 )
 [node name="Area2D" parent="Enemies/Kappa3" index="1"]
 position = Vector2( 31.274, 6 )
 
+[node name="AnimatedSprite" parent="Enemies/Kappa3/Area2D" index="1"]
+frame = 2
+
 [node name="Kappa2" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 1546, 112 )
 speed = 50.0
@@ -218,6 +221,9 @@ position = Vector2( 31.274, 6.00004 )
 
 [node name="Area2D" parent="Enemies/Kappa2" index="1"]
 position = Vector2( 31.2739, 6.00004 )
+
+[node name="AnimatedSprite" parent="Enemies/Kappa2/Area2D" index="1"]
+frame = 2
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
