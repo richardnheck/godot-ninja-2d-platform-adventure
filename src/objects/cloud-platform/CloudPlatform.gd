@@ -33,7 +33,7 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 		crumbleSound.play()
 		print("player triggerd")
 		animationPlayer.play("shake")
-		yield(get_tree().create_timer(0.4), "timeout")
+		yield(get_tree().create_timer(0.7), "timeout")
 		crumbleSound.stop()
 		triggered = true	
 		explodeSound.play()

@@ -80,7 +80,7 @@ frames = SubResource( 4 )
 animation = "idle"
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 2.0
 one_shot = true
 
 [node name="RespawnBackOffTimer" type="Timer" parent="."]
