@@ -131,7 +131,7 @@ position = Vector2( 208, -528 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 472, -192 )
-frame = 14
+frame = 21
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 9 )]
 position = Vector2( 696, -64 )

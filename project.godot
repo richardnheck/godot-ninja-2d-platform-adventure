@@ -188,6 +188,11 @@ _global_script_classes=[ {
 "class": "TiledLevelBase",
 "language": "GDScript",
 "path": "res://src/levels/TiledLevelBase.gd"
+}, {
+"base": "Node2D",
+"class": "WanyudoMiniSpawner",
+"language": "GDScript",
+"path": "res://src/characters/enemies/wanyudo-mini/WanyudoMiniSpawner.gd"
 } ]
 _global_script_class_icons={
 "AreaBullet": "",
@@ -225,7 +230,8 @@ _global_script_class_icons={
 "SlamBlast": "",
 "Slime": "",
 "State": "",
-"TiledLevelBase": ""
+"TiledLevelBase": "",
+"WanyudoMiniSpawner": ""
 }
 
 [Debug]

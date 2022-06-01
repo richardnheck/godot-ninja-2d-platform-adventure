@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wanyudo-mini-animated-sheet.png-4ef469dd2fae5337735c8faf19056de9.stex"
+path="res://.import/wanyudo-mini-spawner.png-e5eb027bb23a5dc5d52f125d428ff3b0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/characters/enemies/test-enemies/wanyudo/wanyudo-mini-animated-sheet.png"
-dest_files=[ "res://.import/wanyudo-mini-animated-sheet.png-4ef469dd2fae5337735c8faf19056de9.stex" ]
+source_file="res://src/characters/enemies/wanyudo-mini/wanyudo-mini-spawner.png"
+dest_files=[ "res://.import/wanyudo-mini-spawner.png-e5eb027bb23a5dc5d52f125d428ff3b0.stex" ]
 
 [params]
 
