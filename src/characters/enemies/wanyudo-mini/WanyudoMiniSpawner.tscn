@@ -40,3 +40,4 @@ frames = SubResource( 1 )
 animation = "Spawn"
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="timeout" from="DelayTimer" to="." method="_on_DelayTimer_timeout"]
