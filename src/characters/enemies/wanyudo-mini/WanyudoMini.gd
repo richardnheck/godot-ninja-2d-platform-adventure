@@ -44,7 +44,16 @@ func set_impulse(new_impulse: float) -> void:
 	apply_central_impulse(direction * impulse)
 
 
+func die() -> void:
+	_do_death()
+	
+
 func _on_LifetimeTimer_timeout() -> void:
+	_do_death()
+
+
+func _do_death() -> void:
+	# TODO: Implement death animation (explosion)
 	queue_free()
 
 
