@@ -32,7 +32,7 @@ var levelsArray = [
 	{"world": WORLD2, "name" : "Level4", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Level5", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Level6", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "", "scene_path" : "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true},
+	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true},
 ];
 
 
@@ -50,27 +50,12 @@ var has_key: = false setget set_has_key
 func get_levels() -> Array:
 	return levelsArray
 	
-# Get levels by world
-func get_levels_by_world(world) -> Array:
-	if world == WORLD1:
-		return ArrayUtil.filter(levelsArray, funcref(self, "is_world1_level"))
-	elif world == WORLD2:
-		return ArrayUtil.filter(levelsArray, funcref(self, "is_world2_level"))
-	else:
-		return []
-
-# Filter func to return only world 1 levels
-func is_world1_level(levelObj) -> bool:
-	return levelObj["world"] == WORLD1
 	
-# Filter func to return only world 2 levels
-func is_world2_level(levelObj) -> bool:
-	return levelObj["world"] == WORLD2
-
 # Goto the boss level
-func goto_boss_level(changeScene = true) -> String:
+func goto_boss_level(world, changeScene = true) -> String:
 	for i in range(0, levelsArray.size()):
-		if levelsArray[i].has("is_boss"):
+		var level = levelsArray[i]
+		if level.has("is_boss") and level.is_boss and level.world == world:
 			return goto_level(i, changeScene)
 	return ""
 

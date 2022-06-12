@@ -73,7 +73,8 @@ func _fade_goto_scene(levelIndex, show_loading_message) -> void:
 
 
 func _on_BossButton_button_up() -> void:
-	var scene_path = LevelData.goto_boss_level(false)
+	print("Goto boss for world", self.this_world)
+	var scene_path = LevelData.goto_boss_level(self.this_world, false)
 	fadeScreen.go_to_scene(scene_path)
 
 

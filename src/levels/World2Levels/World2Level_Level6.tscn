@@ -238,7 +238,7 @@ position = Vector2( 4672, -2288 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2944, -1544 )
-frame = 13
+frame = 2
 
 [node name="MovingPlatformCave2H" parent="InteractiveProps" instance=ExtResource( 20 )]
 position = Vector2( 2808, -1480 )
@@ -372,6 +372,9 @@ position = Vector2( 32.7265, 0 )
 [node name="Area2D" parent="Enemies/FunaYurei" index="1"]
 position = Vector2( 32.7265, 0 )
 
+[node name="AnimatedSprite" parent="Enemies/FunaYurei/Area2D" index="1"]
+frame = 0
+
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 408, -72 )
 rotation_style = 0
@@ -408,6 +411,9 @@ position = Vector2( -23.2741, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
 position = Vector2( -23.274, 0 )
 
+[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu/Area2D" index="1"]
+frame = 2
+
 [node name="ZukaiKotsu2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 792, -216 )
 speed = 24.0
@@ -420,9 +426,6 @@ position = Vector2( -24.7259, 0 )
 
 [node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
 position = Vector2( -24.726, 0 )
-
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu2/Area2D" index="1"]
-frame = 0
 
 [node name="FireBallSpinner2" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 904, -344 )
@@ -670,9 +673,6 @@ position = Vector2( -24.7259, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu3" index="1"]
 position = Vector2( -24.7258, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu3/Area2D" index="1"]
-frame = 0
-
 [node name="CloudPlatform4" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 3776, -1920 )
 
@@ -696,9 +696,6 @@ position = Vector2( 32.7265, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei2" index="1"]
 position = Vector2( 32.7266, 0 )
-
-[node name="AnimatedSprite" parent="Enemies/FunaYurei2/Area2D" index="1"]
-frame = 1
 
 [node name="WanyudoMiniSpawner4" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 3816, -2016 )
@@ -798,7 +795,7 @@ position = Vector2( 32.7265, 0 )
 position = Vector2( 32.7266, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/FunaYurei3/Area2D" index="1"]
-frame = 0
+frame = 1
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
