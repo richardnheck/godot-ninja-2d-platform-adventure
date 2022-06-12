@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/commons/Health.gd"
 }, {
+"base": "Area2D",
+"class": "HomingFireball",
+"language": "GDScript",
+"path": "res://src/characters/enemies/Wanyudo/HomingFireball.gd"
+}, {
 "base": "Motion",
 "class": "IAMotion",
 "language": "GDScript",
@@ -215,6 +220,7 @@ _global_script_class_icons={
 "GettingHit": "",
 "Gun": "",
 "Health": "",
+"HomingFireball": "",
 "IAMotion": "",
 "LdtkLevelBase": "",
 "LevelBase": "",

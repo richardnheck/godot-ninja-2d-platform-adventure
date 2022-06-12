@@ -19,6 +19,11 @@ onready var _shoot_timer := $ShootTimer
 onready var _delay_timer := $DelayTimer
 onready var _shoot_position := $ShootPosition
 
+var target = null
+
+func set_target(target_ref)->void:
+	target = target_ref
+
 
 func _ready():
 	
@@ -74,7 +79,8 @@ func _shoot() -> void:
 		
 	charge_time = 0.0
 	
-
+	if bullet.has_method("fire"):
+		bullet.fire(target)
 
 func _can_shoot() -> bool:
 	return _shoot_timer.is_stopped()

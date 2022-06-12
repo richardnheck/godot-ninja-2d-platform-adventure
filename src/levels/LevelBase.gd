@@ -69,6 +69,9 @@ func _ready() -> void:
 	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
 	
 	set_player_camera_limits(player, tilemapWorld);
+	
+	# Clear any projectiles from previous screen run
+	Projectiles.remove_all()
 
 	if door:
 		if LevelData.has_key:
