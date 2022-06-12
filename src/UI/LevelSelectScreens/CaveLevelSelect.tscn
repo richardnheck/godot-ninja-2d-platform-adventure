@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/UI/LevelSelectScreens/CaveLevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/LevelSelectScreens/LevelSelect.gd" type="Script" id=2]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/LevelSelectScreens/bg.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=5]
@@ -12,7 +12,7 @@
 
 [node name="CaveLevelSelect" type="CanvasLayer"]
 script = ExtResource( 2 )
-intro_scene_path = "res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.tscn"
+this_world = 1
 
 [node name="TileMapBg" type="TileMap" parent="."]
 modulate = Color( 0.145098, 0.247059, 0.521569, 1 )

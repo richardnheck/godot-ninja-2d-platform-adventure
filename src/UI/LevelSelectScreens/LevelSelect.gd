@@ -8,8 +8,8 @@ onready var fadeScreen = $FadeScreen
 
 export(String, FILE) var intro_scene_path:String = ""
 
-# This is the level select for world 1 (cave levels)
-const this_world = LevelData.WORLD1
+# This is the specific world
+export(int, 1,3, 1) var this_world:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,18 +25,25 @@ func _ready() -> void:
 	var current_level = GameState.progress["current_level"]
 
 	# Create all the level buttons
-	var worldLevels = LevelData.get_levels_by_world(LevelData.WORLD1)
-	var levelsCount = worldLevels.size()
+	var levels = LevelData.get_levels()
+	var levelsCount = levels.size()
 
+	var levelNumber = 0;
 	for levelIndex in range(0, levelsCount - 1):   # Don't include boss scene
-		var button = Button.new()
-		button.disabled = true
-		if current_world >= this_world and levelIndex <= current_level:
-			button.disabled = false
-		button.text = str(levelIndex + 1)
-		button.connect("pressed", self, "_level_button_pressed", [levelIndex])
-		#button.set_size(Vector2(40,18));  #doesn't work
-		buttonContainer.add_child(button)
+		var isBossLevel = levels[levelIndex].has("is_boss") and levels[levelIndex].is_boss
+		if levels[levelIndex].world == self.this_world and not isBossLevel:
+			var button = Button.new()
+			
+			button.disabled = true
+			
+			if current_world >= this_world and levelIndex <= current_level:
+				button.disabled = false
+			button.text = str(levelNumber + 1)
+			button.connect("pressed", self, "_level_button_pressed", [levelIndex])
+			#button.set_size(Vector2(40,18));  #doesn't work
+			buttonContainer.add_child(button)
+			
+			levelNumber = levelNumber + 1
 		
 	# Determine if the boss button is enabled
 	if current_world > this_world:
@@ -44,6 +51,8 @@ func _ready() -> void:
 		boss_button.disabled = false
 	else:
 		boss_button.disabled = current_level < levelsCount - 1
+		
+	
 	
 func _level_button_pressed(levelIndex):
 	Game_AudioManager.sfx_ui_general_select.play()

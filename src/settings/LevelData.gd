@@ -59,7 +59,6 @@ func get_levels_by_world(world) -> Array:
 	else:
 		return []
 
-
 # Filter func to return only world 1 levels
 func is_world1_level(levelObj) -> bool:
 	return levelObj["world"] == WORLD1
@@ -74,6 +73,7 @@ func goto_boss_level(changeScene = true) -> String:
 		if levelsArray[i].has("is_boss"):
 			return goto_level(i, changeScene)
 	return ""
+
 	
 # Goto the level specified by its index 
 func goto_level(levelIndex, changeScene = true) -> String:

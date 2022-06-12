@@ -67,7 +67,7 @@ func save() -> void:
 func set_current_world(world) -> void:
 	progress[KEY_CURRENT_WORLD] = world
 	
-	
+# Set the current level based on its index in the levels array
 func set_current_level(level_index) -> void:
 	progress[KEY_CURRENT_LEVEL] = level_index
 
@@ -98,9 +98,14 @@ func cheat(value):
 		print("Cheat enabled")
 		# Set cheat progress settings which enables all levels
 		prev_progress = progress.duplicate(true);
-		print(prev_progress)
+		
+		print("Previous progress", prev_progress)
+		
+		# Set the world and level to the maximum
 		set_current_world(LevelData.WORLD3)
-		set_current_level(10)  
+		set_current_level(LevelData.get_levels().size())  
+		
+		print("Current progress", progress)
 	else:
 		print("Cheat disabled")
 		print(prev_progress)		

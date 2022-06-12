@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/UI/LevelSelectScreens/World2LevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/LevelSelectScreens/LevelSelect.gd" type="Script" id=2]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/LevelSelectScreens/bg.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=5]
@@ -12,6 +12,7 @@
 
 [node name="World2LevelSelect" type="CanvasLayer"]
 script = ExtResource( 2 )
+this_world = 2
 
 [node name="TileMapBg" type="TileMap" parent="."]
 modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
@@ -113,6 +114,17 @@ position = Vector2( 256, 120 )
 frame = 0
 
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 112.0
+margin_top = 163.0
+margin_right = 224.0
+margin_bottom = 179.0
+theme = ExtResource( 1 )
+text = "Temp World 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]
 [connection signal="button_up" from="Control/BossButton" to="." method="_on_BossButton_button_up"]
