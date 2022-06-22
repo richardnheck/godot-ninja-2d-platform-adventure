@@ -238,5 +238,3 @@ func get_collision_tile_name(collision: KinematicCollision2D) -> String:
 
 func _on_Button_pressed() -> void:
 	get_tree().reload_current_scene()
-
-

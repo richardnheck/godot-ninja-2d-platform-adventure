@@ -53,6 +53,9 @@ var start:bool = true
 var time_passed:float = 0.0
 var initial_position_y:float
 
+# Indicates whether object is following the path
+var following_path = true
+
 # Called when the node enters the scene tree for the first time.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:		
@@ -72,14 +75,21 @@ func _ready() -> void:
 
 
 
+# Call to stop following the path
+func stop_following_path() -> void:
+	print("Stop following path")
+	following_path = false
+	tween.stop_all()
+
 
 func _process(delta: float) -> void:
 	
 	#-------------
 	# Oscillation
-	if oscillation_amplitude > 0:
-		time_passed += delta
-		self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
+	if following_path:
+		if oscillation_amplitude > 0:
+			time_passed += delta
+			self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
 	#-------------
 	
 

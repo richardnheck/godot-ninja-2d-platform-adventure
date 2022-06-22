@@ -12,6 +12,9 @@ export var spread_angle := 0.0
 export (Vector2) var direction := Vector2.RIGHT
 export var impulse := 370
 
+# Does this Gun need the position of a target so that its bullets can seek it
+export var requires_target:bool = false
+
 var charge_time := 0.0
 var is_charging := false
 
@@ -21,15 +24,25 @@ onready var _shoot_position := $ShootPosition
 
 var target = null
 
+# Set the target (this will most likely be the player)
+# This is usually called when the level initializes and spawns the player
 func set_target(target_ref)->void:
 	target = target_ref
+	if requires_target:
+		_initialize()
 
 
 func _ready():
-	
+	if not requires_target:
+		# No target is required so the gun can be initialized immediately
+		_initialize()
+
+
+func _initialize() -> void:
 	if mode == MODE.TIMED:
 		_shoot_timer.wait_time = shoot_rate
 		if delay_time == 0:
+			print(">>>> shooting immediately")
 			_shoot()
 		else:
 			_delay_timer.wait_time = delay_time
@@ -64,13 +77,13 @@ func _physics_process(delta: float) -> void:
 func _shoot() -> void:
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
-
+	
 	var bullet = bullet_scene.instance()	
 	#bullet.direction = direction.rotated(rand_range(-spread_angle, spread_angle))
 	bullet.direction = direction
 	Projectiles.add_child(bullet)
 	bullet.global_position = _shoot_position.global_position
-
+	
 	if "charge" in bullet:
 		bullet.charge = charge_time / max_charge_time
 

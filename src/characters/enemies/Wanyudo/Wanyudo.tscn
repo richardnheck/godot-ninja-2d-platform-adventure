@@ -36,9 +36,14 @@ animations = [ {
 [node name="Wanyudo" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Area2D" parent="." index="1"]
+collision_layer = 16
+collision_mask = 33
+
 [node name="HomingFireballSpawner" parent="Area2D" index="0" instance=ExtResource( 4 )]
 shoot_rate = 3.0
 impulse = 500
+requires_target = true
 
 [node name="CollisionShape2D" parent="Area2D" index="1"]
 position = Vector2( 0.451919, -0.370914 )
@@ -47,5 +52,4 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" parent="Area2D" index="2"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
