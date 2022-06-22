@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/objects/test-objects/Guns/Gun.gd" type="Script" id=1]
+[ext_resource path="res://src/characters/enemies/Wanyudo/HomingFireballSpawner.gd" type="Script" id=1]
 [ext_resource path="res://src/characters/enemies/Wanyudo/HomingFireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/test-objects/Guns/Canon/canon.png" type="Texture" id=3]
 
@@ -10,9 +10,8 @@ extents = Vector2( 8.01219, 7.95285 )
 [node name="HomingFireballSpawner" type="Node2D"]
 script = ExtResource( 1 )
 bullet_scene = ExtResource( 2 )
-shoot_rate = 2.0
+shoot_rate = 1.0
 mode = 3
-max_charge_time = 0.0
 
 [node name="ShootPosition" type="Position2D" parent="."]
 position = Vector2( 8.1704, 0 )

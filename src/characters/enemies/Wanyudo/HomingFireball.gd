@@ -63,3 +63,8 @@ func _explode() -> void:
 	explosion.play("explode")
 	yield(explosion, "animation_finished")
 	queue_free()
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		body.die()

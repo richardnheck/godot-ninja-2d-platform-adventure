@@ -2,7 +2,7 @@ extends PathFollowEnemyBase
 
 onready var path = $Path2D
 
-onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
+onready var fireball_spawner = $Area2D/HomingFireballSpawner
 
 # Phase1 - Boss follows a path and throws homing fireball missiles
 const STATE_PHASE1:String = "phase1"
@@ -33,7 +33,7 @@ var player = null
 # Set the reference to the player
 func set_player(player_ref) -> void:
 	player = player_ref
-	homing_fireball_spawner.set_target(player)
+	fireball_spawner.set_target(player)
 
 
 # Go to the next phase
@@ -43,15 +43,28 @@ func goto_next_phase() -> void:
 	
 	# When in Phase 2 do not follow the path any longer
 	stop_following_path()
-	print(get_viewport_rect().size)
+	
+	# Make the fireballs not homing missiles
+	# They are just fired at the player's current position
+	fireball_spawner.homing = false
+	
+
+var follow_speed = 1   # speed of follow. The higher the value the faster he follows
+var position_offset = 50    # Set a larger value for Wanyudo to be ahead of player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	match state:	
 		STATE_PHASE2:
-			var center = player.get_node("Camera2D").get_viewport_rect().size * Vector2(0.5, 0.5)
-			position.y = 0
-			position.x = center.x
+			# This works quite well
+			position.x = lerp(position.x, player.position.x + position_offset, delta * follow_speed ) 
+			position.y = oscillation_amplitude * cos(time_passed * oscillation_frequency)
+			
+			# Doesn't work, must stays in middle at start and doesn't follow screen
+			#var center = get_viewport_rect().size * Vector2(0.5, 0.5)
+			#position.y = 0
+			#position.x = center.x
+			
 			#position.x = (get_viewport_rect().size.x / 2) + cos(time_passed * 0.5) * 100
 			#position.x = player.get_node("Pivot/CameraOffset/Camera2D").position.x
 			time_passed += delta

@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 				charge_time = min(charge_time + delta, max_charge_time)
 
 
-func _shoot() -> void:
+func _shoot():
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 	
@@ -94,6 +94,8 @@ func _shoot() -> void:
 	
 	if bullet.has_method("fire"):
 		bullet.fire(target)
+		
+	return bullet
 
 func _can_shoot() -> bool:
 	return _shoot_timer.is_stopped()
