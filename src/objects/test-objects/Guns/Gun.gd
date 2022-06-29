@@ -59,8 +59,9 @@ func _physics_process(delta: float) -> void:
 		MODE.TIMED:
 			pass
 		MODE.NORMAL:
-			if Input.is_action_just_pressed("shoot") and _can_shoot():
-				_shoot()
+			pass
+			#if Input.is_action_just_pressed("shoot") and _can_shoot():
+			#	_shoot()
 		MODE.AUTOMATIC:
 			if Input.is_action_pressed("shoot") and _can_shoot():
 				_shoot()

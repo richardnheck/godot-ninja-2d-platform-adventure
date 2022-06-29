@@ -15,12 +15,20 @@ var state = STATE_PHASE1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# override defaults
-	self.speed = 80    	# 100 = roughly speed of player. 
+	self.speed = 75    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
 	self.follow_path_type = FollowPathType.CONTINUOUS
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
+	
+	# Connect to the event indicating when the fireball is destroyed
+	fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
+	
+	# Delay initially before shooting the first fireball
+	yield(get_tree().create_timer(0.3), "timeout")
+	fireball_spawner.shoot()
+	
 	
 	# TEMP code to develop phase 2
 	if state == STATE_PHASE2:
@@ -69,4 +77,6 @@ func _process(delta: float) -> void:
 			#position.x = player.get_node("Pivot/CameraOffset/Camera2D").position.x
 			time_passed += delta
 			
-			
+	
+func _on_fireball_destroyed(): 
+	fireball_spawner.shoot()		

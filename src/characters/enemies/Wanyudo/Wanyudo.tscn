@@ -42,6 +42,7 @@ collision_mask = 33
 
 [node name="HomingFireballSpawner" parent="Area2D" index="0" instance=ExtResource( 4 )]
 shoot_rate = 3.0
+mode = 0
 impulse = 500
 requires_target = true
 
@@ -52,5 +53,5 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" parent="Area2D" index="2"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
-frame = 2
+frame = 1
 playing = true
