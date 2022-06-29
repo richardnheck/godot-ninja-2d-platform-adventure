@@ -10,12 +10,12 @@ const STATE_PHASE1:String = "phase1"
 # Phase2 - Boss hovers above player and shoots fireballs down at the player
 const STATE_PHASE2:String = "phase2"
 
-var state = STATE_PHASE2
+var state = STATE_PHASE1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# override defaults
-	self.speed = 20    	# 100 = roughly speed of player. 
+	self.speed = 80    	# 100 = roughly speed of player. 
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
 	self.follow_path_type = FollowPathType.CONTINUOUS
 	

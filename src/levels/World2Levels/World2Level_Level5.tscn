@@ -149,7 +149,6 @@ position = Vector2( 6112, 0 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2999.15, -80 )
-frame = 21
 
 [node name="Boat" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 880, 120 )
@@ -274,7 +273,7 @@ position = Vector2( 31.2732, 6.00337 )
 position = Vector2( 31.2732, 6.00337 )
 
 [node name="AnimatedSprite" parent="Enemies/Kappa/Area2D" index="1"]
-frame = 3
+frame = 4
 
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 1800, 104 )
@@ -349,7 +348,7 @@ position = Vector2( 31.2732, 6.00337 )
 position = Vector2( 31.2732, 6.00337 )
 
 [node name="AnimatedSprite" parent="Enemies/Kappa2/Area2D" index="1"]
-frame = 2
+frame = 3
 
 [node name="ZukaiKotsu" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2608, 0 )
@@ -395,6 +394,9 @@ position = Vector2( 0.725926, 0 )
 [node name="Area2D" parent="Enemies/FunaYurei" index="1"]
 position = Vector2( 0.72583, 0 )
 
+[node name="AnimatedSprite" parent="Enemies/FunaYurei/Area2D" index="1"]
+frame = 0
+
 [node name="FunaYurei2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2976, 7.64271 )
 
@@ -406,9 +408,6 @@ position = Vector2( 0.725926, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei2" index="1"]
 position = Vector2( 0.72583, 0 )
-
-[node name="AnimatedSprite" parent="Enemies/FunaYurei2/Area2D" index="1"]
-frame = 1
 
 [node name="CloudPlatform13" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 2736, 80.5 )
@@ -546,7 +545,7 @@ position = Vector2( 31.276, 5.93633 )
 position = Vector2( 31.2759, 5.93633 )
 
 [node name="AnimatedSprite" parent="Enemies/Kappa4/Area2D" index="1"]
-frame = 1
+frame = 2
 
 [node name="Kappa5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 5128, 48 )
@@ -563,7 +562,7 @@ position = Vector2( 31.276, 5.93633 )
 position = Vector2( 31.2759, 5.93633 )
 
 [node name="AnimatedSprite" parent="Enemies/Kappa5/Area2D" index="1"]
-frame = 1
+frame = 2
 
 [node name="TsurubeOtoshi" parent="Enemies" instance=ExtResource( 17 )]
 position = Vector2( 5040, 48 )
