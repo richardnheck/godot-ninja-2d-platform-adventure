@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	# Delay initially before shooting the first fireball
 	yield(get_tree().create_timer(0.3), "timeout")
-	fireball_spawner.shoot()
+	_shoot_fireball()
 	
 	
 	# TEMP code to develop phase 2
@@ -51,10 +51,12 @@ func _check_position() -> void:
 		# In this case stop following the path
 		current_offset = _get_current_offset()
 		stop_following_path()
-	elif player and player.position.x > boss_pos + 70:
+	elif player and player.position.x > boss_pos + 100:
 		if not tween.is_active():
-			# Player is ahead so continue following the path
+			# Player is ahead so continue following the path and start shooting again
 			start_following_path(current_offset)
+			yield(get_tree().create_timer(1), "timeout")
+			_shoot_fireball()
 			
 
 # Set the reference to the player
@@ -95,7 +97,16 @@ func _process(delta: float) -> void:
 			#position.x = (get_viewport_rect().size.x / 2) + cos(time_passed * 0.5) * 100
 			#position.x = player.get_node("Pivot/CameraOffset/Camera2D").position.x
 			time_passed += delta
-			
+
+
+# Shoot a fireball
+func _shoot_fireball() -> void:
+	# Only shoot a fireball when the boss is chasing the plaer
+	# If the player is behind the boss the don't try and shoot the player	
+	if following_path:
+		fireball_spawner.shoot()					
 	
+	
+# Shoot another fireball once the previous fireball lifetime runs out	
 func _on_fireball_destroyed(): 
-	fireball_spawner.shoot()		
+	_shoot_fireball()

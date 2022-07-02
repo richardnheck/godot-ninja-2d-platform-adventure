@@ -76,11 +76,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _shoot():
+	print("Shoot direction=", direction)
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 	
-	var bullet = bullet_scene.instance()	
-	#bullet.direction = direction.rotated(rand_range(-spread_angle, spread_angle))
+	var bullet = bullet_scene.instance()
+		
 	bullet.direction = direction
 	Projectiles.add_child(bullet)
 	bullet.global_position = _shoot_position.global_position

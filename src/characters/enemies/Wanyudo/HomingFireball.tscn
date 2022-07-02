@@ -13,17 +13,17 @@
 radius = 6.11469
 height = 0.0
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 20 )
+region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 20 )
+region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 30 ), SubResource( 31 ) ],
+"frames": [ SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -56,7 +56,6 @@ shape = SubResource( 1 )
 position = Vector2( 7, 0 )
 rotation = -1.5708
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="LifeTimer" type="Timer" parent="."]

@@ -86,6 +86,7 @@ func stop_following_path() -> void:
 func start_following_path(start_offset):
 	offset = start_offset
 	start = true     # Set start so the position is initialized based on an offset
+	following_path = true
 	call_deferred("_start_tween")
 
 
