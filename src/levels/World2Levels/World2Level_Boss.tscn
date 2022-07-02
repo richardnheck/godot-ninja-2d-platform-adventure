@@ -186,7 +186,7 @@ position = Vector2( 3880, 112 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 3832, 96 )
-frame = 5
+frame = 4
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -295,7 +295,7 @@ position = Vector2( -23.2741, 0 )
 position = Vector2( -23.2742, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/ZukaiKotsu/Area2D" index="1"]
-frame = 2
+frame = 0
 
 [node name="FireBallSpinner3" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 2920, -24 )

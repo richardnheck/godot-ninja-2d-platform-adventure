@@ -127,7 +127,6 @@ func _update_direction() -> void:
 		
 	if tmp_direction != direction_before:
 		if $ChangeDirectionCoolOffTimer.is_stopped():
-			print("direction change required")
 			new_direction = tmp_direction
 		
 			# The direction needs to be changed
@@ -139,7 +138,6 @@ func _update_direction() -> void:
 
 func _apply_direction_change_if_possible() -> void:
 	if can_change_direction:
-		print("changing direction" , new_direction)
 		# Apply the direction change
 		direction = new_direction	
 		if direction == 1:

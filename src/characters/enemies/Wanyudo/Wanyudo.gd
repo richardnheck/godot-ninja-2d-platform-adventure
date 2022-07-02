@@ -12,10 +12,14 @@ const STATE_PHASE2:String = "phase2"
 
 var state = STATE_PHASE1
 
+var player = null
+
+const SPEED:int = 75
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# override defaults
-	self.speed = 75    	# 75 = good speed   (100 = speed of player)
+	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
 	self.follow_path_type = FollowPathType.CONTINUOUS
 	
@@ -36,7 +40,22 @@ func _ready() -> void:
 		yield(get_tree().create_timer(0.1), "timeout")
 		goto_next_phase()
 
-var player = null
+
+var current_offset = 0
+func _check_position() -> void:
+	# Since Wanyudo is a path follow enemy its actual position is the Area2D which has its
+	# postion changed by the path.
+	var boss_pos = self.get_node("Area2D").position.x
+	if player and player.position.x < boss_pos - 5:
+		# Prevent the boss from continuing if it passes the player
+		# In this case stop following the path
+		current_offset = _get_current_offset()
+		stop_following_path()
+	elif player and player.position.x > boss_pos + 70:
+		if not tween.is_active():
+			# Player is ahead so continue following the path
+			start_following_path(current_offset)
+			
 
 # Set the reference to the player
 func set_player(player_ref) -> void:

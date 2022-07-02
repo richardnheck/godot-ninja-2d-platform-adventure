@@ -47,6 +47,8 @@ onready var oscillation_tween = $OscillationTween
 
 onready var tween_values = [0, 1]
 
+var current_tween_offset = 0;
+
 var start:bool = true
 
 # For oscillation
@@ -74,23 +76,31 @@ func _ready() -> void:
 		call_deferred("_start_tween")
 
 
-
-# Call to stop following the path
+# Stop following the path
 func stop_following_path() -> void:
-	print("Stop following path")
 	following_path = false
 	tween.stop_all()
 
 
+# Start following path at a specified offset
+func start_following_path(start_offset):
+	offset = start_offset
+	start = true     # Set start so the position is initialized based on an offset
+	call_deferred("_start_tween")
+
+
 func _process(delta: float) -> void:
+	_check_position()
 	
 	#-------------
-	# Oscillation
-	if following_path:
-		if oscillation_amplitude > 0:
-			time_passed += delta
-			self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
+	# Vertical Oscillation
+	if oscillation_amplitude > 0:
+		time_passed += delta
+		self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
 	#-------------
+	
+func _check_position() -> void:
+	pass	
 	
 
 func _start_tween():
@@ -106,6 +116,7 @@ func _start_tween():
 			start = false
 			if offset < 1:
 				tween_offset = offset
+				
 				time = (curve_length - offset*curve_length) / speed
 			else:
 				# When offset = 1 it means start from the other end
@@ -113,9 +124,14 @@ func _start_tween():
 				
 				# Need to flip the sprite as we are starting from the other end in the opposite direction
 				animated_sprite.flip_h = true
-				 
+				
 		tween.interpolate_property(path_follow_2d, "unit_offset", tween_values[0] + tween_offset, tween_values[1], time, tween_transition_type, Tween.EASE_IN_OUT)
 		tween.start()	
+	
+
+# Get the current offset of the tween
+func _get_current_offset() -> int:
+	return path_follow_2d.unit_offset;
 
 
 func _on_tween_completed(object: Object, key: NodePath) -> void:
