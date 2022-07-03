@@ -2,7 +2,6 @@ extends AnimatedSprite
 
 
 func _ready() -> void:
-	print("landing dust...")
 	# Play the animation
 	play()
 

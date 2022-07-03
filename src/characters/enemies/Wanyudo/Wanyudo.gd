@@ -8,6 +8,7 @@ onready var fireball_spawner = $Area2D/HomingFireballSpawner
 const STATE_PHASE1:String = "phase1"
 
 # Phase2 - Boss hovers above player and shoots fireballs down at the player
+const STATE_PHASE2_TRANSITION:String = "phase2_transition"
 const STATE_PHASE2:String = "phase2"
 
 var state = STATE_PHASE1
@@ -21,7 +22,7 @@ func _ready() -> void:
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
-	self.follow_path_type = FollowPathType.CONTINUOUS
+	self.follow_path_type = FollowPathType.ONCE		# Stop when it reaches the end of the path
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
@@ -33,30 +34,24 @@ func _ready() -> void:
 	yield(get_tree().create_timer(0.3), "timeout")
 	_shoot_fireball()
 	
-	
-	# TEMP code to develop phase 2
-	if state == STATE_PHASE2:
-		# Need to delay a bit otherwise it is stopped but then started again
-		yield(get_tree().create_timer(0.1), "timeout")
-		goto_next_phase()
-
 
 var current_offset = 0
 func _check_position() -> void:
-	# Since Wanyudo is a path follow enemy its actual position is the Area2D which has its
-	# postion changed by the path.
-	var boss_pos = self.get_node("Area2D").position.x
-	if player and player.position.x < boss_pos - 5:
-		# Prevent the boss from continuing if it passes the player
-		# In this case stop following the path
-		current_offset = _get_current_offset()
-		stop_following_path()
-	elif player and player.position.x > boss_pos + 100:
-		if not tween.is_active():
-			# Player is ahead so continue following the path and start shooting again
-			start_following_path(current_offset)
-			yield(get_tree().create_timer(1), "timeout")
-			_shoot_fireball()
+	if state == STATE_PHASE1:
+		# Since Wanyudo is a path follow enemy its actual position is the Area2D which has its
+		# postion changed by the path.
+		var boss_pos = self.get_node("Area2D").position.x
+		if player and player.position.x < boss_pos - 5:
+			# Prevent the boss from continuing if it passes the player
+			# In this case stop following the path
+			current_offset = _get_current_offset()
+			stop_following_path()
+		elif player and player.position.x > boss_pos + 100:
+			if not tween.is_active():
+				# Player is ahead so continue following the path and start shooting again
+				start_following_path(current_offset)
+				yield(get_tree().create_timer(1), "timeout")
+				_shoot_fireball()
 			
 
 # Set the reference to the player
@@ -68,13 +63,20 @@ func set_player(player_ref) -> void:
 # Go to the next phase
 func goto_next_phase() -> void:
 	print("Wanyudo: transition to next state")
-	state = STATE_PHASE2
+	
+	# Phase 2 transition
+	# Wanyudo goes to the near end of the path and then floats
+	# down above the player
+	state = STATE_PHASE2_TRANSITION
+	stop_following_path()     	# stop following initially
+	yield(get_tree().create_timer(0.3), "timeout")
+	start_following_path(0.96)	# start following path from near the end
+	yield(get_tree().create_timer(10), "timeout")
 	
 	# When in Phase 2 do not follow the path any longer
-	stop_following_path()
-	
 	# Make the fireballs not homing missiles
 	# They are just fired at the player's current position
+	state = STATE_PHASE2
 	fireball_spawner.homing = false
 	
 

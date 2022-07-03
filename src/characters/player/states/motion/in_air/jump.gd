@@ -26,7 +26,6 @@ func initialize(speed, velocity):
 #	enter_velocity = velocity
 
 func enter():
-	print("enter jump")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	

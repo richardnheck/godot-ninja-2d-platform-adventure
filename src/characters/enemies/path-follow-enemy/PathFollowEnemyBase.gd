@@ -16,8 +16,9 @@ enum TransitionType {
 }
 
 enum FollowPathType {
-	PING_PONG = 0, 
-	CONTINUOUS = 1 
+	PING_PONG = 0, 		  # Goes back and forth on the path
+	CONTINUOUS = 1,	  # Follows the path then resets back to the start and continues
+	ONCE = 2			  # Follows the path and stops when it reaches the end
 }
 
 # Speed of movement (pixels/sec)
@@ -140,8 +141,10 @@ func _on_tween_completed(object: Object, key: NodePath) -> void:
 		tween_values.invert()
 		animated_sprite.flip_h = not animated_sprite.flip_h 
 		_start_tween()
-	else:
+	elif follow_path_type == FollowPathType.CONTINUOUS:
 		_start_tween()
+	elif follow_path_type == FollowPathType.ONCE:
+		following_path = false
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
