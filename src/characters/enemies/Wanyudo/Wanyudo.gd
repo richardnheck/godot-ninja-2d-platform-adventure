@@ -31,8 +31,9 @@ func _ready() -> void:
 	fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
 	
 	# Delay initially before shooting the first fireball
-	yield(get_tree().create_timer(0.3), "timeout")
-	_shoot_fireball()
+	if state == STATE_PHASE1:
+		yield(get_tree().create_timer(0.3), "timeout")
+		_shoot_fireball()
 	
 
 var current_offset = 0
@@ -71,11 +72,11 @@ func goto_next_phase() -> void:
 	stop_following_path()     	# stop following initially
 	yield(get_tree().create_timer(0.3), "timeout")
 	start_following_path(0.96)	# start following path from near the end
-	yield(get_tree().create_timer(10), "timeout")
-	
-	# When in Phase 2 do not follow the path any longer
-	# Make the fireballs not homing missiles
-	# They are just fired at the player's current position
+	yield(get_tree().create_timer(1), "timeout")
+
+#	# When in Phase 2 do not follow the path any longer
+#	# Make the fireballs not homing missiles
+#	# They are just fired at the player's current position
 	state = STATE_PHASE2
 	fireball_spawner.homing = false
 	

@@ -20,14 +20,19 @@ var target = null
 		
 func fire(target_ref):
 	target = target_ref
-	#rotation += rand_range(-0.09, 0.09)
-	look_at(target.position)   
-	velocity = transform.x * speed
+	
+	if target:
+		#rotation += rand_range(-0.09, 0.09)
+		look_at(target.position)   
+		velocity = transform.x * speed
 
 
 
 var elapsed = 0.0
 func _process(delta):
+	if not target:
+		return
+		
 	if position.x > target.position.x and can_seek:	
 		# If the missile reaches the player then stop seeking and start the life timer
 		# so it explodes

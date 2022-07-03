@@ -188,7 +188,7 @@ position = Vector2( 528, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 343.607, 32 )
-frame = 5
+frame = 13
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -228,7 +228,7 @@ position = Vector2( 32, 0 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/Enemy1/Area2D" index="1"]
-frame = 0
+frame = 2
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 184, 71.8394 )
@@ -250,7 +250,7 @@ position = Vector2( -32, 0 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/Enemy3/Area2D" index="1"]
-frame = 0
+frame = 2
 flip_h = true
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
@@ -273,7 +273,7 @@ position = Vector2( -44, -40 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="Enemies/Enemy2/Area2D" index="1"]
-frame = 0
+frame = 2
 
 [node name="Bub" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 296, -7.62939e-06 )
@@ -391,6 +391,8 @@ position = Vector2( 5.72696, 6 )
 
 [node name="FunaYurei2" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 432, 48 )
+tween_transition_type = 0
+follow_path_type = 2
 
 [node name="Path2D" parent="Enemies/FunaYurei2" index="0"]
 curve = SubResource( 23 )
