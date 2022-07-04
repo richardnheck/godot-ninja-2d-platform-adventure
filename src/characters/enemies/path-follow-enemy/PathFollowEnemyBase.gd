@@ -137,7 +137,6 @@ func _get_current_offset() -> int:
 
 
 func _on_tween_completed(object: Object, key: NodePath) -> void:
-	print("Tween completed")
 	if follow_path_type == FollowPathType.PING_PONG:
 		tween_values.invert()
 		animated_sprite.flip_h = not animated_sprite.flip_h 

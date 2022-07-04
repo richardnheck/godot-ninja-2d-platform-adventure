@@ -2,7 +2,8 @@ extends PathFollowEnemyBase
 
 onready var path = $Path2D
 
-onready var fireball_spawner = $Area2D/HomingFireballSpawner
+onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
+onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
 
 # Phase1 - Boss follows a path and throws homing fireball missiles
 const STATE_PHASE1:String = "phase1"
@@ -28,7 +29,7 @@ func _ready() -> void:
 	self.oscillation_frequency = 10
 	
 	# Connect to the event indicating when the fireball is destroyed
-	fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
+	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
 	
 	# Delay initially before shooting the first fireball
 	if state == STATE_PHASE1:
@@ -57,8 +58,9 @@ func _check_position() -> void:
 
 # Set the reference to the player
 func set_player(player_ref) -> void:
+	print("setting player")
 	player = player_ref
-	fireball_spawner.set_target(player)
+	homing_fireball_spawner.set_target(player)
 
 
 # Go to the next phase
@@ -73,42 +75,49 @@ func goto_next_phase() -> void:
 	yield(get_tree().create_timer(0.3), "timeout")
 	start_following_path(0.96)	# start following path from near the end
 	yield(get_tree().create_timer(1), "timeout")
-
+	stop_following_path()
+	
 #	# When in Phase 2 do not follow the path any longer
 #	# Make the fireballs not homing missiles
 #	# They are just fired at the player's current position
 	state = STATE_PHASE2
-	fireball_spawner.homing = false
+	
+	# Readjust the position now that it is no longer following the path
+	var pos = 3312
+	position.x = pos   		# TODO: Get position of last point in curve instead of hardcoding
+	path_follow_2d.unit_offset = 0		# reset the offset from following the path
+	homing_fireball_spawner.homing = false
+	
+	# Wait a few moments before firing the first fireballs
+	yield(get_tree().create_timer(1), "timeout")
+	
+	#TODO Add a spawner to shoot normal fireballs
+	_shoot_fireball()
 	
 
-var follow_speed = 1   # speed of follow. The higher the value the faster he follows
+var follow_speed = 1#0.03   # speed of follow. The higher the value the faster he follows
 var position_offset = 50    # Set a larger value for Wanyudo to be ahead of player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	match state:	
 		STATE_PHASE2:
-			# This works quite well
+			# Follow the player and hover above
 			position.x = lerp(position.x, player.position.x + position_offset, delta * follow_speed ) 
-			position.y = oscillation_amplitude * cos(time_passed * oscillation_frequency)
+			#position.y = oscillation_amplitude * cos(time_passed * oscillation_frequency * 0.03)
 			
-			# Doesn't work, must stays in middle at start and doesn't follow screen
-			#var center = get_viewport_rect().size * Vector2(0.5, 0.5)
-			#position.y = 0
-			#position.x = center.x
-			
-			#position.x = (get_viewport_rect().size.x / 2) + cos(time_passed * 0.5) * 100
-			#position.x = player.get_node("Pivot/CameraOffset/Camera2D").position.x
 			time_passed += delta
 
 
 # Shoot a fireball
 func _shoot_fireball() -> void:
-	# Only shoot a fireball when the boss is chasing the plaer
-	# If the player is behind the boss the don't try and shoot the player	
-	if following_path:
-		fireball_spawner.shoot()					
-	
+	if state == STATE_PHASE1:
+		# Only shoot a fireball when the boss is chasing the plaer
+		# If the player is behind the boss the don't try and shoot the player	
+		if following_path:
+			homing_fireball_spawner.shoot()					
+	elif state == STATE_PHASE2:
+		pass
 	
 # Shoot another fireball once the previous fireball lifetime runs out	
 func _on_fireball_destroyed(): 
