@@ -183,7 +183,6 @@ position = Vector2( 3880, 112 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 3832, 96 )
-frame = 14
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -206,8 +205,8 @@ position = Vector2( 0.72451, 8 )
 position = Vector2( -39.118, 8 )
 scale = Vector2( 1.21739, 1 )
 
-[node name="AnimatedSprite" parent="Wanyudo/Area2D" index="2"]
-frame = 0
+[node name="AnimatedSprite" parent="Wanyudo/Area2D" index="3"]
+frame = 2
 
 [node name="Enemies" type="Node2D" parent="."]
 

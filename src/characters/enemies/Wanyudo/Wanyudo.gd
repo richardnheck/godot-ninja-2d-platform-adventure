@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
-	
+		
 	# Connect to the event indicating when the fireball is destroyed
 	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
 	
@@ -74,7 +74,7 @@ func goto_next_phase() -> void:
 	stop_following_path()     	# stop following initially
 	yield(get_tree().create_timer(0.3), "timeout")
 	start_following_path(0.96)	# start following path from near the end
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	stop_following_path()
 	
 #	# When in Phase 2 do not follow the path any longer
@@ -83,10 +83,10 @@ func goto_next_phase() -> void:
 	state = STATE_PHASE2
 	
 	# Readjust the position now that it is no longer following the path
-	var pos = 3312
+	var pos = 3352
 	position.x = pos   		# TODO: Get position of last point in curve instead of hardcoding
 	path_follow_2d.unit_offset = 0		# reset the offset from following the path
-	homing_fireball_spawner.homing = false
+	homing_fireball_spawner.enabled = false
 	
 	# Wait a few moments before firing the first fireballs
 	yield(get_tree().create_timer(1), "timeout")
@@ -95,7 +95,7 @@ func goto_next_phase() -> void:
 	_shoot_fireball()
 	
 
-var follow_speed = 1#0.03   # speed of follow. The higher the value the faster he follows
+var follow_speed = 1	    # speed of follow. The higher the value the faster he follows
 var position_offset = 50    # Set a larger value for Wanyudo to be ahead of player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,7 +104,7 @@ func _process(delta: float) -> void:
 		STATE_PHASE2:
 			# Follow the player and hover above
 			position.x = lerp(position.x, player.position.x + position_offset, delta * follow_speed ) 
-			#position.y = oscillation_amplitude * cos(time_passed * oscillation_frequency * 0.03)
+			position.y = lerp(position.y, 14, delta) + 0.75 * cos(time_passed * oscillation_frequency)
 			
 			time_passed += delta
 

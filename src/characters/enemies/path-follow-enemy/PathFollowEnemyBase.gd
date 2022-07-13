@@ -96,7 +96,7 @@ func _process(delta: float) -> void:
 	
 	#-------------
 	# Vertical Oscillation
-	if oscillation_amplitude > 0:
+	if following_path and oscillation_amplitude > 0:
 		time_passed += delta
 		self.position.y = initial_position_y + oscillation_amplitude * cos(time_passed * oscillation_frequency)
 	#-------------
