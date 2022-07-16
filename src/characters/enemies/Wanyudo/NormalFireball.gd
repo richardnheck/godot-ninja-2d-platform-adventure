@@ -12,31 +12,27 @@ var direction = Vector2.ZERO
 onready var life_timer = $LifeTimer
 onready var explosion: = $AnimatedSpriteExplosion
 
-var target = null
+var target:Player = null
 		
-func fire(target_ref):
+func fire(target_ref:Player):
 	target = target_ref
 	
 	if target:
-		look_at(target.position)   
-		velocity = transform.x * speed
-
-
+		# Get the player velocity so we can aim at the player when they are moving
+		var player_velocity = target.get_node('StateMachine').current_state.velocity
+		var x_offset = player_velocity.x
+		
+		direction = position.direction_to(target.position + Vector2(x_offset,0))
 
 var elapsed = 0.0
-func _process(delta):
-	
+func _process(delta):	
+	global_position += speed * delta * direction.normalized()#	
 	# Attempt #2 (this actually works quite well but rotation doesn't work easily)
-	var follow_speed = 1
-	position.y = lerp(position.y, target.position.y, delta * follow_speed ) 
-	position.x += 3
+	#	var follow_speed = 1
+	#	position.y = lerp(position.y, target.position.y, delta * follow_speed ) 
+	#	position.x += 3
+	
 
-func seek():
-	var steer = Vector2.ZERO
-	if target:
-		var desired = (target.position - position).normalized() * speed
-		steer = (desired - velocity).normalized() * steer_force
-	return steer
 
 func _on_LifeTimer_timeout() -> void:
 	print("missile life over")

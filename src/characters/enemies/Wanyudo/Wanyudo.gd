@@ -1,7 +1,6 @@
 extends PathFollowEnemyBase
 
 onready var path = $Path2D
-
 onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
 
@@ -30,6 +29,7 @@ func _ready() -> void:
 		
 	# Connect to the event indicating when the fireball is destroyed
 	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
+	normal_fireball_spawner.enabled = false
 	
 	# Delay initially before shooting the first fireball
 	if state == STATE_PHASE1:
@@ -61,7 +61,8 @@ func set_player(player_ref) -> void:
 	print("setting player")
 	player = player_ref
 	homing_fireball_spawner.set_target(player)
-
+	normal_fireball_spawner.set_target(player)
+	
 
 # Go to the next phase
 func goto_next_phase() -> void:
@@ -83,10 +84,17 @@ func goto_next_phase() -> void:
 	state = STATE_PHASE2
 	
 	# Readjust the position now that it is no longer following the path
-	var pos = 3352
-	position.x = pos   		# TODO: Get position of last point in curve instead of hardcoding
+	# Get the position of the last point
+#	var numPoints = path.curve.get_point_count()
+#	var pointPosition = path.curve.get_point_position(numPoints-1)
+#	var globalPointPosition = pointPosition + path.position
+#	var pos = globalPointPosition.x
+	
+	var pos = 3352		# TODO: Get position of last point in curve instead of hardcoding (above code doesn't work)
+	position.x = pos   		
 	path_follow_2d.unit_offset = 0		# reset the offset from following the path
 	homing_fireball_spawner.enabled = false
+	normal_fireball_spawner.enabled = true
 	
 	# Wait a few moments before firing the first fireballs
 	yield(get_tree().create_timer(1), "timeout")

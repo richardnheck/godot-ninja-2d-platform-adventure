@@ -59,4 +59,5 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" parent="Area2D" index="3"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
+frame = 1
 playing = true

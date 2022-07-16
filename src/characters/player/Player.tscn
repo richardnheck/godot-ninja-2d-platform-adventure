@@ -366,6 +366,7 @@ position = Vector2( -15, -32 )
 z_index = 1000
 frames = SubResource( 64 )
 animation = "talk"
+frame = 1
 playing = true
 centered = false
 
