@@ -48,7 +48,7 @@ impulse = 500
 requires_target = true
 
 [node name="NormalFireballSpawner" parent="Area2D" index="1" instance=ExtResource( 5 )]
-shoot_rate = 2.0
+shoot_rate = 3.0
 mode = 3
 impulse = 100
 
@@ -59,5 +59,5 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" parent="Area2D" index="3"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true

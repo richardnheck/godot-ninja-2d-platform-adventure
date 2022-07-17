@@ -20,14 +20,15 @@ func shoot():
 
 # Called internally when in TIMED mode
 func _shoot():
-	# Call parent shoot
-	var fireball = ._shoot()
-	print("Fireball pos", fireball.global_position)
-	fireball.connect("destroyed", self, "_on_fireball_destroyed")
-	
-	# Modify whether the fireball is a homing missile or not
-	fireball.can_seek = homing
-
+	if enabled:
+		# Call parent shoot
+		var fireball = ._shoot()
+		print("Fireball pos", fireball.global_position)
+		fireball.connect("destroyed", self, "_on_fireball_destroyed")
+		
+		# Modify whether the fireball is a homing missile or not
+		fireball.can_seek = homing
+		
 
 func _on_fireball_destroyed():
 	emit_signal("fireball_destroyed")

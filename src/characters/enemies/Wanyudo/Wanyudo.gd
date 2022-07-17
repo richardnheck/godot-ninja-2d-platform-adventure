@@ -99,7 +99,6 @@ func goto_next_phase() -> void:
 	# Wait a few moments before firing the first fireballs
 	yield(get_tree().create_timer(1), "timeout")
 	
-	#TODO Add a spawner to shoot normal fireballs
 	_shoot_fireball()
 	
 

@@ -42,7 +42,6 @@ func _initialize() -> void:
 	if mode == MODE.TIMED:
 		_shoot_timer.wait_time = shoot_rate
 		if delay_time == 0:
-			print(">>>> shooting immediately")
 			_shoot()
 		else:
 			_delay_timer.wait_time = delay_time
