@@ -4,38 +4,34 @@ export var jump_power = 320
 
 export(float) var base_max_horizontal_speed = 125
 
-#export(float) var air_acceleration = 10.0
-#export(float) var air_deceleration = 20.0
-#export(float) var air_steering_power = 0.5
-
-#export(float) var gravity = 15
-
 var enter_velocity = Vector2()
-
 var max_horizontal_speed = 0.0
-#var horizontal_speed = 0.0
-#var horizontal_velocity = Vector2()
+var spring_impulse = Vector2.ZERO
 
-#var vertical_speed = 0.0
-#var height = 0.0
+# These variables are required to manage successful transitioning from one jump state
+# to another. This occurs when a player jumps on to a spring or bouncy platform
+var initialized = false
+var entered = false
 
-func initialize(speed, velocity):
-	pass
-#	horizontal_speed = speed
-#	max_horizontal_speed = speed if speed > 0.0 else base_max_horizontal_speed
-#	enter_velocity = velocity
+func initialize(speed, velocity, impulse:Vector2 = Vector2.ZERO):
+	print("jump: initialize", impulse)
+	spring_impulse = impulse
+	initialized = true
+	entered = false		# new state being initialized but so it is not entered yet
 
 func enter():
+	entered = true
+	print("jump: enter", spring_impulse)
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	
-	velocity.y = -jump_power
+	# NB: Only the y component of spring impulse is implemented for now
+	velocity.y = -jump_power - spring_impulse.y
 	
-	owner.on_jump()
+	if _is_player_jump():
+		# A player triggered jump so call owner to handle additional jump animations and sound
+		owner.on_jump()
 	
-#	horizontal_velocity = enter_velocity if input_direction else Vector2()
-#	vertical_speed = 600.0
-
 func handle_input(event):
 	return .handle_input(event)
 	
@@ -53,9 +49,11 @@ func update(_delta):
 	# Vertical movement
 	.apply_gravity()
 	
-	# If I'm still going up and have released the jump button - cut off the jump and start falling down
-	if Input.is_action_just_released(Actions.get_action_jump()) and velocity.y < 0:
-		velocity.y = velocity.y * 0.5
+	if _is_player_jump():
+		# The jump is a player triggered jump and not a spring
+		# If I'm still going up and have released the jump button - cut off the jump and start falling down
+		if Input.is_action_just_released(Actions.get_action_jump()) and velocity.y < 0:
+			velocity.y = velocity.y * 0.5
 	
 	move(velocity)
 	
@@ -70,7 +68,9 @@ func update(_delta):
 	
 	# Handle state transitions	
 	# ------------------------
-	detect_and_transition_to_air_jump()
+	if _is_player_jump():
+		# Can only air jump from a player triggered jump and not from a spring or bouncy platform
+		detect_and_transition_to_air_jump()
 	
 	detect_and_transition_to_wall_slide()
 	detect_and_transition_to_wall_jump(input_direction)
@@ -81,4 +81,15 @@ func update(_delta):
 	
 	detect_and_transition_to_ground(input_direction)
 	
-	
+func exit():
+	if initialized and entered:
+		print("jump: exit")
+		# The state was run to completion so it is safe to exit
+		# Reset the spring impulse after the jump
+		spring_impulse = Vector2.ZERO
+		initialized = false
+		entered = false
+
+# Determine if the jump was triggered by the player
+func _is_player_jump() -> bool:
+	return spring_impulse == Vector2.ZERO

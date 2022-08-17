@@ -97,6 +97,7 @@ func detect_and_transition_to_air_jump() -> bool:
 func detect_and_transition_to_ground(input_direction):
 	if owner.is_on_floor():
 		owner.do_landing()
+		
 		# Exit jump state if on the floor
 		if !input_direction: 
 			# No directional user input so transition to idle

@@ -124,6 +124,10 @@ func set_look_direction(value):
 	
 	emit_signal("direction_changed", value)
 
+# Spring the player in the air with a specific impulse
+func spring(spring_impulse:Vector2) ->void: 
+	$StateMachine._change_state("jump", spring_impulse)
+
 #----------------------------------------------
 # Functions for CutScenes
 #----------------------------------------------
