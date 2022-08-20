@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print(body)
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
 	else:

@@ -22,8 +22,10 @@ func _process(delta):
 
 
 func _on_Area2D_body_entered(body: Node2D) -> void:
-	constant_linear_velocity.x = speed
+	pass
 
 
 func _on_Area2D_body_exited(body: Node2D) -> void:
-	constant_linear_velocity.x = 0
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		if body.has_method("reset_applied_velocity"):
+			body.reset_applied_velocity();

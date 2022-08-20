@@ -41,10 +41,13 @@ func apply_gravity():
 
 
 func move(vel):	
-	velocity = owner.move_and_slide(vel, Vector2.UP, false, 4, PI/4, false)
+	velocity = owner.move_and_slide(vel, Vector2.UP, true, 4, PI/4, false)
+	
 	for i in owner.get_slide_count():
 		var collision = owner.get_slide_collision(i)
 		if collision:
+			#if not collision.collider.is_in_group("conveyor-belt"):
+			#	velocity = Vector2.ZERO
 			owner.emit_signal('collided', collision)
 	return velocity
 

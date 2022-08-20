@@ -74,7 +74,7 @@ position = Vector2( 528, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 480, 128 )
-frame = 13
+frame = 20
 
 [node name="Spring" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 264, 64 )
@@ -86,11 +86,16 @@ position = Vector2( 312, 64 )
 position = Vector2( 360, 64 )
 
 [node name="Spring4" parent="InteractiveProps" instance=ExtResource( 3 )]
-position = Vector2( 400, 112 )
+position = Vector2( 400, 144 )
 
 [node name="ConveyorBelt" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 88, 128 )
+speed = -25
 length = 2
+
+[node name="ConveyorBelt2" parent="InteractiveProps" instance=ExtResource( 4 )]
+position = Vector2( 184, 128 )
+length = 4
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0

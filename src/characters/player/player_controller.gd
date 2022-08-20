@@ -128,6 +128,13 @@ func set_look_direction(value):
 func spring(spring_impulse:Vector2) ->void: 
 	$StateMachine._change_state("jump", spring_impulse)
 
+# Reset the constant linear velocity that was applied from a conveyor belt
+# Otherwise the player will continue to slide on the ground forever
+func reset_applied_velocity() -> void:
+	var current_state = $StateMachine.current_state
+	if current_state != null:
+		current_state.velocity = Vector2(0, current_state.velocity.y)
+	
 #----------------------------------------------
 # Functions for CutScenes
 #----------------------------------------------
