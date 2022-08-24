@@ -60,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://src/statemachine/states/motion/combat/death.gd"
 }, {
 "base": "Node2D",
+"class": "Disc",
+"language": "GDScript",
+"path": "res://src/objects/roto-disc/Disc.gd"
+}, {
+"base": "Node2D",
 "class": "Draw",
 "language": "GDScript",
 "path": "res://src/tools/draw.gd"
@@ -215,6 +220,7 @@ _global_script_class_icons={
 "CutSceneBase": "",
 "DamageZone": "",
 "Death": "",
+"Disc": "",
 "Draw": "",
 "Eagle": "",
 "Enemy2": "",
