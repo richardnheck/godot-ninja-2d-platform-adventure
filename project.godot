@@ -383,6 +383,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_6="boss-world"
 2d_physics/layer_7="boss-spikes-world"
 2d_physics/layer_8="enemies"
+2d_physics/layer_9="world-border"
 
 [rendering]
 
