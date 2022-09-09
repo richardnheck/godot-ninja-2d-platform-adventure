@@ -29,6 +29,7 @@ func _show_spike(show:bool) -> void:
 	spikeCollisionShape.set_deferred("disabled", not show)
 	spikeCollisionShape.visible = show;
 
+# Handle when the player touches the spike
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
