@@ -16,6 +16,7 @@ const SPIKE_UPTIME:float = 1.5
 func _ready():
 	_show_spike(false)
 
+# Trigger the trap
 func _trigger_trap() -> void:
 	yield(get_tree().create_timer(TRIGGER_DELAY), "timeout")
 	sound.play()
