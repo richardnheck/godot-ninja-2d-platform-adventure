@@ -199,10 +199,10 @@ __meta__ = {
 }
 
 [node name="BigBackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 15 )]
+unique_name_in_owner = true
 margin_left = 77.0
 margin_right = 116.0
 margin_bottom = 20.0
-next_scene_path = "res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn"
 
 [node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
 margin_left = 120.0

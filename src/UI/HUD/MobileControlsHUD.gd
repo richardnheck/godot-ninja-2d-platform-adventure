@@ -47,6 +47,11 @@ func set_paused(value:bool) -> void:
 	scene_tree.paused = value
 	pause_overlay.visible = value
 	
+	if paused:
+		# Set the current level select screen	
+		var backButton = get_node("%BigBackButton")
+		backButton.next_scene_path = LevelData.get_current_world_level_select_scene()
+	
 	
 func _on_PauseButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_pause.play()

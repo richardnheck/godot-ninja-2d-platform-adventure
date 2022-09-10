@@ -9,7 +9,13 @@ const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
+const LEVEL_SELECT_SCREENS_PATH = "res://src/UI/LevelSelectScreens/"
 
+var worldsArray = [
+	{ "world": WORLD1, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "CaveLevelSelect.tscn"},
+	{ "world": WORLD2, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "World2LevelSelect.tscn"},
+	{ "world": WORLD3, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "World3LevelSelect.tscn"},
+]
 
 var levelsArray = [
 	# World 1
@@ -128,3 +134,12 @@ func get_level_name(level_scene_path) -> String:
 func set_has_key(value:bool) -> void:
 	has_key = value
 	emit_signal("key_status_changed", has_key)
+
+# Get the Level Select Scene for the current world
+func get_current_world_level_select_scene() -> String:
+	var current_level = get_levels()[current_level_index]
+	var current_world = current_level["world"]
+	for i in range(0, worldsArray.size()):
+		if worldsArray[i]["world"] == current_world:
+			return worldsArray[i]["level_select_scene"]
+	return ""
