@@ -238,7 +238,7 @@ position = Vector2( 4672, -2288 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2944, -1544 )
-frame = 8
+frame = 16
 
 [node name="MovingPlatformCave2H" parent="InteractiveProps" instance=ExtResource( 20 )]
 position = Vector2( 2808, -1480 )
@@ -371,6 +371,9 @@ position = Vector2( 32.7265, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei" index="1"]
 position = Vector2( 32.7265, 0 )
+
+[node name="AnimatedSprite" parent="Enemies/FunaYurei/Area2D" index="1"]
+frame = 0
 
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 408, -72 )
@@ -697,9 +700,6 @@ position = Vector2( 32.7265, 0 )
 [node name="Area2D" parent="Enemies/FunaYurei2" index="1"]
 position = Vector2( 32.7266, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/FunaYurei2/Area2D" index="1"]
-frame = 1
-
 [node name="WanyudoMiniSpawner4" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 3816, -2016 )
 bullet_scene = ExtResource( 15 )
@@ -798,7 +798,7 @@ position = Vector2( 32.7265, 0 )
 position = Vector2( 32.7266, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/FunaYurei3/Area2D" index="1"]
-frame = 0
+frame = 1
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
