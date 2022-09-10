@@ -358,7 +358,7 @@ anims/PingPongPathFollow = SubResource( 4 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 2 )]
 position = Vector2( 824, 296 )
-frame = 23
+frame = 19
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 1552, -304 )

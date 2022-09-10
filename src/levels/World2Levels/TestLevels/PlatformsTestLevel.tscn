@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
@@ -13,6 +13,12 @@
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/objects/roto-disc/RotoDisc.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/objects/MovingPlatformVertical.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, -64 )
+}
 
 [node name="Platforms Test Level" type="Node2D"]
 script = ExtResource( 11 )
@@ -116,6 +122,7 @@ position = Vector2( 520, 144 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 480, 128 )
+frame = 18
 
 [node name="Spring" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 264, 64 )
@@ -151,7 +158,22 @@ position = Vector2( 312, -24 )
 position = Vector2( 360, -48 )
 
 [node name="RotoDisc" parent="InteractiveProps" instance=ExtResource( 13 )]
+position = Vector2( 200, -56 )
 start_direction = -180
+
+[node name="MovingPlatformVertical" parent="InteractiveProps" instance=ExtResource( 14 )]
+position = Vector2( 80, 8 )
+
+[node name="Path2D" parent="InteractiveProps/MovingPlatformVertical" index="0"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" parent="InteractiveProps/MovingPlatformVertical/Path2D" index="0"]
+position = Vector2( 0, 31.2723 )
+
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformVertical" index="1"]
+position = Vector2( 0, 31.2723 )
+collision_mask = 0
+constant_linear_velocity = Vector2( 0, 100 )
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -164,3 +186,4 @@ one_shot = true
 
 [editable path="Props/CaveDoorBackground"]
 [editable path="InteractiveProps/Door"]
+[editable path="InteractiveProps/MovingPlatformVertical"]
