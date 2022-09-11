@@ -166,7 +166,7 @@ position = Vector2( 208, -528 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 472, -192 )
-frame = 19
+frame = 25
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 9 )]
 position = Vector2( 696, -64 )
@@ -509,9 +509,6 @@ position = Vector2( -23.2741, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
 position = Vector2( -23.274, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu/Area2D" index="1"]
-frame = 0
-
 [node name="ZukaiKotsu2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 64, -456 )
 speed = 24.0
@@ -526,7 +523,7 @@ position = Vector2( -23.2741, 0 )
 position = Vector2( -23.2741, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/ZukaiKotsu2/Area2D" index="1"]
-frame = 2
+frame = 0
 
 [node name="ZukaiKotsu3" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 128, -520 )
@@ -542,7 +539,7 @@ position = Vector2( -24.7259, 0 )
 position = Vector2( -24.7259, 0 )
 
 [node name="AnimatedSprite" parent="Enemies/ZukaiKotsu3/Area2D" index="1"]
-frame = 2
+frame = 0
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
