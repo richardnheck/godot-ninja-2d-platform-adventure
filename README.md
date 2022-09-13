@@ -1,1 +1,1 @@
-*Castle Yokai*
+Castle Yokai
