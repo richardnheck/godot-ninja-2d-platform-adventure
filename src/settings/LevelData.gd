@@ -19,15 +19,18 @@ var worldsArray = [
 
 var levelsArray = [
 	# World 1
+	# Had to reduce number of levels down to 6 to make game finishable
 	{"world": WORLD1, "name" : "Time to learn young Grasshopper",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
 	{"world": WORLD1, "name" : "Master thyself and Jump" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
-	{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Those rocks don't look solid", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Oh so many spikey things", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "Oh so many spikey things", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Sliding slowly down the Wall", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Death from Above", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Claustrophobic Caverns", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
+	
+	# TODO: Not sure 100% which is the final level
+	#{"world": WORLD1, "name" : "Claustrophobic Caverns", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Thundercrush", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true},
 	

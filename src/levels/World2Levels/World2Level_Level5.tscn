@@ -170,6 +170,7 @@ position = Vector2( 2096, 80 )
 
 [node name="CheckPoint2" parent="InteractiveProps" instance=ExtResource( 9 )]
 position = Vector2( 3760, 79.9797 )
+id = "2"
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 6136, -32 )
@@ -299,9 +300,6 @@ position = Vector2( 31.2732, 6.00337 )
 [node name="Area2D" parent="Enemies/Kappa" index="1"]
 position = Vector2( 31.2732, 6.00337 )
 
-[node name="AnimatedSprite" parent="Enemies/Kappa/Area2D" index="1"]
-frame = 1
-
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 1800, 104 )
 rotation_style = 0
@@ -387,9 +385,6 @@ position = Vector2( -23.2741, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
 position = Vector2( -23.2742, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu/Area2D" index="1"]
-frame = 2
-
 [node name="ZukaiKotsu1" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2672, -40 )
 speed = 24.0
@@ -403,9 +398,6 @@ position = Vector2( -24.7259, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu1" index="1"]
 position = Vector2( -24.7258, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu1/Area2D" index="1"]
-frame = 2
-
 [node name="FunaYurei" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2391.15, 64 )
 
@@ -417,9 +409,6 @@ position = Vector2( 0.725926, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei" index="1"]
 position = Vector2( 0.72583, 0 )
-
-[node name="AnimatedSprite" parent="Enemies/FunaYurei/Area2D" index="1"]
-frame = 0
 
 [node name="FunaYurei2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2976, 7.64271 )
@@ -517,9 +506,6 @@ position = Vector2( -24.7259, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
 position = Vector2( -24.7261, 0 )
 
-[node name="AnimatedSprite" parent="Enemies/ZukaiKotsu2/Area2D" index="1"]
-frame = 2
-
 [node name="ZukaiKotsu3" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 4624, 101.629 )
 speed = 24.0
@@ -568,9 +554,6 @@ position = Vector2( 31.276, 5.93633 )
 [node name="Area2D" parent="Enemies/Kappa4" index="1"]
 position = Vector2( 31.2759, 5.93633 )
 
-[node name="AnimatedSprite" parent="Enemies/Kappa4/Area2D" index="1"]
-frame = 4
-
 [node name="Kappa5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 5128, 48 )
 speed = 50.0
@@ -584,9 +567,6 @@ position = Vector2( 31.276, 5.93633 )
 
 [node name="Area2D" parent="Enemies/Kappa5" index="1"]
 position = Vector2( 31.2759, 5.93633 )
-
-[node name="AnimatedSprite" parent="Enemies/Kappa5/Area2D" index="1"]
-frame = 4
 
 [node name="TsurubeOtoshi" parent="Enemies" instance=ExtResource( 17 )]
 position = Vector2( 5040, 48 )

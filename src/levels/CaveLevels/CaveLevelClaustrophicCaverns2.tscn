@@ -391,7 +391,6 @@ tile_data = PoolIntArray( 786444, 1073741826, 0, 786448, 1073741826, 0, 786452, 
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 1536, 1013 )
-frame = 25
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 384, 576 )
@@ -536,11 +535,9 @@ position = Vector2( 24, 527.134 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1632, 1079.5 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1615, 1024 )
-frame = 0
 
 [node name="JapaneseLamp25" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1487, 1104 )
@@ -550,19 +547,15 @@ position = Vector2( 1436, 1104 )
 
 [node name="JapaneseLamp27" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1151.56, 1069.5 )
-frame = 0
 
 [node name="JapaneseLamp28" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1104, 1069.5 )
-frame = 0
 
 [node name="JapaneseLamp23" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1592, 968 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 214.148, 592 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 624, 679 )
@@ -575,15 +568,12 @@ position = Vector2( 720, 642.5 )
 
 [node name="JapaneseLamp14" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1112, 722.5 )
-frame = 0
 
 [node name="JapaneseLamp16" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1248, 664 )
-frame = 0
 
 [node name="JapaneseLamp15" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1448, 712 )
-frame = 0
 
 [node name="JapaneseLamp17" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1640, 840 )
@@ -593,11 +583,9 @@ position = Vector2( 1752, 840 )
 
 [node name="JapaneseLamp19" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1864, 799.5 )
-frame = 0
 
 [node name="JapaneseLamp20" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1864, 864 )
-frame = 0
 
 [node name="JapaneseLamp21" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1864, 928 )
@@ -607,7 +595,6 @@ position = Vector2( 1864, 992 )
 
 [node name="JapaneseLamp24" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 1792, 1069.5 )
-frame = 0
 
 [node name="JapaneseLamp13" parent="Props" instance=ExtResource( 15 )]
 position = Vector2( 720, 704 )
