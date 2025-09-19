@@ -5,6 +5,7 @@ export var max_impulse := 2000.0
 var direction := Vector2.RIGHT setget set_direction
 var impulse := 1000.0 setget set_impulse
 
+var falling := false
 onready var _sprite := $AnimatedSprite
 
 
@@ -12,7 +13,17 @@ onready var _sprite := $AnimatedSprite
 func _ready() -> void:
 	gravity_scale = 5
 	print("gravity scale", gravity_scale)
+
+func _physics_process(delta):
 	
+	if linear_velocity.y > 50:
+		# when linear velocity is positive the fish is falling down
+		falling = true
+			
+	if falling:	
+		# when falling rotate the sprite so it is heading in the right direction
+		_sprite.rotation_degrees = 180
+		
 
 func _on_body_entered(body: Node) -> void:
 	print("body entered")
