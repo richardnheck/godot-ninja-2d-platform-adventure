@@ -43,8 +43,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 96, -635 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 311, -715 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100

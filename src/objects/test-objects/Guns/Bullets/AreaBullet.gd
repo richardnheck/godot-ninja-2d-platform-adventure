@@ -39,7 +39,12 @@ func do_explosion() -> void:
 	collision_shape.set_deferred("disabled", true)
 	$AnimatedSprite.visible = false
 	explosion.visible = true
+	explosion.global_position = global_position + Vector2(0,-10)
 	explosion.play()
 
 func _on_ExplosionAnimatedSprite_animation_finished() -> void:
+	queue_free()
+
+
+func _on_ExplosionAnimatedSprite2_animation_finished():
 	queue_free()
