@@ -6,13 +6,13 @@
 atlas = ExtResource( 1 )
 region = Rect2( 0, 75, 64, 75 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 225, 64, 75 )
-
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 75 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 225, 64, 75 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
@@ -25,14 +25,14 @@ animations = [ {
 "name": "asleep",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "look-left",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "awake",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "look-left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ) ],
