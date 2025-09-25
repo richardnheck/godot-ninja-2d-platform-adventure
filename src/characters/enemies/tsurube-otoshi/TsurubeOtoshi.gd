@@ -5,13 +5,14 @@ extends KinematicBody2D
 
 
 # Exports
-export var gravity = 7
-export var jump_power = 200
+export var gravity = 6
+export var jump_power = 300
 export var horizontal_jump_velocity = 40
 export(int,-1,1) var horizontal_direction = 1
 
-onready var sprite_main = $SpriteMain
+onready var sprite_main = $AnimatedSprite
 onready var sprite_flash = $SpriteFlash
+onready var landing_dust_scene = preload("res://src/characters/player/effects/landing-dust/LandingDust.tscn")
 
 onready var jump_timer = $JumpTimer
 onready var collision_cooloff_timer = $CoolOffTimer
@@ -66,17 +67,20 @@ func set_player(player_ref):
 func _process(delta: float) -> void:
 	match current_state:	
 		State.JUMP:
+			
 			if do_jump:
 				velocity.y = -jump_power
 				velocity.x = horizontal_direction * horizontal_jump_velocity
 				jump_timer.start()
 				do_jump = false
-				landing = true	
+				landing = true
+				set_sprite_animation("jump")	
 			
 			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
 			velocity.y += gravity
 			
 			if is_on_floor():
+				set_sprite_animation("ground")
 				if not $RayCastFloor.is_colliding() or $RayCastWall.is_colliding():
 					_change_direction()
 				#if $RayCastWall.is_colliding():
@@ -107,10 +111,14 @@ func _change_direction() -> void:
 		collision_cooloff_timer.start()
 
 func _on_land():
-	#slam_sound.play()
-	_flash_sprite()
-	_shake_screen()
+	# Ensure character stops moving when they land
 	velocity.x = 0
+	
+	# Show some animated dust just on landing
+	var instance = landing_dust_scene.instance()
+	instance.set_scale(Vector2(2,1.5))
+	instance.global_position = global_position
+	get_parent().add_child(instance)
 
 	
 func _shake_screen() -> void:
@@ -125,6 +133,11 @@ func _flash_sprite():
 	sprite_main.show()
 
 
+func set_sprite_animation(animation) -> void:
+	sprite_main.animation = animation
+	sprite_main.play(animation)
+			
+	
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
