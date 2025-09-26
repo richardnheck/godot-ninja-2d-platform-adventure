@@ -6,16 +6,24 @@ export var speed := 3500
 var damage := 1
 var direction := Vector2.RIGHT setget set_direction
 onready var collision_shape = $CollisionShape2D
+onready var ball_sprite = $AnimatedSprite
 var explosion:AnimatedSprite = null
+
+var exploding = false
 
 func _ready() -> void:
 	explosion = get_node("ExplosionAnimatedSprite")
 	set_as_toplevel(true)
 	connect("body_entered", self, "hit_body")
+	
+	ball_sprite.rotation = -direction.angle()   # don't rotate the sprite
+	
 
 
 func _physics_process(delta: float) -> void:
-	global_position += speed * delta * direction.normalized()
+	if !exploding:
+		global_position += speed * delta * direction.normalized()
+	
 
 
 func hit_body(body) -> void:
@@ -34,12 +42,16 @@ func _destroy() -> void:
 func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction
 	rotation = new_direction.angle()
+	if is_instance_valid(ball_sprite):
+		ball_sprite.rotation = -rotation   # don't rotate the sprite
+	
 
 func do_explosion() -> void:
+	exploding = true
 	collision_shape.set_deferred("disabled", true)
 	$AnimatedSprite.visible = false
 	explosion.visible = true
-	explosion.global_position = global_position + Vector2(0,-10)
+	explosion.global_position = global_position
 	explosion.play()
 
 func _on_ExplosionAnimatedSprite_animation_finished() -> void:
