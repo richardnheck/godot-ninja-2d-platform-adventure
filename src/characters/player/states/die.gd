@@ -15,6 +15,7 @@ func enter():
 	
 func update(_delta):
 	.apply_gravity()
+	velocity.x = 0
 	move(velocity)
 	
 	var sprite = owner.get_node("AnimatedSprite")

@@ -8,6 +8,7 @@ func _ready():
 		"wall_slide" : $WallSlide,
 		"wall_jump" : $WallJump,
 		"die" : $Die,
+		"die_by_water" : $DieByWater,
 		"celebrate" : $Celebrate,
 		"air_jump" : $AirJump,
 		"talk" : $Talk
@@ -21,6 +22,8 @@ func _change_state(state_name:String, spring_impulse:Vector2 = Vector2.ZERO):
 	if not _active:
 		return
 	if current_state == $Die:
+		return
+	if current_state == $DieByWater:
 		return
 		
 	if state_name in ["jump"]:

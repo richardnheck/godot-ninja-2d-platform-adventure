@@ -14,7 +14,7 @@ var splash_scene = preload("res://src/objects/water-splash/WaterSplash.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gravity_scale = 5
-	print("gravity scale", gravity_scale)
+	#print("gravity scale", gravity_scale)
 
 func _physics_process(delta):
 	

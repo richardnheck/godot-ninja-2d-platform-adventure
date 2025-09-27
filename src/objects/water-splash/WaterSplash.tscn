@@ -52,6 +52,7 @@ animations = [ {
 } ]
 
 [node name="WaterSplash" type="Node2D"]
+z_index = 5
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

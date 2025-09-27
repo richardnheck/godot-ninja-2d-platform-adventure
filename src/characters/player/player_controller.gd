@@ -51,12 +51,15 @@ func take_damage(attacker, amount, effect = null):
 #	$Health.take_damage(amount, effect)
 
 # Start the dieing process
-func die():
+func die(groups = []):
+	print_debug("die(): " + str(groups))
 	if not dead:
-
 		set_dead(true)
-		$StateMachine._change_state("die")
-		sfx_die.play()
+		if groups.has(Constants.GROUP_WATER_TRAP):
+			$StateMachine._change_state("die_by_water")
+		else:
+			$StateMachine._change_state("die")
+			sfx_die.play()
 
 	
 func celebrate():

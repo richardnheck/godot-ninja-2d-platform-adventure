@@ -12,9 +12,11 @@ const GROUP_PLAYER = "player"
 const GROUP_KEY = "key"
 const GROUP_DOOR = "door"
 const GROUP_TRAP = "trap"
+const GROUP_WATER_TRAP = "water-trap"
 const GROUP_CHECKPOINT = "checkpoint"
 const GROUP_KILLABLE_ENEMY = "killable-enemy"
 const GROUP_BOSS = "boss"
+
 
 # Masks
 # -------------------------------------------

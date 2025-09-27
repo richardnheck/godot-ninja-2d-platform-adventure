@@ -5,16 +5,16 @@
 [ext_resource path="res://src/objects/boat/Boat.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28.375, 3.77977 )
+extents = Vector2( 31.4375, 2.63704 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.54868, 79.203 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 28.3125, 2.5 )
+extents = Vector2( 31.375, 2.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 0.15749, 8.66195 )
+extents = Vector2( 0.5, 8.66195 )
 
 [node name="Boat" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -23,10 +23,11 @@ script = ExtResource( 3 )
 collision_layer = 10
 
 [node name="CollisionShape2D" parent="KinematicBody2D" index="0"]
-position = Vector2( -0.5, 1.49431 )
+position = Vector2( -3.5625, 2.63704 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="KinematicBody2D" index="1"]
+z_index = 4
 texture = ExtResource( 2 )
 centered = true
 
@@ -39,7 +40,7 @@ shape = SubResource( 4 )
 [node name="StartArea2D" type="Area2D" parent="KinematicBody2D" index="3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/StartArea2D" index="0"]
-position = Vector2( -0.5625, -2.5 )
+position = Vector2( -3.625, -2.5 )
 shape = SubResource( 2 )
 
 [node name="LeftStaticBody2D" type="StaticBody2D" parent="KinematicBody2D" index="4"]
@@ -47,7 +48,7 @@ position = Vector2( 6.125, 5.25 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/LeftStaticBody2D" index="0"]
-position = Vector2( -35.2995, -5.43526 )
+position = Vector2( -41.625, -5.43526 )
 shape = SubResource( 3 )
 
 [node name="RightStaticBody2D" type="StaticBody2D" parent="KinematicBody2D" index="5"]

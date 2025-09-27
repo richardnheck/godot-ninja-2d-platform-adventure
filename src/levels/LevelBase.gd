@@ -159,10 +159,10 @@ func _on_Key_captured() -> void:
 func _on_Player_collided(collision: KinematicCollision2D) -> void:
 	# Confirm the colliding body is a TileMap
 	if collision.collider is TileMap:
-		var tilemap = collision.collider
-		if tilemap.is_in_group(Constants.GROUP_TRAP):
+		var tilemap = collision.collider as TileMap
+		if  tilemap.is_in_group(Constants.GROUP_TRAP):
 			# Player touched a trap so die
-			player.die()
+			player.die(tilemap.get_groups())
 
 # Called at the start of the die process
 func _on_Player_start_die() -> void:
@@ -170,7 +170,7 @@ func _on_Player_start_die() -> void:
 
 # Called when player animation and stuff have finished
 func _on_Player_died() -> void:
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	fadeScreen.reload_scene()
 	LevelData.reload_level()
 
