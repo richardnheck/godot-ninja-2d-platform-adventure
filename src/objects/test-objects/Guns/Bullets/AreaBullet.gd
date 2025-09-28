@@ -42,8 +42,8 @@ func _destroy() -> void:
 func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction
 	rotation = new_direction.angle()
-	if is_instance_valid(ball_sprite):
-		ball_sprite.rotation = -rotation   # don't rotate the sprite
+	#if is_instance_valid(ball_sprite):
+	#	ball_sprite.rotation = -rotation   # don't rotate the sprite (this doesn't seem to work)
 	
 
 func do_explosion() -> void:
