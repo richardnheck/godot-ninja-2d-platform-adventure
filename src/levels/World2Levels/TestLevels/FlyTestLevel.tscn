@@ -72,7 +72,6 @@ position = Vector2( 288, 79.375 )
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 4 )]
 position = Vector2( 384, 80 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 4 )]
 position = Vector2( 496, 127.688 )

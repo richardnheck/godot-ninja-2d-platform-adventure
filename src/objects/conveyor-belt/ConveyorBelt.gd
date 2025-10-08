@@ -1,3 +1,4 @@
+tool
 extends StaticBody2D
 
 export var speed = 50
@@ -18,7 +19,8 @@ func _ready():
 	constant_linear_velocity.x = speed
 
 func _process(delta):
-	sprite.texture.region.position.x -= speed * delta
+	if sprite:
+		sprite.texture.region.position.x -= speed * delta
 
 
 func _on_Area2D_body_entered(body: Node2D) -> void:

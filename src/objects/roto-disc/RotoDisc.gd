@@ -41,6 +41,10 @@ var radius = 50
 # The objects are programatically added to this node
 onready var pivot := $Pivot
 
+# The visible base for seeing the center point but is hidden in the game
+onready var base := $Base
+
+
 # Represents the actual rotation in degrees that the pivot is rotated
 # Positive rotation results in clockwise rotation
 var actual_rotation_degrees = 0
@@ -126,6 +130,8 @@ func _init_objects() -> void:
 func _ready() -> void:
 	if Engine.editor_hint:	
 		return
+		
+	base.visible = false   # hide the base in the game
 	reset()
 	
 # ------------------------------------------------------------------------------
