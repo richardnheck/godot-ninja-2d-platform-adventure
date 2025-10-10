@@ -149,6 +149,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/statemachine/states/motion/motion.gd"
 }, {
+"base": "Node2D",
+"class": "Nekekubi",
+"language": "GDScript",
+"path": "res://src/characters/enemies/nekekubi/Nekekubi.gd"
+}, {
 "base": "Area2D",
 "class": "NormalFireball",
 "language": "GDScript",
@@ -238,6 +243,7 @@ _global_script_class_icons={
 "MiniBossSlamBlast": "",
 "Momentum": "",
 "Motion": "",
+"Nekekubi": "",
 "NormalFireball": "",
 "OnGround": "",
 "PathFollowEnemyBase": "",
