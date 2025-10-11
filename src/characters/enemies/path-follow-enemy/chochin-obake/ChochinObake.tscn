@@ -22,6 +22,7 @@ animations = [ {
 [node name="ChochinObake" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 orientation = 2
+path_length = 64
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource( 1 )

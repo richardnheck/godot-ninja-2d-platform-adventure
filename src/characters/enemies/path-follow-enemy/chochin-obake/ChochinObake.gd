@@ -14,6 +14,7 @@ enum Orientation {
 }
 
 export(Orientation) var orientation = Orientation.HORIZONTAL_LEFT_RIGHT
+export(int) var path_length = 64
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,8 +29,10 @@ func _ready() -> void:
 	self.oscillation_frequency = 5
 		
 	# The aim is to give a path of roughly 64 pixels in length
-	var half_length_straight = 32  # this is for verical and horizontal curves
-	var half_length_45_degrees = 23 # this gives a diagonal length of ~32
+	var half_length_straight = path_length / 2  # this is for verical and horizontal curves
+	
+	var hypotenuse = path_length / 2
+	var half_length_45_degrees = hypotenuse / sqrt(2)
 	
 	var curve = Curve2D.new()
 	if orientation == Orientation.HORIZONTAL_LEFT_RIGHT:
