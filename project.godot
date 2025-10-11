@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObake.gd"
 }, {
+"base": "PathFollowEnemyBase",
+"class": "ChochinObakeShooter",
+"language": "GDScript",
+"path": "res://src/characters/enemies/path-follow-enemy/chochin-obake-shooter/ChochinObakeShooter.gd"
+}, {
 "base": "Node2D",
 "class": "ClockSwitch",
 "language": "GDScript",
@@ -226,6 +231,7 @@ _global_script_class_icons={
 "Character2": "",
 "Checkpoint": "",
 "ChochinObake": "",
+"ChochinObakeShooter": "",
 "ClockSwitch": "",
 "CommonNode": "",
 "CutSceneBase": "",

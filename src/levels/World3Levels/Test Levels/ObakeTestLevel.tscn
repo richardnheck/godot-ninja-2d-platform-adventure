@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/characters/enemies/kasa-obake/KasaObake.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObake.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake-shooter/ChochinObakeShooter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]
@@ -88,14 +89,6 @@ one_shot = true
 position = Vector2( 340, 143 )
 horizontal_direction = -1
 
-[node name="ChochinObake" parent="enemies" instance=ExtResource( 4 )]
-position = Vector2( -157, 78.0564 )
-speed = 40.0
-tween_transition_type = 3
-oscillation_amplitude = 2.0
-oscillation_frequency = 5.0
-orientation = 3
-
 [node name="ChochinObake2" parent="enemies" instance=ExtResource( 4 )]
 position = Vector2( -23, 72.0564 )
 speed = 40.0
@@ -103,6 +96,10 @@ tween_transition_type = 3
 oscillation_amplitude = 2.0
 oscillation_frequency = 5.0
 orientation = 4
+path_length = 70
+
+[node name="ChochinObakeShooter" parent="enemies" instance=ExtResource( 5 )]
+position = Vector2( -136, 16 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
