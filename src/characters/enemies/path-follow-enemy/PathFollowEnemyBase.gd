@@ -92,6 +92,9 @@ func start_following_path(start_offset):
 
 
 func _process(delta: float) -> void:
+	if Engine.editor_hint:
+		return
+		
 	_check_position()
 	
 	#-------------
@@ -106,6 +109,9 @@ func _check_position() -> void:
 	
 
 func _start_tween():
+	if Engine.editor_hint:
+		return
+		
 	if path2d.curve:
 		var curve_length = path2d.curve.get_baked_length() 
 		

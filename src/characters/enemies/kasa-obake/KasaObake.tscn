@@ -27,8 +27,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.5, 15.3219 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10.5, 24 )
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 [node name="KasaObake" type="KinematicBody2D"]
 collision_layer = 4
@@ -60,7 +59,10 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0.5, -24 )
-shape = SubResource( 2 )
+shape = SubResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -14, -20, 1, -55, 15, -20, 6, -20, 6, -1, -6, -1, -6, -20, -14, -20 )
 
 [node name="JumpTimer" type="Timer" parent="."]
 one_shot = true
