@@ -1,13 +1,16 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/objects/rotating-platforms/RotatingPlatform.gd" type="Script" id=1]
-[ext_resource path="res://src/objects/fireball-spinner/FireSpinnerBase.png" type="Texture" id=3]
+[ext_resource path="res://src/objects/rotating-platform/RotatingPlatform.gd" type="Script" id=1]
+[ext_resource path="res://src/objects/fireball-spinner/FireSpinnerBase.png" type="Texture" id=2]
 
 [node name="RotatingPlatform" type="Node2D"]
 script = ExtResource( 1 )
+rotation_style = 0
+chains = 2
 
 [node name="Base" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+visible = false
+texture = ExtResource( 2 )
 
 [node name="Pivot" type="Node2D" parent="."]
 

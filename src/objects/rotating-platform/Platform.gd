@@ -4,7 +4,7 @@ class_name Platform
 var _showing:bool = false setget set_showing, get_showing
 var _current_rotation_degrees = 0
 
-onready var collision_shape:CollisionShape2D = $Area2D/CollisionShape2D
+onready var collision_shape:CollisionShape2D = $CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,9 +42,8 @@ func remember_current_rotation() -> void:
 	
 # Adjust the rotation of the platform by the specified number of degrees
 func adjust_rotation(degrees:float) -> void:
-	print_debug("degrees" + str(degrees))
+	print_debug("adjust_rotation:" + str(degrees))
 	rotation_degrees = _current_rotation_degrees + degrees
-	rotation_degrees =0
 		
 	
 # Handle when a body enters the object

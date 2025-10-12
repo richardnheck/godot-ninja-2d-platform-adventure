@@ -6,7 +6,7 @@ class_name RotatingPlatform
 ## A node that rotates or swings platforms
 ##
 
-const platform_scene = "res://src/objects/rotating-platforms/Platform.tscn"	# Platform scene	
+const platform_scene = "res://src/objects/rotating-platform/Platform.tscn"	# Platform scene	
 const Once = preload("res://src/utility/Once.gd")				# Utility for trigger once behaviour
 
 enum RotationStyle { 
@@ -24,6 +24,7 @@ export(RotationStyle) var rotation_style:int = 1 setget _set_rotation_style
 # Postive angles rotate clockwise
 export(int, -180, 180, 45) var start_direction:int = 0 setget _set_start_direction
 
+
 # The spin speed of rotation (degrees per second)
 export(int, -180, 180, 45) var spin_speed:int = 90 setget _set_spin_speed
 
@@ -32,7 +33,7 @@ export(int, 45, 135, 45) var swing_degrees:int = 90 setget _set_swing_degrees
 
 # The swing speed in degrees per second
 # Positive speed starts rotation in clockwise direction 
-export(int, -100, 100, 10) var swing_speed:int = 90 setget _set_swing_speed
+export(int, -100, 100, 5) var swing_speed:int = 90 setget _set_swing_speed
 
 # The swing time offset in seconds to reach start direction
 export(float, 0, 30, 0.1) var swing_time_offset:float = 0 setget _set_swing_time_offset
@@ -361,7 +362,7 @@ func _on_Switch_switched(active) -> void:
 # ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
-func _process(delta: float) -> void: 
+func _physics_process(delta: float) -> void: 
 	time_passed += delta
 	
 	if rotation_style == RotationStyle.SPIN:
@@ -375,9 +376,11 @@ func _process(delta: float) -> void:
 func _process_spin(delta: float) -> void:
 	actual_rotation_degrees += spin_speed * delta
 	if not Engine.editor_hint:
-		# Rotate the actual flames in the game
+		# Rotate the platforms around the pivot
 		pivot.rotation_degrees = start_direction + actual_rotation_degrees
 	
+		# Counter pivot rotation to ensure platforms stay horizontal
+		_rotate_platforms(-pivot.rotation_degrees)
 	update()
 	
 
@@ -400,8 +403,7 @@ func _process_swing(delta: float) -> void:
 	if not Engine.editor_hint:
 		# Rotate the platform in the actual game so it also stays horizontal
 		pivot.rotation_degrees = actual_rotation_degrees
-		# Call all platforms to adjust their rotation
-		get_tree().call_group(_get_platform_group(), "adjust_rotation", 90)
+		_rotate_platforms(-actual_rotation_degrees)
 		
 	# Handle when a swing in one direction is finished
 	# An easings output is from 0 (start) to 1 (end)
@@ -419,6 +421,14 @@ func _process_swing(delta: float) -> void:
 		_set_ease_range()		
 
 
+# ------------------------------------------------------------------------------
+# Rotate the platforms
+# Call all platforms to adjust their rotation
+# ------------------------------------------------------------------------------
+func _rotate_platforms(degrees) -> void:
+	get_tree().call_group(_get_platform_group(), "adjust_rotation", degrees)
+
+	
 # ------------------------------------------------------------------------------
 # Calculate the adjustments caused by swing time offset
 # Swing time offset represents the time by which the swing is delayed before it 
@@ -496,11 +506,11 @@ func _add_platform(index, start_angle, clockwise, has_speed) -> void:
 	platform.add_to_group(_get_platform_group())
 	platform.position = Vector2(dist, 0).rotated(deg2rad(start_angle))
 
-	# The fireballs they should all be horizontal
+	# The platforms they should all be horizontal
 	platform.rotation_degrees = -start_direction
 #	
 	# Remember the current rotation so it can be adjusted incrementally in order to rotate the fireball at the end of the swing
-	platform.remember_current_rotation()		
+	# platform.remember_current_rotation()		
 	
 	# Show only the platforms up to the specified length
 	platform.show_platform(index < length)
@@ -519,23 +529,22 @@ func _draw():
 		
 	# Draw the platforms
 	for c in range(0, chains):
-		for i in range(0, length):
-			var angle = c * (360 / chains)
-			_draw_platform(i, start_direction + angle)
+		var angle = c * (360 / chains)
+		_draw_platform(length - 1, start_direction + angle)
 		
 	if rotation_style == RotationStyle.SPIN:
-		# Draw the outer circle around the outmost fireball
-		var outer_circle_fireball_spacing = (platform_spacing/2) + platform_spacing + ((length - 1)  * platform_spacing)
-		_draw_empty_circle(Vector2(), Vector2(0, outer_circle_fireball_spacing), COLOR_WHITE, 1)
+		# Draw the outer circle through the center of the platform
+		var dist = (length-1)*platform_spacing + platform_spacing
+		_draw_empty_circle(Vector2(), Vector2(0, dist), COLOR_WHITE, 1)
 		
 		# Draw the circle indicating speed of rotation
 		if animate_in_editor:
-			draw_circle(Vector2(outer_circle_fireball_spacing, 0).rotated(deg2rad(start_direction + actual_rotation_degrees)), 3, COLOR_WHITE)
+			draw_circle(Vector2(dist, 0).rotated(deg2rad(start_direction + actual_rotation_degrees)), 3, COLOR_WHITE)
 	
 	elif rotation_style == RotationStyle.SWING:
 		# Draw boundary lines for range of swing
 		# NB: In Godot: Positive rotation is clockwise
-		var dist = platform_spacing + length * platform_spacing
+		var dist = platform_spacing + (length-1) * platform_spacing
 		var line_end = dist * Vector2.RIGHT.rotated(deg2rad(start_direction)).rotated(deg2rad(-swing_degrees))
 		draw_line(Vector2(), line_end, COLOR_BLUE, 1, true)
 		draw_circle(line_end, 3, COLOR_BLUE)
@@ -558,7 +567,14 @@ func _draw():
 # ------------------------------------------------------------------------------
 func _draw_platform(index:int, start_angle:float) -> void:
 	var dist = platform_spacing + index * platform_spacing
-	_draw_empty_circle(Vector2(dist, 0).rotated(deg2rad(start_angle)), Vector2(platform_spacing/2,0), COLOR_ORANGE, 1)
+	var platform_height = 16 
+	var platform_width = 32
+	var center = Vector2(dist, 0).rotated(deg2rad(start_angle))
+	var top_left_x = center.x - (platform_width / 2)
+	var top_left_y = center.y - (platform_height / 2)
+	var rect_position = Vector2(top_left_x, top_left_y)
+	draw_rect(Rect2(rect_position, Vector2(32,16)), COLOR_ORANGE)
+	_draw_empty_circle(center, Vector2(2,0), COLOR_WHITE, 1)
 
 
 # ------------------------------------------------------------------------------

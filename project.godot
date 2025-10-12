@@ -187,7 +187,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Platform",
 "language": "GDScript",
-"path": "res://src/objects/rotating-platforms/Platform.gd"
+"path": "res://src/objects/rotating-platform/Platform.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -197,7 +197,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "RotatingPlatform",
 "language": "GDScript",
-"path": "res://src/objects/rotating-platforms/RotatingPlatform.gd"
+"path": "res://src/objects/rotating-platform/RotatingPlatform.gd"
 }, {
 "base": "Node2D",
 "class": "ScreenShake",
