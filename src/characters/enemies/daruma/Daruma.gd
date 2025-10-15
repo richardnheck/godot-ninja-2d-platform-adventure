@@ -5,10 +5,11 @@ extends KinematicBody2D
 class_name Daruma
 
 # Exports
-export var gravity = 6
-export var jump_power = 350
+export var gravity = 7
+export var jump_power = 200
 export var horizontal_jump_velocity = 0
 export(int,-1,1) var horizontal_direction = 1
+export(float,0,5) var wait_time = 0.5		# wait time before starting to jump
 
 onready var sprite_main = $AnimatedSprite
 onready var sprite_flash = $SpriteFlash
@@ -49,7 +50,7 @@ func _ready() -> void:
 	
 	if current_state == State.JUMP:
 		# wait a bit before starting
-		yield(get_tree().create_timer(1.5), "timeout")
+		yield(get_tree().create_timer(wait_time), "timeout")
 		do_jump = true
 		jump_timer.start()
 	

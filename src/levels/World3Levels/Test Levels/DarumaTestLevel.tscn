@@ -79,7 +79,7 @@ length = 5
 
 [node name="ConveyorBelt2" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( -24, 152 )
-constant_linear_velocity = Vector2( 50, 0 )
+constant_linear_velocity = Vector2( -50, 0 )
 speed = -50
 length = 5
 
@@ -100,6 +100,7 @@ position = Vector2( -80, 144 )
 
 [node name="Daruma2" parent="enemies" instance=ExtResource( 3 )]
 position = Vector2( 40, 144 )
+wait_time = 1.5
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
