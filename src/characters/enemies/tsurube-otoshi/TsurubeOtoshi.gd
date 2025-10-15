@@ -5,8 +5,8 @@ extends KinematicBody2D
 
 
 # Exports
-export var gravity = 6
-export var jump_power = 300
+export var gravity = 7
+export var jump_power = 200
 export var horizontal_jump_velocity = 40
 export(int,-1,1) var horizontal_direction = 1
 
