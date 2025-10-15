@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/commons/DamageZone.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Daruma",
+"language": "GDScript",
+"path": "res://src/characters/enemies/daruma/Daruma.gd"
+}, {
 "base": "State",
 "class": "Death",
 "language": "GDScript",
@@ -261,6 +266,7 @@ _global_script_class_icons={
 "CommonNode": "",
 "CutSceneBase": "",
 "DamageZone": "",
+"Daruma": "",
 "Death": "",
 "Disc": "",
 "Draw": "",
