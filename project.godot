@@ -253,6 +253,11 @@ _global_script_classes=[ {
 "class": "WanyudoMiniSpawner",
 "language": "GDScript",
 "path": "res://src/characters/enemies/wanyudo-mini/WanyudoMiniSpawner.gd"
+}, {
+"base": "PathFollowEnemyBase",
+"class": "ZenchuuNoHikari",
+"language": "GDScript",
+"path": "res://src/characters/enemies/path-follow-enemy/zenchuu-no-hikari/ZenchuuNoHikari.gd"
 } ]
 _global_script_class_icons={
 "AreaBullet": "",
@@ -303,7 +308,8 @@ _global_script_class_icons={
 "TiledLevelBase": "",
 "Tofu": "",
 "TofuKozo": "",
-"WanyudoMiniSpawner": ""
+"WanyudoMiniSpawner": "",
+"ZenchuuNoHikari": ""
 }
 
 [Debug]
