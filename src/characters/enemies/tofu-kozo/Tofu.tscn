@@ -21,8 +21,8 @@ extents = Vector2( 4, 4 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 5 )
 
-[node name="Tofu" type="RigidBody2D"]
-gravity_scale = 2.0
+[node name="Tofu2" type="RigidBody2D"]
+gravity_scale = 6.0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

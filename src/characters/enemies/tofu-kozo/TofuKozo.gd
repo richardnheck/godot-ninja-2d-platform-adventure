@@ -13,35 +13,54 @@ onready var throw_timer = $ThrowTimer
 onready var tofu_position = $TofuPosition2D
 
 
-var throw = false
-var player_in_range = false
+var throw := false
+var player_in_range := false
 var tofu:Tofu = null
 var rng = RandomNumberGenerator.new()
 
-const throw_impulse_strength = 120
-const throw_x_amount = 0.2
+const throw_impulse_strength := 240
+const throw_x_amount := 0.15
 
+var player:Player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	
-	# Set the direction
-	self.scale.x = direction
+	# update the character to face the correct direction
+	_update_character()
 	
 	# Add some tofu
 	yield(get_tree().create_timer(0.1), "timeout")
 	_add_tofu()
+	
+
+func set_player(player: Player):
+	self.player = player
+
+
+func _process(delta):
+	_turn_to_player()
 
 
 func _physics_process(delta):
 	if throw:
 		if tofu:
 			var throw_direction = Vector2(throw_x_amount*direction, -1)		
-			var impulse_strength_variant: int = rng.randi_range(-10, 10) 
+			var impulse_strength_variant: int = rng.randi_range(-20, 20) 
 			tofu.apply_impulse(Vector2.ZERO, throw_direction * (throw_impulse_strength + impulse_strength_variant))
 			tofu = null
 			throw = false
+
+# Turn in the direction of the player
+func _turn_to_player() -> void:
+	if player:
+		direction = -1 if player.global_position < self.global_position else 1
+		_update_character()
+
+
+func _update_character():
+	self.scale.x = direction		
 
 
 func _on_TofuKozo_body_entered(body):
