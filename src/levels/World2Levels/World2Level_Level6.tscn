@@ -438,6 +438,7 @@ position = Vector2( -23.274, 0 )
 [node name="ZukaiKotsu2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 792, -216 )
 speed = 24.0
+flip_sprite = true
 
 [node name="Path2D" parent="Enemies/ZukaiKotsu2" index="0"]
 curve = SubResource( 3 )
@@ -686,6 +687,7 @@ receiving_channel = 5
 [node name="ZukaiKotsu3" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 3648, -1856 )
 speed = 24.0
+flip_sprite = true
 
 [node name="Path2D" parent="Enemies/ZukaiKotsu3" index="0"]
 curve = SubResource( 13 )
