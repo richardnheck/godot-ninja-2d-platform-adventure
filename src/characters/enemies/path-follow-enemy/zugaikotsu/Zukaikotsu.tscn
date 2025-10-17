@@ -30,6 +30,7 @@ animations = [ {
 
 [node name="ZukaiKotsu" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+flip_sprite = false
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 0.451919, -0.370914 )

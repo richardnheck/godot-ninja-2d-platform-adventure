@@ -1,5 +1,8 @@
 extends PathFollowEnemyBase
 
+# Fix to ensure head is facing in the correct direction if the path starts
+# from right to left
+export(bool) var flip_sprite = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,3 +13,5 @@ func _ready() -> void:
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
+	
+	animated_sprite.flip_h = flip_sprite
