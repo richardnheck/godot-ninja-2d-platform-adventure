@@ -40,11 +40,11 @@ export(float) var delay:float = 0
 export(float) var oscillation_amplitude:float = 0
 export(float) var oscillation_frequency:float = 0
 
-onready var tween = $Tween
-onready var path2d = $Path2D
-onready var path_follow_2d = $Path2D/PathFollow2D
-onready var animated_sprite = $Area2D/AnimatedSprite
-onready var oscillation_tween = $OscillationTween
+onready var tween := $Tween
+onready var path2d := $Path2D
+onready var path_follow_2d := $Path2D/PathFollow2D
+onready var animated_sprite:AnimatedSprite = $Area2D/AnimatedSprite
+onready var oscillation_tween := $OscillationTween
 
 onready var tween_values = [0, 1]
 
