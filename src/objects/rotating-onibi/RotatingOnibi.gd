@@ -1,10 +1,11 @@
 tool
 extends Node2D
+class_name RotatingOnibi
 
 ##
 ## A node that spins an object
 ##
-const object_scene = "res://src/objects/roto-disc/Disc.tscn"	
+const object_scene = "res://src/objects/rotating-onibi/Onibi.tscn"
 const Once = preload("res://src/utility/Once.gd")				# Utility for trigger once behaviour
 
 # Configurable Properties
@@ -15,7 +16,7 @@ const Once = preload("res://src/utility/Once.gd")				# Utility for trigger once 
 export(int, -180, 180, 45) var start_direction:int = 0 setget _set_start_direction
 
 # The spin speed of rotation (degrees per second)
-export(int, -180, 180, 45) var spin_speed:int = 90 setget _set_spin_speed
+export(int, -180, 180, 10) var spin_speed:int = 90 setget _set_spin_speed
 
 # The number of object chains that can spin
 export(int, 1, 4) var chains:int = 1 setget _set_chains
@@ -150,8 +151,18 @@ func _process_spin(delta: float) -> void:
 		# Rotate the actual flames in the game
 		pivot.rotation_degrees = start_direction + actual_rotation_degrees
 	
+		# Counter pivot rotation to ensure objects stay vertical
+		_rotate_objects(-pivot.rotation_degrees)
 	update()
-	
+
+
+# ------------------------------------------------------------------------------
+# Rotate the objects
+# Call all objects to adjust their rotation
+# ------------------------------------------------------------------------------
+func _rotate_objects(degrees) -> void:
+	get_tree().call_group(_get_object_group(), "adjust_rotation", degrees)
+		
 # ------------------------------------------------------------------------------
 # Get the name of the object group
 # ------------------------------------------------------------------------------
@@ -164,10 +175,13 @@ func _get_object_group()-> String:
 # @param start_angle	The starting angle of the chain
 # ------------------------------------------------------------------------------
 func _add_object(start_angle) -> void:
-	var object:Disc = load(object_scene).instance()
+	var object:Onibi = load(object_scene).instance()
 	object.add_to_group(_get_object_group())
 	object.position = Vector2(radius, 0).rotated(deg2rad(start_angle))
 	object.show_object(true)
+	
+	# The objects should all be be aligned at right angles to the ground
+	object.rotation_degrees = -start_direction
 	
 	# Add the object to the pivot
 	pivot.add_child(object)		

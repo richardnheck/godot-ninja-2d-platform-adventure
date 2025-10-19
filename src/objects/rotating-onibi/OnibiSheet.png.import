@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RotoDiscBase.png-a5296afc7b896b6f71b6794cccd66cb9.stex"
+path="res://.import/OnibiSheet.png-82d1b7bc08bf2698ce45b193f984b7fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/roto-disc/RotoDiscBase.png"
-dest_files=[ "res://.import/RotoDiscBase.png-a5296afc7b896b6f71b6794cccd66cb9.stex" ]
+source_file="res://src/objects/rotating-onibi/OnibiSheet.png"
+dest_files=[ "res://.import/OnibiSheet.png-82d1b7bc08bf2698ce45b193f984b7fc.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

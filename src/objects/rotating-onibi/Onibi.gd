@@ -1,7 +1,8 @@
 extends Node2D
-class_name Disc
+class_name Onibi
 
 var _showing:bool = false setget set_showing, get_showing
+var _current_rotation_degrees = 0
 
 onready var collision_shape:CollisionShape2D = $Area2D/CollisionShape2D
 
@@ -28,6 +29,11 @@ func get_showing() -> bool:
 # Show/hide the object
 func show_object(value:bool) -> void:
 	set_showing(value)		
+	
+# Adjust the rotation of the onibi by the specified number of degrees
+func adjust_rotation(degrees:float) -> void:
+	print_debug("adjust_rotation:" + str(degrees))
+	rotation_degrees = _current_rotation_degrees + degrees
 	
 # Handle when a body enters the object
 func _on_body_entered(body: Node) -> void:
