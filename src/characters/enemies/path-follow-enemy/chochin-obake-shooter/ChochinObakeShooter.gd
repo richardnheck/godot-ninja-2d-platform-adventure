@@ -46,6 +46,6 @@ func _on_ShootTimer_timeout():
 func _drop_candle():
 	var candle = preload("res://src/characters/enemies/path-follow-enemy/chochin-obake-shooter/falling-candle/FallingCandle.tscn").instance()
 	candle.global_position = Vector2(sprite.global_position.x-8, sprite.global_position.y)
-	get_parent().add_child(candle)
+	get_parent().get_tree().current_scene.add_child(candle)
 	if candle.has_method("trigger"):
 		candle.trigger()
