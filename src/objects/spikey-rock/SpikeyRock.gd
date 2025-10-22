@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if up_down:
 		vel.y += gravity * direction;
 		vel = move_and_slide(vel, Vector2.UP)
