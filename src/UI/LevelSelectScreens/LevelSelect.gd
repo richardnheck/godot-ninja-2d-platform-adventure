@@ -29,9 +29,13 @@ func _ready() -> void:
 	var levelsCount = levels.size()
 
 	var levelNumber = 0;
-	for levelIndex in range(0, levelsCount - 1):   # Don't include boss scene
+	for levelIndex in range(0, levelsCount):   # NB: range second param is the upper limit of the sequence (exclusive).
+		#print_debug(str(levelIndex) + ": " + str(levels[levelIndex].world))
+		# Don't include boss scene
 		var isBossLevel = levels[levelIndex].has("is_boss") and levels[levelIndex].is_boss
+		
 		if levels[levelIndex].world == self.this_world and not isBossLevel:
+			
 			var button = Button.new()
 			
 			button.disabled = true

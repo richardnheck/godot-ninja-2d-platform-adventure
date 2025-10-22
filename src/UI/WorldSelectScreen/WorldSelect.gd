@@ -25,5 +25,11 @@ func _on_World1Button_button_up() -> void:
 
 
 func _on_World2Button_pressed() -> void:
+	print_debug("world 2 button")
 	Game_AudioManager.sfx_ui_general_select.play()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/World2LevelSelect.tscn")
+
+func _on_World3Button_pressed() -> void:
+	print_debug("world 3 button")
+	Game_AudioManager.sfx_ui_general_select.play()
+	get_tree().change_scene("res://src/UI/LevelSelectScreens/World3LevelSelect.tscn")

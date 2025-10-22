@@ -62,7 +62,6 @@ __meta__ = {
 margin_left = 203.0
 margin_right = 281.0
 margin_bottom = 129.0
-disabled = true
 texture_normal = ExtResource( 7 )
 texture_disabled = ExtResource( 7 )
 
@@ -70,3 +69,4 @@ texture_disabled = ExtResource( 7 )
 
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]
 [connection signal="pressed" from="HBoxContainer/World2Button" to="." method="_on_World2Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/World3Button" to="." method="_on_World3Button_pressed"]

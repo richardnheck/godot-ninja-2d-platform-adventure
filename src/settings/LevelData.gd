@@ -7,6 +7,8 @@ const WORLD3 = 3    # World3 - The Tower
 
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
+const WORLD3_LEVELS_PATH = "res://src/levels/World3Levels/World3Level_"
+
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
 const LEVEL_SELECT_SCREENS_PATH = "res://src/UI/LevelSelectScreens/"
@@ -42,6 +44,9 @@ var levelsArray = [
 	{"world": WORLD2, "name" : "Level5", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Level6", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true},
+
+	# World 3
+	{"world": WORLD3, "name" : "Level1", "scene_path" : WORLD3_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
 ];
 
 
