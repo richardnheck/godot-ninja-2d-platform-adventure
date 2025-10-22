@@ -83,10 +83,9 @@ one_shot = true
 
 [node name="enemies" type="Node2D" parent="."]
 
-[node name="TofuKozo" parent="." instance=ExtResource( 3 )]
-position = Vector2( -3, 64 )
+[node name="TofuKozo" parent="enemies" instance=ExtResource( 3 )]
+position = Vector2( 0, 64 )
 scale = Vector2( -1, 1 )
-direction = -1
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
