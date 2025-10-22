@@ -5,9 +5,9 @@ extends KinematicBody2D
 
 
 # Exports
-export var gravity = 6
-export var jump_power = 235
-export var horizontal_jump_velocity = 70
+export var gravity = 500
+export var jump_power = 180
+export var horizontal_jump_velocity = 50
 export(int,-1,1) var horizontal_direction = 1
 
 onready var sprite_main = $AnimatedSprite
@@ -64,10 +64,9 @@ func set_player(player_ref):
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match current_state:	
 		State.JUMP:
-			
 			if do_jump:
 				velocity.y = -jump_power
 				velocity.x = horizontal_direction * horizontal_jump_velocity
@@ -76,8 +75,8 @@ func _process(delta: float) -> void:
 				landing = true
 				set_sprite_animation("jump")	
 			
-			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
-			velocity.y += gravity
+			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)	
+			velocity.y += gravity * delta
 			
 			if is_on_floor():
 				set_sprite_animation("ground")
