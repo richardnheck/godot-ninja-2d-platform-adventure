@@ -54,7 +54,7 @@ func _physics_process(delta):
 
 # Turn in the direction of the player
 func _turn_to_player() -> void:
-	if player:
+	if player and player_in_range:
 		direction = -1 if player.global_position < self.global_position else 1
 		_update_character()
 
@@ -75,13 +75,11 @@ func _on_ThrowTimer_timeout():
 func _add_tofu() -> void:
 	var instance:Tofu = preload("res://src/characters/enemies/tofu-kozo/Tofu.tscn").instance()
 	instance.global_position = tofu_position.global_position
-	get_parent().add_child(instance)
+	get_parent().get_tree().current_scene.add_child(instance)
 	tofu = instance
 
 	
 func _throw_tofu() -> void:
-	
-		
 	if tofu:
 		# Tofu exists so throw it
 		if player_in_range:
