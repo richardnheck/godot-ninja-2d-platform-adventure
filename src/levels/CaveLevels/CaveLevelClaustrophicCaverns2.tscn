@@ -78,8 +78,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1569, 768 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1633, 1138 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -623,7 +623,6 @@ one_shot = true
 
 [node name="CaveLevelMiniBoss" parent="." instance=ExtResource( 19 )]
 position = Vector2( 1600, 1120 )
-gravity = 6
 
 [node name="CaveLevelMiniBoss4" parent="." instance=ExtResource( 19 )]
 position = Vector2( 1296, 1040 )

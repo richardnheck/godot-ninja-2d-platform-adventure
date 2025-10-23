@@ -31,6 +31,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
 position = Vector2( 24, -8 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
