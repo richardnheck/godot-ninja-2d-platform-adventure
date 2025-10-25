@@ -77,4 +77,5 @@ func _on_FlashTimer_timeout() -> void:
 #
 #	flash_on = not flash_on
 
-
+func die():
+	_do_death()
