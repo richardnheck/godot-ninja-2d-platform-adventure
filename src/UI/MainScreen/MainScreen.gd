@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var main_play_button := $Control/VBoxContainer/MainPlayButton
 onready var quit_button := $Control/VBoxContainer/QuitButton
-onready var title = $TitleScreenText
+onready var title = $Control/TitleScreenText
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
 var settings = preload("res://src/UI/Settings/Settings.tscn")
