@@ -240,7 +240,7 @@ tile_data = PoolIntArray( -9961192, -2147483644, 0, -9961191, -2147483644, 0, -9
 tile_set = ExtResource( 28 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -6881096, 12, 0, -6553416, 12, 0, -6356808, 12, 0 )
+tile_data = PoolIntArray( -6750024, 12, 0, -6553416, 12, 0, -6356808, 12, 0 )
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -272,7 +272,7 @@ id = "3"
 position = Vector2( 4666, -2288 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
-position = Vector2( 2952, -1712 )
+position = Vector2( 2952, -1664 )
 
 [node name="MovingPlatformCave2H" parent="InteractiveProps" instance=ExtResource( 20 )]
 position = Vector2( 2808, -1480 )
