@@ -68,7 +68,6 @@ extents = Vector2( 8.01219, 7.95285 )
 script = ExtResource( 1 )
 
 [node name="ShootPosition" type="Position2D" parent="."]
-position = Vector2( 8.1704, 0 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
@@ -77,6 +76,7 @@ one_shot = true
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 4
 frames = SubResource( 6 )
 
 [node name="CanonBlastAnimatedSprite" type="AnimatedSprite" parent="AnimatedSprite"]

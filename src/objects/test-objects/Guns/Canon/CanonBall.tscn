@@ -6,7 +6,7 @@
 [ext_resource path="res://src/objects/test-objects/Guns/Canon/bk_explo_one.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 7.16618
+radius = 7.0
 height = 0.0
 
 [sub_resource type="SpriteFrames" id=2]
@@ -201,7 +201,6 @@ script = ExtResource( 2 )
 speed = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 7, 0 )
 rotation = 1.57079
 shape = SubResource( 1 )
 
