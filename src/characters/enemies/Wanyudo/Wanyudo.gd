@@ -3,6 +3,7 @@ extends PathFollowEnemyBase
 onready var path = $Path2D
 onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
+onready var mini_wanyudo_spawn_timer = $MiniWanyudoSpawnTimer
 
 # Phase1 - Boss follows a path and throws homing fireball missiles
 const STATE_PHASE1:String = "phase1"
@@ -14,6 +15,7 @@ const STATE_PHASE2:String = "phase2"
 var state = STATE_PHASE1
 
 var player = null
+var ceiling_position:Position2D = null
 
 const SPEED:int = 75
 
@@ -71,17 +73,21 @@ func goto_next_phase() -> void:
 	# Phase 2 transition
 	# Wanyudo goes to the near end of the path and then floats
 	# down above the player
-	state = STATE_PHASE2_TRANSITION
-	stop_following_path()     	# stop following initially
-	yield(get_tree().create_timer(0.3), "timeout")
-	start_following_path(0.96)	# start following path from near the end
-	yield(get_tree().create_timer(2), "timeout")
-	stop_following_path()
+#	state = STATE_PHASE2_TRANSITION
+#	stop_following_path()     	# stop following initially
+#	yield(get_tree().create_timer(0.3), "timeout")
+#	start_following_path(0.96)	# start following path from near the end
+#	yield(get_tree().create_timer(2), "timeout")
+#	stop_following_path()
 	
 #	# When in Phase 2 do not follow the path any longer
 #	# Make the fireballs not homing missiles
 #	# They are just fired at the player's current position
 	state = STATE_PHASE2
+	
+	# Start spawning mini wanyudo's
+	_spawn_falling_mini_wanyudo_array()
+	self.mini_wanyudo_spawn_timer.start()
 	
 	# Readjust the position now that it is no longer following the path
 	# Get the position of the last point
@@ -106,14 +112,15 @@ var follow_speed = 1	    # speed of follow. The higher the value the faster he f
 var position_offset = 50    # Set a larger value for Wanyudo to be ahead of player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match state:	
 		STATE_PHASE2:
+			pass
 			# Follow the player and hover above
-			position.x = lerp(position.x, player.position.x + position_offset, delta * follow_speed ) 
-			position.y = lerp(position.y, 14, delta) + 0.75 * cos(time_passed * oscillation_frequency)
-			
-			time_passed += delta
+#			position.x = lerp(position.x, player.position.x + position_offset, delta * follow_speed ) 
+#			position.y = lerp(position.y, 14, delta) + 0.75 * cos(time_passed * oscillation_frequency)
+#
+#			time_passed += delta
 
 
 # Shoot a fireball
@@ -129,3 +136,46 @@ func _shoot_fireball() -> void:
 # Shoot another fireball once the previous fireball lifetime runs out	
 func _on_fireball_destroyed(): 
 	_shoot_fireball()
+	
+
+# Set the position of the ceiling
+# This position is used to place the mini wanyudo array in the scene
+func set_ceiling_position(ceiling_pos):
+	ceiling_position = ceiling_pos;	
+	
+func _spawn_falling_mini_wanyudo_array() -> void:
+	var array_instance = preload("res://src/characters/enemies/Wanyudo/FallingMiniWanyudoArray.tscn").instance()
+	array_instance.connect("finished", self, "_on_falling_spikes_finished")
+	var spikes_width = array_instance.get_width()
+	
+	
+	# get the distance to the player
+	var distance_to_player = position.distance_to(player.position)
+	print(distance_to_player)
+	# place the spikes array directly over the player
+	var spikes_offset = distance_to_player
+	if player.position.x < position.x:
+		# player is behind boss so adjust offset to be in other direction
+		spikes_offset *= -1
+
+	# Place so around the player
+	# Also place the spikes array on the ceiling
+	array_instance.global_position = Vector2(global_position.x + spikes_offset, ceiling_position.global_position.y)
+	
+	# Using viewport (NB: only works when stretch mode = Viewport)
+	#var viewport_height = get_viewport().size.y
+	#spikes_instance.global_position = Vector2(global_position.x + spikes_offset, ground_global_position.y - viewport_height + (3*16))
+	
+	# add the instance and trigger the spikes
+	get_parent().add_child(array_instance)
+
+		
+func _on_falling_spikes_finished():
+	pass
+	#if current_state == STATE_UP_DOWN_SLAM:
+	#	emit_signal("state_cycle_finished", STATE_UP_DOWN_SLAM)
+		#_spawn_falling_spikes_array()	
+
+
+func _on_MiniWanyudoSpawnTimer_timeout():
+	_spawn_falling_mini_wanyudo_array()

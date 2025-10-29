@@ -59,5 +59,9 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" parent="Area2D" index="3"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
-frame = 2
 playing = true
+
+[node name="MiniWanyudoSpawnTimer" type="Timer" parent="." index="4"]
+wait_time = 5.0
+
+[connection signal="timeout" from="MiniWanyudoSpawnTimer" to="." method="_on_MiniWanyudoSpawnTimer_timeout"]

@@ -1,6 +1,8 @@
 class_name WanyudoMiniSpawner
 extends Node2D
 
+signal spawned_object
+
 enum MODE { TIMED }
 
 export (PackedScene) var bullet_scene
@@ -44,6 +46,8 @@ func _shoot() -> void:
 	bullet.direction = direction
 	Projectiles.add_child(bullet)
 	bullet.global_position = _shoot_position.global_position
+	
+	emit_signal("spawned_object")
 
 	if "impulse" in bullet:
 		bullet.impulse = impulse
