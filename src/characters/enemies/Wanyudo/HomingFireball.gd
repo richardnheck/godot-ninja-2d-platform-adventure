@@ -29,7 +29,7 @@ func fire(target_ref):
 
 
 var elapsed = 0.0
-func _process(delta):
+func _physics_process(delta):
 	if not target:
 		return
 		
