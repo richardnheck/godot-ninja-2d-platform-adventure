@@ -5,6 +5,9 @@ signal spawned_object
 
 enum MODE { TIMED }
 
+# The lifetime in seconds to set for the Wanyudo Mini
+export var wanyudo_mini_lifetime := 3.0
+
 export (PackedScene) var bullet_scene
 export var shoot_rate := 0.25
 export var delay_time := 0.00
@@ -42,7 +45,9 @@ func _shoot() -> void:
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 
-	var bullet = bullet_scene.instance()	
+	var bullet:WanyudoMini = bullet_scene.instance()
+	print_debug("lifetime: " + str(wanyudo_mini_lifetime))
+	bullet.lifetime = wanyudo_mini_lifetime
 	bullet.direction = direction
 	Projectiles.add_child(bullet)
 	bullet.global_position = _shoot_position.global_position

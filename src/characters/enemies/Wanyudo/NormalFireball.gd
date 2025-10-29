@@ -53,3 +53,7 @@ func _explode() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	_explode()

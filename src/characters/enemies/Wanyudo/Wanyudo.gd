@@ -30,7 +30,11 @@ func _ready() -> void:
 	self.oscillation_frequency = 10
 		
 	# Connect to the event indicating when the fireball is destroyed
+	# NB: We don't need to do this for normal fireballs as the spawner handles the shoot timing
 	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
+		
+	# Initially homing fireballs are the default
+	homing_fireball_spawner.enabled = true
 	normal_fireball_spawner.enabled = false
 	
 	# Delay initially before shooting the first fireball
@@ -50,9 +54,16 @@ func _check_position() -> void:
 			# In this case stop following the path
 			current_offset = _get_current_offset()
 			stop_following_path()
+			homing_fireball_spawner.enabled = false
+			
+			# Enable the normal fireball spawner and it will control the shooting
+			normal_fireball_spawner.enabled = true
 		elif player and player.position.x > boss_pos + 100:
 			if not tween.is_active():
 				# Player is ahead so continue following the path and start shooting again
+				homing_fireball_spawner.enabled = true
+				normal_fireball_spawner.enabled = false
+				
 				start_following_path(current_offset)
 				yield(get_tree().create_timer(1), "timeout")
 				_shoot_fireball()
@@ -71,21 +82,17 @@ func goto_next_phase() -> void:
 	print("Wanyudo: transition to next state")
 	
 	# Phase 2 transition
-	# Wanyudo goes to the near end of the path and then floats
-	# down above the player
-#	state = STATE_PHASE2_TRANSITION
-#	stop_following_path()     	# stop following initially
-#	yield(get_tree().create_timer(0.3), "timeout")
-#	start_following_path(0.96)	# start following path from near the end
-#	yield(get_tree().create_timer(2), "timeout")
-#	stop_following_path()
+	# Stop firing fireballs
+	state = STATE_PHASE2_TRANSITION
+	homing_fireball_spawner.enabled = false
+	normal_fireball_spawner.enabled = false
 	
-#	# When in Phase 2 do not follow the path any longer
-#	# Make the fireballs not homing missiles
-#	# They are just fired at the player's current position
+#	# Phase 2 
+	# In this phase Wanyudo continues along path, but now spawns
+	# mini wanyudo's that fall above the player
 	state = STATE_PHASE2
 	
-	# Start spawning mini wanyudo's
+	# Start spawning mini wanyudo's via the array spawner
 	_spawn_falling_mini_wanyudo_array()
 	self.mini_wanyudo_spawn_timer.start()
 	
@@ -96,16 +103,16 @@ func goto_next_phase() -> void:
 #	var globalPointPosition = pointPosition + path.position
 #	var pos = globalPointPosition.x
 	
-	var pos = 3352		# TODO: Get position of last point in curve instead of hardcoding (above code doesn't work)
-	position.x = pos   		
-	path_follow_2d.unit_offset = 0		# reset the offset from following the path
-	homing_fireball_spawner.enabled = false
-	normal_fireball_spawner.enabled = true
+#	var pos = 3352		# TODO: Get position of last point in curve instead of hardcoding (above code doesn't work)
+#	position.x = pos   		
+#	path_follow_2d.unit_offset = 0		# reset the offset from following the path
+#	homing_fireball_spawner.enabled = false
+#	normal_fireball_spawner.enabled = true
 	
 	# Wait a few moments before firing the first fireballs
-	yield(get_tree().create_timer(1), "timeout")
+#	yield(get_tree().create_timer(1), "timeout")
 	
-	_shoot_fireball()
+#	_shoot_fireball()
 	
 
 var follow_speed = 1	    # speed of follow. The higher the value the faster he follows
@@ -126,10 +133,15 @@ func _physics_process(delta: float) -> void:
 # Shoot a fireball
 func _shoot_fireball() -> void:
 	if state == STATE_PHASE1:
-		# Only shoot a fireball when the boss is chasing the plaer
-		# If the player is behind the boss the don't try and shoot the player	
+		# Shoot homing fireballs when the boss is chasing the plaer
+		# If the player is behind the boss then shoot normal fireballs to kill
+		# the player quickly as it means they have lost
 		if following_path:
-			homing_fireball_spawner.shoot()					
+			print_debug("Shoot Homing fireball")
+			homing_fireball_spawner.shoot()
+		else:
+			print_debug("Shoot normal fireball")
+			normal_fireball_spawner.shoot()					
 	elif state == STATE_PHASE2:
 		pass
 	

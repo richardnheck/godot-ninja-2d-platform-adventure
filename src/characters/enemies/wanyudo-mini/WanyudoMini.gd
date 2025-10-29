@@ -1,5 +1,9 @@
+class_name WanyudoMini
 extends RigidBody2D
 
+# The lifetime in seconds of a Wanyudo Min.  After this time it will start flashing
+# until it explodes
+export var lifetime := 3.0
 
 onready var lifetime_timer = $LifetimeTimer
 onready var flash_timer = $FlashTimer
@@ -9,8 +13,11 @@ onready var explosion_animated_sprite = $ExplosionAnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	lifetime_timer.wait_time = lifetime
+	lifetime_timer.start()
 	explosion_animated_sprite.visible = false
 	self.bounce = 0.7
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
