@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/objects/clock-switch/ClockSwitch.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "CloudPlatform",
+"language": "GDScript",
+"path": "res://src/objects/cloud-platform/CloudPlatform.gd"
+}, {
 "base": "GraphNode",
 "class": "CommonNode",
 "language": "GDScript",
@@ -289,6 +294,7 @@ _global_script_class_icons={
 "ChochinObake": "",
 "ChochinObakeShooter": "",
 "ClockSwitch": "",
+"CloudPlatform": "",
 "CommonNode": "",
 "CutSceneBase": "",
 "DamageZone": "",

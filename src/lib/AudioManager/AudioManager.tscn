@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/sounds/bgm/story intro theme.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/bgm/cave boss intro.ogg" type="AudioStream" id=27]
 [ext_resource path="res://assets/sounds/bgm/cave boss outro.ogg" type="AudioStream" id=28]
+[ext_resource path="res://assets/sounds/sfx/environments/cloud-platform-explosion.wav" type="AudioStream" id=29]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -227,6 +228,11 @@ bus = "SFX"
 [node name="Sfx_CrumblingPlatformExplode" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 9 )
 volume_db = -12.0
+bus = "SFX"
+
+[node name="Sfx_CloudPlatformExplode" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 29 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="Sfx_FallingSpike" type="AudioStreamPlayer" parent="SFX/Environments"]

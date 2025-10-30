@@ -133,6 +133,7 @@ onready var sfx_env_cave_boss_slam : AudioStreamPlayer2D = $SFX/Environments/Sfx
 onready var sfx_env_crumbling_platform_crumble : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformCrumble
 onready var sfx_env_falling_spike : AudioStreamPlayer = $SFX/Environments/Sfx_FallingSpike
 onready var sfx_env_crumbling_platform_explode : AudioStreamPlayer = $SFX/Environments/Sfx_CrumblingPlatformExplode
+onready var sfx_env_cloud_platform_explode: AudioStreamPlayer = $SFX/Environments/Sfx_CloudPlatformExplode
 onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
 onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam

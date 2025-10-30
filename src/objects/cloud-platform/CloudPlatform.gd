@@ -1,10 +1,11 @@
+class_name CloudPlatform
 extends KinematicBody2D
 
 onready var spike_collision_shape: CollisionShape2D = $CollisionShape2D
+onready var sprite := $Sprite
 onready var explosion: = $AnimatedSpriteExplosion
 onready var animationPlayer: = $AnimationPlayer
-onready var explodeSound:= Game_AudioManager.sfx_env_crumbling_platform_explode
-onready var crumbleSound:= Game_AudioManager.sfx_env_crumbling_platform_crumble
+onready var explodeSound:= Game_AudioManager.sfx_env_cloud_platform_explode
 
 onready var collision_shape: CollisionShape2D = $CollisionShape2D
 onready var respawn_timer: Timer = $RespawnTimer
@@ -29,23 +30,25 @@ func _physics_process(delta: float) -> void:
 func _on_TriggerZone_body_entered(body: Node) -> void:
 	# The cloud is not respawning so trigger its disappearance as usual
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		# Player has entered the trigger zone so make it fall
-		crumbleSound.play()
-		print("player triggerd")
-		animationPlayer.play("shake")
-		yield(get_tree().create_timer(0.7), "timeout")
-		crumbleSound.stop()
-		triggered = true	
-		explodeSound.play()
-		explosion.play("explode")
-		yield(explosion, "animation_finished")
-		_show_cloud(false)
-		explosion.play("idle")
-		respawn_timer.start()
+		if visible: 
+			# Player has entered the trigger zone so make it fall
+			print("player triggerd")
+			animationPlayer.play("shake")
+			yield(get_tree().create_timer(0.7), "timeout")
+			triggered = true	
+			explodeSound.play()
+			sprite.visible = false
+			explosion.visible = true
+			explosion.play("explode")
+			yield(get_tree().create_timer(0.25), "timeout")
+			_show_cloud(false)
+			explosion.play("idle")
+			respawn_timer.start()
 		
 		
 func _show_cloud(show: bool) -> void:
 	self.visible = show
+	sprite.visible = show
 	collision_shape.set_deferred("disabled", !show)
 	if show:
 		yield(get_tree().create_timer(0.3), "timeout")
