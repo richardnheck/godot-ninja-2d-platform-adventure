@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/path-follow-enemy/bakezori/Bakezori.gd"
 }, {
+"base": "Node2D",
+"class": "BlueFlame",
+"language": "GDScript",
+"path": "res://src/objects/electricity/BlueFlame.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -93,6 +98,11 @@ _global_script_classes=[ {
 "class": "Eagle",
 "language": "GDScript",
 "path": "res://src/characters/enemies/test-enemies/eagle/Eagle.gd"
+}, {
+"base": "Node2D",
+"class": "Electricity",
+"language": "GDScript",
+"path": "res://src/objects/electricity/Electricity.gd"
 }, {
 "base": "Character2",
 "class": "Enemy2",
@@ -288,6 +298,7 @@ _global_script_class_icons={
 "AreaBullet": "",
 "BackButton": "",
 "Bakezori": "",
+"BlueFlame": "",
 "Character": "",
 "Character2": "",
 "Checkpoint": "",
@@ -302,6 +313,7 @@ _global_script_class_icons={
 "Death": "",
 "Draw": "",
 "Eagle": "",
+"Electricity": "",
 "Enemy2": "",
 "FadeScreen": "",
 "FireBall": "",
