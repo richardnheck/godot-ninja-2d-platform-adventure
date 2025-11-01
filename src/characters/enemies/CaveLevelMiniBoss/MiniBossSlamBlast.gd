@@ -6,7 +6,7 @@ onready var area:Area2D = $Area2D
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
-var velocity = 2
+var velocity = 200
 export(int) var direction = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -19,9 +19,8 @@ func set_direction(dir):
 		$Area2D/AnimatedSprite.flip_h = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	area.position.x += velocity * direction
-#	pass
+func _physics_process(delta: float) -> void:
+	area.position.x += velocity * direction * delta
 
 
 func _on_body_entered(body: Node) -> void:
