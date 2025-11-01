@@ -304,6 +304,7 @@ position = Vector2( 184, -48 )
 
 [node name="TofuKozo" parent="Section4/enemies" instance=ExtResource( 13 )]
 position = Vector2( 483, -16 )
+scale = Vector2( -1, 1 )
 direction = -1
 
 [node name="Bakezori" parent="Section4/enemies" instance=ExtResource( 9 )]

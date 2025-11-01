@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/PathFollowEnemyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObakeSheet.png" type="Texture" id=2]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObake.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -32, 0, 0, 0, 0, 0, 32, 0 )
+}
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.1421
@@ -21,8 +26,21 @@ animations = [ {
 
 [node name="ChochinObake" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+speed = 40.0
+tween_transition_type = 3
+oscillation_amplitude = 2.0
+oscillation_frequency = 5.0
 orientation = 2
 path_length = 64
+
+[node name="Path2D" parent="." index="0"]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" parent="Path2D" index="0"]
+position = Vector2( -31.2741, 0 )
+
+[node name="Area2D" parent="." index="1"]
+position = Vector2( -31.2741, 0 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource( 1 )

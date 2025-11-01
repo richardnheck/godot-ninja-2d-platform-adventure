@@ -63,9 +63,8 @@ func set_state(state):
 func set_player(player_ref):
 	player = player_ref;
 	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	match current_state:	
 		State.JUMP:
 			

@@ -11,20 +11,25 @@ extents = Vector2( 8, 8 )
 resource_local_to_scene = true
 flags = 2
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
+region = Rect2( -15441.7, 0, 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 resource_local_to_scene = true
+extents = Vector2( 8, 10 )
 
 [node name="ConveyorBelt" type="StaticBody2D"]
 collision_layer = 2
+constant_linear_velocity = Vector2( 50, 0 )
 script = ExtResource( 1 )
+speed = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = SubResource( 3 )
+centered = false
+offset = Vector2( 0, -8 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

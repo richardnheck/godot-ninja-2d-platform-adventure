@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	# override defaults
 	self.speed = 40
-	self.tween_transition_type = TransitionType.TRANS_QUART
+	self.tween_transition_type = TransitionType.TRANS_SINE
 	self.follow_path_type = FollowPathType.PING_PONG
 	
 	self.oscillation_amplitude = 2
