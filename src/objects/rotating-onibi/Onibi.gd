@@ -32,7 +32,6 @@ func show_object(value:bool) -> void:
 	
 # Adjust the rotation of the onibi by the specified number of degrees
 func adjust_rotation(degrees:float) -> void:
-	print_debug("adjust_rotation:" + str(degrees))
 	rotation_degrees = _current_rotation_degrees + degrees
 	
 # Handle when a body enters the object

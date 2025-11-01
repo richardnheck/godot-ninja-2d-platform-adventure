@@ -42,7 +42,6 @@ func remember_current_rotation() -> void:
 	
 # Adjust the rotation of the platform by the specified number of degrees
 func adjust_rotation(degrees:float) -> void:
-	print_debug("adjust_rotation:" + str(degrees))
 	rotation_degrees = _current_rotation_degrees + degrees
 		
 	
