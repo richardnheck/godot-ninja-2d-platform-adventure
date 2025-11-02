@@ -197,13 +197,11 @@ length = 2
 
 [node name="ConveyorBelt2" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 472, 96 )
-constant_linear_velocity = Vector2( 50, 0 )
 speed = 50
 length = 4
 
 [node name="ConveyorBelt3" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 656, 152 )
-constant_linear_velocity = Vector2( 50, 0 )
 speed = 50
 length = 10
 
