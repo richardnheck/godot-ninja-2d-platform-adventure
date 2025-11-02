@@ -309,30 +309,6 @@ path_length = 150
 
 [node name="traps" type="Node2D" parent="Section3"]
 
-[node name="TriggerSpike" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -248 )
-rotation = -1.57079
-
-[node name="TriggerSpike2" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -264 )
-rotation = -1.57079
-
-[node name="TriggerSpike3" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -280 )
-rotation = -1.57079
-
-[node name="TriggerSpike4" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -296 )
-rotation = -1.57079
-
-[node name="TriggerSpike5" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -312 )
-rotation = -1.57079
-
-[node name="TriggerSpike6" parent="Section3/traps" instance=ExtResource( 3 )]
-position = Vector2( 392, -328 )
-rotation = -1.57079
-
 [node name="LongMovingSpike" parent="Section3/traps" instance=ExtResource( 4 )]
 
 [node name="LongMovingSpike2" parent="Section3/traps" instance=ExtResource( 4 )]
