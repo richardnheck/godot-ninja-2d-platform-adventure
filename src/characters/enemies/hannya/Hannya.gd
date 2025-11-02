@@ -14,7 +14,7 @@ onready var trigger_collision_shape := $TriggerArea2D/CollisionShape2D
 # When triggered, the Hannya flies across the screen at high speed
 var triggered = false
 
-const speed = 350
+const speed = 300
 var velocity = Vector2()
 
 func _set_direction(value) -> void:

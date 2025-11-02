@@ -31,7 +31,7 @@ radius = 11.0
 height = 0.0
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 73, 19 )
+extents = Vector2( 69.5, 19 )
 
 [node name="Hannya" type="KinematicBody2D"]
 position = Vector2( 3, -1 )
@@ -68,7 +68,7 @@ shape = SubResource( 6 )
 [node name="TriggerArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea2D"]
-position = Vector2( -76, 0 )
+position = Vector2( -72.5, 0 )
 shape = SubResource( 7 )
 
 [connection signal="body_entered" from="CollisionShape2D/Area2D" to="." method="_on_Area2D_body_entered"]
