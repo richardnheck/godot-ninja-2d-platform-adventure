@@ -8,26 +8,27 @@ var enter_velocity = Vector2()
 var max_horizontal_speed = 0.0
 var spring_impulse = Vector2.ZERO
 
+var reset_falling_velocity = false
+
 # These variables are required to manage successful transitioning from one jump state
 # to another. This occurs when a player jumps on to a spring or bouncy platform
 var initialized = false
 var entered = false
 
 func initialize(speed, velocity, impulse:Vector2 = Vector2.ZERO):
-	print("jump: initialize", impulse)
+	enter_velocity = velocity
 	spring_impulse = impulse
 	initialized = true
 	entered = false		# new state being initialized but so it is not entered yet
 
 func enter():
 	entered = true
-	print("jump: enter", spring_impulse)
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	
 	# NB: Only the y component of spring impulse is implemented for now
 	velocity.y = -jump_power - spring_impulse.y
-	
+
 	if _is_player_jump():
 		# A player triggered jump so call owner to handle additional jump animations and sound
 		owner.on_jump()
@@ -36,7 +37,7 @@ func handle_input(event):
 	return .handle_input(event)
 	
 
-func update(_delta):
+func update(_delta):	
 	# Handle movement	
 	# ------------------------
 	var input_direction = get_input_direction()
@@ -48,7 +49,7 @@ func update(_delta):
 	
 	# Vertical movement
 	.apply_gravity()
-	
+
 	if _is_player_jump():
 		# The jump is a player triggered jump and not a spring
 		# If I'm still going up and have released the jump button - cut off the jump and start falling down
@@ -57,6 +58,15 @@ func update(_delta):
 	
 	move(velocity)
 	
+	# When a kinematic body is on a moving body its velocity is set that moving body
+	# In the case of falling platforms, this means that the jump height is reduced the longer
+	# player is on the platform.  To compensate for this, we need to set the velocity in the 
+	# update() method as it doesn't work when setting it on entering the state as this is not
+	# connected to the physics update
+	if !reset_falling_velocity:
+		velocity.y = -jump_power - spring_impulse.y
+		reset_falling_velocity = true
+		
 	# Handle animation	
 	# ------------------------
 	var sprite = owner.get_node("AnimatedSprite")
@@ -89,6 +99,7 @@ func exit():
 		spring_impulse = Vector2.ZERO
 		initialized = false
 		entered = false
+		reset_falling_velocity = false
 
 # Determine if the jump was triggered by the player
 func _is_player_jump() -> bool:
