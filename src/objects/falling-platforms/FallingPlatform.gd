@@ -13,4 +13,8 @@ func _on_TriggerArea2D_body_entered(body: Node) -> void:
 		set_deferred("mode", RigidBody2D.MODE_RIGID)
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
-	queue_free()
+	if _isFalling():
+		queue_free()
+
+func _isFalling() -> bool:
+	return mode == RigidBody2D.MODE_RIGID
