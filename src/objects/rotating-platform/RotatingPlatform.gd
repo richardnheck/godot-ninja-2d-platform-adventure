@@ -26,7 +26,7 @@ export(int, -180, 180, 45) var start_direction:int = 0 setget _set_start_directi
 
 
 # The spin speed of rotation (degrees per second)
-export(int, -180, 180, 45) var spin_speed:int = 90 setget _set_spin_speed
+export(int, -180, 180, 5) var spin_speed:int = 90 setget _set_spin_speed
 
 # The swing angle (in degrees) either side of start direction
 export(int, 45, 135, 45) var swing_degrees:int = 90 setget _set_swing_degrees
