@@ -25,8 +25,6 @@ var checkpoints:Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("LevelBase: ready()")
-	
 	# Preload the world screen to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
 	
@@ -101,23 +99,18 @@ func _ready() -> void:
 #		return ''
 var player_instance = null			
 func _spawn_player() -> KinematicBody2D:
-	print("spawning at:")
 	var spawn_point = Vector2.ZERO
 	if temp_spawn_position != null and not OS.has_feature("standalone"):
 		# Temp Spawn position is only allowed for debug builds
-		print("temp spawn position")
 		spawn_point = temp_spawn_position.position
 	elif LevelData.level_checkpoint_reached != Constants.NO_CHECKPOINT:
 		var checkpoint_id = LevelData.level_checkpoint_reached
-		print("check point position:", checkpoint_id)
 		var checkpoint = _get_checkpoint(checkpoint_id)
 		print(checkpoint)
 		spawn_point = checkpoint.position
 	elif player_spawn_position != null:
-		print("player spawn position")
 		spawn_point = player_spawn_position.position
 	elif start_door != null:
-		print("start door position")
 		spawn_point = start_door.position	
 	
 	player_instance = player_scene.instance()
@@ -125,8 +118,6 @@ func _spawn_player() -> KinematicBody2D:
 	player_instance.z_index = 10000
 	add_child(player_instance)
 	return player_instance
-
-
 
 
 func _on_Door_player_entered() -> void:
@@ -175,9 +166,7 @@ func _on_Player_died() -> void:
 	LevelData.reload_level()
 
 # Called when a checkpoint has been reached by the player
-func _on_CheckPoint_reached(checkpoint_id) -> void:
-	print("Checkpoint reached: ", checkpoint_id)
-	
+func _on_CheckPoint_reached(checkpoint_id) -> void:	
 	# Turn off all checkpoints first
 	# NB: Need to specifically call in real time otherwise they are called deferred
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, Constants.GROUP_CHECKPOINT, "set_on", Constants.NO_CHECKPOINT)
@@ -230,7 +219,7 @@ func get_collision_tile_name(collision: KinematicCollision2D) -> String:
 			
 			if tile_id > 0:
 				var tile_name = tilemap.tile_set.tile_get_name(tile_id)
-				print("tile_id=%d tile_name=%s" % [tile_id, tile_name])
+				#print("tile_id=%d tile_name=%s" % [tile_id, tile_name])
 				return tile_name
 				
 		return ""

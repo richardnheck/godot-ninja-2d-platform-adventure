@@ -22,7 +22,6 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		# Player has entered the trigger zone so make it fall
 		crumbleSound.play()
-		print("player triggerd")
 		animationPlayer.play("shake")
 		yield(animationPlayer,"animation_finished")
 		crumbleSound.stop()
@@ -34,5 +33,4 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 
 func _on_HitZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		print("HIT!!!")
 		body.die()

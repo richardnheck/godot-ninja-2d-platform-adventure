@@ -28,7 +28,6 @@ var sfx_die:AudioStreamPlayer
 var look_direction = Vector2.RIGHT setget set_look_direction
 
 func _ready() -> void:
-	print("Player ready")
 	$VisibilityNotifier2D.connect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
 
 	# Add the die sound to the player so the sound is cleared when player is removed
@@ -52,7 +51,6 @@ func take_damage(attacker, amount, effect = null):
 
 # Start the dieing process
 func die(groups = []):
-	print_debug("die(): " + str(groups))
 	if not dead:
 		set_dead(true)
 		if groups.has(Constants.GROUP_WATER_TRAP):

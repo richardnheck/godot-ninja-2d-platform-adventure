@@ -32,7 +32,6 @@ func _on_TriggerZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		if visible: 
 			# Player has entered the trigger zone so make it fall
-			print("player triggerd")
 			animationPlayer.play("shake")
 			yield(get_tree().create_timer(0.7), "timeout")
 			triggered = true	
@@ -71,10 +70,8 @@ func _respawn_when_clear_of_player() -> void:
 
 func _on_CloudArea2D_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		print("player in cloud area")
 		player_in_cloud_area = true
 
 func _on_CloudArea2D_body_exited(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		player_in_cloud_area = false
-		print("player NOT in cloud area")
