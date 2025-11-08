@@ -31,6 +31,10 @@ func _change_state(state_name:String, spring_impulse:Vector2 = Vector2.ZERO):
 	
 	if state_name == "jump":# and current_state == $Move:
 		$Jump.initialize($Move.speed, $Move.velocity, spring_impulse)
+	if state_name == "move" and current_state == $WallJump:
+		$Move.initialize(0)		# cancel any press remembers
+	if state_name == "move" and current_state == $Idle:
+		$Move.initialize(0)		# cancel any press remembers
 	if state_name == "move" and current_state == $Jump:
 		$Move.initialize($Jump.jumpPressedRemember)
 	if state_name == "idle" and current_state == $Jump:
