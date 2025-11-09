@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/PathFollowEnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=2]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLantern.gd" type="Script" id=3]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/shard/Shard.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -32, 0, 0, 0, 0, 0, 32, 0 )
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 9.5, 12 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 40 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ShardLantern" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+direction = Vector2( 1, 0 )
+spread = 45
+bullet_scene = ExtResource( 4 )
+shoot_rate = 2
+delay_time = 0.0
+mode = 0
+path_length = 100
+orientation = 1
+
+[node name="Path2D" parent="." index="0"]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" parent="Path2D" index="0"]
+position = Vector2( -31.2741, 0 )
+
+[node name="Area2D" parent="." index="1"]
+position = Vector2( -31.2741, 0 )
+
+[node name="ShootPosition" type="Position2D" parent="Area2D" index="0"]
+position = Vector2( 0.274075, 0 )
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+position = Vector2( -0.225925, -1 )
+shape = SubResource( 7 )
+
+[node name="AnimatedSprite" parent="Area2D" index="2"]
+z_index = 10
+frames = SubResource( 5 )
+playing = true
+
+[node name="DelayTimer" type="Timer" parent="." index="4"]
+
+[node name="ShootTimer" type="Timer" parent="." index="5"]
+wait_time = 1.3
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

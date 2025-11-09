@@ -244,6 +244,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/objects/camera-effects/ScreenShake.gd"
 }, {
+"base": "Area2D",
+"class": "Shard",
+"language": "GDScript",
+"path": "res://src/characters/enemies/path-follow-enemy/shard-lantern/shard/Shard.gd"
+}, {
+"base": "PathFollowEnemyBase",
+"class": "ShardLantern",
+"language": "GDScript",
+"path": "res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLantern.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "SimpleEnemy",
 "language": "GDScript",
@@ -342,6 +352,8 @@ _global_script_class_icons={
 "RotatingOnibi": "",
 "RotatingPlatform": "",
 "ScreenShake": "",
+"Shard": "",
+"ShardLantern": "",
 "SimpleEnemy": "",
 "SlamBlast": "",
 "Slime": "",
@@ -382,10 +394,6 @@ GameState="*res://src/settings/GameState.gd"
 Time="*res://src/utility/Time.gd"
 Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
-
-[debug]
-
-settings/stdout/verbose_stdout=true
 
 [display]
 
