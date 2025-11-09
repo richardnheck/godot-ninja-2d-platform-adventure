@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=1]
+[ext_resource path="res://src/characters/enemies/laser-lantern/LaserLantern.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 40 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="LaserLantern" type="Node2D"]
+script = ExtResource( 2 )
+start_distance = 40.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 4.0
+end_cap_mode = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 300 )
+collision_mask = 11
+collide_with_areas = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
