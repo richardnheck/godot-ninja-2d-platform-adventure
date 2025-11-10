@@ -40,7 +40,7 @@ export(float) var delay:float = 0
 export(float) var oscillation_amplitude:float = 0
 export(float) var oscillation_frequency:float = 0
 
-onready var tween := $Tween
+onready var tween:Tween = $Tween
 onready var path2d := $Path2D
 onready var path_follow_2d := $Path2D/PathFollow2D
 onready var animated_sprite:AnimatedSprite = $Area2D/AnimatedSprite
@@ -90,6 +90,14 @@ func start_following_path(start_offset):
 	following_path = true
 	call_deferred("_start_tween")
 
+
+func pause_following_path() -> void:
+	tween.set_active(false)
+	
+
+func unpause_following_path() -> void:
+	tween.set_active(true)
+	
 
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
