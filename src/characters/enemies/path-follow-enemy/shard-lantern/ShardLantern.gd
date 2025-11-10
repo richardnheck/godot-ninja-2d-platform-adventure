@@ -4,7 +4,20 @@ extends PathFollowEnemyBase
 enum MODE { TIMED }
 
 # The direction the shards shoot
-export (Vector2) var direction := Vector2.RIGHT
+enum ShootDirection { UP, DOWN, LEFT, RIGHT}
+
+# Movement Orientation
+enum Orientation {
+	STATIONARY = 0
+	VERTICAL_BOTTOM_UP = 1
+	VERTICAL_TOP_DOWN = 2,
+	HORIZONTAL_LEFT_RIGHT = 3,
+	HORIZONTAL_RIGHT_LEFT = 3,
+}
+
+export(Orientation) var orientation = Orientation.VERTICAL_TOP_DOWN
+export(int) var path_length = 100
+export (ShootDirection) var shoot_direction := ShootDirection.RIGHT
 
 # The spread (in degress) of the shards
 export (int) var spread := 45
@@ -15,17 +28,11 @@ export var delay_time := 0.00
 export (MODE) var mode := MODE.TIMED
 
 onready var shoot_timer = $ShootTimer
-onready var delay_timer := $DelayTim
+onready var delay_timer := $DelayTimer
 onready var shoot_position := $Area2D/ShootPosition
 onready var sprite = $Area2D/AnimatedSprite
 
-enum Orientation {
-	VERTICAL_BOTTOM_UP = 0
-	VERTICAL_TOP_DOWN = 1
-}
-
-export(int) var path_length = 100
-export(Orientation) var orientation = Orientation.VERTICAL_TOP_DOWN
+var direction:Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +43,16 @@ func _ready() -> void:
 	
 	self.oscillation_amplitude = 0
 	self.oscillation_frequency = 0
-		
+	
+	if shoot_direction == ShootDirection.UP:
+		direction = Vector2(0,-1)
+	elif shoot_direction == ShootDirection.DOWN:
+		direction = Vector2(0, 1)
+	elif shoot_direction == ShootDirection.LEFT:
+		direction = Vector2(-1, 0)
+	elif shoot_direction == ShootDirection.RIGHT:
+		direction = Vector2(1, 0)
+			
 	var half_length_straight = path_length/2  # this is for verical and horizontal curves
 	
 	var curve = Curve2D.new()
@@ -46,6 +62,15 @@ func _ready() -> void:
 	elif orientation == Orientation.VERTICAL_TOP_DOWN:
 		curve.add_point(Vector2(0, -half_length_straight))
 		curve.add_point(Vector2(0,half_length_straight))
+	elif orientation == Orientation.HORIZONTAL_LEFT_RIGHT:
+		curve.add_point(Vector2(-half_length_straight,0))
+		curve.add_point(Vector2(half_length_straight, 0))
+	elif orientation == Orientation.HORIZONTAL_RIGHT_LEFT:
+		curve.add_point(Vector2(half_length_straight,0))
+		curve.add_point(Vector2(-half_length_straight, 0))
+	elif orientation == Orientation.STATIONARY:
+		self.stop_following_path()
+		pass
 	self.path2d.set_curve(curve) 
 	
 	_initialize_gun()
@@ -55,6 +80,7 @@ func _initialize_gun() -> void:
 	if mode == MODE.TIMED:
 		shoot_timer.wait_time = shoot_rate
 		if delay_time == 0:
+			yield(get_tree().create_timer(0), "timeout")	# Need to wait for the next frame for something to be ready, otherwise it doesn't work
 			_shoot()
 		else:
 			delay_timer.wait_time = delay_time
@@ -66,17 +92,18 @@ func _initialize_gun() -> void:
 # Shoot 3 shards in a spread
 # Pause for a moment when shooting the shards
 func _shoot():
-	yield(get_tree().create_timer(0.5), "timeout")
-		
+#	pause_following_path()
+#	yield(get_tree().create_timer(0.25), "timeout")
+			
 	shoot_timer.wait_time = shoot_rate
 	shoot_timer.start()
-	
+
 	# Shoot three shards in a spread
 	_add_bullet(direction.rotated(deg2rad(spread/2)))
 	_add_bullet(direction)
 	_add_bullet(direction.rotated(deg2rad(-spread/2)))
-	yield(get_tree().create_timer(0.5), "timeout")
-	
+#	yield(get_tree().create_timer(0.25), "timeout")
+#	unpause_following_path()
 
 func _add_bullet(direction):
 	var bullet = bullet_scene.instance()

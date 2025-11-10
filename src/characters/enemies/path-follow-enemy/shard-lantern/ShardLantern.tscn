@@ -31,14 +31,14 @@ animations = [ {
 
 [node name="ShardLantern" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-direction = Vector2( 1, 0 )
+orientation = 2
+path_length = 100
+shoot_direction = 3
 spread = 45
 bullet_scene = ExtResource( 4 )
 shoot_rate = 2
 delay_time = 0.0
 mode = 0
-path_length = 100
-orientation = 1
 
 [node name="Path2D" parent="." index="0"]
 curve = SubResource( 4 )
