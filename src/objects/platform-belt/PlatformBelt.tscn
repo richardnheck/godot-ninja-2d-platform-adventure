@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/objects/platform-belt/PlatformBelt.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25, 211.5 )
+
+[node name="PlatformBelt" type="Node2D"]
+script = ExtResource( 1 )
+platform_speed = 10.0
+position_offset = 100
+
+[node name="BeltRegionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeltRegionArea2D"]
+shape = SubResource( 1 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_exited" from="BeltRegionArea2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
