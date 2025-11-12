@@ -1,3 +1,4 @@
+tool
 extends PathFollowEnemyBase
 class_name ChochinObakeShooter
 
@@ -44,6 +45,9 @@ func _on_ShootTimer_timeout():
 	_drop_candle()
 
 func _drop_candle():
+	if Engine.editor_hint:
+		return
+		
 	var candle = preload("res://src/characters/enemies/path-follow-enemy/chochin-obake-shooter/falling-candle/FallingCandle.tscn").instance()
 	candle.global_position = Vector2(sprite.global_position.x-8, sprite.global_position.y)
 	get_parent().get_tree().current_scene.add_child(candle)

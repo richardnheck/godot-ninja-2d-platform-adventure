@@ -44,6 +44,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if Engine.editor_hint:
+		return
+		
 	if throw:
 		if tofu:
 			var throw_direction = Vector2(throw_x_amount*direction, -1)		
@@ -73,6 +76,9 @@ func _on_ThrowTimer_timeout():
 	
 	
 func _add_tofu() -> void:
+	if Engine.editor_hint:
+		return
+		
 	var instance:Tofu = preload("res://src/characters/enemies/tofu-kozo/Tofu.tscn").instance()
 	instance.global_position = tofu_position.global_position
 	get_parent().get_tree().current_scene.add_child(instance)
