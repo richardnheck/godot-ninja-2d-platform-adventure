@@ -305,6 +305,9 @@ horizontal_direction = -1
 
 [node name="ChochinObakeShooter" parent="Section3/enemies" instance=ExtResource( 20 )]
 position = Vector2( 648, -544 )
+speed = 30.0
+oscillation_amplitude = 2.0
+oscillation_frequency = 5.0
 path_length = 150
 
 [node name="traps" type="Node2D" parent="Section3"]
@@ -476,6 +479,9 @@ position = Vector2( 443, -235 )
 
 [node name="ChochinObakeShooter" parent="Section5/enemies" instance=ExtResource( 20 )]
 position = Vector2( 624, -328 )
+speed = 30.0
+oscillation_amplitude = 2.0
+oscillation_frequency = 5.0
 
 [node name="traps" type="Node2D" parent="Section5"]
 
