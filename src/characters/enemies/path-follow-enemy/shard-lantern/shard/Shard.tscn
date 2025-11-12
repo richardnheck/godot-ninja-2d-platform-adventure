@@ -80,7 +80,7 @@ frames = SubResource( 10 )
 playing = true
 
 [node name="HitZone" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
 shape = SubResource( 12 )
@@ -93,5 +93,6 @@ animation = "idle"
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_Shard_body_entered"]
 [connection signal="body_entered" from="HitZone" to="." method="_on_HitZone_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,3 +1,4 @@
+tool  # Make a tool so the path is visible
 class_name ShardLantern
 extends PathFollowEnemyBase
 
@@ -92,6 +93,10 @@ func _initialize_gun() -> void:
 # Shoot 3 shards in a spread
 # Pause for a moment when shooting the shards
 func _shoot():
+	if Engine.editor_hint:
+		# Don't shoot in the editor
+		return
+
 #	pause_following_path()
 #	yield(get_tree().create_timer(0.25), "timeout")
 			

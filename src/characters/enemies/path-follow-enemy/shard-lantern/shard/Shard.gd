@@ -28,14 +28,22 @@ func _physics_process(delta: float) -> void:
 
 func _on_HitZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		body.die()
-		exploding = true
-		animated_sprite.visible = false
-		Game_AudioManager.sfx_env_crumbling_platform_explode.play()
-		explosion_animated_sprite.play("explode")
-		yield(explosion_animated_sprite, "animation_finished")
-		queue_free()
+		body.die()		
+		_explode()
 		
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+
+func _explode():
+	exploding = true
+	animated_sprite.visible = false
+	Game_AudioManager.sfx_env_crumbling_platform_explode.play()
+	explosion_animated_sprite.play("explode")
+	yield(explosion_animated_sprite, "animation_finished")
+	queue_free()
+
+func _on_Shard_body_entered(body):
+	if body is TileMap:
+		_explode()
