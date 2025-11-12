@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		
 
 func _on_HitZone_body_entered(body: Node) -> void:
-	if body.is_in_group(Constants.GROUP_PLAYER):
+	if body.is_in_group(Constants.GROUP_PLAYER) and !exploding:
 		body.die()		
 		_explode()
 		
