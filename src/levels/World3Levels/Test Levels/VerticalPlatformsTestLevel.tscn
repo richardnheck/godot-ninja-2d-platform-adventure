@@ -19,8 +19,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 560, 112 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 672, 112 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -76,7 +76,6 @@ flip_v = true
 
 [node name="PlatformBelt2" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( -40, -216 )
-distance_between_platforms = 100
 platform_speed = 50.0
 platform_direction = Vector2( 0, -1 )
 position_offset = 0
@@ -85,15 +84,20 @@ position_offset = 0
 position = Vector2( 0, 212 )
 shape = SubResource( 1 )
 
+[node name="SpawnTimer" parent="InteractiveProps/PlatformBelt2" index="1"]
+wait_time = 2.0
+
 [node name="PlatformBelt3" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( -112, -216 )
-distance_between_platforms = 100
 platform_speed = 50.0
 position_offset = 0
 
 [node name="CollisionShape2D" parent="InteractiveProps/PlatformBelt3/BeltRegionArea2D" index="0"]
 position = Vector2( 0, 212 )
 shape = SubResource( 1 )
+
+[node name="SpawnTimer" parent="InteractiveProps/PlatformBelt3" index="1"]
+wait_time = 2.0
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 520, 144 )
@@ -107,6 +111,18 @@ one_shot = true
 
 [node name="enemies" type="Node2D" parent="."]
 
+[node name="Section" type="Node2D" parent="."]
+position = Vector2( 616, -8 )
+
+[node name="Platforms" type="Node2D" parent="Section"]
+
+[node name="PlatformBelt" parent="Section/Platforms" instance=ExtResource( 3 )]
+position = Vector2( 120, -112 )
+platform_direction = Vector2( 0, -1 )
+
+[node name="CollisionShape2D" parent="Section/Platforms/PlatformBelt/BeltRegionArea2D" index="0"]
+position = Vector2( 0, 208 )
+
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
@@ -114,3 +130,4 @@ one_shot = true
 [editable path="InteractiveProps/PlatformBelt2"]
 [editable path="InteractiveProps/PlatformBelt3"]
 [editable path="InteractiveProps/Door"]
+[editable path="Section/Platforms/PlatformBelt"]
