@@ -302,24 +302,20 @@ position = Vector2( 296, -712 )
 
 [node name="ChochinObake" parent="SectionFallingPlatforms/enemies" instance=ExtResource( 17 )]
 position = Vector2( 232, -448 )
-tween_transition_type = 1
 path_length = 100
 
 [node name="ChochinObake2" parent="SectionFallingPlatforms/enemies" instance=ExtResource( 17 )]
 position = Vector2( 208, -599 )
-tween_transition_type = 1
 orientation = 7
 path_length = 80
 
 [node name="ChochinObake3" parent="SectionFallingPlatforms/enemies" instance=ExtResource( 17 )]
 position = Vector2( 280, -864 )
-tween_transition_type = 1
 orientation = 4
 path_length = 80
 
 [node name="ChochinObake4" parent="SectionFallingPlatforms/enemies" instance=ExtResource( 17 )]
 position = Vector2( 208, -912 )
-tween_transition_type = 1
 orientation = 5
 path_length = 80
 
@@ -444,7 +440,6 @@ rotation = 3.14159
 
 [node name="ChochinObake2" parent="SectionFallingPlatforms2/enemies" instance=ExtResource( 17 )]
 position = Vector2( 232, -344 )
-tween_transition_type = 1
 path_length = 148
 
 [node name="ZenchuuNoHikari" parent="SectionFallingPlatforms2/enemies" instance=ExtResource( 13 )]
@@ -517,7 +512,6 @@ position = Vector2( 319, -305 )
 
 [node name="ChochinObake" parent="SectionExperimenting_2ndLastPart/enemies" instance=ExtResource( 17 )]
 position = Vector2( 216, -344 )
-tween_transition_type = 1
 
 [node name="Bakezori" parent="SectionExperimenting_2ndLastPart/enemies" instance=ExtResource( 9 )]
 position = Vector2( 216, -443 )
@@ -580,7 +574,6 @@ path_length = 64
 
 [node name="ChochinObake" parent="SectionExperimenting_FinalPart/enemies" instance=ExtResource( 17 )]
 position = Vector2( 104, -224 )
-tween_transition_type = 1
 orientation = 4
 path_length = 80
 
