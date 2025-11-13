@@ -52,12 +52,15 @@ extents = Vector2( 32, 3 )
 script = ExtResource( 3 )
 
 [node name="ElectricityArea2D" type="Area2D" parent="."]
+visible = false
+monitoring = false
 
 [node name="ElectricityAnimatedSprite64" type="AnimatedSprite" parent="ElectricityArea2D"]
 frames = SubResource( 4 )
-frame = 1
+playing = true
 
 [node name="ElectricityAnimatedSprite32" type="AnimatedSprite" parent="ElectricityArea2D"]
+visible = false
 frames = SubResource( 12 )
 frame = 2
 
