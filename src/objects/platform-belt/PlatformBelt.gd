@@ -39,7 +39,7 @@ func _spawn_platform(pos:Vector2 = Vector2.ZERO):
 		return
 		
 	var platform:PlatformForBelt = preload("res://src/objects/platform-belt/Platform.tscn").instance()
-	platform.global_position = global_position + pos
+	platform.position = position + pos
 	get_parent().add_child(platform)		
 	platform.set_direction(platform_direction)
 	platform.set_speed(platform_speed)
