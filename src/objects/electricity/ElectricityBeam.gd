@@ -3,8 +3,8 @@ extends Node2D
 
 export (int, 32,64) var length = 64
 export var delay_time := 0
-export var on_time := 1
-export var off_time := 1
+export var on_time := 1.0
+export var off_time := 1.0
 export (bool) var show_base_left = true
 export (bool) var show_base_right = true
 
