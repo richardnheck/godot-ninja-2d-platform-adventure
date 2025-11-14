@@ -172,7 +172,6 @@ position = Vector2( -24, 176 )
 
 [node name="ChochinObake" parent="Section1/enemies" instance=ExtResource( 9 )]
 position = Vector2( 928, 80 )
-tween_transition_type = 1
 orientation = 0
 
 [node name="Daruma2" parent="Section1/enemies" instance=ExtResource( 3 )]
@@ -246,7 +245,6 @@ position = Vector2( 624, 24 )
 
 [node name="ChochinObake2" parent="Section2/enemies" instance=ExtResource( 9 )]
 position = Vector2( 480, -72 )
-tween_transition_type = 1
 orientation = 0
 
 [node name="Section3" type="Node2D" parent="."]
@@ -421,7 +419,6 @@ oscillation_frequency = 5.0
 
 [node name="ChochinObake" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( 992, -32 )
-tween_transition_type = 1
 orientation = 0
 path_length = 100
 
@@ -527,7 +524,6 @@ position = Vector2( 672, -168 )
 
 [node name="ChochinObake" parent="Section5/enemies" instance=ExtResource( 9 )]
 position = Vector2( 632, -296 )
-tween_transition_type = 1
 path_length = 100
 
 [node name="Daruma" parent="Section5/enemies" instance=ExtResource( 3 )]
