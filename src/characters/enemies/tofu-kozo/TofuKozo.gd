@@ -7,7 +7,11 @@ enum Direction {
 	RIGHT = 1		# Towards Screen right
 }
 
+# The initial direction that tofu kozu faces
 export(Direction) var direction = Direction.RIGHT
+
+# Follow the player when set to true. This means it will change directions to follow the player
+export(bool) var follow_player = true
 
 onready var throw_timer = $ThrowTimer
 onready var tofu_position = $TofuPosition2D
@@ -57,6 +61,9 @@ func _physics_process(delta):
 
 # Turn in the direction of the player
 func _turn_to_player() -> void:
+	if !follow_player:
+		return
+		
 	if player and player_in_range:
 		direction = -1 if player.global_position < self.global_position else 1
 		_update_character()
