@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
-[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLantern.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/enemies/laser-lantern/LaserLantern.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/cave-level/CaveDoorBackground.tscn" type="PackedScene" id=6]
@@ -13,8 +13,25 @@
 [ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObake.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=14]
 
 [sub_resource type="Animation" id=1]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.99 ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -115,6 +132,24 @@ position = Vector2( -23.2741, 8 )
 [node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H2" index="2"]
 anims/PingPongPathFollow = SubResource( 1 )
 
+[node name="MovingPlatformCave1H6" parent="InteractiveProps" instance=ExtResource( 3 )]
+position = Vector2( -160, 24 )
+
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave1H6" index="0"]
+curve = ExtResource( 14 )
+
+[node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave1H6/Path2D" index="0"]
+position = Vector2( 8, 15.2735 )
+
+[node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave1H6/Path2D" index="1"]
+offset = Vector2( 8, 8 )
+
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave1H6" index="1"]
+position = Vector2( 8, 15.2735 )
+
+[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave1H6" index="2"]
+anims/PingPongPathFollow = SubResource( 2 )
+
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -123,17 +158,13 @@ one_shot = true
 
 [node name="ChochinObake" parent="enemies" instance=ExtResource( 13 )]
 position = Vector2( 24, 40 )
-tween_transition_type = 1
 
 [node name="LaserLantern" parent="enemies" instance=ExtResource( 4 )]
-position = Vector2( -24, -32 )
-target_position = Vector2( 50, 200 )
+position = Vector2( -96, 0 )
+mode = 1
+path_length = 100
+target_position = Vector2( 0, 200 )
 start_distance = 0.0
-
-[node name="ShardLantern" parent="enemies" instance=ExtResource( 3 )]
-position = Vector2( -160, 16 )
-orientation = 0
-shoot_direction = 1
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
@@ -141,3 +172,4 @@ shoot_direction = 1
 [editable path="Props/CaveDoorBackground"]
 [editable path="InteractiveProps/Door"]
 [editable path="InteractiveProps/MovingPlatformCave2H2"]
+[editable path="InteractiveProps/MovingPlatformCave1H6"]
