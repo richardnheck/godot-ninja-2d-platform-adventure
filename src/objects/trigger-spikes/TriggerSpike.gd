@@ -11,7 +11,7 @@ onready var tween_values = [Vector2(0,8), Vector2(0,-6)]
 const TRIGGER_DELAY:float = 0.7
 
 # The time that a spike is up once triggered
-const SPIKE_UPTIME:float = 1.5		
+const SPIKE_UPTIME:float = 1.0		
 
 func _ready():
 	_show_spike(false)
