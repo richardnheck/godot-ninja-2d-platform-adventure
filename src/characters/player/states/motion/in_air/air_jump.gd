@@ -1,6 +1,6 @@
 extends "../motion.gd"
 
-export var jump_power = 300
+export var jump_power = 280
 
 export(float) var base_max_horizontal_speed = 125
 
