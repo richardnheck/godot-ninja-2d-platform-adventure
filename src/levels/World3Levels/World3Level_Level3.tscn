@@ -369,13 +369,13 @@ position = Vector2( -32, 0 )
 [node name="ElectricityBeam4" parent="Section4/traps/Node2D" instance=ExtResource( 18 )]
 position = Vector2( 824, -64 )
 rotation = -1.57078
-delay_time = 1
+delay_time = 1.0
 show_base_left = false
 
 [node name="ElectricityBeam5" parent="Section4/traps/Node2D" instance=ExtResource( 18 )]
 position = Vector2( 824, 0 )
 rotation = -1.57079
-delay_time = 1
+delay_time = 1.0
 show_base_right = false
 
 [node name="Node2D2" type="Node2D" parent="Section4/traps"]
@@ -397,7 +397,7 @@ position = Vector2( 24, 136 )
 [node name="ElectricityBeam6" parent="Section4/traps/Node2D3" instance=ExtResource( 18 )]
 position = Vector2( 920, -200 )
 rotation = -1.57078
-delay_time = 1
+delay_time = 1.0
 
 [node name="ElectricityBeam3" parent="Section4/traps" instance=ExtResource( 18 )]
 position = Vector2( 1104, 16 )
