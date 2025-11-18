@@ -50,6 +50,8 @@ var levelsArray = [
 	{"world": WORLD3, "name" : "Level2", "scene_path" : WORLD3_LEVELS_PATH + "Level2.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level3", "scene_path" : WORLD3_LEVELS_PATH + "Level3.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level4", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD3, "name" : "Level5", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD3, "name" : "Level6", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
 ];
 
 
