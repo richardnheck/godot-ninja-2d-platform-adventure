@@ -1,0 +1,98 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/shard/AoAndonShard.gd" type="Script" id=1]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/shard/ShardSheet.png" type="Texture" id=2]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/shard/ShardExplosionSheet.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 4.0
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "explode",
+"speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="AoAndonShard" type="Area2D" groups=["falling_spike"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 10 )
+playing = true
+
+[node name="HitZone" type="Area2D" parent="."]
+collision_layer = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
+shape = SubResource( 12 )
+
+[node name="ExplosionAnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 7.14762, 2.31247 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+animation = "idle"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Shard_body_entered"]
+[connection signal="body_entered" from="HitZone" to="." method="_on_HitZone_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

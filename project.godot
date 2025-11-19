@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PathFollowEnemyBase",
+"class": "AoAndon",
+"language": "GDScript",
+"path": "res://src/characters/enemies/AoAndon/AoAndon.gd"
+}, {
+"base": "Area2D",
+"class": "AoAndonShard",
+"language": "GDScript",
+"path": "res://src/characters/enemies/AoAndon/shard-lantern/shard/AoAndonShard.gd"
+}, {
+"base": "Node2D",
+"class": "AoAndonShardLantern",
+"language": "GDScript",
+"path": "res://src/characters/enemies/AoAndon/shard-lantern/AoAndonShardLantern.gd"
+}, {
 "base": "Area2D",
 "class": "AreaBullet",
 "language": "GDScript",
@@ -310,6 +325,9 @@ _global_script_classes=[ {
 "path": "res://src/characters/enemies/path-follow-enemy/zenchuu-no-hikari/ZenchuuNoHikari.gd"
 } ]
 _global_script_class_icons={
+"AoAndon": "",
+"AoAndonShard": "",
+"AoAndonShardLantern": "",
 "AreaBullet": "",
 "BackButton": "",
 "Bakezori": "",
