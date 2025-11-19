@@ -85,7 +85,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 56 )
 
-[node name="World2LevelBoss" type="Node2D"]
+[node name="World2 Level Boss (Wanyudo)" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
@@ -94,7 +94,7 @@ __meta__ = {
 [node name="CeilingPosition2D" type="Position2D" parent="."]
 position = Vector2( 4224, 10 )
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 3102, 130 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
