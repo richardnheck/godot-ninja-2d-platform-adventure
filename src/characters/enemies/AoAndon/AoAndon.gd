@@ -1,9 +1,10 @@
 class_name AoAndon
 extends PathFollowEnemyBase
 
+
 onready var path = $Path2D
 onready var homing_shard_lantern_spawner = $Area2D/HomingShardLanternSpawner
-onready var normal_shard_lantern_spawner = $Area2D/NormalShardLanternSpawner
+onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
 onready var laser_lantern_spawn_timer = $LaserLanternSpawnTimer
 
 # Phase1 - Boss follows a path and throws homing lantern shard lanterns
@@ -19,6 +20,9 @@ var player = null
 var ceiling_position:Position2D = null
 
 const SPEED:int = 75
+
+# The delay to wait after a homing lantern finishes before spawning a new one
+const SHOOT_DELAY:float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +40,7 @@ func _ready() -> void:
 		
 	# Initially homing lanterns are the default
 	homing_shard_lantern_spawner.enabled = true
-	normal_shard_lantern_spawner.enabled = false
+	normal_fireball_spawner.enabled = false
 	
 	# Delay initially before shooting the first lantern
 	if state == STATE_PHASE1:
@@ -58,12 +62,12 @@ func _check_position() -> void:
 			homing_shard_lantern_spawner.enabled = false
 			
 			# Enable the normal lantern spawner and it will control the shooting
-			normal_shard_lantern_spawner.enabled = true
+			normal_fireball_spawner.enabled = true
 		elif player and player.position.x > boss_pos + 100:
 			if not tween.is_active():
 				# Player is ahead so continue following the path and start shooting again
 				homing_shard_lantern_spawner.enabled = true
-				normal_shard_lantern_spawner.enabled = false
+				normal_fireball_spawner.enabled = false
 				
 				start_following_path(current_offset)
 				yield(get_tree().create_timer(1), "timeout")
@@ -75,7 +79,7 @@ func set_player(player_ref) -> void:
 	print("setting player")
 	player = player_ref
 	homing_shard_lantern_spawner.set_target(player)
-	normal_shard_lantern_spawner.set_target(player)
+	normal_fireball_spawner.set_target(player)
 	
 
 # Go to the next phase
@@ -86,7 +90,7 @@ func goto_next_phase() -> void:
 	# Stop firing lanterns
 	state = STATE_PHASE2_TRANSITION
 	homing_shard_lantern_spawner.enabled = false
-	normal_shard_lantern_spawner.enabled = false
+	normal_fireball_spawner.enabled = false
 	
 #	# Phase 2 
 	# In this phase AoAndon continues along path, but now spawns
@@ -124,12 +128,13 @@ func _shoot_lantern() -> void:
 			homing_shard_lantern_spawner.shoot()
 		else:
 			print_debug("Shoot normal lantern")
-			normal_shard_lantern_spawner.shoot()					
+			normal_fireball_spawner.shoot()					
 	elif state == STATE_PHASE2:
 		pass
 	
 # Shoot another lantern once the previous lantern lifetime runs out	
 func _on_lantern_destroyed(): 
+	yield(get_tree().create_timer(SHOOT_DELAY), "timeout")
 	_shoot_lantern()
 	
 

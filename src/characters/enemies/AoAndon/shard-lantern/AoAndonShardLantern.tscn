@@ -1,7 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/AoAndonShardLantern.gd" type="Script" id=1]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-3.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-4.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-5.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-1.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "explode",
+"speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 9.5, 12 )
@@ -26,8 +45,13 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, -49.2746 )
+scale = Vector2( 0.7, 0.6 )
 collision_layer = 8
+
+[node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="Area2D"]
+z_index = 2
+frames = SubResource( 10 )
+animation = "idle"
 
 [node name="ShootPosition" type="Position2D" parent="Area2D"]
 position = Vector2( 0.274075, 0 )
@@ -45,11 +69,8 @@ playing = true
 
 [node name="OscillationTween" type="Tween" parent="."]
 
-[node name="DelayTimer" type="Timer" parent="."]
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

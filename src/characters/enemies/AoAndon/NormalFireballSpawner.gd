@@ -26,6 +26,7 @@ func _shoot():
 		# Call parent shoot
 		print_debug("NormalShardLanterSpawner: _shoot()")
 		var lantern = ._shoot()	
+		lantern.rotation = 0  # Ensure lantern is upright
 		lantern.connect("destroyed", self, "_on_lantern_destroyed")
 		
 func _on_lantern_destroyed():

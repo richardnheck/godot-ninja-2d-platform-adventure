@@ -25,6 +25,7 @@ func _shoot():
 		var shard_lantern = ._shoot()
 		print("Shard lantern pos", shard_lantern.global_position)
 		shard_lantern.connect("destroyed", self, "_on_lantern_destroyed")
+		shard_lantern.rotation = 0  # Ensure lantern is upright
 		
 		# Modify whether the shard_lantern is a homing missile or not
 		shard_lantern.can_seek = homing

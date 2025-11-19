@@ -1,0 +1,79 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/characters/enemies/AoAndon/BlueFireballSheet.png" type="Texture" id=1]
+[ext_resource path="res://src/characters/enemies/AoAndon/NormalBlueFireball.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-4.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-3.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-1.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-5.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.0
+height = 0.0
+
+[sub_resource type="SpriteFrames" id=32]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "explode",
+"speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="NormalBlueFireball" type="Area2D"]
+z_index = 2
+collision_layer = 128
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = -1.5708
+frames = SubResource( 2 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource( 1 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="."]
+frames = SubResource( 32 )
+animation = "idle"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 1, 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
