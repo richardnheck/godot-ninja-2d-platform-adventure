@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
-		
+ 
 	# Connect to the event indicating when the lantern is destroyed
 	# NB: We don't need to do this for normal lanterns as the spawner handles the shoot timing
 	homing_shard_lantern_spawner.connect("lantern_destroyed", self, "_on_lantern_destroyed")
@@ -45,7 +45,16 @@ func _ready() -> void:
 	# Delay initially before shooting the first lantern
 	if state == STATE_PHASE1:
 		yield(get_tree().create_timer(0.3), "timeout")
+		
+		####### TESTING ##########
+		self.start_following_path(0.402)	
+		yield(get_tree().create_timer(0), "timeout")
+		####### TESTING ##########	
+	
 		_shoot_lantern()
+		
+		
+		
 	
 
 var current_offset = 0
