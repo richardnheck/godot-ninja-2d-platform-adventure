@@ -5,7 +5,7 @@ extends PathFollowEnemyBase
 onready var path = $Path2D
 onready var homing_shard_lantern_spawner = $Area2D/HomingShardLanternSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
-onready var laser_lantern_spawn_timer = $LaserLanternSpawnTimer
+onready var lantern_spawn_timer = $LanternSpawnTimer
 
 # Phase1 - Boss follows a path and throws homing lantern shard lanterns
 const STATE_PHASE1:String = "phase1"
@@ -24,8 +24,12 @@ const SPEED:int = 75
 # The delay to wait after a homing lantern finishes before spawning a new one
 const SHOOT_DELAY:float = 1.0
 
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rng.randomize()
+	
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
@@ -53,10 +57,6 @@ func _ready() -> void:
 	
 		_shoot_lantern()
 		
-		
-		
-	
-
 var current_offset = 0
 func _check_position() -> void:
 	if state == STATE_PHASE1:
@@ -106,9 +106,9 @@ func goto_next_phase() -> void:
 	# laser lanterns above the player
 	state = STATE_PHASE2
 	
-	# Start spawning mini wanyudo's via the array spawner
-	_spawn_laser_lantern_array()
-	self.laser_lantern_spawn_timer.start()
+	# Start lanterns via the array spawner
+	_spawn_lantern_array()
+	self.lantern_spawn_timer.start()
 	
 
 var follow_speed = 1	    # speed of follow. The higher the value the faster he follows
@@ -152,8 +152,8 @@ func _on_lantern_destroyed():
 func set_ceiling_position(ceiling_pos):
 	ceiling_position = ceiling_pos;	
 	
-func _spawn_laser_lantern_array() -> void:
-	var array_instance = preload("res://src/characters/enemies/AoAndon/LaserLanternArray.tscn").instance()
+func _spawn_lantern_array() -> void:
+	var array_instance = preload("res://src/characters/enemies/AoAndon/LanternArray.tscn").instance()
 	array_instance.connect("finished", self, "_on_laser_lanterns_finished")
 	var array_width = array_instance.get_width()
 	
@@ -161,8 +161,10 @@ func _spawn_laser_lantern_array() -> void:
 	# get the distance to the player
 	var distance_to_player = position.distance_to(player.position)
 	print(distance_to_player)
-	# place the array directly over the player
-	var array_offset = distance_to_player
+	
+	# place the array directly over the player with a little randomness
+	var random_offset = rng.randf_range(-10.0, 50.0)  # more in front of player
+	var array_offset = distance_to_player + random_offset
 	if player.position.x < position.x:
 		# player is behind boss so adjust offset to be in other direction
 		array_offset *= -1
@@ -187,4 +189,4 @@ func _on_laser_lanterns_finished():
 
 
 func _on_LaserLanternSpawnTimer_timeout():
-	_spawn_laser_lantern_array()
+	_spawn_lantern_array()

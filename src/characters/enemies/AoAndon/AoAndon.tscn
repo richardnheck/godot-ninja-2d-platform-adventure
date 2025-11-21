@@ -58,7 +58,7 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
 playing = true
 
-[node name="LaserLanternSpawnTimer" type="Timer" parent="." index="4"]
+[node name="LanternSpawnTimer" type="Timer" parent="." index="4"]
 wait_time = 5.0
 
-[connection signal="timeout" from="LaserLanternSpawnTimer" to="." method="_on_LaserLanternSpawnTimer_timeout"]
+[connection signal="timeout" from="LanternSpawnTimer" to="." method="_on_LaserLanternSpawnTimer_timeout"]

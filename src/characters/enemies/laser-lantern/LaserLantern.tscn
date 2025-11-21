@@ -44,6 +44,7 @@ collide_with_areas = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 autostart = true
 
@@ -52,5 +53,9 @@ autostart = true
 [node name="PositionLine2D" type="Line2D" parent="."]
 width = 2.0
 
+[node name="LifetimeTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="tween_completed" from="PositionTween" to="." method="_on_PositionTween_tween_completed"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

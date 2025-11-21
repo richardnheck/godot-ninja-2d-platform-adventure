@@ -1,11 +1,12 @@
+class_name LaserLanternArray
 extends Node2D
 
 export var init_delay = 0
 signal finished
 
-onready var spawner1 := $WanyudoMiniSpawner1
-onready var spawner2 := $WanyudoMiniSpawner2
-onready var spawner3 := $WanyudoMiniSpawner3
+onready var spawner1 := $LaserLanternSpawner1
+onready var spawner2 := $LaserLanternSpawner2
+onready var spawner3 := $LaserLanternSpawner3
 
 const total_spawners = 3
 var spawn_count = 0
@@ -33,7 +34,7 @@ func trigger() -> void:
 #	emit_signal("finished");	
 
 
-func _on_WanyudoMiniSpawner_spawned_object():
+func _on_LaserLanternSpawner_spawned_object():
 	spawn_count = spawn_count + 1
 	
 	# Removing the array once all of them have spawned

@@ -1,18 +1,28 @@
-class_name FallingMiniWanyudoArray
+class_name LanternArray
 extends Node2D
 
 export var init_delay = 0
 signal finished
 
-onready var spawner1 := $WanyudoMiniSpawner1
-onready var spawner2 := $WanyudoMiniSpawner2
-onready var spawner3 := $WanyudoMiniSpawner3
+onready var spawner1 := $LanternSpawner1
+onready var spawner2 := $LanternSpawner2
+onready var spawner3 := $LanternSpawner3
 
 const total_spawners = 3
 var spawn_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spawner1.position.x + rand_range(-50,50)
+	spawner2.position.x + rand_range(-50,50)
+	spawner3.position.x + rand_range(-50,50)
+	spawner1.delay_time = rand_range(0,1)
+	spawner2.delay_time = rand_range(0,1)
+	spawner3.delay_time = rand_range(0,1)
+	spawner1.set_ready()
+	spawner2.set_ready()
+	spawner3.set_ready()
+	
 	yield(get_tree().create_timer(init_delay), "timeout")
 	trigger()
 
@@ -34,7 +44,7 @@ func trigger() -> void:
 #	emit_signal("finished");	
 
 
-func _on_WanyudoMiniSpawner_spawned_object():
+func _on_LanternSpawner_spawned_object():
 	spawn_count = spawn_count + 1
 	
 	# Removing the array once all of them have spawned

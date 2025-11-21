@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=2]
+[ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/FallingShardLantern.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 10, 13.5 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 40 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 9.5, 12 )
+
+[node name="FallingShardLantern" type="RigidBody2D"]
+gravity_scale = 2.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 10 )
+
+[node name="ShootPosition" type="Position2D" parent="."]
+position = Vector2( 0.274075, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 10
+frames = SubResource( 5 )
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.225925, -1 )
+shape = SubResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

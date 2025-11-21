@@ -1,4 +1,5 @@
 tool
+class_name LaserLantern
 extends Node2D
 
 enum MODE {
@@ -29,6 +30,8 @@ onready var line_width := line_2d.width
 onready var tween := $Tween
 onready var raycast := $RayCast2D
 
+onready var lifetime_timer = $LifetimeTimer
+
 # Speed at which the laser extends when first fired, in pixels per second.
 export var cast_speed := 7000.0
 
@@ -44,6 +47,8 @@ export var color := Color.white setget set_color
 # If `true`, the laser is firing.
 export var is_casting := false setget set_is_casting
 
+# The lifetime of a laser lantern. If zero then it lives forever
+var lifetime:= 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,13 +75,16 @@ func _ready():
 			position_line2d.add_point(base_tween_values[1])
 		
 		_start_position_tween()	
-		
-		
-		
+	
 	if not Engine.is_editor_hint():
 		# disable physics process so laser doesn't fire straight away
 		set_physics_process(false)
 
+	# A lifetime has been set for the lantern (in the boss level)
+	if lifetime > 0:
+		lifetime_timer.wait_time = lifetime
+		lifetime_timer.start()
+		
 
 func _start_position_tween(): 
 	if Engine.is_editor_hint():
@@ -135,6 +143,7 @@ func set_is_casting(new_value: bool) -> void:
 	else:
 		target_position = Vector2.ZERO
 		disappear()
+
 		
 func appear() -> void:
 	line_2d.visible = true
@@ -151,9 +160,11 @@ func disappear() -> void:
 	tween.interpolate_callback(self, 0.2, "hide_line")
 	tween.start()
 
+
 func hide_line():
 	print("hide line")
 	line_2d.visible = false
+
 
 func set_color(new_color: Color) -> void:
 	color = new_color
@@ -166,3 +177,7 @@ func _on_Timer_timeout():
 	set_is_casting(!is_casting)
 
 
+func _on_LifetimeTimer_timeout():
+	# Destroy the Laser Lantern
+	# TODO: Add some animations or fading or something
+	queue_free()

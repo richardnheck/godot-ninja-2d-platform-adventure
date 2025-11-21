@@ -17,7 +17,7 @@ func _ready():
 var jumpPressedRemember = 0
 
 func _change_state(state_name:String, spring_impulse:Vector2 = Vector2.ZERO):
-	print("change_state: " + state_name)
+	# print("change_state: " + state_name)
 	# The base state_machine interface this node extends does most of the work.
 	if not _active:
 		return
