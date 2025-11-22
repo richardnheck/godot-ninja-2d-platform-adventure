@@ -1,6 +1,7 @@
 class_name AoAndon
 extends PathFollowEnemyBase
 
+signal phase_changed(phase)
 
 onready var path = $Path2D
 onready var homing_shard_lantern_spawner = $Area2D/HomingShardLanternSpawner
@@ -41,12 +42,12 @@ func _ready() -> void:
 	# Connect to the event indicating when the lantern is destroyed
 	# NB: We don't need to do this for normal lanterns as the spawner handles the shoot timing
 	homing_shard_lantern_spawner.connect("lantern_destroyed", self, "_on_lantern_destroyed")
+	self.connect("phase_changed", homing_shard_lantern_spawner, "_on_phase_changed")
 		
 	# Initially homing lanterns are the default
 	homing_shard_lantern_spawner.enabled = true
 	normal_fireball_spawner.enabled = false
 	
-
 	# Delay initially before shooting the first lantern
 	if state == STATE_PHASE1:
 		yield(get_tree().create_timer(0.3), "timeout")
@@ -106,6 +107,8 @@ func goto_next_phase() -> void:
 	# In this phase AoAndon continues along path, but now spawns
 	# laser lanterns above the player
 	state = STATE_PHASE2
+	
+	emit_signal("phase_changed", state)
 	
 	# Start lanterns via the array spawner
 	_spawn_lantern_array()

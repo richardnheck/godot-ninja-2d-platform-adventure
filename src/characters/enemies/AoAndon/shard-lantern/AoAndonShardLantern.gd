@@ -40,7 +40,7 @@ func _ready() -> void:
 		direction = Vector2(-1, 0)
 	elif shoot_direction == ShootDirection.RIGHT:
 		direction = Vector2(1, 0)
-	
+		
 	
 var target = null
 		
@@ -132,3 +132,10 @@ func _add_bullet(direction):
 	Projectiles.add_child(bullet)
 	bullet.global_position = shoot_position.global_position
 	return bullet
+
+# Called when it should be removed forcibly once it has been launched as opposed to 
+# exploding normally.  This occurs in the boss level when transitioning to the second phase
+# and we don't want stray homing lanterns to still be able to kill the player
+func force_die():
+	print(">>>> force die()")
+	queue_free()
