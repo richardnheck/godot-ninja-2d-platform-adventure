@@ -30,7 +30,7 @@ func set_ready():
 func _spawn() -> void:
 	var lantern:FallingShardLantern = object_scene.instance()
 	lantern.lifetime = lantern_lifetime
-	lantern.spread = 90
+	lantern.spread = 120
 	Projectiles.add_child(lantern)
 	lantern.global_position = _shoot_position.global_position
 	emit_signal("spawned_object")

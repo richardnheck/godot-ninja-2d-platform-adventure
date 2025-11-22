@@ -30,14 +30,15 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 32, 5 )
 
-[node name="MegamanElectricity" type="Node2D"]
+[node name="MegamanElectricity" type="Node2D" groups=["trap"]]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 playing = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["trap"]]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 16 )

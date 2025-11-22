@@ -46,6 +46,7 @@ func _ready() -> void:
 	homing_shard_lantern_spawner.enabled = true
 	normal_fireball_spawner.enabled = false
 	
+
 	# Delay initially before shooting the first lantern
 	if state == STATE_PHASE1:
 		yield(get_tree().create_timer(0.3), "timeout")
@@ -163,7 +164,7 @@ func _spawn_lantern_array() -> void:
 	print(distance_to_player)
 	
 	# place the array directly over the player with a little randomness
-	var random_offset = rng.randf_range(-10.0, 50.0)  # more in front of player
+	var random_offset = rng.randf_range(-10.0, 15.0)  # more in front of player
 	var array_offset = distance_to_player + random_offset
 	if player.position.x < position.x:
 		# player is behind boss so adjust offset to be in other direction

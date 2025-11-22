@@ -48,7 +48,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 32, 3 )
 
-[node name="ElectricityBeam" type="Node2D"]
+[node name="ElectricityBeam" type="Node2D" groups=["trap"]]
 script = ExtResource( 3 )
 
 [node name="ElectricityArea2D" type="Area2D" parent="."]

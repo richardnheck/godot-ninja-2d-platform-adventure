@@ -13,6 +13,8 @@ onready var delay_timer := $DelayTimer
 onready var lifetime_timer := $LifetimeTimer
 onready var shoot_position := $ShootPosition
 onready var sprite = $AnimatedSprite
+onready var sprite_explosion = $AnimatedSpriteExplosion
+onready var collision = $Area2D/CollisionShape2D
 
 # When lifetime is zero, lantern lives forever
 var lifetime := 0
@@ -42,13 +44,40 @@ func _add_bullet(direction):
 	return bullet
 
 func _on_LifetimeTimer_timeout():
+	_explode()
+
+func _explode():
+	# Stop falling
+	linear_velocity = Vector2.ZERO
+	gravity_scale = 0
+	
+	# disable collision detection so don't detect shards
+	collision.disabled = true
+	
+	lifetime_timer.stop()	# stop lifetime timer as we may be exploding before lifetime is over (i.e. hit a trap)
+	
+	# handle visual animations
+	sprite_explosion.visible = true
+	sprite_explosion.play("default")
+	sprite.visible = false
+
+	# fire shards	
 	_shoot()
-	# todo: do explosion
-	yield(get_tree().create_timer(0.25), "timeout")
-	queue_free()
-
-
+	
 func _on_Area2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
-	
+	elif body.is_in_group(Constants.GROUP_TRAP):
+		# Hit a trap so explode
+		_explode()
+
+
+func _on_AnimatedSpriteExplosion_animation_finished():
+	queue_free()
+
+
+func _on_Area2D_area_entered(area):
+	print("fallingShardLantern Hit" + str(area))
+	print(str(area.get_groups()))
+	if area.is_in_group(Constants.GROUP_TRAP):
+		_explode()

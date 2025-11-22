@@ -13,12 +13,12 @@ var spawn_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawner1.position.x + rand_range(-50,50)
-	spawner2.position.x + rand_range(-50,50)
-	spawner3.position.x + rand_range(-50,50)
-	spawner1.delay_time = rand_range(0,1)
-	spawner2.delay_time = rand_range(0,1)
-	spawner3.delay_time = rand_range(0,1)
+	spawner1.position.x + rand_range(-10,10)
+	spawner2.position.x + rand_range(-10,10)
+	spawner3.position.x + rand_range(-10,10)
+	spawner1.delay_time = 0	# Always want the one in front of the player to fall first
+	spawner2.delay_time = rand_range(0.3,1.3)
+	spawner3.delay_time = rand_range(0.3,1.3)
 	spawner1.set_ready()
 	spawner2.set_ready()
 	spawner3.set_ready()
