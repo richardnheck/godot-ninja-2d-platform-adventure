@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/characters/enemies/Wanyudo/Wanyudo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/levels/World2Levels/BossPhaseTransitionArea2D.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/objects/test-objects/Guns/Canon/Canon.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/objects/test-objects/Guns/Canon/CanonBall.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/art/tilesets/world2/stone-bricks-tileset/tileset_stone-bricks-tileset.tres" type="TileSet" id=22]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=23]
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=24]
@@ -298,6 +299,9 @@ position = Vector2( 6544, 80 )
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 6488, 64 )
 
+[node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 21 )]
+position = Vector2( 3095, 144 )
+
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -313,10 +317,12 @@ scale = Vector2( 1.227, 1 )
 curve = ExtResource( 17 )
 
 [node name="PathFollow2D" parent="Wanyudo/Path2D" index="0"]
-position = Vector2( 0.72451, 8 )
+position = Vector2( 0, 8 )
+offset = 0.0
 
 [node name="Area2D" parent="Wanyudo" index="1"]
-position = Vector2( -39.111, 8 )
+position = Vector2( -40, 8 )
+scale = Vector2( 1.227, 1 )
 
 [node name="Enemies" type="Node2D" parent="."]
 

@@ -23,6 +23,7 @@ const SPEED:int = 65
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("Wanyudo: _ready()")
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
@@ -46,9 +47,14 @@ func _ready() -> void:
 		_shoot_fireball()
 	
 
+func set_spawn_offset(spawn_offset:float):
+	self.start_following_path(spawn_offset)	
+
+
 var current_offset = 0
 func _check_position() -> void:
 	if state == STATE_PHASE1:
+		
 		# Since Wanyudo is a path follow enemy its actual position is the Area2D which has its
 		# postion changed by the path.
 		var boss_pos = self.get_node("Area2D").position.x
@@ -66,7 +72,7 @@ func _check_position() -> void:
 				# Player is ahead so continue following the path and start shooting again
 				homing_fireball_spawner.enabled = true
 				normal_fireball_spawner.enabled = false
-				
+				print("current_offset", current_offset)
 				start_following_path(current_offset)
 				yield(get_tree().create_timer(1), "timeout")
 				_shoot_fireball()

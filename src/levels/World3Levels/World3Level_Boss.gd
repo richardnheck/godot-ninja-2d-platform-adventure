@@ -16,7 +16,10 @@ func _ready():
 	
 	Game_AudioManager.play_bgm_cave_level_boss()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if spawned_at_checkpoint:
+		print("Spawned at checkpoint")
+		# The player died, but spawned at the checkpoint.
+		# Set the boss at a position just behind the player
+		# This number was visually determined by adjusting the boss PathFollow2D unit offset 
+		yield(get_tree().create_timer(0), "timeout")
+		boss.set_spawn_offset(0.45)

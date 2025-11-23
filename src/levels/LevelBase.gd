@@ -25,6 +25,7 @@ var checkpoints:Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("LevelBase: _ready() start")
 	# Preload the world screen to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
 	
@@ -90,14 +91,17 @@ func _ready() -> void:
 			yield(intro_title, "finished")
 			intro_title.queue_free()
 		LevelData.is_reload = false
-		
+	
+	print("LevelBase: _ready() end")	
 
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:
 #		return 'Remove Temporary Spawn Position!!!'
 #	else:
 #		return ''
-var player_instance = null			
+var player_instance = null		
+var spawned_at_checkpoint = false
+	
 func _spawn_player() -> KinematicBody2D:
 	var spawn_point = Vector2.ZERO
 	if temp_spawn_position != null and not OS.has_feature("standalone"):
@@ -108,6 +112,7 @@ func _spawn_player() -> KinematicBody2D:
 		var checkpoint = _get_checkpoint(checkpoint_id)
 		print(checkpoint)
 		spawn_point = checkpoint.position
+		spawned_at_checkpoint = true
 	elif player_spawn_position != null:
 		spawn_point = player_spawn_position.position
 	elif start_door != null:

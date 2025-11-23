@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/rotating-platform/RotatingPlatform.tscn" type="PackedScene" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://src/objects/MovingPlatformCave2H.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-platform-track-80.png" type="Texture" id=33]
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=34]
+[ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=35]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 25, 298.875 )
@@ -170,6 +171,9 @@ position = Vector2( 8224, 80 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 8168, 64 )
+
+[node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 35 )]
+position = Vector2( 3600, 144 )
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0

@@ -24,7 +24,7 @@ func shoot():
 func _shoot():
 	if enabled:
 		# Call parent shoot
-		print_debug("NormalFireBallSpanwer: _shoot()")
+		#print_debug("NormalFireBallSpanwer: _shoot()")
 		var fireball = ._shoot()	
 		fireball.connect("destroyed", self, "_on_fireball_destroyed")
 		

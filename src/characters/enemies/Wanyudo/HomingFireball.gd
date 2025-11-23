@@ -88,4 +88,4 @@ func _on_body_entered(body: Node) -> void:
 # and we don't want stray homing lanterns to still be able to kill the player
 func force_die():
 	print(">>>> force die()")
-	queue_free()
+	_explode()

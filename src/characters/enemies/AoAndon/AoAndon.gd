@@ -50,14 +50,13 @@ func _ready() -> void:
 	
 	# Delay initially before shooting the first lantern
 	if state == STATE_PHASE1:
-		yield(get_tree().create_timer(0.3), "timeout")
-		
-		####### TESTING ##########
-		#self.start_following_path(0.402)	
-		#yield(get_tree().create_timer(0), "timeout")
-		####### TESTING ##########	
-	
+		yield(get_tree().create_timer(0.5), "timeout")
 		_shoot_lantern()
+		
+		
+func set_spawn_offset(spawn_offset:float):
+	self.start_following_path(spawn_offset)	
+		
 		
 var current_offset = 0
 func _check_position() -> void:
