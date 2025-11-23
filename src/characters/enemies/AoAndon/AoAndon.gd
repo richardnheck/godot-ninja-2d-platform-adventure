@@ -53,8 +53,8 @@ func _ready() -> void:
 		yield(get_tree().create_timer(0.3), "timeout")
 		
 		####### TESTING ##########
-		self.start_following_path(0.402)	
-		yield(get_tree().create_timer(0), "timeout")
+		#self.start_following_path(0.402)	
+		#yield(get_tree().create_timer(0), "timeout")
 		####### TESTING ##########	
 	
 		_shoot_lantern()
@@ -108,6 +108,7 @@ func goto_next_phase() -> void:
 	# laser lanterns above the player
 	state = STATE_PHASE2
 	
+	print(">>>> Emitting phase_changed")
 	emit_signal("phase_changed", state)
 	
 	# Start lanterns via the array spawner

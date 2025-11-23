@@ -22,9 +22,8 @@ func shoot():
 
 # Called internally when in TIMED mode
 func _shoot():
-	
 	if enabled:
-		print("ShardLanternSpawner: shoot()")
+		print("HomingShardLanternSpawner enabled: _shoot()")
 		# Call parent shoot
 		var shard_lantern = ._shoot()
 		print("Shard lantern pos", shard_lantern.global_position)

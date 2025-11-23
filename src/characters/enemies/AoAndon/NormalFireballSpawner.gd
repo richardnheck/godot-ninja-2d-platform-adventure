@@ -1,3 +1,4 @@
+class_name NormalFireballSpawner
 extends Gun
 
 signal lantern_destroyed
@@ -24,7 +25,7 @@ func shoot():
 func _shoot():
 	if enabled:
 		# Call parent shoot
-		print_debug("NormalShardLanterSpawner: _shoot()")
+		print_debug("NormalFireballSpawner enabled: _shoot()")
 		var lantern = ._shoot()	
 		lantern.rotation = 0  # Ensure lantern is upright
 		lantern.connect("destroyed", self, "_on_lantern_destroyed")
