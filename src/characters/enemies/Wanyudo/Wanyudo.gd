@@ -1,5 +1,7 @@
 extends PathFollowEnemyBase
 
+signal phase_changed(phase)
+
 onready var path = $Path2D
 onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
@@ -17,7 +19,7 @@ var state = STATE_PHASE1
 var player = null
 var ceiling_position:Position2D = null
 
-const SPEED:int = 75
+const SPEED:int = 65
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +34,7 @@ func _ready() -> void:
 	# Connect to the event indicating when the fireball is destroyed
 	# NB: We don't need to do this for normal fireballs as the spawner handles the shoot timing
 	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
+	self.connect("phase_changed", homing_fireball_spawner, "_on_phase_changed")
 		
 	# Initially homing fireballs are the default
 	homing_fireball_spawner.enabled = true
@@ -91,6 +94,9 @@ func goto_next_phase() -> void:
 	# In this phase Wanyudo continues along path, but now spawns
 	# mini wanyudo's that fall above the player
 	state = STATE_PHASE2
+	
+	print(">>>> Emitting phase_changed")
+	emit_signal("phase_changed", state)
 	
 	# Start spawning mini wanyudo's via the array spawner
 	_spawn_falling_mini_wanyudo_array()

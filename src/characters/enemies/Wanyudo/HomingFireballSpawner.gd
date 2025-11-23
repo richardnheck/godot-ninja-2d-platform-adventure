@@ -1,6 +1,7 @@
 extends Gun
 
 signal fireball_destroyed
+signal force_destroy
 
 # Determmines whether homing fireball missile is homing or not
 # Set false for just a fireball missile targeted at the player
@@ -25,6 +26,7 @@ func _shoot():
 		var fireball = ._shoot()
 		print("Fireball pos", fireball.global_position)
 		fireball.connect("destroyed", self, "_on_fireball_destroyed")
+		self.connect("force_destroy", fireball, "force_die")
 		
 		# Modify whether the fireball is a homing missile or not
 		fireball.can_seek = homing
@@ -33,3 +35,8 @@ func _shoot():
 func _on_fireball_destroyed():
 	emit_signal("fireball_destroyed")
 	
+
+# Called when a phase is changed in the boss scene
+# In this case we need to destroy any existing homing lanterns that have been shot	
+func _on_phase_changed(phase):
+	emit_signal("force_destroy")

@@ -81,3 +81,11 @@ func _explode() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
+
+
+# Called when it should be removed forcibly once it has been launched as opposed to 
+# exploding normally.  This occurs in the boss level when transitioning to the second phase
+# and we don't want stray homing lanterns to still be able to kill the player
+func force_die():
+	print(">>>> force die()")
+	queue_free()

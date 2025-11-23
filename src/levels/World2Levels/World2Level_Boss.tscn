@@ -309,15 +309,14 @@ follow_path_type = 2
 
 [node name="Path2D" parent="Wanyudo" index="0"]
 position = Vector2( -40, 0 )
-scale = Vector2( 1.21739, 1 )
+scale = Vector2( 1.227, 1 )
 curve = ExtResource( 17 )
 
 [node name="PathFollow2D" parent="Wanyudo/Path2D" index="0"]
 position = Vector2( 0.72451, 8 )
 
 [node name="Area2D" parent="Wanyudo" index="1"]
-position = Vector2( -39.118, 8 )
-scale = Vector2( 1.21739, 1 )
+position = Vector2( -39.111, 8 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
