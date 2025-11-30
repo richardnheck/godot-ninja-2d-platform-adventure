@@ -44,6 +44,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/objects/electricity/BlueFlame.gd"
 }, {
+"base": "Area2D",
+"class": "CameraAdjustArea",
+"language": "GDScript",
+"path": "res://src/objects/camera/CameraAdjustArea2D.gd"
+}, {
+"base": "Node2D",
+"class": "CameraManager",
+"language": "GDScript",
+"path": "res://src/objects/camera/CameraManager.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -377,6 +387,8 @@ _global_script_class_icons={
 "BackButton": "",
 "Bakezori": "",
 "BlueFlame": "",
+"CameraAdjustArea": "",
+"CameraManager": "",
 "Character": "",
 "Character2": "",
 "Checkpoint": "",

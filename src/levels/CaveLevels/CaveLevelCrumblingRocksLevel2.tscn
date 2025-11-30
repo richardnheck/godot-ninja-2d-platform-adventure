@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/cave-level-door/Door.tscn" type="PackedScene" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=14]
 [ext_resource path="res://src/utility/curves/HorizontalLeftRight64.tres" type="Curve2D" id=15]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=16]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 111, 186 )
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -71,7 +75,7 @@ __meta__ = {
 }
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( -248, -11 )
+position = Vector2( -262, -145 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -213,26 +217,31 @@ collision_layer = 4
 format = 1
 tile_data = PoolIntArray( -393244, 2, 131073, -393243, 2, 131073, -393242, 2, 131073, -393241, 2, 131073, -393240, 2, 131073, -393239, 2, 131073, -393238, 2, 131073, -393237, 2, 131073, -393236, 2, 131073, -393235, 2, 131073, -393234, 2, 131073, -393233, 2, 131073, -262183, 2, 131073, -262182, 2, 131073, -262181, 2, 131073, -262180, 2, 131073, -262179, 2, 131073, -262178, 2, 131073, -131067, 1610612738, 196608, -131066, 1073741826, 196608, -131060, 1610612738, 196608, -131059, 1073741826, 196608, 4, -536870910, 196608, 131049, 2, 131073, 131050, 2, 131073, 131051, 2, 131073, 131052, 2, 131073, 131053, 2, 131073, 131054, 2, 131073, 131055, 2, 131073, 65540, -536870910, 196608, 131076, -536870910, 196608, 196612, -1610612734, 196608, 196642, 536870914, 196608, 393189, 2, 131073, 458773, 2, 131073, 458774, 2, 131073, 458775, 2, 131073, 458776, 2, 131073, 458777, 2, 131073, 458778, 2, 131073, 458779, 2, 131073, 458780, 2, 131073, 458781, 2, 131073, 458782, 2, 131073, 458783, 2, 131073, 458784, 2, 131073, 458785, 2, 131073, 458786, 2, 131073, 458787, 2, 131073, 458788, 2, 131073, 458789, 2, 131073, 458790, 2, 131073, 458791, 2, 131073, 458792, 2, 131073, 589872, 2, 131073, 589873, 2, 131073, 589874, 2, 131073, 589875, 2, 131073, 720871, 2, 131073, 655364, 2, 131073, 655365, 2, 131073, 655366, 2, 131073, 655367, 2, 131073, 655368, 2, 131073, 655369, 2, 131073, 655370, 2, 131073, 655371, 2, 131073, 655372, 2, 131073, 655373, 2, 131073, 655374, 2, 131073, 655375, 2, 131073, 655376, 2, 131073, 655377, 2, 131073, 655378, 2, 131073, 655401, 2, 131073, 655402, 2, 131073, 655403, 2, 131073, 1048558, 2, 131073, 1048559, 2, 131073, 1048560, 2, 131073, 1048562, 2, 131073, 1048563, 2, 131073, 1048564, 2, 131073, 1048566, 2, 131073, 1048567, 2, 131073, 1048568, 2, 131073, 1048570, 2, 131073, 1048571, 2, 131073, 1048572, 2, 131073 )
 
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustArea2D" parent="CameraAreas" instance=ExtResource( 16 )]
+position = Vector2( -233, -89 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D"]
+position = Vector2( -102, 176 )
+shape = SubResource( 4 )
+
 [node name="Props" type="Node2D" parent="."]
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 520, 32 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 624, 32 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 648, -48 )
 
 [node name="JapaneseLamp5" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 712, -48 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 152, -32 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 40, 128 )
@@ -362,7 +371,6 @@ anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 1 )]
 position = Vector2( 32, 32 )
-frame = 9
 
 [node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
 position = Vector2( 224, 64 )

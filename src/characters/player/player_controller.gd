@@ -13,6 +13,8 @@ onready var sprite = $AnimatedSprite
 onready var landing_dust_scene = preload("res://src/characters/player/effects/landing-dust/LandingDust.tscn")
 onready var air_jump_effect_scene = preload("res://src/characters/player/effects/air-jump/AirJumpEffect.tscn")
 onready var jump_effect_scene = preload("res://src/characters/player/effects/jump/JumpEffect.tscn")
+onready var camera_manager = $"%CameraManager"
+
 #-----------------------------
 # Signals
 #-----------------------------
@@ -136,6 +138,19 @@ func reset_applied_velocity() -> void:
 	if current_state != null:
 		current_state.velocity = Vector2(0, current_state.velocity.y)
 	
+	
+func get_current_state():
+	return $StateMachine.current_state
+
+
+
+#----------------------------------------------
+# Camera Related Functions
+#----------------------------------------------
+func get_camera_manager() -> CameraManager:
+	return camera_manager
+	
+		
 #----------------------------------------------
 # Functions for CutScenes
 #----------------------------------------------

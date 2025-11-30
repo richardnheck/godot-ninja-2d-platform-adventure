@@ -15,13 +15,15 @@ onready var player_spawn_position = get_node("PlayerSpawnPosition")
 onready var temp_spawn_position = get_node("TempSpawnPosition");
 onready var player_scene = preload("res://src/characters/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
-
 onready var intro_title = null
+
 
 var player:Player
 var fadeScreen:FadeScreen
 var screenShake:ScreenShake
 var checkpoints:Array
+
+var camera:Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,13 +63,32 @@ func _ready() -> void:
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
 	
-	# Add the screen shake scene
-	screenShake = screenShakeScene.instance()
-	add_child(screenShake)
-	
 	tilemapTraps.add_to_group(Constants.GROUP_TRAP)
 	
+#	############# EXPERIMENTAL ##############
+#	# Programatically add camera instead of using player's camera
+#	camera = Camera2D.new()
+#	camera.current = true
+#	var camera_script = load("res://src/levels/LevelCamera.gd")
+#	camera.set_script(camera_script)
+#	camera.set_player(player)
+#	add_child(camera)
+#	############# EXPERIMENTAL ##############
+
+	# Enable this for the default camera without smarts
+	# camera = player.get_node("%OldCamera2D")
+#
+#	# Enable this for attempting to improve camera
+	var camera_manager = player.get_node("CameraManager")
+	camera = camera_manager.get_camera()
+	camera.current = true
+	
 	set_player_camera_limits(player, tilemapWorld);
+	
+	# Add the screen shake scene
+	screenShake = screenShakeScene.instance()
+	screenShake.set_camera_node(camera.get_path())
+	add_child(screenShake)
 	
 	# Clear any projectiles from previous screen run
 	Projectiles.remove_all()
@@ -195,13 +216,13 @@ func _get_checkpoint(id:String)-> Checkpoint:
 #-------------------------------------------
  
 func set_player_camera_limits(player: KinematicBody2D, tilemap:TileMap) -> void:
-	var camera:Camera2D = player.get_node("Camera2D")
 	var bounds:Rect2 = calculate_tilemap_bounds(tilemap);
 	var size:= 0   # The size to extend the bounds
 	camera.limit_left = bounds.position.x-size
 	camera.limit_top = bounds.position.y-size
 	camera.limit_right = bounds.end.x+size
 	camera.limit_bottom = bounds.end.y # so that mobile buttons don't cover player ever when at the bottom of the screen
+
 	
 func calculate_tilemap_bounds(tilemap: TileMap) -> Rect2:
 	var cell_bounds = tilemap.get_used_rect()

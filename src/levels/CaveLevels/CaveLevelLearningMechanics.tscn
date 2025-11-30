@@ -37,10 +37,10 @@ __meta__ = {
 }
 
 [node name="PlayerSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 48, 112 )
+position = Vector2( 48, 187 )
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1664, -408 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1231, 53 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -278,9 +278,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -196599, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 65556, 0, 0, 65559, 0, 0, 131078, 0, 0, 131085, 0, 0, 131086, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 393208, 0, 0, 393210, 0, 0, 393212, 0, 0, 458748, 0, 0, 524281, 0, 0, 524283, 0, 0, 589816, 0, 0, 720888, 0, 0, 655379, 0, 0, 655380, 0, 0, 720915, 0, 0, 720917, 0, 0, 786451, 0, 0, 786452, 0, 0, 786455, 0, 0, 851984, 0, 0, 851988, 0, 0, 983032, 0, 0, 917526, 0, 0, 1048572, 0, 0, 1048574, 0, 0, 983040, 0, 0, 983045, 0, 0, 983047, 0, 0, 983055, 0, 0, 983058, 0, 0 )
 
-[node name="TileMapTraps" type="TileMap" parent="." groups=[
-"trap",
-]]
+[node name="TileMapTraps" type="TileMap" parent="." groups=["trap"]]
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 16, 8 )
 collision_layer = 4
@@ -291,15 +289,12 @@ tile_data = PoolIntArray( 655424, 2, 131073, 655425, 2, 131073, 655426, 2, 13107
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 48, 144 )
-frame = 0
 
 [node name="JapaneseLamp2" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 240, 144 )
-frame = 0
 
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 472, 99.594 )
-frame = 0
 
 [node name="JapaneseLamp4" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 848, 16 )
@@ -309,11 +304,9 @@ position = Vector2( 976, 15.3871 )
 
 [node name="JapaneseLamp6" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1248, 48 )
-frame = 0
 
 [node name="JapaneseLamp7" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1472, -288 )
-frame = 0
 
 [node name="JapaneseLamp8" parent="Props" instance=ExtResource( 2 )]
 position = Vector2( 1712, -400 )

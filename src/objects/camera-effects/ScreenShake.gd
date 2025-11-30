@@ -17,8 +17,6 @@ func screen_shake(shake_length, shake_power, shake_priority):
 		$Tween.start()
 
 func _move_camera(vector:Vector2):
-	if camera_node_path == null:
-		camera_node_path = "Player/Camera2D"
 	get_parent().get_node(camera_node_path).offset = Vector2(rand_range(-vector.x, vector.x), rand_range(-vector.y, vector.y))
 
 func _on_Tween_tween_completed(object, key):

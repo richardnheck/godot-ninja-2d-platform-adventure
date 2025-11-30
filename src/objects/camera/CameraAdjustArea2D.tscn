@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.gd" type="Script" id=1]
+
+[node name="CameraAdjustArea2D" type="Area2D"]
+position = Vector2( -251, -22 )
+script = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area2D_body_exited"]
