@@ -26,7 +26,7 @@ func _on_Area2D_body_entered(body):
 		
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
-		camera_manager.set_camera_y_offset(30)
+		camera_manager.set_y_offset_type(CameraManager.yOffsetType.OFFSET_DOWN)
 
 
 func _on_Area2D_body_exited(body):
@@ -35,7 +35,7 @@ func _on_Area2D_body_exited(body):
 		
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
-		camera_manager.restore_camera_y_offset()
+		camera_manager.reset_y_offset_type()
 	
 
 # Get the camera manager from the player
