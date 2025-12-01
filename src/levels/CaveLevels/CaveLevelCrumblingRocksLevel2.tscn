@@ -18,7 +18,7 @@
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 106.5, 176.75 )
+extents = Vector2( 110, 170.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 48.5, 166.5 )
@@ -78,7 +78,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( -262, -156 )
+position = Vector2( -272, -147 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -226,7 +226,7 @@ tile_data = PoolIntArray( -393244, 2, 131073, -393243, 2, 131073, -393242, 2, 13
 position = Vector2( -233, -89 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D1"]
-position = Vector2( -104.5, 165.75 )
+position = Vector2( -101, 159.5 )
 shape = SubResource( 4 )
 
 [node name="CameraAdjustArea2D2" parent="CameraAreas" instance=ExtResource( 16 )]
