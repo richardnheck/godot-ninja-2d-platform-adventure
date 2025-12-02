@@ -8,7 +8,8 @@ enum CameraAdjustType {
 }
 
 enum Mode {
-	SET_ON_ENTER_RESET_ON_EXIT = 0	
+	SET_ON_ENTER_RESET_ON_EXIT = 0,
+	SET_ON_ENTER = 1	# Set the camera offset on enter but don't reset on exit
 }
 
 enum yOffsetOption {
@@ -31,14 +32,25 @@ export (yOffsetOption) var y_offset_on_enter = yOffsetOption.DOWN
 export (xOffsetOption) var x_offset_on_enter = xOffsetOption.MEDIUM	 # This is the camera default
 
 
+var entered = false
+var exitted = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 func _on_Area2D_body_entered(body):
-	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT:
+	if !_body_is_player(body):
 		return
+		 
+	entered = true
+	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT and mode != Mode.SET_ON_ENTER:
+		return
+	
+	if mode == Mode.SET_ON_ENTER and entered and exitted:
+		# For set on enter without reset, don't set again if player has already entered and exitted
+		return			
 		
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
@@ -64,6 +76,10 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Area2D_body_exited(body):
+	if !_body_is_player(body):
+		return
+		
+	exitted = true
 	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT:
 		return
 		
@@ -75,9 +91,13 @@ func _on_Area2D_body_exited(body):
 			camera_manager.reset_x_offset_type()
 	
 
+func _body_is_player(body):
+	return body.is_in_group(Constants.GROUP_PLAYER)
+
+
 # Get the camera manager from the player
 func _get_camera_manager(body) -> CameraManager:
-	if body.is_in_group(Constants.GROUP_PLAYER):
+	if _body_is_player(body):
 		var player = body as Player
 		return player.get_camera_manager()
 	else:
