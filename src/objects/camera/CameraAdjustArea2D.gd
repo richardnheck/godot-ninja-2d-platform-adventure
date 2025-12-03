@@ -22,8 +22,18 @@ enum xOffsetOption {
 	NONE	 # No offset to prevent major camera swings due to auto camera adjustment that moves the offset to work no matter what direction the player is looking
 }
 
+enum AreaEdge {
+	LEFT,
+	RIGHT,
+	TOP,
+	BOTTOM,
+	UNKNOWN
+}
+
 export (CameraAdjustType) var camera_adjust_type = CameraAdjustType.Y_OFFSET
 export (Mode) var mode = Mode.SET_ON_ENTER_RESET_ON_EXIT
+export (bool) var trigger_enter_once = true
+export (bool) var trigger_exit_once = false
 
 # What to set the camera y offset on entering the area
 export (yOffsetOption) var y_offset_on_enter = yOffsetOption.DOWN
@@ -31,17 +41,45 @@ export (yOffsetOption) var y_offset_on_enter = yOffsetOption.DOWN
 # What to set the camera x offset on entering the area
 export (xOffsetOption) var x_offset_on_enter = xOffsetOption.MEDIUM	 # This is the camera default
 
+onready var collision_shape = get_node("CollisionShape2D")
 
 var entered = false
 var exitted = false
 
+# The global positions of the edges of the collision shape rectangle
+# Used for detecting which edge an area was entered and for triggering enter
+# and exit on specific edges
+var left_edge_x = 0
+var right_edge_x = 0
+var top_edge_y = 0
+var bottom_edge_y = 0
+
+# Need quite a broad threshold in pixels due to speed at which body crosses the edge
+# NB: Due to threshold size make sure collision shape is positioned and large enough so that
+# the body can clearly enter from a single edge 
+const edge_proximity_threshold = 40 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Get the extents (half size) of the rectangle and its global position
+	# to determine the position of the areas edges
+	var rectangle_shape = collision_shape.shape
+	if rectangle_shape is RectangleShape2D:
+		var extents = rectangle_shape.extents
+		left_edge_x = collision_shape.global_position.x - extents.x
+		right_edge_x = collision_shape.global_position.x + extents.x
+		top_edge_y = collision_shape.global_position.y - extents.y
+		bottom_edge_y = collision_shape.global_position.y + extents.y
 
 
 func _on_Area2D_body_entered(body):
 	if !_body_is_player(body):
+		return	
+	
+	print("Edge entered")	
+	var edge_entered = _get_edge_crossed(body)
+		
+	if trigger_enter_once and entered:
 		return
 		 
 	entered = true
@@ -55,6 +93,8 @@ func _on_Area2D_body_entered(body):
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
 		if camera_adjust_type == CameraAdjustType.Y_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
+			print('Camera Area Entered', body.global_position)
+			
 			var camera_y_offset_type
 			match(y_offset_on_enter):
 				yOffsetOption.DOWN:
@@ -66,6 +106,7 @@ func _on_Area2D_body_entered(body):
 			camera_manager.set_y_offset_type(camera_y_offset_type)
 			
 		if camera_adjust_type == CameraAdjustType.X_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
+			print('Camera Area Entered')
 			var camera_x_offset_type
 			match(x_offset_on_enter):
 				xOffsetOption.MEDIUM:
@@ -79,16 +120,44 @@ func _on_Area2D_body_exited(body):
 	if !_body_is_player(body):
 		return
 		
+	print("Edge exitted")	
+	var edge_exitted = _get_edge_crossed(body)	
+		
+	if trigger_exit_once and exitted:
+		return	
+		
 	exitted = true
 	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT:
 		return
 		
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
+		print('Camera Area Exitted', body.global_position)
 		if camera_adjust_type == CameraAdjustType.Y_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
 			camera_manager.reset_y_offset_type()
 		if camera_adjust_type == CameraAdjustType.X_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
 			camera_manager.reset_x_offset_type()
+
+
+# Determine the edge of the area2d rectangle collision shape that
+# the body crossed
+func _get_edge_crossed(body) -> int:
+	var global_position = body.global_position
+	if abs(global_position.x - left_edge_x) <= edge_proximity_threshold:
+		print("Crossed left edge")
+		return AreaEdge.LEFT
+	elif abs(global_position.x - right_edge_x) <= edge_proximity_threshold:
+		print("Crossed right edge")
+		return AreaEdge.RIGHT	
+	elif abs(global_position.y - bottom_edge_y) <= edge_proximity_threshold:
+		print("Crossed bottom edge")
+		return AreaEdge.BOTTOM	
+	elif abs(global_position.y - top_edge_y) <= edge_proximity_threshold:
+		print("Crossed top edge")
+		return AreaEdge.TOP	
+	else:
+		print("Crossed unknown edge")
+		return AreaEdge.UNKNOWN
 	
 
 func _body_is_player(body):
