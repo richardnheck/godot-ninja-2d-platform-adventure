@@ -31,6 +31,7 @@ var velocity_history = []
 const Y_OFFSET_UP = -16.0  # This is the default value set in the "CameraOffset" y position in the editor
 const Y_OFFSET_DOWN = 32.0
 const Y_OFFSET_NONE = 0.0 
+const Y_OFFSET_DEFAULT = Y_OFFSET_UP
 
 const X_OFFSET_NONE = 0.0
 const X_OFFSET_MEDIUM = 48	
@@ -102,13 +103,17 @@ func reset_y_offset_type():
 func _set_camera_y_offset(new_offset):
 	camera.drag_margin_v_enabled=false
 	print("set_camera_y_offset", new_offset)
-	y_offset_tween_values = [Vector2(camera_offset.position.x, Y_OFFSET_UP), Vector2(camera_offset.position.x, new_offset)]
+	y_offset_tween_values = [Vector2(camera_offset.position.x, Y_OFFSET_DEFAULT), Vector2(camera_offset.position.x, new_offset)]
 	print("y_offset_tween_values", str(y_offset_tween_values))
 	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	yoffset_tween.start()
 
 
 func _reset_camera_y_offset():
+	if camera_offset.position.y == Y_OFFSET_DEFAULT:
+		# don't reset if it is already the default. i.e. has most likely been reset
+		return
+	
 	camera.drag_margin_v_enabled=false
 	print("reset_camera_y_offset")
 	y_offset_tween_values.invert()
