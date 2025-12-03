@@ -5,13 +5,15 @@ export var look_at_player_enabled:bool = true
 
 # Determines whether npc can move
 export var can_move:bool = true
+export var velocity = Vector2()
 
 # Determines whether npc is affected by gravity i.e does it fall
 export var affected_by_gravity:bool = false
 
+
 export var gravity:int = 15
 var speed = 0.0
-var velocity = Vector2()
+
 
 onready var area2D:Area2D = $Pivot/Area2D
 onready var animatedSprite:AnimatedSprite = $Pivot/AnimatedSprite
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 	if look_at_player_enabled:
 		_look_at_player()
 	
+func _physics_process(delta):	
 	if can_move:
 		if affected_by_gravity:
 			_apply_gravity()

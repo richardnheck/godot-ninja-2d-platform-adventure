@@ -8,9 +8,9 @@ radius = 6.29384
 
 [node name="OneEyedSpikey" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+float_offset = 50
 
 [node name="AnimatedSprite" parent="Pivot" index="0"]
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" parent="Pivot/Area2D" index="0"]

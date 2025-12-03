@@ -12,8 +12,8 @@
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=11]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/characters/enemies/creepy-crawly/CreepyCrawly.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/ashimigarari/Ashimigarari.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/red-creepy-crawly/RedCreepyCrawly.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -699,17 +699,11 @@ orientation = 1
 horizontal_wall_direction = 0
 vertical_wall_direction = 0
 
-[node name="CreepyCrawly" parent="InteractiveProps" instance=ExtResource( 13 )]
-position = Vector2( 1352, -271.946 )
-can_move = false
-
-[node name="CreepyCrawly2" parent="InteractiveProps" instance=ExtResource( 13 )]
-position = Vector2( 1448, -288 )
-can_move = false
-
-[node name="CreepyCrawly3" parent="InteractiveProps" instance=ExtResource( 13 )]
-position = Vector2( 1544, -304 )
-can_move = false
+[node name="RedCreepyCrawly" parent="InteractiveProps" instance=ExtResource( 15 )]
+position = Vector2( 1353, -277 )
+speed = 40.0
+tween_transition_type = 0
+path_length = 160
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 12 )]
 position = Vector2( 1184, -80 )
@@ -821,7 +815,7 @@ tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 8 )
 collision_layer = 4
 format = 1
-tile_data = PoolIntArray( -655283, 2, 131073, -655282, 2, 131073, -393147, 2, 131073, -393146, 2, 131073, 64, 2, 131073, 1179689, 2, 131073, 1179690, 2, 131073, 1179691, 2, 131073, 1179692, 2, 131073, 1179693, 2, 131073, 1179694, 2, 131073, 1179695, 2, 131073, 1179696, 2, 131073, 1179697, 2, 131073, 1179698, 2, 131073, 1179699, 2, 131073, 1179700, 2, 131073, 1179701, 2, 131073, 1179702, 2, 131073, 1179703, 2, 131073, 1179704, 2, 131073, 1179705, 2, 131073, 1179706, 2, 131073, 1835017, 2, 131073, 1835018, 2, 131073, 1835022, 2, 131073, 1835023, 2, 131073, 1835024, 2, 131073, 1835028, 2, 131073, 1835029, 2, 131073, 1835030, 2, 131073, 1835031, 2, 131073, 1835032, 2, 131073 )
+tile_data = PoolIntArray( -2621344, 2, 196608, -2490278, 2, 196608, -655283, 2, 131073, -655282, 2, 131073, -393147, 2, 131073, -393146, 2, 131073, 64, 2, 131073, 1179689, 2, 131073, 1179690, 2, 131073, 1179691, 2, 131073, 1179692, 2, 131073, 1179693, 2, 131073, 1179694, 2, 131073, 1179695, 2, 131073, 1179696, 2, 131073, 1179697, 2, 131073, 1179698, 2, 131073, 1179699, 2, 131073, 1179700, 2, 131073, 1179701, 2, 131073, 1179702, 2, 131073, 1179703, 2, 131073, 1179704, 2, 131073, 1179705, 2, 131073, 1179706, 2, 131073, 1835017, 2, 131073, 1835018, 2, 131073, 1835022, 2, 131073, 1835023, 2, 131073, 1835024, 2, 131073, 1835028, 2, 131073, 1835029, 2, 131073, 1835030, 2, 131073, 1835031, 2, 131073, 1835032, 2, 131073 )
 
 [node name="Props" type="Node2D" parent="."]
 
