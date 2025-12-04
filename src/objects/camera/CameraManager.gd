@@ -40,16 +40,18 @@ const X_OFFSET_MEDIUM = 48
 # in front of the player depending on their direction
 const CAMERA_WEIGHT = 1.4
 const CAMERA_POSITION_X_OFFSET = X_OFFSET_MEDIUM
-const PLAYER_VELOCITY_THRESHOLD = 100
+const PLAYER_VELOCITY_THRESHOLD = 100	# The average speed of player in direction to trigger an xoffset camera swing to the other direction
+const CAMERA_OFFSET_TWEEN_TIME = 1.0   # Time in seconds for camera offset value to tween
 
 var x_offset_mode:int = xOffsetMode.OFFSET_AUTO
 var x_offset:float = X_OFFSET_MEDIUM    # This default needs to be the same as what is currently set in the editor
 
+const SMOOTHING_SPEED = 10		
 
 var y_offset_tween_values = [0.0,0.0]
 
 func _ready():
-	pass # Replace with function body.
+	camera.smoothing_speed = SMOOTHING_SPEED
 	
 
 func _physics_process(delta: float) -> void:
@@ -102,10 +104,11 @@ func reset_y_offset_type():
 
 func _set_camera_y_offset(new_offset):
 	camera.drag_margin_v_enabled=false
-	print("set_camera_y_offset", new_offset)
+	camera.smoothing_speed = 5	# temporarily slow smoothing when drag margin disabled to make sudden camera adjustment less jerky
+	#print("set_camera_y_offset", new_offset)
 	y_offset_tween_values = [Vector2(camera_offset.position.x, Y_OFFSET_DEFAULT), Vector2(camera_offset.position.x, new_offset)]
-	print("y_offset_tween_values", str(y_offset_tween_values))
-	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#print("y_offset_tween_values", str(y_offset_tween_values))
+	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], CAMERA_OFFSET_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	yoffset_tween.start()
 
 
@@ -115,22 +118,17 @@ func _reset_camera_y_offset():
 		return
 	
 	camera.drag_margin_v_enabled=false
-	print("reset_camera_y_offset")
+	camera.smoothing_speed = 5	# temporarily slow smoothing when drag margin disabled to make sudden camera adjustment less jerky
+	
+	#print("reset_camera_y_offset")
 	y_offset_tween_values.invert()
-	print("y_offset_tween_values", str(y_offset_tween_values))
-	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#print("y_offset_tween_values", str(y_offset_tween_values))
+	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], CAMERA_OFFSET_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	yoffset_tween.start()
-		
-
-#func _recenter_with_drag_margin_toggle():
-##	# Momentarily disable drag v_margin to allow camera to adjust
-##	# This is required otherwise the camera does adjust upward enough until they jump
-#	camera.drag_margin_v_enabled=false
-#	yield(get_tree().create_timer(1), "timeout")
-#	camera.drag_margin_v_enabled=true	
 	
 	
 func _on_YOffsetTween_tween_completed(object, key):
+	camera.smoothing_speed = SMOOTHING_SPEED
 	camera.drag_margin_v_enabled=true	
 
 

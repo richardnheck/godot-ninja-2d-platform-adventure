@@ -8,8 +8,9 @@ enum CameraAdjustType {
 }
 
 enum Mode {
-	SET_ON_ENTER_RESET_ON_EXIT = 0,
-	SET_ON_ENTER = 1	# Set the camera offset on enter but don't reset on exit
+	SET_ON_ENTER_RESET_ON_EXIT,
+	SET_ON_ENTER,	 # Set the camera offset on enter but don't reset on exit
+	RESET_ON_EXIT	 # Only reset the camera on exit
 }
 
 enum yOffsetOption {
@@ -34,6 +35,13 @@ export (CameraAdjustType) var camera_adjust_type = CameraAdjustType.Y_OFFSET
 export (Mode) var mode = Mode.SET_ON_ENTER_RESET_ON_EXIT
 export (bool) var trigger_enter_once = true
 export (bool) var trigger_exit_once = false
+
+# Specify which edge triggers an enter
+export (AreaEdge) var enter_edge = AreaEdge.UNKNOWN	 # Defaults to no specific edge
+
+# Specify which edge triggers an exit
+export (AreaEdge) var exit_edge = AreaEdge.UNKNOWN	 # Defaults to no specific edge
+
 
 # What to set the camera y offset on entering the area
 export (yOffsetOption) var y_offset_on_enter = yOffsetOption.DOWN
@@ -76,11 +84,15 @@ func _on_Area2D_body_entered(body):
 	if !_body_is_player(body):
 		return	
 	
-	print("Edge entered")	
-	var edge_entered = _get_edge_crossed(body)
-		
+	var edge_crossed = _get_edge_crossed(body)
+	if enter_edge != AreaEdge.UNKNOWN and enter_edge != edge_crossed:
+		# entry did not occur on the specified edge
+		return
+			
 	if trigger_enter_once and entered:
 		return
+	
+	print(">> Area entered!")
 		 
 	entered = true
 	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT and mode != Mode.SET_ON_ENTER:
@@ -106,7 +118,7 @@ func _on_Area2D_body_entered(body):
 			camera_manager.set_y_offset_type(camera_y_offset_type)
 			
 		if camera_adjust_type == CameraAdjustType.X_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
-			print('Camera Area Entered')
+			print('Camera Area Entered', body.global_position)
 			var camera_x_offset_type
 			match(x_offset_on_enter):
 				xOffsetOption.MEDIUM:
@@ -120,14 +132,18 @@ func _on_Area2D_body_exited(body):
 	if !_body_is_player(body):
 		return
 		
-	print("Edge exitted")	
-	var edge_exitted = _get_edge_crossed(body)	
+	var edge_crossed = _get_edge_crossed(body)
+	if enter_edge != AreaEdge.UNKNOWN and exit_edge != edge_crossed:
+		# exit did not occur on the specified edge
+		return
 		
 	if trigger_exit_once and exitted:
-		return	
+		return
+		
+	print(">> Area exitted!")		
 		
 	exitted = true
-	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT:
+	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT and mode != Mode.RESET_ON_EXIT:
 		return
 		
 	var camera_manager = _get_camera_manager(body)

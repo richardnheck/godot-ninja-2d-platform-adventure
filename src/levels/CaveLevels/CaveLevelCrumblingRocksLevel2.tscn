@@ -20,13 +20,13 @@
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/red-creepy-crawly/RedCreepyCrawly.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 110, 170.5 )
+extents = Vector2( 53, 59 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 32.5, 85.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 220, 168.5 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 48.5, 166.5 )
+extents = Vector2( 70, 168.5 )
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -83,7 +83,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 296, 24 )
+position = Vector2( -267, -145 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -227,29 +227,37 @@ tile_data = PoolIntArray( -393244, 2, 131073, -393243, 2, 131073, -393242, 2, 13
 
 [node name="CameraAreas" type="Node2D" parent="."]
 
-[node name="CameraAdjustArea2D1" parent="CameraAreas" instance=ExtResource( 16 )]
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 16 )]
 position = Vector2( -233, -89 )
+mode = 1
+trigger_exit_once = true
+enter_edge = 2
+x_offset_on_enter = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D1"]
-position = Vector2( -101, 159.5 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -2, 48 )
 shape = SubResource( 4 )
 
-[node name="CameraAdjustArea2D2" parent="CameraAreas" instance=ExtResource( 16 )]
+[node name="CameraAdjustAreaReset" parent="CameraAreas" instance=ExtResource( 16 )]
+position = Vector2( -339, 148 )
+mode = 2
+trigger_exit_once = true
+exit_edge = 1
+x_offset_on_enter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaReset"]
+position = Vector2( -29.5, 74.5 )
+shape = SubResource( 7 )
+
+[node name="CameraAdjustAreaDown2" parent="CameraAreas" instance=ExtResource( 16 )]
 position = Vector2( 832, -41 )
-trigger_enter_once = false
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D2"]
-position = Vector2( -308, 193.5 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown2"]
+position = Vector2( -135, 193.5 )
 shape = SubResource( 5 )
-
-[node name="CameraAdjustArea2D3" parent="CameraAreas" instance=ExtResource( 16 )]
-position = Vector2( 1144, -72 )
-mode = 1
-y_offset_on_enter = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D3"]
-position = Vector2( -160.5, 195.5 )
-shape = SubResource( 6 )
 
 [node name="Props" type="Node2D" parent="."]
 
