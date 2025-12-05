@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/objects/cloud-platform/CloudPlatform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/water-jump-yokai/WaterJumpYokaiSpawner.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/objects/cave-level-door/Door.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/levels/LevelBase.gd" type="Script" id=11]
+[ext_resource path="res://src/levels/World2Levels/World2Level_Level5.gd" type="Script" id=11]
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/objects/fireball-spinner/FireBallSpinner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/objects/clock-switch/ClockSwitch.tscn" type="PackedScene" id=14]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/roof-wall-tileset.tres" type="TileSet" id=19]
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=20]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=21]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Curve2D" id=2]
 _data = {
@@ -83,6 +84,15 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 32, 6, 0, 0, 0, 0, 30.6837, 5.58823, 0, 0, 0, 0, -32.3833, 6.00868 )
 }
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 32, 175 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 24, 80 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 24, 80 )
+
 [node name="World2Level5" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -90,7 +100,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 4688, 56 )
+position = Vector2( 5872, 80 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -640,6 +650,39 @@ swing_speed = 50
 swing_time_offset = 1.0
 length = 2
 animate_in_editor = false
+
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustAreaResetToUp" parent="CameraAreas" instance=ExtResource( 22 )]
+position = Vector2( 2784, 16 )
+mode = 2
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+y_offset_on_enter = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaResetToUp"]
+position = Vector2( -304, -25 )
+shape = SubResource( 11 )
+
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 22 )]
+position = Vector2( 3328, -8 )
+mode = 1
+trigger_exit_once = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -328, -120 )
+shape = SubResource( 12 )
+
+[node name="CameraAdjustAreaResetToUp2" parent="CameraAreas" instance=ExtResource( 22 )]
+position = Vector2( 6248, 224 )
+mode = 1
+trigger_exit_once = true
+y_offset_on_enter = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaResetToUp2"]
+position = Vector2( -328, -120 )
+shape = SubResource( 13 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

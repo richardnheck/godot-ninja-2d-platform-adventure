@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/funayurei/FunaYurei.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/fireball-spinner/FireBallSpinner.tscn" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=26]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=27]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=28]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=29]
 
 [sub_resource type="Curve2D" id=5]
 _data = {
@@ -168,6 +169,15 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 38.25, 0, 0, 0, 0, 0, 72, 0 )
 }
 
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 24, 80 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 24, 180 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 64, 276 )
+
 [node name="World2Level6" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -176,7 +186,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1904, -1072 )
+position = Vector2( 4040, -2040 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -823,6 +833,38 @@ position = Vector2( 32.7265, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei3" index="1"]
 position = Vector2( 32.7266, 0 )
+
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 29 )]
+position = Vector2( 3016, -1592 )
+mode = 1
+trigger_exit_once = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -64, -136 )
+shape = SubResource( 19 )
+
+[node name="CameraAdjustAreaReset" parent="CameraAreas" instance=ExtResource( 29 )]
+position = Vector2( 3256, -1456 )
+mode = 2
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaReset"]
+position = Vector2( -64, -116 )
+shape = SubResource( 20 )
+
+[node name="CameraAdjustAreaDown2" parent="CameraAreas" instance=ExtResource( 29 )]
+position = Vector2( 4184, -1848 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown2"]
+position = Vector2( -24, -116 )
+shape = SubResource( 21 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
