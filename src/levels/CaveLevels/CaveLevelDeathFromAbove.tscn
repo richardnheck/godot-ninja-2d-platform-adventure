@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/art/backgrounds/stalectite.png" type="Texture" id=18]
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=19]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/characters/enemies/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -59,10 +60,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 27.75, 61.25 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 20, 108.5 )
+extents = Vector2( 52, 96 )
 
 [node name="CaveLevel - DeathFromAbove" type="Node2D"]
 script = ExtResource( 6 )
@@ -70,8 +68,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 544, -232 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 280, 16 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -96,10 +94,6 @@ position = Vector2( 57, -800 )
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 17 )]
 position = Vector2( 544, -175.967 )
-
-[node name="CheckPoint2" parent="InteractiveProps" instance=ExtResource( 17 )]
-position = Vector2( 16, -338 )
-id = "2"
 
 [node name="FallingSpike" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 96, 128 )
@@ -145,10 +139,10 @@ position = Vector2( 368.946, 214.243 )
 rotation = -1.57079
 up_down = false
 
-[node name="SpikeyRock2" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( 544, -144 )
-rotation = 4.71238
-up_down = false
+[node name="OneEyedSpikey" parent="InteractiveProps" instance=ExtResource( 21 )]
+position = Vector2( 592, -144 )
+float_offset = 100
+direction = 1
 
 [node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( -168.045, -568 )
@@ -491,21 +485,15 @@ one_shot = true
 
 [node name="CameraAreas" type="Node2D" parent="."]
 
-[node name="CameraAdjustArea2D1" parent="CameraAreas" instance=ExtResource( 20 )]
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 20 )]
 position = Vector2( 600, 112 )
+trigger_exit_once = true
+enter_edge = 2
+exit_edge = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D1"]
-position = Vector2( -292.25, 53.25 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -284, 56 )
 shape = SubResource( 4 )
-
-[node name="CameraAdjustArea2D2" parent="CameraAreas" instance=ExtResource( 20 )]
-position = Vector2( 560, 402 )
-mode = 1
-y_offset_on_enter = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustArea2D2"]
-position = Vector2( -189, 112.5 )
-shape = SubResource( 5 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="player_entered" from="InteractiveProps/Door" to="." method="_on_Door_player_entered"]
