@@ -24,7 +24,7 @@ func _ready() -> void:
 	screen_shake.set_camera_node("Camera2D")
 	stage_clear_text.visible = false
 	animation_player.play("walk_in")	
-	player.get_node("Camera2D").current = false  # make sure the player's camera is not used
+	player.get_camera_manager().get_camera().current = false  # make sure the player's camera is not used
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
