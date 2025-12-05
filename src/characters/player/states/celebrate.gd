@@ -1,6 +1,6 @@
 extends "res://src/utility/state_machine/state.gd"
 
-var velocity = Vector2.ZERO
+var velocity = Vector2.ZERO		# just needs to be defined for the camera manager
 
 # Initialize the state. E.g. change the animation.
 func enter():
