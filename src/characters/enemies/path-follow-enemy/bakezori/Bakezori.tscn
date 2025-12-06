@@ -55,10 +55,10 @@ orientation = 0
 curve = SubResource( 15 )
 
 [node name="PathFollow2D" parent="Path2D" index="0"]
-position = Vector2( -31.2741, 0 )
+position = Vector2( -49.2746, 0 )
 
 [node name="Area2D" parent="." index="1"]
-position = Vector2( -31.2741, 0 )
+position = Vector2( -49.2746, 0 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 0.274075, 0.5 )
