@@ -7,6 +7,7 @@ enum MODE { TIMED }
 
 # The lifetime in seconds to set for the Wanyudo Mini
 export var wanyudo_mini_lifetime := 3.0
+export var idle_after_shoot := true   # transition to idle animation after shooting.  The spawner array used for the boss sets this to false as the spawner is a one shot		
 
 export (PackedScene) var bullet_scene
 export var shoot_rate := 0.25
@@ -18,9 +19,12 @@ export var impulse := 370
 onready var _shoot_timer := $ShootTimer
 onready var _delay_timer := $DelayTimer
 onready var _shoot_position := $ShootPosition
+onready var animated_sprite := $AnimatedSprite
 
 
 func _ready():
+	animated_sprite.animation = "Idle"
+	
 	if mode == MODE.TIMED:
 		_shoot_timer.wait_time = shoot_rate
 		if delay_time == 0:
@@ -45,6 +49,8 @@ func _shoot() -> void:
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 
+	animated_sprite.animation = "Spawn"
+	yield(get_tree().create_timer(0.5), "timeout")
 	var bullet:WanyudoMini = bullet_scene.instance()
 	print_debug("lifetime: " + str(wanyudo_mini_lifetime))
 	bullet.lifetime = wanyudo_mini_lifetime
@@ -53,7 +59,11 @@ func _shoot() -> void:
 	bullet.global_position = _shoot_position.global_position
 	
 	emit_signal("spawned_object")
-
+	
+	if idle_after_shoot:
+		# transition back to idle animation
+		animated_sprite.animation = "Idle"
+	
 	if "impulse" in bullet:
 		bullet.impulse = impulse
 	

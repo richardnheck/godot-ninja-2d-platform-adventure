@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="WanyudoMiniSpawner1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -112, 0 )
 wanyudo_mini_lifetime = 0.8
+idle_after_shoot = false
 bullet_scene = ExtResource( 4 )
 shoot_rate = 5.0
 delay_time = 0.8
@@ -21,6 +22,7 @@ impulse = 50
 
 [node name="WanyudoMiniSpawner2" parent="." instance=ExtResource( 3 )]
 wanyudo_mini_lifetime = 0.8
+idle_after_shoot = false
 bullet_scene = ExtResource( 4 )
 shoot_rate = 5.0
 delay_time = 0.5
@@ -30,6 +32,7 @@ impulse = 50
 [node name="WanyudoMiniSpawner3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 112, 0 )
 wanyudo_mini_lifetime = 0.8
+idle_after_shoot = false
 bullet_scene = ExtResource( 4 )
 shoot_rate = 5.0
 delay_time = 0.3
