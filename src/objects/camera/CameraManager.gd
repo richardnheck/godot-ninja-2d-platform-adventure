@@ -72,8 +72,15 @@ func set_x_offset_type(type:int):
 	match type:
 		xOffsetType.OFFSET_MEDIUM:
 			x_offset = X_OFFSET_MEDIUM
+			x_offset_mode = xOffsetMode.OFFSET_AUTO
 		xOffsetType.OFFSET_NONE:
+			print(">>>>>Set xOffset NONE")
 			x_offset = X_OFFSET_NONE
+			# When there is no xoffset there is no need to automatically adjust it based on players direction
+			x_offset_mode = xOffsetMode.OFFSET_FIXED
+			# Set the offset directly
+			pivot.position.x = 0
+			camera_offset.position.x = 0
 		_:
 			x_offset = X_OFFSET_NONE
 
