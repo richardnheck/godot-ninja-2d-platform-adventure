@@ -29,4 +29,10 @@ shape = SubResource( 1 )
 position = Vector2( 0, -8 )
 frames = SubResource( 3 )
 
+[node name="Line2D" type="Line2D" parent="."]
+self_modulate = Color( 0.784314, 0.768627, 0.768627, 1 )
+show_behind_parent = true
+points = PoolVector2Array( 0, -40, 0, 0 )
+width = 1.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
