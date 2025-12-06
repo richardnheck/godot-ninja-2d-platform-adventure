@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=36]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=37]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=38]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -234,6 +235,24 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 128, 168 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 48, 208 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 65, 208 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 77, 228 )
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 193, 228 )
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 145, 272 )
+
 [node name="World3Level Level6" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -241,7 +260,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 3248, -696 )
+position = Vector2( 6608, -1504 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -890,7 +909,7 @@ position = Vector2( 168, -16 )
 
 [node name="Bakezori" parent="SectionZigZag/enemies" instance=ExtResource( 23 )]
 position = Vector2( 72, -157 )
-speed = 80.0
+speed = 70.0
 path_length = 130
 
 [node name="ZenchuuNoHikari" parent="SectionZigZag/enemies" instance=ExtResource( 20 )]
@@ -898,7 +917,7 @@ position = Vector2( -25, -226 )
 
 [node name="Bakezori2" parent="SectionZigZag/enemies" instance=ExtResource( 23 )]
 position = Vector2( 128, -267 )
-speed = 80.0
+speed = 70.0
 path_length = 130
 orientation = 1
 
@@ -1053,7 +1072,7 @@ position = Vector2( 208, -144 )
 
 [node name="Bakezori" parent="SectionNearEnd/enemies" instance=ExtResource( 23 )]
 position = Vector2( 208, -75 )
-speed = 80.0
+speed = 70.0
 path_length = 120
 
 [node name="TofuKozo" parent="SectionNearEnd/enemies" instance=ExtResource( 33 )]
@@ -1074,7 +1093,7 @@ position = Vector2( 1064, -328 )
 
 [node name="Bakezori2" parent="SectionNearEnd/enemies" instance=ExtResource( 23 )]
 position = Vector2( 1368, -347 )
-speed = 80.0
+speed = 70.0
 path_length = 70
 
 [node name="Hannya" parent="SectionNearEnd/enemies" instance=ExtResource( 26 )]
@@ -1493,6 +1512,72 @@ format = 1
 [node name="traps" type="Node2D" parent="SectionTemplate5"]
 
 [node name="platforms" type="Node2D" parent="SectionTemplate5"]
+
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 1720, -160 )
+camera_adjust_type = 2
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 3
+x_offset_on_enter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -232, -88 )
+shape = SubResource( 18 )
+
+[node name="CameraAdjustAreaDown2" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 1968, -520 )
+trigger_exit_once = true
+enter_edge = 1
+exit_edge = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown2"]
+position = Vector2( -240, 72 )
+shape = SubResource( 23 )
+
+[node name="CameraAdjustAreaDown3" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 3328, -896 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown3"]
+position = Vector2( -193, 72 )
+shape = SubResource( 24 )
+
+[node name="CameraAdjustAreaDown4" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 5328, -1336 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown4"]
+position = Vector2( -181, 92 )
+shape = SubResource( 25 )
+
+[node name="CameraAdjustAreaDown5" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 5600, -1440 )
+collision_layer = 512
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown5"]
+position = Vector2( -65, 92 )
+shape = SubResource( 26 )
+
+[node name="CameraAdjustAreaDown6" parent="CameraAreas" instance=ExtResource( 38 )]
+position = Vector2( 6904, -1432 )
+collision_layer = 512
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown6"]
+position = Vector2( -113, 48 )
+shape = SubResource( 27 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

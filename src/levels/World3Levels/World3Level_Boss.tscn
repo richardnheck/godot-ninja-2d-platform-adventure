@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/rotating-platform/RotatingPlatform.tscn" type="PackedScene" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-platform-track-80.png" type="Texture" id=33]
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=34]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=35]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=36]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 25, 298.875 )
@@ -111,6 +112,15 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 95.5, 254.5 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 304, 254.5 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 352, 254.5 )
+
 [node name="World3 Level Boss (AoAndon)" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -120,8 +130,8 @@ __meta__ = {
 [node name="CeilingPosition2D" type="Position2D" parent="."]
 position = Vector2( 3584, 9 )
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 2936, -128 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 5904, 8 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -357,7 +367,7 @@ position = Vector2( 2240, -32 )
 
 [node name="Bakezori" parent="Section1/enemies" instance=ExtResource( 18 )]
 position = Vector2( 2616, -186 )
-speed = 80.0
+speed = 70.0
 
 [node name="Hannya2" parent="Section1/enemies" instance=ExtResource( 22 )]
 position = Vector2( 2768, -16 )
@@ -503,7 +513,7 @@ path_length = 80
 
 [node name="Bakezori" parent="Section3Phase2Start/enemies" instance=ExtResource( 18 )]
 position = Vector2( 1355, -139 )
-speed = 80.0
+speed = 70.0
 path_length = 64
 
 [node name="ChochinObake2" parent="Section3Phase2Start/enemies" instance=ExtResource( 27 )]
@@ -669,6 +679,38 @@ format = 1
 [node name="traps" type="Node2D" parent="SectionTemplate6"]
 
 [node name="platforms" type="Node2D" parent="SectionTemplate6"]
+
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 36 )]
+position = Vector2( 2952, -136 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -215.5, 105.5 )
+shape = SubResource( 16 )
+
+[node name="CameraAdjustAreaDown2" parent="CameraAreas" instance=ExtResource( 36 )]
+position = Vector2( 3688, -112 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown2"]
+position = Vector2( -456, 105.5 )
+shape = SubResource( 17 )
+
+[node name="CameraAdjustAreaDown3" parent="CameraAreas" instance=ExtResource( 36 )]
+position = Vector2( 6648, -64 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown3"]
+position = Vector2( -408, 105.5 )
+shape = SubResource( 18 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

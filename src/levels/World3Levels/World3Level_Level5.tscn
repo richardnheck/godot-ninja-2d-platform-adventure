@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://src/characters/enemies/nekekubi/Nekekubi.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/utility/curves/VerticalTopDown6L.tres" type="Curve2D" id=28]
 [ext_resource path="res://src/characters/enemies/hannya/Hannya.tscn" type="PackedScene" id=29]
+[ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -136,6 +137,21 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 67.5, 203 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 25, 208 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 81, 208 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 77, 228 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 80, 228 )
+
 [node name="World3Level Level5" type="Node2D"]
 script = ExtResource( 11 )
 __meta__ = {
@@ -143,7 +159,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 3944, -80 )
+position = Vector2( 5368, -280 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -753,6 +769,58 @@ format = 1
 [node name="traps" type="Node2D" parent="SectionTemplate4"]
 
 [node name="platforms" type="Node2D" parent="SectionTemplate4"]
+
+[node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="CameraAdjustAreaDown" parent="CameraAreas" instance=ExtResource( 30 )]
+position = Vector2( 1328, -120 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown"]
+position = Vector2( -243.5, -53 )
+shape = SubResource( 9 )
+
+[node name="CameraAdjustAreaDown2" parent="CameraAreas" instance=ExtResource( 30 )]
+position = Vector2( 3040, -256 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown2"]
+position = Vector2( -233, 72 )
+shape = SubResource( 10 )
+
+[node name="CameraAdjustAreaDown3" parent="CameraAreas" instance=ExtResource( 30 )]
+position = Vector2( 3936, -240 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown3"]
+position = Vector2( -177, 72 )
+shape = SubResource( 11 )
+
+[node name="CameraAdjustAreaDown4" parent="CameraAreas" instance=ExtResource( 30 )]
+position = Vector2( 5736, -304 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown4"]
+position = Vector2( -181, 92 )
+shape = SubResource( 12 )
+
+[node name="CameraAdjustAreaDown5" parent="CameraAreas" instance=ExtResource( 30 )]
+position = Vector2( 6306, -256 )
+trigger_exit_once = true
+enter_edge = 0
+exit_edge = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown5"]
+position = Vector2( -178, 92 )
+shape = SubResource( 13 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
