@@ -30,7 +30,8 @@ func fire(target_ref):
 
 var elapsed = 0.0
 func _physics_process(delta):
-	if not target:
+	if not is_instance_valid(target):
+		queue_free()
 		return
 		
 	if position.x > target.position.x and can_seek:	

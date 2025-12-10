@@ -1,3 +1,5 @@
+# World 1 - Boss Level (Stone Yokai)
+# ---------------------------------
 extends LevelBase
 
 onready var boss:KinematicBody2D = $Boss;
@@ -8,7 +10,7 @@ var boss_speed = 20;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Boss Scene: ready()")
+	print("World1 - Boss Scene: ready()")
 	
 	# Pass the boss a reference to the player
 	boss.set_player(player)

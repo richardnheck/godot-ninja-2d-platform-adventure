@@ -1,3 +1,5 @@
+# World 2 - Boss Level (Wanyudo)
+# ---------------------------------
 extends LevelBase
 
 onready var boss := $Wanyudo;
@@ -6,7 +8,7 @@ onready var ceiling_position := $CeilingPosition2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Boss Scene: ready()")
+	print("World2 - Boss Scene: ready()")
 	
 	# Pass the boss a reference to the player
 	boss.set_player(player)
@@ -22,3 +24,8 @@ func _ready():
 		# This number was visually determined by adjusting the boss PathFollow2D unit offset 
 		yield(get_tree().create_timer(0), "timeout")
 		boss.set_spawn_offset(0.44)
+
+
+func _on_EndArea_body_entered(body: Node) -> void:
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		get_tree().change_scene("res://src/UI/CutScenes/World2/BossClearCutScene.tscn")

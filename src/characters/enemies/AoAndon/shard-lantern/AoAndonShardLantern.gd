@@ -56,9 +56,10 @@ func fire(target_ref):
 
 var elapsed = 0.0
 func _physics_process(delta):
-	if not target:
-		return
-		
+	if not is_instance_valid(target):
+		queue_free()
+		return 
+	
 	if position.x > target.position.x and can_seek:	
 		# If the missile reaches the player then stop seeking and start the life timer
 		# so it explodes

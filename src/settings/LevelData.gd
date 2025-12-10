@@ -52,6 +52,7 @@ var levelsArray = [
 	{"world": WORLD3, "name" : "Level4", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level5", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level6", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true},
 ];
 
 

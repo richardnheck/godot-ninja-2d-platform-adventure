@@ -389,6 +389,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/wanyudo-mini/WanyudoMiniSpawner.gd"
 }, {
+"base": "Node",
+"class": "World1BossIntroCutScene",
+"language": "GDScript",
+"path": "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd"
+}, {
+"base": "Node",
+"class": "World2BossIntroCutScene",
+"language": "GDScript",
+"path": "res://src/UI/CutScenes/World2/BossintroCutScene.gd"
+}, {
+"base": "Node",
+"class": "World3BossIntroCutScene",
+"language": "GDScript",
+"path": "res://src/UI/CutScenes/World3/BossintroCutScene.gd"
+}, {
 "base": "PathFollowEnemyBase",
 "class": "ZenchuuNoHikari",
 "language": "GDScript",
@@ -471,6 +486,9 @@ _global_script_class_icons={
 "TofuKozo": "",
 "WanyudoMini": "",
 "WanyudoMiniSpawner": "",
+"World1BossIntroCutScene": "",
+"World2BossIntroCutScene": "",
+"World3BossIntroCutScene": "",
 "ZenchuuNoHikari": ""
 }
 

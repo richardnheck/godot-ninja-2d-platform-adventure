@@ -1,3 +1,6 @@
+##################################
+# World 1 - Boss Clear Cut Scene
+##################################
 extends Node
 
 onready var cut_scene_base:CutSceneBase = $CutSceneBase

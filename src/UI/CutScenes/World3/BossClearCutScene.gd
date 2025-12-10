@@ -1,5 +1,5 @@
 ##################################
-# World 2 - Boss Clear Cut Scene
+# World 3 - Boss Clear Cut Scene
 ##################################
 extends Node
 

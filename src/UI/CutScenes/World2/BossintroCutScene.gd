@@ -1,5 +1,8 @@
+##################################
+# World 2 - Boss Intro Cut Scene
+##################################
+class_name World2BossIntroCutScene
 extends Node
-
 
 onready var cut_scene_base = $CutSceneBase
 onready var dialog1 = $MainControl/DialogBox1

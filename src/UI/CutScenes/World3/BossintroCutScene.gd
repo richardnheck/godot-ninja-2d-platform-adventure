@@ -1,9 +1,9 @@
 ##################################
-# World 1 - Boss Intro Cut Scene
+# World 3 - Boss Intro Cut Scene
 ##################################
-class_name World1BossIntroCutScene
-extends Node
+class_name World3BossIntroCutScene
 
+extends Node
 
 onready var cut_scene_base = $CutSceneBase
 onready var dialog1 = $MainControl/DialogBox1
