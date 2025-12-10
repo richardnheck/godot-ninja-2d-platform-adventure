@@ -70,3 +70,4 @@ func _on_Area2D_body_entered(body):
 func _on_TelegraphTween_tween_completed(object, key):
 	# telegraph has finished so trigger the main fast surge attack
 	triggered = true
+	animated_sprite.animation = "attack"
