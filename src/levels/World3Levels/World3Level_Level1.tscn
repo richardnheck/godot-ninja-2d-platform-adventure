@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/objects/CaveDoorStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/characters/enemies/tofu-kozo/TofuKozo.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=15]
 
 [node name="World3Level Level1" type="Node2D"]
 script = ExtResource( 11 )
@@ -52,6 +53,14 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
 tile_data = PoolIntArray( -524303, 11, 0, -524302, 11, 0, -524301, 11, 0, -524300, 11, 0, -524299, 11, 0, -524298, 11, 0, -524297, 11, 0, -524296, 11, 0, -524295, 11, 0, -524294, 11, 0, -524293, 11, 0, -524292, 11, 0, -524291, 11, 0, -524290, 11, 0, -524289, 11, 0, -589824, 11, 0, -589823, 11, 0, -589822, 11, 0, -589821, 11, 0, -589820, 11, 0, -589819, 11, 0, -589818, 11, 0, -589817, 11, 0, -589816, 11, 0, -589815, 11, 0, -589814, 11, 0, -589813, 11, 0, -589812, 11, 0, -589811, 11, 0, -589810, 11, 0, -589809, 11, 0, -589808, 11, 0, -589807, 11, 0, -589806, 11, 0, -589805, 11, 0, -589804, 11, 0, -589803, 11, 0, -589802, 11, 0, -589801, 11, 0, -589800, 11, 0, -589799, 11, 0, -589798, 11, 0, -589797, 11, 0, -589796, 11, 0, -589795, 11, 0, -589794, 11, 0, -589793, 11, 0, -589792, 11, 0, -589791, 11, 0, -589790, 11, 0, -589789, 11, 0, -589788, 11, 0, -589787, 11, 0, -589786, 11, 0, -589785, 11, 0, -589784, 11, 0, -589783, 11, 0, -589782, 11, 0, -589781, 11, 0, -589780, 11, 0, -589779, 11, 0, -589778, 11, 0, -589777, 11, 0, -589776, 11, 0, -589775, 11, 0, -458767, 11, 0, -524112, 11, 0, -393231, 11, 0, -458576, 11, 0, -327695, 11, 0, -393040, 11, 0, -262159, 11, 0, -327504, 11, 0, -196623, 11, 0, -261968, 11, 0, -131087, 11, 0, -196432, 11, 0, -65551, 11, 0, -130896, 11, 0, -15, 11, 0, -65360, 11, 0, 65521, 11, 0, 176, 11, 0, 131057, 11, 0, 65555, 2, 0, 65712, 11, 0, 196593, 11, 0, 131248, 11, 0, 262129, 11, 0, 196784, 11, 0, 327665, 11, 0, 262168, 12, 0, 393201, 11, 0, 458737, 11, 0, 524273, 11, 0, 589809, 11, 0, 655345, 11, 0, 655346, 11, 0, 655347, 11, 0, 655348, 11, 0, 655349, 11, 0, 655350, 11, 0, 655351, 11, 0 )
+
+[node name="TileMapWorldNew" type="TileMap" parent="."]
+tile_set = ExtResource( 15 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( -524303, 99, 0, -458767, 99, 0, -393231, 99, 0, -327695, 99, 0, -262159, 99, 0, -196623, 99, 0, -131087, 99, 0, -65551, 99, 0, -15, 99, 0, 65521, 99, 0, 131057, 99, 0, 196593, 99, 0, 262129, 99, 0, 327665, 99, 0, 393201, 99, 0, 458737, 99, 0, 524269, 7, 0, 524270, 7, 0, 524271, 7, 0, 524273, 99, 0, 589805, 7, 0, 589806, 100, 0, 589807, 101, 0, 589808, 102, 0, 589809, 99, 0, 655341, 7, 0, 655342, 7, 0, 655343, 7, 0, 655344, 105, 0, 655345, 106, 0 )
 
 [node name="TileMapTraps" type="TileMap" parent="." groups=["trap"]]
 tile_set = ExtResource( 1 )
@@ -199,6 +208,7 @@ tile_data = PoolIntArray( 655434, 2, 196608, 655435, 2, 196608, 655436, 2, 19660
 
 [node name="Bakezori" parent="Section2/enemies" instance=ExtResource( 9 )]
 position = Vector2( 624, 85 )
+speed = 70.0
 
 [node name="ChochinObakeShooter" parent="Section2/enemies" instance=ExtResource( 4 )]
 position = Vector2( 312, 8 )
@@ -257,6 +267,7 @@ tile_data = PoolIntArray( 65632, 2, 196608, 196708, 2, 196608 )
 
 [node name="Bakezori" parent="Section3/enemies" instance=ExtResource( 9 )]
 position = Vector2( 1024, 85 )
+speed = 70.0
 
 [node name="TofuKozo" parent="Section3/enemies" instance=ExtResource( 13 )]
 position = Vector2( 1320, 16 )
@@ -318,6 +329,7 @@ direction = -1
 
 [node name="Bakezori" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( 480, 85 )
+speed = 70.0
 
 [node name="traps" type="Node2D" parent="Section4"]
 
