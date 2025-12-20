@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=99 format=2]
+[gd_resource type="TileSet" load_steps=102 format=2]
 
 [ext_resource path="res://assets/art/tilesets/world3/Floor+Wall+Roof Tileset.png" type="Texture" id=1]
 
@@ -18,6 +18,15 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=98]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=99]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=100]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=101]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
@@ -237,16 +246,16 @@ points = PoolVector2Array( 16, 0, 16, 6.875, 0, 6.875, 0, 0.0625, 16, 0 )
 points = PoolVector2Array( 16, 0, 16, 6.875, 0, 6.875, 0, 3.60156, 0, 0, 9.125, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=94]
-points = PoolVector2Array( 15.875, 0, 16, 4.97656, 0, 4.91406, 0, 0, 5.6875, 0 )
+points = PoolVector2Array( 15.875, 0, 16, 1, 0, 0.9375, 0, 0, 5.6875, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=95]
-points = PoolVector2Array( 15.875, 0, 16, 4.875, 0, 4.875, 0, 0.0625 )
+points = PoolVector2Array( 15.875, 0, 16, 1.0625, 0, 1, 0, 0.0625 )
 
 [sub_resource type="ConvexPolygonShape2D" id=96]
-points = PoolVector2Array( 16, 0, 16, 4.875, 0, 4.875, 0, 0.125 )
+points = PoolVector2Array( 16, 0, 16, 0.875, 0, 0.875, 0, 0.125 )
 
 [sub_resource type="ConvexPolygonShape2D" id=97]
-points = PoolVector2Array( 15.9223, 0.0390625, 16, 4.91406, 0, 4.91406, 0.0473022, 0.0390625 )
+points = PoolVector2Array( 15.9223, 0.0390625, 16, 1, 0, 0.875, 0.0473022, 0.0390625 )
 
 [sub_resource type="ConvexPolygonShape2D" id=78]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -1936,11 +1945,11 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 81/shape_offset = Vector2( 0, 0 )
 81/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 81/shape = SubResource( 94 )
-81/shape_one_way = false
+81/shape_one_way = true
 81/shape_one_way_margin = 1.0
 81/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 94 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -1957,11 +1966,11 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 82/shape_offset = Vector2( 0, 0 )
 82/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 82/shape = SubResource( 95 )
-82/shape_one_way = false
+82/shape_one_way = true
 82/shape_one_way_margin = 1.0
 82/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 95 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -1978,11 +1987,11 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 83/shape_offset = Vector2( 0, 0 )
 83/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 83/shape = SubResource( 96 )
-83/shape_one_way = false
+83/shape_one_way = true
 83/shape_one_way_margin = 1.0
 83/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 96 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -1999,11 +2008,11 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 84/shape_offset = Vector2( 0, 0 )
 84/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 84/shape = SubResource( 97 )
-84/shape_one_way = false
+84/shape_one_way = true
 84/shape_one_way_margin = 1.0
 84/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 97 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -2569,3 +2578,80 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 115/shape_one_way_margin = 0.0
 115/shapes = [  ]
 115/z_index = 0
+116/name = "Floor+Wall+Roof Tileset.png 116"
+116/texture = ExtResource( 1 )
+116/tex_offset = Vector2( 0, 0 )
+116/modulate = Color( 1, 1, 1, 1 )
+116/region = Rect2( 64, 160, 16, 16 )
+116/tile_mode = 0
+116/occluder_offset = Vector2( 0, 0 )
+116/navigation_offset = Vector2( 0, 0 )
+116/shape_offset = Vector2( 0, 0 )
+116/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+116/shape = SubResource( 99 )
+116/shape_one_way = false
+116/shape_one_way_margin = 1.0
+116/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 99 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+116/z_index = 0
+117/name = "Floor+Wall+Roof Tileset.png 117"
+117/texture = ExtResource( 1 )
+117/tex_offset = Vector2( 0, 0 )
+117/modulate = Color( 1, 1, 1, 1 )
+117/region = Rect2( 80, 160, 16, 16 )
+117/tile_mode = 0
+117/occluder_offset = Vector2( 0, 0 )
+117/navigation_offset = Vector2( 0, 0 )
+117/shape_offset = Vector2( 0, 0 )
+117/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+117/shape = SubResource( 100 )
+117/shape_one_way = false
+117/shape_one_way_margin = 1.0
+117/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 100 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+117/z_index = 0
+118/name = "Floor+Wall+Roof Tileset.png 118"
+118/texture = ExtResource( 1 )
+118/tex_offset = Vector2( 0, 0 )
+118/modulate = Color( 1, 1, 1, 1 )
+118/region = Rect2( 48, 160, 16, 16 )
+118/tile_mode = 0
+118/occluder_offset = Vector2( 0, 0 )
+118/navigation_offset = Vector2( 0, 0 )
+118/shape_offset = Vector2( 0, 0 )
+118/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+118/shape_one_way = false
+118/shape_one_way_margin = 0.0
+118/shapes = [  ]
+118/z_index = 0
+119/name = "Floor+Wall+Roof Tileset.png 119"
+119/texture = ExtResource( 1 )
+119/tex_offset = Vector2( 0, 0 )
+119/modulate = Color( 1, 1, 1, 1 )
+119/region = Rect2( 48, 160, 16, 16 )
+119/tile_mode = 0
+119/occluder_offset = Vector2( 0, 0 )
+119/navigation_offset = Vector2( 0, 0 )
+119/shape_offset = Vector2( 0, 0 )
+119/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+119/shape = SubResource( 101 )
+119/shape_one_way = false
+119/shape_one_way_margin = 1.0
+119/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 101 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+119/z_index = 0
