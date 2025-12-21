@@ -40,7 +40,6 @@ __meta__ = {
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 8 )]
 
 [node name="TileMapBg" type="TileMap" parent="."]
-position = Vector2( -2, 0 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
@@ -91,7 +90,7 @@ flip_v = true
 position = Vector2( 2768, 48 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
-position = Vector2( 1472, 0 )
+position = Vector2( 1480, 0 )
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 14 )]
 position = Vector2( 1425, 144 )
