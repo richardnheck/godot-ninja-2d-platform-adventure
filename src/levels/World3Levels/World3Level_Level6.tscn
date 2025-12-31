@@ -481,7 +481,6 @@ position = Vector2( 896, -192 )
 
 [node name="ConveyorBelt" parent="Section1/platforms" instance=ExtResource( 15 )]
 position = Vector2( 496, -152 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 7
 
 [node name="FallingPlatform" parent="Section1/platforms" instance=ExtResource( 17 )]
@@ -489,7 +488,6 @@ position = Vector2( 1040, -264 )
 
 [node name="ConveyorBelt2" parent="Section1/platforms" instance=ExtResource( 15 )]
 position = Vector2( 1128, -264 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 2
 
 [node name="FallingPlatform2" parent="Section1/platforms" instance=ExtResource( 17 )]
@@ -497,7 +495,6 @@ position = Vector2( 1256, -264 )
 
 [node name="ConveyorBelt3" parent="Section1/platforms" instance=ExtResource( 15 )]
 position = Vector2( 1456, -8 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 24
 
 [node name="Spring4" parent="Section1/platforms" instance=ExtResource( 3 )]
