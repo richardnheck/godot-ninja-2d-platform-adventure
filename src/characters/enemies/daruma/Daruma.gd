@@ -42,6 +42,7 @@ var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_sprite_animation("ground")
 	raycast_wall_dist = abs($RayCastWall.cast_to.x)
 	raycast_floor_dist = abs($RayCastFloor.position.x)
 	
@@ -62,25 +63,30 @@ func set_state(state):
 
 func set_player(player_ref):
 	player = player_ref;
-	
+
+func _process(delta):
+	_look_at_player()	
+
+# Make the npc look in the direction of the player
+func _look_at_player() -> void:
+	if player:
+		sprite_main.flip_h = player.global_position < self.global_position	
 
 func _physics_process(delta: float) -> void:
 	match current_state:	
-		State.JUMP:
-			
+		State.JUMP:	
 			if do_jump:
 				velocity.y = -jump_power
 				velocity.x = horizontal_direction * horizontal_jump_velocity
 				jump_timer.start()
 				do_jump = false
 				landing = true
-				set_sprite_animation("jump")	
+				
 			
 			velocity = move_and_slide(velocity, Vector2.UP, false, 4, PI/4, false)
 			velocity.y += gravity
 			
 			if is_on_floor():
-				set_sprite_animation("ground")
 				if not $RayCastFloor.is_colliding() or $RayCastWall.is_colliding():
 					_change_direction()
 				#if $RayCastWall.is_colliding():
@@ -113,12 +119,17 @@ func _change_direction() -> void:
 func _on_land():
 	# Ensure character stops moving when they land
 	velocity.x = 0
+	_shake_screen()
+	set_sprite_animation("land")	
 	
 	# Show some animated dust just on landing
 	var instance = landing_dust_scene.instance()
 	instance.set_scale(Vector2(2,1.5))
-	instance.global_position = global_position
+	instance.position = position
 	get_parent().add_child(instance)
+	
+	yield(sprite_main, "animation_finished")
+	set_sprite_animation("ground")
 
 	
 func _shake_screen() -> void:
@@ -144,4 +155,6 @@ func _on_body_entered(body: Node) -> void:
 
 
 func _on_JumpTimer_timeout() -> void:
+	set_sprite_animation("jump")	
+	yield(get_tree().create_timer(0.3), "timeout") 
 	do_jump = true
