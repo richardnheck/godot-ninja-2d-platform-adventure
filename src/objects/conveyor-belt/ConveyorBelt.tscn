@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/objects/conveyor-belt/ConveyorBelt.gd" type="Script" id=1]
 [ext_resource path="res://src/objects/conveyor-belt/block.png" type="Texture" id=2]
+[ext_resource path="res://src/objects/conveyor-belt/belt-end.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
@@ -11,7 +12,7 @@ extents = Vector2( 8, 8 )
 resource_local_to_scene = true
 flags = 2
 atlas = ExtResource( 2 )
-region = Rect2( -2052.95, 0, 16, 16 )
+region = Rect2( -8567.93, 0, 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 resource_local_to_scene = true
@@ -37,6 +38,17 @@ offset = Vector2( 0, -8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["conveyor-belt"]]
 position = Vector2( 8, 0 )
 shape = SubResource( 4 )
+
+[node name="Endpoints" type="Node2D" parent="."]
+
+[node name="LeftEndPointSprite" type="Sprite" parent="Endpoints"]
+position = Vector2( 8, 0 )
+texture = ExtResource( 3 )
+
+[node name="RightEndpointSprite" type="Sprite" parent="Endpoints"]
+position = Vector2( 8, 0 )
+texture = ExtResource( 3 )
+flip_h = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

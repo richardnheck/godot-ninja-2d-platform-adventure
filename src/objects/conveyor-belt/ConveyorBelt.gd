@@ -8,8 +8,11 @@ export var length = 1	# length in tiles
 onready var sprite:Sprite = $Sprite
 onready var collision_shape:CollisionShape2D = $CollisionShape2D
 onready var area_collision_shape:CollisionShape2D = $Area2D/CollisionShape2D
+onready var left_endpoint_sprite:Sprite = $Endpoints/LeftEndPointSprite
+onready var right_endpoint_sprite:Sprite = $Endpoints/RightEndpointSprite
 
 const TILE_SIZE:int = 16 
+
 
 func _ready():
 	#collision_shape.position.x = (TILE_SIZE/2*(length-1))
@@ -25,6 +28,8 @@ func _ready():
 	
 	sprite.texture.region = Rect2(0, 0, length * TILE_SIZE, TILE_SIZE)
 	constant_linear_velocity.x = speed
+	
+	right_endpoint_sprite.position.x = total_length_pixels - 8
 
 func _process(delta):
 	if sprite:
