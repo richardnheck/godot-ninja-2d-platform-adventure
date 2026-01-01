@@ -134,6 +134,7 @@ position = Vector2( -31.2741, 0 )
 position = Vector2( -31.2741, 0 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" parent="Area2D" index="1"]
