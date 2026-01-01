@@ -39,7 +39,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _explode():
 	exploding = true
 	animated_sprite.visible = false
-	Game_AudioManager.sfx_env_crumbling_platform_explode.play()
+	#Game_AudioManager.sfx_env_crumbling_platform_explode.play()
 	explosion_animated_sprite.play("explode")
 	yield(explosion_animated_sprite, "animation_finished")
 	queue_free()
