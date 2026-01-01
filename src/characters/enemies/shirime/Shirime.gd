@@ -43,7 +43,7 @@ func _just_entered_state():
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match current_state:
 		STATE_IDLE:
 			set_sprite_animation("asleep")
