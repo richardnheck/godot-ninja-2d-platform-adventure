@@ -134,7 +134,7 @@ __meta__ = {
 position = Vector2( 3584, 9 )
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 8096, 24 )
+position = Vector2( 2864, 112 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -259,7 +259,6 @@ position = Vector2( 984, -24 )
 
 [node name="ConveyorBelt" parent="Section1/platforms" instance=ExtResource( 15 )]
 position = Vector2( 1968, -56 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 5
 
 [node name="ConveyorBelt2" parent="Section1/platforms" instance=ExtResource( 15 )]
@@ -270,7 +269,6 @@ length = 10
 
 [node name="ConveyorBelt3" parent="Section1/platforms" instance=ExtResource( 15 )]
 position = Vector2( 2256, -24 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 15
 
 [node name="PlatformBelt" parent="Section1/platforms" instance=ExtResource( 19 )]
@@ -584,7 +582,6 @@ position = Vector2( 1184, -88 )
 
 [node name="ConveyorBelt" parent="Section3/platforms" instance=ExtResource( 15 )]
 position = Vector2( 1520, -72 )
-constant_linear_velocity = Vector2( 75, 0 )
 length = 50
 
 [node name="RotatingPlatform" parent="Section3/platforms" instance=ExtResource( 2 )]
