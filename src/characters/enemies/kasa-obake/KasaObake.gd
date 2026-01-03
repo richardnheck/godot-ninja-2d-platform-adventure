@@ -152,6 +152,5 @@ func _on_JumpTimer_timeout() -> void:
 
 func _jump() -> void:
 	set_sprite_animation("jump")	
-	print(">>> setting jump animation")
 	yield(get_tree().create_timer(0.3), "timeout")
 	do_jump = true
