@@ -291,7 +291,7 @@ position = Vector2( 1024, 85 )
 speed = 70.0
 
 [node name="TofuKozo" parent="Section3/enemies" instance=ExtResource( 13 )]
-position = Vector2( 1320, 16 )
+position = Vector2( 1319, 16 )
 scale = Vector2( -1, 1 )
 direction = -1
 

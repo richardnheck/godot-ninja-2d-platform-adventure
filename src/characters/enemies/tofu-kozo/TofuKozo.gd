@@ -1,4 +1,3 @@
-tool
 extends Area2D
 class_name TofuKozo
 
@@ -16,7 +15,8 @@ export(bool) var follow_player = true
 onready var sprite_main = $AnimatedSprite
 onready var throw_timer = $ThrowTimer
 onready var tofu_position = $TofuPosition2D
-
+onready var plate_collision_shape = $PlateStaticBody2D/CollisionShape2D
+onready var animation_player = $AnimationPlayer
 
 var throw := false
 var player_in_range := false
@@ -55,6 +55,7 @@ func _physics_process(delta):
 		
 	if throw:
 		if tofu:
+			set_sprite_animation("throw")
 			var throw_direction = Vector2(throw_x_amount*direction, -1)		
 			var impulse_strength_variant: int = rng.randi_range(-20, 20) 
 			tofu.apply_impulse(Vector2.ZERO, throw_direction * (throw_impulse_strength + impulse_strength_variant))
@@ -95,15 +96,17 @@ func _add_tofu() -> void:
 
 	
 func _throw_tofu() -> void:
-	if tofu:
-		# Tofu exists so throw it
-		if player_in_range:
-			throw = true
-	else:
-		# Tofu doesn't exist so add some tofu and throw it
+	if not tofu:
+		# Tofu doesn't exist so add some tofu
 		_add_tofu()
-		if player_in_range:
-			throw = true
+		
+	# Show the preparation animation to telegraph throw
+	set_sprite_animation("prep")
+	animation_player.play("prep")	# move the plate during prep so tofu moves as well
+	yield(get_tree().create_timer(0.3), "timeout")	# Allow time for telegraphing tofu throw
+				
+	if player_in_range:
+		throw = true
 
 
 func _on_PlayerDetectionArea2D_body_entered(body):
@@ -119,6 +122,14 @@ func _on_PlayerDetectionArea2D_body_entered(body):
 func _on_PlayerDetectionArea2D_body_exited(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		player_in_range = false
+
+
+func _on_AnimatedSprite_animation_finished():
+	if sprite_main.animation == "throw":
+		# Finished throwing so go back to idle animation
+		set_sprite_animation("idle")
+		animation_player.play("RESET")
+
 
 func set_sprite_animation(animation) -> void:
 	sprite_main.animation = animation
