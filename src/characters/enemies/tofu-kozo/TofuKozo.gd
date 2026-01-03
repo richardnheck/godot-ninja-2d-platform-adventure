@@ -13,6 +13,7 @@ export(Direction) var direction = Direction.RIGHT
 # Follow the player when set to true. This means it will change directions to follow the player
 export(bool) var follow_player = true
 
+onready var sprite_main = $AnimatedSprite
 onready var throw_timer = $ThrowTimer
 onready var tofu_position = $TofuPosition2D
 
@@ -29,6 +30,7 @@ var player:Player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_sprite_animation("idle")
 	rng.randomize()
 	
 	# update the character to face the correct direction
@@ -117,3 +119,7 @@ func _on_PlayerDetectionArea2D_body_entered(body):
 func _on_PlayerDetectionArea2D_body_exited(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		player_in_range = false
+
+func set_sprite_animation(animation) -> void:
+	sprite_main.animation = animation
+	sprite_main.play(animation)
