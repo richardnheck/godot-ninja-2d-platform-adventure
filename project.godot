@@ -199,6 +199,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/statemachine/states/motion/ia-motion.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "KasaObake",
+"language": "GDScript",
+"path": "res://src/characters/enemies/kasa-obake/KasaObake.gd"
+}, {
 "base": "Node2D",
 "class": "LanternArray",
 "language": "GDScript",
@@ -448,6 +453,7 @@ _global_script_class_icons={
 "Health": "",
 "HomingFireball": "",
 "IAMotion": "",
+"KasaObake": "",
 "LanternArray": "",
 "LanternSpawner": "",
 "LaserLantern": "",
