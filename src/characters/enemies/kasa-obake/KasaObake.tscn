@@ -1,31 +1,65 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/characters/enemies/kasa-obake/KasaObake.gd" type="Script" id=1]
 [ext_resource path="res://src/characters/enemies/kasa-obake/kasa-obake-Sheet.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 64 )
+region = Rect2( 160, 0, 32, 52 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 64 )
+region = Rect2( 0, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 32, 52 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 224, 0, 32, 52 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 7 ) ],
+"frames": [ SubResource( 17 ) ],
 "loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": false,
 "name": "ground",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ) ],
-"loop": true,
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": false,
 "name": "jump",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "land",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.5, 15.3219 )
+extents = Vector2( 11, 15.6609 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 
@@ -35,9 +69,9 @@ collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -32 )
+position = Vector2( 0, -26 )
 frames = SubResource( 6 )
-animation = "ground"
+animation = "fall"
 playing = true
 
 [node name="SpriteFlash" type="Sprite" parent="."]
@@ -45,7 +79,7 @@ position = Vector2( -16, -32 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, -16 )
+position = Vector2( 1, -15.6609 )
 shape = SubResource( 1 )
 
 [node name="CoolOffTimer" type="Timer" parent="."]
@@ -62,7 +96,8 @@ position = Vector2( 0.5, -24 )
 shape = SubResource( 9 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -14, -20, 1, -55, 15, -20, 6, -20, 6, -1, -6, -1, -6, -20, -14, -20 )
+position = Vector2( 0, 1 )
+polygon = PoolVector2Array( -9, -16, 0, -48, 11, -16, 3, -15, 3, -1, -1, -1, -1, -15 )
 
 [node name="JumpTimer" type="Timer" parent="."]
 one_shot = true
