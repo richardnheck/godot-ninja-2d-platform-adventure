@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/hyakume/Hyakume.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/test-objects/Guns/Canon/Canon.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/stone-bricks-tileset/tileset_stone-bricks-tileset.tres" type="TileSet" id=14]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=16]
+[ext_resource path="res://assets/art/props/door/world2-door-plain.png" type="Texture" id=17]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -116,6 +117,7 @@ tile_data = PoolIntArray( -5570567, 4, 0, -5570566, -1610612732, 0, -5570565, -1
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( -32, 80 )
+texture = ExtResource( 17 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
 visible = false

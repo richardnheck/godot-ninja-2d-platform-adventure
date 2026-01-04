@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.14261, 0.992892 )
 
-[node name="Door" type="Node2D" groups=[
-"door",
-]]
+[node name="Door" type="Node2D" groups=["door"]]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

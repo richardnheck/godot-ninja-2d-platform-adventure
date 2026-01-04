@@ -160,7 +160,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 864, -248 )
+position = Vector2( 3376, -232 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -273,9 +273,6 @@ position = Vector2( 1664, -128 )
 
 [node name="ChochinObakeShooter" parent="Section1/enemies" instance=ExtResource( 18 )]
 position = Vector2( 1808, -216 )
-speed = 30.0
-oscillation_amplitude = 2.0
-oscillation_frequency = 5.0
 path_length = 160
 
 [node name="ShardLantern3" parent="Section1/enemies" instance=ExtResource( 15 )]
