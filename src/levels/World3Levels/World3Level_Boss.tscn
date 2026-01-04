@@ -611,9 +611,6 @@ position = Vector2( 3016, -248 )
 
 [node name="ChochinObakeShooter" parent="Section3/enemies" instance=ExtResource( 28 )]
 position = Vector2( 3200, -136 )
-speed = 30.0
-oscillation_amplitude = 2.0
-oscillation_frequency = 5.0
 
 [node name="ChochinObake3" parent="Section3/enemies" instance=ExtResource( 27 )]
 position = Vector2( 3812, -96 )

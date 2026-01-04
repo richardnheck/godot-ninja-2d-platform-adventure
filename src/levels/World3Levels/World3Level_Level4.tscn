@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/objects/trigger-spikes/TriggerSpike.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/objects/rotating-platform/RotatingPlatform.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake/ChochinObake.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=18]
 [ext_resource path="res://src/objects/electricity/MegamanElectricity.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/objects/rotating-onibi/RotatingOnibi.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/objects/MovingPlatformCave1H.tscn" type="PackedScene" id=21]
@@ -115,6 +116,9 @@ flip_v = true
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 592, -3456 )
+
+[node name="Sprite" parent="InteractiveProps/Door" index="0"]
+texture = ExtResource( 18 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 896, -1856 )

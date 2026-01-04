@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/chochin-obake-shooter/ChochinObakeShooter.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=22]
+[ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=23]
 
 [sub_resource type="Animation" id=5]
 length = 2.0
@@ -160,6 +161,9 @@ flip_v = true
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 600, -1680 )
+
+[node name="Sprite" parent="InteractiveProps/Door" index="0"]
+texture = ExtResource( 23 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 392, -768 )

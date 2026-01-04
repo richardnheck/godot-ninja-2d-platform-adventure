@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://src/characters/enemies/hannya/Hannya.tscn" type="PackedScene" id=29]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=31]
+[ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=32]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -219,6 +220,9 @@ flip_v = true
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 6256, -240 )
+
+[node name="Sprite" parent="InteractiveProps/Door" index="0"]
+texture = ExtResource( 32 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 3632, -72 )

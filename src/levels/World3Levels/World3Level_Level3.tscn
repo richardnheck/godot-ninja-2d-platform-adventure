@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-platform-track-80.png" type="Texture" id=20]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=22]
+[ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=23]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -115,7 +116,10 @@ flip_v = true
 [node name="InteractiveProps" type="Node" parent="."]
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( 5008, -272 )
+position = Vector2( 5016, -272 )
+
+[node name="Sprite" parent="InteractiveProps/Door" index="0"]
+texture = ExtResource( 23 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 3123, -182 )
