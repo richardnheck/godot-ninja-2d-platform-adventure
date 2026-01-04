@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://src/objects/falling-platforms/FallingPlatform.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/objects/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/characters/enemies/daruma/Daruma.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=28]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -103,6 +104,7 @@ format = 1
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( -80, 128 )
+texture = ExtResource( 28 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
 visible = false

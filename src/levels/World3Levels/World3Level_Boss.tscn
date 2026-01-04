@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/rotating-platform/RotatingPlatform.tscn" type="PackedScene" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://src/utility/curves/HorizontalRightLeft64.tres" type="Curve2D" id=34]
 [ext_resource path="res://src/objects/checkpoint/CheckPoint.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=36]
+[ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=37]
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 10, 80 )
@@ -178,7 +179,9 @@ tile_data = PoolIntArray( 524535, 7, 0, 524536, 7, 0, 524537, 7, 0, 524538, 7, 0
 [node name="Props" type="Node2D" parent="."]
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
+visible = false
 position = Vector2( 176, 128 )
+texture = ExtResource( 37 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=31]
 [ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=32]
+[ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=33]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -207,6 +208,7 @@ format = 1
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( 80, -32 )
+texture = ExtResource( 33 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
 visible = false

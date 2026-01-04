@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=39]
 [ext_resource path="res://assets/art/tilesets/world3/platform-track-for-9-patch-rect.png" type="Texture" id=40]
 [ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=41]
+[ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=42]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -242,7 +243,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1886, -759 )
+position = Vector2( 7037, -1497 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -288,6 +289,7 @@ format = 1
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( 72, -48 )
+texture = ExtResource( 42 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
 visible = false
