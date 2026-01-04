@@ -149,7 +149,7 @@ flip_v = true
 [node name="InteractiveProps" type="Node" parent="."]
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( 2624, -160 )
+position = Vector2( 2633, -160 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2200, -232 )
