@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cave-door.png-a8fa594584b702e63b7c10b07ee5ccf6.stex"
+path="res://.import/world2-door.png-e4bfbbd8f1aa4af1be71b883d6d3dabc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/props/door/cave-door.png"
-dest_files=[ "res://.import/cave-door.png-a8fa594584b702e63b7c10b07ee5ccf6.stex" ]
+source_file="res://assets/art/props/door/world2-door.png"
+dest_files=[ "res://.import/world2-door.png-e4bfbbd8f1aa4af1be71b883d6d3dabc.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

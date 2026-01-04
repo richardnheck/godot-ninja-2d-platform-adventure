@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/objects/fireball-spinner/FireBallSpinner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/zugaikotsu/Zukaikotsu.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/roof-wall-tileset.tres" type="TileSet" id=19]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/art/props/door/world2-door-plain.png" type="Texture" id=21]
+[ext_resource path="res://assets/art/props/door/world2-door.png" type="Texture" id=22]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -150,6 +151,9 @@ flip_v = true
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( 2633, -160 )
+
+[node name="Sprite" parent="InteractiveProps/Door" index="0"]
+texture = ExtResource( 22 )
 
 [node name="KamonKey" parent="InteractiveProps" instance=ExtResource( 7 )]
 position = Vector2( 2200, -232 )
