@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/PathFollowEnemyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/zenchuu-no-hikari/ZenchuuNoHikariSheet.png" type="Texture" id=2]
@@ -8,13 +8,21 @@
 radius = 3.72593
 height = 9.54815
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 24 )
+region = Rect2( 0, 0, 16, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 48 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 8 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -37,4 +45,5 @@ shape = SubResource( 9 )
 position = Vector2( 17, 0 )
 z_index = 10
 frames = SubResource( 5 )
+playing = true
 centered = false
