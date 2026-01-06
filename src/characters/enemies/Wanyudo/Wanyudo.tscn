@@ -1,37 +1,43 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/PathFollowEnemyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/Wanyudo/Wanyudo.gd" type="Script" id=2]
-[ext_resource path="res://src/characters/enemies/Wanyudo/wanyudo-animated-sheet.png" type="Texture" id=3]
+[ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoSheet.png" type="Texture" id=3]
 [ext_resource path="res://src/characters/enemies/Wanyudo/HomingFireballSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/characters/enemies/Wanyudo/NormalFireballSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoFlames.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 23.0405
+radius = 29.5481
 height = 0.0
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 41, 41 )
+region = Rect2( 0, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
-region = Rect2( 41, 0, 41, 41 )
+region = Rect2( 80, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 3 )
-region = Rect2( 82, 0, 41, 41 )
+region = Rect2( 160, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
-region = Rect2( 123, 0, 41, 41 )
+region = Rect2( 0, 0, 80, 80 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 8 ), SubResource( 10 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 8.0
 } ]
 
 [node name="Wanyudo" groups=["boss", "enemy"] instance=ExtResource( 1 )]
@@ -58,8 +64,50 @@ position = Vector2( 0.451919, -0.370914 )
 shape = SubResource( 5 )
 
 [node name="AnimatedSprite" parent="Area2D" index="3"]
-scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
+animation = "shoot"
+playing = true
+
+[node name="Flames" type="Node2D" parent="Area2D" index="4"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D/Flames" index="0"]
+position = Vector2( 0, -32 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="Area2D/Flames" index="1"]
+position = Vector2( 28, -2 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="Area2D/Flames" index="2"]
+position = Vector2( 0, 25 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="Area2D/Flames" index="3"]
+position = Vector2( -29, -2 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="Area2D/Flames" index="4"]
+position = Vector2( -23, -23 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="Area2D/Flames" index="5"]
+position = Vector2( 23, -22 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite7" type="AnimatedSprite" parent="Area2D/Flames" index="6"]
+position = Vector2( -21, 16 )
+frames = ExtResource( 6 )
+playing = true
+
+[node name="AnimatedSprite8" type="AnimatedSprite" parent="Area2D/Flames" index="7"]
+position = Vector2( 22, 15 )
+frames = ExtResource( 6 )
 playing = true
 
 [node name="MiniWanyudoSpawnTimer" type="Timer" parent="." index="4"]

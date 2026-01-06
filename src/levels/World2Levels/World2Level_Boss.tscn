@@ -330,6 +330,12 @@ offset = 0.0
 position = Vector2( -40, 8 )
 scale = Vector2( 1.227, 1 )
 
+[node name="AnimatedSprite" parent="Wanyudo/Area2D" index="3"]
+scale = Vector2( 0.815, 1 )
+
+[node name="Flames" parent="Wanyudo/Area2D" index="4"]
+scale = Vector2( 0.815, 1 )
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="TsurubeOtoshi" parent="Enemies" instance=ExtResource( 4 )]
