@@ -92,6 +92,7 @@ extents = Vector2( 10, 56 )
 extents = Vector2( 35.5, 230 )
 
 [node name="World2 Level Boss (Wanyudo)" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
@@ -630,6 +631,8 @@ shape = SubResource( 10 )
 
 [editable path="Props/CaveDoorBackground"]
 [editable path="Wanyudo"]
+[editable path="Wanyudo/Area2D/HomingFireballSpawner"]
+[editable path="Wanyudo/Area2D/NormalFireballSpawner"]
 [editable path="Enemies/Hyakume7"]
 [editable path="Enemies/Hyakume8"]
 [editable path="Enemies/Hyakume9"]

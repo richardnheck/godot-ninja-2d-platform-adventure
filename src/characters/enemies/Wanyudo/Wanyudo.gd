@@ -6,6 +6,7 @@ onready var path = $Path2D
 onready var homing_fireball_spawner = $Area2D/HomingFireballSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
 onready var mini_wanyudo_spawn_timer = $MiniWanyudoSpawnTimer
+onready var sprite_main:AnimatedSprite = $Area2D/AnimatedSprite
 
 # Phase1 - Boss follows a path and throws homing fireball missiles
 const STATE_PHASE1:String = "phase1"
@@ -24,6 +25,7 @@ const SPEED:int = 65
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Wanyudo: _ready()")
+	
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR
@@ -31,6 +33,8 @@ func _ready() -> void:
 	
 	self.oscillation_amplitude = 5
 	self.oscillation_frequency = 10
+	
+	set_sprite_animation("default")
 		
 	# Connect to the event indicating when the fireball is destroyed
 	# NB: We don't need to do this for normal fireballs as the spawner handles the shoot timing
@@ -70,6 +74,7 @@ func _check_position() -> void:
 		elif player and player.position.x > boss_pos + 100:
 			if not tween.is_active():
 				# Player is ahead so continue following the path and start shooting again
+				set_sprite_animation("default")
 				homing_fireball_spawner.enabled = true
 				normal_fireball_spawner.enabled = false
 				print("current_offset", current_offset)
@@ -150,9 +155,11 @@ func _shoot_fireball() -> void:
 		# the player quickly as it means they have lost
 		if following_path:
 			print_debug("Shoot Homing fireball")
+			set_sprite_animation("homing-shoot")
 			homing_fireball_spawner.shoot()
 		else:
 			print_debug("Shoot normal fireball")
+			set_sprite_animation("normal-shoot")
 			normal_fireball_spawner.shoot()					
 	elif state == STATE_PHASE2:
 		pass
@@ -203,3 +210,8 @@ func _on_falling_spikes_finished():
 
 func _on_MiniWanyudoSpawnTimer_timeout():
 	_spawn_falling_mini_wanyudo_array()
+	
+func set_sprite_animation(animation) -> void:
+	sprite_main.animation = animation
+	sprite_main.set_frame(0)  # reset frame as "shoot" animation will be called continuously without resetting back to "default" animation
+	sprite_main.play(animation)
