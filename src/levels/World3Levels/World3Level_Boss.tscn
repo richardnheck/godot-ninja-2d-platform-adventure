@@ -180,7 +180,7 @@ tile_data = PoolIntArray( 524535, 7, 0, 524536, 7, 0, 524537, 7, 0, 524538, 7, 0
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 visible = false
-position = Vector2( 176, 128 )
+position = Vector2( 160, 128 )
 texture = ExtResource( 37 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/AoAndonShardLantern.gd" type="Script" id=1]
-[ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=2]
+[ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/AoAndonShardLanternSheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-3.png" type="Texture" id=3]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-4.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-2.png" type="Texture" id=5]
@@ -23,19 +23,19 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 9.5, 12 )
+extents = Vector2( 9.5, 12.5 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 40 )
+region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 40 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -45,7 +45,6 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
-scale = Vector2( 0.7, 0.6 )
 collision_layer = 8
 
 [node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="Area2D"]
@@ -57,10 +56,11 @@ animation = "idle"
 position = Vector2( 0.274075, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.225925, -1 )
+position = Vector2( -0.225925, 1.5 )
 shape = SubResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
+position = Vector2( 0, -2 )
 z_index = 10
 frames = SubResource( 5 )
 playing = true

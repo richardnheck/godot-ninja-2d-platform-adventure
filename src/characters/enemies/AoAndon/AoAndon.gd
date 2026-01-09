@@ -8,6 +8,9 @@ onready var homing_shard_lantern_spawner = $Area2D/HomingShardLanternSpawner
 onready var normal_fireball_spawner = $Area2D/NormalFireballSpawner
 onready var lantern_spawn_timer = $LanternSpawnTimer
 
+onready var face_animated_sprite = $Area2D/AnimatedSprite/FaceAnimatedSprite
+onready var shoot_effect_animated_sprite = $Area2D/AnimatedSprite/ShootEffectAnimatedSprite
+
 # Phase1 - Boss follows a path and throws homing lantern shard lanterns
 const STATE_PHASE1:String = "phase1"
 
@@ -30,6 +33,8 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
+	
+	face_animated_sprite.animation = "default"
 	
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
@@ -73,12 +78,13 @@ func _check_position() -> void:
 			
 			# Enable the normal lantern spawner and it will control the shooting
 			normal_fireball_spawner.enabled = true
+			face_animated_sprite.animation = "shoot"
 		elif player and player.position.x > boss_pos + 100:
 			if not tween.is_active():
 				# Player is ahead so continue following the path and start shooting again
 				homing_shard_lantern_spawner.enabled = true
 				normal_fireball_spawner.enabled = false
-				
+				face_animated_sprite.animation = "default"
 				start_following_path(current_offset)
 				yield(get_tree().create_timer(1), "timeout")
 				_shoot_lantern()
@@ -138,10 +144,19 @@ func _shoot_lantern() -> void:
 		# the player quickly as it means they have lost
 		if following_path:
 			print_debug("Shoot Homing lantern")
+			face_animated_sprite.animation = "shoot"
+			shoot_effect_animated_sprite.set_frame(0)
+			shoot_effect_animated_sprite.play("default")
+			
 			homing_shard_lantern_spawner.shoot()
+			
+			yield(get_tree().create_timer(0.3), "timeout")
+			face_animated_sprite.animation = "default"
 		else:
 			print_debug("Shoot normal lantern")
-			normal_fireball_spawner.shoot()					
+			face_animated_sprite.animation = "shoot"
+			
+			normal_fireball_spawner.shoot()		
 	elif state == STATE_PHASE2:
 		pass
 	
