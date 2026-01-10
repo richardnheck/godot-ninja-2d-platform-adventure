@@ -1,3 +1,4 @@
+class_name LevelSlidingDoor
 extends Node2D
 
 onready var sprite = $Sprite

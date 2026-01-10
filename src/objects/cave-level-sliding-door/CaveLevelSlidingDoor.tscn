@@ -24,7 +24,7 @@ extents = Vector2( 8, 48 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 40.5311, 47.0178 )
 
-[node name="CaveLevelSlidingDoor" type="Node2D"]
+[node name="LevelSlidingDoor" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
