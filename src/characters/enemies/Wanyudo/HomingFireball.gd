@@ -15,6 +15,7 @@ export var steer_force = 20.0
 
 onready var life_timer = $LifeTimer
 onready var explosion: = $AnimatedSpriteExplosion
+onready var animated_sprite:= $AnimatedSprite
 
 var target = null
 		
@@ -23,7 +24,7 @@ func fire(target_ref):
 	
 	if target:
 		#rotation += rand_range(-0.09, 0.09)
-		look_at(target.position)   
+		#look_at(target.position)   
 		velocity = transform.x * speed
 
 
@@ -73,6 +74,7 @@ func _on_LifeTimer_timeout() -> void:
 
 
 func _explode() -> void:
+	animated_sprite.visible = false   # hide the fireball
 	explosion.play("explode")
 	yield(explosion, "animation_finished")
 	emit_signal("destroyed")
@@ -82,6 +84,8 @@ func _explode() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
+		set_physics_process(false)    # stop moving
+		_explode()
 
 
 # Called when it should be removed forcibly once it has been launched as opposed to 

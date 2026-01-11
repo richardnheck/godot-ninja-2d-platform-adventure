@@ -11,6 +11,7 @@ var direction = Vector2.ZERO
 
 onready var life_timer = $LifeTimer
 onready var explosion: = $AnimatedSpriteExplosion
+onready var animated_sprite:= $AnimatedSprite
 
 var target:Player = null
 
@@ -25,7 +26,7 @@ func fire(target_ref:Player):
 		direction = position.direction_to(target.position + Vector2(x_offset,0))
 
 var elapsed = 0.0
-func _process(delta):	
+func _physics_process(delta):	
 	global_position += speed * delta * direction.normalized()#	
 	
 	var player_velocity = target.get_node('StateMachine').current_state.velocity
@@ -44,6 +45,7 @@ func _on_LifeTimer_timeout() -> void:
 
 
 func _explode() -> void:
+	animated_sprite.visible = false  # hide the fireball
 	explosion.play("explode")
 	yield(explosion, "animation_finished")
 	emit_signal("destroyed")
@@ -53,6 +55,8 @@ func _explode() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
+		set_physics_process(false)    # stop moving
+		_explode()
 
 
 func _on_VisibilityNotifier2D_screen_exited():

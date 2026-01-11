@@ -102,7 +102,7 @@ __meta__ = {
 position = Vector2( 4224, 10 )
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 6436, 57 )
+position = Vector2( 3172, 125 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 1224.0
@@ -301,7 +301,7 @@ flip_v = true
 [node name="InteractiveProps" type="Node" parent="."]
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 21 )]
-position = Vector2( 3095, 144 )
+position = Vector2( 3170, 144 )
 
 [node name="EndArea" type="Area2D" parent="InteractiveProps"]
 position = Vector2( 6507, 36 )
@@ -599,7 +599,7 @@ collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossPhaseTransitionArea2D"]
-position = Vector2( -88, 64 )
+position = Vector2( -45, 64 )
 shape = SubResource( 2 )
 
 [node name="TEMP-TransitionArea2" type="Area2D" parent="."]
