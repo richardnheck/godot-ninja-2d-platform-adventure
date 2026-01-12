@@ -12,6 +12,8 @@ onready var animationPlayer = $AnimationPlayer
 onready var screen_shake = $ScreenShake
 onready var boss_animated_sprite = $Boss/AnimatedSprite
 
+onready var flames = [$Boss/Flames/Flame1, $Boss/Flames/Flame2, $Boss/Flames/Flame3, $Boss/Flames/Flame4, $Boss/Flames/Flame5, $Boss/Flames/Flame6, $Boss/Flames/Flame7, $Boss/Flames/Flame8];
+
 signal continue_sig
 
 # Called when the node enters the scene tree for the first time.
@@ -31,11 +33,12 @@ func _ready() -> void:
 	dialog2.hide()
 	dialog3.hide()
 	
+	# Hide Wanyudo Flames
+	_hide_flames()
+	
 	# Walk player in to middle of the screen under boss
 	_walk_in()
-	
-	
-		
+			
 func _walk_in() -> void:
 	animationPlayer.play("walk-in")
 	
@@ -80,4 +83,11 @@ func _on_continue()->void:
 func show_continue_button(show:bool) -> void:
 	cut_scene_base.show_continue(show)
 	
-	
+func _hide_flames() -> void:
+	for flame in flames:
+		flame.visible = false
+
+func _reveal_flames() -> void:
+	for flame in flames:
+		flame.visible = true
+		yield(get_tree().create_timer(0.2), "timeout")
