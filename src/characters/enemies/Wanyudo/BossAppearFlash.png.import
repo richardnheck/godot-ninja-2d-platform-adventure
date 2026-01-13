@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/medium-dialogbox.png-d202fa418454e2fc1237f82ac4bca4d9.stex"
+path="res://.import/BossAppearFlash.png-8f0ca7357c476a50dad61def9150f7fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/CutScenes/medium-dialogbox.png"
-dest_files=[ "res://.import/medium-dialogbox.png-d202fa418454e2fc1237f82ac4bca4d9.stex" ]
+source_file="res://src/characters/enemies/Wanyudo/BossAppearFlash.png"
+dest_files=[ "res://.import/BossAppearFlash.png-8f0ca7357c476a50dad61def9150f7fa.stex" ]
 
 [params]
 

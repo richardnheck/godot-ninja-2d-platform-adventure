@@ -11,6 +11,7 @@ onready var dialog3 = $MainControl/DialogBox3
 onready var animationPlayer = $AnimationPlayer
 onready var screen_shake = $ScreenShake
 onready var boss_animated_sprite = $Boss/AnimatedSprite
+onready var boss_flash_animated_sprite = $Boss/FlashAnimatedSprite
 
 onready var flames = [$Boss/Flames/Flame1, $Boss/Flames/Flame2, $Boss/Flames/Flame3, $Boss/Flames/Flame4, $Boss/Flames/Flame5, $Boss/Flames/Flame6, $Boss/Flames/Flame7, $Boss/Flames/Flame8];
 
@@ -33,8 +34,9 @@ func _ready() -> void:
 	dialog2.hide()
 	dialog3.hide()
 	
-	# Hide Wanyudo Flames
+	# Hide Wanyudo Flames and flash
 	_hide_flames()
+	boss_flash_animated_sprite.visible = false
 	
 	# Walk player in to middle of the screen under boss
 	_walk_in()
@@ -74,7 +76,7 @@ func _shake_screen() -> void:
 	Game_AudioManager.sfx_env_cave_boss_cutscene_slam.play()
 	
 	# Shake the screen
-	screen_shake.screen_shake(2,4,100)		
+	screen_shake.screen_shake(2,2,100)		
 
 func _on_continue()->void:
 	if cut_scene_base.is_continue_button_showing():
@@ -85,9 +87,18 @@ func show_continue_button(show:bool) -> void:
 	
 func _hide_flames() -> void:
 	for flame in flames:
+
 		flame.visible = false
 
 func _reveal_flames() -> void:
 	for flame in flames:
 		flame.visible = true
-		yield(get_tree().create_timer(0.2), "timeout")
+		yield(get_tree().create_timer(0.1), "timeout")
+
+func _reveal_boss() -> void:
+	_reveal_flames()
+	
+	boss_flash_animated_sprite.visible = true
+	boss_flash_animated_sprite.play("default")
+	yield(boss_flash_animated_sprite, "animation_finished")
+	boss_animated_sprite.play("appear")
