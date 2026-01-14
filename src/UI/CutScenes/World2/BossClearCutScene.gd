@@ -5,7 +5,7 @@ extends Node
 
 onready var cut_scene_base:CutSceneBase = $CutSceneBase
 onready var player:Player = $Player
-onready var boss:RigidBody2D = $Boss
+onready var boss = $Boss
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var text_animation_player:AnimationPlayer = $TextAnimationPlayer
 onready var screen_shake = $ScreenShake
@@ -22,11 +22,19 @@ func _ready() -> void:
 	# Stop the current background music
 	Game_AudioManager.stop_bgm()
 	
+	# Hide explosions
+	var explosions = get_tree().get_nodes_in_group("explosion")
+	for explosion in explosions:
+		explosion.visible = false
+	
 	cut_scene_base.show_continue(false)
 	Actions.use_cutscene_actions()
 	screen_shake.set_camera_node("Camera2D")
 	stage_clear_text.visible = false
-	animation_player.play("walk_in")	
+	
+	# temp
+	animation_player.play("explode_boss")	
+	#animation_player.play("walk_in")	
 	player.get_camera_manager().get_camera().current = false  # make sure the player's camera is not used
 	
 		
@@ -40,13 +48,22 @@ func _process(delta: float) -> void:
 		player.move_stop()
 		
 	if _move_boss_right:
-		boss.linear_velocity = Vector2(90,0)
+		pass
+		#boss.linear_velocity = Vector2(90,0)
 
 func play_bgm() -> void:
 	Game_AudioManager.play_cave_level_boss_outro()	
 		
 func do_boss_walk_in() -> void:
 	animation_player.play("boss_walk_in")
+
+func do_boss_explosion() -> void:
+	pass
+	
+func do_explosion(explosionNumber:int) -> void:
+	var explosion:AnimatedSprite = get_node("Boss/Explosions/Explosion" + str(explosionNumber))	
+	explosion.visible = true
+	explosion.play()
 	
 func do_boss_jump() -> void:
 	# Move the boss
@@ -108,7 +125,7 @@ func move_boss_right() -> void:
 	_move_boss_right = true
 
 func move_boss_stop() -> void:
-	boss.linear_velocity = Vector2(0,0)
+	#boss.linear_velocity = Vector2(0,0)
 	_move_boss_right = false
 
 func play_boss_fall() -> void:

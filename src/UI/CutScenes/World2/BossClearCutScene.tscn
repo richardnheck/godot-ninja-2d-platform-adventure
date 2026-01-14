@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World2/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -16,6 +16,11 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=14]
 [ext_resource path="res://src/objects/demon-seal/DemonSeal.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/characters/enemies/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoSheet.png" type="Texture" id=18]
+[ext_resource path="res://src/characters/enemies/Wanyudo/BossAppearFlash.png" type="Texture" id=19]
+[ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoFlames.tres" type="SpriteFrames" id=20]
+[ext_resource path="res://src/characters/enemies/Wanyudo/bigexplosion_spriteframes.tres" type="SpriteFrames" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -555,11 +560,103 @@ resource_local_to_scene = true
 17/shapes = [  ]
 17/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 18 )
+region = Rect2( 240, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 18 )
+region = Rect2( 320, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 18 )
+region = Rect2( 80, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 18 )
+region = Rect2( 160, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 18 )
+region = Rect2( 240, 0, 80, 80 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 18 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 21 ), SubResource( 18 ) ],
+"loop": false,
+"name": "appear",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 23 ) ],
+"loop": true,
+"name": "asleep",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 19 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 19 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 19 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 19 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 19 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 19 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 19 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 19 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 19 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 19 )
+region = Rect2( 320, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 19 )
+region = Rect2( 352, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="Animation" id=12]
-resource_name = "boss_walk_in"
+[sub_resource type="Animation" id=33]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -582,8 +679,93 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "grab_talisman"
+[sub_resource type="Animation" id=38]
+resource_name = "explode_boss"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.6, 0.9939, 1.4, 1.8, 2.2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "do_explosion"
+}, {
+"args": [ 2 ],
+"method": "do_explosion"
+}, {
+"args": [ 3 ],
+"method": "do_explosion"
+}, {
+"args": [ 4 ],
+"method": "do_explosion"
+}, {
+"args": [ 5 ],
+"method": "do_explosion"
+}, {
+"args": [ 6 ],
+"method": "do_explosion"
+}, {
+"args": [ 7 ],
+"method": "do_explosion"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Boss/AnimatedSprite:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boss/Flames:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.4, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Boss/FlashAnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Boss/FlashAnimatedSprite")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "default", false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
 length = 2.0
 step = 0.05
 tracks/0/type = "method"
@@ -607,7 +789,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=35]
 length = 3.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -669,7 +851,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=36]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -685,7 +867,7 @@ tracks/0/keys = {
 "values": [ Vector2( 160, 87 ), Vector2( 160, 90 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=37]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("StageClearText:modulate")
@@ -767,7 +949,93 @@ position = Vector2( 232, 99 )
 [node name="JapaneseLamp3" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 48, 99 )
 
-[node name="Boss" type="RigidBody2D" parent="."]
+[node name="Boss" parent="." instance=ExtResource( 17 )]
+position = Vector2( 80, 64 )
+
+[node name="AnimatedSprite" parent="Boss" index="0"]
+self_modulate = Color( 0, 0, 0, 1 )
+frames = SubResource( 24 )
+animation = "appear"
+
+[node name="FlashAnimatedSprite" type="AnimatedSprite" parent="Boss"]
+visible = false
+position = Vector2( 40, 29 )
+frames = SubResource( 31 )
+
+[node name="Flames" type="Node2D" parent="Boss"]
+position = Vector2( 40, 29 )
+
+[node name="Flame1" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( 0, -32 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame2" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( 23, -22 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame3" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( 28, -2 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame4" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( 22, 15 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame5" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( 0, 25 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame6" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( -21, 16 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame7" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( -29, -2 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Flame8" type="AnimatedSprite" parent="Boss/Flames"]
+position = Vector2( -23, -23 )
+frames = ExtResource( 20 )
+playing = true
+
+[node name="Explosions" type="Node2D" parent="Boss"]
+
+[node name="Explosion1" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 24, 16 )
+frames = ExtResource( 21 )
+
+[node name="Explosion2" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 56, 32 )
+frames = ExtResource( 21 )
+
+[node name="Explosion3" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 32, 40 )
+frames = ExtResource( 21 )
+
+[node name="Explosion4" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 48, 16 )
+frames = ExtResource( 21 )
+
+[node name="Explosion5" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 32, 32 )
+frames = ExtResource( 21 )
+
+[node name="Explosion6" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 48, 40 )
+frames = ExtResource( 21 )
+
+[node name="Explosion7" type="AnimatedSprite" parent="Boss/Explosions" groups=["explosion"]]
+position = Vector2( 32, 16 )
+frames = ExtResource( 21 )
+
+[node name="BossOld" type="RigidBody2D" parent="."]
 position = Vector2( -35, 106 )
 mode = 2
 gravity_scale = 2.0
@@ -777,14 +1045,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Boss"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BossOld"]
 frames = ExtResource( 11 )
 animation = "awake"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossOld"]
 modulate = Color( 0.243137, 0.454902, 0.133333, 1 )
 position = Vector2( 0, 6 )
-shape = SubResource( 11 )
+shape = SubResource( 32 )
 
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -838,7 +1106,7 @@ __meta__ = {
 
 [node name="StageClearText" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 160, 89.2877 )
+position = Vector2( 160, 87 )
 texture = ExtResource( 6 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
@@ -857,9 +1125,10 @@ margin_bottom = 88.0
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/boss_walk_in = SubResource( 12 )
-anims/grab_talisman = SubResource( 13 )
-anims/walk_in = SubResource( 14 )
+anims/boss_walk_in = SubResource( 33 )
+anims/explode_boss = SubResource( 38 )
+anims/grab_talisman = SubResource( 34 )
+anims/walk_in = SubResource( 35 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 
@@ -890,8 +1159,8 @@ position = Vector2( 208, 144 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hover = SubResource( 15 )
-anims/show = SubResource( 16 )
+anims/hover = SubResource( 36 )
+anims/show = SubResource( 37 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 16 )]
 
@@ -902,15 +1171,9 @@ position = Vector2( 6, 0 )
 position = Vector2( 262, 135.165 )
 shape = SubResource( 17 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 96.0
-margin_top = 70.0
-margin_right = 232.0
-margin_bottom = 110.0
-text = "World2 Boss Clear"
-
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
 
+[editable path="Boss"]
 [editable path="CutSceneBase"]
