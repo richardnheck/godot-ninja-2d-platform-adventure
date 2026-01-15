@@ -15,10 +15,12 @@ onready var fade_screen = $FadeScreen
 
 var _move_player_right:bool = false
 var _move_player_left:bool = false
-var _move_boss_right:bool = false
 
 
 func _ready() -> void:
+	# Randomize the random number generator's seed
+	randomize()
+	
 	# Stop the current background music
 	Game_AudioManager.stop_bgm()
 	
@@ -33,8 +35,8 @@ func _ready() -> void:
 	stage_clear_text.visible = false
 	
 	# temp
-	animation_player.play("explode_boss")	
-	#animation_player.play("walk_in")	
+	#animation_player.play("explode_boss")	
+	animation_player.play("walk_in")	
 	player.get_camera_manager().get_camera().current = false  # make sure the player's camera is not used
 	
 		
@@ -46,36 +48,29 @@ func _process(delta: float) -> void:
 		player.move_left()
 	else:
 		player.move_stop()
-		
-	if _move_boss_right:
-		pass
-		#boss.linear_velocity = Vector2(90,0)
 
 func play_bgm() -> void:
 	Game_AudioManager.play_cave_level_boss_outro()	
 		
-func do_boss_walk_in() -> void:
-	animation_player.play("boss_walk_in")
+func do_boss_fly_in() -> void:
+	animation_player.play("boss_fly_in")
+
+func do_boss_wall_bounce_fx() -> void:
+	Game_AudioManager.sfx_env_cave_boss_cutscene_crash.play()
+	screen_shake.screen_shake(1,3,100)
+
+func do_boss_anger_fit() -> void:
+	animation_player.play("boss_angry")
 
 func do_boss_explosion() -> void:
-	pass
+	animation_player.play("explode_boss")
 	
 func do_explosion(explosionNumber:int) -> void:
 	var explosion:AnimatedSprite = get_node("Boss/Explosions/Explosion" + str(explosionNumber))	
 	explosion.visible = true
 	explosion.play()
 	
-func do_boss_jump() -> void:
-	# Move the boss
-	move_boss_stop()
-	
-	# Apply an impulse to make the boss jump
-	boss.apply_central_impulse( Vector2(45,-200))
-	
-	# Wait long enough for the boss to have fallen down the gap
-	yield(get_tree().create_timer(4), "timeout")
-	boss.queue_free()
-	
+func do_boss_jump() -> void:	
 	# Boss lands so play a crash sound and shake the screen
 	Game_AudioManager.sfx_env_cave_boss_cutscene_crash.play()
 	screen_shake.screen_shake(2,4,100)
@@ -119,18 +114,7 @@ func move_player_stop() -> void:
 func look_player_left() -> void:
 	move_player_left()
 	yield(get_tree().create_timer(0.05), "timeout")
-	move_player_stop()
-
-func move_boss_right() -> void:
-	_move_boss_right = true
-
-func move_boss_stop() -> void:
-	#boss.linear_velocity = Vector2(0,0)
-	_move_boss_right = false
-
-func play_boss_fall() -> void:
-	Game_AudioManager.sfx_env_cave_boss_cutscene_fall.play()
-	
+	move_player_stop()	
 		
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	print(anim_name + " animation finished")
