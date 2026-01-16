@@ -6,7 +6,24 @@ onready var sprite = $AnimatedSprite
 
 onready var tween_values = [null, null]
 
+enum Colour { 
+	BLUE = 0,
+	GREEN = 1,
+	RED = 2
+}
+
+export(Colour) var colour = Colour.BLUE setget set_colour
+
+func set_colour(value):
+	colour = value
+
 func _ready():
+	if colour == Colour.GREEN:
+		sprite.animation = "green"
+	elif colour == Colour.RED:
+		sprite.animation = "red"
+	elif colour == Colour.BLUE:
+		sprite.animation = "blue"
 	_start_tween()
 
 
@@ -23,6 +40,7 @@ func _on_tween_completed(object, key):
 	_start_tween()
 
 func _on_body_entered(body) -> void:
+	print("body grabbed seal")
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		emit_signal("demon_seal_grabbed")
 		collision_shape.set_deferred("disabled", true)

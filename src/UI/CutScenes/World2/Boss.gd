@@ -1,16 +1,17 @@
 extends Node2D
 
 onready var animated_sprite = $AnimatedSprite
+onready var oscillation_tween = $OscillationTween
 
 # For boss shake
 # How quickly the shaking stops [0, 1].
-export var decay = 0.1 
+export var decay = 0.01
 # Maximum hor/ver shake in pixels.
 export var max_offset = Vector2(10, 10) 
 
 
 # Current shake strength (0 to 1).
-var trauma = 0.4
+var trauma = 0.0
 # Trauma exponent (use [2, 3] for a good feel).
 var trauma_power = 2 
 
@@ -21,11 +22,14 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	# Randomize the random number generator's seed
 	rng.randomize()
+	
+	oscillation_tween.interpolate_property(animated_sprite, "position", Vector2(position.x, position.y-100), Vector2(position.x, position.y+100),0.1, Tween.TRANS_SINE)
+	oscillation_tween.start()	
 
 func _process(delta):
 	if trauma > 0:
 		# Apply the shake offset based on current trauma
-		position = Vector2(
+		animated_sprite.position = Vector2(
 			max_offset.x * (rng.randf_range(-1, 1)) * pow(trauma, trauma_power),
 			max_offset.y * (rng.randf_range(-1, 1)) * pow(trauma, trauma_power)
 		)
@@ -33,10 +37,13 @@ func _process(delta):
 		trauma -= decay * delta
 		if trauma < 0:
 			trauma = 0
-			position = Vector2.ZERO # Reset position when finished
+			animated_sprite.position = Vector2.ZERO # Reset position when finished
 	else:
-		position = Vector2.ZERO
+		animated_sprite.position = Vector2.ZERO
 
-# Function to call from other scripts to start or intensify the shake
+func set_trauma(value):
+	trauma = value;
+	
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0) # Cap trauma at 1.0
+

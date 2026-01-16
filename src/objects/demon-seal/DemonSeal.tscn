@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://src/objects/demon-seal/demon-seal.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/demon-seal/DemonSeal.gd" type="Script" id=2]
@@ -66,6 +66,8 @@
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0023.png" type="Texture" id=64]
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0046.png" type="Texture" id=65]
 [ext_resource path="res://assets/art/effects/multi_sparkle_puff/frames/frame0016.png" type="Texture" id=66]
+[ext_resource path="res://src/objects/demon-seal/demon-seal-green.png" type="Texture" id=67]
+[ext_resource path="res://src/objects/demon-seal/demon-seal-red.png" type="Texture" id=68]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.375, 11.75 )
@@ -106,11 +108,85 @@ region = Rect2( 198, 0, 33, 33 )
 atlas = ExtResource( 1 )
 region = Rect2( 231, 0, 33, 33 )
 
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 67 )
+region = Rect2( 0, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 67 )
+region = Rect2( 33, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 67 )
+region = Rect2( 66, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 67 )
+region = Rect2( 99, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 67 )
+region = Rect2( 132, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 67 )
+region = Rect2( 165, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 67 )
+region = Rect2( 198, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 67 )
+region = Rect2( 231, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 68 )
+region = Rect2( 0, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 68 )
+region = Rect2( 33, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 68 )
+region = Rect2( 66, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 68 )
+region = Rect2( 99, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 68 )
+region = Rect2( 132, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 68 )
+region = Rect2( 165, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 68 )
+region = Rect2( 198, 0, 33, 33 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 68 )
+region = Rect2( 231, 0, 33, 33 )
+
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ), SubResource( 2 ) ],
 "loop": true,
-"name": "default",
+"name": "blue",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ), SubResource( 29 ) ],
+"loop": true,
+"name": "green",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ) ],
+"loop": true,
+"name": "red",
 "speed": 10.0
 } ]
 
@@ -131,12 +207,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 11 )
-playing = true
-centered = false
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="AnimatedSprite"]
-frames = SubResource( 11 )
-frame = 18
+animation = "red"
 playing = true
 centered = false
 
