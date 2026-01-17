@@ -11,12 +11,14 @@ onready var dialog2 = $MainControl/DialogBox2
 onready var dialog3 = $MainControl/DialogBox3
 onready var animationPlayer = $AnimationPlayer
 onready var screen_shake = $ScreenShake
-onready var boss_animated_sprite = $Boss/AnimatedSprite
+
 
 signal continue_sig
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animationPlayer.play("RESET")
+	
 	Game_AudioManager.play_cave_level_boss_intro()
 	
 	cut_scene_base.connect("on_continue", self, "_on_continue")
@@ -54,13 +56,15 @@ func _start_dialog() -> void:
 	# Walk player out
 	dialog2.hide()
 	show_continue_button(false)
-	boss_animated_sprite.animation = "awake"
+	
 	yield(get_tree().create_timer(0.3), "timeout")
 	
 	_walk_out()
 
 func _walk_out() -> void:
 	animationPlayer.play("walk-out")
+	yield(animationPlayer, "animation_finished")
+	animationPlayer.play("boss-forming")
 	
 func _goto_next_scene() -> void:
 	$CutSceneBase.goto_next_scene()

@@ -1,14 +1,12 @@
 extends Node2D
 
 onready var animated_sprite = $AnimatedSprite
-onready var oscillation_tween = $OscillationTween
 
 # For boss shake
 # How quickly the shaking stops [0, 1].
 export var decay = 0.01
 # Maximum hor/ver shake in pixels.
 export var max_offset = Vector2(10, 10) 
-
 
 # Current shake strength (0 to 1).
 var trauma = 0.0
@@ -17,14 +15,10 @@ var trauma_power = 2
 
 var rng = RandomNumberGenerator.new()
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Randomize the random number generator's seed
 	rng.randomize()
-	
-	oscillation_tween.interpolate_property(animated_sprite, "position", Vector2(position.x, position.y-100), Vector2(position.x, position.y+100),0.1, Tween.TRANS_SINE)
-	oscillation_tween.start()	
 
 func _process(delta):
 	if trauma > 0:

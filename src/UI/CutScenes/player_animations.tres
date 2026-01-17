@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=21 format=2]
+[gd_resource type="SpriteFrames" load_steps=23 format=2]
 
 [ext_resource path="res://src/characters/player/sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://src/characters/player/sprites/player-idle4.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -37,6 +38,10 @@ region = Rect2( 33, 224, 33, 32 )
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 66, 224, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 33, 32 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
@@ -99,6 +104,11 @@ animations = [ {
 "loop": true,
 "name": "shock",
 "speed": 8.0
+}, {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "surprise",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
