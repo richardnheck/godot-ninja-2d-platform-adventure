@@ -1,0 +1,526 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://src/objects/demon-seal/DemonSeal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/CutScenes/World3/BossForCutscene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/CutScenes/small-dialogbox.png" type="Texture" id=6]
+[ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/UI/CutScenes/mini-dialogbox.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=11]
+[ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=12]
+[ext_resource path="res://assets/art/tilesets/world3/World3-Props-Tileset.tres" type="TileSet" id=13]
+[ext_resource path="res://src/UI/CutScenes/question-dialogbox.png" type="Texture" id=15]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 15 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
+
+[sub_resource type="Animation" id=18]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainControl/DialogBox1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainControl/DialogBox2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainControl/DialogBox3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player/QuestionAnimatedSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Boss:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Player:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -32, 112 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "boss-forming"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Boss:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "shock" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player/QuestionAnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MainControl/DialogBox3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_goto_next_scene"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Boss/FaceAnimatedSprite:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 3.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "default", "look-forward" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 2.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("Boss/ElectricityBurstAnimatedSprite")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 2.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "default", false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "walk-in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -35, 112 ), Vector2( 72, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "talk" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_dialog"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "walk-out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 144, 112 ), Vector2( 248, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "surprise" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MainControl/DialogBox3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player/QuestionAnimatedSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="World3 - BossClearCutScene (Part 1)" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 88 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="TileMapBg" type="TileMap" parent="."]
+position = Vector2( 208, -24 )
+z_index = -1
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 262131, 1, 0, 262132, 0, 0, 262133, 1, 0, 262134, 1, 0, 262135, 0, 0, 262136, 1, 0, 262137, 1, 0, 262138, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 327667, 1, 0, 327668, 1, 0, 327669, 1, 0, 327670, 0, 0, 327671, 1, 0, 327672, 1, 0, 327673, 1, 0, 327674, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 0, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 393203, 3, 0, 393204, 3, 0, 393205, 3, 0, 393206, 2, 0, 393207, 3, 0, 393208, 3, 0, 393209, 3, 0, 393210, 3, 0, 393211, 3, 0, 393212, 3, 0, 393213, 3, 0, 393214, 3, 0, 393215, 3, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 2, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 458739, 1, 0, 458740, 1, 0, 458741, 1, 0, 458742, 0, 0, 458743, 1, 0, 458744, 1, 0, 458745, 1, 0, 458746, 1, 0, 458747, 1, 0, 458748, 1, 0, 458749, 1, 0, 458750, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 0, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 524275, 1, 0, 524276, 1, 0, 524277, 1, 0, 524278, 0, 0, 524279, 1, 0, 524280, 1, 0, 524281, 1, 0, 524282, 1, 0, 524283, 1, 0, 524284, 1, 0, 524285, 1, 0, 524286, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 0, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 589811, 1, 0, 589812, 1, 0, 589813, 1, 0, 589814, 0, 0, 589815, 1, 0, 589816, 1, 0, 589817, 1, 0, 589818, 1, 0, 589819, 1, 0, 589820, 1, 0, 589821, 1, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 0, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 0, 0, 655351, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 1, 0, 655355, 1, 0, 655356, 1, 0, 655357, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 0, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 720883, 1, 0, 720884, 1, 0, 720885, 1, 0, 720886, 0, 0, 720887, 1, 0, 720888, 1, 0, 720889, 1, 0, 720890, 1, 0, 720891, 1, 0, 720892, 1, 0, 720893, 1, 0, 720894, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 0, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 786419, 1, 0, 786420, 1, 0, 786421, 1, 0, 786422, 1, 0, 786423, 1, 0, 786424, 1, 0, 786425, 1, 0, 786426, 1, 0, 786427, 1, 0, 786428, 1, 0, 786429, 1, 0, 786430, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 720898, 1, 0, 720899, 1, 0, 720900, 1, 0, 720901, 0, 0, 720902, 1, 0 )
+
+[node name="TileMapWorld" type="TileMap" parent="."]
+position = Vector2( 96, -48 )
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 196602, 91, 0, 196603, 91, 0, 196604, 91, 0, 196605, 91, 0, 196606, 91, 0, 196607, 91, 0, 131072, 91, 0, 131073, 91, 0, 131074, 91, 0, 131075, 91, 0, 131076, 91, 0, 131077, 91, 0, 131078, 91, 0, 131079, 91, 0, 131080, 90, 0, 131081, 91, 0, 131082, 91, 0, 131083, 91, 0, 131084, 91, 0, 131085, 91, 0, 262138, 91, 0, 262139, 91, 0, 262140, 91, 0, 262141, 91, 0, 262142, 91, 0, 262143, 91, 0, 196608, 91, 0, 196609, 91, 0, 196610, 91, 0, 196611, 91, 0, 196612, 91, 0, 196613, 91, 0, 196614, 91, 0, 196615, 91, 0, 196616, 90, 0, 196617, 91, 0, 196618, 91, 0, 196619, 91, 0, 196620, 91, 0, 196621, 91, 0, 327674, 91, 0, 327675, 91, 0, 327676, 91, 0, 327677, 91, 0, 327678, 91, 0, 327679, 91, 0, 262144, 91, 0, 262145, 91, 0, 262146, 91, 0, 262147, 91, 0, 262148, 91, 0, 262149, 91, 0, 262150, 91, 0, 262151, 91, 0, 262152, 91, 0, 262153, 91, 0, 262154, 91, 0, 262155, 91, 0, 262156, 91, 0, 262157, 91, 0, 393210, 94, 0, 393211, 94, 0, 393212, 94, 0, 393213, 94, 0, 393214, 94, 0, 393215, 93, 0, 327680, 93, 0, 327681, 93, 0, 327682, 93, 0, 327683, 93, 0, 327684, 93, 0, 327685, 93, 0, 327686, 93, 0, 327687, 93, 0, 327688, 93, 0, 327689, 93, 0, 327690, 93, 0, 327691, 93, 0, 327692, 93, 0, 327693, 93, 0, 851962, 1, 0, 851963, 1, 0, 851964, 3, 0, 851965, 1, 0, 851966, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 3, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 3, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 917498, 37, 0, 917499, 37, 0, 917500, 8, 0, 917501, 37, 0, 917502, 37, 0, 917503, 37, 0, 851968, 37, 0, 851969, 37, 0, 851970, 8, 0, 851971, 37, 0, 851972, 37, 0, 851973, 37, 0, 851974, 37, 0, 851975, 37, 0, 851976, 8, 0, 851977, 37, 0, 851978, 37, 0, 851979, 37, 0, 851980, 37, 0, 851981, 37, 0, 983034, 37, 0, 983035, 37, 0, 983036, 8, 0, 983037, 37, 0, 983038, 37, 0, 983039, 37, 0, 917504, 37, 0, 917505, 37, 0, 917506, 8, 0, 917507, 37, 0, 917508, 37, 0, 917509, 37, 0, 917510, 37, 0, 917511, 37, 0, 917512, 8, 0, 917513, 37, 0, 917514, 37, 0, 917515, 37, 0, 917516, 37, 0, 917517, 37, 0 )
+
+[node name="TileMapProps" type="TileMap" parent="."]
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196615, 0, 0, 196620, 0, 0, 262151, 1, 0, 262156, 1, 0, 327687, 1, 0, 327692, 1, 0, 393223, 1, 0, 393228, 1, 0, 458759, 1, 0, 458764, 1, 0, 524295, 2, 0, 524300, 2, 0 )
+
+[node name="Boss" parent="." instance=ExtResource( 5 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="ElectricityBurstAnimatedSprite" parent="Boss" index="2"]
+visible = false
+
+[node name="Props" type="Node" parent="."]
+
+[node name="DemonSeal" parent="Props" instance=ExtResource( 4 )]
+position = Vector2( 144, 104 )
+colour = 1
+
+[node name="MainControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox1" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 58, 81 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox1"]
+margin_left = -66.0
+margin_top = -26.0
+margin_right = 64.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "Yes! There it is.
+
+The final talisman."
+
+[node name="DialogBox2" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 130, 80 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox2"]
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "I must admit that I am bit over lanterns at
+the moment...and I definitely not getting
+good vibes from the three right here.
+Anyhow...time to finish this."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox3" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 232.272, 105.271 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox3"]
+margin_left = -25.272
+margin_top = -22.271
+margin_right = 468.728
+margin_bottom = 40.729
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "Ao Andon!!!"
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/levels/World3Levels/World3Level_Boss.tscn"
+
+[node name="ClickRect" parent="CutSceneBase/Control" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -88.0
+margin_right = 160.0
+margin_bottom = 88.0
+
+[node name="ScreenShake" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 8 )
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( -35, 112 )
+frames = ExtResource( 3 )
+animation = "walk"
+playing = true
+centered = false
+
+[node name="QuestionAnimatedSprite" type="AnimatedSprite" parent="Player"]
+visible = false
+position = Vector2( 15, 3 )
+frames = SubResource( 21 )
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
+anims/boss-forming = SubResource( 22 )
+anims/walk-in = SubResource( 1 )
+anims/walk-out = SubResource( 2 )
+
+[connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
+
+[editable path="Boss"]
+[editable path="CutSceneBase"]
