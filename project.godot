@@ -415,6 +415,11 @@ _global_script_classes=[ {
 "path": "res://src/UI/CutScenes/World2/BossintroCutScene.gd"
 }, {
 "base": "Node",
+"class": "World3BossClearCutScenePart1",
+"language": "GDScript",
+"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd"
+}, {
+"base": "Node",
 "class": "World3BossIntroCutScene",
 "language": "GDScript",
 "path": "res://src/UI/CutScenes/World3/BossintroCutScene.gd"
@@ -506,6 +511,7 @@ _global_script_class_icons={
 "WanyudoMiniSpawner": "",
 "World1BossIntroCutScene": "",
 "World2BossIntroCutScene": "",
+"World3BossClearCutScenePart1": "",
 "World3BossIntroCutScene": "",
 "ZenchuuNoHikari": ""
 }

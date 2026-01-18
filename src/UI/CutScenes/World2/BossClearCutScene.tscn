@@ -632,11 +632,11 @@ position = Vector2( 283, 104.693 )
 colour = 2
 
 [node name="Pylon" type="Sprite" parent="Props"]
-position = Vector2( 12, 104 )
+position = Vector2( 24, 104 )
 texture = ExtResource( 11 )
 
 [node name="Pylon2" type="Sprite" parent="Props"]
-position = Vector2( 92, 104 )
+position = Vector2( 104, 104 )
 texture = ExtResource( 11 )
 
 [node name="Boss" parent="." instance=ExtResource( 17 )]

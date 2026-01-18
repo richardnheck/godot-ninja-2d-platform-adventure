@@ -721,15 +721,11 @@ format = 1
 tile_data = PoolIntArray( 196615, 0, 0, 196620, 0, 0, 262151, 1, 0, 262156, 1, 0, 327687, 1, 0, 327692, 1, 0, 393223, 1, 0, 393228, 1, 0, 458759, 1, 0, 458764, 1, 0, 524295, 2, 0, 524300, 2, 0 )
 
 [node name="Boss" parent="." instance=ExtResource( 5 )]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
-
-[node name="ElectricityBurstAnimatedSprite" parent="Boss" index="2"]
-visible = false
+modulate = Color( 1, 1, 1, 0.666667 )
 
 [node name="ElecticityAnimatedSprite" type="AnimatedSprite" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0.780392 )
 position = Vector2( 157, 91 )
 z_index = 1
 frames = SubResource( 39 )
@@ -738,7 +734,7 @@ playing = true
 [node name="Props" type="Node" parent="."]
 
 [node name="Lantern1" type="AnimatedSprite" parent="Props"]
-position = Vector2( 21, 91 )
+position = Vector2( 160, 91 )
 frames = SubResource( 5 )
 playing = true
 script = ExtResource( 14 )
@@ -750,7 +746,7 @@ playing = true
 script = ExtResource( 14 )
 
 [node name="Lantern3" type="AnimatedSprite" parent="Props"]
-position = Vector2( 300, 91 )
+position = Vector2( 160, 91 )
 frames = SubResource( 5 )
 playing = true
 script = ExtResource( 14 )
@@ -806,7 +802,6 @@ __meta__ = {
 }
 
 [node name="DialogBox3" type="Sprite" parent="MainControl"]
-visible = false
 position = Vector2( 232.272, 105.271 )
 texture = ExtResource( 10 )
 
