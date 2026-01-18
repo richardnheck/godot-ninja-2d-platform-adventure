@@ -28,4 +28,4 @@ func _ready():
 
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		get_tree().change_scene("res://src/UI/CutScenes/World3/BossClearCutScene.tscn")
+		get_tree().change_scene("res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn")
