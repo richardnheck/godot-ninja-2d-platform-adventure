@@ -1,11 +1,11 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World3/BossintroCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://src/characters/enemies/AoAndon/shard-lantern/AoAndonShardLanternSheet.png" type="Texture" id=4]
-[ext_resource path="res://src/characters/enemies/AoAndon/AoAndonSheet.png" type="Texture" id=5]
-[ext_resource path="res://src/characters/enemies/AoAndon/AoAndonFaceSheet.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/CutScenes/World3/BossForCutscene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/CutScenes/World3/Electricity.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
@@ -16,60 +16,40 @@
 [ext_resource path="res://src/UI/CutScenes/World3/Lantern.gd" type="Script" id=14]
 [ext_resource path="res://src/UI/CutScenes/question-dialogbox.png" type="Texture" id=15]
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
-region = Rect2( 80, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 5 )
-region = Rect2( 160, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 5 )
-region = Rect2( 240, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 5 )
-region = Rect2( 320, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 5 )
-region = Rect2( 400, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 5 )
-region = Rect2( 480, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 5 )
-region = Rect2( 560, 0, 80, 96 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 5 )
-region = Rect2( 640, 0, 80, 96 )
-
-[sub_resource type="SpriteFrames" id=15]
-animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
-"loop": true,
-"name": "default",
-"speed": 8.0
-} ]
-
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 6 )
-region = Rect2( 560, 0, 80, 96 )
+region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 6 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 6 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 6 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 6 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 6 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 6 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=39]
 animations = [ {
-"frames": [ SubResource( 16 ) ],
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 15.0
 } ]
 
 [sub_resource type="AtlasTexture" id=3]
@@ -257,6 +237,42 @@ tracks/11/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ElecticityAnimatedSprite:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("ElecticityAnimatedSprite:self_modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "boss-forming"
@@ -416,6 +432,68 @@ tracks/12/keys = {
 "args": [  ],
 "method": "_goto_next_scene"
 } ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Boss/FaceAnimatedSprite:animation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 3.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "default", "look-forward" ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 2.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/15/type = "method"
+tracks/15/path = NodePath("Boss/ElectricityBurstAnimatedSprite")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 2.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "default", false ],
+"method": "play"
+} ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("ElecticityAnimatedSprite:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("ElecticityAnimatedSprite:self_modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( -0.1, 0, 1.2, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.780392 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.780392 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -634,7 +712,7 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 131066, 90, 0, 131067, 91, 0, 131068, 90, 0, 131069, 90, 0, 131070, 90, 0, 131071, 90, 0, 65536, 90, 0, 65537, 90, 0, 65542, 90, 0, 65543, 90, 0, 65544, 90, 0, 65545, 90, 0, 65546, 90, 0, 65547, 90, 0, 65548, 90, 0, 65549, 90, 0, 196602, 90, 0, 196603, 91, 0, 196604, 90, 0, 196605, 90, 0, 196606, 90, 0, 196607, 90, 0, 131072, 90, 0, 131073, 90, 0, 131078, 90, 0, 131079, 90, 0, 131080, 90, 0, 131081, 90, 0, 131082, 90, 0, 131083, 90, 0, 131084, 90, 0, 131085, 90, 0, 262138, 90, 0, 262139, 91, 0, 262140, 90, 0, 262141, 90, 0, 262142, 90, 0, 262143, 90, 0, 196608, 90, 0, 196609, 90, 0, 196614, 90, 0, 196615, 90, 0, 196616, 90, 0, 196617, 90, 0, 196618, 90, 0, 196619, 90, 0, 196620, 90, 0, 196621, 90, 0, 327674, 93, 0, 327675, 93, 0, 327676, 93, 0, 327677, 90, 0, 327678, 90, 0, 327679, 91, 0, 262144, 90, 0, 262145, 90, 0, 262150, 90, 0, 262151, 90, 0, 262152, 90, 0, 262153, 90, 0, 262154, 90, 0, 262155, 92, 0, 262156, 93, 0, 262157, 93, 0, 393213, 92, 0, 393214, 94, 0, 393215, 93, 0, 327680, 93, 0, 327681, 95, 0, 327686, 92, 0, 327687, 93, 0, 327688, 93, 0, 327689, 93, 0, 327690, 95, 0, 851962, 1, 0, 851963, 1, 0, 851964, 3, 0, 851965, 1, 0, 851966, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 3, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 3, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 917498, 37, 0, 917499, 37, 0, 917500, 8, 0, 917501, 37, 0, 917502, 37, 0, 917503, 37, 0, 851968, 37, 0, 851969, 37, 0, 851970, 8, 0, 851971, 37, 0, 851972, 37, 0, 851973, 37, 0, 851974, 37, 0, 851975, 37, 0, 851976, 8, 0, 851977, 37, 0, 851978, 37, 0, 851979, 37, 0, 851980, 37, 0, 851981, 37, 0, 983034, 37, 0, 983035, 37, 0, 983036, 8, 0, 983037, 37, 0, 983038, 37, 0, 983039, 37, 0, 917504, 37, 0, 917505, 37, 0, 917506, 8, 0, 917507, 37, 0, 917508, 37, 0, 917509, 37, 0, 917510, 37, 0, 917511, 37, 0, 917512, 8, 0, 917513, 37, 0, 917514, 37, 0, 917515, 37, 0, 917516, 37, 0, 917517, 37, 0 )
+tile_data = PoolIntArray( 131066, 91, 0, 131067, 91, 0, 131068, 91, 0, 131069, 91, 0, 131070, 91, 0, 131071, 91, 0, 65536, 91, 0, 65537, 91, 0, 65542, 91, 0, 65543, 91, 0, 65544, 91, 0, 65545, 91, 0, 65546, 91, 0, 65547, 91, 0, 65548, 91, 0, 65549, 91, 0, 196602, 91, 0, 196603, 91, 0, 196604, 91, 0, 196605, 91, 0, 196606, 91, 0, 196607, 91, 0, 131072, 91, 0, 131073, 91, 0, 131078, 91, 0, 131079, 91, 0, 131080, 90, 0, 131081, 91, 0, 131082, 91, 0, 131083, 91, 0, 131084, 91, 0, 131085, 91, 0, 262138, 91, 0, 262139, 91, 0, 262140, 91, 0, 262141, 91, 0, 262142, 91, 0, 262143, 91, 0, 196608, 91, 0, 196609, 91, 0, 196614, 91, 0, 196615, 91, 0, 196616, 90, 0, 196617, 91, 0, 196618, 91, 0, 196619, 91, 0, 196620, 91, 0, 196621, 91, 0, 327674, 93, 0, 327675, 93, 0, 327676, 95, 0, 327677, 91, 0, 327678, 91, 0, 327679, 91, 0, 262144, 91, 0, 262145, 91, 0, 262150, 91, 0, 262151, 91, 0, 262152, 91, 0, 262153, 91, 0, 262154, 91, 0, 262155, 92, 0, 262156, 93, 0, 262157, 93, 0, 393213, 92, 0, 393214, 94, 0, 393215, 93, 0, 327680, 93, 0, 327681, 95, 0, 327686, 92, 0, 327687, 93, 0, 327688, 93, 0, 327689, 93, 0, 327690, 95, 0, 851962, 1, 0, 851963, 1, 0, 851964, 3, 0, 851965, 1, 0, 851966, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 3, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 3, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 917498, 37, 0, 917499, 37, 0, 917500, 8, 0, 917501, 37, 0, 917502, 37, 0, 917503, 37, 0, 851968, 37, 0, 851969, 37, 0, 851970, 8, 0, 851971, 37, 0, 851972, 37, 0, 851973, 37, 0, 851974, 37, 0, 851975, 37, 0, 851976, 8, 0, 851977, 37, 0, 851978, 37, 0, 851979, 37, 0, 851980, 37, 0, 851981, 37, 0, 983034, 37, 0, 983035, 37, 0, 983036, 8, 0, 983037, 37, 0, 983038, 37, 0, 983039, 37, 0, 917504, 37, 0, 917505, 37, 0, 917506, 8, 0, 917507, 37, 0, 917508, 37, 0, 917509, 37, 0, 917510, 37, 0, 917511, 37, 0, 917512, 8, 0, 917513, 37, 0, 917514, 37, 0, 917515, 37, 0, 917516, 37, 0, 917517, 37, 0 )
 
 [node name="TileMapProps" type="TileMap" parent="."]
 tile_set = ExtResource( 13 )
@@ -642,17 +720,19 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 196615, 0, 0, 196620, 0, 0, 262151, 1, 0, 262156, 1, 0, 327687, 1, 0, 327692, 1, 0, 393223, 1, 0, 393228, 1, 0, 458759, 1, 0, 458764, 1, 0, 524295, 2, 0, 524300, 2, 0 )
 
-[node name="Boss" type="Node2D" parent="."]
+[node name="Boss" parent="." instance=ExtResource( 5 )]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 160, 64 )
 
-[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Boss"]
-frames = SubResource( 15 )
-playing = true
+[node name="ElectricityBurstAnimatedSprite" parent="Boss" index="2"]
+visible = false
 
-[node name="FaceAnimatedSprite" type="AnimatedSprite" parent="Boss"]
-frames = SubResource( 17 )
+[node name="ElecticityAnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 157, 91 )
+z_index = 1
+frames = SubResource( 39 )
 playing = true
 
 [node name="Props" type="Node" parent="."]
@@ -777,4 +857,5 @@ anims/walk-out = SubResource( 2 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 
+[editable path="Boss"]
 [editable path="CutSceneBase"]
