@@ -42,11 +42,14 @@ func _on_tween_completed(object, key):
 func _on_body_entered(body) -> void:
 	print("body grabbed seal")
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		emit_signal("demon_seal_grabbed")
-		collision_shape.set_deferred("disabled", true)
-		sprite.visible = false
-		effect_animation.play()
-		Game_AudioManager.sfx_collectibles_demon_seal.play()
+		grab_seal()
+
+func grab_seal() -> void:
+	emit_signal("demon_seal_grabbed")
+	collision_shape.set_deferred("disabled", true)
+	sprite.visible = false
+	effect_animation.play()
+	Game_AudioManager.sfx_collectibles_demon_seal.play()
 
 func _on_EffectAnimation_animation_finished() -> void:
 	queue_free()

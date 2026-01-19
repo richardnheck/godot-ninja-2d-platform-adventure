@@ -417,6 +417,11 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "World3BossClearCutScenePart1",
 "language": "GDScript",
+"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart2.gd"
+}, {
+"base": "Node",
+"class": "World3BossClearCutScenePart2",
+"language": "GDScript",
 "path": "res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd"
 }, {
 "base": "Node",
@@ -512,6 +517,7 @@ _global_script_class_icons={
 "World1BossIntroCutScene": "",
 "World2BossIntroCutScene": "",
 "World3BossClearCutScenePart1": "",
+"World3BossClearCutScenePart2": "",
 "World3BossIntroCutScene": "",
 "ZenchuuNoHikari": ""
 }
