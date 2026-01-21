@@ -13,9 +13,13 @@ enum Colour {
 }
 
 export(Colour) var colour = Colour.BLUE setget set_colour
+export(bool) var hover = true setget set_hover
 
 func set_colour(value):
 	colour = value
+	
+func set_hover(value):
+	hover = value
 
 func _ready():
 	if colour == Colour.GREEN:
@@ -24,7 +28,9 @@ func _ready():
 		sprite.animation = "red"
 	elif colour == Colour.BLUE:
 		sprite.animation = "blue"
-	_start_tween()
+		
+	if hover:	
+		_start_tween()
 
 
 func _start_tween():
@@ -53,3 +59,11 @@ func grab_seal() -> void:
 
 func _on_EffectAnimation_animation_finished() -> void:
 	queue_free()
+
+# Called from cutscene when placed on the altar
+func place() -> void:
+	# Make visible when placed
+	self.visible = true
+		
+	# TODO: Show effect
+	

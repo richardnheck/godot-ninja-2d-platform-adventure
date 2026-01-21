@@ -128,6 +128,11 @@ animations = [ {
 "name": "jump-up",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 4 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "place",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
 "name": "shock",

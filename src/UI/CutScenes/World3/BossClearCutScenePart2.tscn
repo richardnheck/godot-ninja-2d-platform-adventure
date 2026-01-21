@@ -162,6 +162,42 @@ tracks/10/keys = {
 "update": 0,
 "values": [ "look-forward" ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("Props/DemonSealBlue:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Props/DemonSealRed:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Props/DemonSealGreen:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "enter-boss"
@@ -302,7 +338,7 @@ tracks/1/keys = {
 "values": [ "walk", "celebrate-no-pray", "talk" ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("Props/DemonSeal")
+tracks/2/path = NodePath("Props/DemonSealRed")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -318,7 +354,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "walk-in"
-length = 1.5
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
@@ -326,10 +362,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2.4, 2.8, 3.3, 3.5, 3.9, 4.3, 4.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -35, 112 ), Vector2( 72, 112 ) ]
+"values": [ Vector2( -35, 112 ), Vector2( 185.727, 112 ), Vector2( 185.727, 112 ), Vector2( 213.727, 112 ), Vector2( 213.727, 112 ), Vector2( 239.727, 112 ), Vector2( 239.727, 112 ), Vector2( 271.727, 112 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Player:animation")
@@ -338,10 +374,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2.5, 2.8, 3.3, 3.5, 3.9, 4.3, 4.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "walk", "talk" ]
+"values": [ "walk", "place", "walk", "place", "walk", "place", "walk", "idle" ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -350,12 +386,9 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_start_dialog"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Player:flip_h")
@@ -364,10 +397,52 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 4.9 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Props/DemonSealBlue")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "place"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("Props/DemonSealRed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "place"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Props/DemonSealGreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "place"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -481,7 +556,8 @@ format = 1
 tile_data = PoolIntArray( 131072, 0, 0, 131081, 0, 0, 196608, 1, 0, 196617, 1, 0, 262144, 1, 0, 262153, 1, 0, 327680, 1, 0, 327689, 1, 0, 393216, 1, 0, 393225, 1, 0, 458752, 1, 0, 458761, 1, 0, 524288, 2, 0, 524297, 2, 0 )
 
 [node name="Player" type="AnimatedSprite" parent="." groups=["player"]]
-position = Vector2( 172, 112 )
+position = Vector2( -32, 112 )
+z_index = 1
 frames = ExtResource( 3 )
 animation = "walk"
 playing = true
@@ -506,11 +582,25 @@ visible = false
 
 [node name="Props" type="Node" parent="."]
 
-[node name="DemonSeal" parent="Props" instance=ExtResource( 4 )]
+[node name="DemonSealBlue" parent="Props" instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 186, 89 )
+position = Vector2( 187, 89 )
+z_index = 1
+hover = false
+
+[node name="DemonSealRed" parent="Props" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 213, 89 )
+z_index = 1
+colour = 2
+hover = false
+
+[node name="DemonSealGreen" parent="Props" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 239, 89 )
 z_index = 1
 colour = 1
+hover = false
 
 [node name="TalismanAltar" type="Sprite" parent="Props"]
 position = Vector2( 228, 85 )
