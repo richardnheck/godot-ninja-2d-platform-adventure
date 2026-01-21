@@ -1,8 +1,10 @@
+class_name DemonSeal
 extends Node2D
 
 onready var collision_shape = $CollisionShape2D
 onready var effect_animation = $EffectAnimation
 onready var sprite = $AnimatedSprite
+onready var placed_effect_animation = $PlacedEffectAnimation
 
 onready var tween_values = [null, null]
 
@@ -22,6 +24,9 @@ func set_hover(value):
 	hover = value
 
 func _ready():
+	effect_animation.visible = false
+	placed_effect_animation.visible = false
+	
 	if colour == Colour.GREEN:
 		sprite.animation = "green"
 	elif colour == Colour.RED:
@@ -54,6 +59,7 @@ func grab_seal() -> void:
 	emit_signal("demon_seal_grabbed")
 	collision_shape.set_deferred("disabled", true)
 	sprite.visible = false
+	effect_animation.visible = true
 	effect_animation.play()
 	Game_AudioManager.sfx_collectibles_demon_seal.play()
 
@@ -65,5 +71,7 @@ func place() -> void:
 	# Make visible when placed
 	self.visible = true
 		
-	# TODO: Show effect
+	# Show placed effect
+	placed_effect_animation.visible = true
+	placed_effect_animation.play()
 	

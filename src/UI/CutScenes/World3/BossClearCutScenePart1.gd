@@ -1,7 +1,7 @@
 ########################################
-# World 3 - Boss Clear Cut Scene (Part2)
+# World 3 - Boss Clear Cut Scene (Part1)
 ########################################
-class_name World3BossClearCutScenePart2
+class_name World3BossClearCutScenePart1
 
 extends Node
 

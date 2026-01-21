@@ -125,6 +125,11 @@ _global_script_classes=[ {
 "path": "res://src/statemachine/states/motion/combat/death.gd"
 }, {
 "base": "Node2D",
+"class": "DemonSeal",
+"language": "GDScript",
+"path": "res://src/objects/demon-seal/DemonSeal.gd"
+}, {
+"base": "Node2D",
 "class": "Draw",
 "language": "GDScript",
 "path": "res://src/tools/draw.gd"
@@ -417,12 +422,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "World3BossClearCutScenePart1",
 "language": "GDScript",
-"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart2.gd"
+"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd"
 }, {
 "base": "Node",
 "class": "World3BossClearCutScenePart2",
 "language": "GDScript",
-"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd"
+"path": "res://src/UI/CutScenes/World3/BossClearCutScenePart2.gd"
 }, {
 "base": "Node",
 "class": "World3BossIntroCutScene",
@@ -458,6 +463,7 @@ _global_script_class_icons={
 "DamageZone": "",
 "Daruma": "",
 "Death": "",
+"DemonSeal": "",
 "Draw": "",
 "Eagle": "",
 "Electricity": "",

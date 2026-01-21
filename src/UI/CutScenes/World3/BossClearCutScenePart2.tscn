@@ -1,15 +1,13 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World3/BossClearCutScenePart2.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://src/objects/demon-seal/DemonSeal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/CutScenes/World3/BossForCutscene.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/UI/CutScenes/small-dialogbox.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/CutScenes/World3/SparkleExplosionEffect.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/World3/Talisman Altar.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/UI/CutScenes/mini-dialogbox.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Props-Tileset.tres" type="TileSet" id=13]
@@ -31,6 +29,50 @@ animations = [ {
 "speed": 4.0
 } ]
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 6 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 6 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 6 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 6 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 6 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [sub_resource type="Animation" id=18]
 resource_name = "RESET"
 length = 0.001
@@ -44,10 +86,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MainControl/DialogBox1:visible")
+tracks/1/path = NodePath("Player/QuestionAnimatedSprite:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -59,7 +101,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MainControl/DialogBox2:visible")
+tracks/2/path = NodePath("Boss:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -67,11 +109,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MainControl/DialogBox3:visible")
+tracks/3/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -83,7 +125,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Player/QuestionAnimatedSprite:visible")
+tracks/4/path = NodePath("Player:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -91,35 +133,31 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ Vector2( -32, 112 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("Boss:modulate")
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Boss:position:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"points": PoolRealArray( -27, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Boss/ElectricityBurstAnimatedSprite:visible")
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Boss:position:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"points": PoolRealArray( 93, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Player:position")
+tracks/7/path = NodePath("Boss/FaceAnimatedSprite:animation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -128,30 +166,34 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -32, 112 ) ]
+"values": [ "look-forward" ]
 }
-tracks/8/type = "bezier"
-tracks/8/path = NodePath("Boss:position:x")
+tracks/8/type = "value"
+tracks/8/path = NodePath("Props/DemonSealBlue:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"points": PoolRealArray( -27, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
-tracks/9/type = "bezier"
-tracks/9/path = NodePath("Boss:position:y")
+tracks/9/type = "value"
+tracks/9/path = NodePath("Props/DemonSealRed:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"points": PoolRealArray( 93, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Boss/FaceAnimatedSprite:animation")
+tracks/10/path = NodePath("Props/DemonSealGreen:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -159,202 +201,13 @@ tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ "look-forward" ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Props/DemonSealBlue:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Props/DemonSealRed:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Props/DemonSealGreen:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=22]
-resource_name = "enter-boss"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Boss:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Boss:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Player:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.7, 1.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "shock", "walk" ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Boss/FaceAnimatedSprite:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "look-forward" ]
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("Boss:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( -27, -0.25, 0, 0.25, 0, 202, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 4 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath("Boss:position:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"points": PoolRealArray( 93, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Player:flip_h")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.7, 1.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Player:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 1.4, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 144, 112 ), Vector2( 144, 112 ), Vector2( 317, 112 ) ]
-}
-tracks/8/type = "method"
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_goto_next_scene"
-} ]
-}
-
-[sub_resource type="Animation" id=23]
-resource_name = "grab_talisman"
-length = 5.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 72, 112 ), Vector2( 144, 112 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 4.65 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ "walk", "celebrate-no-pray", "talk" ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("Props/DemonSealRed")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.65 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "grab_seal"
-} ]
 }
 
 [sub_resource type="Animation" id=1]
-resource_name = "walk-in"
-length = 5.0
+resource_name = "main"
+length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
@@ -362,7 +215,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.4, 2.8, 3.3, 3.5, 3.9, 4.3, 4.9 ),
+"times": PoolRealArray( 0, 2, 2.4, 2.9, 3.3, 3.8, 4.2, 4.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -35, 112 ), Vector2( 185.727, 112 ), Vector2( 185.727, 112 ), Vector2( 213.727, 112 ), Vector2( 213.727, 112 ), Vector2( 239.727, 112 ), Vector2( 239.727, 112 ), Vector2( 271.727, 112 ) ]
@@ -374,7 +227,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.5, 2.8, 3.3, 3.5, 3.9, 4.3, 4.9 ),
+"times": PoolRealArray( 0, 2.1, 2.4, 3, 3.3, 3.9, 4.2, 4.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ "walk", "place", "walk", "place", "walk", "place", "walk", "idle" ]
@@ -397,7 +250,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 4.9 ),
+"times": PoolRealArray( 0, 4.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -409,7 +262,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 2.6 ),
+"times": PoolRealArray( 2.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -437,87 +290,46 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 4.1 ),
+"times": PoolRealArray( 4.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "place"
 } ]
 }
-
-[sub_resource type="Animation" id=2]
-resource_name = "walk-out"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 144, 112 ), Vector2( 248, 112 ) ]
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Boss:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( -27, -0.25, 0, 0.25, 0, -27, -0.25, 0, 0.25, 0, 123, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.8, 5 )
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "walk", "surprise" ]
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Boss:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 93, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Player:flip_h")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 2.2 ),
+tracks/9/type = "method"
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 4.9 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("MainControl/DialogBox3:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Player/QuestionAnimatedSprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 1.8 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"values": [ {
+"args": [ 0.5 ],
+"method": "_shake_screen"
+} ]
 }
 
 [node name="World3 - BossClearCutScene (Part 2)" type="Node"]
@@ -559,9 +371,10 @@ tile_data = PoolIntArray( 131072, 0, 0, 131081, 0, 0, 196608, 1, 0, 196617, 1, 0
 position = Vector2( -32, 112 )
 z_index = 1
 frames = ExtResource( 3 )
-animation = "walk"
+animation = "idle"
 playing = true
 centered = false
+flip_h = true
 
 [node name="QuestionAnimatedSprite" type="AnimatedSprite" parent="Player"]
 visible = false
@@ -570,8 +383,6 @@ frames = SubResource( 21 )
 playing = true
 
 [node name="Boss" parent="." instance=ExtResource( 5 )]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -27, 93 )
 
 [node name="FaceAnimatedSprite" parent="Boss" index="1"]
@@ -606,6 +417,35 @@ hover = false
 position = Vector2( 228, 85 )
 texture = ExtResource( 8 )
 
+[node name="Effects" type="Node2D" parent="."]
+visible = false
+z_index = 3
+
+[node name="SparkleExplosion" type="AnimatedSprite" parent="Effects"]
+position = Vector2( 208, 64 )
+frames = SubResource( 31 )
+playing = true
+
+[node name="SparkleExplosion2" type="AnimatedSprite" parent="Effects"]
+position = Vector2( 248, 64 )
+frames = SubResource( 31 )
+playing = true
+
+[node name="SparkleExplosion3" type="AnimatedSprite" parent="Effects"]
+position = Vector2( 208, 88 )
+frames = SubResource( 31 )
+playing = true
+
+[node name="SparkleExplosion4" type="AnimatedSprite" parent="Effects"]
+position = Vector2( 240, 96 )
+frames = SubResource( 31 )
+playing = true
+
+[node name="SparkleExplosion5" type="AnimatedSprite" parent="Effects"]
+position = Vector2( 232, 48 )
+frames = SubResource( 31 )
+playing = true
+
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -616,53 +456,6 @@ margin_bottom = -40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="DialogBox1" type="Sprite" parent="MainControl"]
-visible = false
-position = Vector2( 58, 81 )
-texture = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="MainControl/DialogBox1"]
-margin_left = -66.0
-margin_top = -26.0
-margin_right = 64.0
-margin_bottom = 15.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "Yes! There it is.
-
-The final talisman."
-
-[node name="DialogBox2" type="Sprite" parent="MainControl"]
-visible = false
-position = Vector2( 130, 80 )
-texture = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="MainControl/DialogBox2"]
-margin_left = -69.0
-margin_top = -30.0
-margin_right = 90.0
-margin_bottom = 33.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "Lucky I managed to lose 
-Ao Andon, so I have some
-time to get these talismans
-to work."
-
-[node name="DialogBox3" type="Sprite" parent="MainControl"]
-visible = false
-position = Vector2( 232.272, 105.271 )
-texture = ExtResource( 10 )
-
-[node name="Label" type="Label" parent="MainControl/DialogBox3"]
-margin_left = -25.272
-margin_top = -22.271
-margin_right = 468.728
-margin_bottom = 40.729
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "Ao Andon!!!"
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/World3Levels/World3Level_Boss.tscn"
@@ -682,10 +475,7 @@ position = Vector2( 0, 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 18 )
-anims/enter-boss = SubResource( 22 )
-anims/grab_talisman = SubResource( 23 )
-anims/walk-in = SubResource( 1 )
-anims/walk-out = SubResource( 2 )
+anims/main = SubResource( 1 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 
