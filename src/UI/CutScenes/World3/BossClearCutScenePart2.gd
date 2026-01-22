@@ -38,7 +38,7 @@ func _goto_next_scene() -> void:
 
 # Shake the screen when the boss hits the ground
 func _shake_screen(intensity) -> void:
-	screen_shake.screen_shake(8,intensity,100)		
+	screen_shake.screen_shake(15,intensity,100)		
 
 func _on_continue()->void:
 	if cut_scene_base.is_continue_button_showing():

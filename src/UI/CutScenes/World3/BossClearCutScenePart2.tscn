@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World3/BossClearCutScenePart2.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/UI/CutScenes/World3/SparkleExplosionEffect.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/World3/Talisman Altar.png" type="Texture" id=8]
+[ext_resource path="res://src/UI/CutScenes/World3/WhiteMagicExplosion.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/CutScenes/World3/DiamondLikeExplosion.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Props-Tileset.tres" type="TileSet" id=13]
@@ -71,6 +73,158 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 9 )
+region = Rect2( 400, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 9 )
+region = Rect2( 800, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 9 )
+region = Rect2( 1200, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 9 )
+region = Rect2( 1600, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 9 )
+region = Rect2( 2000, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 9 )
+region = Rect2( 2400, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 9 )
+region = Rect2( 2800, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 9 )
+region = Rect2( 3200, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 9 )
+region = Rect2( 3600, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 9 )
+region = Rect2( 4000, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 9 )
+region = Rect2( 4400, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 9 )
+region = Rect2( 4800, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 9 )
+region = Rect2( 5200, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 9 )
+region = Rect2( 5600, 0, 400, 400 )
+
+[sub_resource type="SpriteFrames" id=47]
+animations = [ {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 10 )
+region = Rect2( 64, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 10 )
+region = Rect2( 128, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 10 )
+region = Rect2( 192, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 10 )
+region = Rect2( 256, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 10 )
+region = Rect2( 320, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 10 )
+region = Rect2( 384, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 10 )
+region = Rect2( 448, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 10 )
+region = Rect2( 512, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 10 )
+region = Rect2( 576, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 10 )
+region = Rect2( 640, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 10 )
+region = Rect2( 704, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 10 )
+region = Rect2( 768, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 10 )
+region = Rect2( 832, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 10 )
+region = Rect2( 896, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 10 )
+region = Rect2( 960, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 10 )
+region = Rect2( 1024, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 10 )
+region = Rect2( 1088, 0, 64, 65 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 10 )
+region = Rect2( 1152, 0, 64, 65 )
+
+[sub_resource type="SpriteFrames" id=67]
+animations = [ {
+"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
 } ]
 
 [sub_resource type="Animation" id=18]
@@ -204,10 +358,190 @@ tracks/10/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("Effects/DiamondExplosionBlue:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Effects/DiamondExplosionRed:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Effects/DiamondExplosionGreen:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Effects/DiamondExplosionBlue:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Effects/DiamondExplosionRed:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Effects/DiamondExplosionGreen:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Props/Beams/Line2D11:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Props/Beams/Line2D22:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Props/Beams/Line2D33:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Props/Beams/Line2D44:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Props/Beams/Line2D55:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Props/Beams/Line2D66:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Props/Beams/Line2D77:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Props/Beams/Line2D99:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Props/Beams/Line2D88:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "main"
-length = 7.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
@@ -305,7 +639,7 @@ tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
 "points": PoolRealArray( -27, -0.25, 0, 0.25, 0, -27, -0.25, 0, 0.25, 0, 123, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1.8, 5 )
+"times": PoolRealArray( 0, 2.3, 5.8 )
 }
 tracks/8/type = "bezier"
 tracks/8/path = NodePath("Boss:position:y")
@@ -324,12 +658,204 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 4.9 ),
+"times": PoolRealArray( 5.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 0.5 ],
+"args": [ 0.8 ],
 "method": "_shake_screen"
 } ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Effects/DiamondExplosionBlue:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Effects/DiamondExplosionRed:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 5.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Effects/DiamondExplosionGreen:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 5.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Effects/DiamondExplosionBlue:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Effects/DiamondExplosionRed:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 5.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Effects/DiamondExplosionGreen:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 5.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Boss/FaceAnimatedSprite:animation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 5.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "worry" ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Props/Beams/Line2D11:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 6.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Props/Beams/Line2D22:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Props/Beams/Line2D33:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Props/Beams/Line2D44:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 7.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Props/Beams/Line2D55:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0, 6.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Props/Beams/Line2D66:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 7.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Props/Beams/Line2D77:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 6.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Props/Beams/Line2D88:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Props/Beams/Line2D99:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [node name="World3 - BossClearCutScene (Part 2)" type="Node"]
@@ -371,10 +897,9 @@ tile_data = PoolIntArray( 131072, 0, 0, 131081, 0, 0, 196608, 1, 0, 196617, 1, 0
 position = Vector2( -32, 112 )
 z_index = 1
 frames = ExtResource( 3 )
-animation = "idle"
+animation = "walk"
 playing = true
 centered = false
-flip_h = true
 
 [node name="QuestionAnimatedSprite" type="AnimatedSprite" parent="Player"]
 visible = false
@@ -387,6 +912,7 @@ position = Vector2( -27, 93 )
 
 [node name="FaceAnimatedSprite" parent="Boss" index="1"]
 animation = "look-forward"
+playing = false
 
 [node name="ElectricityBurstAnimatedSprite" parent="Boss" index="2"]
 visible = false
@@ -417,34 +943,133 @@ hover = false
 position = Vector2( 228, 85 )
 texture = ExtResource( 8 )
 
-[node name="Effects" type="Node2D" parent="."]
+[node name="Beams" type="Node2D" parent="Props"]
+
+[node name="Line2D11" type="Line2D" parent="Props/Beams"]
 visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -846.237, -19.5548, -977.692, 41.4943 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D22" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -1115.72, -19.5548 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D33" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -1082.86, -61.5261 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D44" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -1049.99, -95.8662 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D55" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -931.683, -107.313 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D66" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -846.237, -111.129 )
+width = 13.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D77" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -747.647, -76.7884 )
+width = 13.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D88" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -681.919, -34.8171 )
+width = 13.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D99" type="Line2D" parent="Props/Beams"]
+visible = false
+position = Vector2( 1262, 145 )
+scale = Vector2( 1.21715, 2.09667 )
+points = PoolVector2Array( -847.88, -19.0779, -747.647, 18.6009 )
+width = 13.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Effects" type="Node2D" parent="."]
 z_index = 3
 
 [node name="SparkleExplosion" type="AnimatedSprite" parent="Effects"]
+visible = false
 position = Vector2( 208, 64 )
 frames = SubResource( 31 )
 playing = true
 
 [node name="SparkleExplosion2" type="AnimatedSprite" parent="Effects"]
+visible = false
 position = Vector2( 248, 64 )
 frames = SubResource( 31 )
 playing = true
 
 [node name="SparkleExplosion3" type="AnimatedSprite" parent="Effects"]
+visible = false
 position = Vector2( 208, 88 )
 frames = SubResource( 31 )
 playing = true
 
 [node name="SparkleExplosion4" type="AnimatedSprite" parent="Effects"]
+visible = false
 position = Vector2( 240, 96 )
 frames = SubResource( 31 )
 playing = true
 
 [node name="SparkleExplosion5" type="AnimatedSprite" parent="Effects"]
+visible = false
 position = Vector2( 232, 48 )
 frames = SubResource( 31 )
 playing = true
+
+[node name="LargeExplosion" type="AnimatedSprite" parent="Effects"]
+visible = false
+position = Vector2( 224, 64 )
+z_index = 12
+z_as_relative = false
+frames = SubResource( 47 )
+frame = 10
+
+[node name="DiamondExplosionBlue" type="AnimatedSprite" parent="Effects"]
+visible = false
+position = Vector2( 204, 105 )
+frames = SubResource( 67 )
+frame = 12
+
+[node name="DiamondExplosionRed" type="AnimatedSprite" parent="Effects"]
+visible = false
+position = Vector2( 229, 105 )
+frames = SubResource( 67 )
+frame = 12
+
+[node name="DiamondExplosionGreen" type="AnimatedSprite" parent="Effects"]
+visible = false
+position = Vector2( 256, 105 )
+frames = SubResource( 67 )
+frame = 12
 
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
