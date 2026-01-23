@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/characters/enemies/AoAndon/AoAndonSheet.png" type="Texture" id=1]
 [ext_resource path="res://src/characters/enemies/AoAndon/AoAndonFaceSheet.png" type="Texture" id=2]
@@ -56,6 +56,14 @@ region = Rect2( 560, 0, 80, 96 )
 atlas = ExtResource( 2 )
 region = Rect2( 800, 0, 80, 96 )
 
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 2 )
+region = Rect2( 880, 0, 80, 96 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 2 )
+region = Rect2( 960, 0, 80, 96 )
+
 [sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 2 )
 region = Rect2( 1040, 0, 80, 96 )
@@ -70,6 +78,11 @@ animations = [ {
 "frames": [ SubResource( 18 ) ],
 "loop": true,
 "name": "look-forward",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 52 ), SubResource( 53 ) ],
+"loop": false,
+"name": "pain",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 51 ) ],
@@ -139,8 +152,7 @@ playing = true
 
 [node name="FaceAnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
-animation = "worry"
-playing = true
+animation = "pain"
 
 [node name="ElectricityBurstAnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -4, 28 )
