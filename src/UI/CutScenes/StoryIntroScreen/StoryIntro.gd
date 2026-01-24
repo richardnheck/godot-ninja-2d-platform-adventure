@@ -30,7 +30,9 @@ func _ready() -> void:
 	cut_scene_base.connect("on_continue", self, "_on_continue")
 	
 	# make sure the player's camera is not used
-	player.get_node("Camera2D").current = false 
+	var camera_manager = player.get_node("CameraManager")
+	var camera = camera_manager.get_camera()
+	camera.current = false
 	
 	player.connect("screen_exited", self, "_on_player_screen_exited")
 	

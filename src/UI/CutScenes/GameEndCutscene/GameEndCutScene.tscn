@@ -1,0 +1,219 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/background-no-castle-glow.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background13.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background35.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background25.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background21.png" type="Texture" id=8]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background6.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background20.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background33.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background9.png" type="Texture" id=12]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background26.png" type="Texture" id=13]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background32.png" type="Texture" id=14]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background42.png" type="Texture" id=15]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background8.png" type="Texture" id=16]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background10.png" type="Texture" id=17]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background12.png" type="Texture" id=18]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background18.png" type="Texture" id=19]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background28.png" type="Texture" id=20]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background29.png" type="Texture" id=21]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background27.png" type="Texture" id=22]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background7.png" type="Texture" id=23]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background30.png" type="Texture" id=24]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background14.png" type="Texture" id=25]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background19.png" type="Texture" id=26]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background11.png" type="Texture" id=27]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background22.png" type="Texture" id=28]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background31.png" type="Texture" id=29]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background17.png" type="Texture" id=30]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background40.png" type="Texture" id=31]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background16.png" type="Texture" id=32]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background24.png" type="Texture" id=33]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background23.png" type="Texture" id=34]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background34.png" type="Texture" id=35]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background15.png" type="Texture" id=36]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background38.png" type="Texture" id=37]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background41.png" type="Texture" id=38]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background43.png" type="Texture" id=39]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background36.png" type="Texture" id=40]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background37.png" type="Texture" id=41]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background39.png" type="Texture" id=42]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background1.png" type="Texture" id=43]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background2.png" type="Texture" id=44]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background3.png" type="Texture" id=45]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background4.png" type="Texture" id=46]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background5.png" type="Texture" id=47]
+[ext_resource path="res://src/UI/CutScenes/World3/WhiteScreen.png" type="Texture" id=48]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 9 ), ExtResource( 23 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 17 ), ExtResource( 27 ), ExtResource( 18 ), ExtResource( 5 ), ExtResource( 25 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 26 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 28 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 29 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 35 ), ExtResource( 6 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 37 ), ExtResource( 42 ), ExtResource( 31 ), ExtResource( 38 ), ExtResource( 15 ), ExtResource( 39 ) ],
+"loop": false,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BackgroundNoGlow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BrightFlashScenePart:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BrightFlashScenePart:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WhiteBackground:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BrightFlashScenePart:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "first-scene"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BrightFlashScenePart:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WhiteBackground:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8, 8.1, 11.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BrightFlashScenePart:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 8.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BackgroundNoGlow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="GameEndCutScene" type="Node"]
+script = ExtResource( 4 )
+
+[node name="TileMapBg" type="TileMap" parent="."]
+modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 458751, 0, 327683, 524287, 0, 327683, 589823, 0, 327683, 655359, 0, 327683, 720895, 0, 327683, 786431, 0, 327683, 720896, 0, 327683, 720897, 0, 327683, 720898, 0, 327683, 720899, 0, 327683, 720900, 0, 327683, 720901, 0, 327683, 720902, 0, 327683, 720903, 0, 327683, 720904, 0, 327683, 720905, 0, 327683, 720906, 0, 327683, 720907, 0, 327683, 720908, 0, 327683, 720909, 0, 327683, 720910, 0, 327683, 720911, 0, 327683, 720912, 0, 327683 )
+
+[node name="BackgroundNoGlow" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="BrightFlashScenePart" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+centered = false
+
+[node name="WhiteBackground" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 48 )
+centered = false
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+
+[node name="ClickRect" parent="CutSceneBase/Control" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -88.0
+margin_right = 160.0
+margin_bottom = 88.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/first-scene = SubResource( 3 )
+
+[connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
+
+[editable path="CutSceneBase"]

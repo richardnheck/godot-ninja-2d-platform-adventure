@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex"
+path="res://.import/front-tree-leaves-sheet_158x95.png-10b5db8589b899b05262219fd867b856.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/CutScenes/StoryIntroScreen/background.png"
-dest_files=[ "res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex" ]
+source_file="res://src/UI/CutScenes/StoryIntroScreen/front-tree-leaves-sheet_158x95.png"
+dest_files=[ "res://.import/front-tree-leaves-sheet_158x95.png-10b5db8589b899b05262219fd867b856.stex" ]
 
 [params]
 

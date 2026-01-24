@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex"
+path="res://.import/background31.png-f73c176184c7a2dc338dfbf67fe49e77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/CutScenes/StoryIntroScreen/background.png"
-dest_files=[ "res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex" ]
+source_file="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background31.png"
+dest_files=[ "res://.import/background31.png-f73c176184c7a2dc338dfbf67fe49e77.stex" ]
 
 [params]
 

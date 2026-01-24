@@ -1,13 +1,15 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/front-tree-leaves-sheet_158x95.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/treetrunk.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -547,6 +549,74 @@ resource_local_to_scene = true
 17/shapes = [  ]
 17/z_index = 0
 
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 158, 0, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 316, 0, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 474, 0, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 632, 0, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 95, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 4 )
+region = Rect2( 158, 95, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 316, 95, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 474, 95, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 4 )
+region = Rect2( 632, 95, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 190, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
+region = Rect2( 158, 190, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 4 )
+region = Rect2( 316, 190, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 474, 190, 158, 95 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 632, 190, 158, 95 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [sub_resource type="Animation" id=11]
 step = 0.05
 tracks/0/type = "method"
@@ -556,7 +626,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0, 0.55 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -611,7 +681,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -648,25 +718,37 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 16, 144 )
+position = Vector2( 16, 146 )
 
 [node name="TileMapWorld" type="TileMap" parent="."]
+position = Vector2( 0, 2 )
 tile_set = SubResource( 10 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
 tile_data = PoolIntArray( 524289, 536870914, 65540, 524291, 2, 65540, 524304, 536870914, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589831, 0, 196610, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196610, 589837, 16, 3, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 0, 65541, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
 
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Tree" type="Node2D" parent="Props"]
+position = Vector2( 64, 48 )
+
+[node name="Trunk" type="Sprite" parent="Props/Tree"]
+position = Vector2( 96, 42 )
+texture = ExtResource( 10 )
+
+[node name="TreeLeaves" type="AnimatedSprite" parent="Props/Tree"]
+position = Vector2( -3, -2 )
+frames = SubResource( 30 )
+playing = true
+
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="Sprite" parent="Control"]
-texture = ExtResource( 6 )
-centered = false
 
 [node name="DialogBox1" type="Sprite" parent="Control"]
 visible = false
@@ -678,8 +760,8 @@ margin_left = -117.0
 margin_top = -27.0
 margin_right = 117.0
 margin_bottom = 14.0
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "The castle behind me has been taken over by
 demons and many other dangerous spirits.  The
 Lord of this castle has offered a reward to any
@@ -698,8 +780,8 @@ margin_left = -116.0
 margin_top = -29.0
 margin_right = 378.0
 margin_bottom = 34.0
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "The talismans once protecting the castle were
 stolen from their altar and are now scattered 
 throughout the castle.  My mission is to find and 
@@ -710,6 +792,7 @@ __meta__ = {
 }
 
 [node name="DialogBox3" type="Sprite" parent="Control"]
+visible = false
 position = Vector2( 126, 80 )
 texture = ExtResource( 5 )
 
@@ -718,8 +801,8 @@ margin_left = -116.0
 margin_top = -29.0
 margin_right = 378.0
 margin_bottom = 34.0
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "Luckily for me, I know a secret way into the
 castle via the underground caverns. 
 
@@ -737,7 +820,6 @@ anims/walk-in = SubResource( 12 )
 anims/walk-out = SubResource( 13 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
 
 [node name="StopPointArea2D" type="Area2D" parent="."]
 position = Vector2( -45, 0 )

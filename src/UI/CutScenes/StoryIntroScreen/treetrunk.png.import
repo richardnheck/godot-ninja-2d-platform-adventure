@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex"
+path="res://.import/treetrunk.png-ce6954c29ff1009b8f8a1aff5a21a3d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/UI/CutScenes/StoryIntroScreen/background.png"
-dest_files=[ "res://.import/background.png-254cf37652894649a9a5ebf2a6ac5d6b.stex" ]
+source_file="res://src/UI/CutScenes/StoryIntroScreen/treetrunk.png"
+dest_files=[ "res://.import/treetrunk.png-ce6954c29ff1009b8f8a1aff5a21a3d4.stex" ]
 
 [params]
 
