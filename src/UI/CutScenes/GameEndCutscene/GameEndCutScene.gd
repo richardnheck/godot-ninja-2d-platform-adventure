@@ -8,6 +8,10 @@ func _ready():
 	show_continue_button(false)
 	animation_player.play("RESET")
 	animation_player.play("first-scene")
+	yield(animation_player, "animation_finished")
+	animation_player.play("last-scene")
+	yield(animation_player, "animation_finished")
+	_goto_next_scene()
 	
 func _goto_next_scene() -> void:
 	$CutSceneBase.goto_next_scene()

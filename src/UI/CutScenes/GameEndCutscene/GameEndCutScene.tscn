@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -48,6 +48,10 @@
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background4.png" type="Texture" id=46]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background5.png" type="Texture" id=47]
 [ext_resource path="res://src/UI/CutScenes/World3/WhiteScreen.png" type="Texture" id=48]
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/DaimyoSceneBackground.png" type="Texture" id=49]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=50]
+[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=51]
+[ext_resource path="res://src/UI/CutScenes/big-dialogbox.png" type="Texture" id=52]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -55,6 +59,14 @@ animations = [ {
 "loop": false,
 "name": "default",
 "speed": 7.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -120,10 +132,70 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("BlackBackground:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MainControl/DialogBox1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MainControl/DialogBox2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("MainControl/DialogBox3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("MainControl/DialogBox4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "first-scene"
-length = 12.0
+length = 14.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BrightFlashScenePart:playing")
 tracks/0/interp = 1
@@ -172,6 +244,34 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("BlackBackground:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 13.1, 14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "last-scene"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BlackBackground:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
 
 [node name="GameEndCutScene" type="Node"]
 script = ExtResource( 4 )
@@ -198,6 +298,89 @@ self_modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 48 )
 centered = false
 
+[node name="BlackBackground" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0 )
+texture = ExtResource( 48 )
+centered = false
+
+[node name="BackgroundDaimyoScene" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+centered = false
+
+[node name="MainControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = -40.0
+
+[node name="DialogBox1" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 129, 48 )
+texture = ExtResource( 51 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox1"]
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "Welcome back to my  castle.  I trust your 
+visit has been more pleasant than the
+ first time you were here."
+
+[node name="DialogBox2" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 121, 39 )
+texture = ExtResource( 52 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox2"]
+margin_left = -118.0
+margin_top = -30.0
+margin_right = 376.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "I offer my deepest gratitude for what you have
+done.  Your bravery and skills are unmatched, as
+you succeeded where many a great warrior
+before you failed."
+
+[node name="DialogBox3" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 129, 48 )
+texture = ExtResource( 51 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox3"]
+visible = false
+margin_left = -102.0
+margin_top = -30.0
+margin_right = 392.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "As a token my appreciation, you will be
+rewarded handsomely with land, gold, 
+and rice of course."
+
+[node name="DialogBox4" type="Sprite" parent="MainControl"]
+visible = false
+position = Vector2( 129, 48 )
+texture = ExtResource( 51 )
+
+[node name="Label" type="Label" parent="MainControl/DialogBox4"]
+margin_left = -103.0
+margin_top = -30.0
+margin_right = 391.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = " Thank you once again.
+
+ Your actions here, will pass into legend."
+
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 
 [node name="ClickRect" parent="CutSceneBase/Control" index="0"]
@@ -206,13 +389,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -88.0
+margin_top = -89.0
 margin_right = 160.0
-margin_bottom = 88.0
+margin_bottom = 87.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/first-scene = SubResource( 3 )
+anims/last-scene = SubResource( 4 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 
