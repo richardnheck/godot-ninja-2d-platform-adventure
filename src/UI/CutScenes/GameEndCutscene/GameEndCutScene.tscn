@@ -65,7 +65,7 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 49 ) ],
-"loop": true,
+"loop": false,
 "name": "default",
 "speed": 5.0
 } ]
@@ -80,7 +80,6 @@ animations = [ {
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
-length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("BackgroundNoGlow:visible")
 tracks/0/interp = 1
@@ -201,10 +200,46 @@ tracks/9/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("BackgroundDaimyoScene:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Player:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("MainControl/OneWeekLaterLabel:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "first-scene"
-length = 14.0
+length = 13.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BrightFlashScenePart:playing")
 tracks/0/interp = 1
@@ -260,15 +295,27 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 13.1, 14 ),
+"times": PoolRealArray( 12.1, 13 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("WhiteBackground:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "last-scene"
-length = 8.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BlackBackground:self_modulate")
 tracks/0/interp = 1
@@ -276,16 +323,103 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( -0.2, 0, 2.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BlackBackground:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainControl/OneWeekLaterLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainControl/OneWeekLaterLabel:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BackgroundDaimyoScene:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_dialog"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("BrightFlashScenePart:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [node name="GameEndCutScene" type="Node"]
 script = ExtResource( 4 )
 
 [node name="TileMapBg" type="TileMap" parent="."]
+visible = false
 modulate = Color( 0.0823529, 0.137255, 0.294118, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 48, 48 )
@@ -302,6 +436,16 @@ centered = false
 frames = SubResource( 1 )
 centered = false
 
+[node name="BackgroundDaimyoScene" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 5 )
+centered = false
+
+[node name="Player" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 162, 146 )
+frames = SubResource( 6 )
+
 [node name="WhiteBackground" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 48 )
@@ -312,14 +456,6 @@ self_modulate = Color( 0, 0, 0, 0 )
 texture = ExtResource( 48 )
 centered = false
 
-[node name="BackgroundDaimyoScene" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
-centered = false
-
-[node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 162, 146 )
-frames = SubResource( 6 )
-
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -327,6 +463,22 @@ margin_left = 32.0
 margin_top = 8.0
 margin_right = 32.0
 margin_bottom = -40.0
+
+[node name="OneWeekLaterLabel" type="Label" parent="MainControl"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 48.0
+margin_top = 58.0
+margin_right = 205.0
+margin_bottom = 99.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+custom_fonts/font = ExtResource( 50 )
+text = "One week later..."
+align = 1
+valign = 1
 
 [node name="DialogBox1" type="Sprite" parent="MainControl"]
 visible = false
@@ -367,14 +519,13 @@ position = Vector2( 129, 48 )
 texture = ExtResource( 51 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox3"]
-visible = false
 margin_left = -102.0
 margin_top = -30.0
 margin_right = 392.0
 margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 50 )
-text = "As a token my appreciation, you will be
+text = "As a token of my appreciation, you will be
 rewarded handsomely with land, gold, 
 and rice of course."
 
@@ -395,6 +546,7 @@ text = " Thank you once again.
  Your actions here, will pass into legend."
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/UI/GameCreditsScreen/GameCreditsScene.tscn"
 
 [node name="ClickRect" parent="CutSceneBase/Control" index="0"]
 anchor_left = 0.5
@@ -402,9 +554,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -89.0
+margin_top = -90.0
 margin_right = 160.0
-margin_bottom = 87.0
+margin_bottom = 86.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
