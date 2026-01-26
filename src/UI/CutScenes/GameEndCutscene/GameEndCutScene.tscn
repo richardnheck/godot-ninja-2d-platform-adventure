@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelBackgroundTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -52,6 +52,7 @@
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=50]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=51]
 [ext_resource path="res://src/UI/CutScenes/big-dialogbox.png" type="Texture" id=52]
+[ext_resource path="res://src/characters/player/sprites/seated.png" type="Texture" id=53]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -64,6 +65,14 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 53 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -306,6 +315,10 @@ centered = false
 [node name="BackgroundDaimyoScene" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 centered = false
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 162, 146 )
+frames = SubResource( 6 )
 
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
