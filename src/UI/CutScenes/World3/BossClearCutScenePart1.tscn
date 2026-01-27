@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World3/BossClearCutScenePart1.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://src/UI/CutScenes/World3/BossForCutscene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/CutScenes/small-dialogbox.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Props-Tileset.tres" type="TileSet" id=13]
@@ -459,7 +460,7 @@ margin_top = -26.0
 margin_right = 64.0
 margin_bottom = 15.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 8 )
 text = "Yes! There it is.
 
 The final talisman."
@@ -467,18 +468,17 @@ The final talisman."
 [node name="DialogBox2" type="Sprite" parent="MainControl"]
 visible = false
 position = Vector2( 130, 80 )
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox2"]
-margin_left = -69.0
+margin_left = -101.0
 margin_top = -30.0
-margin_right = 90.0
+margin_right = 58.0
 margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "Lucky I managed to lose 
-Ao Andon, so I have some
-time to get these talismans
+custom_fonts/font = ExtResource( 8 )
+text = "Lucky I managed to lose Ao Andon, so I 
+have some time to get these talismans
 to work."
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]

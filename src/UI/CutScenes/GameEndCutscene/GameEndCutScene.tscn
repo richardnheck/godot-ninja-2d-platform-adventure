@@ -49,10 +49,10 @@
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/CastleBackgroundSprites/background5.png" type="Texture" id=47]
 [ext_resource path="res://src/UI/CutScenes/World3/WhiteScreen.png" type="Texture" id=48]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/DaimyoSceneBackground.png" type="Texture" id=49]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=50]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=51]
 [ext_resource path="res://src/UI/CutScenes/big-dialogbox.png" type="Texture" id=52]
 [ext_resource path="res://src/characters/player/sprites/seated.png" type="Texture" id=53]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=54]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -473,9 +473,10 @@ margin_right = 205.0
 margin_bottom = 99.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 54 )
 text = "One week later..."
 align = 1
 valign = 1
@@ -491,10 +492,10 @@ margin_top = -30.0
 margin_right = 392.0
 margin_bottom = 11.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 54 )
 text = "Welcome back to my  castle.  I trust your 
 visit has been more pleasant than the
- first time you were here."
+first time you were here."
 
 [node name="DialogBox2" type="Sprite" parent="MainControl"]
 visible = false
@@ -507,7 +508,7 @@ margin_top = -30.0
 margin_right = 376.0
 margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 54 )
 text = "I offer my deepest gratitude for what you have
 done.  Your bravery and skills are unmatched, as
 you succeeded where many a great warrior
@@ -524,7 +525,7 @@ margin_top = -30.0
 margin_right = 392.0
 margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 54 )
 text = "As a token of my appreciation, you will be
 rewarded handsomely with land, gold, 
 and rice of course."
@@ -540,7 +541,7 @@ margin_top = -30.0
 margin_right = 391.0
 margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 54 )
 text = " Thank you once again.
 
  Your actions here, will pass into legend."

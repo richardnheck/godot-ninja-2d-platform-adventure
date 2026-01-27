@@ -1,6 +1,5 @@
 [gd_scene load_steps=41 format=2]
 
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/front-tree-leaves-sheet_158x95.png" type="Texture" id=4]
@@ -10,6 +9,7 @@
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=9]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/treetrunk.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -761,7 +761,7 @@ margin_top = -27.0
 margin_right = 117.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 11 )
 text = "The castle behind me has been taken over by
 demons and many other dangerous spirits.  The
 Lord of this castle has offered a reward to any
@@ -771,17 +771,16 @@ __meta__ = {
 }
 
 [node name="DialogBox2" type="Sprite" parent="Control"]
-visible = false
 position = Vector2( 126, 80 )
 texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Control/DialogBox2"]
-margin_left = -116.0
+margin_left = -117.0
 margin_top = -29.0
-margin_right = 378.0
+margin_right = 377.0
 margin_bottom = 34.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 11 )
 text = "The talismans once protecting the castle were
 stolen from their altar and are now scattered 
 throughout the castle.  My mission is to find and 
@@ -792,7 +791,6 @@ __meta__ = {
 }
 
 [node name="DialogBox3" type="Sprite" parent="Control"]
-visible = false
 position = Vector2( 126, 80 )
 texture = ExtResource( 5 )
 
@@ -802,7 +800,7 @@ margin_top = -29.0
 margin_right = 378.0
 margin_bottom = 34.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 11 )
 text = "Luckily for me, I know a secret way into the
 castle via the underground caverns. 
 

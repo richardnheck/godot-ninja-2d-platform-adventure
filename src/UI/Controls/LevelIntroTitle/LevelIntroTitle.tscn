@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Controls/LevelIntroTitle/LevelIntroTitle.gd" type="Script" id=2]
 [ext_resource path="res://src/UI/Controls/LevelIntroTitle/embellishment.png" type="Texture" id=3]
 
@@ -29,15 +29,15 @@ __meta__ = {
 }
 
 [node name="LeftEmbellishment" type="TextureRect" parent="ColorRect/HBoxContainer"]
-margin_left = 24.0
-margin_right = 44.0
+margin_left = 65.0
+margin_right = 85.0
 margin_bottom = 20.0
 texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="ColorRect/HBoxContainer"]
-margin_left = 48.0
-margin_top = 6.0
-margin_right = 272.0
+margin_left = 89.0
+margin_top = 5.0
+margin_right = 231.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
 text = "Level Intro PlaceHolder Text"
@@ -47,8 +47,8 @@ __meta__ = {
 }
 
 [node name="RightEmbellishment" type="TextureRect" parent="ColorRect/HBoxContainer"]
-margin_left = 276.0
-margin_right = 296.0
+margin_left = 235.0
+margin_right = 255.0
 margin_bottom = 20.0
 texture = ExtResource( 3 )
 flip_h = true

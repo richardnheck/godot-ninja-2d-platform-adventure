@@ -1,7 +1,7 @@
 [gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=5]
@@ -683,10 +683,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -230.5
-margin_top = -58.5
+margin_left = -236.5
+margin_top = -61.5
 margin_right = -9.5
-margin_bottom = -6.5
+margin_bottom = -4.5
 custom_fonts/font = ExtResource( 2 )
 text = "Congratulations on making it this far!!!
 
@@ -694,9 +694,6 @@ Unfortunately that is the end of the demo, but
 please stayed posted for more.
 "
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

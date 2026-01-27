@@ -1,13 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=1]
 
 [node name="LoadingIndicator" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0

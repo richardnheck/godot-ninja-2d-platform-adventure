@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/dixfont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
@@ -41,23 +40,6 @@ grow_horizontal = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TitleLabel" type="Label" parent="Control"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -104.0
-margin_top = -11.0
-margin_right = 104.0
-margin_bottom = 11.0
-custom_fonts/font = ExtResource( 3 )
-text = "DAIMYO CASTLE"
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

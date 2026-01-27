@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/CutScenes/stage-clear-text.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/characters/enemies/CaveLevelBoss/cave_level_boss_spritesheet.tres" type="SpriteFrames" id=11]
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossRigidBody.gd" type="Script" id=12]
@@ -793,48 +791,6 @@ margin_left = 32.0
 margin_top = 8.0
 margin_right = 32.0
 margin_bottom = -40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DialogBox1" type="Sprite" parent="MainControl"]
-visible = false
-position = Vector2( 130, 80 )
-texture = ExtResource( 8 )
-
-[node name="Label" type="Label" parent="MainControl/DialogBox1"]
-margin_left = -102.0
-margin_top = -30.0
-margin_right = 392.0
-margin_bottom = 11.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "I get the feeling that I have finally passed 
-the underground caverns and should be
-soon within the grounds of the castle."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DialogBox2" type="Sprite" parent="MainControl"]
-visible = false
-position = Vector2( 130, 80 )
-texture = ExtResource( 8 )
-
-[node name="Label" type="Label" parent="MainControl/DialogBox2"]
-margin_left = -102.0
-margin_top = -30.0
-margin_right = 392.0
-margin_bottom = 33.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "That was almost too easy.  I was expecting
-a bit more danger based on the rumours
-about this place.
-Oh well...onwards to the castle.  "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StageClearText" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )

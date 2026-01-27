@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World2/BossintroCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://src/characters/enemies/CaveLevelBoss/CaveLevelBossForCutScenes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/UI/CutScenes/mini-dialogbox.png" type="Texture" id=10]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoFlames.tres" type="SpriteFrames" id=12]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/stone-bricks-tileset/tileset_stone-bricks-tileset.tres" type="TileSet" id=14]
 [ext_resource path="res://src/characters/enemies/Wanyudo/WanyudoSheet.png" type="Texture" id=15]
 [ext_resource path="res://src/characters/enemies/Wanyudo/BossAppearFlash.png" type="Texture" id=16]
+[ext_resource path="res://src/UI/CutScenes/medium-large-dialogbox.png" type="Texture" id=17]
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 15 )
@@ -396,17 +397,16 @@ margin_right = 392.0
 margin_bottom = 11.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 9 )
-text = "I can now see the castle tower in the near
-distance.  Should be just a hop, skip and
-a jump away."
+text = "I can now see the castle tower in the 
+near distance.  Should be just a hop, 
+skip, and a jump away."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DialogBox2" type="Sprite" parent="MainControl"]
-visible = false
 position = Vector2( 130, 80 )
-texture = ExtResource( 8 )
+texture = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox2"]
 margin_left = -102.0
