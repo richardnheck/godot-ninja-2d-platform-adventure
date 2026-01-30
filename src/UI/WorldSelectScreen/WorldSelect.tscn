@@ -1,14 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/themes/test_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-hover2.png" type="Texture" id=2]
-[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-pressed3.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons1.png" type="Texture" id=2]
+[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons3.png" type="Texture" id=3]
 [ext_resource path="res://src/UI/WorldSelectScreen/WorldSelect.gd" type="Script" id=4]
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=5]
-[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-normal1.png" type="Texture" id=6]
-[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons-locked4.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons2.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/WorldSelectScreen/world3-buttons3.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/UI/WorldSelectScreen/world1-buttons4.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/WorldSelectScreen/world2-buttons3.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/WorldSelectScreen/world2-buttons4.png" type="Texture" id=12]
+[ext_resource path="res://src/UI/WorldSelectScreen/world2-buttons2.png" type="Texture" id=13]
+[ext_resource path="res://src/UI/WorldSelectScreen/world2-buttons1.png" type="Texture" id=14]
+[ext_resource path="res://src/UI/WorldSelectScreen/world3-buttons1.png" type="Texture" id=15]
+[ext_resource path="res://src/UI/WorldSelectScreen/world3-buttons4.png" type="Texture" id=16]
+[ext_resource path="res://src/UI/WorldSelectScreen/world3-buttons2.png" type="Texture" id=17]
 
 [node name="WorldSelect" type="Control"]
 anchor_right = 1.0
@@ -38,32 +46,40 @@ margin_bottom = 64.5
 alignment = 1
 
 [node name="World1Button" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 39.0
 margin_right = 117.0
 margin_bottom = 129.0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 2 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="World2Button" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 121.0
 margin_right = 199.0
 margin_bottom = 129.0
-texture_normal = ExtResource( 7 )
-texture_disabled = ExtResource( 7 )
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 11 )
+texture_disabled = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="World3Button" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 203.0
 margin_right = 281.0
 margin_bottom = 129.0
-texture_normal = ExtResource( 7 )
-texture_disabled = ExtResource( 7 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 16 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 9 )]
 

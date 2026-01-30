@@ -1,3 +1,4 @@
+class_name LevelSelect
 extends CanvasLayer
 
 
@@ -20,10 +21,10 @@ func _ready() -> void:
 	
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 	
-	# Get the current progress of the game
-	var current_world = GameState.progress["current_world"]
+	# Get the current player progress of the game
 	var current_level = GameState.progress["current_level"]
-
+	var current_world = LevelData.get_world(current_level)
+	
 	# Create all the level buttons
 	var levels = LevelData.get_levels()
 	var levelsCount = levels.size()
@@ -36,17 +37,18 @@ func _ready() -> void:
 		
 		if levels[levelIndex].world == self.this_world and not isBossLevel:
 			
-			var button = Button.new()
+			var button:Button = Button.new()
 			
 			button.disabled = true
 			
 			if current_world >= this_world and levelIndex <= current_level:
 				button.disabled = false
 			button.text = str(levelNumber + 1)
+		
 			button.connect("pressed", self, "_level_button_pressed", [levelIndex])
 			#button.set_size(Vector2(40,18));  #doesn't work
 			buttonContainer.add_child(button)
-			
+			button.set_custom_minimum_size(Vector2(22,22))	
 			levelNumber = levelNumber + 1
 		
 	# Determine if the boss button is enabled
