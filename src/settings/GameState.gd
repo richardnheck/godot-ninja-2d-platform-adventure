@@ -8,9 +8,10 @@ const KEY_WATCH_INTRO = "has_watched_story_intro"
 
 
 # Store the player progress
+# Set the default values to start with
 var progress = {
 	# The current world number
-	KEY_CURRENT_WORLD : LevelData.WORLD1,
+	#KEY_CURRENT_WORLD : LevelData.WORLD1,
 	
 	# Index in levelsArray of current level reached
 	KEY_CURRENT_LEVEL : 0,
@@ -41,10 +42,13 @@ func load_save() -> void:
 	
 		# Apply the saved progress to the local progress
 		progress = data["progress"]
+		print("progress state", progress)
 		
 		# Handle new state additions that weren't part of first save
 		progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
-		print("progress state", progress)
+		
+		# Apply progress to games operational level data
+		LevelData.current_level_index = progress[KEY_CURRENT_LEVEL]
 	else:
 		print("failed", status)
 
@@ -63,14 +67,10 @@ func save() -> void:
 	file.store_string(data_as_string)
 	file.close()
 	print("done")
- 
-func set_current_world(world) -> void:
-	progress[KEY_CURRENT_WORLD] = world
 	
 # Set the current level based on its index in the levels array
 func set_current_level(level_index) -> void:
 	progress[KEY_CURRENT_LEVEL] = level_index
-
 
 # Progress the players current level
 # Only if the level index is greater than current level will it be set
@@ -101,8 +101,7 @@ func cheat(value):
 		
 		print("Previous progress", prev_progress)
 		
-		# Set the world and level to the maximum
-		set_current_world(LevelData.WORLD3)
+		# Set level to the maximum
 		set_current_level(LevelData.get_levels().size())  
 		
 		print("Current progress", progress)

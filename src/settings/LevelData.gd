@@ -1,9 +1,9 @@
 extends Node
 signal key_status_changed
 
-const WORLD1 = 1	# World1 - Cave Levels
+const WORLD1 = 1	# World1 - Beneath the castle (cave levels)
 const WORLD2 = 2	# World2 - Within the Wals
-const WORLD3 = 3    # World3 - The Tower
+const WORLD3 = 3    # World3 - Inside the Tower
 
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
@@ -12,6 +12,9 @@ const WORLD3_LEVELS_PATH = "res://src/levels/World3Levels/World3Level_"
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
 const LEVEL_SELECT_SCREENS_PATH = "res://src/UI/LevelSelectScreens/"
+
+# Game save state saved in
+# C:\Users\richa\AppData\Roaming\Godot\app_userdata\Castle Yokai
 
 var worldsArray = [
 	{ "world": WORLD1, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "CaveLevelSelect.tscn"},
@@ -101,8 +104,6 @@ func goto_next_level() -> void:
 	print("goto_next_level")
 	if current_level_index < levelsArray.size() - 1:	
 		current_level_index += 1
-	else:
-		current_level_index = 0
 	
 	print("current_level_index = " + String(current_level_index))
 	
@@ -157,3 +158,8 @@ func get_current_world_level_select_scene() -> String:
 		if worldsArray[i]["world"] == current_world:
 			return worldsArray[i]["level_select_scene"]
 	return ""
+
+# Get the world based on the specified level index
+func get_world(level_index) -> int:
+	var level = get_levels()[level_index]
+	return level["world"]
