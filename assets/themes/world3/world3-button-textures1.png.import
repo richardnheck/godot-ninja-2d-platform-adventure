@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cave-level-button-textures-disabled4.png-864890a196536098e2dd7a740a790d1f.stex"
+path="res://.import/world3-button-textures1.png-33702776d8e21c20e2e0e0f366f31383.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/themes/cave-level/cave-level-button-textures-disabled4.png"
-dest_files=[ "res://.import/cave-level-button-textures-disabled4.png-864890a196536098e2dd7a740a790d1f.stex" ]
+source_file="res://assets/themes/world3/world3-button-textures1.png"
+dest_files=[ "res://.import/world3-button-textures1.png-33702776d8e21c20e2e0e0f366f31383.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

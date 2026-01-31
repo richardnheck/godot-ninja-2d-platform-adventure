@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cave-level-button-textures-normal1.png-42199ebf52df212f85836dcee6c8559e.stex"
+path="res://.import/cave-level-button-textures3.png-a130ba1bef21f693b1ca49da2f4d36e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/themes/cave-level/cave-level-button-textures-normal1.png"
-dest_files=[ "res://.import/cave-level-button-textures-normal1.png-42199ebf52df212f85836dcee6c8559e.stex" ]
+source_file="res://assets/themes/cave-level/cave-level-button-textures3.png"
+dest_files=[ "res://.import/cave-level-button-textures3.png-a130ba1bef21f693b1ca49da2f4d36e7.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

@@ -1,13 +1,13 @@
 [gd_resource type="Theme" load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/kongtext.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/themes/cave-level/cave-level-button-textures2.png" type="Texture" id=2]
-[ext_resource path="res://assets/themes/cave-level/cave-level-button-textures3.png" type="Texture" id=3]
-[ext_resource path="res://assets/themes/cave-level/cave-level-button-textures4.png" type="Texture" id=4]
-[ext_resource path="res://assets/themes/cave-level/cave-level-button-textures1.png" type="Texture" id=5]
+[ext_resource path="res://assets/themes/world2/world2-button-textures1.png" type="Texture" id=2]
+[ext_resource path="res://assets/themes/world2/world2-button-textures2.png" type="Texture" id=3]
+[ext_resource path="res://assets/themes/world2/world2-button-textures3.png" type="Texture" id=4]
+[ext_resource path="res://assets/themes/world2/world2-button-textures4.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 5.0
 margin_right = 5.0
@@ -17,7 +17,7 @@ margin_bottom = 5.0
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 5.0
 margin_right = 5.0
@@ -25,7 +25,7 @@ margin_top = 5.0
 margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 5.0
 margin_right = 5.0
@@ -35,7 +35,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 5.0
 margin_right = 5.0
