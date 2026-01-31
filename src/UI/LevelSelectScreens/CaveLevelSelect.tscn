@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/LevelSelectScreens/LevelSelect.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/LevelSelectScreens/cutscene-icon.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/LevelSelectScreens/boss-icon-white.png" type="Texture" id=11]
 
 [node name="CaveLevelSelect" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -35,16 +36,13 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 1, 2, 0, 2, 3, 20, 0, 4, 0, 2, 5, 26, 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="bg" type="Sprite" parent="Control"]
 visible = false
 texture = ExtResource( 4 )
 centered = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="TopHBoxContainer" type="HBoxContainer" parent="Control"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -52,12 +50,27 @@ margin_top = -65.5
 margin_bottom = -44.5
 alignment = 1
 
-[node name="IntroButton" type="Button" parent="Control/HBoxContainer"]
+[node name="IntroButton" type="Button" parent="Control/TopHBoxContainer"]
 margin_left = 149.0
 margin_right = 170.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 10 )
+
+[node name="BottomHBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 19.0
+margin_bottom = 45.0
+alignment = 1
+
+[node name="BossButton" type="Button" parent="Control/BottomHBoxContainer"]
+unique_name_in_owner = true
+margin_left = 147.0
+margin_right = 173.0
+margin_bottom = 26.0
+icon = ExtResource( 11 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 visible = false
@@ -91,28 +104,6 @@ margin_bottom = -87.0
 custom_constants/hseparation = 10
 columns = 6
 
-[node name="LevelButtonsContainer2" type="GridContainer" parent="Control"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -91.0
-margin_top = -112.0
-margin_right = 89.0
-margin_bottom = -87.0
-custom_constants/hseparation = 10
-columns = 6
-
-[node name="BossButton" type="Button" parent="Control"]
-margin_left = 139.0
-margin_top = 119.0
-margin_right = 181.0
-margin_bottom = 137.0
-text = "Boss"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="LoadingIndicator" parent="Control" instance=ExtResource( 9 )]
 visible = false
 
@@ -127,5 +118,5 @@ position = Vector2( 256, 120 )
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
 position = Vector2( 18, 1 )
 
-[connection signal="button_up" from="Control/HBoxContainer/IntroButton" to="." method="_on_IntroButton_button_up"]
-[connection signal="button_up" from="Control/BossButton" to="." method="_on_BossButton_button_up"]
+[connection signal="button_up" from="Control/TopHBoxContainer/IntroButton" to="." method="_on_IntroButton_button_up"]
+[connection signal="button_up" from="Control/BottomHBoxContainer/BossButton" to="." method="_on_BossButton_button_up"]

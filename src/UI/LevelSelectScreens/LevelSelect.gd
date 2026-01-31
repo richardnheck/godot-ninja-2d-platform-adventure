@@ -3,7 +3,7 @@ extends CanvasLayer
 
 
 onready var buttonContainer = $Control/LevelButtonsContainer
-onready var boss_button = $Control/BossButton
+onready var boss_button = $"%BossButton"
 onready var loading_indicator = $Control/LoadingIndicator
 onready var fadeScreen = $FadeScreen
 
@@ -46,7 +46,6 @@ func _ready() -> void:
 			button.text = str(levelNumber + 1)
 		
 			button.connect("pressed", self, "_level_button_pressed", [levelIndex])
-			#button.set_size(Vector2(40,18));  #doesn't work
 			buttonContainer.add_child(button)
 			button.set_custom_minimum_size(Vector2(22,22))	
 			levelNumber = levelNumber + 1
