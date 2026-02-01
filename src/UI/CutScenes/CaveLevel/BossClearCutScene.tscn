@@ -798,7 +798,7 @@ position = Vector2( 160, 89.2877 )
 texture = ExtResource( 6 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/UI/TemporaryEndScene.tscn"
+skip_to_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 
 [node name="ClickRect" parent="CutSceneBase/Control" index="0"]
 anchor_left = 0.5

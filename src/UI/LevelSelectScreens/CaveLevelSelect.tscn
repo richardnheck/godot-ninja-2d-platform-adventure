@@ -73,6 +73,15 @@ margin_right = 173.0
 margin_bottom = 26.0
 icon = ExtResource( 11 )
 
+[node name="BossClearCutsceneButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+margin_left = 188.0
+margin_top = 112.0
+margin_right = 209.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 10 )
+
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 visible = false
 anchor_left = 0.5
@@ -121,3 +130,4 @@ position = Vector2( 18, 1 )
 
 [connection signal="button_up" from="Control/TopHBoxContainer/IntroButton" to="." method="_on_IntroButton_button_up"]
 [connection signal="button_up" from="Control/BottomHBoxContainer/BossButton" to="." method="_on_BossButton_button_up"]
+[connection signal="button_up" from="Control/BossClearCutsceneButton" to="." method="_on_BossClearCutsceneButton_button_up"]

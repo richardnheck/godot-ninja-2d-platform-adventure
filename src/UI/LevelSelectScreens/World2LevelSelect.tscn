@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/themes/world2/world2_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/LevelSelectScreens/LevelSelect.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/roof-wall-tileset.tres" type="TileSet" id=7]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/UI/LevelSelectScreens/cutscene-icon.png" type="Texture" id=10]
 
 [node name="World2LevelSelect" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -85,9 +86,19 @@ margin_right = 173.0
 margin_bottom = 26.0
 icon = ExtResource( 6 )
 
+[node name="BossClearCutsceneButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+margin_left = 188.0
+margin_top = 110.0
+margin_right = 209.0
+margin_bottom = 131.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 10 )
+
 [node name="Props" type="Node" parent="."]
 
 [node name="FadeScreen" parent="." instance=ExtResource( 8 )]
 
 [connection signal="button_up" from="Control/IntroButton" to="." method="_on_IntroButton_button_up"]
 [connection signal="button_up" from="Control/HBoxContainer/BossButton" to="." method="_on_BossButton_button_up"]
+[connection signal="button_up" from="Control/BossClearCutsceneButton" to="." method="_on_BossClearCutsceneButton_button_up"]

@@ -6,6 +6,7 @@ onready var buttonContainer = $Control/LevelButtonsContainer
 onready var boss_button = $"%BossButton"
 onready var loading_indicator = $Control/LoadingIndicator
 onready var fadeScreen = $FadeScreen
+onready var boss_clear_cutscene_button = $"%BossClearCutsceneButton"
 
 export(String, FILE) var intro_scene_path:String = ""
 
@@ -24,7 +25,7 @@ func _ready() -> void:
 	# Get the current player progress of the game
 	var current_level = GameState.progress["current_level"]
 	var current_world = LevelData.get_world(current_level)
-	
+	print(">>>current_world", current_world)
 	# Create all the level buttons
 	var levels = LevelData.get_levels()
 	var levelsCount = levels.size()
@@ -51,13 +52,11 @@ func _ready() -> void:
 			levelNumber = levelNumber + 1
 		
 	# Determine if the boss button is enabled
-	if current_world > this_world:
-		# current world is greater than this one so boss is beaten
-		boss_button.disabled = false
-	else:
-		boss_button.disabled = current_level < levelsCount - 1
+	var boss_level_index = LevelData.get_boss_level_index(this_world)
+	boss_button.disabled = current_level < boss_level_index
 		
-	
+	# Determine if the boss clear cutscene button is visible
+	boss_clear_cutscene_button.visible = current_level > boss_level_index
 	
 func _level_button_pressed(levelIndex):
 	Game_AudioManager.sfx_ui_general_select.play()
@@ -86,3 +85,8 @@ func _on_BossButton_button_up() -> void:
 func _on_IntroButton_button_up() -> void:
 	Game_AudioManager.sfx_ui_general_select.play()
 	get_tree().change_scene(intro_scene_path)
+
+
+func _on_BossClearCutsceneButton_button_up():
+	var scene_path = LevelData.goto_boss_clear_cutscene(self.this_world, false)
+	fadeScreen.go_to_scene(scene_path)

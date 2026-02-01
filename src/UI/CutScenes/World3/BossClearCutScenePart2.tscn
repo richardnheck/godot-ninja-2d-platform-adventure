@@ -764,6 +764,7 @@ __meta__ = {
 }
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
+skip_to_scene_path = "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn"
 
 [node name="ClickRect" parent="CutSceneBase/Control" index="0"]
 anchor_left = 0.5

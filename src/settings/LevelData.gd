@@ -4,6 +4,7 @@ signal key_status_changed
 const WORLD1 = 1	# World1 - Beneath the castle (cave levels)
 const WORLD2 = 2	# World2 - Within the Wals
 const WORLD3 = 3    # World3 - Inside the Tower
+const GAME_END = 4
 
 const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
@@ -20,6 +21,7 @@ var worldsArray = [
 	{ "world": WORLD1, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "CaveLevelSelect.tscn"},
 	{ "world": WORLD2, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "World2LevelSelect.tscn"},
 	{ "world": WORLD3, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "World3LevelSelect.tscn"},
+	{ "world": GAME_END, "level_select_scene": "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn"},
 ]
 
 var levelsArray = [
@@ -37,7 +39,7 @@ var levelsArray = [
 	# TODO: Not sure 100% which is the final level
 	#{"world": WORLD1, "name" : "ThundercrushC", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Claustrophobic Caverns", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true},
+	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
 	
 	# World 2
 	{"world": WORLD2, "name" : "Level1", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -46,7 +48,7 @@ var levelsArray = [
 	{"world": WORLD2, "name" : "Level4", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Level5", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Level6", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true},
+	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn"},
 
 	# World 3
 	{"world": WORLD3, "name" : "Level1", "scene_path" : WORLD3_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -55,7 +57,10 @@ var levelsArray = [
 	{"world": WORLD3, "name" : "Level4", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level5", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Level6", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true},
+	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn"},
+	
+	# GAME END
+	{"world": GAME_END, "name" : "The end", "scene_path" : "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn", "bgm" : CAVE_LEVEL_BGM},
 ];
 
 
@@ -73,15 +78,31 @@ var has_key: = false setget set_has_key
 func get_levels() -> Array:
 	return levelsArray
 	
-	
-# Goto the boss level
-func goto_boss_level(world, changeScene = true) -> String:
+# Get the index of the boss level within the level data	
+func get_boss_level_index(world):
 	for i in range(0, levelsArray.size()):
 		var level = levelsArray[i]
 		if level.has("is_boss") and level.is_boss and level.world == world:
-			return goto_level(i, changeScene)
+			return i
+	return -1
+	
+# Goto the boss level
+func goto_boss_level(world, changeScene = true) -> String:
+	var boss_level_index = get_boss_level_index(world)
+	if boss_level_index > -1:
+		return goto_level(boss_level_index, changeScene)
 	return ""
 
+# Goto the cutscene after beating the boss
+func goto_boss_clear_cutscene(world, changeScene = true) -> String:
+	var boss_level_index = get_boss_level_index(world)
+	if boss_level_index > -1:
+		var boss_level = levelsArray[boss_level_index]
+		if changeScene:
+			#warning-ignore:return_value_discarded
+			get_tree().change_scene(boss_level.boss_clear_scene_path)
+		return boss_level.boss_clear_scene_path
+	return ""
 	
 # Goto the level specified by its index 
 func goto_level(levelIndex, changeScene = true) -> String:
