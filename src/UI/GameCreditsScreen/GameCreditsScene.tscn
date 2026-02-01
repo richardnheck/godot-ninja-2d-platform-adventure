@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/UI/GameCreditsScreen/GameCreditsScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/background-no-castle-glow.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/Controls/BackButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
@@ -19,20 +20,16 @@ centered = false
 [node name="MainControl" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 8.0
-margin_right = 32.0
-margin_bottom = -40.0
 
 [node name="TitleScreenText" type="Sprite" parent="MainControl"]
-position = Vector2( 51, 48 )
+position = Vector2( 91, 57 )
 texture = ExtResource( 5 )
 
 [node name="CreditsLabel" type="Label" parent="MainControl"]
-margin_left = -12.0
-margin_top = 70.0
-margin_right = 118.0
-margin_bottom = 127.0
+margin_left = 28.0
+margin_top = 79.0
+margin_right = 158.0
+margin_bottom = 136.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -43,10 +40,10 @@ text = "A game by Richard Heck
 align = 1
 
 [node name="ArtMusicProgrammingTitle" type="Label" parent="MainControl"]
-margin_left = -12.0
-margin_top = 100.0
-margin_right = 118.0
-margin_bottom = 110.0
+margin_left = 28.0
+margin_top = 109.0
+margin_right = 158.0
+margin_bottom = 119.0
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -56,10 +53,10 @@ text = "ART, MUSIC, PROGRAMMING"
 align = 1
 
 [node name="ArtMusicProgrammingPerson" type="Label" parent="MainControl"]
-margin_left = -12.0
-margin_top = 111.0
-margin_right = 118.0
-margin_bottom = 126.0
+margin_left = 28.0
+margin_top = 120.0
+margin_right = 158.0
+margin_bottom = 135.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -69,10 +66,10 @@ text = "Richard Heck"
 align = 1
 
 [node name="VFXTitle" type="Label" parent="MainControl"]
-margin_left = -12.0
-margin_top = 127.0
-margin_right = 118.0
-margin_bottom = 137.0
+margin_left = 28.0
+margin_top = 136.0
+margin_right = 158.0
+margin_bottom = 146.0
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -82,10 +79,10 @@ text = "VFX"
 align = 1
 
 [node name="VFXPerson" type="Label" parent="MainControl"]
-margin_left = -12.0
-margin_top = 137.0
-margin_right = 118.0
-margin_bottom = 148.0
+margin_left = 28.0
+margin_top = 146.0
+margin_right = 158.0
+margin_bottom = 157.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -112,6 +109,15 @@ visible = false
 
 [node name="ContinueButton" parent="CutSceneBase/Control" index="2"]
 visible = false
+
+[node name="BackButton" parent="CutSceneBase/Control" index="3" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -20.0
+margin_right = 21.0
+next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

@@ -32,9 +32,9 @@ func goto_next_scene(show_loading_message = false) -> void:
 		Game_AudioManager.stop_bgm()
 		if get_tree():
 			yield(get_tree().create_timer(1), "timeout")
-			fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message)
+			fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, self.get_path())
 	else:		
-		fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message)
+		fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, self.get_path())
 	
 # Show/Hide the continue button/message
 func show_continue(visible)->void:

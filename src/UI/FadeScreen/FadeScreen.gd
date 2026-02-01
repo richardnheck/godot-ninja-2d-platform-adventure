@@ -24,7 +24,10 @@ func _ready() -> void:
 	rect.visible = true
 	
 
-func go_to_scene(var target : String, show_loading_message = false):
+func go_to_scene(var target : String, show_loading_message = false, var source: String = ""):
+	Global.set_previous_scene(source)
+	print("Setting previous scene: ", Global.get_previous_scene())
+	
 	if show_loading_message:
 		loading_indicator.visible = true
 		

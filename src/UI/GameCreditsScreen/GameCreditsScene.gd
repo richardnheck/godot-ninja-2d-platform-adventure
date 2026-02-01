@@ -6,8 +6,17 @@ extends Node
 
 onready var animation_player = $AnimationPlayer
 onready var cut_scene_base = $CutSceneBase
+onready var back_button = $"%BackButton"
 
 func _ready():
+	var previous_scene = Global.get_previous_scene()
+	if "GameEndCutScene" in previous_scene or previous_scene == "":
+		# This is show after the final game end so back button navigates home
+		# As fallback if previous scene not set for some reason then go home as well
+		back_button.next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
+	else:
+		back_button.next_scene_path = Global.get_previous_scene()
+		
 	show_continue_button(false)
 	animation_player.play("RESET")
 
