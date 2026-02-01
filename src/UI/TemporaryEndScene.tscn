@@ -7,7 +7,7 @@
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/Controls/BigBackButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/TemporaryEndScene.gd" type="Script" id=7]
-[ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/dialogbox.png" type="Texture" id=8]
+[ext_resource path="res://src/UI/CutScenes/big-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=10]
 
