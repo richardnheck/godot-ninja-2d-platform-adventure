@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/UI/GameCreditsScreen/GameCreditsScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/background-no-castle-glow.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=50]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
@@ -23,19 +24,75 @@ margin_top = 8.0
 margin_right = 32.0
 margin_bottom = -40.0
 
+[node name="TitleScreenText" type="Sprite" parent="MainControl"]
+position = Vector2( 51, 48 )
+texture = ExtResource( 5 )
+
 [node name="CreditsLabel" type="Label" parent="MainControl"]
-margin_left = 96.0
-margin_top = 56.0
-margin_right = 253.0
-margin_bottom = 97.0
+margin_left = -12.0
+margin_top = 70.0
+margin_right = 118.0
+margin_bottom = 127.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 0
-custom_fonts/font = ExtResource( 50 )
-text = "CREDITS"
-valign = 1
-uppercase = true
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "A game by Richard Heck 
+(aka The Parabol Ink)"
+align = 1
+
+[node name="ArtMusicProgrammingTitle" type="Label" parent="MainControl"]
+margin_left = -12.0
+margin_top = 100.0
+margin_right = 118.0
+margin_bottom = 110.0
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "ART, MUSIC, PROGRAMMING"
+align = 1
+
+[node name="ArtMusicProgrammingPerson" type="Label" parent="MainControl"]
+margin_left = -12.0
+margin_top = 111.0
+margin_right = 118.0
+margin_bottom = 126.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "Richard Heck"
+align = 1
+
+[node name="VFXTitle" type="Label" parent="MainControl"]
+margin_left = -12.0
+margin_top = 127.0
+margin_right = 118.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "VFX"
+align = 1
+
+[node name="VFXPerson" type="Label" parent="MainControl"]
+margin_left = -12.0
+margin_top = 137.0
+margin_right = 118.0
+margin_bottom = 148.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "BDragon1727"
+align = 1
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
@@ -46,9 +103,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -88.0
+margin_top = -89.0
 margin_right = 160.0
-margin_bottom = 88.0
+margin_bottom = 91.0
+
+[node name="SkipButton" parent="CutSceneBase/Control" index="1"]
+visible = false
+
+[node name="ContinueButton" parent="CutSceneBase/Control" index="2"]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
