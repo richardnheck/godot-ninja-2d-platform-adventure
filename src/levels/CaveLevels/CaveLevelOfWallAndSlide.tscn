@@ -179,7 +179,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 816, 304 )
+position = Vector2( 824, -16 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -605,6 +605,9 @@ tween_transition_type = 0
 path_length = 64
 orientation = 1
 horizontal_wall_direction = 0
+
+[node name="OneEyedSpikey2" parent="InteractiveProps" instance=ExtResource( 18 )]
+position = Vector2( 888, 9 )
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
