@@ -82,8 +82,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( -267, -145 )
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( -272, -152 )
 rotation = 1.57079
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -260,6 +260,9 @@ position = Vector2( -135, 193.5 )
 shape = SubResource( 5 )
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="FallingSpike3" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( -511, -193 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
 position = Vector2( 520, 32 )
