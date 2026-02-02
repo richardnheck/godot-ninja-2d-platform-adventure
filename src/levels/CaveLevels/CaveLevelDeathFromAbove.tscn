@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/objects/key/KamonKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/art/ideas/round-stalecmite.png" type="Texture" id=19]
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/characters/enemies/one-eyed-spikey/OneEyedSpikey.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/characters/enemies/path-follow-enemy/red-creepy-crawly/RedCreepyCrawly.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -69,7 +70,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 280, 16 )
+position = Vector2( -168, -528 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -119,12 +120,6 @@ position = Vector2( 256, -320 )
 [node name="FallingSpike14" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( 208, -336 )
 
-[node name="FallingSpike12" parent="InteractiveProps" instance=ExtResource( 4 )]
-position = Vector2( 336, -304 )
-
-[node name="FallingSpike15" parent="InteractiveProps" instance=ExtResource( 4 )]
-position = Vector2( 192, -336 )
-
 [node name="FallingSpike23" parent="InteractiveProps" instance=ExtResource( 4 )]
 position = Vector2( -32, -928 )
 
@@ -134,20 +129,15 @@ position = Vector2( -176, -928 )
 [node name="CrumblingPlatform" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 320, 160 )
 
-[node name="SpikeyRock" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( 368.946, 214.243 )
-rotation = -1.57079
-up_down = false
-
 [node name="OneEyedSpikey" parent="InteractiveProps" instance=ExtResource( 21 )]
 position = Vector2( 592, -144 )
 float_offset = 100
 direction = 1
 
-[node name="SpikeyRock3" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( -168.045, -568 )
-rotation = -1.57079
-up_down = false
+[node name="OneEyedSpikey2" parent="InteractiveProps" instance=ExtResource( 21 )]
+position = Vector2( -139, -560 )
+float_offset = 60
+direction = 1
 
 [node name="MovingBambooSpike" parent="InteractiveProps" instance=ExtResource( 11 )]
 position = Vector2( 472, 104 )
@@ -261,6 +251,19 @@ position = Vector2( -153, -714.749 )
 
 [node name="SpikeyRock5" parent="InteractiveProps" instance=ExtResource( 10 )]
 position = Vector2( -181.416, -819 )
+
+[node name="RedCreepyCrawly" parent="InteractiveProps" instance=ExtResource( 22 )]
+position = Vector2( 336, 218 )
+speed = 40.0
+tween_transition_type = 0
+path_length = 80
+
+[node name="RedCreepyCrawly2" parent="InteractiveProps" instance=ExtResource( 22 )]
+position = Vector2( 422, 219 )
+speed = 40.0
+tween_transition_type = 0
+path_length = 70
+orientation = 1
 
 [node name="TileMapBg" type="TileMap" parent="."]
 modulate = Color( 0.145098, 0.247059, 0.521569, 1 )
