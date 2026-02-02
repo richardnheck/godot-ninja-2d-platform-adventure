@@ -159,7 +159,8 @@ func _on_EndArea_body_entered(body: Node) -> void:
 		
 	
 func _progress_player_and_goto_next_level() -> void:
-	GameState.progress_current_level(LevelData.current_level_index + 1)
+	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:
+		GameState.progress_current_level(LevelData.current_level_index + 1)
 	goto_next_level()
 	
 	
