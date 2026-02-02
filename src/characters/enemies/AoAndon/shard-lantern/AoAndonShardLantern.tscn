@@ -9,19 +9,6 @@
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-6.png" type="Texture" id=7]
 [ext_resource path="res://assets/art/sprites/enemy-death/enemy-death-1.png" type="Texture" id=8]
 
-[sub_resource type="SpriteFrames" id=10]
-animations = [ {
-"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "explode",
-"speed": 20.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-} ]
-
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 9.5, 12.5 )
 
@@ -41,16 +28,24 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "explode",
+"speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
 [node name="AoAndonShardLantern" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
-
-[node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="Area2D"]
-z_index = 2
-frames = SubResource( 10 )
-animation = "idle"
 
 [node name="ShootPosition" type="Position2D" parent="Area2D"]
 position = Vector2( 0.274075, 0 )
@@ -64,6 +59,11 @@ position = Vector2( 0, -2 )
 z_index = 10
 frames = SubResource( 5 )
 playing = true
+
+[node name="AnimatedSpriteExplosion" type="AnimatedSprite" parent="Area2D"]
+z_index = 11
+frames = SubResource( 10 )
+animation = "idle"
 
 [node name="Tween" type="Tween" parent="."]
 
