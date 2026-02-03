@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/pixeloperator8-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/objects/help-sign/HelpSign.gd" type="Script" id=2]
 [ext_resource path="res://src/objects/help-sign/HelpSign.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/help-sign/help-sign-texture.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/Settings/controls.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -26,6 +27,7 @@ z_index = 4096
 z_as_relative = false
 
 [node name="0" type="NinePatchRect" parent="Panels"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -73,7 +75,7 @@ margin_left = -46.0
 margin_top = -32.0
 margin_right = 45.0
 margin_bottom = -5.0
-custom_fonts/normal_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 6 )
 text = "  JUMP + JUMP to double jump"
 fit_content_height = true
 scroll_active = false
@@ -110,9 +112,6 @@ custom_fonts/normal_font = ExtResource( 1 )
 text = "Hold down JUMP on wall to grab."
 fit_content_height = true
 scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label4" type="RichTextLabel" parent="Panels/2"]
 anchor_left = 0.5
@@ -133,7 +132,6 @@ __meta__ = {
 }
 
 [node name="3" type="NinePatchRect" parent="Panels"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
