@@ -42,12 +42,12 @@ var levelsArray = [
 	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
 	
 	# World 2
-	{"world": WORLD2, "name" : "Level1", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "Level2", "scene_path" : WORLD2_LEVELS_PATH + "Level2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "Level3", "scene_path" : WORLD2_LEVELS_PATH + "Level3.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "Level4", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "Level5", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "Level6", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Hold your Hori", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Klimb that Kuruwa", "scene_path" : WORLD2_LEVELS_PATH + "Level2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "My My Maru", "scene_path" : WORLD2_LEVELS_PATH + "Level3.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Uh Oh Ote-mon", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Help! Help! Hori!", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD2, "name" : "Towards the Tenshu", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn"},
 
 	# World 3
