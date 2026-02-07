@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/objects/fireball-spinner/FireBallSpinner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/zugaikotsu/Zukaikotsu.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/art/props/door/world2-door-plain.png" type="Texture" id=21]
 [ext_resource path="res://assets/art/props/door/world2-door.png" type="Texture" id=22]
 [ext_resource path="res://assets/art/tilesets/world2/bricks_tileset.tres" type="TileSet" id=23]
+[ext_resource path="res://assets/art/tilesets/world2/wooden-slats-tileset.tres" type="TileSet" id=24]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -111,6 +112,13 @@ tile_set = ExtResource( 23 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -196455, 5, 0, -65464, 4, 0, -65449, 6, 0, -65441, 11, 0, -65436, 11, 0, 130, 11, 0, 132, 10, 0, 158, 4, 0, 65610, 4, 0, 65644, 6, 0, 65675, 11, 0, 131143, 10, 0, 131161, 10, 0, 131166, 11, 0, 131170, 11, 0, 131207, 8, 0, 196699, 10, 0, 196700, 10, 0, 196716, 11, 0, 196721, 6, 0, 196735, 11, 0, 196742, 2, 0, 262222, 4, 0, 262226, 10, 0, 262247, 4, 0, 262288, 4, 0, 327748, 4, 0, 327809, 11, 0, 327824, 0, 0, 327827, 0, 0, 327828, 7, 0, 327832, 7, 0, 393276, 9, 0, 393281, 10, 0, 393298, 11, 0, 393358, 0, 0, 393359, 0, 0, 524285, 0, 0, 458786, 5, 0, 458807, 3, 0, 458835, 536870923, 0, 458892, 10, 0, 524371, 536870923, 0, 524380, 6, 0, 589877, 9, 0, 589887, 3, 0, 589906, 10, 0, 589907, 11, 0, 589931, 1, 0, 589960, 10, 0, 589981, 6, 0, 720895, 5, 0, 655400, 536870921, 0, 655407, 536870921, 0, 655413, 536870921, 0, 655437, 536870921, 0, 655443, 536870923, 0, 655444, 536870923, 0, 655458, 7, 0, 655487, 1, 0, 655496, 9, 0, 655503, 6, 0, 721044, 5, 0, 721049, 5, 0, 851972, 5, 0, 852009, 0, 0, 917535, 0, 0, 983048, 0, 0, 1114200, 4, 0 )
+
+[node name="TileMapWoodenSlats" type="TileMap" parent="."]
+position = Vector2( -128, -208 )
+tile_set = ExtResource( 24 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196661, 1, 0, 196662, 1, 1, 196663, 1, 2, 196664, 1, 3, 196665, 1, 1, 196666, 1, 5, 196667, 1, 0, 196668, 1, 1, 196669, 1, 2, 196670, 1, 3, 196671, 1, 1, 196672, 1, 5, 196673, 1, 0, 196674, 1, 1, 196675, 1, 2, 196676, 1, 3, 196677, 1, 1, 196678, 1, 5, 262197, 1, 131072, 262198, 1, 131076, 262199, 1, 131074, 262200, 1, 131075, 262201, 1, 131076, 262202, 1, 131077, 262203, 1, 131072, 262204, 1, 131076, 262205, 1, 131074, 262206, 1, 131075, 262207, 1, 131076, 262208, 1, 131077, 262209, 1, 131072, 262210, 1, 131076, 262211, 1, 131074, 262212, 1, 131075, 262213, 1, 131076, 262214, 1, 131077 )
 
 [node name="TileMapWorldStone" type="TileMap" parent="."]
 tile_set = ExtResource( 18 )
