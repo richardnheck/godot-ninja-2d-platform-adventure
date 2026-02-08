@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/objects/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/characters/enemies/daruma/Daruma.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=28]
+[ext_resource path="res://src/objects/world3-lanterns/SmallLantern.tscn" type="PackedScene" id=29]
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -103,7 +104,7 @@ format = 1
 [node name="Props" type="Node2D" parent="."]
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
-position = Vector2( -80, 128 )
+position = Vector2( -73, 128 )
 texture = ExtResource( 28 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
@@ -114,10 +115,26 @@ position = Vector2( -240, -144 )
 position = Vector2( 1.52588e-05, 64 )
 flip_v = true
 
+[node name="StartDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/StartDoorLanterns" instance=ExtResource( 29 )]
+position = Vector2( -102, 128 )
+
+[node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 29 )]
+position = Vector2( -46, 128 )
+
+[node name="EndDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/EndDoorLanterns" instance=ExtResource( 29 )]
+position = Vector2( 569, -3472 )
+
+[node name="SmallLantern2" parent="Props/EndDoorLanterns" instance=ExtResource( 29 )]
+position = Vector2( 625, -3472 )
+
 [node name="InteractiveProps" type="Node" parent="."]
 
 [node name="Door" parent="InteractiveProps" instance=ExtResource( 10 )]
-position = Vector2( 592, -3456 )
+position = Vector2( 598, -3456 )
 
 [node name="Sprite" parent="InteractiveProps/Door" index="0"]
 texture = ExtResource( 18 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=16]
 [ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=17]
+[ext_resource path="res://src/objects/world3-lanterns/SmallLantern.tscn" type="PackedScene" id=18]
 
 [node name="World3Level Level1" type="Node2D"]
 script = ExtResource( 11 )
@@ -76,7 +77,7 @@ format = 1
 [node name="Props" type="Node2D" parent="."]
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
-position = Vector2( -190, 128 )
+position = Vector2( -183, 128 )
 texture = ExtResource( 17 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
@@ -86,6 +87,42 @@ position = Vector2( -240, -144 )
 [node name="cave-door-background" parent="Props/CaveDoorBackground" index="0"]
 position = Vector2( 1.52588e-05, 64 )
 flip_v = true
+
+[node name="StartDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/StartDoorLanterns" instance=ExtResource( 18 )]
+position = Vector2( -211, 128 )
+
+[node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 18 )]
+position = Vector2( -155, 128 )
+
+[node name="EndDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/EndDoorLanterns" instance=ExtResource( 18 )]
+position = Vector2( 2740, 27 )
+
+[node name="SmallLantern2" parent="Props/EndDoorLanterns" instance=ExtResource( 18 )]
+position = Vector2( 2796, 27 )
+
+[node name="Node3" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/Node3" instance=ExtResource( 18 )]
+position = Vector2( 1769, 17 )
+
+[node name="SmallLantern2" parent="Props/Node3" instance=ExtResource( 18 )]
+position = Vector2( 1912, 17 )
+
+[node name="SmallLantern3" parent="Props" instance=ExtResource( 18 )]
+position = Vector2( 1483, -33 )
+
+[node name="SmallLantern4" parent="Props" instance=ExtResource( 18 )]
+position = Vector2( 2104, 72 )
+
+[node name="SmallLantern6" parent="Props" instance=ExtResource( 18 )]
+position = Vector2( 2360, 72 )
+
+[node name="SmallLantern5" parent="Props" instance=ExtResource( 18 )]
+position = Vector2( 2232, 72 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 

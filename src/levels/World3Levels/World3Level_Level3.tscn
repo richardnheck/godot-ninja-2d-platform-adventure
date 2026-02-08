@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=22]
 [ext_resource path="res://assets/art/props/door/world3-door.png" type="Texture" id=23]
 [ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=24]
+[ext_resource path="res://src/objects/world3-lanterns/SmallLantern.tscn" type="PackedScene" id=25]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -114,6 +115,22 @@ position = Vector2( -240, -144 )
 [node name="cave-door-background" parent="Props/CaveDoorBackground" index="0"]
 position = Vector2( 1.52588e-05, 64 )
 flip_v = true
+
+[node name="StartDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/StartDoorLanterns" instance=ExtResource( 25 )]
+position = Vector2( -205, 80 )
+
+[node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 25 )]
+position = Vector2( -149, 80 )
+
+[node name="EndDoorLanterns" type="Node" parent="Props"]
+
+[node name="SmallLantern" parent="Props/EndDoorLanterns" instance=ExtResource( 25 )]
+position = Vector2( 4987, -288 )
+
+[node name="SmallLantern2" parent="Props/EndDoorLanterns" instance=ExtResource( 25 )]
+position = Vector2( 5043, -288 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 
