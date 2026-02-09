@@ -227,6 +227,30 @@ position = Vector2( 51, -32 )
 [node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 34 )]
 position = Vector2( 107, -32 )
 
+[node name="SmallLantern3" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 744, -312 )
+
+[node name="SmallLantern4" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 872, -312 )
+
+[node name="SmallLantern5" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 2264, -112 )
+
+[node name="SmallLantern6" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 2344, -112 )
+
+[node name="SmallLantern7" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 3456, -296 )
+
+[node name="SmallLantern8" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 3600, -296 )
+
+[node name="SmallLantern9" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 3816, -104 )
+
+[node name="SmallLantern10" parent="Props" instance=ExtResource( 34 )]
+position = Vector2( 3992, -104 )
+
 [node name="EndDoorLanterns" type="Node" parent="Props"]
 
 [node name="SmallLantern" parent="Props/EndDoorLanterns" instance=ExtResource( 34 )]

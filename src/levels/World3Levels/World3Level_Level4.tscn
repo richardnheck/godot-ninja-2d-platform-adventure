@@ -123,6 +123,36 @@ position = Vector2( -102, 128 )
 [node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 29 )]
 position = Vector2( -46, 128 )
 
+[node name="SmallLantern3" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 40, -37 )
+
+[node name="SmallLantern4" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 40, -156 )
+
+[node name="SmallLantern5" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 696, -780 )
+
+[node name="SmallLantern6" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 696, -892 )
+
+[node name="SmallLantern7" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 696, -1004 )
+
+[node name="SmallLantern8" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 512, -1754 )
+
+[node name="SmallLantern9" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 416, -1754 )
+
+[node name="SmallLantern10" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 488, -2621 )
+
+[node name="SmallLantern11" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 736, -3215 )
+
+[node name="SmallLantern12" parent="Props" instance=ExtResource( 29 )]
+position = Vector2( 616, -3215 )
+
 [node name="EndDoorLanterns" type="Node" parent="Props"]
 
 [node name="SmallLantern" parent="Props/EndDoorLanterns" instance=ExtResource( 29 )]

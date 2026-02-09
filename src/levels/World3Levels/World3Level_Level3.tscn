@@ -57,7 +57,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1136, 48 )
+position = Vector2( 1152, 48 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -123,6 +123,33 @@ position = Vector2( -205, 80 )
 
 [node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 25 )]
 position = Vector2( -149, 80 )
+
+[node name="SmallLantern3" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1208, -128 )
+
+[node name="SmallLantern4" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1320, -128 )
+
+[node name="SmallLantern5" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1416, -128 )
+
+[node name="SmallLantern6" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1512, -128 )
+
+[node name="SmallLantern7" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1592, -128 )
+
+[node name="SmallLantern8" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 1704, -128 )
+
+[node name="SmallLantern9" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 4280, -248 )
+
+[node name="SmallLantern10" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 4416, -248 )
+
+[node name="SmallLantern11" parent="Props" instance=ExtResource( 25 )]
+position = Vector2( 4552, -248 )
 
 [node name="EndDoorLanterns" type="Node" parent="Props"]
 
