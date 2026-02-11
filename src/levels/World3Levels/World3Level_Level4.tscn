@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=30]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=31]
 [ext_resource path="res://assets/art/tilesets/world3/window.png" type="Texture" id=32]
+[ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=33]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 31 )
@@ -221,7 +222,7 @@ texture = ExtResource( 18 )
 position = Vector2( 896, -1856 )
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 14 )]
-position = Vector2( 312, -1280 )
+position = Vector2( 315, -1280 )
 
 [node name="CheckPoint2" parent="InteractiveProps" instance=ExtResource( 14 )]
 position = Vector2( 320, -1936 )
@@ -757,6 +758,14 @@ x_offset_on_enter = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaZeroXOffset"]
 position = Vector2( -236, 152 )
 shape = SubResource( 3 )
+
+[node name="Sashimono" type="Sprite" parent="."]
+position = Vector2( 328, -280 )
+texture = ExtResource( 33 )
+
+[node name="Sashimono2" type="Sprite" parent="."]
+position = Vector2( 316, -1352 )
+texture = ExtResource( 33 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

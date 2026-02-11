@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/art/tilesets/world3/window.png" type="Texture" id=19]
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=20]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=21]
+[ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=22]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 21 )
@@ -118,7 +119,7 @@ format = 1
 [node name="Props" type="Node2D" parent="."]
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
-position = Vector2( -183, 128 )
+position = Vector2( -180, 128 )
 texture = ExtResource( 17 )
 
 [node name="CaveDoorBackground" parent="Props" instance=ExtResource( 6 )]
@@ -132,10 +133,10 @@ flip_v = true
 [node name="StartDoorLanterns" type="Node" parent="Props"]
 
 [node name="SmallLantern" parent="Props/StartDoorLanterns" instance=ExtResource( 18 )]
-position = Vector2( -211, 128 )
+position = Vector2( -208, 128 )
 
 [node name="SmallLantern2" parent="Props/StartDoorLanterns" instance=ExtResource( 18 )]
-position = Vector2( -155, 128 )
+position = Vector2( -152, 128 )
 
 [node name="EndDoorLanterns" type="Node" parent="Props"]
 
@@ -180,6 +181,14 @@ texture = ExtResource( 19 )
 [node name="Window4" type="Sprite" parent="Props"]
 position = Vector2( 1840, -24 )
 texture = ExtResource( 19 )
+
+[node name="Sashimono" type="Sprite" parent="Props"]
+position = Vector2( -198, 72 )
+texture = ExtResource( 22 )
+
+[node name="Sashimono2" type="Sprite" parent="Props"]
+position = Vector2( 2640, -16 )
+texture = ExtResource( 22 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 

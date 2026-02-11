@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=35]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=36]
 [ext_resource path="res://assets/art/tilesets/world3/window.png" type="Texture" id=37]
+[ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=38]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 36 )
@@ -333,6 +334,18 @@ texture = ExtResource( 37 )
 [node name="Window7" type="Sprite" parent="Props"]
 position = Vector2( 4632, -320 )
 texture = ExtResource( 37 )
+
+[node name="Sashimono" type="Sprite" parent="Props"]
+position = Vector2( 56, -88 )
+texture = ExtResource( 38 )
+
+[node name="Sashimono2" type="Sprite" parent="Props"]
+position = Vector2( 2307, -152 )
+texture = ExtResource( 38 )
+
+[node name="Sashimono3" type="Sprite" parent="Props"]
+position = Vector2( 3870, -136 )
+texture = ExtResource( 38 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 

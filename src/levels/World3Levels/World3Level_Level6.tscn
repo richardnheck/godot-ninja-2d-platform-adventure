@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://assets/art/props/door/world3-door-plain.png" type="Texture" id=42]
 [ext_resource path="res://src/objects/cave-level-sliding-door/CaveLevelSlidingDoor.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/objects/cave-level-sliding-door/door-top.png" type="Texture" id=44]
+[ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=45]
 
 [sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 10, 80 )
@@ -247,7 +248,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 7040, -1480 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1460,6 +1461,10 @@ exit_edge = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraAdjustAreaDown6"]
 position = Vector2( -113, 48 )
 shape = SubResource( 27 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 48, -104 )
+texture = ExtResource( 45 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="body_entered" from="InteractiveProps/EndArea" to="." method="_on_EndArea_body_entered"]
