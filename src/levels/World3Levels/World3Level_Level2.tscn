@@ -195,6 +195,10 @@ format = 1
 position = Vector2( -198, 72 )
 texture = ExtResource( 29 )
 
+[node name="Sashimono2" type="Sprite" parent="Props"]
+position = Vector2( 479, -1682 )
+texture = ExtResource( 29 )
+
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( -181, 128 )
 texture = ExtResource( 24 )

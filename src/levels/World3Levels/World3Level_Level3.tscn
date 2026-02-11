@@ -146,6 +146,10 @@ __meta__ = {
 position = Vector2( -195, 24 )
 texture = ExtResource( 29 )
 
+[node name="Sashimono2" type="Sprite" parent="Props"]
+position = Vector2( 4987, -340 )
+texture = ExtResource( 29 )
+
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 position = Vector2( -176, 80 )
 texture = ExtResource( 24 )

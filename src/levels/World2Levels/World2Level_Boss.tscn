@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/characters/enemies/Wanyudo/Wanyudo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/levels/World2Levels/BossPhaseTransitionArea2D.gd" type="Script" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/objects/camera/CameraAdjustArea2D.tscn" type="PackedScene" id=26]
 [ext_resource path="res://assets/art/tilesets/world2/wooden-slats-tileset.tres" type="TileSet" id=27]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=28]
+[ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=29]
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 28 )
@@ -532,6 +533,18 @@ format = 1
 tile_data = PoolIntArray( -655168, 7, 0, -655167, 7, 0, -655166, 7, 0, -589633, 8, 0, -589629, 8, 0, -524098, 8, 0, -524092, 8, 0, -196460, 8, 0, -196459, 8, 0, -196458, 8, 0, -130935, 8, 0, -130934, 8, 0, -130933, 8, 0, -130925, 8, 0, -130921, 8, 0, -65400, 8, 0, -65396, 8, 0, -65390, 8, 0, -65384, 8, 0, -65359, 8, 0, -65358, 8, 0, -65357, 8, 0, -65356, 8, 0, -65355, 8, 0, -65354, 8, 0, -65353, 8, 0, -65352, 8, 0, -65351, 8, 0, -65350, 8, 0, -65349, 8, 0, 393598, 7, 0, 393599, 7, 0, 393600, 7, 0, 393601, 7, 0, 393602, 7, 0, 459133, 7, 0, 459139, 7, 0, 524417, 8, 0, 524418, 8, 0, 524419, 8, 0, 524420, 8, 0, 524421, 7, 0, 524422, 7, 0, 524423, 7, 0, 524424, 7, 0, 524425, 7, 0, 524426, 7, 0, 524427, 7, 0, 524428, 7, 0, 524429, 7, 0, 524430, 7, 0, 524431, 7, 0, 524432, 8, 0, 524433, 8, 0, 524434, 8, 0, 524435, 8, 0, 524535, 7, 0, 524536, 7, 0, 524537, 7, 0, 524538, 7, 0, 524541, 7, 0, 524542, 7, 0, 524543, 7, 0, 524544, 7, 0, 524547, 7, 0, 524548, 7, 0, 524549, 7, 0, 524550, 7, 0, 524639, 3, 0, 524640, 7, 0, 524641, 7, 0, 524642, 7, 0, 524643, 7, 0, 524644, 7, 0, 524645, 7, 0, 524646, 7, 0, 524647, 7, 0, 524648, 7, 0, 524649, 7, 0, 524650, 7, 0, 524651, 7, 0, 524652, 7, 0, 524653, 7, 0, 524654, 7, 0, 524655, 7, 0, 524656, 7, 0, 524657, 7, 0, 524658, 7, 0, 524659, 7, 0, 524660, 7, 0, 524661, 7, 0, 524662, 7, 0, 524663, 7, 0, 524664, 7, 0, 524665, 7, 0, 524666, 7, 0, 524667, 7, 0, 524668, 7, 0, 524676, 7, 0, 524677, 7, 0, 524678, 7, 0, 524679, 7, 0 )
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Sashimono" type="Sprite" parent="Props"]
+position = Vector2( 121, 72 )
+texture = ExtResource( 29 )
+
+[node name="Sashimono2" type="Sprite" parent="Props"]
+position = Vector2( 3149, 72 )
+texture = ExtResource( 29 )
+
+[node name="Sashimono3" type="Sprite" parent="Props"]
+position = Vector2( 6325, 40 )
+texture = ExtResource( 29 )
 
 [node name="DoorStart" parent="Props" instance=ExtResource( 12 )]
 visible = false

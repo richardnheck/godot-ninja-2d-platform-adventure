@@ -496,22 +496,6 @@ position = Vector2( -240, -144 )
 position = Vector2( 1.52588e-05, 64 )
 flip_v = true
 
-[node name="Sashimono" type="Sprite" parent="."]
-position = Vector2( 80, 72 )
-texture = ExtResource( 36 )
-
-[node name="Sashimono2" type="Sprite" parent="."]
-position = Vector2( 1520, -776 )
-texture = ExtResource( 36 )
-
-[node name="Sashimono3" type="Sprite" parent="."]
-position = Vector2( 2240, -1288 )
-texture = ExtResource( 36 )
-
-[node name="Sashimono4" type="Sprite" parent="."]
-position = Vector2( 3336, -1848 )
-texture = ExtResource( 36 )
-
 [node name="Sashimono5" type="Sprite" parent="."]
 position = Vector2( 4656, -2360 )
 texture = ExtResource( 36 )

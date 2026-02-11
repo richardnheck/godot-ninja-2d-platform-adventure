@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Floor-Wall-Roof-Tileset.tres" type="TileSet" id=2]
@@ -38,10 +38,23 @@
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=36]
 [ext_resource path="res://assets/art/tilesets/world3/window.png" type="Texture" id=37]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=38]
+[ext_resource path="res://assets/art/tilesets/world3/banners.png" type="Texture" id=39]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 36 )
 region = Rect2( 2, 67, 67, 13 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 39 )
+region = Rect2( 246.367, 8, 36.6333, 97 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 39 )
+region = Rect2( 196, 8, 41, 97 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 39 )
+region = Rect2( 148, 8, 41, 120 )
 
 [sub_resource type="Animation" id=1]
 length = 2.0
@@ -170,8 +183,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 3376, -232 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 3816, -88 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -339,13 +352,37 @@ texture = ExtResource( 37 )
 position = Vector2( 56, -88 )
 texture = ExtResource( 38 )
 
-[node name="Sashimono2" type="Sprite" parent="Props"]
-position = Vector2( 2307, -152 )
+[node name="Sashimono4" type="Sprite" parent="Props"]
+position = Vector2( 6328, -224 )
 texture = ExtResource( 38 )
 
-[node name="Sashimono3" type="Sprite" parent="Props"]
-position = Vector2( 3870, -136 )
-texture = ExtResource( 38 )
+[node name="BannerJustText" type="Sprite" parent="Props"]
+position = Vector2( 2008, -136 )
+texture = SubResource( 15 )
+
+[node name="BannerJustText2" type="Sprite" parent="Props"]
+position = Vector2( 2072, -136 )
+texture = SubResource( 15 )
+
+[node name="BannerJustText3" type="Sprite" parent="Props"]
+position = Vector2( 2136, -136 )
+texture = SubResource( 15 )
+
+[node name="BannerWithLines" type="Sprite" parent="Props"]
+position = Vector2( 3864, -216 )
+texture = SubResource( 16 )
+
+[node name="BannerWithLines2" type="Sprite" parent="Props"]
+position = Vector2( 3944, -216 )
+texture = SubResource( 16 )
+
+[node name="BannerWithSymbol" type="Sprite" parent="Props"]
+position = Vector2( 5833, -225 )
+texture = SubResource( 17 )
+
+[node name="BannerWithSymbol2" type="Sprite" parent="Props"]
+position = Vector2( 5928, -225 )
+texture = SubResource( 17 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 
