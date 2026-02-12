@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/sky-tileset.tres" type="TileSet" id=27]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=28]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=29]
+[ext_resource path="res://assets/art/tilesets/world3/pane.png" type="Texture" id=30]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 28 )
@@ -64,8 +65,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1152, 48 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1880, -24 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -141,6 +142,46 @@ __meta__ = {
 }
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Pane" type="Sprite" parent="Props"]
+position = Vector2( 1920, -144 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 30 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 96 )
+
+[node name="Pane2" type="Sprite" parent="Props"]
+position = Vector2( 1981, -144 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 30 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 96 )
+
+[node name="Pane3" type="Sprite" parent="Props"]
+position = Vector2( 2040, -144 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 30 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 96 )
+
+[node name="Pane4" type="Sprite" parent="Props"]
+position = Vector2( 4112, -304 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 30 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 160 )
 
 [node name="Sashimono" type="Sprite" parent="Props"]
 position = Vector2( -195, 24 )

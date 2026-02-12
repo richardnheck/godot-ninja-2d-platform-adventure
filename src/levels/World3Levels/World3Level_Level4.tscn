@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://assets/art/tilesets/world3/window.png" type="Texture" id=32]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=33]
 [ext_resource path="res://assets/art/tilesets/world3/banners.png" type="Texture" id=34]
+[ext_resource path="res://assets/art/tilesets/world3/pane.png" type="Texture" id=35]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 31 )
@@ -72,7 +73,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 288, -1960 )
+position = Vector2( 856, -1848 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -140,6 +141,26 @@ format = 1
 [node name="MovingSpikesGroup" type="Node" parent="."]
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Pane4" type="Sprite" parent="Props"]
+position = Vector2( 181, -304 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 35 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 96 )
+
+[node name="Pane5" type="Sprite" parent="Props"]
+position = Vector2( 181, -304 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 35 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 96 )
 
 [node name="Sashimono" type="Sprite" parent="Props"]
 position = Vector2( 328, -280 )

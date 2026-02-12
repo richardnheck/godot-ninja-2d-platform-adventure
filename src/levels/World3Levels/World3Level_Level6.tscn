@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://assets/art/tilesets/cave-level/CaveLevelTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/art/tilesets/world3/World3-Background-Tileset.tres" type="TileSet" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://src/objects/cave-level-sliding-door/door-top.png" type="Texture" id=44]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=45]
 [ext_resource path="res://assets/art/tilesets/world3/banners.png" type="Texture" id=46]
+[ext_resource path="res://assets/art/tilesets/world3/pane.png" type="Texture" id=47]
 
 [sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 46 )
@@ -257,7 +258,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 1560, -752 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -302,6 +303,56 @@ format = 1
 [node name="MovingSpikesGroup" type="Node" parent="."]
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Pane4" type="Sprite" parent="Props"]
+position = Vector2( 309, -240 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 47 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 128 )
+
+[node name="Pane5" type="Sprite" parent="Props"]
+position = Vector2( 1877, -128 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 47 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 112 )
+
+[node name="Pane6" type="Sprite" parent="Props"]
+position = Vector2( 3648, -1152 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 47 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 64 )
+
+[node name="Pane7" type="Sprite" parent="Props"]
+position = Vector2( 3749, -1152 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 47 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 64 )
+
+[node name="Pane8" type="Sprite" parent="Props"]
+position = Vector2( 3698, -1152 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 47 )
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 43, 64 )
 
 [node name="Sashimono" type="Sprite" parent="Props"]
 position = Vector2( 48, -104 )
