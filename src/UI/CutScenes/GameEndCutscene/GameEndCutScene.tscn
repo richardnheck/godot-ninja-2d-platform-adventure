@@ -510,8 +510,8 @@ margin_bottom = 33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 54 )
 text = "I offer my deepest gratitude for what you have
-done.  Your bravery and skills are unmatched, as
-you succeeded where many a great warrior
+done.  Your bravery and skills are unmatched, 
+for you succeeded where many a great warrior
 before you failed."
 
 [node name="DialogBox3" type="Sprite" parent="MainControl"]
