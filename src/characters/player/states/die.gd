@@ -5,6 +5,8 @@ extends "./motion/motion.gd"
 func enter():
 	print("Die state:enter")
 	velocity = Vector2(0,0)
+	var collision_shape = owner.get_node("CollisionShape2D") as CollisionShape2D
+	collision_shape.disabled = true
 	
 	owner.set_dead(true)
 	owner.emit_signal("start_die");
