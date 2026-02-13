@@ -14,6 +14,7 @@ onready var landing_dust_scene = preload("res://src/characters/player/effects/la
 onready var air_jump_effect_scene = preload("res://src/characters/player/effects/air-jump/AirJumpEffect.tscn")
 onready var jump_effect_scene = preload("res://src/characters/player/effects/jump/JumpEffect.tscn")
 onready var camera_manager = $"%CameraManager"
+onready var animation_player = $AnimationPlayer
 
 #-----------------------------
 # Signals
@@ -30,6 +31,7 @@ var sfx_die:AudioStreamPlayer
 var look_direction = Vector2.RIGHT setget set_look_direction
 
 func _ready() -> void:
+	animation_player.play("RESET")
 	$VisibilityNotifier2D.connect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
 
 	# Add the die sound to the player so the sound is cleared when player is removed
@@ -55,11 +57,11 @@ func take_damage(attacker, amount, effect = null):
 func die(groups = []):
 	if not dead:
 		set_dead(true)
-		if groups.has(Constants.GROUP_WATER_TRAP):
-			$StateMachine._change_state("die_by_water")
-		else:
-			$StateMachine._change_state("die")
-			sfx_die.play()
+#		if groups.has(Constants.GROUP_WATER_TRAP):
+#			$StateMachine._change_state("die_by_water")
+#		else:
+		$StateMachine._change_state("die")
+		sfx_die.play()
 
 	
 func celebrate():

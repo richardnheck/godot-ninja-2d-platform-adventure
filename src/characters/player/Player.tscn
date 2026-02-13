@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://src/characters/player/player_controller.gd" type="Script" id=1]
 [ext_resource path="res://src/characters/player/sprites/player.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/characters/player/states/talk.gd" type="Script" id=4]
 [ext_resource path="res://src/characters/player/states/die-by-water.gd" type="Script" id=5]
 [ext_resource path="res://src/objects/camera/CameraManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/characters/player/sprites/death-bubble.png" type="Texture" id=7]
 [ext_resource path="res://src/characters/player/player_state_machine.gd" type="Script" id=26]
 [ext_resource path="res://src/characters/player/states/motion/on_ground/idle.gd" type="Script" id=27]
 [ext_resource path="res://src/characters/player/states/motion/on_ground/move.gd" type="Script" id=28]
@@ -16,6 +17,62 @@
 [ext_resource path="res://src/characters/player/states/die.gd" type="Script" id=33]
 [ext_resource path="res://src/characters/player/states/celebrate.gd" type="Script" id=34]
 [ext_resource path="res://src/characters/player/states/motion/in_air/air_jump.gd" type="Script" id=36]
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 7 )
+region = Rect2( 60, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 7 )
+region = Rect2( 90, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 7 )
+region = Rect2( 120, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 7 )
+region = Rect2( 150, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 7 )
+region = Rect2( 180, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 7 )
+region = Rect2( 210, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 7 )
+region = Rect2( 240, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 7 )
+region = Rect2( 270, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 7 )
+region = Rect2( 300, 0, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 7 )
+region = Rect2( 330, 0, 30, 40 )
+
+[sub_resource type="SpriteFrames" id=79]
+animations = [ {
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -324,6 +381,123 @@ min_value = 1.0
 max_value = 3.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 2.97727 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="Animation" id=81]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeathBubble:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DeathBubble:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -20 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeathEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=80]
+resource_name = "death-bubble-appear"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeathBubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.301 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -20 ), Vector2( 0, -38 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeathBubble:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0941832 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeathEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("DeathEffect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "default" ],
+"method": "play"
+} ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 130
 script = ExtResource( 1 )
@@ -361,7 +535,14 @@ script = ExtResource( 4 )
 [node name="AirJump" type="Node" parent="StateMachine"]
 script = ExtResource( 36 )
 
+[node name="DeathBubble" type="AnimatedSprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -20 )
+frames = SubResource( 79 )
+playing = true
+
 [node name="DeathEffect" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( 0, -10 )
 frames = SubResource( 6 )
 
@@ -457,6 +638,10 @@ scale_amount_curve = SubResource( 66 )
 
 [node name="CameraManager" parent="." instance=ExtResource( 6 )]
 unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 81 )
+anims/death-bubble-appear = SubResource( 80 )
 
 [connection signal="state_changed" from="StateMachine" to="StateNameDisplayer" method="_on_StateMachine_state_changed"]
 [connection signal="animation_finished" from="AnimatedSprite" to="StateMachine" method="_on_animation_finished"]
