@@ -29,6 +29,7 @@ onready var line_2d: Line2D = $"%Line2D"
 onready var line_width := line_2d.width
 onready var tween := $Tween
 onready var raycast := $RayCast2D
+onready var effect := $AnimatedSpriteEffect
 
 onready var lifetime_timer = $LifetimeTimer
 
@@ -121,6 +122,7 @@ func _physics_process(delta: float) -> void:
 				collider.die()
 			
 			laser_end_position = to_local(raycast.get_collision_point())
+			effect.position = laser_end_position
 
 		line_2d.points[1] = laser_end_position
 	
@@ -147,6 +149,7 @@ func set_is_casting(new_value: bool) -> void:
 		
 func appear() -> void:
 	line_2d.visible = true
+	effect.visible = true
 	if tween and tween.is_active():
 		tween.stop()
 	tween.interpolate_property(line_2d, "width", 0.0, line_width, growth_time * 2.0)
@@ -164,6 +167,7 @@ func disappear() -> void:
 func hide_line():
 	print("hide line")
 	line_2d.visible = false
+	effect.visible = false
 
 
 func set_color(new_color: Color) -> void:

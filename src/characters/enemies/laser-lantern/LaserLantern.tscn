@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/characters/enemies/path-follow-enemy/shard-lantern/ShardLanternSheet.png" type="Texture" id=1]
 [ext_resource path="res://src/characters/enemies/laser-lantern/LaserLantern.gd" type="Script" id=2]
+[ext_resource path="res://src/characters/enemies/laser-lantern/laser-effect.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -19,6 +20,33 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0.0149536, 0.572093, 0.765625, 1, 0.270264, 0.896187, 0.960938, 1 )
+
 [node name="LaserLantern" type="Node2D"]
 script = ExtResource( 2 )
 speed = 25
@@ -28,13 +56,21 @@ start_distance = 40.0
 z_index = 5
 frames = SubResource( 3 )
 
+[node name="AnimatedSpriteEffect" type="AnimatedSprite" parent="."]
+visible = false
+z_index = 5
+frames = SubResource( 8 )
+playing = true
+offset = Vector2( 0, -4 )
+
 [node name="Line2D" type="Line2D" parent="."]
 unique_name_in_owner = true
 visible = false
 z_index = 3
 points = PoolVector2Array( 0, 0, 0, 100 )
 width = 4.0
-end_cap_mode = 2
+default_color = Color( 0.4, 0.788235, 1, 1 )
+gradient = SubResource( 9 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 cast_to = Vector2( 0, 100 )
