@@ -74,3 +74,12 @@ func _move(vel):
 		if collision:
 			owner.emit_signal('collided', collision)
 	return velocity
+
+func _on_VisibilityNotifier2D_screen_entered():
+	tween.set_active(true)
+	animatedSprite.play()
+	
+func _on_VisibilityNotifier2D_screen_exited():
+	tween.set_active(false)
+	animatedSprite.stop()
+	
