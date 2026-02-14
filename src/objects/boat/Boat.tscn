@@ -19,7 +19,15 @@ extents = Vector2( 0.5, 8.66195 )
 [node name="Boat" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="KinematicBody2D" parent="." index="1"]
+[node name="VisibilityEnabler2D" parent="." index="0"]
+pause_animations = false
+freeze_bodies = false
+pause_particles = false
+pause_animated_sprites = false
+process_parent = false
+physics_process_parent = false
+
+[node name="KinematicBody2D" parent="." index="2"]
 collision_layer = 10
 
 [node name="CollisionShape2D" parent="KinematicBody2D" index="0"]
@@ -59,7 +67,7 @@ collision_layer = 8
 position = Vector2( -41.3628, -5.43526 )
 shape = SubResource( 3 )
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 autoplay = ""
 
 [connection signal="body_entered" from="KinematicBody2D/StartArea2D" to="." method="_on_StartArea2D_body_entered"]

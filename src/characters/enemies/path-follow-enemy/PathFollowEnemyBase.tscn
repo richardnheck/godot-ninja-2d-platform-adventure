@@ -25,6 +25,10 @@ remote_path = NodePath("../../../Area2D")
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="Area2D"]
+position = Vector2( -1.43051e-06, 4.76837e-07 )
+scale = Vector2( 2.4, 2.4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 

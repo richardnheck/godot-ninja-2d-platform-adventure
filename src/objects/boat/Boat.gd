@@ -4,6 +4,7 @@ extends Node2D
 export(float, 0.01, 1, 0.01) var boat_speed:float = 0.0 setget _set_boat_speed
 
 onready var animation_player = $AnimationPlayer
+onready var visibility_enabler = $VisibilityEnabler2D
 
 
 func _set_boat_speed(value) -> void:

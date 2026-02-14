@@ -26,11 +26,16 @@ height = 0.0
 [node name="FireBall" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -2.38419e-07, -2.14577e-06 )
+scale = Vector2( 1.6, 1.6 )
+process_parent = true
+physics_process_parent = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, 0 )
 rotation = 1.5708
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]

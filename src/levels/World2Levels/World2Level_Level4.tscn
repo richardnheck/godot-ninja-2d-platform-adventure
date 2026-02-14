@@ -366,6 +366,9 @@ position = Vector2( -15.7269, 4.21896 )
 [node name="Area2D" parent="Enemies/Hyakume6" index="1"]
 position = Vector2( -15.7269, 0.218964 )
 
+[node name="CollisionShape2D" parent="Enemies/Hyakume6/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hyakume7" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 608, -88 )
 
@@ -379,6 +382,9 @@ position = Vector2( -15.2738, 4 )
 [node name="Area2D" parent="Enemies/Hyakume7" index="1"]
 position = Vector2( -15.2738, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/Hyakume7/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hyakume8" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 624, -40 )
 
@@ -391,6 +397,9 @@ position = Vector2( -16.7262, 4 )
 
 [node name="Area2D" parent="Enemies/Hyakume8" index="1"]
 position = Vector2( -16.7262, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume8/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="Hyakume9" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 56, -200 )
@@ -406,6 +415,9 @@ position = Vector2( -16, 4.72578 )
 [node name="Area2D" parent="Enemies/Hyakume9" index="1"]
 position = Vector2( -16, 0.725784 )
 
+[node name="CollisionShape2D" parent="Enemies/Hyakume9/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hyakume10" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 888, -392 )
 
@@ -418,6 +430,9 @@ position = Vector2( -16.7264, 4 )
 
 [node name="Area2D" parent="Enemies/Hyakume10" index="1"]
 position = Vector2( -16.7264, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume10/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="Hyakume11" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 920, -360 )
@@ -432,6 +447,9 @@ position = Vector2( -15.2736, 4 )
 [node name="Area2D" parent="Enemies/Hyakume11" index="1"]
 position = Vector2( -15.2736, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/Hyakume11/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hyakume12" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 792, -392 )
 
@@ -445,6 +463,9 @@ position = Vector2( -15.274, 4 )
 [node name="Area2D" parent="Enemies/Hyakume12" index="1"]
 position = Vector2( -15.274, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/Hyakume12/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hyakume13" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 824, -360 )
 
@@ -457,6 +478,9 @@ position = Vector2( -16.726, 4 )
 
 [node name="Area2D" parent="Enemies/Hyakume13" index="1"]
 position = Vector2( -16.726, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume13/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="FireBallSpinner3" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 1032, 8 )
@@ -641,6 +665,9 @@ position = Vector2( -23.2741, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
 position = Vector2( -23.274, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="ZukaiKotsu2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 64, -456 )
 speed = 20.0
@@ -653,6 +680,9 @@ position = Vector2( -23.2741, 0 )
 
 [node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
 position = Vector2( -23.2741, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu2/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

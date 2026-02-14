@@ -24,6 +24,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 9.53674e-06, 2.86102e-06 )
+scale = Vector2( 9.6, 9.6 )
+process_parent = true
+physics_process_parent = true
+
 [node name="Path2D" type="Path2D" parent="."]
 curve = null
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/objects/cloud-platform/CloudPlatform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/water-jump-yokai/WaterJumpYokaiSpawner.tscn" type="PackedScene" id=2]
@@ -63,6 +63,22 @@ region = Rect2( 0, 112, 76, 16 )
 [sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1120, 0 )
+}
+
+[sub_resource type="Animation" id=22]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.99 ]
 }
 
 [sub_resource type="Curve2D" id=6]
@@ -400,7 +416,7 @@ position = Vector2( 2999.15, -80 )
 position = Vector2( 880, 120 )
 boat_speed = 0.05
 
-[node name="Path2D" parent="InteractiveProps/Boat" index="0"]
+[node name="Path2D" parent="InteractiveProps/Boat" index="1"]
 position = Vector2( 12, 0 )
 scale = Vector2( 0.989286, 1 )
 curve = SubResource( 2 )
@@ -408,18 +424,19 @@ curve = SubResource( 2 )
 [node name="PathFollow2D" parent="InteractiveProps/Boat/Path2D" index="0"]
 offset = 0.0
 
-[node name="KinematicBody2D" parent="InteractiveProps/Boat" index="1"]
+[node name="KinematicBody2D" parent="InteractiveProps/Boat" index="2"]
 position = Vector2( 12, 0 )
 scale = Vector2( 0.989286, 1 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/Boat" index="2"]
+[node name="AnimationPlayer" parent="InteractiveProps/Boat" index="3"]
 playback_speed = 0.3
+anims/PingPongPathFollow = SubResource( 22 )
 
 [node name="Boat2" parent="InteractiveProps" instance=ExtResource( 5 )]
 position = Vector2( 3904, 120 )
 boat_speed = 0.04
 
-[node name="Path2D" parent="InteractiveProps/Boat2" index="0"]
+[node name="Path2D" parent="InteractiveProps/Boat2" index="1"]
 position = Vector2( 9, 0 )
 scale = Vector2( 0.99537, 1 )
 curve = SubResource( 6 )
@@ -427,11 +444,11 @@ curve = SubResource( 6 )
 [node name="PathFollow2D" parent="InteractiveProps/Boat2/Path2D" index="0"]
 offset = 0.0
 
-[node name="KinematicBody2D" parent="InteractiveProps/Boat2" index="1"]
+[node name="KinematicBody2D" parent="InteractiveProps/Boat2" index="2"]
 position = Vector2( 9, 0 )
 scale = Vector2( 0.99537, 1 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/Boat2" index="2"]
+[node name="AnimationPlayer" parent="InteractiveProps/Boat2" index="3"]
 playback_speed = 0.3
 anims/PingPongPathFollow = SubResource( 7 )
 
@@ -530,6 +547,9 @@ position = Vector2( 31.2732, 6.00337 )
 [node name="Area2D" parent="Enemies/Kappa" index="1"]
 position = Vector2( 31.2732, 6.00337 )
 
+[node name="CollisionShape2D" parent="Enemies/Kappa/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 1800, 104 )
 rotation_style = 0
@@ -602,6 +622,9 @@ position = Vector2( 31.2732, 6.00337 )
 [node name="Area2D" parent="Enemies/Kappa2" index="1"]
 position = Vector2( 31.2732, 6.00337 )
 
+[node name="CollisionShape2D" parent="Enemies/Kappa2/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="ZukaiKotsu" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2608, 0 )
 speed = 24.0
@@ -614,6 +637,9 @@ position = Vector2( -23.2741, 0 )
 
 [node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
 position = Vector2( -23.2742, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="ZukaiKotsu1" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2672, -40 )
@@ -629,6 +655,9 @@ position = Vector2( -24.7259, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu1" index="1"]
 position = Vector2( -24.7258, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu1/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="FunaYurei" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2391.15, 64 )
 
@@ -641,6 +670,9 @@ position = Vector2( 0.725926, 0 )
 [node name="Area2D" parent="Enemies/FunaYurei" index="1"]
 position = Vector2( 0.72583, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/FunaYurei/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="FunaYurei2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2976, 7.64271 )
 
@@ -652,6 +684,9 @@ position = Vector2( 0.725926, 0 )
 
 [node name="Area2D" parent="Enemies/FunaYurei2" index="1"]
 position = Vector2( 0.72583, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/FunaYurei2/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="CloudPlatform13" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 2736, 80.5 )
@@ -738,6 +773,9 @@ position = Vector2( -24.7259, 0 )
 [node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
 position = Vector2( -24.7261, 0 )
 
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu2/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="ZukaiKotsu3" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 4624, 101.629 )
 speed = 24.0
@@ -751,6 +789,9 @@ position = Vector2( -24.7259, 0 )
 
 [node name="Area2D" parent="Enemies/ZukaiKotsu3" index="1"]
 position = Vector2( -24.7261, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu3/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="CloudPlatform21" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 4688, 79.9797 )
@@ -786,6 +827,9 @@ position = Vector2( 31.276, 5.93633 )
 [node name="Area2D" parent="Enemies/Kappa4" index="1"]
 position = Vector2( 31.2759, 5.93633 )
 
+[node name="CollisionShape2D" parent="Enemies/Kappa4/Area2D" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Kappa5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 5128, 48 )
 speed = 50.0
@@ -799,6 +843,9 @@ position = Vector2( 31.276, 5.93633 )
 
 [node name="Area2D" parent="Enemies/Kappa5" index="1"]
 position = Vector2( 31.2759, 5.93633 )
+
+[node name="CollisionShape2D" parent="Enemies/Kappa5/Area2D" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="TsurubeOtoshi" parent="Enemies" instance=ExtResource( 17 )]
 position = Vector2( 5040, 48 )
