@@ -59,23 +59,31 @@ var initial_position_y:float
 # Indicates whether object is following the path
 var following_path = true
 
-# Called when the node enters the scene tree for the first time.
+var _initialised = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:		
+	print("follow enemy base: ready start")
 	initial_position_y = self.position.y
-	
 	tween.connect("tween_completed", self, "_on_tween_completed")
+	animated_sprite.playing = false
 	
+	# NB: path following is not started immediately as the enemy may not
+	# be on the screen.  Initialisation will occur the first time the enemy
+	# gets notified of being on the screen
+
+func _initialise() -> void:
 	if delay > 0:
 		# Wait for the delay period before starting the movement
-		animated_sprite.playing = false
 		yield(get_tree().create_timer(delay), "timeout")
-		animated_sprite.playing = true
+		animated_sprite.playing = true		
 		call_deferred("start_tween")
+		_initialised = true
 	else:
 		# Start the movement immediately though defer to allow for sub classes to override exported vars
+		animated_sprite.playing = true		
 		call_deferred("_start_tween")
-
+		_initialised = true
 
 # Stop following the path
 func stop_following_path() -> void:
@@ -92,13 +100,15 @@ func start_following_path(start_offset):
 
 
 func pause_following_path() -> void:
+	following_path = false
 	tween.set_active(false)
 	
-
+	
 func unpause_following_path() -> void:
+	following_path = true
 	tween.set_active(true)
 	
-
+	
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
 		return
@@ -169,3 +179,16 @@ func _on_Area2D_body_entered(body: Node) -> void:
 
 func _on_DelayTimer_timeout() -> void:
 	_start_tween()
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	if !_initialised:
+		_initialise()
+	else:
+		animated_sprite.playing = true
+		unpause_following_path()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	animated_sprite.playing = false
+	pause_following_path()
