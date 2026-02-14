@@ -148,7 +148,7 @@ __meta__ = {
 [node name="CeilingPosition2D" type="Position2D" parent="."]
 position = Vector2( 3584, 9 )
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 1952, -120 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -354,14 +354,14 @@ position = Vector2( 17, 55 )
 tween_transition_type = 0
 follow_path_type = 2
 
-[node name="Path2D" parent="AoAndon" index="0"]
+[node name="Path2D" parent="AoAndon" index="1"]
 curve = ExtResource( 26 )
 
 [node name="PathFollow2D" parent="AoAndon/Path2D" index="0"]
 position = Vector2( 7, 9 )
 offset = 0.0
 
-[node name="Area2D" parent="AoAndon" index="1"]
+[node name="Area2D" parent="AoAndon" index="2"]
 position = Vector2( 7, 9 )
 
 [node name="AnimatedSprite" parent="AoAndon/Area2D" index="3"]
@@ -589,7 +589,7 @@ rotation = -1.57079
 [node name="MovingPlatformCave2H2" parent="Section2/platforms" instance=ExtResource( 32 )]
 position = Vector2( 232, 8 )
 
-[node name="Path2D" parent="Section2/platforms/MovingPlatformCave2H2" index="0"]
+[node name="Path2D" parent="Section2/platforms/MovingPlatformCave2H2" index="1"]
 position = Vector2( 0, -8 )
 curve = SubResource( 13 )
 
@@ -601,16 +601,16 @@ offset = 0.0
 texture = ExtResource( 33 )
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section2/platforms/MovingPlatformCave2H2" index="1"]
+[node name="KinematicBody2D" parent="Section2/platforms/MovingPlatformCave2H2" index="2"]
 position = Vector2( -24, 0 )
 
-[node name="AnimationPlayer" parent="Section2/platforms/MovingPlatformCave2H2" index="2"]
+[node name="AnimationPlayer" parent="Section2/platforms/MovingPlatformCave2H2" index="3"]
 anims/PingPongPathFollow = SubResource( 14 )
 
 [node name="MovingPlatformCave2H3" parent="Section2/platforms" instance=ExtResource( 32 )]
 position = Vector2( 360, 8 )
 
-[node name="Path2D" parent="Section2/platforms/MovingPlatformCave2H3" index="0"]
+[node name="Path2D" parent="Section2/platforms/MovingPlatformCave2H3" index="1"]
 curve = ExtResource( 34 )
 
 [node name="PathFollow2D" parent="Section2/platforms/MovingPlatformCave2H3/Path2D" index="0"]
@@ -619,10 +619,10 @@ position = Vector2( 54.5461, 0 )
 [node name="TrackSprite" parent="Section2/platforms/MovingPlatformCave2H3/Path2D" index="1"]
 offset = Vector2( 24, 0 )
 
-[node name="KinematicBody2D" parent="Section2/platforms/MovingPlatformCave2H3" index="1"]
+[node name="KinematicBody2D" parent="Section2/platforms/MovingPlatformCave2H3" index="2"]
 position = Vector2( 54.5461, 0 )
 
-[node name="AnimationPlayer" parent="Section2/platforms/MovingPlatformCave2H3" index="2"]
+[node name="AnimationPlayer" parent="Section2/platforms/MovingPlatformCave2H3" index="3"]
 anims/PingPongPathFollow = SubResource( 15 )
 
 [node name="Section3" type="Node2D" parent="."]
@@ -830,7 +830,7 @@ position = Vector2( 4120, -104 )
 [node name="MovingPlatformCave1H6" parent="Section3/platforms" instance=ExtResource( 29 )]
 position = Vector2( 3504, -104 )
 
-[node name="Path2D" parent="Section3/platforms/MovingPlatformCave1H6" index="0"]
+[node name="Path2D" parent="Section3/platforms/MovingPlatformCave1H6" index="1"]
 curve = ExtResource( 30 )
 
 [node name="PathFollow2D" parent="Section3/platforms/MovingPlatformCave1H6/Path2D" index="0"]
@@ -839,16 +839,16 @@ position = Vector2( 8, 15.2735 )
 [node name="TrackSprite" parent="Section3/platforms/MovingPlatformCave1H6/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section3/platforms/MovingPlatformCave1H6" index="1"]
+[node name="KinematicBody2D" parent="Section3/platforms/MovingPlatformCave1H6" index="2"]
 position = Vector2( 8, 15.2735 )
 
-[node name="AnimationPlayer" parent="Section3/platforms/MovingPlatformCave1H6" index="2"]
+[node name="AnimationPlayer" parent="Section3/platforms/MovingPlatformCave1H6" index="3"]
 anims/PingPongPathFollow = SubResource( 11 )
 
 [node name="MovingPlatformCave1H7" parent="Section3/platforms" instance=ExtResource( 29 )]
 position = Vector2( 3576, -96 )
 
-[node name="Path2D" parent="Section3/platforms/MovingPlatformCave1H7" index="0"]
+[node name="Path2D" parent="Section3/platforms/MovingPlatformCave1H7" index="1"]
 curve = ExtResource( 31 )
 
 [node name="PathFollow2D" parent="Section3/platforms/MovingPlatformCave1H7/Path2D" index="0"]
@@ -857,10 +857,10 @@ position = Vector2( 8, -31.274 )
 [node name="TrackSprite" parent="Section3/platforms/MovingPlatformCave1H7/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section3/platforms/MovingPlatformCave1H7" index="1"]
+[node name="KinematicBody2D" parent="Section3/platforms/MovingPlatformCave1H7" index="2"]
 position = Vector2( 8, -31.274 )
 
-[node name="AnimationPlayer" parent="Section3/platforms/MovingPlatformCave1H7" index="2"]
+[node name="AnimationPlayer" parent="Section3/platforms/MovingPlatformCave1H7" index="3"]
 anims/PingPongPathFollow = SubResource( 12 )
 
 [node name="RotatingPlatform3" parent="Section3/platforms" instance=ExtResource( 2 )]

@@ -18,6 +18,8 @@ onready var sprite32 := $ElectricityArea2D/ElectricityAnimatedSprite32
 onready var sprite64 := $ElectricityArea2D/ElectricityAnimatedSprite64
 onready var left_marker_line2d := $LeftMarkerLine2D
 
+var _initialised = false
+
 func _ready():
 	if not Engine.editor_hint:
 		left_marker_line2d.visible = false
@@ -32,24 +34,27 @@ func _ready():
 	collision_shape.scale.x = length / 64.0
 	
 	sprite32.visible = length == 32
-	sprite32.playing = length == 32
 	sprite64.visible = length == 64
-	sprite64.playing = length == 64
 	
 	# Electicity is off by default
 	_enable(false)
+		
 	
+func _initialise():
 	if delay_time > 0:
 		yield(get_tree().create_timer(delay_time), "timeout")
 		
 	# Start the electricity cycle
 	_enable(true)
 	on_timer.start()
+	_initialised = true
 	
 
 func _enable(enable:bool):
 	electricity_area2d.visible = enable
 	electricity_area2d.monitoring = enable
+	sprite32.playing = enable and length == 32	
+	sprite64.playing = enable and length == 64
 		
 
 func _on_Area2D_body_entered(body):
@@ -67,3 +72,11 @@ func _on_OffTimer_timeout():
 	# Off cycle has finished
 	_enable(true)
 	on_timer.start()
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	_initialise()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	pass # Replace with function body.

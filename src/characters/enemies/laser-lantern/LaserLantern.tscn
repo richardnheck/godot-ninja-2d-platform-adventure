@@ -52,6 +52,12 @@ script = ExtResource( 2 )
 speed = 25
 start_distance = 40.0
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -9.53674e-06, -1.14441e-05 )
+scale = Vector2( 12.8, 12.8 )
+process_parent = true
+physics_process_parent = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 z_index = 5
 frames = SubResource( 3 )

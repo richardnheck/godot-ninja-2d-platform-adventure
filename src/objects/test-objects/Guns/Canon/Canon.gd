@@ -2,6 +2,7 @@ extends Gun
 
 onready var _sprite = $AnimatedSprite
 onready var _blast = $AnimatedSprite/CanonBlastAnimatedSprite
+onready var visibility_notifier := $VisibilityNotifier2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,9 +17,14 @@ func _ready():
 		_sprite.rotation_degrees = 180
 
 func _shoot():
+	# Shoot the bullet (this still needs to happen when off screen
+	# as it sets the timers and everything
 	._shoot()
-	set_sprite_animation("shoot")
-	_doBlast()
+	
+	# Only animate the canon and blast if on screen
+	if is_instance_valid(visibility_notifier) and visibility_notifier.is_on_screen():
+		set_sprite_animation("shoot")
+		_doBlast()
 	
 func set_sprite_animation(animation) -> void:
 	if is_instance_valid(_sprite):
@@ -37,3 +43,11 @@ func _on_CanonBlastAnimatedSprite_animation_finished():
 	_blast.stop()
 	_blast.frame = 0
 	_blast.visible = false
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	pass
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	pass

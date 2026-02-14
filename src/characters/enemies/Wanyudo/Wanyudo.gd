@@ -26,6 +26,9 @@ const SPEED:int = 65
 func _ready() -> void:
 	print("Wanyudo: _ready()")
 	
+	# We don't want the visibility notifier for the boss
+	visibility_notifier.queue_free()
+	
 	# override defaults
 	self.speed = self.SPEED    	# 75 = good speed   (100 = speed of player)
 	self.tween_transition_type = TransitionType.TRANS_LINEAR

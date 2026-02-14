@@ -112,8 +112,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 432, -144 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( -96, -1280 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -464,7 +464,7 @@ rotation = -1.57081
 [node name="MovingPlatformCave1H6" parent="Section3" instance=ExtResource( 17 )]
 position = Vector2( 704, -536 )
 
-[node name="Path2D" parent="Section3/MovingPlatformCave1H6" index="0"]
+[node name="Path2D" parent="Section3/MovingPlatformCave1H6" index="1"]
 curve = ExtResource( 16 )
 
 [node name="PathFollow2D" parent="Section3/MovingPlatformCave1H6/Path2D" index="0"]
@@ -473,10 +473,10 @@ position = Vector2( 8, 15.2735 )
 [node name="TrackSprite" parent="Section3/MovingPlatformCave1H6/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section3/MovingPlatformCave1H6" index="1"]
+[node name="KinematicBody2D" parent="Section3/MovingPlatformCave1H6" index="2"]
 position = Vector2( 8, 15.2734 )
 
-[node name="AnimationPlayer" parent="Section3/MovingPlatformCave1H6" index="2"]
+[node name="AnimationPlayer" parent="Section3/MovingPlatformCave1H6" index="3"]
 anims/PingPongPathFollow = SubResource( 5 )
 
 [node name="Section4" type="Node2D" parent="."]
@@ -547,7 +547,7 @@ tile_data = PoolIntArray( -524274, 2, 196608, -524273, 2, 196608, -524272, 2, 19
 [node name="MovingPlatformCave1H6" parent="Section5" instance=ExtResource( 17 )]
 position = Vector2( 160, -96 )
 
-[node name="Path2D" parent="Section5/MovingPlatformCave1H6" index="0"]
+[node name="Path2D" parent="Section5/MovingPlatformCave1H6" index="1"]
 curve = ExtResource( 16 )
 
 [node name="PathFollow2D" parent="Section5/MovingPlatformCave1H6/Path2D" index="0"]
@@ -556,16 +556,16 @@ position = Vector2( 8, 15.2735 )
 [node name="TrackSprite" parent="Section5/MovingPlatformCave1H6/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section5/MovingPlatformCave1H6" index="1"]
+[node name="KinematicBody2D" parent="Section5/MovingPlatformCave1H6" index="2"]
 position = Vector2( 8, 15.2734 )
 
-[node name="AnimationPlayer" parent="Section5/MovingPlatformCave1H6" index="2"]
+[node name="AnimationPlayer" parent="Section5/MovingPlatformCave1H6" index="3"]
 anims/PingPongPathFollow = SubResource( 1 )
 
 [node name="MovingPlatformCave1H7" parent="Section5" instance=ExtResource( 17 )]
 position = Vector2( 336, -248 )
 
-[node name="Path2D" parent="Section5/MovingPlatformCave1H7" index="0"]
+[node name="Path2D" parent="Section5/MovingPlatformCave1H7" index="1"]
 curve = ExtResource( 16 )
 
 [node name="PathFollow2D" parent="Section5/MovingPlatformCave1H7/Path2D" index="0"]
@@ -574,16 +574,16 @@ position = Vector2( 8, 15.2735 )
 [node name="TrackSprite" parent="Section5/MovingPlatformCave1H7/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section5/MovingPlatformCave1H7" index="1"]
+[node name="KinematicBody2D" parent="Section5/MovingPlatformCave1H7" index="2"]
 position = Vector2( 8, 15.2734 )
 
-[node name="AnimationPlayer" parent="Section5/MovingPlatformCave1H7" index="2"]
+[node name="AnimationPlayer" parent="Section5/MovingPlatformCave1H7" index="3"]
 anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="MovingPlatformCave2H2" parent="Section5" instance=ExtResource( 19 )]
 position = Vector2( 264, -152 )
 
-[node name="Path2D" parent="Section5/MovingPlatformCave2H2" index="0"]
+[node name="Path2D" parent="Section5/MovingPlatformCave2H2" index="1"]
 position = Vector2( 0, -8 )
 curve = SubResource( 4 )
 
@@ -595,10 +595,10 @@ offset = 0.0
 texture = ExtResource( 18 )
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section5/MovingPlatformCave2H2" index="1"]
+[node name="KinematicBody2D" parent="Section5/MovingPlatformCave2H2" index="2"]
 position = Vector2( -24, 0 )
 
-[node name="AnimationPlayer" parent="Section5/MovingPlatformCave2H2" index="2"]
+[node name="AnimationPlayer" parent="Section5/MovingPlatformCave2H2" index="3"]
 anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="enemies" type="Node2D" parent="Section5"]

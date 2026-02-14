@@ -66,7 +66,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 3544, -96 )
+position = Vector2( 3128, -176 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -608,7 +608,7 @@ position = Vector2( 728, -176 )
 [node name="MovingPlatformCave2H2" parent="Section5/platforms" instance=ExtResource( 19 )]
 position = Vector2( 296, -88 )
 
-[node name="Path2D" parent="Section5/platforms/MovingPlatformCave2H2" index="0"]
+[node name="Path2D" parent="Section5/platforms/MovingPlatformCave2H2" index="1"]
 position = Vector2( 0, -8 )
 curve = SubResource( 1 )
 
@@ -620,10 +620,10 @@ offset = 0.0
 texture = ExtResource( 20 )
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section5/platforms/MovingPlatformCave2H2" index="1"]
+[node name="KinematicBody2D" parent="Section5/platforms/MovingPlatformCave2H2" index="2"]
 position = Vector2( -24, 0 )
 
-[node name="AnimationPlayer" parent="Section5/platforms/MovingPlatformCave2H2" index="2"]
+[node name="AnimationPlayer" parent="Section5/platforms/MovingPlatformCave2H2" index="3"]
 anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="traps" type="Node2D" parent="Section5"]

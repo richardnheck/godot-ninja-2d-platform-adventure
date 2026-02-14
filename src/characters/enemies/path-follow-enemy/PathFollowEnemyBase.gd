@@ -45,6 +45,7 @@ onready var path2d := $Path2D
 onready var path_follow_2d := $Path2D/PathFollow2D
 onready var animated_sprite:AnimatedSprite = $Area2D/AnimatedSprite
 onready var oscillation_tween := $OscillationTween
+onready var visibility_notifier := $VisibilityNotifier2D
 
 onready var tween_values = [0, 1]
 
@@ -63,7 +64,6 @@ var _initialised = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:		
-	print("follow enemy base: ready start")
 	initial_position_y = self.position.y
 	tween.connect("tween_completed", self, "_on_tween_completed")
 	animated_sprite.playing = false
@@ -190,5 +190,12 @@ func _on_VisibilityNotifier2D_screen_entered():
 
 
 func _on_VisibilityNotifier2D_screen_exited():
+	# In some cases child scenes that inherit this scene don't want the 
+	# visiblity notifier (e.g. Wanyudo and Ao Andon), so they queue free it.
+	# We don't want the exit functionality to fire in this case
+	if visibility_notifier.is_queued_for_deletion():
+		return
+	
+	print(">>>>>>>>>>>>>>>>>>>>>screen exitted")
 	animated_sprite.playing = false
 	pause_following_path()

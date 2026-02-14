@@ -51,6 +51,10 @@ extents = Vector2( 32, 3 )
 [node name="ElectricityBeam" type="Node2D" groups=["trap"]]
 script = ExtResource( 3 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -3.8147e-06 )
+scale = Vector2( 12.8, 12.8 )
+
 [node name="ElectricityArea2D" type="Area2D" parent="."]
 
 [node name="ElectricityAnimatedSprite64" type="AnimatedSprite" parent="ElectricityArea2D"]
@@ -85,6 +89,8 @@ one_shot = true
 [node name="OffTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_entered" from="ElectricityArea2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="OnTimer" to="." method="_on_OnTimer_timeout"]
 [connection signal="timeout" from="OffTimer" to="." method="_on_OffTimer_timeout"]

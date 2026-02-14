@@ -102,7 +102,7 @@ animations = [ {
 [node name="AoAndon" groups=["boss", "enemy"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Area2D" parent="." index="1"]
+[node name="Area2D" parent="." index="2"]
 collision_layer = 16
 collision_mask = 33
 

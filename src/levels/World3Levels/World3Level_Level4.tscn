@@ -655,7 +655,7 @@ tile_data = PoolIntArray( -1638394, -1610612734, 196608, -1638379, -2147483646, 
 [node name="MovingPlatformCave1H6" parent="Section4/platforms" instance=ExtResource( 21 )]
 position = Vector2( 208, -304 )
 
-[node name="Path2D" parent="Section4/platforms/MovingPlatformCave1H6" index="0"]
+[node name="Path2D" parent="Section4/platforms/MovingPlatformCave1H6" index="1"]
 curve = ExtResource( 22 )
 
 [node name="PathFollow2D" parent="Section4/platforms/MovingPlatformCave1H6/Path2D" index="0"]
@@ -664,10 +664,10 @@ position = Vector2( 8, 15.2735 )
 [node name="TrackSprite" parent="Section4/platforms/MovingPlatformCave1H6/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Section4/platforms/MovingPlatformCave1H6" index="1"]
+[node name="KinematicBody2D" parent="Section4/platforms/MovingPlatformCave1H6" index="2"]
 position = Vector2( 8, 15.2734 )
 
-[node name="AnimationPlayer" parent="Section4/platforms/MovingPlatformCave1H6" index="2"]
+[node name="AnimationPlayer" parent="Section4/platforms/MovingPlatformCave1H6" index="3"]
 anims/PingPongPathFollow = SubResource( 1 )
 
 [node name="traps" type="Node2D" parent="Section4"]

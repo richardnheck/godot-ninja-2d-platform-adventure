@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://src/characters/enemies/Wanyudo/Wanyudo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/levels/World2Levels/BossPhaseTransitionArea2D.gd" type="Script" id=2]
@@ -102,6 +102,9 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -16, 4, 0, 0, 0, 0, 24, 4, 0, 0, 0, 0, 24, 52, 0, 0, 0, 0, -40, 52, 0, 0, 0, 0, -40, 4, 0, 0, 0, 0, -16, 4 )
 }
 
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 9.45755, 9.45755 )
+
 [sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -16, 4, 0, 0, 0, 0, -56, 4, 0, 0, 0, 0, -56, -44, 0, 0, 0, 0, 8, -44, 0, 0, 0, 0, 8, 4, 0, 0, 0, 0, -16, 4 )
@@ -171,7 +174,7 @@ __meta__ = {
 position = Vector2( 4224, 10 )
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 6345, 72 )
+position = Vector2( 5537, 80 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 1224.0
@@ -591,7 +594,7 @@ position = Vector2( 32, 56 )
 tween_transition_type = 0
 follow_path_type = 2
 
-[node name="Path2D" parent="Wanyudo" index="0"]
+[node name="Path2D" parent="Wanyudo" index="1"]
 position = Vector2( -40, 0 )
 scale = Vector2( 1.227, 1 )
 curve = ExtResource( 17 )
@@ -600,7 +603,7 @@ curve = ExtResource( 17 )
 position = Vector2( 0, 8 )
 offset = 0.0
 
-[node name="Area2D" parent="Wanyudo" index="1"]
+[node name="Area2D" parent="Wanyudo" index="2"]
 position = Vector2( -40, 8 )
 scale = Vector2( 1.227, 1 )
 
@@ -630,66 +633,78 @@ position = Vector2( 1936, 144 )
 [node name="Hyakume7" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 2576, 88 )
 
-[node name="Path2D" parent="Enemies/Hyakume7" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume7" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume7/Path2D" index="0"]
 position = Vector2( -15.2738, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume7" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume7" index="2"]
 position = Vector2( -15.2737, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume7/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume8" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 2592, 136 )
 
-[node name="Path2D" parent="Enemies/Hyakume8" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume8" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 4 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume8/Path2D" index="0"]
 position = Vector2( -16.7262, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume8" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume8" index="2"]
 position = Vector2( -16.7263, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume8/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume9" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 2672, 40 )
 
-[node name="Path2D" parent="Enemies/Hyakume9" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume9" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume9/Path2D" index="0"]
 position = Vector2( -15.2738, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume9" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume9" index="2"]
 position = Vector2( -15.2737, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume9/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume10" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 2688, 88 )
 
-[node name="Path2D" parent="Enemies/Hyakume10" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume10" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 5 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume10/Path2D" index="0"]
 position = Vector2( -16.7262, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume10" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume10" index="2"]
 position = Vector2( -16.7263, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume10/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="ZukaiKotsu" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 2776, -64 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu" index="1"]
 curve = SubResource( 6 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu/Path2D" index="0"]
 position = Vector2( -23.2741, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu" index="2"]
 position = Vector2( -23.2742, 0 )
 
 [node name="CloudPlatform" parent="Enemies" instance=ExtResource( 15 )]
@@ -706,13 +721,13 @@ horizontal_direction = -1
 position = Vector2( 4288, 80 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu2" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu2" index="1"]
 curve = SubResource( 6 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu2/Path2D" index="0"]
 position = Vector2( -23.2741, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu2" index="2"]
 position = Vector2( -23.2739, 0 )
 
 [node name="Canon4" parent="Enemies" instance=ExtResource( 18 )]
@@ -739,57 +754,69 @@ chains = 2
 position = Vector2( 5008, 72 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/Hyakume11" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume11" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume11/Path2D" index="0"]
 position = Vector2( -15.2738, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume11" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume11" index="2"]
 position = Vector2( -15.2739, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume11/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume12" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 5024, 120 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/Hyakume12" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume12" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 4 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume12/Path2D" index="0"]
 position = Vector2( -16.7262, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume12" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume12" index="2"]
 position = Vector2( -16.7261, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume12/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume13" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 5312, 72 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/Hyakume13" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume13" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume13/Path2D" index="0"]
 position = Vector2( -15.2738, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume13" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume13" index="2"]
 position = Vector2( -15.2739, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume13/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="Hyakume14" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 5328, 120 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/Hyakume14" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume14" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 5 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume14/Path2D" index="0"]
 position = Vector2( -16.7262, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume14" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume14" index="2"]
 position = Vector2( -16.7261, 0 )
+
+[node name="CollisionShape2D" parent="Enemies/Hyakume14/Area2D" index="0"]
+shape = SubResource( 28 )
 
 [node name="FireBallSpinner5" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 5448, 120 )
@@ -800,7 +827,7 @@ length = 2
 [node name="MovingPlatformCave2H" parent="Enemies" instance=ExtResource( 20 )]
 position = Vector2( 5800, 104 )
 
-[node name="Path2D" parent="Enemies/MovingPlatformCave2H" index="0"]
+[node name="Path2D" parent="Enemies/MovingPlatformCave2H" index="1"]
 position = Vector2( 0, -8 )
 curve = SubResource( 7 )
 
@@ -811,16 +838,16 @@ offset = 0.0
 [node name="TrackSprite" parent="Enemies/MovingPlatformCave2H/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Enemies/MovingPlatformCave2H" index="1"]
+[node name="KinematicBody2D" parent="Enemies/MovingPlatformCave2H" index="2"]
 position = Vector2( -24, 0 )
 
-[node name="AnimationPlayer" parent="Enemies/MovingPlatformCave2H" index="2"]
+[node name="AnimationPlayer" parent="Enemies/MovingPlatformCave2H" index="3"]
 anims/PingPongPathFollow = SubResource( 8 )
 
 [node name="MovingPlatformCave2H2" parent="Enemies" instance=ExtResource( 20 )]
 position = Vector2( 5912, 104 )
 
-[node name="Path2D" parent="Enemies/MovingPlatformCave2H2" index="0"]
+[node name="Path2D" parent="Enemies/MovingPlatformCave2H2" index="1"]
 position = Vector2( 0, -8 )
 curve = SubResource( 7 )
 
@@ -831,10 +858,10 @@ offset = 0.0
 [node name="TrackSprite" parent="Enemies/MovingPlatformCave2H2/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="Enemies/MovingPlatformCave2H2" index="1"]
+[node name="KinematicBody2D" parent="Enemies/MovingPlatformCave2H2" index="2"]
 position = Vector2( -24, 0 )
 
-[node name="AnimationPlayer" parent="Enemies/MovingPlatformCave2H2" index="2"]
+[node name="AnimationPlayer" parent="Enemies/MovingPlatformCave2H2" index="3"]
 anims/PingPongPathFollow = SubResource( 9 )
 
 [node name="FireBallSpinner14" parent="Enemies" instance=ExtResource( 5 )]

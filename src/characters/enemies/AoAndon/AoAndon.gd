@@ -34,6 +34,9 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	rng.randomize()
 	
+	# We don't want the visibility notifier for the boss
+	visibility_notifier.queue_free()
+	
 	face_animated_sprite.animation = "default"
 	
 	# override defaults
