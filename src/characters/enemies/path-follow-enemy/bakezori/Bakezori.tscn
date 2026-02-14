@@ -51,21 +51,20 @@ speed = 70.0
 path_length = 100
 orientation = 0
 
-[node name="Path2D" parent="." index="0"]
+[node name="Path2D" parent="." index="1"]
 curve = SubResource( 15 )
 
 [node name="PathFollow2D" parent="Path2D" index="0"]
 position = Vector2( -49.2746, 0 )
 
-[node name="Area2D" parent="." index="1"]
+[node name="Area2D" parent="." index="2"]
 position = Vector2( -49.2746, 0 )
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" parent="Area2D" index="1"]
 position = Vector2( 0.274075, 0.5 )
 shape = SubResource( 14 )
 
-[node name="AnimatedSprite" parent="Area2D" index="1"]
+[node name="AnimatedSprite" parent="Area2D" index="2"]
 z_index = 10
 frames = SubResource( 5 )
-playing = true
 flip_h = true
