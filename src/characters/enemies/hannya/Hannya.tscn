@@ -77,6 +77,10 @@ __meta__ = {
 }
 direction = -1
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 self_modulate = Color( 0.989616, 0.752514, 0.747322, 1 )
 position = Vector2( 2.38419e-07, 0 )

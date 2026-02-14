@@ -149,7 +149,7 @@ __meta__ = {
 position = Vector2( 3584, 9 )
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 6608, 112 )
+position = Vector2( 1952, -120 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -527,7 +527,6 @@ position = Vector2( 2240, -32 )
 
 [node name="Bakezori" parent="Section1/enemies" instance=ExtResource( 18 )]
 position = Vector2( 2616, -186 )
-speed = 70.0
 
 [node name="Hannya2" parent="Section1/enemies" instance=ExtResource( 22 )]
 position = Vector2( 2768, -16 )
@@ -752,7 +751,6 @@ path_length = 80
 
 [node name="Bakezori" parent="Section3/enemies" instance=ExtResource( 18 )]
 position = Vector2( 1355, -139 )
-speed = 70.0
 path_length = 64
 
 [node name="ChochinObake2" parent="Section3/enemies" instance=ExtResource( 27 )]

@@ -73,7 +73,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 856, -1848 )
+position = Vector2( 386.094, -1189.89 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -690,7 +690,6 @@ position = Vector2( 216, -344 )
 
 [node name="Bakezori" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( 216, -443 )
-speed = 70.0
 path_length = 70
 
 [node name="Section5" type="Node2D" parent="."]
@@ -740,7 +739,6 @@ direction = 1
 
 [node name="Bakezori" parent="Section5/enemies" instance=ExtResource( 9 )]
 position = Vector2( 136, -27 )
-speed = 70.0
 path_length = 160
 
 [node name="ZenchuuNoHikari" parent="Section5/enemies" instance=ExtResource( 13 )]
@@ -748,7 +746,6 @@ position = Vector2( 192, -144 )
 
 [node name="Bakezori2" parent="Section5/enemies" instance=ExtResource( 9 )]
 position = Vector2( 251, -235 )
-speed = 70.0
 path_length = 64
 
 [node name="ChochinObake" parent="Section5/enemies" instance=ExtResource( 17 )]

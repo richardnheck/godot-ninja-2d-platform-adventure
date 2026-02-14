@@ -1,3 +1,4 @@
+class_name Shirime
 extends KinematicBody2D
 
 onready var animated_sprite = $AnimatedSprite
@@ -21,8 +22,6 @@ var can_change_direction = true   # Indicates whether enemy can change direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Boss Ready")
-	
 	ground_global_position = global_position
 	
 	set_state(STATE_IDLE)

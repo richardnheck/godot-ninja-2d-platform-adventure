@@ -66,13 +66,14 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 14.3291, 10.1046 )
 
-[node name="KamonKey" type="AnimatedSprite" groups=[
-"key",
-]]
+[node name="KamonKey" type="AnimatedSprite" groups=["key"]]
 frames = SubResource( 14 )
-frame = 3
 playing = true
 script = ExtResource( 5 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

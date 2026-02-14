@@ -33,6 +33,10 @@ extents = Vector2( 32, 5 )
 [node name="MegamanElectricity" type="Node2D" groups=["trap"]]
 script = ExtResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 playing = true

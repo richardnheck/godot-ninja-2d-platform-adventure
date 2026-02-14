@@ -47,7 +47,7 @@ animations = [ {
 
 [node name="Bakezori" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-speed = 80.0
+speed = 70.0
 path_length = 100
 orientation = 0
 

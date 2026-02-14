@@ -99,6 +99,12 @@ tracks/0/keys = {
 [node name="TofuKozo" type="Area2D" groups=["enemy"]]
 script = ExtResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, -20 )
+scale = Vector2( 4, 4.4 )
+process_parent = true
+physics_process_parent = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3, -22 )
 shape = SubResource( 3 )

@@ -1,4 +1,4 @@
-tool
+
 extends Node2D
 
 export (int, 32,64) var length = 64

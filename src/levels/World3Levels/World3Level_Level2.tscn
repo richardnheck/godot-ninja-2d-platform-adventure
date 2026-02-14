@@ -112,7 +112,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 432, -144 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -325,7 +325,6 @@ format = 1
 
 [node name="Bakezori" parent="Section1/enemies" instance=ExtResource( 9 )]
 position = Vector2( -48, 133 )
-speed = 70.0
 
 [node name="KasaObake" parent="Section1" instance=ExtResource( 5 )]
 position = Vector2( 336, 32 )
@@ -393,7 +392,6 @@ position = Vector2( -104, -200 )
 
 [node name="Bakezori" parent="Section2/enemies" instance=ExtResource( 9 )]
 position = Vector2( -204, -219 )
-speed = 70.0
 
 [node name="TofuKozo" parent="Section2/enemies" instance=ExtResource( 15 )]
 position = Vector2( -464, -304 )
@@ -503,17 +501,14 @@ tile_data = PoolIntArray( -917541, -1610612734, 196608, -852005, -1610612734, 19
 
 [node name="Bakezori" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( -240, -123 )
-speed = 70.0
 path_length = 80
 
 [node name="Bakezori3" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( -496, -219 )
-speed = 70.0
 path_length = 80
 
 [node name="Bakezori2" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( -367, -171 )
-speed = 70.0
 path_length = 80
 orientation = 1
 
@@ -622,7 +617,6 @@ direction = -1
 
 [node name="Bakezori" parent="Section5/enemies" instance=ExtResource( 9 )]
 position = Vector2( 443, -235 )
-speed = 70.0
 
 [node name="ChochinObakeShooter" parent="Section5/enemies" instance=ExtResource( 20 )]
 position = Vector2( 624, -328 )

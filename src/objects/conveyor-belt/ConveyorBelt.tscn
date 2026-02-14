@@ -12,7 +12,7 @@ extents = Vector2( 8, 8 )
 resource_local_to_scene = true
 flags = 2
 atlas = ExtResource( 2 )
-region = Rect2( -8567.93, 0, 16, 16 )
+region = Rect2( -10816.2, 0, 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 resource_local_to_scene = true

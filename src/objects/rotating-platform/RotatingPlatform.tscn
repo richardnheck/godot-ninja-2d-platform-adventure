@@ -8,6 +8,12 @@ script = ExtResource( 1 )
 rotation_style = 0
 chains = 2
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 2.86102e-06, -3.99999 )
+scale = Vector2( 16, 15.6 )
+process_parent = true
+physics_process_parent = true
+
 [node name="Base" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )

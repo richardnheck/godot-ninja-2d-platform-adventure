@@ -335,7 +335,6 @@ tile_data = PoolIntArray( 655434, 2, 196608, 655435, 2, 196608, 655436, 2, 19660
 
 [node name="Bakezori" parent="Section2/enemies" instance=ExtResource( 9 )]
 position = Vector2( 624, 85 )
-speed = 70.0
 
 [node name="ChochinObakeShooter" parent="Section2/enemies" instance=ExtResource( 4 )]
 position = Vector2( 312, 8 )
@@ -397,7 +396,6 @@ tile_data = PoolIntArray( 65632, 2, 196608 )
 
 [node name="Bakezori" parent="Section3/enemies" instance=ExtResource( 9 )]
 position = Vector2( 1024, 85 )
-speed = 70.0
 
 [node name="TofuKozo" parent="Section3/enemies" instance=ExtResource( 13 )]
 position = Vector2( 1319, 16 )
@@ -464,7 +462,6 @@ direction = -1
 
 [node name="Bakezori" parent="Section4/enemies" instance=ExtResource( 9 )]
 position = Vector2( 480, 85 )
-speed = 70.0
 
 [node name="traps" type="Node2D" parent="Section4"]
 
