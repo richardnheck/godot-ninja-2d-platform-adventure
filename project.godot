@@ -580,21 +580,23 @@ GameState="*res://src/settings/GameState.gd"
 Time="*res://src/utility/Time.gd"
 Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
+IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 
 [display]
 
+window/integer_resolution_handler/base_height=180
 window/size/width=320
 window/size/height=180
 window/size/always_on_top=true
 window/size/test_width=960
 window/size/test_height=540
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="keep_height"
 window/stretch=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/LDtk-Importer/plugin.cfg", "res://addons/project_map/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/LDtk-Importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg", "res://addons/project_map/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
 
 [importer_defaults]
 
