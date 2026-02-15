@@ -491,17 +491,17 @@ tile_data = PoolIntArray( -917443, 1, 0, -917442, 1, 0, -917441, 1, 0, -917440, 
 position = Vector2( 2, 0 )
 
 [node name="round-stalecmite" type="Sprite" parent="Stalecmites"]
-position = Vector2( -71.9449, 212.546 )
+position = Vector2( -78, 212.546 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="round-stalecmite2" type="Sprite" parent="Stalecmites"]
-position = Vector2( -65.9449, 228.546 )
+position = Vector2( -66, 228.546 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="round-stalecmite3" type="Sprite" parent="Stalecmites"]
-position = Vector2( -57.9449, 238.546 )
+position = Vector2( -58, 238 )
 texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
@@ -596,19 +596,19 @@ texture = ExtResource( 15 )
 offset = Vector2( -0.055069, 3.33484 )
 
 [node name="round-stalecmite5" type="Sprite" parent="Stalecmites"]
-position = Vector2( 190.497, 233 )
+position = Vector2( 190, 233 )
 texture = ExtResource( 15 )
-offset = Vector2( -0.055069, 3.33484 )
+offset = Vector2( 0, 3 )
 
 [node name="round-stalecmite6" type="Sprite" parent="Stalecmites"]
-position = Vector2( 171, 240.335 )
+position = Vector2( 171, 240 )
 texture = ExtResource( 15 )
-offset = Vector2( -0.055069, 3.33484 )
+offset = Vector2( 0, 3 )
 
 [node name="round-stalecmite15" type="Sprite" parent="Stalecmites"]
-position = Vector2( 179.497, 235 )
+position = Vector2( 179, 235 )
 texture = ExtResource( 15 )
-offset = Vector2( -0.055069, 3.33484 )
+offset = Vector2( 0, 3 )
 
 [node name="round-stalecmite7" type="Sprite" parent="Stalecmites"]
 position = Vector2( 272, 192 )
