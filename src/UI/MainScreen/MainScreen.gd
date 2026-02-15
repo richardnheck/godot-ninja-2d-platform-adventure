@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var main_play_button := $Control/VBoxContainer/MainPlayButton
 onready var quit_button := $Control/VBoxContainer/QuitButton
-onready var title = $Control/TitleScreenText
+onready var title = $"%TitleScreenText"
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
 var settings = preload("res://src/UI/Settings/Settings.tscn")
@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _start_tween():
 	if tween_values[0] == null:
-		tween_values = [title.global_position, Vector2(title.global_position.x, title.global_position.y - 8)]
+		tween_values = [title.position, Vector2(title.position.x, title.position.y - 8)]
 	title_tween.interpolate_property(title, "position", tween_values[0], tween_values[1], 2, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	title_tween.start()
 
