@@ -2,14 +2,14 @@
 # Game End Cut Scene
 ##################################
 class_name GameEndCutScene
-extends Node
+extends Control
 
 onready var animation_player = $AnimationPlayer
 onready var cut_scene_base = $CutSceneBase
-onready var dialog1 = $MainControl/DialogBox1
-onready var dialog2 = $MainControl/DialogBox2
-onready var dialog3 = $MainControl/DialogBox3
-onready var dialog4 = $MainControl/DialogBox4
+onready var dialog1 = $"%DialogBox1"
+onready var dialog2 = $"%DialogBox2"
+onready var dialog3 = $"%DialogBox3"
+onready var dialog4 = $"%DialogBox4"
 
 signal continue_sig
 
