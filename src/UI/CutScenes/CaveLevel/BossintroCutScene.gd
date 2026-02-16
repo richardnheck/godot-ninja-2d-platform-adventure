@@ -2,7 +2,7 @@
 # World 1 - Boss Intro Cut Scene
 ##################################
 class_name World1BossIntroCutScene
-extends Node
+extends Control
 
 
 onready var cut_scene_base = $CutSceneBase

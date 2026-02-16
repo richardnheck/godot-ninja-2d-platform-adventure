@@ -429,7 +429,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/wanyudo-mini/WanyudoMiniSpawner.gd"
 }, {
-"base": "Node",
+"base": "Control",
 "class": "World1BossIntroCutScene",
 "language": "GDScript",
 "path": "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.gd"

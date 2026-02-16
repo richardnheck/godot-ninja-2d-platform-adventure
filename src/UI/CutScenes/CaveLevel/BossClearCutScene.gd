@@ -77,8 +77,7 @@ func do_ending() -> void:
 	yield(get_tree().create_timer(2.8), "timeout")
 	Game_AudioManager.stop_bgm()
 	yield(get_tree().create_timer(1), "timeout")
-	# Show the temporary end scene for the demo		
-	fade_screen.go_to_scene("res://src/UI/TemporaryEndScene.tscn")
+	cut_scene_base.goto_next_scene()
 		
 		
 func show_text() -> void:
