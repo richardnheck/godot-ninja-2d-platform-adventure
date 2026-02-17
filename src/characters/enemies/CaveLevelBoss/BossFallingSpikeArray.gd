@@ -15,7 +15,7 @@ func trigger() -> void:
 	print("trigger spikes")
 	var falling_spikes = get_tree().get_nodes_in_group("falling_spike")
 	for falling_spike in falling_spikes:
-		if(falling_spike):
+		if falling_spike and is_instance_valid(falling_spike) and !falling_spike.is_queued_for_deletion():
 			falling_spike.trigger()	
 			yield(get_tree().create_timer(0.3), "timeout")
 	
