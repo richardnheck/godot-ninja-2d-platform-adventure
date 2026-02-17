@@ -1,5 +1,5 @@
 class_name LevelSelect
-extends CanvasLayer
+extends Control
 
 
 onready var buttonContainer = $Control/LevelButtonsContainer

@@ -711,8 +711,17 @@ tracks/1/keys = {
 [node name="StoryIntro" type="Node"]
 script = ExtResource( 8 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -896.0
+margin_top = -18.0
+margin_right = 1240.0
+margin_bottom = 10.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 160, 88 )
+position = Vector2( 160, 90 )
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -822,6 +831,12 @@ position = Vector2( -45, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StopPointArea2D"]
 position = Vector2( 262, 135.165 )
 shape = SubResource( 14 )
+
+[node name="ColorRectBlackEdgeLeft" type="ColorRect" parent="."]
+margin_left = -100.0
+margin_top = -56.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 [connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
