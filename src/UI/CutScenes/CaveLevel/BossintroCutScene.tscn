@@ -276,21 +276,17 @@ more danger that's for sure.
 Oh well...onwards to the castle.  "
 
 [node name="DialogBox3" type="Sprite" parent="MainControl"]
-visible = false
 position = Vector2( 266, 105 )
 texture = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="MainControl/DialogBox3"]
-margin_left = -20.242
-margin_top = -23.4594
-margin_right = 473.758
-margin_bottom = 39.5406
+margin_left = -29.0
+margin_top = -22.0
+margin_right = 465.0
+margin_bottom = 41.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 9 )
-text = "Mummy!!!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Onigawara!"
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
