@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/Settings/controls.png" type="Texture" id=2]
@@ -9,52 +9,212 @@
 [ext_resource path="res://src/UI/Settings/Settings.gd" type="Script" id=7]
 [ext_resource path="res://src/UI/Controls/Settings/SoundButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=11]
 
-[node name="Settings" type="Node2D"]
+[node name="Settings" type="Control"]
 script = ExtResource( 7 )
 
 [node name="FrameSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 
-[node name="ControlsSprite" type="Sprite" parent="."]
-position = Vector2( 11, 79 )
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+
+[node name="GameSettings" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DisplaySettings" type="Control" parent="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 276.0
+margin_bottom = 157.0
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 11 )
+tab_align = 0
+
+[node name="Game" type="Control" parent="Control/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 24.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/Game"]
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 190.0
+margin_bottom = 53.0
+alignment = 1
+
+[node name="LevelCheckpointsContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
+margin_right = 191.0
+margin_bottom = 24.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer"]
+margin_left = 40.0
+margin_top = 3.0
+margin_right = 137.0
+margin_bottom = 20.0
+text = "Level Checkpoints"
+
+[node name="LevelCheckpointsCheckButton" type="CheckButton" parent="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer"]
+margin_left = 141.0
+margin_right = 191.0
+margin_bottom = 24.0
+
+[node name="BossLevelCheckpointsContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
+margin_top = 28.0
+margin_right = 191.0
+margin_bottom = 52.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer"]
+margin_left = 14.0
+margin_top = 3.0
+margin_right = 137.0
+margin_bottom = 20.0
+text = "Boss Level Checkpoints"
+
+[node name="BossLevelCheckpointsCheckButton" type="CheckButton" parent="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer"]
+margin_left = 141.0
+margin_right = 191.0
+margin_bottom = 24.0
+
+[node name="ShowLevelNamesContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
+margin_top = 56.0
+margin_right = 191.0
+margin_bottom = 80.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer"]
+margin_left = 43.0
+margin_top = 3.0
+margin_right = 137.0
+margin_bottom = 20.0
+text = "Show level names"
+
+[node name="ShowLevelNamesCheckButton" type="CheckButton" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer"]
+margin_left = 141.0
+margin_right = 191.0
+margin_bottom = 24.0
+
+[node name="Display" type="Control" parent="Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 24.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Controls" type="Control" parent="Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 24.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="ControlsSprite" type="Sprite" parent="Control/TabContainer/Controls"]
+position = Vector2( 0, 12 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TouchScreenControlsOnOffButton" parent="Control/TabContainer/Controls" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_top = 72.0
+margin_right = 112.0
+margin_bottom = 96.0
 
-[node name="TouchScreenControlsOnOffButton" parent="Control" instance=ExtResource( 3 )]
-margin_left = 220.291
-margin_top = 133.72
-margin_right = 238.291
-margin_bottom = 151.72
-
-[node name="SoundButton" parent="Control" instance=ExtResource( 8 )]
-margin_left = 114.759
-margin_top = 34.45
-margin_right = 132.759
-margin_bottom = 53.45
-
-[node name="MusicButton" parent="Control" instance=ExtResource( 6 )]
-margin_left = 143.4
-margin_top = 34.45
-margin_right = 161.4
-margin_bottom = 53.45
-
-[node name="CloseButton" parent="Control" instance=ExtResource( 4 )]
-anchor_left = 1.0
+[node name="Audio" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
-margin_left = 213.768
-margin_top = 9.54127
-margin_right = 253.768
-margin_bottom = 49.5413
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 24.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/Audio"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.0
+margin_right = -33.0
+
+[node name="SoundFxContainer" type="HBoxContainer" parent="Control/TabContainer/Audio/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer"]
+margin_left = 23.0
+margin_top = 3.0
+margin_right = 75.0
+margin_bottom = 20.0
+text = "Sound Fx"
+
+[node name="SoundButton" parent="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer" instance=ExtResource( 8 )]
+margin_left = 79.0
+margin_right = 97.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 16, 16 )
+
+[node name="MusicContainer" type="HBoxContainer" parent="Control/TabContainer/Audio/VBoxContainer"]
+margin_top = 28.0
+margin_right = 97.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 0, 24 )
+alignment = 2
+
+[node name="Label" type="Label" parent="Control/TabContainer/Audio/VBoxContainer/MusicContainer"]
+margin_left = 39.0
+margin_top = 3.0
+margin_right = 75.0
+margin_bottom = 20.0
+text = "Music"
+
+[node name="MusicButton" parent="Control/TabContainer/Audio/VBoxContainer/MusicContainer" instance=ExtResource( 6 )]
+margin_left = 79.0
+margin_right = 97.0
+margin_bottom = 24.0
+
+[node name="Extras" type="Control" parent="Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 24.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 7.0
+margin_top = 137.0
+margin_right = 275.0
+margin_bottom = 156.0
+
+[node name="CloseButton" parent="Control/CenterContainer" instance=ExtResource( 4 )]
+margin_left = 125.0
+margin_right = 143.0
+margin_bottom = 19.0
 
 [node name="CheatButton" type="Button" parent="."]
 margin_left = 2.40508
@@ -69,5 +229,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Control/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CheatButton" to="." method="_on_CheatButton_pressed"]
