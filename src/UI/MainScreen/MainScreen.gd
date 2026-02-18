@@ -5,12 +5,12 @@ onready var quit_button := $Control/VBoxContainer/QuitButton
 onready var title = $"%TitleScreenText"
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
-var settings = preload("res://src/UI/Settings/Settings.tscn")
+onready var settings = $"%Settings"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Settings.visible = false
+	settings.visible = false
 	quit_button.visible = not Settings.is_html5_build()
 	
 	if GameState.get_has_watched_story_intro():
@@ -34,7 +34,7 @@ func _start_tween():
 
 func _on_SettingsButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
-	$Settings.visible = true 
+	settings.visible = true 
 
 
 func _on_TitleTween_tween_completed(object: Object, key: NodePath) -> void:

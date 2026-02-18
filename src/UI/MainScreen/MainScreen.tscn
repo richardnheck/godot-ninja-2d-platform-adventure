@@ -82,9 +82,10 @@ unique_name_in_owner = true
 texture = ExtResource( 9 )
 offset = Vector2( 0, -10 )
 
-[node name="Settings" parent="." instance=ExtResource( 8 )]
+[node name="Settings" parent="Control/CenterContainer" instance=ExtResource( 8 )]
+unique_name_in_owner = true
 visible = false
-position = Vector2( 19, 6 )
+position = Vector2( -141, -84 )
 
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
