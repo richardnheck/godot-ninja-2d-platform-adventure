@@ -181,5 +181,7 @@ func get_current_world_level_select_scene() -> String:
 
 # Get the world based on the specified level index
 func get_world(level_index) -> int:
-	var level = get_levels()[level_index]
+	var max_index = levelsArray.size() - 1
+	var index = level_index if level_index <= max_index else max_index
+	var level = get_levels()[index]
 	return level["world"]
