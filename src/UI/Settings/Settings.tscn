@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
-[ext_resource path="res://src/UI/Settings/controls.png" type="Texture" id=2]
 [ext_resource path="res://src/UI/Controls/Settings/TouchScreenControlsOnOffButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/Controls/Settings/CloseButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=5]
@@ -11,6 +10,9 @@
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/UI/Controls/Settings/OnOffButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/UI/Tutorial/KeyboardControlsPane.png" type="Texture" id=12]
+[ext_resource path="res://src/UI/Tutorial/MobileControlsPane.png" type="Texture" id=13]
+[ext_resource path="res://src/UI/Settings/gamepad-controls.png" type="Texture" id=14]
 
 [node name="Settings" type="Control"]
 script = ExtResource( 7 )
@@ -35,16 +37,15 @@ margin_bottom = 40.0
 [node name="TabContainer" type="TabContainer" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 276.0
-margin_bottom = 157.0
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 275.0
+margin_bottom = 156.0
 theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 11 )
 tab_align = 0
 
 [node name="Game" type="Control" parent="Control/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -62,18 +63,17 @@ alignment = 1
 [node name="LevelCheckpointsContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
 margin_right = 191.0
 margin_bottom = 18.0
-alignment = 2
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer"]
-margin_left = 72.0
-margin_right = 169.0
+margin_right = 125.0
 margin_bottom = 17.0
+rect_min_size = Vector2( 125, 0 )
 text = "Level Checkpoints"
 
 [node name="LevelCheckpointsOnOffButton" parent="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer" instance=ExtResource( 10 )]
 unique_name_in_owner = true
-margin_left = 173.0
-margin_right = 191.0
+margin_left = 129.0
+margin_right = 147.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 16, 16 )
 
@@ -81,43 +81,42 @@ rect_min_size = Vector2( 16, 16 )
 margin_top = 22.0
 margin_right = 191.0
 margin_bottom = 40.0
-alignment = 2
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer"]
-margin_left = 46.0
-margin_right = 169.0
+margin_right = 125.0
 margin_bottom = 17.0
+rect_min_size = Vector2( 125, 0 )
 text = "Boss Level Checkpoints"
 
 [node name="BossLevelCheckpointsOnOffButton" parent="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer" instance=ExtResource( 10 )]
 unique_name_in_owner = true
-margin_left = 173.0
-margin_right = 191.0
+margin_left = 129.0
+margin_right = 147.0
 margin_bottom = 18.0
 
 [node name="ShowLevelNamesContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
 margin_top = 44.0
 margin_right = 191.0
 margin_bottom = 62.0
-alignment = 2
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer"]
-margin_left = 75.0
-margin_right = 169.0
+margin_right = 125.0
 margin_bottom = 17.0
+rect_min_size = Vector2( 125, 0 )
 text = "Show level names"
 
 [node name="ShowLevelNamesOnOffButton" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer" instance=ExtResource( 10 )]
 unique_name_in_owner = true
-margin_left = 173.0
-margin_right = 191.0
+margin_left = 129.0
+margin_right = 147.0
 margin_bottom = 18.0
 
 [node name="Display" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = 24.0
+margin_top = 25.0
 margin_right = -5.0
 margin_bottom = -5.0
 
@@ -127,19 +126,37 @@ margin_bottom = 105.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainer/Display/VBoxContainer"]
 margin_right = 260.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 
 [node name="Label" type="Label" parent="Control/TabContainer/Display/VBoxContainer/HBoxContainer"]
-margin_top = 1.0
-margin_right = 61.0
+margin_right = 110.0
 margin_bottom = 18.0
-text = "Resolution"
+rect_min_size = Vector2( 110, 0 )
+text = "Window Resolution"
 
 [node name="ResolutionOptionButton" type="OptionButton" parent="Control/TabContainer/Display/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 65.0
-margin_right = 93.0
-margin_bottom = 20.0
+margin_left = 114.0
+margin_right = 139.0
+margin_bottom = 18.0
+theme = ExtResource( 5 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/TabContainer/Display/VBoxContainer"]
+margin_top = 22.0
+margin_right = 260.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/TabContainer/Display/VBoxContainer/HBoxContainer2"]
+margin_right = 110.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 110, 0 )
+text = "Window Type"
+
+[node name="WindowTypeOptionButton" type="OptionButton" parent="Control/TabContainer/Display/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 139.0
+margin_bottom = 18.0
 theme = ExtResource( 5 )
 
 [node name="Controls" type="Control" parent="Control/TabContainer"]
@@ -147,20 +164,45 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = 24.0
+margin_top = 25.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="ControlsSprite" type="Sprite" parent="Control/TabContainer/Controls"]
-position = Vector2( 0, 12 )
-texture = ExtResource( 2 )
-centered = false
+[node name="Label3" type="Label" parent="Control/TabContainer/Controls"]
+margin_left = 22.0
+margin_right = 77.0
+margin_bottom = 18.0
+text = "Keyboard"
+
+[node name="KeyboardControls" type="Sprite" parent="Control/TabContainer/Controls/Label3"]
+position = Vector2( 29, 40 )
+texture = ExtResource( 12 )
+
+[node name="Label2" type="Label" parent="Control/TabContainer/Controls"]
+margin_left = 109.0
+margin_right = 180.0
+margin_bottom = 18.0
+text = "Touchscreen"
+
+[node name="TouchScreenControls" type="Sprite" parent="Control/TabContainer/Controls/Label2"]
+position = Vector2( 37, 42 )
+texture = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="Control/TabContainer/Controls"]
+margin_left = 198.0
+margin_right = 253.0
+margin_bottom = 18.0
+text = "Gamepad"
+
+[node name="ControllerControls" type="Sprite" parent="Control/TabContainer/Controls/Label"]
+position = Vector2( 29, 36 )
+texture = ExtResource( 14 )
 
 [node name="TouchScreenControlsOnOffButton" parent="Control/TabContainer/Controls" instance=ExtResource( 3 )]
-margin_left = 88.0
-margin_top = 72.0
-margin_right = 112.0
-margin_bottom = 96.0
+margin_left = 132.0
+margin_top = 63.0
+margin_right = 150.0
+margin_bottom = 81.0
 
 [node name="Audio" type="Control" parent="Control/TabContainer"]
 visible = false
@@ -256,5 +298,6 @@ __meta__ = {
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer/BossLevelCheckpointsOnOffButton" to="." method="_on_BossLevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer/ShowLevelNamesOnOffButton" to="." method="_on_ShowLevelNamesOnOffButton_button_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
+[connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CheatButton" to="." method="_on_CheatButton_pressed"]

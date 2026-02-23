@@ -7,6 +7,7 @@ onready var level_checkpoints_button := $"%LevelCheckpointsOnOffButton"
 onready var boss_level_checkpoints_button := $"%BossLevelCheckpointsOnOffButton"
 onready var show_level_names_button := $"%ShowLevelNamesOnOffButton"
 onready var resolution_option_button := $"%ResolutionOptionButton"
+onready var window_type_option_button := $"%WindowTypeOptionButton"
 
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
@@ -15,16 +16,30 @@ var resolutions = {
 	"1280x720": Vector2(1280, 720),   # 720p
 	"960x540": Vector2(960, 540),
 	"640x360": Vector2(640, 360),
-	"320x180": Vector2(320, 180)   # game base resolution
+	#"320x180": Vector2(320, 180)   # game base resolution
 }
+
+const TYPE_WINDOW = "Windowed"
+const TYPE_BORDERLESS_WINDOW = "Borderless Window"
+const TYPE_FULLSCREEN = "Fullscreen"
+
+var window_types = [
+	TYPE_WINDOW,
+	TYPE_BORDERLESS_WINDOW,
+	TYPE_FULLSCREEN
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_checkpoints_button.set_on(Settings.get_level_checkpoints_enabled())
 	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
 	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
+	
 	_add_resolutions()
 	_update_selected_resolution()
+	
+	_add_window_types()
+	_update_selected_window_type()
 
 
 func _on_CloseButton_pressed() -> void:
@@ -74,3 +89,31 @@ func _update_selected_resolution():
 	var resolutions_index = resolutions.keys().find(window_size_string)
 	print("index", resolutions_index)
 	resolution_option_button.selected = resolutions_index 
+
+
+func _on_WindowTypeOptionButton_item_selected(index):
+	var selected_window_type = window_type_option_button.get_item_text(index)
+	if selected_window_type == TYPE_FULLSCREEN:
+		OS.window_fullscreen = true
+	elif selected_window_type == TYPE_WINDOW:
+		OS.window_fullscreen = false
+		OS.window_borderless = false
+	elif selected_window_type == TYPE_BORDERLESS_WINDOW:
+		OS.window_fullscreen = false
+		OS.window_borderless = true
+	
+	resolution_option_button.disabled = selected_window_type == TYPE_FULLSCREEN
+
+func _add_window_types():
+	for window_type in window_types:
+		window_type_option_button.add_item(window_type)
+	
+func _update_selected_window_type():
+	var selected_window_type = TYPE_WINDOW
+	if OS.window_fullscreen:
+		selected_window_type = TYPE_FULLSCREEN
+	elif OS.window_borderless:
+		selected_window_type = TYPE_BORDERLESS_WINDOW
+		
+	window_type_option_button.selected = window_types.find(selected_window_type)
+	resolution_option_button.disabled = selected_window_type == TYPE_FULLSCREEN

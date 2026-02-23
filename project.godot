@@ -587,6 +587,7 @@ IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resol
 window/integer_resolution_handler/base_height=180
 window/size/width=320
 window/size/height=180
+window/size/resizable=false
 window/size/always_on_top=true
 window/size/test_width=960
 window/size/test_height=540
