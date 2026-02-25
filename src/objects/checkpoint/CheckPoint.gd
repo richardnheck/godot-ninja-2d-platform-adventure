@@ -5,6 +5,8 @@ signal reached
 
 var _on:bool = false
 
+onready var collision_shape := $CollisionShape2D
+
 # The id of the checkpoint
 # Ensure that this value is unique when using multiple checkpoints
 export var id:String = '1'
@@ -12,6 +14,10 @@ export var id:String = '1'
 func _ready() -> void:
 	set_on(Constants.NO_CHECKPOINT)
 
+func show_checkpoint(value:bool) -> void:
+	self.visible = value
+	collision_shape.disabled = not value
+		
 
 func set_on(checkpoint_id:String) -> void:
 	_on = (id == checkpoint_id)
