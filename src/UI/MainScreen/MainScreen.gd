@@ -13,6 +13,12 @@ func _ready() -> void:
 	settings.visible = false
 	quit_button.visible = not Settings.is_html5_build()
 	
+	# The main screen could be reloaded by navigating back from
+	# some functionality from the Extras tab in the Settings.
+	# Restore the Settings back in this case
+	settings.visible = MainScreenState.settings_open
+	settings.set_current_tab(MainScreenState.settings_current_tab_index)
+	
 	if GameState.get_has_watched_story_intro():
 		# If user has watched the story intro then show the world select screen
 		main_play_button.next_scene_path = "res://src/UI/WorldSelectScreen/WorldSelect.tscn";
@@ -34,7 +40,17 @@ func _start_tween():
 
 func _on_SettingsButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
-	settings.visible = true 
+	settings.visible = true
+	MainScreenState.settings_open = true 
+
+
+func _on_Settings_on_closed():
+	settings.visible = false
+	MainScreenState.settings_open = false
+
+
+func _on_Settings_on_tab_changed(tab_index:int):
+	MainScreenState.settings_current_tab_index = tab_index 
 
 
 func _on_TitleTween_tween_completed(object: Object, key: NodePath) -> void:
@@ -44,3 +60,5 @@ func _on_TitleTween_tween_completed(object: Object, key: NodePath) -> void:
 
 func _on_QuitButton_pressed() -> void:
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+
+

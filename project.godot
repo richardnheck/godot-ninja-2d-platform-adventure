@@ -581,6 +581,7 @@ Time="*res://src/utility/Time.gd"
 Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
 
 [display]
 

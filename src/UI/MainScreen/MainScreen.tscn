@@ -103,4 +103,6 @@ anims/Hover = SubResource( 1 )
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
+[connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

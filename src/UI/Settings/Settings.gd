@@ -3,11 +3,16 @@
 #------------------------------
 extends Control
 
+signal on_closed
+signal on_tab_changed
+
 onready var level_checkpoints_button := $"%LevelCheckpointsOnOffButton"
 onready var boss_level_checkpoints_button := $"%BossLevelCheckpointsOnOffButton"
 onready var show_level_names_button := $"%ShowLevelNamesOnOffButton"
 onready var resolution_option_button := $"%ResolutionOptionButton"
 onready var window_type_option_button := $"%WindowTypeOptionButton"
+onready var tab_container:TabContainer = $"%TabContainer"
+onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
 
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
@@ -35,16 +40,25 @@ func _ready() -> void:
 	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
 	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
 	
+	# Remove the display tab for html5 build as the size is dictated by the web embed size
+	if Settings.is_html5_build():
+		var tab_node = tab_container.get_tab_control(1)
+		tab_container.remove_child(tab_node)
+	
 	_add_resolutions()
 	_update_selected_resolution()
 	
 	_add_window_types()
 	_update_selected_window_type()
+	
 
+func set_current_tab(tab_index:int) -> void:	
+	tab_container.current_tab = tab_index
+	
 
 func _on_CloseButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
-	visible = false
+	emit_signal("on_closed")
 
 
 func _on_CheatButton_pressed() -> void:
@@ -117,3 +131,12 @@ func _update_selected_window_type():
 		
 	window_type_option_button.selected = window_types.find(selected_window_type)
 	resolution_option_button.disabled = selected_window_type == TYPE_FULLSCREEN
+
+
+func _on_ShowCreditsButton_pressed():
+	cut_scene_base.skip_to_scene_path = "res://src/UI/GameCreditsScreen/GameCreditsScene.tscn"
+	cut_scene_base.goto_next_scene(false, self.get_tree().current_scene.filename )
+
+
+func _on_TabContainer_tab_changed(tab):
+	emit_signal("on_tab_changed", tab)

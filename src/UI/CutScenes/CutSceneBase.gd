@@ -25,16 +25,16 @@ func _ready() -> void:
 	add_child(screenShake)
 
 
-func goto_next_scene(show_loading_message = false) -> void:
+func goto_next_scene(show_loading_message = false, source_scene_path:String = "") -> void:
 	if Settings.is_html5_build():
 		# Prevent HTML5 Audio stutter by stopping background music before transitioning
 		# to the level
 		Game_AudioManager.stop_bgm()
 		if get_tree():
 			yield(get_tree().create_timer(1), "timeout")
-			fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, self.get_path())
+			fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, source_scene_path)
 	else:		
-		fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, self.get_path())
+		fadeScreen.go_to_scene(skip_to_scene_path, show_loading_message, source_scene_path)
 	
 # Show/Hide the continue button/message
 func show_continue(visible)->void:

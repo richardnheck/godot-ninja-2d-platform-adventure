@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
@@ -15,9 +15,19 @@
 [ext_resource path="res://src/UI/Tutorial/MobileControlsPane.png" type="Texture" id=13]
 [ext_resource path="res://src/UI/Settings/gamepad-controls.png" type="Texture" id=14]
 [ext_resource path="res://assets/art/ui/settings-close-word-button2.png" type="Texture" id=15]
+[ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+extra_spacing_top = -2
+font_data = ExtResource( 16 )
 
 [node name="Settings" type="Control"]
 script = ExtResource( 7 )
+
+[node name="CutSceneBase" parent="." instance=ExtResource( 17 )]
+unique_name_in_owner = true
+visible = false
 
 [node name="FrameSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -37,6 +47,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="TabContainer" type="TabContainer" parent="Control"]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
@@ -287,6 +298,29 @@ margin_top = 24.0
 margin_right = -5.0
 margin_bottom = -5.0
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/Extras"]
+margin_left = -2.0
+margin_right = 260.0
+margin_bottom = 98.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainer/Extras/VBoxContainer"]
+margin_right = 262.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="Control/TabContainer/Extras/VBoxContainer/HBoxContainer"]
+margin_right = 75.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 75, 0 )
+text = "Credits"
+
+[node name="ShowCreditsButton" type="Button" parent="Control/TabContainer/Extras/VBoxContainer/HBoxContainer"]
+margin_left = 79.0
+margin_right = 119.0
+margin_bottom = 17.0
+theme = ExtResource( 5 )
+custom_fonts/font = SubResource( 1 )
+text = " Show "
+
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
 margin_left = 12.0
@@ -325,10 +359,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="tab_changed" from="Control/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer/LevelCheckpointsOnOffButton" to="." method="_on_LevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer/BossLevelCheckpointsOnOffButton" to="." method="_on_BossLevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer/ShowLevelNamesOnOffButton" to="." method="_on_ShowLevelNamesOnOffButton_button_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
+[connection signal="pressed" from="Control/TabContainer/Extras/VBoxContainer/HBoxContainer/ShowCreditsButton" to="." method="_on_ShowCreditsButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CheatButton" to="." method="_on_CheatButton_pressed"]
