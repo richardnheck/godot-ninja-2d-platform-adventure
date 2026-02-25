@@ -22,13 +22,13 @@
 [ext_resource path="res://src/UI/HUD/hud-key.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( -40, -115, 25, -115, 25, 30, -40, 30 )
+points = PoolVector2Array( -40, -115, 25, -115, 25, 70, -40, 70 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( -1, 45, 85, 45, 85, -100, -1, -100 )
+points = PoolVector2Array( -1, 85, 85, 85, 85, -100, -1, -100 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( -40, 40, 52, 40, 52, -100, -40, -100 )
+points = PoolVector2Array( -40, 85, 52, 85, 52, -100, -40, -100 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 10 )
