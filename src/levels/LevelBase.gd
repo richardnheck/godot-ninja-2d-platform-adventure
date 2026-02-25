@@ -110,8 +110,8 @@ func _ready() -> void:
 		else: 
 			door.close()
 		
-	
-	if not LevelData.is_reload:
+	# Show level name
+	if not LevelData.is_reload and Settings.get_show_level_names_enabled():
 		var level_name = LevelData.get_level_name(current_level_path)
 		if level_name != "":
 			intro_title = intro_title_scene.instance()

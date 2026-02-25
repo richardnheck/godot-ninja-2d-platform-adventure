@@ -48,7 +48,6 @@ custom_fonts/font = ExtResource( 11 )
 tab_align = 0
 
 [node name="Game" type="Control" parent="Control/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -164,6 +163,7 @@ margin_bottom = 17.0
 theme = ExtResource( 5 )
 
 [node name="Controls" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
