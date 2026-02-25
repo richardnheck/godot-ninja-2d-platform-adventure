@@ -42,6 +42,14 @@ func _ready() -> void:
 	get_tree().call_group(Constants.GROUP_CHECKPOINT, "set_on", LevelData.level_checkpoint_reached)
 	checkpoints = get_tree().get_nodes_in_group(Constants.GROUP_CHECKPOINT)
 	for checkpoint in checkpoints:
+		var show_checkpoint = true
+		var is_boss_level = LevelData.is_boss_level(current_level_path)
+		if is_boss_level and not Settings.get_boss_level_checkpoints_enabled():
+			show_checkpoint = false 
+		elif not is_boss_level and not Settings.get_level_checkpoints_enabled():
+			show_checkpoint = false
+			
+		checkpoint.show_checkpoint(show_checkpoint)
 		checkpoint.connect("reached", self, "_on_CheckPoint_reached")
 		
 	# Spawn the player

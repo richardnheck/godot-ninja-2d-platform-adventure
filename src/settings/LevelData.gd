@@ -47,7 +47,7 @@ var levelsArray = [
 	{"world": WORLD2, "name" : "Uh Oh Ote-mon", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Help! Help! Hori!", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Towards the Tenshu", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn"},
+	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn", "boss_scene_path": "res://src/levels/World2Levels/World2Level_Boss.tscn"},
 
 	# World 3
 	{"world": WORLD3, "name" : "Taste the Tenshu", "scene_path" : WORLD3_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -56,7 +56,7 @@ var levelsArray = [
 	{"world": WORLD3, "name" : "Heya, heya and heya", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "No yuka...no cry", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Saigo no nobori", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn"},
+	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn", "boss_scene_path": "res://src/levels/World3Levels/World3Level_Boss.tscn"},
 	
 	# GAME END
 	{"world": GAME_END, "name" : "The end", "scene_path" : "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -158,6 +158,14 @@ func get_level_bgm(level_scene_path) -> String:
 		if levelsArray[i]["scene_path"] == level_scene_path:
 			return levelsArray[i]["bgm"]
 	return ""
+	
+# Determine whether a level is a boss level	
+func is_boss_level(level_scene_path) -> bool:
+	for i in range(0, levelsArray.size()):
+		var level = levelsArray[i]
+		if level.has("boss_scene_path") and level["boss_scene_path"] == level_scene_path:
+			return level.has("is_boss") and level.is_boss
+	return false
 	
 # Get the name for the specified level
 func get_level_name(level_scene_path) -> String:
