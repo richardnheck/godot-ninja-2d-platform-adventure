@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/UI/HUD/MobileControlsHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/ui/mobile-button1.png" type="Texture" id=2]
@@ -33,12 +33,25 @@ points = PoolVector2Array( -40, 85, 52, 85, 52, -100, -40, -100 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 10 )
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.709804 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [sub_resource type="Animation" id=5]
 resource_name = "hover"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("PausedText:position")
+tracks/0/path = NodePath("PausedTextureRect:anchor_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,7 +60,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 160, 90 ), Vector2( 160, 85 ) ]
+"values": [ 0.523, 0.45 ]
 }
 
 [node name="MobileControlsHUD" type="CanvasLayer"]
@@ -148,18 +161,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Key" type="Sprite" parent="Control"]
-position = Vector2( 286, 10 )
+[node name="Key" type="TextureRect" parent="Control"]
+anchor_left = 0.92
+anchor_top = 0.011
+anchor_right = 0.92
+anchor_bottom = 0.011
+margin_left = -16.0
+margin_bottom = 16.0
 texture = ExtResource( 20 )
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.247059 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Panel" type="Panel" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -60.0
+margin_right = 90.0
+margin_bottom = 60.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="PausedTextureRect" type="TextureRect" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.455
+anchor_right = 0.5
+anchor_bottom = 0.562
+margin_left = -72.5
+margin_top = -18.8
+margin_right = 72.5
+margin_bottom = 24.2
+texture = ExtResource( 14 )
 
 [node name="CloseButton" parent="PauseOverlay" instance=ExtResource( 8 )]
 anchor_left = 1.0
@@ -169,10 +205,6 @@ margin_left = -18.0
 margin_top = 2.0
 margin_right = -2.0
 margin_bottom = -158.0
-
-[node name="PausedText" type="Sprite" parent="PauseOverlay"]
-position = Vector2( 160, 90 )
-texture = ExtResource( 14 )
 
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="PauseOverlay"]
 autoplay = "hover"
@@ -185,9 +217,6 @@ anchor_bottom = 0.5
 margin_top = 34.0
 margin_bottom = 54.0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BigBackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 15 )]
 unique_name_in_owner = true
@@ -213,9 +242,6 @@ margin_top = -53.0
 margin_bottom = -33.0
 theme = ExtResource( 18 )
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SoundButton" parent="PauseOverlay/HBoxContainer2" instance=ExtResource( 16 )]
 margin_left = 123.0
@@ -239,8 +265,8 @@ margin_left = 179.0
 margin_right = 197.0
 margin_bottom = 20.0
 
-[node name="Sprite" type="Sprite" parent="PauseOverlay/HBoxContainer2"]
-position = Vector2( 213.883, 10.4848 )
+[node name="Sprite" type="Sprite" parent="PauseOverlay/HBoxContainer2/TouchScreenControlsOnOffButton"]
+position = Vector2( 34.883, 10.4848 )
 texture = ExtResource( 19 )
 
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_PauseButton_pressed"]
