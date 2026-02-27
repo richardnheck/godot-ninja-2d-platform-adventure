@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/art/ui/settings-close-word-button2.png" type="Texture" id=15]
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/UI/Settings/yokai kanji.png" type="Texture" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 extra_spacing_top = -2
@@ -59,6 +60,7 @@ custom_fonts/font = ExtResource( 11 )
 tab_align = 0
 
 [node name="Game" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -290,7 +292,6 @@ margin_bottom = 21.0
 rect_min_size = Vector2( 19, 21 )
 
 [node name="Extras" type="Control" parent="Control/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -298,28 +299,56 @@ margin_top = 24.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/Extras"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/TabContainer/Extras"]
 margin_left = -2.0
 margin_right = 260.0
-margin_bottom = 98.0
+margin_bottom = 16.0
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainer/Extras/VBoxContainer"]
-margin_right = 262.0
-margin_bottom = 17.0
+[node name="TextureRect" type="TextureRect" parent="Control/TabContainer/Extras/HBoxContainer3"]
+margin_left = 115.0
+margin_right = 147.0
+margin_bottom = 16.0
+texture = ExtResource( 18 )
 
-[node name="Label" type="Label" parent="Control/TabContainer/Extras/VBoxContainer/HBoxContainer"]
-margin_right = 75.0
-margin_bottom = 17.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/TabContainer/Extras"]
+margin_left = -2.0
+margin_top = 15.0
+margin_right = 260.0
+margin_bottom = 56.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/TabContainer/Extras/HBoxContainer2"]
+margin_left = 9.0
+margin_right = 253.0
+margin_bottom = 41.0
 rect_min_size = Vector2( 75, 0 )
+text = "\"Yokai are strange, supernatural creatures and 
+phenomena from Japanese folklore.\"
+- yokai.com -"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainer/Extras"]
+margin_left = -2.0
+margin_top = 64.0
+margin_right = 260.0
+margin_bottom = 81.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/TabContainer/Extras/HBoxContainer"]
+visible = false
+margin_left = 86.0
+margin_right = 131.0
+margin_bottom = 17.0
 text = "Credits"
 
-[node name="ShowCreditsButton" type="Button" parent="Control/TabContainer/Extras/VBoxContainer/HBoxContainer"]
-margin_left = 79.0
-margin_right = 119.0
+[node name="ShowCreditsButton" type="Button" parent="Control/TabContainer/Extras/HBoxContainer"]
+margin_left = 105.0
+margin_right = 156.0
 margin_bottom = 17.0
 theme = ExtResource( 5 )
 custom_fonts/font = SubResource( 1 )
-text = " Show "
+text = " Credits "
 
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
@@ -365,6 +394,6 @@ __meta__ = {
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer/ShowLevelNamesOnOffButton" to="." method="_on_ShowLevelNamesOnOffButton_button_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
-[connection signal="pressed" from="Control/TabContainer/Extras/VBoxContainer/HBoxContainer/ShowCreditsButton" to="." method="_on_ShowCreditsButton_pressed"]
+[connection signal="pressed" from="Control/TabContainer/Extras/HBoxContainer/ShowCreditsButton" to="." method="_on_ShowCreditsButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CheatButton" to="." method="_on_CheatButton_pressed"]
