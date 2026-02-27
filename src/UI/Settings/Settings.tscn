@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
@@ -18,10 +18,282 @@
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/UI/Settings/yokai kanji.png" type="Texture" id=18]
+[ext_resource path="res://src/characters/player/sprites/player.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 extra_spacing_top = -2
 font_data = ExtResource( 16 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 19 )
+region = Rect2( 66, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 19 )
+region = Rect2( 99, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 19 )
+region = Rect2( 132, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 19 )
+region = Rect2( 165, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 19 )
+region = Rect2( 198, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 19 )
+region = Rect2( 231, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 19 )
+region = Rect2( 264, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 19 )
+region = Rect2( 297, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 19 )
+region = Rect2( 330, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 19 )
+region = Rect2( 363, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 19 )
+region = Rect2( 396, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 19 )
+region = Rect2( 429, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 19 )
+region = Rect2( 462, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 19 )
+region = Rect2( 495, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 19 )
+region = Rect2( 528, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 19 )
+region = Rect2( 561, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 19 )
+region = Rect2( 594, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 19 )
+region = Rect2( 627, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 19 )
+region = Rect2( 660, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 19 )
+region = Rect2( 693, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 19 )
+region = Rect2( 726, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 19 )
+region = Rect2( 759, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 19 )
+region = Rect2( 792, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 19 )
+region = Rect2( 825, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 19 )
+region = Rect2( 858, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 19 )
+region = Rect2( 891, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 19 )
+region = Rect2( 924, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 19 )
+region = Rect2( 957, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 19 )
+region = Rect2( 990, 128, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 19 )
+region = Rect2( 66, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 19 )
+region = Rect2( 99, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 19 )
+region = Rect2( 132, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 19 )
+region = Rect2( 165, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 19 )
+region = Rect2( 198, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 19 )
+region = Rect2( 231, 96, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 19 )
+region = Rect2( 66, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 19 )
+region = Rect2( 99, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 64, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 64, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 19 )
+region = Rect2( 66, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 19 )
+region = Rect2( 99, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 19 )
+region = Rect2( 132, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 19 )
+region = Rect2( 165, 32, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 160, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 160, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 19 )
+region = Rect2( 33, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 19 )
+region = Rect2( 66, 192, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 19 )
+region = Rect2( 99, 192, 33, 32 )
+
+[sub_resource type="SpriteFrames" id=64]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
+"loop": false,
+"name": "celebrate",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": false,
+"name": "die",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 57 ) ],
+"loop": true,
+"name": "jump_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 56 ) ],
+"loop": false,
+"name": "jump_up",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "slide",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "talk",
+"speed": 5.0
+} ]
 
 [node name="Settings" type="Control"]
 script = ExtResource( 7 )
@@ -350,6 +622,28 @@ theme = ExtResource( 5 )
 custom_fonts/font = SubResource( 1 )
 text = " Credits "
 
+[node name="Control" type="Control" parent="Control/TabContainer/Extras"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="PlayerAnimatedSprite" type="AnimatedSprite" parent="Control/TabContainer/Extras/Control"]
+unique_name_in_owner = true
+position = Vector2( -3, 89 )
+z_as_relative = false
+frames = SubResource( 64 )
+animation = "talk"
+playing = true
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Control/TabContainer/Extras"]
+margin_left = -5.0
+margin_top = 83.0
+margin_right = 35.0
+margin_bottom = 123.0
+color = Color( 0.376471, 0.0745098, 0.0745098, 0.678431 )
+
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
 margin_left = 12.0
@@ -395,5 +689,6 @@ __meta__ = {
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
 [connection signal="pressed" from="Control/TabContainer/Extras/HBoxContainer/ShowCreditsButton" to="." method="_on_ShowCreditsButton_pressed"]
+[connection signal="gui_input" from="Control/TabContainer/Extras/ColorRect" to="." method="_on_ColorRect_gui_input"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CheatButton" to="." method="_on_CheatButton_pressed"]
