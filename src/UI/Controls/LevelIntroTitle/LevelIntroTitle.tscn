@@ -8,37 +8,26 @@
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -160.0
-margin_right = 160.0
+anchor_right = 1.0
 margin_bottom = 20.0
 color = Color( 0, 0, 0, 0.662745 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -20.0
+margin_bottom = 21.0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LeftEmbellishment" type="TextureRect" parent="ColorRect/HBoxContainer"]
 margin_left = 65.0
 margin_right = 85.0
-margin_bottom = 20.0
+margin_bottom = 21.0
 texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="ColorRect/HBoxContainer"]
 margin_left = 89.0
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 231.0
-margin_bottom = 14.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 1 )
 text = "Level Intro PlaceHolder Text"
 align = 1
@@ -49,7 +38,7 @@ __meta__ = {
 [node name="RightEmbellishment" type="TextureRect" parent="ColorRect/HBoxContainer"]
 margin_left = 235.0
 margin_right = 255.0
-margin_bottom = 20.0
+margin_bottom = 21.0
 texture = ExtResource( 3 )
 flip_h = true
 
