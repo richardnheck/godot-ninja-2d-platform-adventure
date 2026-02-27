@@ -266,81 +266,81 @@ one_shot = true
 [node name="Hyakume1" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 256, 40 )
 
-[node name="Path2D" parent="Enemies/Hyakume1" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume1" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume1/Path2D" index="0"]
 position = Vector2( -15.7263, 4.22153 )
 
-[node name="Area2D" parent="Enemies/Hyakume1" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume1" index="2"]
 position = Vector2( -15.7263, 0.221527 )
 
 [node name="Hyakume2" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 352, -8 )
 
-[node name="Path2D" parent="Enemies/Hyakume2" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume2" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume2/Path2D" index="0"]
 position = Vector2( -15.7263, 4.22153 )
 
-[node name="Area2D" parent="Enemies/Hyakume2" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume2" index="2"]
 position = Vector2( -15.7263, 0.221525 )
 
 [node name="Hyakume3" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 224, -600 )
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Hyakume3" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume3" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume3/Path2D" index="0"]
 position = Vector2( -39.274, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume3" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume3" index="2"]
 position = Vector2( -39.274, 0 )
 
 [node name="Hyakume4" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 296, -648 )
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Hyakume4" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume4" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume4/Path2D" index="0"]
 position = Vector2( -39.274, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume4" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume4" index="2"]
 position = Vector2( -39.274, 0 )
 
 [node name="Hyakume5" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 208, -1016 )
 
-[node name="Path2D" parent="Enemies/Hyakume5" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume5" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume5/Path2D" index="0"]
 position = Vector2( -71.2741, 4 )
 
-[node name="Area2D" parent="Enemies/Hyakume5" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume5" index="2"]
 position = Vector2( -71.2741, 0 )
 
 [node name="Hyakume6" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 352, -1144 )
 
-[node name="Path2D" parent="Enemies/Hyakume6" index="0"]
+[node name="Path2D" parent="Enemies/Hyakume6" index="1"]
 position = Vector2( 0, -4 )
 curve = SubResource( 4 )
 
 [node name="PathFollow2D" parent="Enemies/Hyakume6/Path2D" index="0"]
 position = Vector2( -15.7269, 4.21896 )
 
-[node name="Area2D" parent="Enemies/Hyakume6" index="1"]
+[node name="Area2D" parent="Enemies/Hyakume6" index="2"]
 position = Vector2( -15.7269, 0.218994 )
 
 [node name="Canon" parent="Enemies" instance=ExtResource( 2 )]
