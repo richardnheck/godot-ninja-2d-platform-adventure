@@ -44,6 +44,8 @@ func _ready() -> void:
 	homing_fireball_spawner.connect("fireball_destroyed", self, "_on_fireball_destroyed")
 	self.connect("phase_changed", homing_fireball_spawner, "_on_phase_changed")
 		
+	normal_fireball_spawner.connect("on_shoot", self, "_on_normal_fireball_spawner_shoot")
+	
 	# Initially homing fireballs are the default
 	homing_fireball_spawner.enabled = true
 	normal_fireball_spawner.enabled = false
@@ -60,8 +62,7 @@ func set_spawn_offset(spawn_offset:float):
 
 var current_offset = 0
 func _check_position() -> void:
-	if state == STATE_PHASE1:
-		
+	if state == STATE_PHASE1 or state == STATE_PHASE2:
 		# Since Wanyudo is a path follow enemy its actual position is the Area2D which has its
 		# postion changed by the path.
 		var boss_pos = self.get_node("Area2D").position.x
@@ -153,7 +154,7 @@ func _physics_process(delta: float) -> void:
 # Shoot a fireball
 func _shoot_fireball() -> void:
 	if state == STATE_PHASE1:
-		# Shoot homing fireballs when the boss is chasing the plaer
+		# Shoot homing fireballs when the boss is chasing the player
 		# If the player is behind the boss then shoot normal fireballs to kill
 		# the player quickly as it means they have lost
 		if following_path:
@@ -171,6 +172,12 @@ func _shoot_fireball() -> void:
 func _on_fireball_destroyed(): 
 	_shoot_fireball()
 	
+
+func _on_normal_fireball_spawner_shoot():
+	# Open Bosses mouth when normal shooting i.e. when player is behind boss
+	if state == STATE_PHASE2:
+		set_sprite_animation("normal-shoot")
+
 
 # Set the position of the ceiling
 # This position is used to place the mini wanyudo array in the scene

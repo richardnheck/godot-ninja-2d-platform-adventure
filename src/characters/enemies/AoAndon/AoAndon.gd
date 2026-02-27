@@ -52,6 +52,8 @@ func _ready() -> void:
 	homing_shard_lantern_spawner.connect("lantern_destroyed", self, "_on_lantern_destroyed")
 	self.connect("phase_changed", homing_shard_lantern_spawner, "_on_phase_changed")
 		
+	normal_fireball_spawner.connect("on_shoot", self, "_on_normal_fireball_spawner_shoot")
+		
 	# Initially homing lanterns are the default
 	homing_shard_lantern_spawner.enabled = true
 	normal_fireball_spawner.enabled = false
@@ -68,7 +70,7 @@ func set_spawn_offset(spawn_offset:float):
 		
 var current_offset = 0
 func _check_position() -> void:
-	if state == STATE_PHASE1:
+	if state == STATE_PHASE1 or state == STATE_PHASE2:
 		# Since AoAndon is a path follow enemy its actual position is the Area2D which has its
 		# postion changed by the path.
 		var boss_pos = self.get_node("Area2D").position.x
@@ -168,6 +170,11 @@ func _on_lantern_destroyed():
 	yield(get_tree().create_timer(SHOOT_DELAY), "timeout")
 	_shoot_lantern()
 	
+
+func _on_normal_fireball_spawner_shoot():
+	# Open Bosses mouth when normal shooting i.e. when player is behind boss
+	if state == STATE_PHASE2:
+		face_animated_sprite.animation = "shoot"
 
 # Set the position of the ceiling
 # This position is used to place the mini wanyudo array in the scene

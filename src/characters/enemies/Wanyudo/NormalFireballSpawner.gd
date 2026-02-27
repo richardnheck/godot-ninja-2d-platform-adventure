@@ -1,6 +1,7 @@
 extends Gun
 
 signal fireball_destroyed
+signal on_shoot
 
 var enabled:bool = false setget _set_enabled
 
@@ -27,6 +28,7 @@ func _shoot():
 		#print_debug("NormalFireBallSpanwer: _shoot()")
 		var fireball = ._shoot()	
 		fireball.connect("destroyed", self, "_on_fireball_destroyed")
+		emit_signal("on_shoot")
 		
 func _on_fireball_destroyed():
 	emit_signal("fireball_destroyed")
