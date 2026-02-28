@@ -84,10 +84,11 @@ func _on_BossButton_button_up() -> void:
 
 
 func _on_IntroButton_button_up() -> void:
-	Game_AudioManager.sfx_ui_general_select.play()
+	Game_AudioManager.sfx_ui_confirm.play()
 	fadeScreen.go_to_scene(intro_scene_path)
 
 
 func _on_BossClearCutsceneButton_button_up():
+	Game_AudioManager.sfx_ui_confirm.play()
 	var scene_path = LevelData.goto_boss_clear_cutscene(self.this_world, false)
 	fadeScreen.go_to_scene(scene_path)
