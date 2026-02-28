@@ -17,6 +17,7 @@ func _ready():
 	_show_spike(false)
 
 func _trigger_trap() -> void:
+	Game_AudioManager.sfx_env_trigger_spike_press.play()
 	yield(get_tree().create_timer(TRIGGER_DELAY), "timeout")
 	sound.play()
 	_show_spike(true)

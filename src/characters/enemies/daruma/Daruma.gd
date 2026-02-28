@@ -40,8 +40,13 @@ var raycast_wall_dist = null
 var raycast_floor_dist = null
 var initialized = false
 
+var slam_sound:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	slam_sound =  Game_AudioManager.sfx_env_cave_mini_boss_slam.duplicate()
+	add_child(slam_sound)
+	
 	set_sprite_animation("ground")
 	raycast_wall_dist = abs($RayCastWall.cast_to.x)
 	raycast_floor_dist = abs($RayCastFloor.position.x)
@@ -120,6 +125,7 @@ func _on_land():
 	# Ensure character stops moving when they land
 	velocity.x = 0
 	_shake_screen()
+	slam_sound.play()
 	set_sprite_animation("land")	
 	
 	# Show some animated dust just on landing

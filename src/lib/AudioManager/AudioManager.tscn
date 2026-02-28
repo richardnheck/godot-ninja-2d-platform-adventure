@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -30,6 +30,9 @@
 [ext_resource path="res://assets/sounds/bgm/cave boss outro.ogg" type="AudioStream" id=28]
 [ext_resource path="res://assets/sounds/sfx/environments/cloud-platform-explosion.wav" type="AudioStream" id=29]
 [ext_resource path="res://assets/sounds/sfx/ui/shiru8bit_confirm.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-candle-explosion.wav" type="AudioStream" id=31]
+[ext_resource path="res://assets/sounds/sfx/environments/sfxr-spring-boing.wav" type="AudioStream" id=32]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-trap-trigger-press.wav" type="AudioStream" id=33]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -217,7 +220,7 @@ bus = "SFX"
 [node name="Sfx_CaveMiniBossSlam" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 16 )
 volume_db = 1.0
-max_distance = 200.0
+max_distance = 300.0
 attenuation = 1.22983
 bus = "SFX"
 
@@ -236,13 +239,34 @@ stream = ExtResource( 29 )
 volume_db = -3.0
 bus = "SFX"
 
-[node name="Sfx_FallingSpike" type="AudioStreamPlayer" parent="SFX/Environments"]
+[node name="Sfx_FallingSpike" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 21 )
-volume_db = -12.0
+volume_db = 0.4
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_CandleExplosion" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 31 )
+volume_db = 3.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
 bus = "SFX"
 
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 10 )
+bus = "SFX"
+
+[node name="Sfx_SpringBoing" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 32 )
+volume_db = -12.0
+bus = "SFX"
+
+[node name="Sfx_TriggerSpikePress" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 33 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="Sfx_CaveBossCutsceneSlam" type="AudioStreamPlayer" parent="SFX/Environments"]

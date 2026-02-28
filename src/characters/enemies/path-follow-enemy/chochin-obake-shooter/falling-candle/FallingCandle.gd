@@ -12,9 +12,16 @@ var vel:Vector2 = Vector2.ZERO
 
 onready var fire_yokai:FireYokai = $FireYokai
 
+var sfx_falling_spike:AudioStreamPlayer2D = null
+var sfx_candle_explosion: AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	sfx_falling_spike = Game_AudioManager.sfx_env_falling_spike.duplicate()
+	add_child(sfx_falling_spike)
+	sfx_candle_explosion = Game_AudioManager.sfx_env_candle_explosion.duplicate()
+	add_child(sfx_candle_explosion)
+	
 
 func _physics_process(delta: float) -> void:
 	if triggered:
@@ -24,8 +31,8 @@ func _physics_process(delta: float) -> void:
 			if !crashed:
 				crashed = true
 				# spike has landed so destroy
-				Game_AudioManager.sfx_env_falling_spike.stop()
-				#Game_AudioManager.sfx_env_crumbling_platform_explode.play()
+				sfx_falling_spike.stop()
+				sfx_candle_explosion.play()
 				_trigger_fire_yokai()
 				animatedSprite.play("explode")
 				yield(animatedSprite, "animation_finished")
@@ -41,7 +48,7 @@ func _trigger_fire_yokai():
 		fire_yokai.call_deferred("trigger")
 
 func trigger() -> void:
-#	Game_AudioManager.sfx_env_falling_spike.play()
+	sfx_falling_spike.play()
 	triggered = true	
 
 func _on_HitZone_body_entered(body: Node) -> void:
