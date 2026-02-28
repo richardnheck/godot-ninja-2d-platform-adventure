@@ -59,7 +59,7 @@ func _ready() -> void:
 	boss_clear_cutscene_button.visible = current_level > boss_level_index
 	
 func _level_button_pressed(levelIndex):
-	Game_AudioManager.sfx_ui_general_select.play()
+	Game_AudioManager.sfx_ui_confirm.play()
 	
 	if Settings.is_html5_build():
 		# Prevent HTML5 Audio stutter by stopping background music before transitioning
@@ -78,6 +78,7 @@ func _fade_goto_scene(levelIndex, show_loading_message) -> void:
 
 func _on_BossButton_button_up() -> void:
 	print("Goto boss for world", self.this_world)
+	Game_AudioManager.sfx_ui_confirm.play()
 	var scene_path = LevelData.goto_boss_level(self.this_world, false)
 	fadeScreen.go_to_scene(scene_path)
 

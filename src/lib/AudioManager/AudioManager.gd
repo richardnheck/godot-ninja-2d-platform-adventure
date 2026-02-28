@@ -145,6 +145,8 @@ onready var sfx_ui_pause : AudioStreamPlayer = $SFX/UI/Sfx_Pause
 onready var sfx_ui_game_start : AudioStreamPlayer = $SFX/UI/Sfx_GameStart
 onready var sfx_ui_general_select : AudioStreamPlayer = $SFX/UI/Sfx_GeneralSelect
 onready var sfx_ui_basic_blip_select : AudioStreamPlayer = $SFX/UI/Sfx_BasicBlipSelect
+onready var sfx_ui_world_select: AudioStreamPlayer = $SFX/UI/Sfx_GameStart
+onready var sfx_ui_confirm: AudioStreamPlayer = $SFX/UI/Sfx_Confirm
 
 #
 #onready var sfx_unc_serious_damage : AudioStreamPlayer = $SFX/Uncategorized/Sfx_SeriousDamage

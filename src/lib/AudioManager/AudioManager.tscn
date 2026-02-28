@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/sounds/bgm/cave boss intro.ogg" type="AudioStream" id=27]
 [ext_resource path="res://assets/sounds/bgm/cave boss outro.ogg" type="AudioStream" id=28]
 [ext_resource path="res://assets/sounds/sfx/environments/cloud-platform-explosion.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/sounds/sfx/ui/shiru8bit_confirm.wav" type="AudioStream" id=30]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -288,6 +289,11 @@ bus = "SFX"
 
 [node name="Sfx_BasicBlipSelect" type="AudioStreamPlayer" parent="SFX/UI"]
 stream = ExtResource( 14 )
+volume_db = -3.0
+bus = "SFX"
+
+[node name="Sfx_Confirm" type="AudioStreamPlayer" parent="SFX/UI"]
+stream = ExtResource( 30 )
 volume_db = -3.0
 bus = "SFX"
 

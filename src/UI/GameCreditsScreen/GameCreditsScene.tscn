@@ -120,6 +120,32 @@ custom_fonts/font = ExtResource( 4 )
 text = "BDragon1727"
 align = 1
 
+[node name="SFXTitle" type="Label" parent="MainControl/Control"]
+margin_left = 160.0
+margin_top = 136.0
+margin_right = 290.0
+margin_bottom = 146.0
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "SFX"
+align = 1
+
+[node name="SFXPerson" type="Label" parent="MainControl/Control"]
+margin_left = 160.0
+margin_top = 146.0
+margin_right = 290.0
+margin_bottom = 157.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 4 )
+text = "shiru8bit"
+align = 1
+
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
 skip_to_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
 

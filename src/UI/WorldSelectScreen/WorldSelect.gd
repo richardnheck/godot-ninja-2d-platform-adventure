@@ -21,15 +21,18 @@ func _ready() -> void:
 	world3_button.disabled = current_world < LevelData.WORLD3
 
 func _on_World1Button_button_up() -> void:
-	Game_AudioManager.sfx_ui_general_select.play()
+	_play_world_button_click_sound()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/CaveLevelSelect.tscn")
 
 func _on_World2Button_pressed() -> void:
 	print_debug("world 2 button")
-	Game_AudioManager.sfx_ui_general_select.play()
+	_play_world_button_click_sound()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/World2LevelSelect.tscn")
 
 func _on_World3Button_pressed() -> void:
 	print_debug("world 3 button")
-	Game_AudioManager.sfx_ui_general_select.play()
+	_play_world_button_click_sound()
 	get_tree().change_scene("res://src/UI/LevelSelectScreens/World3LevelSelect.tscn")
+
+func _play_world_button_click_sound():
+	Game_AudioManager.sfx_ui_world_select.play()

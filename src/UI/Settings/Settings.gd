@@ -136,6 +136,7 @@ func _update_selected_window_type():
 
 
 func _on_ShowCreditsButton_pressed():
+	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	cut_scene_base.skip_to_scene_path = "res://src/UI/GameCreditsScreen/GameCreditsScene.tscn"
 	cut_scene_base.goto_next_scene(false, self.get_tree().current_scene.filename )
 
