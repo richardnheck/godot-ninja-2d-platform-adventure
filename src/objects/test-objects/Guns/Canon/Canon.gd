@@ -3,10 +3,14 @@ extends Gun
 onready var _sprite = $AnimatedSprite
 onready var _blast = $AnimatedSprite/CanonBlastAnimatedSprite
 onready var visibility_notifier := $VisibilityNotifier2D
+onready var sfx_shoot_sound: AudioStreamPlayer2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_blast.visible = false
+	
+	sfx_shoot_sound = Game_AudioManager.sfx_env_canon_shoot.duplicate()
+	add_child(sfx_shoot_sound)
 	
 	# TODO: Not sure why this doesn't work
 	#_sprite.rotate(direction.angle())
@@ -23,6 +27,7 @@ func _shoot():
 	
 	# Only animate the canon and blast if on screen
 	if is_instance_valid(visibility_notifier) and visibility_notifier.is_on_screen():
+		sfx_shoot_sound.play()
 		set_sprite_animation("shoot")
 		_doBlast()
 	

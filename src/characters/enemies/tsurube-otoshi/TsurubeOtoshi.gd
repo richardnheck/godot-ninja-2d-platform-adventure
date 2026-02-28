@@ -17,6 +17,8 @@ onready var landing_dust_scene = preload("res://src/characters/player/effects/la
 onready var jump_timer = $JumpTimer
 onready var collision_cooloff_timer = $CoolOffTimer
 
+var slam_sound:AudioStreamPlayer2D = null
+
 # Velocity variables
 var velocity = Vector2(0,0)
 
@@ -41,6 +43,9 @@ var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	slam_sound =  Game_AudioManager.sfx_env_cave_mini_boss_slam.duplicate()
+	add_child(slam_sound)
+	
 	raycast_wall_dist = abs($RayCastWall.cast_to.x)
 	raycast_floor_dist = abs($RayCastFloor.position.x)
 	
@@ -114,6 +119,8 @@ func _change_direction() -> void:
 func _on_land():
 	# Ensure character stops moving when they land
 	velocity.x = 0
+	
+	slam_sound.play()
 	
 	# Show some animated dust just on landing
 	var instance = landing_dust_scene.instance()

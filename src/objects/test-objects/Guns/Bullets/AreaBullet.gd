@@ -8,10 +8,14 @@ var direction := Vector2.RIGHT setget set_direction
 onready var collision_shape = $CollisionShape2D
 onready var ball_sprite = $AnimatedSprite
 var explosion:AnimatedSprite = null
+var sfx_explosion:AudioStreamPlayer2D = null
 
 var exploding = false
 
 func _ready() -> void:
+	sfx_explosion = Game_AudioManager.sfx_env_canon_ball_explosion.duplicate()
+	add_child(sfx_explosion)
+	
 	explosion = get_node("ExplosionAnimatedSprite")
 	set_as_toplevel(true)
 	connect("body_entered", self, "hit_body")
@@ -47,6 +51,7 @@ func set_direction(new_direction: Vector2) -> void:
 	
 
 func do_explosion() -> void:
+	sfx_explosion.play()
 	exploding = true
 	collision_shape.set_deferred("disabled", true)
 	$AnimatedSprite.visible = false
