@@ -13,7 +13,8 @@ onready var resolution_option_button := $"%ResolutionOptionButton"
 onready var window_type_option_button := $"%WindowTypeOptionButton"
 onready var tab_container:TabContainer = $"%TabContainer"
 onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
-onready var player_animated_sprite := $"%PlayerAnimatedSprite" 
+onready var player_animated_sprite:= $"%PlayerAnimatedSprite" 
+onready var player_animated_texture_rect := $"%AnimatedTextureRect"
 
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
@@ -142,24 +143,27 @@ func _on_ShowCreditsButton_pressed():
 func _on_TabContainer_tab_changed(tab):
 	emit_signal("on_tab_changed", tab)
 
-
-
-func _on_TextureRect_mouse_entered():
-	player_animated_sprite.animation="celebrate"
-
 	
 func _change_player_animation():
-	if player_animated_sprite.animation == "talk":
-		player_animated_sprite.animation="celebrate"
-	elif player_animated_sprite.animation == "celebrate":
-		player_animated_sprite.animation="run"
-	elif player_animated_sprite.animation == "run":
-		player_animated_sprite.animation="idle"
-	elif player_animated_sprite.animation == "idle":
-		player_animated_sprite.animation="talk"
+	if player_animated_texture_rect.animation == "talk":
+		player_animated_texture_rect.animation="celebrate"
+		player_animated_texture_rect.frames_per_second = 15
+	elif player_animated_texture_rect.animation == "celebrate":
+		player_animated_texture_rect.animation="run"
+		player_animated_texture_rect.frames_per_second = 15
+	elif player_animated_texture_rect.animation == "run":
+		player_animated_texture_rect.animation="idle"
+		player_animated_texture_rect.frames_per_second = 10
+	elif player_animated_texture_rect.animation == "idle":
+		player_animated_texture_rect.animation="talk"
+		player_animated_texture_rect.frames_per_second = 5
 
-func _on_ColorRect_gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			_change_player_animation()
+
+func _on_AnimatedTextureRect_gui_input(event):
 	
+	if event is InputEventMouseButton:
+		print(event.button_index)
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			print(">>> Player pressed")
+			_change_player_animation()
+			
