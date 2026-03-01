@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-trap-trigger-press.wav" type="AudioStream" id=33]
 [ext_resource path="res://assets/sounds/sfx/environments/canon_shoot.wav" type="AudioStream" id=34]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-canon-ball-explosion.wav" type="AudioStream" id=35]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-kasa-obake-jump.wav" type="AudioStream" id=36]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -274,6 +275,14 @@ attenuation = 1.68179
 panning_strength = 0.0
 bus = "SFX"
 
+[node name="Sfx_KasaObakeJump" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 36 )
+volume_db = 6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 10 )
 bus = "SFX"
@@ -285,7 +294,7 @@ bus = "SFX"
 
 [node name="Sfx_TriggerSpikePress" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 33 )
-volume_db = -6.0
+volume_db = -9.0
 bus = "SFX"
 
 [node name="Sfx_CaveBossCutsceneSlam" type="AudioStreamPlayer" parent="SFX/Environments"]

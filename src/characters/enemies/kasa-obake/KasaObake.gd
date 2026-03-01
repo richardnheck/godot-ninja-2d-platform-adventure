@@ -18,6 +18,8 @@ onready var landing_dust_scene = preload("res://src/characters/player/effects/la
 onready var jump_timer = $JumpTimer
 onready var collision_cooloff_timer = $CoolOffTimer
 
+var sfx_jump:AudioStreamPlayer2D = null
+
 # Velocity variables
 var velocity = Vector2(0,0)
 
@@ -42,6 +44,9 @@ var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_jump = Game_AudioManager.sfx_env_kasa_obake_jump.duplicate()
+	add_child(sfx_jump)
+	
 	set_sprite_animation("ground")
 	raycast_wall_dist = abs($RayCastWall.cast_to.x)
 	raycast_floor_dist = abs($RayCastFloor.position.x)
@@ -69,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	match current_state:	
 		State.JUMP:
 			if do_jump:
+				sfx_jump.play()
 				velocity.y = -jump_power
 				velocity.x = horizontal_direction * horizontal_jump_velocity
 				jump_timer.start()
