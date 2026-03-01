@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/canon_shoot.wav" type="AudioStream" id=34]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-canon-ball-explosion.wav" type="AudioStream" id=35]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-kasa-obake-jump.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-tofu-land.wav" type="AudioStream" id=37]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -245,7 +246,7 @@ bus = "SFX"
 
 [node name="Sfx_FallingSpike" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 21 )
-volume_db = 0.4
+volume_db = -6.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
@@ -253,7 +254,6 @@ bus = "SFX"
 
 [node name="Sfx_CandleExplosion" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 31 )
-volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
@@ -278,6 +278,14 @@ bus = "SFX"
 [node name="Sfx_KasaObakeJump" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 36 )
 volume_db = 6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_TofuLand" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 37 )
+volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0

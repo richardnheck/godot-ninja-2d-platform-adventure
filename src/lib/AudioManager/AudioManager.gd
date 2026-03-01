@@ -140,6 +140,7 @@ onready var sfx_env_cloud_platform_explode: AudioStreamPlayer = $SFX/Environment
 onready var sfx_env_check_point : AudioStreamPlayer = $SFX/Environments/Sfx_CheckPoint
 onready var sfx_env_spring_boing : AudioStreamPlayer = $SFX/Environments/Sfx_SpringBoing
 onready var sfx_env_kasa_obake_jump : AudioStreamPlayer2D = $SFX/Environments/Sfx_KasaObakeJump
+onready var sfx_env_tofu_land : AudioStreamPlayer2D = $SFX/Environments/Sfx_TofuLand
 onready var sfx_env_trigger_spike_press : AudioStreamPlayer = $SFX/Environments/Sfx_TriggerSpikePress
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
 onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam

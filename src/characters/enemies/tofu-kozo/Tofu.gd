@@ -1,10 +1,14 @@
 extends RigidBody2D
 class_name Tofu
 
+var sfx_land:AudioStreamPlayer2D = null
+var _landed = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-	
+	sfx_land = Game_AudioManager.sfx_env_tofu_land.duplicate()
+	add_child(sfx_land)
+
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
@@ -12,5 +16,6 @@ func _on_Area2D_body_entered(body):
 		body.die()
 	elif body is TileMap:
 		# Tofu has hit ground so remove
-		yield(get_tree().create_timer(0.2), "timeout")
-		#queue_free()
+		sfx_land.play()
+		_landed = true
+		
