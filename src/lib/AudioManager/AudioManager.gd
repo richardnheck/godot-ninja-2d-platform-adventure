@@ -144,6 +144,7 @@ onready var sfx_env_tofu_land : AudioStreamPlayer2D = $SFX/Environments/Sfx_Tofu
 onready var sfx_env_lantern_shoot : AudioStreamPlayer2D = $SFX/Environments/Sfx_LanternShoot
 onready var sfx_env_aoandon_lantern_shoot : AudioStreamPlayer2D = $SFX/Environments/Sfx_AoAndonLanternShoot
 onready var sfx_env_lantern_shard_hit : AudioStreamPlayer2D = $SFX/Environments/Sfx_LanternShardHit
+onready var sfx_env_electricity_pulse: AudioStreamPlayer2D = $SFX/Environments/Sfx_ElectricityPulse
 onready var sfx_env_trigger_spike_press : AudioStreamPlayer = $SFX/Environments/Sfx_TriggerSpikePress
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
 onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam

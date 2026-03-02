@@ -20,7 +20,12 @@ onready var left_marker_line2d := $LeftMarkerLine2D
 
 var _initialised = false
 
+var sfx_electricity_pulse: AudioStreamPlayer2D = null
+
 func _ready():
+	sfx_electricity_pulse = Game_AudioManager.sfx_env_electricity_pulse.duplicate()
+	add_child(sfx_electricity_pulse)
+	
 	if not Engine.editor_hint:
 		left_marker_line2d.visible = false
 		
@@ -51,6 +56,11 @@ func _initialise():
 	
 
 func _enable(enable:bool):
+	if enable:
+		sfx_electricity_pulse.play()
+	else:
+		sfx_electricity_pulse.stop()
+		
 	electricity_area2d.visible = enable
 	electricity_area2d.monitoring = enable
 	sprite32.playing = enable and length == 32	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-lantern-shoot.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/sounds/sfx/environments/bfx-lantern-shard-hit.wav" type="AudioStream" id=39]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-aoandon-lantern-shoot.wav" type="AudioStream" id=40]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-electricity-pulse.wav" type="AudioStream" id=41]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -318,13 +319,20 @@ attenuation = 1.68179
 panning_strength = 0.0
 bus = "SFX"
 
+[node name="Sfx_ElectricityPulse" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 41 )
+max_distance = 120.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
 [node name="Sfx_CheckPoint" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 10 )
 bus = "SFX"
 
 [node name="Sfx_SpringBoing" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 32 )
-volume_db = -12.0
+volume_db = -15.0
 bus = "SFX"
 
 [node name="Sfx_TriggerSpikePress" type="AudioStreamPlayer" parent="SFX/Environments"]
