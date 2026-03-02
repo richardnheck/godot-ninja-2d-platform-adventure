@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -37,6 +37,9 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-canon-ball-explosion.wav" type="AudioStream" id=35]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-kasa-obake-jump.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-tofu-land.wav" type="AudioStream" id=37]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-lantern-shoot.wav" type="AudioStream" id=38]
+[ext_resource path="res://assets/sounds/sfx/environments/bfx-lantern-shard-hit.wav" type="AudioStream" id=39]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-aoandon-lantern-shoot.wav" type="AudioStream" id=40]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -285,6 +288,30 @@ bus = "SFX"
 
 [node name="Sfx_TofuLand" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 37 )
+volume_db = 3.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_LanternShoot" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 38 )
+volume_db = -6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_AoAndonLanternShoot" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 40 )
+volume_db = -6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_LanternShardHit" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 39 )
 volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179

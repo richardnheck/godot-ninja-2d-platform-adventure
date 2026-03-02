@@ -11,10 +11,13 @@ var direction := Vector2.RIGHT setget set_direction
 var vel:Vector2 = Vector2.ZERO
 var exploding := false
 
+var sfx_shard_hit:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	sfx_shard_hit = Game_AudioManager.sfx_env_lantern_shard_hit.duplicate()
+	add_child(sfx_shard_hit)
+	
 
 func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction
@@ -37,6 +40,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _explode():
+	sfx_shard_hit.play()
 	exploding = true
 	animated_sprite.visible = false
 	#Game_AudioManager.sfx_env_crumbling_platform_explode.play()

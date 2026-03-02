@@ -41,13 +41,13 @@ shoot_rate = 2
 delay_time = 0.0
 mode = 0
 
-[node name="Path2D" parent="." index="0"]
+[node name="Path2D" parent="." index="1"]
 curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="Path2D" index="0"]
 position = Vector2( 0, -49.2746 )
 
-[node name="Area2D" parent="." index="1"]
+[node name="Area2D" parent="." index="2"]
 position = Vector2( 0, -49.2746 )
 
 [node name="ShootPosition" type="Position2D" parent="Area2D" index="0"]
@@ -60,7 +60,6 @@ shape = SubResource( 7 )
 [node name="AnimatedSprite" parent="Area2D" index="2"]
 z_index = 10
 frames = SubResource( 5 )
-playing = true
 
 [node name="DelayTimer" type="Timer" parent="." index="4"]
 

@@ -30,8 +30,8 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), null ],
+"loop": false,
 "name": "explode",
 "speed": 20.0
 }, {

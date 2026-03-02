@@ -22,7 +22,12 @@ var lifetime := 0
 # Shoots up as it explodes
 var shoot_direction:Vector2 = Vector2.UP
 
-func _ready() -> void:					
+var sfx_shoot:AudioStreamPlayer2D = null
+
+func _ready() -> void:		
+	sfx_shoot = Game_AudioManager.sfx_env_aoandon_lantern_shoot.duplicate()
+	add_child(sfx_shoot)
+				
 	if lifetime > 0:
 		lifetime_timer.wait_time = lifetime
 		lifetime_timer.start()
@@ -62,6 +67,7 @@ func _explode():
 	sprite.visible = false
 
 	# fire shards	
+	sfx_shoot.play()
 	_shoot()
 	
 func _on_Area2D_body_entered(body):

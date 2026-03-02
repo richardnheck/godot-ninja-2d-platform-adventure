@@ -191,8 +191,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 2880, -88 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1368, -256 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -626,7 +626,6 @@ tile_data = PoolIntArray( -1834926, -536870910, 196608, -1834921, -1073741822, 1
 
 [node name="ShardLantern" parent="Section2/enemies" instance=ExtResource( 15 )]
 position = Vector2( 304, -288 )
-offset = 0
 shoot_direction = 1
 
 [node name="RotatingOnibi" parent="Section2/enemies" instance=ExtResource( 17 )]

@@ -30,8 +30,13 @@ var can_seek:bool = true
 
 export var steer_force = 20.0
 
+var sfx_shoot:AudioStreamPlayer2D = null
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_shoot = Game_AudioManager.sfx_env_aoandon_lantern_shoot.duplicate()
+	add_child(sfx_shoot)
+	
 	if shoot_direction == ShootDirection.UP:
 		direction = Vector2(0,-1)
 	elif shoot_direction == ShootDirection.DOWN:
@@ -101,9 +106,10 @@ func _on_LifeTimer_timeout() -> void:
 
 
 func _explode() -> void:
+	sprite.visible = false
 	explosion.play("explode")
-	yield(explosion, "animation_finished")
-	print("explode finished")
+	sfx_shoot.play()
+	yield(sfx_shoot, "finished")
 	emit_signal("destroyed")
 	queue_free()
 
@@ -140,3 +146,6 @@ func _add_bullet(direction):
 func force_die():
 	print(">>>> force die()")
 	_explode()
+
+func _on_sfx_shoot_finished():
+	queue_free()

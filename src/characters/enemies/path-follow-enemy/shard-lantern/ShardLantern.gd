@@ -35,8 +35,13 @@ onready var sprite = $Area2D/AnimatedSprite
 
 var direction:Vector2 = Vector2.ZERO
 
+var sfx_shoot:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_shoot = Game_AudioManager.sfx_env_lantern_shoot.duplicate()
+	add_child(sfx_shoot)
+	
 	# override defaults
 	self.speed = 30
 	self.tween_transition_type = TransitionType.TRANS_SINE
@@ -99,7 +104,7 @@ func _shoot():
 
 #	pause_following_path()
 #	yield(get_tree().create_timer(0.25), "timeout")
-			
+	sfx_shoot.play()			
 	shoot_timer.wait_time = shoot_rate
 	shoot_timer.start()
 
