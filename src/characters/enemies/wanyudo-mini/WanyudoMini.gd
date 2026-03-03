@@ -11,8 +11,13 @@ onready var animated_sprite = $AnimatedSprite
 onready var flames_animated_sprite = $FlamesAnimatedSprite
 onready var explosion_animated_sprite = $ExplosionAnimatedSprite
 
+var sfx_explosion:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_explosion = Game_AudioManager.sfx_env_mini_wanyudo_explosion.duplicate()
+	add_child(sfx_explosion)
+	
 	lifetime_timer.wait_time = lifetime
 	lifetime_timer.start()
 	explosion_animated_sprite.visible = false
@@ -65,6 +70,7 @@ func _start_flashing() -> void:
 	animated_sprite.play("flash")
 
 func _do_death() -> void:
+	sfx_explosion.play()
 	animated_sprite.visible = false
 	flames_animated_sprite.visible = false
 	explosion_animated_sprite.visible = true

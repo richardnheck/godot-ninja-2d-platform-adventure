@@ -10,9 +10,13 @@ onready var _sprite := $AnimatedSprite
 
 var splash_scene = preload("res://src/objects/water-splash/WaterSplash.tscn")
 
+var sfx_splash:AudioStreamPlayer2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_splash = Game_AudioManager.sfx_env_fish_splash.duplicate()
+	add_child(sfx_splash)
+	
 	gravity_scale = 5
 	#print("gravity scale", gravity_scale)
 
@@ -54,6 +58,7 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
 # Area2D is used for detection of water trap
 func _on_Area2D_body_entered(body):
 	# Add a splash when leaving and hitting the water
+	sfx_splash.play()
 	var splash_instance = splash_scene.instance()
 	splash_instance.global_position = global_position + Vector2(0,0)
 	get_parent().add_child(splash_instance)

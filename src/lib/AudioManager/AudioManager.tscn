@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -43,6 +43,11 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-electricity-pulse.wav" type="AudioStream" id=41]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-snore.wav" type="AudioStream" id=42]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-shirime-walk.wav" type="AudioStream" id=43]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-fish-splash.wav" type="AudioStream" id=44]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-scream.wav" type="AudioStream" id=45]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-alert.wav" type="AudioStream" id=46]
+[ext_resource path="res://assets/sounds/sfx/environments/nessfx_explode.wav" type="AudioStream" id=47]
+[ext_resource path="res://assets/sounds/sfx/environments/nessfx-mini-wanyudo-spawn.wav" type="AudioStream" id=48]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -247,7 +252,6 @@ bus = "SFX"
 
 [node name="Sfx_CloudPlatformExplode" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 29 )
-volume_db = -3.0
 bus = "SFX"
 
 [node name="Sfx_FallingSpike" type="AudioStreamPlayer2D" parent="SFX/Environments"]
@@ -339,6 +343,46 @@ bus = "SFX"
 [node name="Sfx_ShirimeWalk" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 43 )
 volume_db = 6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_FishSplash" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 44 )
+volume_db = -3.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_HannyaScream" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 45 )
+volume_db = 3.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_HannyaAlert" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 46 )
+volume_db = 9.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_MiniWanyudoExplosion" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 47 )
+volume_db = 3.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_MiniWanyudoSpawn" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 48 )
+volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0

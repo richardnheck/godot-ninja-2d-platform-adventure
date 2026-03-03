@@ -538,17 +538,14 @@ position = Vector2( 808, 80 )
 speed = 50.0
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Kappa" index="0"]
+[node name="Path2D" parent="Enemies/Kappa" index="1"]
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" parent="Enemies/Kappa/Path2D" index="0"]
 position = Vector2( 31.2732, 6.00337 )
 
-[node name="Area2D" parent="Enemies/Kappa" index="1"]
+[node name="Area2D" parent="Enemies/Kappa" index="2"]
 position = Vector2( 31.2732, 6.00337 )
-
-[node name="CollisionShape2D" parent="Enemies/Kappa/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="FireBallSpinner1" parent="Enemies" instance=ExtResource( 13 )]
 position = Vector2( 1800, 104 )
@@ -613,80 +610,65 @@ position = Vector2( 2296, 96 )
 speed = 50.0
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Kappa2" index="0"]
+[node name="Path2D" parent="Enemies/Kappa2" index="1"]
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" parent="Enemies/Kappa2/Path2D" index="0"]
 position = Vector2( 31.2732, 6.00337 )
 
-[node name="Area2D" parent="Enemies/Kappa2" index="1"]
+[node name="Area2D" parent="Enemies/Kappa2" index="2"]
 position = Vector2( 31.2732, 6.00337 )
-
-[node name="CollisionShape2D" parent="Enemies/Kappa2/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="ZukaiKotsu" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2608, 0 )
 speed = 24.0
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu" index="1"]
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu/Path2D" index="0"]
 position = Vector2( -23.2741, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu" index="2"]
 position = Vector2( -23.2742, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="ZukaiKotsu1" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2672, -40 )
 speed = 24.0
 flip_sprite = true
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu1" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu1" index="1"]
 curve = SubResource( 4 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu1/Path2D" index="0"]
 position = Vector2( -24.7259, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu1" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu1" index="2"]
 position = Vector2( -24.7258, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu1/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="FunaYurei" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2391.15, 64 )
 
-[node name="Path2D" parent="Enemies/FunaYurei" index="0"]
+[node name="Path2D" parent="Enemies/FunaYurei" index="1"]
 curve = SubResource( 5 )
 
 [node name="PathFollow2D" parent="Enemies/FunaYurei/Path2D" index="0"]
 position = Vector2( 0.725926, 0 )
 
-[node name="Area2D" parent="Enemies/FunaYurei" index="1"]
+[node name="Area2D" parent="Enemies/FunaYurei" index="2"]
 position = Vector2( 0.72583, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/FunaYurei/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="FunaYurei2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 2976, 7.64271 )
 
-[node name="Path2D" parent="Enemies/FunaYurei2" index="0"]
+[node name="Path2D" parent="Enemies/FunaYurei2" index="1"]
 curve = SubResource( 5 )
 
 [node name="PathFollow2D" parent="Enemies/FunaYurei2/Path2D" index="0"]
 position = Vector2( 0.725926, 0 )
 
-[node name="Area2D" parent="Enemies/FunaYurei2" index="1"]
+[node name="Area2D" parent="Enemies/FunaYurei2" index="2"]
 position = Vector2( 0.72583, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/FunaYurei2/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="CloudPlatform13" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 2736, 80.5 )
@@ -764,34 +746,28 @@ position = Vector2( 4520, 102 )
 speed = 24.0
 flip_sprite = true
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu2" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu2" index="1"]
 curve = SubResource( 8 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu2/Path2D" index="0"]
 position = Vector2( -24.7259, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu2" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu2" index="2"]
 position = Vector2( -24.7261, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu2/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="ZukaiKotsu3" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 4624, 101.629 )
 speed = 24.0
 flip_sprite = true
 
-[node name="Path2D" parent="Enemies/ZukaiKotsu3" index="0"]
+[node name="Path2D" parent="Enemies/ZukaiKotsu3" index="1"]
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" parent="Enemies/ZukaiKotsu3/Path2D" index="0"]
 position = Vector2( -24.7259, 0 )
 
-[node name="Area2D" parent="Enemies/ZukaiKotsu3" index="1"]
+[node name="Area2D" parent="Enemies/ZukaiKotsu3" index="2"]
 position = Vector2( -24.7261, 0 )
-
-[node name="CollisionShape2D" parent="Enemies/ZukaiKotsu3/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="CloudPlatform21" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 4688, 79.9797 )
@@ -818,34 +794,28 @@ position = Vector2( 4968, 48 )
 speed = 50.0
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Kappa4" index="0"]
+[node name="Path2D" parent="Enemies/Kappa4" index="1"]
 curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="Enemies/Kappa4/Path2D" index="0"]
 position = Vector2( 31.276, 5.93633 )
 
-[node name="Area2D" parent="Enemies/Kappa4" index="1"]
+[node name="Area2D" parent="Enemies/Kappa4" index="2"]
 position = Vector2( 31.2759, 5.93633 )
-
-[node name="CollisionShape2D" parent="Enemies/Kappa4/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="Kappa5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 5128, 48 )
 speed = 50.0
 follow_path_type = 0
 
-[node name="Path2D" parent="Enemies/Kappa5" index="0"]
+[node name="Path2D" parent="Enemies/Kappa5" index="1"]
 curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="Enemies/Kappa5/Path2D" index="0"]
 position = Vector2( 31.276, 5.93633 )
 
-[node name="Area2D" parent="Enemies/Kappa5" index="1"]
+[node name="Area2D" parent="Enemies/Kappa5" index="2"]
 position = Vector2( 31.2759, 5.93633 )
-
-[node name="CollisionShape2D" parent="Enemies/Kappa5/Area2D" index="0"]
-scale = Vector2( 1, 1 )
 
 [node name="TsurubeOtoshi" parent="Enemies" instance=ExtResource( 17 )]
 position = Vector2( 5040, 48 )

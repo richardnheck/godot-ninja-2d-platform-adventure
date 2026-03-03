@@ -22,7 +22,12 @@ onready var _shoot_position := $ShootPosition
 onready var animated_sprite := $AnimatedSprite
 
 
+var sfx_spawn:AudioStreamPlayer2D = null
+
 func _ready():
+	sfx_spawn = Game_AudioManager.sfx_env_mini_wanyudo_spawn.duplicate()
+	add_child(sfx_spawn)
+	
 	animated_sprite.animation = "Idle"
 	
 	if mode == MODE.TIMED:
@@ -46,11 +51,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _shoot() -> void:
+	
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 
 	animated_sprite.animation = "Spawn"
 	yield(get_tree().create_timer(0.5), "timeout")
+	sfx_spawn.play()
 	var bullet:WanyudoMini = bullet_scene.instance()
 	print_debug("lifetime: " + str(wanyudo_mini_lifetime))
 	bullet.lifetime = wanyudo_mini_lifetime

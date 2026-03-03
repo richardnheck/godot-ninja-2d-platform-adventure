@@ -27,12 +27,17 @@ var triggered = false
 const speed = 390
 var velocity = Vector2()
 
+var sfx_scream:AudioStreamPlayer2D = null
+var sfx_alert:AudioStreamPlayer2D = null
+
 func _set_direction(value) -> void:
 	direction = value
 	
 func _ready() -> void:
-	print_debug("Hannya")
-	print_debug(str(global_position))
+	sfx_scream = Game_AudioManager.sfx_env_hannya_scream.duplicate()
+	add_child(sfx_scream)
+	sfx_alert = Game_AudioManager.sfx_env_hannya_alert.duplicate()
+	add_child(sfx_alert)
 	
 	# set the direction of the Hannya
 	self.scale.x = -direction
@@ -47,7 +52,6 @@ func _physics_process(delta:float) -> void:
 func _on_VisibilityNotifier2D_screen_exited():
 	# if triggered and off the screen then remove
 	if triggered:
-		print_debug("Hannya removed!")
 		queue_free()
 
 
@@ -55,6 +59,7 @@ func _on_TriggerArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		if not triggered:
 			# Trigger the telegraph before the attack
+			sfx_alert.play()
 			# set the telegraph tween value to move the sprite backwards before attacking
 			telegraph_tween_values = [position, Vector2(position.x + (-direction * telegraph_distance), position.y)]
 			telegraph_tween.interpolate_property(self, "position", telegraph_tween_values[0], telegraph_tween_values[1], telegraph_time, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
@@ -70,4 +75,5 @@ func _on_Area2D_body_entered(body):
 func _on_TelegraphTween_tween_completed(object, key):
 	# telegraph has finished so trigger the main fast surge attack
 	triggered = true
+	sfx_scream.play()
 	animated_sprite.animation = "attack"

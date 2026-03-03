@@ -35,6 +35,7 @@ physics_process_parent = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, 0 )
 rotation = 1.5708
+z_index = 1
 frames = SubResource( 3 )
 playing = true
 
