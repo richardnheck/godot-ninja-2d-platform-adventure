@@ -20,11 +20,23 @@ var player:KinematicBody2D = null
 var ground_global_position:Vector2 = Vector2.ZERO
 var can_change_direction = true   # Indicates whether enemy can change direction
 
+var sfx_snore:AudioStreamPlayer2D = null
+var sfx_walk:AudioStreamPlayer2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sfx_snore = Game_AudioManager.sfx_env_shirime_snore.duplicate()
+	sfx_snore.connect("finished", self, "_on_sfx_snore_finished")
+	add_child(sfx_snore)
+	
+	sfx_walk = Game_AudioManager.sfx_env_shirime_walk.duplicate()
+	sfx_walk.connect("finished", self, "_on_sfx_walk_finished")
+	add_child(sfx_walk)
+	
 	ground_global_position = global_position
 	
 	set_state(STATE_IDLE)
+	sfx_snore.play()
 
 func set_state(state):
 	if state != current_state:
@@ -106,8 +118,23 @@ func set_sprite_animation(animation) -> void:
 func _on_DetectionArea2D_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		set_state(STATE_RUN)
+		sfx_snore.stop()
+		sfx_walk.play()
 
 
 func _on_DetectionArea2D_body_exited(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		set_state(STATE_IDLE)
+		sfx_snore.play()
+		sfx_walk.stop()
+
+
+func _on_sfx_snore_finished():
+	if current_state == STATE_IDLE:
+		# still in idle state so continuing snoring
+		sfx_snore.play()
+
+func _on_sfx_walk_finished():
+	if current_state == STATE_RUN:
+		# still in moving state so continuing making run noise
+		sfx_walk.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -41,6 +41,8 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfx-lantern-shard-hit.wav" type="AudioStream" id=39]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-aoandon-lantern-shoot.wav" type="AudioStream" id=40]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-electricity-pulse.wav" type="AudioStream" id=41]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-snore.wav" type="AudioStream" id=42]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-shirime-walk.wav" type="AudioStream" id=43]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -281,7 +283,7 @@ bus = "SFX"
 
 [node name="Sfx_KasaObakeJump" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 36 )
-volume_db = 6.0
+volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
@@ -322,6 +324,22 @@ bus = "SFX"
 [node name="Sfx_ElectricityPulse" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 41 )
 max_distance = 120.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_ShirimeSnore" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 42 )
+volume_db = 6.0
+max_distance = 300.0
+attenuation = 1.68179
+panning_strength = 0.0
+bus = "SFX"
+
+[node name="Sfx_ShirimeWalk" type="AudioStreamPlayer2D" parent="SFX/Environments"]
+stream = ExtResource( 43 )
+volume_db = 6.0
+max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
 bus = "SFX"
