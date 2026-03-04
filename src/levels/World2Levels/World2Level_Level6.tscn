@@ -36,6 +36,7 @@
 [ext_resource path="res://assets/art/tilesets/world2/wooden-slats-tileset.tres" type="TileSet" id=34]
 [ext_resource path="res://assets/art/tilesets/world2/clouds.png" type="Texture" id=35]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=36]
+[ext_resource path="res://src/utility/curves/VerticalBottomUp6L.tres" type="Curve2D" id=37]
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 35 )
@@ -160,12 +161,7 @@ extents = Vector2( 88, 10 )
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 88, 10 )
 
-[sub_resource type="Curve2D" id=11]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 8, 16, 0, 0, 0, 0, 8, 8, 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, 8, -32 )
-}
-
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=31]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -228,7 +224,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1936, -1072 )
+position = Vector2( 3208, -1568 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -630,24 +626,23 @@ position = Vector2( 4216, -1784 )
 position = Vector2( -8, 34 )
 shape = SubResource( 15 )
 
-[node name="MovingPlatformCave1H8" parent="InteractiveProps" instance=ExtResource( 22 )]
-position = Vector2( 1584, -712 )
+[node name="MovingPlatformCave1H" parent="InteractiveProps" instance=ExtResource( 22 )]
+position = Vector2( 3160, -1480 )
 
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave1H8" index="1"]
-position = Vector2( 1576, -768 )
-curve = SubResource( 11 )
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave1H" index="1"]
+curve = ExtResource( 37 )
 
-[node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave1H8/Path2D" index="0"]
+[node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave1H/Path2D" index="0"]
 position = Vector2( 8, 15.2735 )
 
-[node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave1H8/Path2D" index="1"]
+[node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave1H/Path2D" index="1"]
 offset = Vector2( 8, 8 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave1H8" index="2"]
-position = Vector2( 1584, -752.727 )
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave1H" index="2"]
+position = Vector2( 8, 15.2734 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave1H8" index="3"]
-anims/PingPongPathFollow = SubResource( 12 )
+[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave1H" index="3"]
+anims/PingPongPathFollow = SubResource( 31 )
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -1128,7 +1123,7 @@ shape = SubResource( 21 )
 [editable path="InteractiveProps/WanyudoMiniKillArea2D"]
 [editable path="InteractiveProps/WanyudoMiniKillArea2D2"]
 [editable path="InteractiveProps/WanyudoMiniKillArea2D3"]
-[editable path="InteractiveProps/MovingPlatformCave1H8"]
+[editable path="InteractiveProps/MovingPlatformCave1H"]
 [editable path="Enemies/FunaYurei"]
 [editable path="Enemies/ZukaiKotsu"]
 [editable path="Enemies/ZukaiKotsu2"]
