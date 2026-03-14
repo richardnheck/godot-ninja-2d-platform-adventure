@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/world2 level theme song.ogg-c4fc81d7f6cb4ba455160d546c71a6ee.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/world2 level theme song.ogg"
+dest_files=[ "res://.import/world2 level theme song.ogg-c4fc81d7f6cb4ba455160d546c71a6ee.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
