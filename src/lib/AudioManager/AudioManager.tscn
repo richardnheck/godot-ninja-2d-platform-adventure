@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -48,6 +48,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-alert.wav" type="AudioStream" id=46]
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx_explode.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx-mini-wanyudo-spawn.wav" type="AudioStream" id=48]
+[ext_resource path="res://assets/sounds/bgm/world2 level theme song.ogg" type="AudioStream" id=49]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -157,7 +158,7 @@ anims/Undim = SubResource( 5 )
 
 [node name="Bgm_MainTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 24 )
-volume_db = -15.0
+volume_db = -9.0
 
 [node name="Bgm_StoryIntro" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 26 )
@@ -165,22 +166,27 @@ volume_db = -15.0
 
 [node name="Bgm_CaveLevelTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 23 )
-volume_db = -15.0
+volume_db = -12.0
+bus = "BGM"
+
+[node name="Bgm_World2LevelTheme" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 49 )
+volume_db = -6.0
 bus = "BGM"
 
 [node name="Bgm_CaveLevelBossTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 22 )
-volume_db = -15.0
+volume_db = -6.0
 bus = "BGM"
 
 [node name="Bgm_CaveLevelBossIntro" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 27 )
-volume_db = -15.0
+volume_db = -9.0
 bus = "BGM"
 
 [node name="Bgm_CaveLevelBossOutro" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 28 )
-volume_db = -15.0
+volume_db = -12.0
 bus = "BGM"
 
 [node name="SFX" type="Node" parent="."]
