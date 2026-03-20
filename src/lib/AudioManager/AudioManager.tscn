@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -49,6 +49,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx_explode.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx-mini-wanyudo-spawn.wav" type="AudioStream" id=48]
 [ext_resource path="res://assets/sounds/bgm/world2 level theme song.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/sounds/bgm/world3 level theme song.ogg" type="AudioStream" id=50]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -171,6 +172,11 @@ bus = "BGM"
 
 [node name="Bgm_World2LevelTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 49 )
+volume_db = -6.0
+bus = "BGM"
+
+[node name="Bgm_World3LevelTheme" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 50 )
 volume_db = -6.0
 bus = "BGM"
 

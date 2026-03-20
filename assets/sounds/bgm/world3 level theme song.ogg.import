@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/world3 level theme song.ogg-13a0dc8b089f3d06b969fe45d57b461a.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/world3 level theme song.ogg"
+dest_files=[ "res://.import/world3 level theme song.ogg-13a0dc8b089f3d06b969fe45d57b461a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

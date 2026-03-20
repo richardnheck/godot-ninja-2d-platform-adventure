@@ -13,7 +13,7 @@ const WORLD3_LEVELS_PATH = "res://src/levels/World3Levels/World3Level_"
 # The name of the AudioStreamPlayer node of the background music in AudioManager
 const CAVE_LEVEL_BGM = "Bgm_CaveLevelTheme"
 const WORLD2_LEVEL_BGM = "Bgm_World2LevelTheme"
-const WORLD3_LEVEL_BGM = "Bgm_World2LevelTheme"
+const WORLD3_LEVEL_BGM = "Bgm_World3LevelTheme"
 const LEVEL_SELECT_SCREENS_PATH = "res://src/UI/LevelSelectScreens/"
 
 # Game save state saved in
