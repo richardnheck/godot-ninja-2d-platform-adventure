@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/world3 boss theme song.ogg-f743c9e0830afc2f9df3b2c83b05b0fa.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/world3 boss theme song.ogg"
+dest_files=[ "res://.import/world3 boss theme song.ogg-f743c9e0830afc2f9df3b2c83b05b0fa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

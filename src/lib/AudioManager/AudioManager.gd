@@ -117,6 +117,7 @@ onready var bgm_cave_level_theme : AudioStreamPlayer = $BGM/Bgm_CaveLevelTheme
 onready var bgm_main_theme : AudioStreamPlayer = $BGM/Bgm_MainTheme
 onready var bgm_story_intro : AudioStreamPlayer = $BGM/Bgm_StoryIntro
 onready var bgm_world2_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_World2LevelBossTheme
+onready var bgm_world3_level_boss_theme : AudioStreamPlayer = $BGM/Bgm_World3LevelBossTheme
 
 #Sfx (Sound Effects)
 onready var sfx_character_player_land : AudioStreamPlayer = $SFX/Character/Sfx_PlayerLand
@@ -194,7 +195,10 @@ func play_bgm_cave_level_boss():
 
 func play_bgm_world2_level_boss():
 	self.play_bgm_from_player(self.bgm_world2_level_boss_theme)
-	
+
+func play_bgm_world3_level_boss():
+	self.play_bgm_from_player(self.bgm_world3_level_boss_theme)
+		
 func play_bgm_by_node_name(node_name):
 	var bgm_player = get_node("BGM/" + node_name)
 	self.play_bgm_from_player(bgm_player)

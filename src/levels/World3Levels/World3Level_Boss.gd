@@ -15,7 +15,7 @@ func _ready():
 	boss.set_ceiling_position(ceiling_position)
 	#boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 	
-	Game_AudioManager.play_bgm_cave_level_boss()
+	Game_AudioManager.play_bgm_world3_level_boss()
 
 	if spawned_at_checkpoint:
 		print("Spawned at checkpoint")

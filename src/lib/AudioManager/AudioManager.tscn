@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -51,6 +51,7 @@
 [ext_resource path="res://assets/sounds/bgm/world2 level theme song.ogg" type="AudioStream" id=49]
 [ext_resource path="res://assets/sounds/bgm/world3 level theme song.ogg" type="AudioStream" id=50]
 [ext_resource path="res://assets/sounds/bgm/world2 boss theme song.ogg" type="AudioStream" id=51]
+[ext_resource path="res://assets/sounds/bgm/world3 boss theme song.ogg" type="AudioStream" id=52]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -188,6 +189,11 @@ bus = "BGM"
 
 [node name="Bgm_World3LevelTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 50 )
+volume_db = -6.0
+bus = "BGM"
+
+[node name="Bgm_World3LevelBossTheme" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 52 )
 volume_db = -6.0
 bus = "BGM"
 
