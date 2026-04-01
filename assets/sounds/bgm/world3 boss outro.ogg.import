@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/world3 boss outro.ogg-85c2b5299219084ba000c3421c8a56a3.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/world3 boss outro.ogg"
+dest_files=[ "res://.import/world3 boss outro.ogg-85c2b5299219084ba000c3421c8a56a3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

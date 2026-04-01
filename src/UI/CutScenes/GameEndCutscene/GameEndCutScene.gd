@@ -21,6 +21,7 @@ func _ready():
 	animation_player.play("first-scene")
 	yield(animation_player, "animation_finished")
 	animation_player.play("last-scene")
+	Game_AudioManager.play_story_outro()
 	
 func _start_dialog() -> void:
 	# Show dialog 1 and wait for continue

@@ -469,7 +469,7 @@ centered = false
 
 [node name="OneWeekLaterLabel" type="Label" parent="MainControl/CenterContainer"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0.933333 )
 margin_left = 121.0
 margin_top = 85.0
 margin_right = 199.0

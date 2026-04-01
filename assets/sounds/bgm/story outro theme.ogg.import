@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/story outro theme.ogg-64060df991a816a9afba294bed16807d.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/story outro theme.ogg"
+dest_files=[ "res://.import/story outro theme.ogg-64060df991a816a9afba294bed16807d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	animation_player.play("RESET")
 	
-	Game_AudioManager.play_cave_level_boss_intro()
+	Game_AudioManager.play_bgm_world3_level_boss_outro()
 	
 	cut_scene_base.connect("on_continue", self, "_on_continue")
 	
@@ -47,3 +47,5 @@ func _on_continue()->void:
 func show_continue_button(show:bool) -> void:
 	cut_scene_base.show_continue(show)
 
+func _dim_bg_music() -> void:
+	Game_AudioManager.fade_out_bgm(6)

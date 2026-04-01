@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -52,6 +52,8 @@
 [ext_resource path="res://assets/sounds/bgm/world3 level theme song.ogg" type="AudioStream" id=50]
 [ext_resource path="res://assets/sounds/bgm/world2 boss theme song.ogg" type="AudioStream" id=51]
 [ext_resource path="res://assets/sounds/bgm/world3 boss theme song.ogg" type="AudioStream" id=52]
+[ext_resource path="res://assets/sounds/bgm/story outro theme.ogg" type="AudioStream" id=53]
+[ext_resource path="res://assets/sounds/bgm/world3 boss outro.ogg" type="AudioStream" id=54]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -150,7 +152,10 @@ script = ExtResource( 1 )
 [node name="BGM" type="Node" parent="."]
 
 [node name="BgmCore_DONT_TOUCH_THIS" type="AudioStreamPlayer" parent="BGM"]
+volume_db = -6.0
 bus = "BGM"
+
+[node name="BgmFadeTween" type="Tween" parent="BGM/BgmCore_DONT_TOUCH_THIS"]
 
 [node name="PropertySetterPlayer" type="AnimationPlayer" parent="BGM/BgmCore_DONT_TOUCH_THIS"]
 anims/Dim = SubResource( 1 )
@@ -166,6 +171,11 @@ volume_db = -9.0
 [node name="Bgm_StoryIntro" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 26 )
 volume_db = -15.0
+
+[node name="Bgm_StoryOutro" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 53 )
+volume_db = -6.0
+bus = "BGM"
 
 [node name="Bgm_CaveLevelTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 23 )
@@ -194,6 +204,11 @@ bus = "BGM"
 
 [node name="Bgm_World3LevelBossTheme" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource( 52 )
+volume_db = -6.0
+bus = "BGM"
+
+[node name="Bgm_World3BossOutro" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource( 54 )
 volume_db = -6.0
 bus = "BGM"
 

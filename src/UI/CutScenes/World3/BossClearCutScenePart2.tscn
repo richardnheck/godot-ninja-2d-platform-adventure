@@ -642,6 +642,20 @@ tracks/20/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/21/type = "method"
+tracks/21/path = NodePath(".")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_dim_bg_music"
+} ]
+}
 
 [node name="World3 - BossClearCutScene (Part 2)" type="Node"]
 script = ExtResource( 1 )
@@ -743,16 +757,19 @@ z_index = 3
 visible = false
 position = Vector2( 204, 105 )
 frames = SubResource( 67 )
+frame = 17
 
 [node name="DiamondExplosionRed" type="AnimatedSprite" parent="Effects"]
 visible = false
 position = Vector2( 229, 105 )
 frames = SubResource( 67 )
+frame = 17
 
 [node name="DiamondExplosionGreen" type="AnimatedSprite" parent="Effects"]
 visible = false
 position = Vector2( 256, 105 )
 frames = SubResource( 67 )
+frame = 17
 
 [node name="LightBlast" type="AnimatedSprite" parent="Effects"]
 visible = false
