@@ -64,41 +64,15 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = ExtResource( 4 )
-text = "A game by Richard Heck 
-(aka The Parabol Ink)"
-align = 1
-
-[node name="ArtMusicProgrammingTitle" type="Label" parent="MainControl/Control"]
-margin_left = 28.0
-margin_top = 109.0
-margin_right = 158.0
-margin_bottom = 119.0
-custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = ExtResource( 4 )
-text = "ART, MUSIC, PROGRAMMING"
-align = 1
-
-[node name="ArtMusicProgrammingPerson" type="Label" parent="MainControl/Control"]
-margin_left = 28.0
-margin_top = 120.0
-margin_right = 158.0
-margin_bottom = 135.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = ExtResource( 4 )
-text = "Richard Heck"
+text = "A game by 
+The Parabol Ink"
 align = 1
 
 [node name="VFXTitle" type="Label" parent="MainControl/Control"]
 margin_left = 28.0
-margin_top = 136.0
+margin_top = 115.0
 margin_right = 158.0
-margin_bottom = 146.0
+margin_bottom = 125.0
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -109,9 +83,9 @@ align = 1
 
 [node name="VFXPerson" type="Label" parent="MainControl/Control"]
 margin_left = 28.0
-margin_top = 146.0
+margin_top = 125.0
 margin_right = 158.0
-margin_bottom = 157.0
+margin_bottom = 136.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -121,10 +95,10 @@ text = "BDragon1727"
 align = 1
 
 [node name="SFXTitle" type="Label" parent="MainControl/Control"]
-margin_left = 160.0
-margin_top = 136.0
-margin_right = 290.0
-margin_bottom = 146.0
+margin_left = 28.0
+margin_top = 140.0
+margin_right = 158.0
+margin_bottom = 150.0
 custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
@@ -134,10 +108,10 @@ text = "SFX"
 align = 1
 
 [node name="SFXPerson" type="Label" parent="MainControl/Control"]
-margin_left = 160.0
-margin_top = 146.0
-margin_right = 290.0
-margin_bottom = 157.0
+margin_left = 28.0
+margin_top = 150.0
+margin_right = 158.0
+margin_bottom = 161.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
