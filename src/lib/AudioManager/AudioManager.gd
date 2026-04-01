@@ -132,6 +132,8 @@ onready var sfx_character_player_wall_slide : AudioStreamPlayer = $SFX/Character
 #
 onready var sfx_collectibles_key: AudioStreamPlayer = $SFX/Collectibles/Sfx_Key
 onready var sfx_collectibles_demon_seal: AudioStreamPlayer = $SFX/Collectibles/Sfx_DemonSeal
+onready var sfx_collectibles_place_demon_seal: AudioStreamPlayer = $SFX/Collectibles/Sfx_PlaceDemonSeal
+
 #
 onready var sfx_env_spikey_rock_thud : AudioStreamPlayer2D = $SFX/Environments/Sfx_SpikeyRockThud
 onready var sfx_env_cave_mini_boss_slam : AudioStreamPlayer2D = $SFX/Environments/Sfx_CaveMiniBossSlam
@@ -160,6 +162,8 @@ onready var sfx_env_mini_wanyudo_explosion: AudioStreamPlayer2D = $SFX/Environme
 onready var sfx_env_mini_wanyudo_spawn: AudioStreamPlayer2D = $SFX/Environments/Sfx_MiniWanyudoSpawn
 onready var sfx_env_trigger_spike_press : AudioStreamPlayer = $SFX/Environments/Sfx_TriggerSpikePress
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
+onready var sfx_env_altar_rumble : AudioStreamPlayer = $SFX/Environments/Sfx_AltarRumble
+onready var sfx_env_altar_light_beam_pulse : AudioStreamPlayer = $SFX/Environments/Sfx_AltarLightBeamPulse
 onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam
 onready var sfx_env_cave_boss_cutscene_crash : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneCrash
 onready var sfx_env_cave_boss_cutscene_fall: AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneFall
@@ -188,7 +192,7 @@ func play_story_intro():
 
 # Play the song for the story outro or game end cutscene
 func play_story_outro():
-	self.play_bgm_from_player(self.bgm_story_outro)
+	self.play_bgm_from_player(self.bgm_story_outro, 0, true)	# fade in
 	
 # Play the cave level boss intro cutscene music 
 func play_cave_level_boss_intro():
@@ -216,14 +220,14 @@ func play_bgm_by_node_name(node_name):
 	
 var current_bgm : String #Path
 
-func play_bgm_from_player(var bgm_player:AudioStreamPlayer,var offset:float = 0):
+func play_bgm_from_player(var bgm_player:AudioStreamPlayer,var offset:float = 0, fade_in:bool = false):
 	var stream = bgm_player.stream
 	var volume_db = bgm_player.volume_db
-	play_bgm(stream, volume_db, offset)
+	play_bgm(stream, volume_db, offset, fade_in)
 	
 
 #Call by Level.
-func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int, var offset:float = 0):
+func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int, var offset:float = 0, fade_in:bool = false):
 	if what_bgm == null:
 		return
 	
@@ -232,10 +236,12 @@ func play_bgm(var what_bgm : AudioStreamOGGVorbis, var volume_db:int, var offset
 	if new_bgm_path != current_bgm:
 		bgm_core.volume_db = volume_db
 		bgm_core.set_stream(what_bgm)
-		bgm_core.play(offset)
 		current_bgm = new_bgm_path
 		emit_signal("bgm_just_started", what_bgm.get_path().replace("res://Audio/Bgm/", "").replace(".ogg", ""))
-
+		if fade_in:
+			bgm_fade_tween.interpolate_property(bgm_core, "volume_db", -60, bgm_core.volume_db, 1)  # 1 second fade in	
+			bgm_fade_tween.start()
+		bgm_core.play(offset)
 func stop_bgm():
 	bgm_core.volume_db = -30
 	bgm_core.stop()

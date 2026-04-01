@@ -74,4 +74,5 @@ func place() -> void:
 	# Show placed effect
 	placed_effect_animation.visible = true
 	placed_effect_animation.play()
+	Game_AudioManager.sfx_collectibles_place_demon_seal.play()
 	

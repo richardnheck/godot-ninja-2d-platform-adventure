@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -54,6 +54,9 @@
 [ext_resource path="res://assets/sounds/bgm/world3 boss theme song.ogg" type="AudioStream" id=52]
 [ext_resource path="res://assets/sounds/bgm/story outro theme.ogg" type="AudioStream" id=53]
 [ext_resource path="res://assets/sounds/bgm/world3 boss outro.ogg" type="AudioStream" id=54]
+[ext_resource path="res://assets/sounds/sfx/collectibles/place-demon-seal.wav" type="AudioStream" id=55]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-altar-rumble.wav" type="AudioStream" id=56]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-light-beam-pulse.wav" type="AudioStream" id=57]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -263,6 +266,11 @@ stream = ExtResource( 25 )
 volume_db = -9.0
 bus = "SFX"
 
+[node name="Sfx_PlaceDemonSeal" type="AudioStreamPlayer" parent="SFX/Collectibles"]
+stream = ExtResource( 55 )
+volume_db = -3.0
+bus = "SFX"
+
 [node name="Environments" type="Node" parent="SFX"]
 
 [node name="Sfx_SpikeyRockThud" type="AudioStreamPlayer2D" parent="SFX/Environments"]
@@ -462,6 +470,16 @@ bus = "SFX"
 [node name="Sfx_CaveSlidingDoor" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 17 )
 volume_db = 3.0
+bus = "SFX"
+
+[node name="Sfx_AltarRumble" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 56 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="Sfx_AltarLightBeamPulse" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 57 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="UI" type="Node" parent="SFX"]

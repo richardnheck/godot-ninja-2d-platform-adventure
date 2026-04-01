@@ -649,11 +649,40 @@ tracks/21/loop_wrap = true
 tracks/21/imported = false
 tracks/21/enabled = true
 tracks/21/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 5.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "_dim_bg_music"
+}, {
+"args": [  ],
+"method": "_play_altar_rumble_sfx"
+} ]
+}
+tracks/22/type = "method"
+tracks/22/path = NodePath(".")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 8.9, 9.1, 9.3, 9.66537, 10.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
 } ]
 }
 
@@ -757,19 +786,19 @@ z_index = 3
 visible = false
 position = Vector2( 204, 105 )
 frames = SubResource( 67 )
-frame = 17
+frame = 13
 
 [node name="DiamondExplosionRed" type="AnimatedSprite" parent="Effects"]
 visible = false
 position = Vector2( 229, 105 )
 frames = SubResource( 67 )
-frame = 17
+frame = 13
 
 [node name="DiamondExplosionGreen" type="AnimatedSprite" parent="Effects"]
 visible = false
 position = Vector2( 256, 105 )
 frames = SubResource( 67 )
-frame = 17
+frame = 13
 
 [node name="LightBlast" type="AnimatedSprite" parent="Effects"]
 visible = false

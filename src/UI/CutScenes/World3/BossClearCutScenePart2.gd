@@ -49,3 +49,9 @@ func show_continue_button(show:bool) -> void:
 
 func _dim_bg_music() -> void:
 	Game_AudioManager.fade_out_bgm(6)
+
+func _play_altar_rumble_sfx():
+	Game_AudioManager.sfx_env_altar_rumble.play()
+	
+func _play_light_pulse_sfx():
+	Game_AudioManager.sfx_env_altar_light_beam_pulse.play()
