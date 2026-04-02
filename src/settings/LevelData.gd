@@ -182,7 +182,9 @@ func set_has_key(value:bool) -> void:
 
 # Get the Level Select Scene for the current world
 func get_current_world_level_select_scene() -> String:
-	var current_level = get_levels()[current_level_index]
+	var max_index = levelsArray.size() - 1
+	var index = current_level_index if current_level_index <= max_index else max_index
+	var current_level = get_levels()[index]
 	var current_world = current_level["world"]
 	for i in range(0, worldsArray.size()):
 		if worldsArray[i]["world"] == current_world:
