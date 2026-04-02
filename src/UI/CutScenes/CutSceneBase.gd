@@ -43,6 +43,14 @@ func show_continue(visible)->void:
 func is_continue_button_showing()->bool:
 	return continue_button.visible
 
+# Show/Hide the skip button
+func show_skip(visible)->void:
+	skip_button.visible = visible
+
+func is_skip_button_showing()->bool:
+	return skip_button.visible
+
+
 func _on_SkipButton_pressed() -> void:
 	var show_loading_message = Settings.is_html5_build()		# Show additional loading message for slow devices on HTML5 build	
 	self.goto_next_scene(show_loading_message)

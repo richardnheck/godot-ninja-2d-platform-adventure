@@ -191,8 +191,8 @@ func play_story_intro():
 	self.play_bgm_from_player(self.bgm_story_intro)
 
 # Play the song for the story outro or game end cutscene
-func play_story_outro():
-	self.play_bgm_from_player(self.bgm_story_outro, 0, true)	# fade in
+func play_story_outro(fade_in:bool = true):
+	self.play_bgm_from_player(self.bgm_story_outro, 0, fade_in)	 
 	
 # Play the cave level boss intro cutscene music 
 func play_cave_level_boss_intro():

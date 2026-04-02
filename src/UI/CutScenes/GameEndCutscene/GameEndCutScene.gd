@@ -44,6 +44,13 @@ func _start_dialog() -> void:
 	dialog4.show()
 	yield(self, "continue_sig")
 	
+	dialog4.hide()
+	cut_scene_base.show_continue(false)
+	cut_scene_base.show_skip(false)
+	
+	animation_player.play("the-end")
+	yield(animation_player, "animation_finished")
+	
 	_goto_next_scene()
 
 func _goto_next_scene() -> void:

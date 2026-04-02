@@ -9,6 +9,8 @@ onready var cut_scene_base = $CutSceneBase
 onready var back_button = $"%BackButton"
 
 func _ready():
+	Game_AudioManager.play_story_outro(false)	# Don't fade in music if scene loaded directly
+	
 	var previous_scene = Global.get_previous_scene()
 	if "GameEndCutScene" in previous_scene or previous_scene == "":
 		# This is show after the final game end so back button navigates home
@@ -19,6 +21,7 @@ func _ready():
 		
 	show_continue_button(false)
 	animation_player.play("RESET")
+	
 
 func _goto_next_scene() -> void:
 	$CutSceneBase.goto_next_scene()

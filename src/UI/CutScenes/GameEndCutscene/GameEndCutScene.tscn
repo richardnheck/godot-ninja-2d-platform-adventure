@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/background-no-castle-glow.png" type="Texture" id=3]
@@ -235,6 +235,30 @@ tracks/12/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("MainControl/CenterContainer/TheEndLabel:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("MainControl/CenterContainer/TheEndLabel:self_modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "first-scene"
@@ -414,6 +438,58 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "the-end"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainControl/CenterContainer/BlackBackground:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainControl/CenterContainer/BlackBackground:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainControl/CenterContainer/TheEndLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainControl/CenterContainer/TheEndLabel:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="GameEndCutScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -469,7 +545,7 @@ centered = false
 
 [node name="OneWeekLaterLabel" type="Label" parent="MainControl/CenterContainer"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.933333 )
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_left = 121.0
 margin_top = 85.0
 margin_right = 199.0
@@ -481,6 +557,23 @@ custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
 custom_fonts/font = ExtResource( 54 )
 text = "One week later..."
+align = 1
+valign = 1
+
+[node name="TheEndLabel" type="Label" parent="MainControl/CenterContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 141.0
+margin_top = 85.0
+margin_right = 179.0
+margin_bottom = 94.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+custom_fonts/font = ExtResource( 54 )
+text = "The End"
 align = 1
 valign = 1
 
@@ -570,6 +663,7 @@ margin_bottom = 86.0
 anims/RESET = SubResource( 2 )
 anims/first-scene = SubResource( 3 )
 anims/last-scene = SubResource( 4 )
+anims/the-end = SubResource( 7 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 
