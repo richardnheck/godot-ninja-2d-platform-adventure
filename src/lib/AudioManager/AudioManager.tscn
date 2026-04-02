@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://src/lib/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/sfx/character/jump.wav" type="AudioStream" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://assets/sounds/sfx/collectibles/place-demon-seal.wav" type="AudioStream" id=55]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-altar-rumble.wav" type="AudioStream" id=56]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-light-beam-pulse.wav" type="AudioStream" id=57]
+[ext_resource path="res://assets/sounds/sfx/environments/long-explosion-rumble.wav" type="AudioStream" id=58]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dim"
@@ -480,6 +481,11 @@ bus = "SFX"
 [node name="Sfx_AltarLightBeamPulse" type="AudioStreamPlayer" parent="SFX/Environments"]
 stream = ExtResource( 57 )
 volume_db = -3.0
+bus = "SFX"
+
+[node name="Sfx_LongExplosionRumble" type="AudioStreamPlayer" parent="SFX/Environments"]
+stream = ExtResource( 58 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="UI" type="Node" parent="SFX"]

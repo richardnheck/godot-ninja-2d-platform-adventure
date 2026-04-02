@@ -163,6 +163,7 @@ onready var sfx_env_mini_wanyudo_spawn: AudioStreamPlayer2D = $SFX/Environments/
 onready var sfx_env_trigger_spike_press : AudioStreamPlayer = $SFX/Environments/Sfx_TriggerSpikePress
 onready var sfx_env_cave_sliding_door : AudioStreamPlayer = $SFX/Environments/Sfx_CaveSlidingDoor
 onready var sfx_env_altar_rumble : AudioStreamPlayer = $SFX/Environments/Sfx_AltarRumble
+onready var sfx_env_long_explosion_rumble : AudioStreamPlayer = $SFX/Environments/Sfx_LongExplosionRumble
 onready var sfx_env_altar_light_beam_pulse : AudioStreamPlayer = $SFX/Environments/Sfx_AltarLightBeamPulse
 onready var sfx_env_cave_boss_cutscene_slam : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneSlam
 onready var sfx_env_cave_boss_cutscene_crash : AudioStreamPlayer = $SFX/Environments/Sfx_CaveBossCutsceneCrash

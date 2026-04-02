@@ -1,5 +1,6 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
+[ext_resource path="res://src/UI/CutScenes/GameEndCutscene/the-end-sprite.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/background-no-castle-glow.png" type="Texture" id=3]
 [ext_resource path="res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.gd" type="Script" id=4]
@@ -335,6 +336,58 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_play_rumble_sfx"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.5, 2, 2.4, 2.6, 2.8, 3, 3.2, 3.8, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+}, {
+"args": [  ],
+"method": "_play_light_pulse_sfx"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "last-scene"
@@ -489,6 +542,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("MainControl/CenterContainer/TheEndLabel/Sprite:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="GameEndCutScene" type="Control"]
 anchor_right = 1.0
@@ -515,6 +580,7 @@ margin_right = 160.0
 margin_bottom = 90.0
 
 [node name="BackgroundNoGlow" type="Sprite" parent="MainControl/CenterContainer"]
+visible = false
 texture = ExtResource( 3 )
 centered = false
 
@@ -563,9 +629,9 @@ valign = 1
 [node name="TheEndLabel" type="Label" parent="MainControl/CenterContainer"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 141.0
+margin_left = 160.0
 margin_top = 85.0
-margin_right = 179.0
+margin_right = 160.0
 margin_bottom = 94.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -573,9 +639,13 @@ custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 0
 custom_fonts/font = ExtResource( 54 )
-text = "The End"
 align = 1
 valign = 1
+
+[node name="Sprite" type="Sprite" parent="MainControl/CenterContainer/TheEndLabel"]
+show_behind_parent = true
+texture = ExtResource( 1 )
+offset = Vector2( 0, 5 )
 
 [node name="DialogBox1" type="Sprite" parent="MainControl/CenterContainer"]
 unique_name_in_owner = true

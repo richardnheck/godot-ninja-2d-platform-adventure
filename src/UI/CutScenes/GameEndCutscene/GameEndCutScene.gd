@@ -13,7 +13,14 @@ onready var dialog4 = $"%DialogBox4"
 
 signal continue_sig
 
+var light_pulse_sfx:AudioStreamPlayer
+
 func _ready():
+	# Duplicate so we can play at a quieter volume without changing the default volume
+	light_pulse_sfx = Game_AudioManager.sfx_env_altar_light_beam_pulse.duplicate()
+	light_pulse_sfx.volume_db = -15
+	add_child(light_pulse_sfx)
+
 	show_continue_button(false)
 	animation_player.play("RESET")
 	cut_scene_base.connect("on_continue", self, "_on_continue")
@@ -21,7 +28,7 @@ func _ready():
 	animation_player.play("first-scene")
 	yield(animation_player, "animation_finished")
 	animation_player.play("last-scene")
-	Game_AudioManager.play_story_outro()  # fade in 
+	Game_AudioManager.play_story_outro(false)  # fade in 
 	
 func _start_dialog() -> void:
 	# Show dialog 1 and wait for continue
@@ -62,3 +69,12 @@ func _on_continue()->void:
 
 func show_continue_button(show:bool) -> void:
 	cut_scene_base.show_continue(show)
+
+func _play_rumble_sfx() -> void:
+	var sfx:AudioStreamPlayer = Game_AudioManager.sfx_env_long_explosion_rumble.duplicate()
+	sfx.volume_db = -9
+	add_child(sfx) 
+	sfx.play()
+
+func _play_light_pulse_sfx() -> void:
+	light_pulse_sfx.play()
