@@ -44,7 +44,7 @@
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-snore.wav" type="AudioStream" id=42]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-shirime-walk.wav" type="AudioStream" id=43]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-fish-splash.wav" type="AudioStream" id=44]
-[ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-scream.wav" type="AudioStream" id=45]
+[ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-whoosh.wav" type="AudioStream" id=45]
 [ext_resource path="res://assets/sounds/sfx/environments/bfxr-hannya-alert.wav" type="AudioStream" id=46]
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx_explode.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/sounds/sfx/environments/nessfx-mini-wanyudo-spawn.wav" type="AudioStream" id=48]
@@ -406,7 +406,6 @@ bus = "SFX"
 
 [node name="Sfx_HannyaScream" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 45 )
-volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
@@ -414,7 +413,7 @@ bus = "SFX"
 
 [node name="Sfx_HannyaAlert" type="AudioStreamPlayer2D" parent="SFX/Environments"]
 stream = ExtResource( 46 )
-volume_db = 9.0
+volume_db = 3.0
 max_distance = 300.0
 attenuation = 1.68179
 panning_strength = 0.0
