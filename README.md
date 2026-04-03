@@ -16,3 +16,6 @@ Music is written in FL Studio using the following 3rd party plugins
 When transferring computers check the following directories:
 - G:\My Drive\MY MUSIC\VST Plugins
 - C:\Program Files\Steinberg\VstPlugins
+
+#### Talo Analytics
+To enable [Talo Analytics](https://trytalo.com/) a env.cfg file needs to be defined in the root of the project (TODO: clarify this for builds).  See env.cfg.example for the format of the file

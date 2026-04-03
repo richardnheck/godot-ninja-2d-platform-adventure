@@ -56,6 +56,7 @@ func take_damage(attacker, amount, effect = null):
 # Start the dieing process
 func die(groups = []):
 	if not dead:
+		Analytics.track_deaths()
 		set_dead(true)
 #		if groups.has(Constants.GROUP_WATER_TRAP):
 #			$StateMachine._change_state("die_by_water")

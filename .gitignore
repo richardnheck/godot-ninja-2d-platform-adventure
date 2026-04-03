@@ -3,6 +3,9 @@
 export.cfg
 .fscache
 
+# Ignore configuration files
+env.cfg
+
 # System/tool-specific ignores
 .directory
 *~

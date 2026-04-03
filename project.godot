@@ -575,6 +575,7 @@ output_latency.web=100
 
 [autoload]
 
+Env="*res://src/lib/env.gd"
 Actions="*res://src/settings/Actions.gd"
 Constants="*res://src/settings/Constants.gd"
 LevelData="*res://src/settings/LevelData.gd"
@@ -588,6 +589,7 @@ Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
+Analytics="*res://src/lib/analytics.gd"
 
 [display]
 

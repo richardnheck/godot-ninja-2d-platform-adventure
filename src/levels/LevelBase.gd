@@ -153,8 +153,9 @@ func _spawn_player() -> KinematicBody2D:
 	add_child(player_instance)
 	return player_instance
 
-
+# Player has completed the level
 func _on_Door_player_entered() -> void:
+	Analytics.track_levels_completed()
 	Game_AudioManager.sfx_ui_level_clear.play()
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
