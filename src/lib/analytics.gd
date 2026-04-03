@@ -24,14 +24,8 @@ func _ready():
 	# TODO: Generate a unique player id 
 	identify_player(player_identifier)
 
-# Determine if Talo analytics is enabled
-func _is_enabled() -> bool:
-	return Env.talo_access_key != ""
-
 # Identify the player
 func identify_player(identifier):
-	if !_is_enabled(): return
-	
 	print("Identifying player: " + identifier)
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -50,7 +44,6 @@ func track_deaths():
 func track_levels_completed():
 	_track_stat(STAT_LEVELS_COMPLETED)
 
-# Get the base headers for talo requests
 func _get_base_headers() -> Array:
 	return [
 		"Content-Type: application/json",
@@ -60,8 +53,6 @@ func _get_base_headers() -> Array:
 
 # Track a stat
 func _track_stat(stat_name:String):
-	if !_is_enabled(): return
-	
 	var url = talo_base_url + "game-stats/" + stat_name
 	var headers = _get_base_headers().duplicate() 
 	headers.append("x-talo-alias: " + String(player_alias_id))
