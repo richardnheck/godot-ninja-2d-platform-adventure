@@ -13,7 +13,7 @@ var swing_speed = -45   # speed in degrees per second
 var actual_rotation_degrees = 0 
 
 # Easing variables
-var ease_offset: float = Time.time_passed
+var ease_offset: float = TimeUtility.time_passed
 var ease_start  := 0.0
 var ease_target := 0.0
 var ease_length := 0.0    # time in seconds to complete swing from one boundary to the other
@@ -42,9 +42,9 @@ func _process(delta: float) -> void:
 		ease_start = start_direction
 		
 		# Start without easing in
-		ease_output = Ease.easeOutSine(Time.time_passed, ease_offset, ease_length / 2.0)
+		ease_output = Ease.easeOutSine(TimeUtility.time_passed, ease_offset, ease_length / 2.0)
 	else:
-		ease_output = Ease.easeInOutSine(Time.time_passed, ease_offset, ease_length)
+		ease_output = Ease.easeInOutSine(TimeUtility.time_passed, ease_offset, ease_length)
 	
 	# Calculate the actual rotation in degrees	
 	actual_rotation_degrees = (ease_start + (ease_output * (ease_target - ease_start)))
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		clockwise = not clockwise
 		
 		# Reset the time offset to effectively start again  
-		ease_offset = Time.time_passed
+		ease_offset = TimeUtility.time_passed
 		
 		# Recalculate the ease settings range
 		set_ease_range()

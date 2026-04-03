@@ -28,6 +28,7 @@ var camera:Camera2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("LevelBase: _ready() start")
+	
 	# Preload the world screen to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
 	
@@ -109,6 +110,10 @@ func _ready() -> void:
 				key.show_key(false)
 		else: 
 			door.close()
+	
+	# When level is first loaded then reset the death count for the current level
+	if not LevelData.is_reload:
+		LevelMetrics.reset_deaths()
 		
 	# Show level name
 	if not LevelData.is_reload and Settings.get_show_level_names_enabled():
@@ -155,7 +160,6 @@ func _spawn_player() -> KinematicBody2D:
 
 # Player has completed the level
 func _on_Door_player_entered() -> void:
-	Analytics.track_levels_completed()
 	Game_AudioManager.sfx_ui_level_clear.play()
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
@@ -168,13 +172,15 @@ func _on_EndArea_body_entered(body: Node) -> void:
 		
 	
 func _progress_player_and_goto_next_level() -> void:
-	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:
+	Analytics.track_levels_completed()
+	Analytics.track_event_level_completed(LevelData.current_level_index)
+	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:	
 		GameState.progress_current_level(LevelData.current_level_index + 1)
 	goto_next_level()
 	
 	
 func goto_next_level() -> void:
-	LevelData.goto_next_level();
+	LevelData.goto_next_level()
 		
 			
 func _on_Key_captured() -> void:
@@ -197,6 +203,9 @@ func _on_Player_start_die() -> void:
 
 # Called when player animation and stuff have finished
 func _on_Player_died() -> void:
+	Analytics.track_deaths()
+	LevelMetrics.increment_deaths()
+	
 	yield(get_tree().create_timer(0.2), "timeout")
 	fadeScreen.reload_scene()
 	LevelData.reload_level()

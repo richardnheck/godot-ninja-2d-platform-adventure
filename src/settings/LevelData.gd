@@ -170,11 +170,17 @@ func is_boss_level(level_scene_path) -> bool:
 	return false
 	
 # Get the name for the specified level
-func get_level_name(level_scene_path) -> String:
+func get_level_name(level_scene_path:String) -> String:
 	for i in range(0, levelsArray.size()):
 		if levelsArray[i]["scene_path"] == level_scene_path:
 			return levelsArray[i]["name"]
 	return ""	
+	
+func get_level_name_by_index(level_index:int) -> String:
+	var max_index = levelsArray.size() - 1
+	var index = level_index if level_index <= max_index else max_index
+	var current_level = get_levels()[index]
+	return current_level.name	
 	
 func set_has_key(value:bool) -> void:
 	has_key = value

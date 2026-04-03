@@ -584,12 +584,12 @@ Game_AudioManager="*res://src/lib/AudioManager/AudioManager.tscn"
 Settings="*res://src/settings/Settings.gd"
 ArrayUtil="*res://src/utility/ArrayUtil.gd"
 GameState="*res://src/settings/GameState.gd"
-Time="*res://src/utility/Time.gd"
 Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
 Analytics="*res://src/lib/analytics.gd"
+LevelMetrics="*res://src/levels/LevelMetrics.gd"
 
 [display]
 

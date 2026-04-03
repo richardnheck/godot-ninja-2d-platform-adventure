@@ -219,18 +219,19 @@ margin_top = 34.0
 margin_bottom = 54.0
 alignment = 1
 
-[node name="BigBackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 15 )]
-unique_name_in_owner = true
-margin_left = 77.0
-margin_right = 116.0
+[node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
+margin_left = 111.0
+margin_right = 166.0
 margin_bottom = 20.0
 
-[node name="PausedPlayButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 120.0
-margin_right = 175.0
+[node name="BigBackButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 15 )]
+unique_name_in_owner = true
+margin_left = 170.0
+margin_right = 209.0
 margin_bottom = 20.0
 
 [node name="RetryButton" parent="PauseOverlay/HBoxContainer" instance=ExtResource( 6 )]
+visible = false
 margin_left = 179.0
 margin_right = 242.0
 margin_bottom = 20.0
@@ -277,6 +278,6 @@ texture = ExtResource( 19 )
 [connection signal="mouse_entered" from="Control/JumpButtonArea2D" to="." method="_on_JumpButtonArea2D_mouse_entered"]
 [connection signal="gui_input" from="Control/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="pressed" from="PauseOverlay/CloseButton" to="." method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="PauseOverlay/HBoxContainer/BigBackButton" to="PauseOverlay/HBoxContainer/BigBackButton" method="_on_pressed"]
 [connection signal="pressed" from="PauseOverlay/HBoxContainer/PausedPlayButton" to="." method="_on_PausedPlayButton_pressed"]
+[connection signal="pressed" from="PauseOverlay/HBoxContainer/BigBackButton" to="PauseOverlay/HBoxContainer/BigBackButton" method="_on_pressed"]
 [connection signal="pressed" from="PauseOverlay/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
