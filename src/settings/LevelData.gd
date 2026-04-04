@@ -175,12 +175,21 @@ func get_level_name(level_scene_path:String) -> String:
 		if levelsArray[i]["scene_path"] == level_scene_path:
 			return levelsArray[i]["name"]
 	return ""	
-	
+
+# Get the name of the level given the index	
 func get_level_name_by_index(level_index:int) -> String:
+	var level = _get_level_by_index(level_index)
+	return level.name	
+	
+# Get the scene path of the level given the index	
+func get_level_scene_path_by_index(level_index:int) -> String:
+	var level = _get_level_by_index(level_index)
+	return level.scene_path	
+
+func _get_level_by_index(level_index:int):
 	var max_index = levelsArray.size() - 1
 	var index = level_index if level_index <= max_index else max_index
-	var current_level = get_levels()[index]
-	return current_level.name	
+	return get_levels()[index]
 	
 func set_has_key(value:bool) -> void:
 	has_key = value

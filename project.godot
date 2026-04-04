@@ -603,6 +603,7 @@ IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resol
 MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
 Analytics="*res://src/lib/Analytics/analytics.gd"
 LevelMetrics="*res://src/levels/LevelMetrics.gd"
+Stopwatch="*res://src/objects/stopwatch/Stopwatch.gd"
 
 [display]
 

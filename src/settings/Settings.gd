@@ -10,6 +10,7 @@ var cheat_mode:bool = false setget set_cheat_mode, get_cheat_mode
 var level_checkpoints_enabled:bool = true setget set_level_checkpoints_enabled
 var boss_level_checkpoints_enabled:bool = true setget set_boss_level_checkpoints_enabled
 var show_level_names_enabled:bool = true setget set_show_level_names_enabled
+var show_level_timer_enabled:bool = false setget set_show_level_names_enabled
 
 func set_touch_screen_controls_visible(new_value) -> void: 
 	touch_screen_controls_visible = new_value
@@ -41,6 +42,14 @@ func set_show_level_names_enabled(new_value) -> void:
 
 func get_show_level_names_enabled() -> bool:
 	return show_level_names_enabled
+	
+
+func set_show_level_timer_enabled(new_value) -> void: 
+	show_level_timer_enabled = new_value
+	emit_signal("controls_changed")
+
+func get_show_level_timer_enabled() -> bool:
+	return show_level_timer_enabled
 	
 	
 func set_cheat_mode(new_value) -> void: 

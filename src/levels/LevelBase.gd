@@ -17,6 +17,7 @@ onready var player_scene = preload("res://src/characters/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 onready var intro_title = null
 
+onready var timer_label = $MobileControlsHUD/Control/TimerLabel
 
 var player:Player
 var fadeScreen:FadeScreen
@@ -111,8 +112,15 @@ func _ready() -> void:
 		else: 
 			door.close()
 	
-	# When level is first loaded then reset the death count for the current level
+	
+	# When level is first loaded
 	if not LevelData.is_reload:
+		# start the stop watch
+		if Settings.get_show_level_timer_enabled():
+			Stopwatch.reset()
+			Stopwatch.toggle_pause()
+		
+		# reset the death count for the current level
 		LevelMetrics.reset_deaths()
 		
 	# Show level name
@@ -127,6 +135,12 @@ func _ready() -> void:
 		LevelData.is_reload = false
 	
 	print("LevelBase: _ready() end")	
+
+
+func _process(_delta: float) -> void:
+	if timer_label and Settings.get_show_level_timer_enabled():
+		timer_label.text = Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat)
+
 
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:
@@ -160,6 +174,7 @@ func _spawn_player() -> KinematicBody2D:
 
 # Player has completed the level
 func _on_Door_player_entered() -> void:
+	Stopwatch.toggle_pause()
 	Game_AudioManager.sfx_ui_level_clear.play()
 	player.celebrate();
 	yield(get_tree().create_timer(2), "timeout")
@@ -168,12 +183,13 @@ func _on_Door_player_entered() -> void:
 
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
+		Stopwatch.toggle_pause()
 		_progress_player_and_goto_next_level()
 		
 	
 func _progress_player_and_goto_next_level() -> void:
 	Analytics.track_levels_completed()
-	Analytics.track_event_level_completed(LevelData.current_level_index)
+	Analytics.track_event_level_completed(LevelData.current_level_index, Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat))
 	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:	
 		GameState.progress_current_level(LevelData.current_level_index + 1)
 	goto_next_level()
@@ -205,6 +221,7 @@ func _on_Player_start_die() -> void:
 func _on_Player_died() -> void:
 	Analytics.track_deaths()
 	LevelMetrics.increment_deaths()
+	Analytics.track_event_level_attempted(LevelData.current_level_index, Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat), str(player.position))
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	fadeScreen.reload_scene()

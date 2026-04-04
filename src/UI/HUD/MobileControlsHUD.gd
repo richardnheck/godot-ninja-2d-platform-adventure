@@ -7,6 +7,7 @@ onready var right_touch_screen_button = $Control/HBoxContainerLeft/RightTouchScr
 onready var jump_touch_screen_button = $Control/HBoxContainerRight/JumpTouchScreenButton
 onready var pause_button = $Control/PauseButton
 onready var hud_key = $Control/Key
+onready var timer_label = $"%TimerLabel"
 
 var paused: = false setget set_paused
 
@@ -23,6 +24,8 @@ func _ready() -> void:
 	# Listen for key status changes in LevelData
 	hud_key.visible = LevelData.has_key 	# default value in LevelData
 	LevelData.connect("key_status_changed", self, "_on_key_status_changed")
+	
+	timer_label.visible = Settings.get_show_level_timer_enabled()
 # 
 # Handle when controls in the settings are changed
 #	

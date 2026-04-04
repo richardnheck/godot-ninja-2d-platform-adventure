@@ -14,7 +14,8 @@ var player_alias_id = null
 const STAT_DEATHS = "deaths"
 const STAT_LEVELS_COMPLETED = "levels-completed"
 
-const EVENT_LEVEL_COMPLETED = "level-completed"
+const EVENT_LEVEL_COMPLETED = "level-completed"		# fired when user completes a level
+const EVENT_LEVEL_ATTEMPTED = "level-attempted"		# fired when user attempts the level but dies
 
 func _ready():
 	# TODO: Generate a unique player id 
@@ -54,12 +55,9 @@ func track_levels_completed():
 	_track_stat(STAT_LEVELS_COMPLETED)
 
 # Track a level completed event
-func track_event_level_completed(current_level_index:int):
-	var props = _build_meta_props() + [
-		TaloProp.new("level_index", current_level_index),
-		TaloProp.new("level_name", LevelData.get_level_name_by_index(current_level_index)), 
-		TaloProp.new("level_world", LevelData.get_world(current_level_index)),
-		TaloProp.new("deaths", LevelMetrics.deaths)
+func track_event_level_completed(current_level_index:int, level_completion_time:String):
+	var props = _build_meta_props() + _build_level_event_base_props(current_level_index) + [
+		TaloProp.new("completion_time", level_completion_time)
 	]
 	
 	var event = {
@@ -69,6 +67,30 @@ func track_event_level_completed(current_level_index:int):
 	}
 	
 	_track_event(event)
+	
+# Track a level attempted event
+func track_event_level_attempted(current_level_index:int, elapsed_time:String, player_death_position:String):
+	var props = _build_meta_props() + _build_level_event_base_props(current_level_index) + [
+		TaloProp.new("death_position", player_death_position),
+		TaloProp.new("elapsed_time", elapsed_time)
+	]
+	
+	var event = {
+		"name": EVENT_LEVEL_ATTEMPTED,
+		"timestamp": _get_timestamp_msec(),   # nb: api docs say unix timestamp but that is incorrect
+		"props" :  TaloPropUtils.serialise_props(props)
+	}
+	
+	_track_event(event)
+
+func _build_level_event_base_props(current_level_index:int):
+	return  [
+		TaloProp.new("level_name", LevelData.get_level_name_by_index(current_level_index)), 
+		TaloProp.new("level_scene", LevelData.get_level_scene_path_by_index(current_level_index)),
+		TaloProp.new("level_world", LevelData.get_world(current_level_index)),
+		TaloProp.new("level_index", current_level_index),
+		TaloProp.new("deaths", LevelMetrics.deaths)
+	]
 
 func _track_event(event):
 	if !_is_enabled(): return

@@ -9,6 +9,7 @@ signal on_tab_changed
 onready var level_checkpoints_button := $"%LevelCheckpointsOnOffButton"
 onready var boss_level_checkpoints_button := $"%BossLevelCheckpointsOnOffButton"
 onready var show_level_names_button := $"%ShowLevelNamesOnOffButton"
+onready var show_level_timer_button := $"%ShowLevelTimerOnOffButton"
 onready var resolution_option_button := $"%ResolutionOptionButton"
 onready var window_type_option_button := $"%WindowTypeOptionButton"
 onready var tab_container:TabContainer = $"%TabContainer"
@@ -41,6 +42,7 @@ func _ready() -> void:
 	level_checkpoints_button.set_on(Settings.get_level_checkpoints_enabled())
 	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
 	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
+	show_level_timer_button.set_on(Settings.get_show_level_timer_enabled())
 	
 	# Remove the display tab for html5 build as the size is dictated by the web embed size
 	if Settings.is_html5_build():
@@ -80,6 +82,10 @@ func _on_BossLevelCheckpointsOnOffButton_button_pressed(on):
 
 func _on_ShowLevelNamesOnOffButton_button_pressed(on):
 	Settings.set_show_level_names_enabled(on)
+
+	
+func _on_ShowLevelTimerOnOffButton_button_pressed(on):
+	Settings.set_show_level_timer_enabled(on)
 
 # Add the resolution items to the resolutions option button
 func _add_resolutions():

@@ -67,7 +67,6 @@ custom_fonts/font = ExtResource( 11 )
 tab_align = 0
 
 [node name="Game" type="Control" parent="Control/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -128,6 +127,23 @@ rect_min_size = Vector2( 125, 0 )
 text = "Show level names"
 
 [node name="ShowLevelNamesOnOffButton" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer" instance=ExtResource( 10 )]
+unique_name_in_owner = true
+margin_left = 129.0
+margin_right = 147.0
+margin_bottom = 18.0
+
+[node name="ShowLevelTimerContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
+margin_top = 66.0
+margin_right = 191.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer"]
+margin_right = 125.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 125, 0 )
+text = "Show level timer"
+
+[node name="ShowLevelTimerOnOffButton" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer" instance=ExtResource( 10 )]
 unique_name_in_owner = true
 margin_left = 129.0
 margin_right = 147.0
@@ -299,6 +315,7 @@ margin_bottom = 21.0
 rect_min_size = Vector2( 19, 21 )
 
 [node name="Extras" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -414,6 +431,7 @@ __meta__ = {
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer/LevelCheckpointsOnOffButton" to="." method="_on_LevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer/BossLevelCheckpointsOnOffButton" to="." method="_on_BossLevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer/ShowLevelNamesOnOffButton" to="." method="_on_ShowLevelNamesOnOffButton_button_pressed"]
+[connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer/ShowLevelTimerOnOffButton" to="." method="_on_ShowLevelTimerOnOffButton_button_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
 [connection signal="gui_input" from="Control/TabContainer/Extras/AnimatedTextureRect" to="." method="_on_AnimatedTextureRect_gui_input"]
