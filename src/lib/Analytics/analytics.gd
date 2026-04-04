@@ -1,6 +1,9 @@
 #-------------------------
 # Analytics
 #-------------------------
+# This is for Talo Analytics but since there is no plugin available
+# for Godot 3, it is using the API instead (with some code ported from the Godot 4 plugin)
+
 extends Node
 
 const talo_base_url = "https://api.trytalo.com/v1/"
@@ -52,28 +55,19 @@ func track_levels_completed():
 
 # Track a level completed event
 func track_event_level_completed(current_level_index:int):
+	var props = _build_meta_props() + [
+		TaloProp.new("level_index", current_level_index),
+		TaloProp.new("level_name", LevelData.get_level_name_by_index(current_level_index)), 
+		TaloProp.new("level_world", LevelData.get_world(current_level_index)),
+		TaloProp.new("deaths", LevelMetrics.deaths)
+	]
+	
 	var event = {
 		"name": EVENT_LEVEL_COMPLETED,
 		"timestamp": _get_timestamp_msec(),   # nb: api docs say unix timestamp but that is incorrect
-		"props" : [
-			{ 
-				"key" : "level_index", 
-				"value" : current_level_index 
-			},
-			{	
-				"key": "level_name", 
-				"value": LevelData.get_level_name_by_index(current_level_index) 
-			},
-			{	
-				"key": "level_world", 
-				"value": LevelData.get_world(current_level_index) 
-			},
-			{	
-				"key": "deaths", 
-				"value": LevelMetrics.deaths
-			}
-		]
+		"props" :  TaloPropUtils.serialise_props(props)
 	}
+	
 	_track_event(event)
 
 func _track_event(event):
@@ -86,7 +80,7 @@ func _track_event(event):
 			event
 		]
 	}
-	
+	print(JSON.print(data))
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request(url, headers, true, HTTPClient.METHOD_POST, JSON.print(data))
@@ -95,14 +89,17 @@ func _track_event(event):
 	if result.response_code == 200:
 		print("Track event: ", response)
 	else:
-		print("Track event error: ", result.response, result.response_code)
+		print("Track event error: ", response, result.response_code)
 	http_request.queue_free()
 
 
 func _get_base_headers() -> Array:
 	return [
 		"Content-Type: application/json",
-		"Authorization: Bearer " + Env.talo_access_key
+		"Accept: application/json",
+		"Authorization: Bearer " + Env.talo_access_key,
+		"X-Talo-Dev-Build: %s" % ("1" if OS.is_debug_build() else "0"),
+		"X-Talo-Include-Dev-Data: %s" % ("1" if OS.is_debug_build() else "0"),
 	]
 
 # Track a stat
@@ -136,6 +133,30 @@ func _get_timestamp_msec() -> int:
 func _build_response(http_request: HTTPRequest) -> TaloClientResponse:
 	var res = yield(http_request, "request_completed")
 	return TaloClientResponse.new(res[0], res[1], res[2], res[3])
+
+func _get_window_mode() -> String:
+	if OS.window_fullscreen:
+		return "Fullscreen window"
+	
+	if OS.window_borderless:
+		return "Borderless window"
+	else:
+		return "Bordered window"
+	
+
+func _get_game_version() -> String:
+	return ProjectSettings.get_setting("application/config/version")
+
+func _build_meta_props() -> Array:
+	return [
+		TaloProp.new("META_OS", OS.get_name()),
+		TaloProp.new("META_GAME_VERSION", _get_game_version()),
+		TaloProp.new("META_WINDOW_MODE", _get_window_mode()),
+		TaloProp.new("META_SCREEN_WIDTH", str(OS.get_real_window_size().x)),
+		TaloProp.new("META_SCREEN_HEIGHT", str(OS.get_real_window_size().y)),
+		TaloProp.new("META_DEBUG_BUILD", OS.is_debug_build())
+	]
+	
 	
 class TaloClientResponse:
 	var result: int

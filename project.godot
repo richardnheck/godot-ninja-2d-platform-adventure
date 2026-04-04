@@ -409,6 +409,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/statemachine/states/state.gd"
 }, {
+"base": "Reference",
+"class": "TaloProp",
+"language": "GDScript",
+"path": "res://src/lib/Analytics/prop.gd"
+}, {
+"base": "Reference",
+"class": "TaloPropUtils",
+"language": "GDScript",
+"path": "res://src/lib/Analytics/prop_utils.gd"
+}, {
 "base": "Node2D",
 "class": "TiledLevelBase",
 "language": "GDScript",
@@ -545,6 +555,8 @@ _global_script_class_icons={
 "SlamBlast": "",
 "Slime": "",
 "State": "",
+"TaloProp": "",
+"TaloPropUtils": "",
 "TiledLevelBase": "",
 "Tofu": "",
 "TofuKozo": "",
@@ -567,6 +579,7 @@ debug_mode=true
 config/name="Castle Yokai"
 run/main_scene="res://src/UI/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
+config/version="0.99"
 
 [audio]
 
@@ -588,7 +601,7 @@ Ease="*res://src/utility/Ease.gd"
 Projectiles="*res://src/objects/test-objects/Guns/Projectiles.tscn"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
-Analytics="*res://src/lib/analytics.gd"
+Analytics="*res://src/lib/Analytics/analytics.gd"
 LevelMetrics="*res://src/levels/LevelMetrics.gd"
 
 [display]
