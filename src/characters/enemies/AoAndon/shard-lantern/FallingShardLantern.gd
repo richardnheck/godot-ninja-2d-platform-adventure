@@ -83,7 +83,5 @@ func _on_AnimatedSpriteExplosion_animation_finished():
 
 
 func _on_Area2D_area_entered(area):
-	print("fallingShardLantern Hit" + str(area))
-	print(str(area.get_groups()))
 	if area.is_in_group(Constants.GROUP_TRAP):
 		_explode()

@@ -84,8 +84,6 @@ func detect_and_transition_to_wall_jump(input_direction):
 		
 		# Wall Jump is triggered when user presses away from the wall while holding jump
 		if Input.is_action_pressed(Actions.get_action_jump()) and ((next_to_left_wall() and (input_direction.x == 1)) or (next_to_right_wall() and (input_direction.x == -1))):			
-			
-			print("goto wall jump")
 			emit_signal("finished", "wall_jump") 
 
 

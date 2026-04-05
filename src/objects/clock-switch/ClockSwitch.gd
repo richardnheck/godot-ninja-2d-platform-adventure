@@ -34,8 +34,6 @@ func _ready() -> void:
 	on_timer.wait_time = on_seconds
 	off_timer.wait_time = off_seconds
 	
-	print("Start state = ", String(start_state))
-	
 	# Start the appropriate timer based on whether the start state is active or inactive
 	if start_state == true:
 		# Start state is active so start the on (active) timer

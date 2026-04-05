@@ -168,7 +168,6 @@ func _on_tween_completed(object: Object, key: NodePath) -> void:
 	elif follow_path_type == FollowPathType.CONTINUOUS:
 		_start_tween()
 	elif follow_path_type == FollowPathType.ONCE:
-		print("FollowPathType.ONCE")
 		stop_following_path()
 
 
@@ -196,6 +195,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 	if visibility_notifier.is_queued_for_deletion():
 		return
 	
-	print(">>>>>>>>>>>>>>>>>>>>>screen exitted")
 	animated_sprite.playing = false
 	pause_following_path()

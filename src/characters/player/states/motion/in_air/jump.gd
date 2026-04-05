@@ -93,7 +93,6 @@ func update(_delta):
 	
 func exit():
 	if initialized and entered:
-		print("jump: exit")
 		# The state was run to completion so it is safe to exit
 		# Reset the spring impulse after the jump
 		spring_impulse = Vector2.ZERO

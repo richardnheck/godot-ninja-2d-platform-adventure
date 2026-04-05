@@ -46,9 +46,7 @@ var can_change_direction = true   # Indicates whether boss can change direction
 var ceiling_position:Position2D = null
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("Boss Ready")
-	
+func _ready() -> void:	
 	ground_global_position = global_position
 	
 	set_state(STATE_RUN_AND_JUMP)
@@ -96,7 +94,6 @@ func _physics_process(delta) -> void:
 		STATE_UP_DOWN_SLAM:
 			if _just_entered_state():
 				slam_mode = MODE_SLAM
-				print(">> enter UP_DOWN_SLAM spawning spikes")
 				state_changed = false
 				#_spawn_falling_spikes_array()
 			
@@ -187,7 +184,7 @@ func _spawn_falling_spikes_array() -> void:
 	
 	# get the distance to the player
 	var distance_to_player = position.distance_to(player.position)
-	print(distance_to_player)
+	
 	# place the spikes array directly over the player
 	var spikes_offset = distance_to_player
 	if player.position.x < position.x:

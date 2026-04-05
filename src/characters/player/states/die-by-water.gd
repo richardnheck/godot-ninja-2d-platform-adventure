@@ -6,7 +6,6 @@ var finished = false
 
 # Initialize the state. E.g. change the animation.
 func enter():
-	print("Die by water state:enter")
 	velocity = Vector2(0,0)
 	finished = false
 	owner.set_dead(true)

@@ -20,10 +20,6 @@ var progress = {
 var user:User = null
 
 
-	
-		
-	
-
 func _ready():
 	print("GameState ready")
 	

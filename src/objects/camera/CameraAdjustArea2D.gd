@@ -91,8 +91,6 @@ func _on_Area2D_body_entered(body):
 			
 	if trigger_enter_once and entered:
 		return
-	
-	print(">> Area entered!")
 		 
 	entered = true
 	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT and mode != Mode.SET_ON_ENTER:
@@ -105,8 +103,6 @@ func _on_Area2D_body_entered(body):
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
 		if camera_adjust_type == CameraAdjustType.Y_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
-			print('Camera Area Entered', body.global_position)
-			
 			var camera_y_offset_type
 			match(y_offset_on_enter):
 				yOffsetOption.DOWN:
@@ -118,7 +114,6 @@ func _on_Area2D_body_entered(body):
 			camera_manager.set_y_offset_type(camera_y_offset_type)
 			
 		if camera_adjust_type == CameraAdjustType.X_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
-			print('Camera Area Entered', body.global_position)
 			var camera_x_offset_type
 			match(x_offset_on_enter):
 				xOffsetOption.MEDIUM:
@@ -140,15 +135,12 @@ func _on_Area2D_body_exited(body):
 	if trigger_exit_once and exitted:
 		return
 		
-	print(">> Area exitted!")		
-		
 	exitted = true
 	if mode != Mode.SET_ON_ENTER_RESET_ON_EXIT and mode != Mode.RESET_ON_EXIT:
 		return
 		
 	var camera_manager = _get_camera_manager(body)
 	if camera_manager:
-		print('Camera Area Exitted', body.global_position)
 		if camera_adjust_type == CameraAdjustType.Y_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
 			camera_manager.reset_y_offset_type()
 		if camera_adjust_type == CameraAdjustType.X_OFFSET or camera_adjust_type == CameraAdjustType.X_AND_Y_OFFSET:
@@ -160,19 +152,14 @@ func _on_Area2D_body_exited(body):
 func _get_edge_crossed(body) -> int:
 	var global_position = body.global_position
 	if abs(global_position.x - left_edge_x) <= edge_proximity_threshold:
-		print("Crossed left edge")
 		return AreaEdge.LEFT
 	elif abs(global_position.x - right_edge_x) <= edge_proximity_threshold:
-		print("Crossed right edge")
 		return AreaEdge.RIGHT	
 	elif abs(global_position.y - bottom_edge_y) <= edge_proximity_threshold:
-		print("Crossed bottom edge")
 		return AreaEdge.BOTTOM	
 	elif abs(global_position.y - top_edge_y) <= edge_proximity_threshold:
-		print("Crossed top edge")
 		return AreaEdge.TOP	
 	else:
-		print("Crossed unknown edge")
 		return AreaEdge.UNKNOWN
 	
 

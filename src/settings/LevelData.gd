@@ -123,11 +123,8 @@ func goto_level(levelIndex, changeScene = true) -> String:
  
 # Goto the next level
 func goto_next_level() -> void:
-	print("goto_next_level")
 	if current_level_index < levelsArray.size() - 1:	
 		current_level_index += 1
-	
-	print("current_level_index = " + String(current_level_index))
 	
 	# Reset flags
 	level_checkpoint_reached = Constants.NO_CHECKPOINT

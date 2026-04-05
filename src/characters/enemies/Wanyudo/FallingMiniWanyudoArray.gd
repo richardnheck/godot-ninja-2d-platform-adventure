@@ -22,7 +22,6 @@ func get_width() -> float:
 func trigger() -> void:
 	# Trigger the spawners in different orders and timing
 	pass
-#	print("trigger spikes")
 #	var falling_spikes = get_tree().get_nodes_in_group("falling_spike")
 #	for falling_spike in falling_spikes:
 #		if(falling_spike):

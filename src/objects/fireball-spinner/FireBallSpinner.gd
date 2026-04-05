@@ -372,7 +372,7 @@ func _ready() -> void:
 		var switches = get_tree().get_nodes_in_group("switch")
 		for switch in switches:
 			if switch.sending_channel == receiving_channel:
-				#print("Connecting to switch channel:", switch.sending_channel)
+
 				switch.connect("switched", self, "_on_Switch_switched")
 				_on_Switch_switched(switch.start_state)		# initialize to start state of switch
 

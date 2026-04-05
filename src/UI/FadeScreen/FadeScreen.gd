@@ -26,7 +26,6 @@ func _ready() -> void:
 
 func go_to_scene(var target : String, show_loading_message = false, var source: String = ""):
 	Global.set_previous_scene(source)
-	print("Setting previous scene: ", Global.get_previous_scene())
 	
 	if show_loading_message:
 		loading_indicator.visible = true
@@ -37,8 +36,6 @@ func go_to_scene(var target : String, show_loading_message = false, var source: 
 	# pausing on causes delay in when setting camera limits in level
 	#get_tree().paused = true
 	
-	print('Preloading scene: ' + target)
-	
 	emit_signal("changing_scene")
 
 func reload_scene():
@@ -48,7 +45,6 @@ func reload_scene():
 	#get_tree().paused = true
 	
 	is_reload_scene_call = true #To let fader know we're reloading scene
-	print('Reloading scene: ' + str(get_tree().current_scene.get_path()))
 	
 	emit_signal("changing_scene")
 

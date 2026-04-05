@@ -7,8 +7,6 @@ onready var ceiling_position := $CeilingPosition2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("World3 - Boss Scene: ready()")
-	
 	# Pass the boss a reference to the player
 	boss.set_player(player)
 	
@@ -18,7 +16,6 @@ func _ready():
 	Game_AudioManager.play_bgm_world3_level_boss()
 
 	if spawned_at_checkpoint:
-		print("Spawned at checkpoint")
 		# The player died, but spawned at the checkpoint.
 		# Set the boss at a position just behind the player
 		# This number was visually determined by adjusting the boss PathFollow2D unit offset 

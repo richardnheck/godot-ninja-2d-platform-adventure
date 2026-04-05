@@ -74,7 +74,6 @@ func set_x_offset_type(type:int):
 			x_offset = X_OFFSET_MEDIUM
 			x_offset_mode = xOffsetMode.OFFSET_AUTO
 		xOffsetType.OFFSET_NONE:
-			print(">>>>>Set xOffset NONE")
 			x_offset = X_OFFSET_NONE
 			# When there is no xoffset there is no need to automatically adjust it based on players direction
 			x_offset_mode = xOffsetMode.OFFSET_FIXED
@@ -112,9 +111,7 @@ func reset_y_offset_type():
 func _set_camera_y_offset(new_offset):
 	camera.drag_margin_v_enabled=false
 	camera.smoothing_speed = 5	# temporarily slow smoothing when drag margin disabled to make sudden camera adjustment less jerky
-	#print("set_camera_y_offset", new_offset)
 	y_offset_tween_values = [Vector2(camera_offset.position.x, Y_OFFSET_DEFAULT), Vector2(camera_offset.position.x, new_offset)]
-	#print("y_offset_tween_values", str(y_offset_tween_values))
 	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], CAMERA_OFFSET_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	yoffset_tween.start()
 
@@ -127,9 +124,7 @@ func _reset_camera_y_offset():
 	camera.drag_margin_v_enabled=false
 	camera.smoothing_speed = 5	# temporarily slow smoothing when drag margin disabled to make sudden camera adjustment less jerky
 	
-	#print("reset_camera_y_offset")
 	y_offset_tween_values.invert()
-	#print("y_offset_tween_values", str(y_offset_tween_values))
 	yoffset_tween.interpolate_property(camera_offset,"position", y_offset_tween_values[0], y_offset_tween_values[1], CAMERA_OFFSET_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	yoffset_tween.start()
 	

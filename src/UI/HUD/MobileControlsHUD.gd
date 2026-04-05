@@ -94,20 +94,15 @@ func _on_RetryButton_pressed() -> void:
 
 
 func _on_LeftTouchArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print(event) # Replace with function body.
+	pass
 
 
 func _on_JumpButtonArea2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("viewport: ", viewport)
-	print("event: ", event)
-	print("shape_idx: ", shape_idx)
-	print("============")
-	if (event is InputEventMouseButton && event.pressed):
-		print("pressed")
+	pass
 
 
 func _on_JumpButtonArea2D_mouse_entered() -> void:
-	print("jump mouse entered")
+	pass
 
 
 func _on_TextureRect_gui_input(event: InputEvent) -> void:

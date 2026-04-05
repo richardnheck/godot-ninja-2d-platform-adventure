@@ -25,7 +25,7 @@ func _ready() -> void:
 	# Get the current player progress of the game
 	var current_level = GameState.progress["current_level"]
 	var current_world = LevelData.get_world(current_level)
-	print(">>>current_world", current_world)
+
 	# Create all the level buttons
 	var levels = LevelData.get_levels()
 	var levelsCount = levels.size()
@@ -77,7 +77,6 @@ func _fade_goto_scene(levelIndex, show_loading_message) -> void:
 
 
 func _on_BossButton_button_up() -> void:
-	print("Goto boss for world", self.this_world)
 	Game_AudioManager.sfx_ui_confirm.play()
 	var scene_path = LevelData.goto_boss_level(self.this_world, false)
 	fadeScreen.go_to_scene(scene_path)

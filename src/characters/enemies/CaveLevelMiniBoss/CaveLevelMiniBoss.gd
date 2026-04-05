@@ -49,7 +49,6 @@ var slam_sound:AudioStreamPlayer2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Mini Boss Ready")
 	slam_sound =  Game_AudioManager.sfx_env_cave_mini_boss_slam.duplicate()
 	add_child(slam_sound)
 	

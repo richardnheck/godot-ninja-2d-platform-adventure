@@ -3,7 +3,6 @@ extends "./motion/motion.gd"
 
 # Initialize the state. E.g. change the animation.
 func enter():
-	print("Die state:enter")
 	velocity = Vector2(0,0)
 	var collision_shape = owner.get_node("CollisionShape2D") as CollisionShape2D
 	collision_shape.disabled = true

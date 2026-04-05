@@ -51,7 +51,6 @@ func _on_tween_completed(object, key):
 	_start_tween()
 
 func _on_body_entered(body) -> void:
-	print("body grabbed seal")
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		grab_seal()
 

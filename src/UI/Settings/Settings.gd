@@ -115,9 +115,7 @@ func _center_window():
 func _update_selected_resolution():
 	var window_size = OS.window_size
 	var window_size_string = str(window_size.x) + "x" + str(window_size.y)
-	print(window_size_string)
 	var resolutions_index = resolutions.keys().find(window_size_string)
-	print("index", resolutions_index)
 	resolution_option_button.selected = resolutions_index 
 
 
@@ -175,10 +173,7 @@ func _change_player_animation():
 
 
 func _on_AnimatedTextureRect_gui_input(event):
-	
 	if event is InputEventMouseButton:
-		print(event.button_index)
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			print(">>> Player pressed")
 			_change_player_animation()
 			

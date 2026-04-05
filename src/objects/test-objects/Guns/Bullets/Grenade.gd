@@ -23,6 +23,5 @@ func set_direction(new_direction: Vector2) -> void:
 
 func set_charge(new_charge: float) -> void:
 	charge = new_charge
-	print("impulse",max_impulse * charge )
 	direction = Vector2(1,0)
 	apply_central_impulse(direction * max_impulse * charge)

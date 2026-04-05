@@ -101,7 +101,6 @@ func _apply_direction_change_if_possible() -> void:
 	
 
 func _on_ChangeDirectionCoolOffTimer_timeout() -> void:
-	print("change direction timeout")
 	can_change_direction = true
 
 	

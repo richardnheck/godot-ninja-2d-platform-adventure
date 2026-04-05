@@ -59,6 +59,5 @@ func _on_SpawnTimer_timeout():
 		
 func _on_Area2D_body_exited(body):
 	if body is PlatformForBelt:
-		print("exitted")
 		body.queue_free()
 		

@@ -15,7 +15,6 @@ var helpMessages = [
 
 func _ready() -> void:
 	var panels = panelsNode.get_children()
-	print(panels)
 	for panel in panels:
 		panel.set_deferred("visible", false)
 

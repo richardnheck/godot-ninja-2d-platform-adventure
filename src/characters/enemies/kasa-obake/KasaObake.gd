@@ -114,7 +114,6 @@ func _init_character_direction() -> void:
 func _change_direction() -> void:
 	if collision_cooloff_timer.is_stopped():
 		horizontal_direction *= -1
-		print("Change direction to ", horizontal_direction)	
 		_init_character_direction()
 		collision_cooloff_timer.start()
 

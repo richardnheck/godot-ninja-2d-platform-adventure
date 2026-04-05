@@ -32,12 +32,10 @@ func enter():
 	
 func exit():
 	in_state = false
-	print("Wall slide exit")
 	owner.on_wall_slide_end()
 
 func handle_input(event):
 #	if !event.is_action_pressed(Actions.get_action_jump():
-#		print("not pressing jump")
 #		emit_signal("finished", "move")
 	return .handle_input(event)
 

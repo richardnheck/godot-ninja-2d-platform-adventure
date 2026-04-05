@@ -99,7 +99,6 @@ func seek():
 	return steer
 
 func _on_LifeTimer_timeout() -> void:
-	print("Shard Lantern: Life over")
 	# Shoot the shard and then explode
 	_shoot()
 	_explode()
@@ -144,7 +143,6 @@ func _add_bullet(direction):
 # exploding normally.  This occurs in the boss level when transitioning to the second phase
 # and we don't want stray homing lanterns to still be able to kill the player
 func force_die():
-	print(">>>> force die()")
 	_explode()
 
 func _on_sfx_shoot_finished():

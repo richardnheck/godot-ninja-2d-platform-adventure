@@ -69,7 +69,6 @@ func seek():
 	return steer
 
 func _on_LifeTimer_timeout() -> void:
-	print("missile life over")
 	_explode()
 
 
@@ -92,5 +91,4 @@ func _on_body_entered(body: Node) -> void:
 # exploding normally.  This occurs in the boss level when transitioning to the second phase
 # and we don't want stray homing lanterns to still be able to kill the player
 func force_die():
-	print(">>>> force die()")
 	_explode()

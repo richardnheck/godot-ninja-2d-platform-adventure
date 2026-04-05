@@ -23,9 +23,7 @@ var ceiling_position:Position2D = null
 const SPEED:int = 65
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("Wanyudo: _ready()")
-	
+func _ready() -> void:	
 	# We don't want the visibility notifier for the boss
 	visibility_notifier.queue_free()
 	
@@ -81,7 +79,7 @@ func _check_position() -> void:
 				set_sprite_animation("default")
 				homing_fireball_spawner.enabled = true
 				normal_fireball_spawner.enabled = false
-				print("current_offset", current_offset)
+	
 				start_following_path(current_offset)
 				yield(get_tree().create_timer(1), "timeout")
 				_shoot_fireball()
@@ -89,7 +87,6 @@ func _check_position() -> void:
 
 # Set the reference to the player
 func set_player(player_ref) -> void:
-	print("setting player")
 	player = player_ref
 	homing_fireball_spawner.set_target(player)
 	normal_fireball_spawner.set_target(player)
@@ -97,8 +94,6 @@ func set_player(player_ref) -> void:
 
 # Go to the next phase
 func goto_next_phase() -> void:
-	print("Wanyudo: transition to next state")
-	
 	# Phase 2 transition
 	# Stop firing fireballs
 	state = STATE_PHASE2_TRANSITION
@@ -110,7 +105,6 @@ func goto_next_phase() -> void:
 	# mini wanyudo's that fall above the player
 	state = STATE_PHASE2
 	
-	print(">>>> Emitting phase_changed")
 	emit_signal("phase_changed", state)
 	
 	# Start spawning mini wanyudo's via the array spawner
@@ -192,7 +186,7 @@ func _spawn_falling_mini_wanyudo_array() -> void:
 	
 	# get the distance to the player
 	var distance_to_player = position.distance_to(player.position)
-	print(distance_to_player)
+	
 	# place the spikes array directly over the player
 	var spikes_offset = distance_to_player
 	if player.position.x < position.x:

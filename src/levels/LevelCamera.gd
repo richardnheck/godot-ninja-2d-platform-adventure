@@ -26,7 +26,6 @@ func _physics_process(delta):
 		if _player_still_vertically() and !last_still_position_set:
 			last_still_position_set = true
 			last_still_position_y = player.global_position.y
-			print("setting last position", last_still_position_y)
 
 		if !_player_still_vertically():
 			last_still_position_set = false
@@ -42,7 +41,6 @@ func _physics_process(delta):
 		camera_position_x = lerp(global_position.x, player.global_position.x, weight)
 		
 		if _player_jumping():
-			print(">>>>>her")
 			camera_position_y = last_still_position_y
 		else:
 			camera_position_y = lerp(global_position.y, player.global_position.y, weight)
@@ -74,28 +72,15 @@ func _get_player_velocity():
 func _player_still_vertically():
 	var current_state = player.get_current_state()
 	if current_state != null and current_state.velocity.y == 0 and (current_state.name in ["Idle", "WallSlide"]):
-		#print(">>>> not moving vertically")
 		return true
 	else:
 		return false
-		
-	#var current_state = player.get_current_state()
-#	#print("current_state", current_state.name)
-#	if (current_state != null and current_state.velocity.y == 0 and (current_state.name != "Jump" or current_state.name != "AirJump")):
-#		#print(">>>> not moving vertically")
-#		return true
-#	else:
-#		return false
 
 func _player_jumping():
 	var current_state = player.get_current_state()
 	if current_state != null and (current_state.name == "Jump" or current_state.name == "AirJump" or current_state.name == "WallJump"):
-		#print(">>>jumping")
 		return true
 	else:
-		#print("non jumping")
 		return false
 
 var jump_started = false
-	#print("current_state", current_state.name)
-	#print("current_velocity", _get_player_velocity())

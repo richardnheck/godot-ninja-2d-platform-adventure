@@ -40,7 +40,6 @@ func _physics_process(delta):
 
 
 func _on_LifeTimer_timeout() -> void:
-	print("missile life over")
 	_explode()
 
 

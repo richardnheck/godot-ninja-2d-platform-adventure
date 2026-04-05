@@ -165,7 +165,6 @@ func disappear() -> void:
 
 
 func hide_line():
-	print("hide line")
 	line_2d.visible = false
 	effect.visible = false
 

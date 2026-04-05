@@ -117,8 +117,8 @@ func look_player_left() -> void:
 	move_player_stop()	
 		
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	print(anim_name + " animation finished")
-
+	pass
+	
 # This Stop Point Area ensures that the player stops at the exact spot
 # This is required because on HTML5 build it can walk further and therefore
 # be off the screen when player collects the gem

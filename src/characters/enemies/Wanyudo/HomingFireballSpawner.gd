@@ -24,7 +24,6 @@ func _shoot():
 	if enabled:
 		# Call parent shoot
 		var fireball = ._shoot()
-		print("Fireball pos", fireball.global_position)
 		fireball.connect("destroyed", self, "_on_fireball_destroyed")
 		self.connect("force_destroy", fireball, "force_die")
 		

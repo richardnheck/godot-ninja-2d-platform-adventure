@@ -97,16 +97,13 @@ func _check_position() -> void:
 
 # Set the reference to the player
 func set_player(player_ref) -> void:
-	print("setting player")
 	player = player_ref
 	homing_shard_lantern_spawner.set_target(player)
 	normal_fireball_spawner.set_target(player)
 	
 
 # Go to the next phase
-func goto_next_phase() -> void:
-	print("AoAndon: transition to next state")
-	
+func goto_next_phase() -> void:	
 	# Phase 2 transition
 	# Stop firing lanterns
 	state = STATE_PHASE2_TRANSITION
@@ -118,7 +115,6 @@ func goto_next_phase() -> void:
 	# laser lanterns above the player
 	state = STATE_PHASE2
 	
-	print(">>>> Emitting phase_changed")
 	emit_signal("phase_changed", state)
 	
 	# Start lanterns via the array spawner
@@ -189,7 +185,6 @@ func _spawn_lantern_array() -> void:
 	
 	# get the distance to the player
 	var distance_to_player = position.distance_to(player.position)
-	print(distance_to_player)
 	
 	# place the array directly over the player with a little randomness
 	var random_offset = rng.randf_range(-10.0, 15.0)  # more in front of player

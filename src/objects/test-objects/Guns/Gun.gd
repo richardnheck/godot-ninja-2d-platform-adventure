@@ -75,7 +75,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _shoot():
-	#print("Shoot direction=", direction)
 	_shoot_timer.wait_time = shoot_rate
 	_shoot_timer.start()
 	

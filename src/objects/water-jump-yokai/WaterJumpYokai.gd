@@ -18,7 +18,6 @@ func _ready() -> void:
 	add_child(sfx_splash)
 	
 	gravity_scale = 5
-	#print("gravity scale", gravity_scale)
 
 func _physics_process(delta):
 	
@@ -32,12 +31,8 @@ func _physics_process(delta):
 		
 
 func _on_body_entered(body: Node) -> void:
-	print("body entered")
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		print("hit player")
 		body.die()
-#	else:
-#		
 
 
 func set_direction(new_direction: Vector2) -> void:
