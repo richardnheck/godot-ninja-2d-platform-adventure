@@ -8,7 +8,7 @@ extends Node
 
 const talo_base_url = "https://api.trytalo.com/v1/"
 
-var player_identifier = "unique_player_id"
+var player_identifier = null
 var player_alias_id = null
 
 const STAT_DEATHS = "deaths"
@@ -18,7 +18,15 @@ const EVENT_LEVEL_COMPLETED = "level-completed"		# fired when user completes a l
 const EVENT_LEVEL_ATTEMPTED = "level-attempted"		# fired when user attempts the level but dies
 
 func _ready():
-	# TODO: Generate a unique player id 
+	print("Initializing Analytics...")
+	
+	if GameState.get_player_identifier():
+		# Get the player identifier from the game save state
+		player_identifier = GameState.get_player_identifier()
+	else:
+		# No player exists yet so create a unique identifier
+		player_identifier = _generate_identifier()
+		
 	identify_player(player_identifier)
 
 # Determine if Talo analytics is enabled
@@ -40,8 +48,15 @@ func identify_player(identifier):
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
 		print("Player identified: ", response)
-		# Save the alias id as this is required in subsequent requests
-		player_alias_id = response.alias.id
+		# remember player alias id as this is required in subsequent requests
+		if response.has("alias"):
+			player_alias_id = response.alias.id
+			# player has been successfully identified so save the identifier in the game state
+			GameState.set_player_identifier(response.alias.identifier)	
+			GameState.save()
+			
+		
+	
 	else:
 		print("Error identifying player: ", result.response, result.response_code)
 	http_request.queue_free()
@@ -95,8 +110,8 @@ func _build_level_event_base_props(current_level_index:int):
 func _track_event(event):
 	if !_is_enabled(): return
 	var url = talo_base_url + "events"
-	var headers = _get_base_headers().duplicate() 
-	headers.append("x-talo-alias: " + str(player_alias_id))
+	var headers = _get_base_headers()
+	
 	var data = {
 		"events" : [
 			event
@@ -116,20 +131,25 @@ func _track_event(event):
 
 
 func _get_base_headers() -> Array:
-	return [
+	var base_headers = [
 		"Content-Type: application/json",
 		"Accept: application/json",
 		"Authorization: Bearer " + Env.talo_access_key,
 		"X-Talo-Dev-Build: %s" % ("1" if OS.is_debug_build() else "0"),
 		"X-Talo-Include-Dev-Data: %s" % ("1" if OS.is_debug_build() else "0"),
 	]
+	
+	if player_alias_id:
+		base_headers.append("X-Talo-Alias: " + str(player_alias_id))
+		
+	return base_headers
+	
 
 # Track a stat
 func _track_stat(stat_name:String):
 	if !_is_enabled(): return
 	var url = talo_base_url + "game-stats/" + stat_name
-	var headers = _get_base_headers().duplicate() 
-	headers.append("x-talo-alias: " + str(player_alias_id))
+	var headers = _get_base_headers()
 	
 	var data = { "change" : 1 }	  # increment by 1
 	var http_request = HTTPRequest.new()
@@ -179,6 +199,13 @@ func _build_meta_props() -> Array:
 		TaloProp.new("META_DEBUG_BUILD", OS.is_debug_build())
 	]
 	
+## Generate a mostly-unique identifier.
+func _generate_identifier() -> String:
+	var time_hash = str(_get_timestamp_msec()).sha256_text()
+	var size := 12
+	var split_start := RandomNumberGenerator.new().randi_range(0, time_hash.length() - size)
+	return time_hash.substr(split_start, size)
+
 	
 class TaloClientResponse:
 	var result: int

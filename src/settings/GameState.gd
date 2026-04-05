@@ -2,23 +2,27 @@ extends Node
 
 const SAVE_FILE_PATH := "user://castle-yokai-game.save"
 
-const KEY_CURRENT_WORLD = "current_world"
 const KEY_CURRENT_LEVEL = "current_level"
 const KEY_WATCH_INTRO = "has_watched_story_intro"
+const KEY_IDENTIFIER = "identifier"
 
 
 # Store the player progress
 # Set the default values to start with
-var progress = {
-	# The current world number
-	#KEY_CURRENT_WORLD : LevelData.WORLD1,
-	
+var progress = {	
 	# Index in levelsArray of current level reached
 	KEY_CURRENT_LEVEL : 0,
 	
 	# Indicates whether user has watched the story intro
 	KEY_WATCH_INTRO : false	
 }
+
+var user:User = null
+
+
+	
+		
+	
 
 func _ready():
 	print("GameState ready")
@@ -29,7 +33,7 @@ func _ready():
 	
 # Load data from game save file
 func load_save() -> void:
-	print("loading save file...") 
+	print("Loading Game State from file...") 
 	# Read the save file
 	var file := File.new()
 	var status = file.open(SAVE_FILE_PATH, File.READ)
@@ -44,6 +48,14 @@ func load_save() -> void:
 		progress = data["progress"]
 		print("progress state", progress)
 		
+		# Apply the saved player details
+		if data.has("user"):
+			user = User.from_dictionary(data["user"])
+		else:
+			user = User.new("")
+		
+		print("Loaded user", user)
+		
 		# Handle new state additions that weren't part of first save
 		progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
 		
@@ -54,9 +66,10 @@ func load_save() -> void:
 
 # Save the game state to file
 func save() -> void:
-	print("saving...")
+	print("Saving Game State...")
 	var save_data := {
-		"progress" : progress
+		"progress" : progress,
+		"user" : user.to_var()
 	}
 	var data_as_string := var2str(save_data)
 	print(data_as_string);
@@ -67,6 +80,14 @@ func save() -> void:
 	file.store_string(data_as_string)
 	file.close()
 	print("done")
+	
+# Get the unique player identifier (used for analytics and leaderboards)	
+func get_player_identifier() -> String:
+	return user.identifier
+	
+# Set the player identifier
+func set_player_identifier(identifier:String) -> void:
+	user.identifier = identifier
 	
 # Set the current level based on its index in the levels array
 func set_current_level(level_index) -> void:
@@ -110,3 +131,19 @@ func cheat(value):
 		print(prev_progress)		
 		# Uncheat by restoring current progress
 		progress = prev_progress.duplicate(true)
+
+
+class User:
+	var identifier:String
+	
+	func _init(identifier:String):
+		self.identifier = identifier
+
+	static func from_dictionary(dict:Dictionary) -> User:
+		var identifier = dict.identifier if dict.has("identifier") else null
+		return User.new(identifier)
+		
+	func to_var():
+		return { 
+			"identifier": identifier
+		}
