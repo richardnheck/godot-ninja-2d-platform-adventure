@@ -185,14 +185,21 @@ func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		Stopwatch.toggle_pause()
 		_progress_player_and_goto_next_level()
-		
+
+# This is common code called from the boss level _on_EndArea_body_entered() functions
+# It contains common code for Analytics and progress
+func _handle_boss_level_complete() -> void:
+	Stopwatch.toggle_pause()			
+	_progress_player_and_goto_next_level(false)	 # progress player but don't go to the next level as boss level will load the boss clear cutscenes
 	
-func _progress_player_and_goto_next_level() -> void:
+func _progress_player_and_goto_next_level(goto:bool = true) -> void:
 	Analytics.track_levels_completed()
 	Analytics.track_event_level_completed(LevelData.current_level_index, Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat))
 	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:	
 		GameState.progress_current_level(LevelData.current_level_index + 1)
-	goto_next_level()
+
+	if goto:
+		goto_next_level()
 	
 	
 func goto_next_level() -> void:

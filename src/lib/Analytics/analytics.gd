@@ -13,9 +13,11 @@ var player_alias_id = null
 
 const STAT_DEATHS = "deaths"
 const STAT_LEVELS_COMPLETED = "levels-completed"
+const STAT_GAME_COMPLETIONS = "game-completions"
 
 const EVENT_LEVEL_COMPLETED = "level-completed"		# fired when user completes a level
 const EVENT_LEVEL_ATTEMPTED = "level-attempted"		# fired when user attempts the level but dies
+const EVENT_GAME_COMPLETED  = "game-completed"		# fire when user completes the game
 
 func _ready():
 	print("Initializing Analytics...")
@@ -69,6 +71,10 @@ func track_deaths():
 func track_levels_completed():
 	_track_stat(STAT_LEVELS_COMPLETED)
 
+# Track game completions
+func track_game_completions():
+	_track_stat(STAT_GAME_COMPLETIONS)
+
 # Track a level completed event
 func track_event_level_completed(current_level_index:int, level_completion_time:String):
 	var props = _build_meta_props() + _build_level_event_base_props(current_level_index) + [
@@ -92,6 +98,16 @@ func track_event_level_attempted(current_level_index:int, elapsed_time:String, p
 	
 	var event = {
 		"name": EVENT_LEVEL_ATTEMPTED,
+		"timestamp": _get_timestamp_msec(),   # nb: api docs say unix timestamp but that is incorrect
+		"props" :  TaloPropUtils.serialise_props(props)
+	}
+	
+	_track_event(event)
+
+func track_event_game_completed() -> void:
+	var props = _build_meta_props() 
+	var event = {
+		"name": EVENT_GAME_COMPLETED,
 		"timestamp": _get_timestamp_msec(),   # nb: api docs say unix timestamp but that is incorrect
 		"props" :  TaloPropUtils.serialise_props(props)
 	}
@@ -124,7 +140,8 @@ func _track_event(event):
 	var result = yield(_build_response(http_request),"completed")
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
-		print("Track event: ", response)
+		#print("Track event: ", response)
+		pass
 	else:
 		print("Track event error: ", response, result.response_code)
 	http_request.queue_free()
@@ -158,7 +175,8 @@ func _track_stat(stat_name:String):
 	var result = yield(_build_response(http_request),"completed")
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
-		print("Track stat: ", response)
+		#print("Track stat: ", response)
+		pass
 	else:
 		print("Track stat error: ", result.response, result.response_code)
 	http_request.queue_free()

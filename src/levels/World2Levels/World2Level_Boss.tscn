@@ -173,8 +173,8 @@ __meta__ = {
 [node name="CeilingPosition2D" type="Position2D" parent="."]
 position = Vector2( 4224, 10 )
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 5537, 80 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 6521, 64 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 1224.0

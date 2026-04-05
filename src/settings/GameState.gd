@@ -57,6 +57,8 @@ func load_save() -> void:
 		
 		# Apply progress to games operational level data
 		LevelData.current_level_index = progress[KEY_CURRENT_LEVEL]
+		
+		print("Has completed game?", has_completed_game())
 	else:
 		print("failed", status)
 
@@ -99,6 +101,10 @@ func progress_current_level(level_index) -> void:
 	# Save the updated game state to file
 	save()		
 
+# Determine if the player has completed the game
+func has_completed_game() -> bool:
+	return progress[KEY_CURRENT_LEVEL] >= LevelData.levelsArray.size() - 1
+
 # Set whether player has watched the story intro
 func set_has_watched_story_intro(watched) -> void:
 	progress[KEY_WATCH_INTRO] = watched
@@ -119,8 +125,8 @@ func cheat(value):
 		print("Previous progress", prev_progress)
 		
 		# Set level to the maximum
-		set_current_level(LevelData.get_levels().size())  
-		
+		set_current_level(LevelData.get_levels().size() - 1)  
+	
 		print("Current progress", progress)
 	else:
 		print("Cheat disabled")

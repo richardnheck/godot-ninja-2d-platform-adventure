@@ -27,7 +27,7 @@ var worldsArray = [
 ]
 
 var levelsArray = [
-	# World 1
+	# World 1 (start level index = 0)
 	# Had to reduce number of levels down to 6 to make game finishable
 	{"world": WORLD1, "name" : "Time to learn young gakusei",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
 	{"world": WORLD1, "name" : "Jump did you say? Sensei?" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
@@ -37,30 +37,29 @@ var levelsArray = [
 	{"world": WORLD1, "name" : "Kabe sliding all the way", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Shiver me shi", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
 	#{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
-	
 	#{"world": WORLD1, "name" : "ThundercrushC", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Deadly dokutsu", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
+	{"world": WORLD1, "name" : "World1 Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
 	
-	# World 2
+	# World 2  (start index = 7)
 	{"world": WORLD2, "name" : "Hold your Hori", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Klimb that Kuruwa", "scene_path" : WORLD2_LEVELS_PATH + "Level2.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "My My Maru", "scene_path" : WORLD2_LEVELS_PATH + "Level3.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Uh Oh Ote-mon", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Help! Help! Hori!", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Towards the Tenshu", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : WORLD2_LEVEL_BGM},
-	{"world": WORLD2, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn", "boss_scene_path": "res://src/levels/World2Levels/World2Level_Boss.tscn"},
+	{"world": WORLD2, "name" : "World2 Boss", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn", "boss_scene_path": "res://src/levels/World2Levels/World2Level_Boss.tscn"},
 
-	# World 3
+	# World 3 (start index = 14)
 	{"world": WORLD3, "name" : "Taste the Tenshu", "scene_path" : WORLD3_LEVELS_PATH + "Level1.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Obake Kaidan", "scene_path" : WORLD3_LEVELS_PATH + "Level2.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Master my Mushin", "scene_path" : WORLD3_LEVELS_PATH + "Level3.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Heya, heya and heya", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "No yuka...no cry", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Saigo no nobori", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : WORLD3_LEVEL_BGM},
-	{"world": WORLD3, "name" : "", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn", "boss_scene_path": "res://src/levels/World3Levels/World3Level_Boss.tscn"},
+	{"world": WORLD3, "name" : "World3 Boss", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn", "boss_scene_path": "res://src/levels/World3Levels/World3Level_Boss.tscn"},
 	
-	# GAME END
+	# GAME END (index = 21)
 	{"world": GAME_END, "name" : "The end", "scene_path" : "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn", "bgm" : CAVE_LEVEL_BGM},
 ];
 

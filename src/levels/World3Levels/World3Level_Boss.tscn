@@ -148,8 +148,8 @@ __meta__ = {
 [node name="CeilingPosition2D" type="Position2D" parent="."]
 position = Vector2( 3584, 9 )
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 3616, 104 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 8200, 64 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100

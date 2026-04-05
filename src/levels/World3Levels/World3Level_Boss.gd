@@ -9,9 +9,7 @@ onready var ceiling_position := $CeilingPosition2D
 func _ready():
 	# Pass the boss a reference to the player
 	boss.set_player(player)
-	
 	boss.set_ceiling_position(ceiling_position)
-	#boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 	
 	Game_AudioManager.play_bgm_world3_level_boss()
 
@@ -25,4 +23,22 @@ func _ready():
 
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		get_tree().change_scene("res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn")
+		# Determine if player has already completed the game
+		# We are calling this here before the progress is updated otherwise we can't tell if this is the first time completing the game
+		var has_completed_game = GameState.has_completed_game()
+		
+		# handle level completion stuff such as analytics and progress
+		# NB: this updates the game state progress level index so that player will have completed the game
+		._handle_boss_level_complete()
+		
+		# Player has completed the game
+		if not has_completed_game:
+			print("GAME COMPLETED!")
+			# This is the first time player completes the game	
+			# Track game completion
+			Analytics.track_game_completions()
+			Analytics.track_event_game_completed()
+		else:
+			print("Game already completed!")
+			
+		LevelData.goto_boss_clear_cutscene(LevelData.WORLD3, true)

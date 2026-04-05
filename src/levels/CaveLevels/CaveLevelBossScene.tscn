@@ -24,8 +24,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1256, 236 )
+[node name="TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1365, 236 )
 rotation = 1.57079
 
 [node name="PlayerSpawnPosition" type="Position2D" parent="."]

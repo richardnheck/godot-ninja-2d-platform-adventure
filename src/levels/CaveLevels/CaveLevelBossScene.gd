@@ -38,12 +38,7 @@ func _on_boss_state_cycle_finished(state) -> void:
 		boss.set_state(next_boss_state)
 		next_boss_state = null
 
-func _on_Door_player_entered() -> void:
-	player.celebrate();
-	yield(get_tree().create_timer(2), "timeout")
-	get_tree().change_scene("res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn")
-
-
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		get_tree().change_scene("res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn")
+		._handle_boss_level_complete()
+		LevelData.goto_boss_clear_cutscene(LevelData.WORLD1, true)

@@ -11,7 +11,6 @@ func _ready():
 	# Pass the boss a reference to the player
 	boss.set_player(player)
 	boss.set_ceiling_position(ceiling_position)
-	#boss.connect("state_cycle_finished", self, "_on_boss_state_cycle_finished")
 		
 	Game_AudioManager.play_bgm_world2_level_boss()
 	
@@ -25,4 +24,5 @@ func _ready():
 
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		get_tree().change_scene("res://src/UI/CutScenes/World2/BossClearCutScene.tscn")
+		._handle_boss_level_complete()
+		LevelData.goto_boss_clear_cutscene(LevelData.WORLD2, true)
