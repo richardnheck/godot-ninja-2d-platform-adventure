@@ -64,12 +64,20 @@ func _on_CloseButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	emit_signal("on_closed")
 
-
+# Handle clicking on the hidding cheat/developer button
+# Button must be clicked 5 times to enable the cheat mode
+# It can be toggled on and off by further clicking
+var cheat_count = 0
 func _on_CheatButton_pressed() -> void:
-	# toggle cheat mode
-	Game_AudioManager.sfx_ui_basic_blip_select.play()
-	Settings.cheat_mode = not Settings.cheat_mode
-	GameState.cheat(Settings.cheat_mode)
+	cheat_count = cheat_count + 1
+	if cheat_count >= 5:
+		# toggle cheat mode
+		Settings.cheat_mode = not Settings.cheat_mode
+		GameState.cheat(Settings.cheat_mode)
+		if Settings.cheat_mode:
+			Game_AudioManager.sfx_collectibles_demon_seal.play()
+		else:
+			Game_AudioManager.sfx_ui_basic_blip_select.play()
 
 
 func _on_LevelCheckpointsOnOffButton_button_pressed(on):

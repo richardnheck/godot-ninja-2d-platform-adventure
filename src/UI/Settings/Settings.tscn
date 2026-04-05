@@ -419,13 +419,12 @@ margin_left = 2.40508
 margin_top = 2.04631
 margin_right = 14.4051
 margin_bottom = 16.0463
+focus_mode = 0
 size_flags_horizontal = 12
 size_flags_vertical = 12
 custom_fonts/font = ExtResource( 9 )
+enabled_focus_mode = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="tab_changed" from="Control/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer/LevelCheckpointsOnOffButton" to="." method="_on_LevelCheckpointsOnOffButton_button_pressed"]
