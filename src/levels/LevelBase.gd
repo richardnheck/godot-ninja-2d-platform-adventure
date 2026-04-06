@@ -116,9 +116,8 @@ func _ready() -> void:
 	# When level is first loaded
 	if not LevelData.is_reload:
 		# start the stop watch
-		if Settings.get_show_level_timer_enabled():
-			Stopwatch.reset()
-			Stopwatch.toggle_pause()
+		Stopwatch.reset()
+		Stopwatch.toggle_pause()
 		
 		# reset the death count for the current level
 		LevelMetrics.reset_deaths()
@@ -195,6 +194,8 @@ func _handle_boss_level_complete() -> void:
 func _progress_player_and_goto_next_level(goto:bool = true) -> void:
 	Analytics.track_levels_completed()
 	Analytics.track_event_level_completed(LevelData.current_level_index, Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat))
+	print("Leve completed in time: " + str(Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat)) + ", " + str(Stopwatch.get_elapsed_time_in_seconds()))
+	GameState.update_level_result(LevelData.current_level_index,  Stopwatch.get_elapsed_time_in_seconds(), LevelMetrics.deaths)
 	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:	
 		GameState.progress_current_level(LevelData.current_level_index + 1)
 

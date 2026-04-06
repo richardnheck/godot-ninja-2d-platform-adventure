@@ -78,6 +78,10 @@ var has_key: = false setget set_has_key
 func get_levels() -> Array:
 	return levelsArray
 	
+# Get the actual number of playable levels
+func get_playable_level_count():
+	return levelsArray.size() - 1	# -1 to exlude the game ending as it is a cutscene
+	
 # Get the index of the boss level within the level data	
 func get_boss_level_index(world):
 	for i in range(0, levelsArray.size()):

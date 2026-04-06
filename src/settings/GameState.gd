@@ -18,7 +18,7 @@ var progress = {
 }
 
 var user:User = null
-
+var level_results:LevelResults = null
 
 func _ready():
 	print("GameState ready")
@@ -50,7 +50,11 @@ func load_save() -> void:
 		else:
 			user = User.new("")
 		
-		print("Loaded user", user)
+		# Apply the saved level results
+		if data.has("level_results"):
+			level_results = LevelResults.from_dictionary(data["level_results"])
+		else:
+			level_results  = LevelResults.new()
 		
 		# Handle new state additions that weren't part of first save
 		progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
@@ -67,10 +71,10 @@ func save() -> void:
 	print("Saving Game State...")
 	var save_data := {
 		"progress" : progress,
-		"user" : user.to_var()
+		"user" : user.to_var(),
+		"level_results" : level_results.to_var()
 	}
 	var data_as_string := var2str(save_data)
-	print(data_as_string);
 	
 	var file := File.new()
 	#warning-ignore:return_value_discarded
@@ -101,6 +105,12 @@ func progress_current_level(level_index) -> void:
 	# Save the updated game state to file
 	save()		
 
+# Update local level result 
+# This will be called when a player completes a level
+func update_level_result(level_index:int, completion_time:float, deaths:int) -> void:
+	level_results.update_level_result(level_index, completion_time, deaths)
+	save()
+
 # Determine if the player has completed the game
 func has_completed_game() -> bool:
 	return progress[KEY_CURRENT_LEVEL] >= LevelData.levelsArray.size() - 1
@@ -114,6 +124,7 @@ func set_has_watched_story_intro(watched) -> void:
 func get_has_watched_story_intro() -> bool:
 	return progress[KEY_WATCH_INTRO]
 	
+
 
 var prev_progress = null
 func cheat(value):
@@ -149,3 +160,89 @@ class User:
 		return { 
 			"identifier": identifier
 		}
+
+class LevelResults:
+	var levels:Array	# Array<LevelResult>
+	
+	func _init():
+		# Initialise empty results for all the playable levels
+		for level_index in range (LevelData.get_playable_level_count()):
+			levels.append(LevelResult.new())
+	
+	static func from_dictionary(dict:Dictionary) -> LevelResults:
+		print("from_dictionary", dict)
+		return LevelResults.new()
+		
+	func to_var():
+		var levels_var_array = []
+		for level in levels:
+			levels_var_array.append(level.to_var())
+		return { 
+			"levels": levels_var_array
+		}
+			
+	func update_level_result(level_index:int, completion_time:float, deaths:int):
+		if level_index >= levels.size(): return
+		var level_result:LevelResult = levels[level_index]	
+		level_result.completion_time = completion_time
+		level_result.deaths = deaths
+		level_result.timestamp = _get_timestamp_msec()
+		
+	func get_level_result(level_index:int) -> LevelResult:
+		if level_index >= levels.size(): return null
+		return levels[level_index]
+		
+	func get_total_score() -> float:
+		var score = 0.0
+		for level in levels:
+			score = score + level.get_score()
+		return score
+	
+	func get_total_completion_time() -> float:
+		var completion_time = 0.0
+		for level in levels:
+			completion_time = completion_time + level.completion_time
+		return completion_time
+	
+	func get_total_deaths() -> float:
+		var deaths = 0.0
+		for level in levels:
+			deaths = deaths + level.deaths
+		return deaths	
+		
+	# Get the current timestamp in unix msecs (compatible with Taol analytics)
+	func _get_timestamp_msec() -> int:
+		return int(ceil(Time.get_unix_time_from_system()) * 1000)
+		
+
+class LevelResult:
+	var completion_time:float   # completion time of level in seconds
+	var timestamp:int			# unix timestamp in msecs (compatible with Talo analytics)
+	var deaths:int				# number of deaths for the level
+	
+	func _init(completion_time:float = 0, timestamp:int = 0, deaths:int = 0):
+		self.completion_time = completion_time
+		self.timestamp = timestamp
+		self.deaths = deaths
+	
+	func get_score() -> float:
+		if is_completed():
+			return 10000.0 / timestamp * 100.0
+		else:
+			return 0.0;
+	
+	func is_completed() -> bool:
+		return completion_time > 0;
+	
+	func to_var():
+		return {
+			"completion_time": completion_time,
+			"timestamp" : timestamp,
+			"deaths" :deaths
+		}
+
+	static func from_dictionary(dict:Dictionary) -> LevelResult:
+		var completion_time = dict.completion_time if dict.has("completion_time") else 0.0
+		var timestamp = dict.timestamp if dict.has("timetamp") else 0
+		var deaths = dict.deaths if dict.has("deaths") else 0
+		return LevelResult.new(completion_time, timestamp, deaths)
