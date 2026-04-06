@@ -164,14 +164,30 @@ class User:
 class LevelResults:
 	var levels:Array	# Array<LevelResult>
 	
-	func _init():
-		# Initialise empty results for all the playable levels
-		for level_index in range (LevelData.get_playable_level_count()):
-			levels.append(LevelResult.new())
+	func _init(levels:Array = []):
+		if levels:
+			self.levels = levels
+		else:
+			# Initialise empty results for all the playable levels
+			for level_index in range (LevelData.get_playable_level_count()):
+				self.levels.append(LevelResult.new())
 	
 	static func from_dictionary(dict:Dictionary) -> LevelResults:
-		print("from_dictionary", dict)
-		return LevelResults.new()
+		var levels:Array = []  # Array<LevelResult>
+		var levels_from_dict:Array = dict.levels if dict.has("levels") else null
+		
+		if levels_from_dict:
+			for level in levels_from_dict:
+				var completion_time:float = level.completion_time if "completion_time" in level else 0.0
+				var timestamp:int = level.timestamp if "timestamp" in level else 0
+				var deaths:int = level.deaths if "deaths" in level else 0
+				var previous_completion_time:float = level.previous_completion_time if "previous_completion_time" in level else 0.0
+				var previous_timestamp:int = level.previous_timestamp if "previous_timestamp" in level else 0
+				var previous_deaths:int = level.previous_deaths if "previous_deaths" in level else 0
+				levels.append(LevelResult.new(completion_time, timestamp, deaths, previous_completion_time, previous_timestamp, previous_deaths))
+			return LevelResults.new(levels)
+		else:	
+			return LevelResults.new()
 		
 	func to_var():
 		var levels_var_array = []
@@ -184,9 +200,7 @@ class LevelResults:
 	func update_level_result(level_index:int, completion_time:float, deaths:int):
 		if level_index >= levels.size(): return
 		var level_result:LevelResult = levels[level_index]	
-		level_result.completion_time = completion_time
-		level_result.deaths = deaths
-		level_result.timestamp = _get_timestamp_msec()
+		level_result.update(completion_time, deaths)
 		
 	func get_level_result(level_index:int) -> LevelResult:
 		if level_index >= levels.size(): return null
@@ -209,21 +223,37 @@ class LevelResults:
 		for level in levels:
 			deaths = deaths + level.deaths
 		return deaths	
-		
-	# Get the current timestamp in unix msecs (compatible with Taol analytics)
-	func _get_timestamp_msec() -> int:
-		return int(ceil(Time.get_unix_time_from_system()) * 1000)
-		
 
 class LevelResult:
 	var completion_time:float   # completion time of level in seconds
 	var timestamp:int			# unix timestamp in msecs (compatible with Talo analytics)
 	var deaths:int				# number of deaths for the level
 	
-	func _init(completion_time:float = 0, timestamp:int = 0, deaths:int = 0):
+	# Previous best result.  Will get set when a better result is updated
+	var previous_completion_time:float
+	var previous_timestamp:int
+	var previous_deaths:int
+	
+	func _init(completion_time:float = 0, timestamp:int = 0, deaths:int = 0, previous_completion_time:float = 0, previous_timestamp:int = 0, previous_deaths:int = 0):
 		self.completion_time = completion_time
 		self.timestamp = timestamp
 		self.deaths = deaths
+		self.previous_completion_time = previous_completion_time
+		self.previous_timestamp = previous_timestamp
+		self.previous_deaths = previous_deaths
+	
+	func update(completion_time:float = 0, deaths:int = 0):
+		if self.completion_time == 0.0 or (completion_time > 0 and completion_time <= self.completion_time):
+			# Update the record since this is a better result (i.e. faster)
+			# First the current record as the previous
+			self.previous_completion_time = self.completion_time
+			self.previous_timestamp = self.timestamp
+			self.previous_deaths = self.deaths
+			
+			# Now update the new result
+			self.completion_time = completion_time
+			self.timestamp = _get_timestamp_msec()
+			self.deaths = deaths
 	
 	func get_score() -> float:
 		if is_completed():
@@ -238,11 +268,22 @@ class LevelResult:
 		return {
 			"completion_time": completion_time,
 			"timestamp" : timestamp,
-			"deaths" :deaths
+			"deaths" :deaths,
+			"previous_completion_time": previous_completion_time,
+			"previous_timestamp" : previous_timestamp,
+			"previous_deaths" : previous_deaths
 		}
 
 	static func from_dictionary(dict:Dictionary) -> LevelResult:
 		var completion_time = dict.completion_time if dict.has("completion_time") else 0.0
 		var timestamp = dict.timestamp if dict.has("timetamp") else 0
 		var deaths = dict.deaths if dict.has("deaths") else 0
+		var previous_completion_time = dict.previous_completion_time if dict.has("previous_completion_time") else 0.0
+		var previous_timestamp = dict.previous_timestamp if dict.has("previous_timetamp") else 0
+		var previous_deaths = dict.previous_deaths if dict.has("previous_deaths") else 0
 		return LevelResult.new(completion_time, timestamp, deaths)
+
+	# Get the current timestamp in unix msecs (compatible with Taol analytics)
+	func _get_timestamp_msec() -> int:
+		return int(ceil(Time.get_unix_time_from_system()) * 1000)
+		
