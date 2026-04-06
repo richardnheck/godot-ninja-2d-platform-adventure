@@ -133,7 +133,6 @@ func _track_event(event):
 			event
 		]
 	}
-	print(JSON.print(data))
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request(url, headers, true, HTTPClient.METHOD_POST, JSON.print(data))
