@@ -6,7 +6,7 @@ const WORLD2 = 2	# World2 - Within the Wals
 const WORLD3 = 3    # World3 - Inside the Tower
 const GAME_END = 4
 
-const CAVE_LEVELS_PATH = "res://src/levels/CaveLevels/CaveLevel"
+const WORLD1_LEVELS_PATH = "res://src/levels/CaveLevels/World1Level_"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
 const WORLD3_LEVELS_PATH = "res://src/levels/World3Levels/World3Level_"
 
@@ -29,17 +29,17 @@ var worldsArray = [
 var levelsArray = [
 	# World 1 (start level index = 0)
 	# Had to reduce number of levels down to 6 to make game finishable
-	{"world": WORLD1, "name" : "Time to learn young gakusei",  "scene_path" : CAVE_LEVELS_PATH + "LearningMechanics.tscn", "bgm" : CAVE_LEVEL_BGM },
-	{"world": WORLD1, "name" : "Jump did you say? Sensei?" , "scene_path" : CAVE_LEVELS_PATH + "ArtOfJumping.tscn", "bgm" : CAVE_LEVEL_BGM },
-	#{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : CAVE_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Unstable ishi", "scene_path" : CAVE_LEVELS_PATH + "CrumblingRocksLevel2.tscn", "bgm" : CAVE_LEVEL_BGM},
-	#{"world": WORLD1, "name" : "Oh so many spikey things", "scene_path" : CAVE_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Kabe sliding all the way", "scene_path" : CAVE_LEVELS_PATH + "OfWallAndSlide.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Shiver me shi", "scene_path" : CAVE_LEVELS_PATH + "DeathFromAbove.tscn", "bgm" : CAVE_LEVEL_BGM},
-	#{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : CAVE_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
-	#{"world": WORLD1, "name" : "ThundercrushC", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "Deadly dokutsu", "scene_path" : CAVE_LEVELS_PATH + "ClaustrophicCaverns2.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Time to learn young gakusei",  "scene_path" : WORLD1_LEVELS_PATH + "Level1.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{"world": WORLD1, "name" : "Jump did you say? Sensei?" , "scene_path" : WORLD1_LEVELS_PATH + "Level2.tscn", "bgm" : CAVE_LEVEL_BGM },
+	{"world": WORLD1, "name" : "Unstable ishi", "scene_path" : WORLD1_LEVELS_PATH + "Level3.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Kabe sliding all the way", "scene_path" : WORLD1_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Shiver me shi", "scene_path" : WORLD1_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
+	{"world": WORLD1, "name" : "Deadly dokutsu", "scene_path" : WORLD1_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "World1 Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
+	#{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : WORLD1_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "Oh so many spikey things", "scene_path" : WORLD1_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : WORLD1_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
+	#{"world": WORLD1, "name" : "ThundercrushC", "scene_path" : WORLD1_LEVELS_PATH + "ClaustrophicCaverns1.tscn", "bgm" : CAVE_LEVEL_BGM},
 	
 	# World 2  (start index = 7)
 	{"world": WORLD2, "name" : "Hold your Hori", "scene_path" : WORLD2_LEVELS_PATH + "Level1.tscn", "bgm" : WORLD2_LEVEL_BGM},
@@ -181,10 +181,10 @@ func get_level_name_by_index(level_index:int) -> String:
 	var level = _get_level_by_index(level_index)
 	return level.name	
 	
-# Get the scene path of the level given the index	
-func get_level_scene_path_by_index(level_index:int) -> String:
+# Get the scene file name of the level given the index	
+func get_level_scene_by_index(level_index:int) -> String:
 	var level = _get_level_by_index(level_index)
-	return level.scene_path	
+	return level.scene_path.get_file()
 
 func _get_level_by_index(level_index:int):
 	var max_index = levelsArray.size() - 1
