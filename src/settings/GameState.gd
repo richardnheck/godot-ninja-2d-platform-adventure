@@ -107,9 +107,10 @@ func progress_current_level(level_index) -> void:
 
 # Update local level result 
 # This will be called when a player completes a level
-func update_level_result(level_index:int, completion_time:float, deaths:int) -> void:
-	level_results.update_level_result(level_index, completion_time, deaths)
+func update_level_result(level_index:int, completion_time:float, deaths:int) -> LevelResult:
+	var updated_level_result = level_results.update_level_result(level_index, completion_time, deaths)
 	save()
+	return updated_level_result
 
 # Determine if the player has completed the game
 func has_completed_game() -> bool:
@@ -197,20 +198,15 @@ class LevelResults:
 			"levels": levels_var_array
 		}
 			
-	func update_level_result(level_index:int, completion_time:float, deaths:int):
-		if level_index >= levels.size(): return
+	func update_level_result(level_index:int, completion_time:float, deaths:int) -> LevelResult:
+		if level_index >= levels.size(): return null
 		var level_result:LevelResult = levels[level_index]	
-		level_result.update(completion_time, deaths)
+		var updated:bool = level_result.update(completion_time, deaths)
+		return level_result if updated else null
 		
 	func get_level_result(level_index:int) -> LevelResult:
 		if level_index >= levels.size(): return null
 		return levels[level_index]
-		
-	func get_total_score() -> float:
-		var score = 0.0
-		for level in levels:
-			score = score + level.get_score()
-		return score
 	
 	func get_total_completion_time() -> float:
 		var completion_time = 0.0
@@ -218,8 +214,8 @@ class LevelResults:
 			completion_time = completion_time + level.completion_time
 		return completion_time
 	
-	func get_total_deaths() -> float:
-		var deaths = 0.0
+	func get_total_deaths() -> int:
+		var deaths = 0
 		for level in levels:
 			deaths = deaths + level.deaths
 		return deaths	
@@ -242,7 +238,7 @@ class LevelResult:
 		self.previous_timestamp = previous_timestamp
 		self.previous_deaths = previous_deaths
 	
-	func update(completion_time:float = 0, deaths:int = 0):
+	func update(completion_time:float = 0, deaths:int = 0) -> bool:
 		if self.completion_time == 0.0 or (completion_time > 0 and completion_time <= self.completion_time):
 			# Update the record since this is a better result (i.e. faster)
 			# First the current record as the previous
@@ -254,12 +250,10 @@ class LevelResult:
 			self.completion_time = completion_time
 			self.timestamp = _get_timestamp_msec()
 			self.deaths = deaths
-	
-	func get_score() -> float:
-		if is_completed():
-			return 10000.0 / timestamp * 100.0
+			return true
 		else:
-			return 0.0;
+			# level result wasn't updated as it wasn't a better result
+			return false
 	
 	func is_completed() -> bool:
 		return completion_time > 0;
