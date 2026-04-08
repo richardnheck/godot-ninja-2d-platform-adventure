@@ -8,8 +8,9 @@ extends Node
 
 const talo_base_url = "https://api.trytalo.com/v1/"
 
-var player_identifier = null
+var alias_identifier = null
 var player_alias_id = null
+var player_id = null
 
 const STAT_DEATHS = "deaths"
 const STAT_LEVELS_COMPLETED = "levels-completed"
@@ -26,43 +27,31 @@ const LEADERBOARD_GAME_HIGH_SCORE = "game-high-score"
 func _ready():
 	print("Initializing Analytics...")
 	
-	if GameState.get_player_identifier():
+	var existing_player = true if GameState.get_player_identifier() else false
+	if existing_player:
 		# Get the player identifier from the game save state
-		player_identifier = GameState.get_player_identifier()
+		alias_identifier = GameState.get_player_identifier()
 	else:
 		# No player exists yet so create a unique identifier
-		player_identifier = _generate_identifier()
-		
-	identify_player(player_identifier)
+		alias_identifier = _generate_identifier()
+				
+	yield(_identify_player(alias_identifier), "completed")
+	if not existing_player:
+		# Also set a generated display name for the user to start with
+		var display_name = UsernameGenerator.new().generate_username()
+		print("Generating display name= ", display_name)
+		update_player_display_name(display_name)
 
 # Determine if Talo analytics is enabled
 func _is_enabled() -> bool:
 	return Env.talo_access_key != ""
-
-# Identify the player
-func identify_player(identifier):
-	if !_is_enabled(): return
-	print("Identifying player: " + identifier)
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
 	
-	var base_url = talo_base_url + "players/identify"
-	var params = "identifier="+identifier+"&service=username"
-	var url = base_url + "?" + params
-	http_request.request(url, _get_base_headers(), true, HTTPClient.METHOD_GET)
-	var result = yield(_build_response(http_request),"completed")
-	var response = JSON.parse(result.body.get_string_from_utf8()).result
-	if result.response_code == 200:
-		print("Player identified: ", response)
-		# remember player alias id as this is required in subsequent requests
-		if response.has("alias"):
-			player_alias_id = response.alias.id
-			# player has been successfully identified so save the identifier in the game state
-			GameState.set_player_identifier(response.alias.identifier)	
-			GameState.save()
-	else:
-		print("Error identifying player: ", result.response, result.response_code)
-	http_request.queue_free()
+# Update the player display name
+func update_player_display_name(name:String) -> void:
+	var props = [
+		TaloProp.new("display_name", name)
+	]
+	_update_player_props(props)
 	
 # Track player deaths
 func track_deaths():
@@ -131,6 +120,56 @@ func get_game_leaderboard_entries(page:int = 0) -> EntriesPage:
 func get_level_leaderboard_entries(page:int = 0) -> EntriesPage:
 	print("loading...")
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page)
+
+# Identify the player
+func _identify_player(identifier):
+	if !_is_enabled(): return
+	print("Identifying player: " + identifier)
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	
+	var base_url = talo_base_url + "players/identify"
+	var params = "identifier="+identifier+"&service=username"
+	var url = base_url + "?" + params
+	http_request.request(url, _get_base_headers(), true, HTTPClient.METHOD_GET)
+	var result = yield(_build_response(http_request),"completed")
+	var response = JSON.parse(result.body.get_string_from_utf8()).result
+	if result.response_code == 200:
+		print("Player identified: ", response)
+		# remember player alias id as this is required in subsequent requests
+		if response.has("alias"):
+			player_alias_id = response.alias.id
+			player_id = response.alias.player.id   # this player id is required for updating player props
+			# player has been successfully identified so save the identifier in the game state
+			GameState.set_player_identifier(response.alias.identifier)	
+			GameState.save()
+	else:
+		print("Error identifying player: ", result.response, result.response_code)
+	http_request.queue_free()
+
+func _update_player_props(props:Array) -> void:
+	if !_is_enabled(): return
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	var url = talo_base_url + "players/%s" % player_id
+		
+	var data = {
+		"props" : TaloPropUtils.serialise_props(props)
+	}
+	http_request.request(url, _get_base_headers(), true, HTTPClient.METHOD_PATCH, JSON.print(data))
+	var result = yield(_build_response(http_request),"completed")
+	var response = JSON.parse(result.body.get_string_from_utf8()).result
+	if result.response_code == 200:
+		print("Player props updated: ", response)
+		# remember player alias id as this is required in subsequent requests
+		if response.has("alias"):
+			player_alias_id = response.alias.id
+			# player has been successfully identified so save the identifier in the game state
+			GameState.set_player_identifier(response.alias.identifier)	
+			GameState.save()
+	else:
+		print("Error updating player props: ", response, result.response_code)
+	http_request.queue_free()
 
 
 func _build_level_base_props(current_level_index:int):

@@ -19,7 +19,8 @@ func _ready() -> void:
 func _load_entries() -> void:
 	var entries_page = yield(Analytics.get_level_leaderboard_entries(), "completed")
 	for entry in entries_page.entries:
-		var label = "%s  %s   %s" % [entry.position + 1, entry.player_alias, Stopwatch.get_time_as_formatted_string(entry.score, Stopwatch.TimeFormat)]
+		var display_name = entry.player_display_name
+		var label = "%s  %s   %s" % [entry.position + 1, display_name, Stopwatch.get_time_as_formatted_string(entry.score, Stopwatch.TimeFormat)]
 		item_list.add_item(label,null,true)
 	
 	

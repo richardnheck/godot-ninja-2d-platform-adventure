@@ -419,6 +419,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/tofu-kozo/TofuKozo.gd"
 }, {
+"base": "Reference",
+"class": "UsernameGenerator",
+"language": "GDScript",
+"path": "res://src/lib/Analytics/username_generator.gd"
+}, {
 "base": "RigidBody2D",
 "class": "WanyudoMini",
 "language": "GDScript",
@@ -542,6 +547,7 @@ _global_script_class_icons={
 "TaloTimeUtils": "",
 "Tofu": "",
 "TofuKozo": "",
+"UsernameGenerator": "",
 "WanyudoMini": "",
 "WanyudoMiniSpawner": "",
 "World1BossIntroCutScene": "",
