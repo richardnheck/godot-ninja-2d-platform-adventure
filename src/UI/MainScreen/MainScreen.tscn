@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/MainScreen/title-screen-options-button2.png" type="Texture" id=3]
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/MainScreen/title-screen-options-button1.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/LeaderboardScreen/LeaderboardScreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -67,9 +70,16 @@ margin_top = 19.0
 margin_right = 101.0
 margin_bottom = 34.0
 
-[node name="QuitButton" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
+[node name="LeaderboardButton" type="TextureButton" parent="Control/VBoxContainer"]
 margin_top = 38.0
+margin_right = 101.0
 margin_bottom = 53.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 3 )
+
+[node name="QuitButton" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 57.0
+margin_bottom = 72.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 anchor_left = 0.5
@@ -94,6 +104,17 @@ margin_right = -140.0
 margin_bottom = -85.0
 rect_pivot_offset = Vector2( 120, 0 )
 
+[node name="LeaderboardScreen" parent="." instance=ExtResource( 11 )]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -83.0
+margin_right = -140.0
+margin_bottom = -85.0
+
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 method_call_mode = 1
@@ -102,7 +123,9 @@ anims/Hover = SubResource( 1 )
 [node name="TitleTween" type="Tween" parent="."]
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
+[connection signal="on_closed" from="LeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

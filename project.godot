@@ -404,6 +404,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/lib/Analytics/Talo/prop_utils.gd"
 }, {
+"base": "Reference",
+"class": "TaloTimeUtils",
+"language": "GDScript",
+"path": "res://src/lib/Analytics/Talo/time_utils.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Tofu",
 "language": "GDScript",
@@ -534,6 +539,7 @@ _global_script_class_icons={
 "TaloLeaderboardEntry": "",
 "TaloProp": "",
 "TaloPropUtils": "",
+"TaloTimeUtils": "",
 "Tofu": "",
 "TofuKozo": "",
 "WanyudoMini": "",

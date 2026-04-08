@@ -26,7 +26,8 @@ func _init(data: Dictionary):
 	id = data.id
 	position = data.position
 	score = data.score
-	player_alias = "" # todo:L TaloPlayerAlias.new(data.playerAlias)
+	print("player alias", data.playerAlias)
+	player_alias = str(data.playerAlias.id)#TaloPlayerAlias.new(data.playerAlias)
 
 	leaderboard_name = data.leaderboardName
 	leaderboard_internal_name = data.leaderboardInternalName

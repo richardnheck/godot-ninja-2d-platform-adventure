@@ -6,11 +6,13 @@ onready var title = $"%TitleScreenText"
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
 onready var settings = $"%Settings"
+onready var leaderboard_screen = $"%LeaderboardScreen"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	settings.visible = false
+	leaderboard_screen.visible = false
 	quit_button.visible = not Settings.is_html5_build()
 	
 	# The main screen could be reloaded by navigating back from
@@ -61,4 +63,10 @@ func _on_TitleTween_tween_completed(object: Object, key: NodePath) -> void:
 func _on_QuitButton_pressed() -> void:
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 
-
+func _on_LeaderboardButton_pressed():
+	print("clic")
+	Game_AudioManager.sfx_ui_basic_blip_select.play()
+	leaderboard_screen.visible = true
+	
+func _on_LeaderboardScreen_on_closed():
+	leaderboard_screen.visible = false

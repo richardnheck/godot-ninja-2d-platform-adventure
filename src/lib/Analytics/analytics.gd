@@ -125,6 +125,13 @@ func add_game_leaderboard_entry(score: float, deaths:int) -> void:
 	]
 	_add_leaderboard_entry(LEADERBOARD_GAME_HIGH_SCORE, score, props)
 
+func get_game_leaderboard_entries(page:int = 0) -> EntriesPage:
+	return _get_leaderboard_entries(LEADERBOARD_GAME_HIGH_SCORE, page)
+
+func get_level_leaderboard_entries(page:int = 0) -> EntriesPage:
+	print("loading...")
+	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page)
+
 
 func _build_level_base_props(current_level_index:int):
 	return  [
@@ -157,6 +164,7 @@ func _track_event(event):
 
 ## Add an entry to a leaderboard. The props (key-value pairs) parameter is used to store additional data with the entry.
 func _add_leaderboard_entry(internal_name: String, score: float, props: Array = []) -> void:
+	print(">>>>>>>>>>>>add leader board entry")
 	if !_is_enabled(): return
 	var url = talo_base_url + "leaderboards/%s/entries" % internal_name
 	var headers = _get_base_headers()
@@ -177,6 +185,32 @@ func _add_leaderboard_entry(internal_name: String, score: float, props: Array = 
 	else:
 		print("Add leaderboard entry error: ", response, result.response_code)
 	http_request.queue_free()
+
+func _get_leaderboard_entries(internal_name: String, page: int = 0, props: Array = []) -> EntriesPage:
+	if !_is_enabled(): return null
+	var url = talo_base_url + "leaderboards/%s/entries?%s" % [internal_name, page]
+	var headers = _get_base_headers()
+	
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request(url, headers, true, HTTPClient.METHOD_GET)
+	var result = yield(_build_response(http_request),"completed")
+	var response = JSON.parse(result.body.get_string_from_utf8()).result
+	var entries_page = null
+	match result.response_code:
+		200: 
+			#print("Get leaderboard entries: ", response)
+			var talo_entries: Array 
+			for entry in response.entries:
+				var talo_entry := TaloLeaderboardEntry.new(entry)
+				talo_entries.append(talo_entry)
+			entries_page = EntriesPage.new(talo_entries, response.count, response.itemsPerPage, response.isLastPage)
+			print("count=", entries_page.entries)
+		_:
+			print("Get leaderboard entries error: ", response, result.response_code)
+		
+	http_request.queue_free()
+	return entries_page
 
 func _get_base_headers() -> Array:
 	var base_headers = [

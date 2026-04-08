@@ -36,13 +36,13 @@ func load_save() -> void:
 	if status == OK:
 		# File opened successfully
 		print("opened!")
-		print(file.get_as_text()) 
+		#print(file.get_as_text()) 
 		var data: Dictionary = str2var(file.get_as_text())
 		file.close()
 	
 		# Apply the saved progress to the local progress
 		progress = data["progress"]
-		print("progress state", progress)
+		#print("progress state", progress)
 		
 		# Apply the saved player details
 		if data.has("user"):
