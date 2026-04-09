@@ -91,6 +91,15 @@ func get_player_identifier() -> String:
 func set_player_identifier(identifier:String) -> void:
 	user.identifier = identifier
 	
+# Get the player display name (used for analytics and leaderboards)	
+func get_player_display_name() -> String:
+	return user.display_name
+	
+# Set the player display_name
+func set_player_display_name(display_name:String) -> void:
+	print("set player display naem", display_name)
+	user.display_name = display_name	
+	
 # Set the current level based on its index in the levels array
 func set_current_level(level_index) -> void:
 	progress[KEY_CURRENT_LEVEL] = level_index
@@ -149,17 +158,21 @@ func cheat(value):
 
 class User:
 	var identifier:String
+	var display_name:String
 	
-	func _init(identifier:String):
+	func _init(identifier:String, display_name:String = "Unknown"):
 		self.identifier = identifier
+		self.display_name = display_name
 
 	static func from_dictionary(dict:Dictionary) -> User:
 		var identifier = dict.identifier if dict.has("identifier") else null
-		return User.new(identifier)
+		var display_name = dict.display_name if dict.has("display_name") else "Unknown"
+		return User.new(identifier, display_name)
 		
 	func to_var():
 		return { 
-			"identifier": identifier
+			"identifier": identifier,
+			"display_name" : display_name
 		}
 
 class LevelResults:

@@ -17,6 +17,9 @@ onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
 onready var player_animated_sprite:= $"%PlayerAnimatedSprite" 
 onready var player_animated_texture_rect := $"%AnimatedTextureRect"
 
+onready var display_name_line_edit = $"%DisplayNameLineEdit"
+onready var update_display_name_button = $"%UpdateButton"
+
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
 	"1920x1080": Vector2(1920, 1080), # 1080p
@@ -38,23 +41,32 @@ var window_types = [
 ]
 
 # Called when the node enters the scene tree for the first time.
+# Things that don't change can be initialized here
 func _ready() -> void:
-	level_checkpoints_button.set_on(Settings.get_level_checkpoints_enabled())
-	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
-	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
-	show_level_timer_button.set_on(Settings.get_show_level_timer_enabled())
-	
 	# Remove the display tab for html5 build as the size is dictated by the web embed size
 	if Settings.is_html5_build():
 		var tab_node = tab_container.get_tab_control(1)
 		tab_container.remove_child(tab_node)
 	
 	_add_resolutions()
-	_update_selected_resolution()
-	
 	_add_window_types()
-	_update_selected_window_type()
+
+# Handle when the scene becomes visible
+func _on_Settings_visibility_changed():
+	if is_visible_in_tree():
+		_initialize()
+
+# Initialize the settings
+func _initialize():
+	display_name_line_edit.text = GameState.get_player_display_name()
 	
+	level_checkpoints_button.set_on(Settings.get_level_checkpoints_enabled())
+	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
+	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
+	show_level_timer_button.set_on(Settings.get_show_level_timer_enabled())
+	
+	_update_selected_resolution()
+	_update_selected_window_type()
 
 func set_current_tab(tab_index:int) -> void:	
 	tab_container.current_tab = tab_index
@@ -177,3 +189,8 @@ func _on_AnimatedTextureRect_gui_input(event):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			_change_player_animation()
 			
+func _on_DisplayNameUpdateButton_pressed():
+	Analytics.update_player_display_name(display_name_line_edit.text)
+
+
+

@@ -82,7 +82,7 @@ margin_bottom = 53.0
 alignment = 1
 
 [node name="LevelCheckpointsContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
-margin_right = 191.0
+margin_right = 258.0
 margin_bottom = 18.0
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer"]
@@ -100,7 +100,7 @@ rect_min_size = Vector2( 16, 16 )
 
 [node name="BossLevelCheckpointsContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
 margin_top = 22.0
-margin_right = 191.0
+margin_right = 258.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer"]
@@ -117,7 +117,7 @@ margin_bottom = 18.0
 
 [node name="ShowLevelNamesContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
 margin_top = 44.0
-margin_right = 191.0
+margin_right = 258.0
 margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer"]
@@ -134,7 +134,7 @@ margin_bottom = 18.0
 
 [node name="ShowLevelTimerContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
 margin_top = 66.0
-margin_right = 191.0
+margin_right = 258.0
 margin_bottom = 84.0
 
 [node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer"]
@@ -148,6 +148,32 @@ unique_name_in_owner = true
 margin_left = 129.0
 margin_right = 147.0
 margin_bottom = 18.0
+
+[node name="DisplayNameContainer" type="HBoxContainer" parent="Control/TabContainer/Game/VBoxContainer"]
+margin_top = 88.0
+margin_right = 258.0
+margin_bottom = 105.0
+
+[node name="Label" type="Label" parent="Control/TabContainer/Game/VBoxContainer/DisplayNameContainer"]
+margin_right = 72.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 70, 0 )
+text = "Display name"
+
+[node name="DisplayNameLineEdit" type="LineEdit" parent="Control/TabContainer/Game/VBoxContainer/DisplayNameContainer"]
+unique_name_in_owner = true
+margin_left = 76.0
+margin_right = 211.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 135, 0 )
+max_length = 20
+
+[node name="UpdateButton" type="Button" parent="Control/TabContainer/Game/VBoxContainer/DisplayNameContainer"]
+unique_name_in_owner = true
+margin_left = 215.0
+margin_right = 258.0
+margin_bottom = 17.0
+text = " Update "
 
 [node name="Display" type="Control" parent="Control/TabContainer"]
 visible = false
@@ -426,11 +452,13 @@ custom_fonts/font = ExtResource( 9 )
 enabled_focus_mode = 0
 flat = true
 
+[connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="tab_changed" from="Control/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/LevelCheckpointsContainer/LevelCheckpointsOnOffButton" to="." method="_on_LevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/BossLevelCheckpointsContainer/BossLevelCheckpointsOnOffButton" to="." method="_on_BossLevelCheckpointsOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelNamesContainer/ShowLevelNamesOnOffButton" to="." method="_on_ShowLevelNamesOnOffButton_button_pressed"]
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer/ShowLevelTimerOnOffButton" to="." method="_on_ShowLevelTimerOnOffButton_button_pressed"]
+[connection signal="pressed" from="Control/TabContainer/Game/VBoxContainer/DisplayNameContainer/UpdateButton" to="." method="_on_DisplayNameUpdateButton_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
 [connection signal="gui_input" from="Control/TabContainer/Extras/AnimatedTextureRect" to="." method="_on_AnimatedTextureRect_gui_input"]

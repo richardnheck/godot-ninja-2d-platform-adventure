@@ -51,7 +51,12 @@ func update_player_display_name(name:String) -> void:
 	var props = [
 		TaloProp.new("display_name", name)
 	]
-	_update_player_props(props)
+	
+	var success = yield(_update_player_props(props),"completed")
+	if success:
+		# Display name was successfully updated so save it to game state
+		GameState.set_player_display_name(name)	
+		GameState.save()	
 	
 # Track player deaths
 func track_deaths():
@@ -147,8 +152,8 @@ func _identify_player(identifier):
 		print("Error identifying player: ", result.response, result.response_code)
 	http_request.queue_free()
 
-func _update_player_props(props:Array) -> void:
-	if !_is_enabled(): return
+func _update_player_props(props:Array) -> bool:
+	if !_is_enabled(): return false
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	var url = talo_base_url + "players/%s" % player_id
@@ -161,15 +166,13 @@ func _update_player_props(props:Array) -> void:
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
 		print("Player props updated: ", response)
-		# remember player alias id as this is required in subsequent requests
-		if response.has("alias"):
-			player_alias_id = response.alias.id
-			# player has been successfully identified so save the identifier in the game state
-			GameState.set_player_identifier(response.alias.identifier)	
-			GameState.save()
+		http_request.queue_free()
+		return true
 	else:
 		print("Error updating player props: ", response, result.response_code)
-	http_request.queue_free()
+		http_request.queue_free()
+		return false
+	
 
 
 func _build_level_base_props(current_level_index:int):
