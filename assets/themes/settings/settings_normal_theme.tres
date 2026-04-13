@@ -10712,7 +10712,7 @@ content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
-bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
+bg_color = Color( 0.14902, 0.172549, 0.231373, 0.854902 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -11208,7 +11208,7 @@ border_color = Color( 0.2, 0.23, 0.31, 1 )
 
 [sub_resource type="StyleBoxFlat" id=1487]
 content_margin_left = 4.0
-content_margin_right = 4.0
+content_margin_right = 2048.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.1, 0.115, 0.155, 1 )
@@ -12408,6 +12408,8 @@ Tree/constants/item_margin = 12
 Tree/constants/scroll_border = 40
 Tree/constants/scroll_speed = 12
 Tree/constants/vseparation = 4
+Tree/fonts/font = ExtResource( 3 )
+Tree/fonts/title_button_font = ExtResource( 3 )
 Tree/icons/arrow = SubResource( 641 )
 Tree/icons/arrow_collapsed = SubResource( 643 )
 Tree/icons/checked = SubResource( 4 )

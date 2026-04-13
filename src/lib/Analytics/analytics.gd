@@ -138,6 +138,7 @@ func _identify_player(identifier):
 	var url = base_url + "?" + params
 	http_request.request(url, _get_base_headers(), true, HTTPClient.METHOD_GET)
 	var result = yield(_build_response(http_request),"completed")
+	
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
 		print("Player identified: ", response)
@@ -149,7 +150,8 @@ func _identify_player(identifier):
 			GameState.set_player_identifier(response.alias.identifier)	
 			GameState.save()
 	else:
-		print("Error identifying player: ", result.response, result.response_code)
+		var error_response = result.response if result.body else ""
+		print("Error identifying player: ", error_response, result.response_code)
 	http_request.queue_free()
 
 func _update_player_props(props:Array) -> bool:

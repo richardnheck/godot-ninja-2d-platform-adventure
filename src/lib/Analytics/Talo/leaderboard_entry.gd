@@ -16,7 +16,8 @@ var created_at: String
 var updated_at: String
 var deleted_at: String
 
-var player_display_name: String	
+var player_display_name: String
+var deaths: int	
 
 func _init(data: Dictionary):
 	var taloProps:Array = []
@@ -36,6 +37,7 @@ func _init(data: Dictionary):
 		if prop.key == "display_name":
 			player_display_name = prop.value
 			break
+
 	
 	leaderboard_name = data.leaderboardName
 	leaderboard_internal_name = data.leaderboardInternalName

@@ -1,16 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
-[ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
-[ext_resource path="res://src/UI/Controls/Settings/CloseButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/ui/back-button1.png" type="Texture" id=3]
 [ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/art/ui/back-button2.png" type="Texture" id=6]
 [ext_resource path="res://src/UI/LeaderboardScreen/LeaderboardScreen.gd" type="Script" id=7]
-[ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=11]
-[ext_resource path="res://assets/art/ui/settings-close-word-button2.png" type="Texture" id=15]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=17]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="LeaderboardScreen" type="Control"]
 script = ExtResource( 7 )
@@ -19,14 +14,25 @@ script = ExtResource( 7 )
 unique_name_in_owner = true
 visible = false
 
-[node name="FrameSprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-centered = false
-
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
+
+[node name="bg" type="Sprite" parent="Control"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Tree" type="Tree" parent="Control"]
+unique_name_in_owner = true
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 312.0
+margin_bottom = 160.0
+theme = ExtResource( 5 )
+columns = 4
+column_titles_visible = true
+hide_root = true
 
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
@@ -36,47 +42,46 @@ margin_right = 270.0
 margin_bottom = 132.0
 color = Color( 0.854902, 0.65098, 0.411765, 1 )
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 7.0
-margin_top = 132.0
-margin_right = 275.0
-margin_bottom = 157.0
-mouse_filter = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+margin_left = 2.0
+margin_top = 163.0
+margin_right = 89.0
+margin_bottom = 182.0
 
-[node name="CloseButton" parent="Control/CenterContainer" instance=ExtResource( 4 )]
-margin_left = 116.0
-margin_top = 3.0
-margin_right = 151.0
-margin_bottom = 22.0
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 15 )
+[node name="CloseTextureButton" type="TextureButton" parent="Control/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 19.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 6 )
 
-[node name="LoadButton" type="Button" parent="Control/CenterContainer"]
-margin_left = 120.0
-margin_top = 6.0
-margin_right = 148.0
+[node name="LoadButton" type="Button" parent="Control/HBoxContainer"]
+visible = false
+margin_left = 20.0
+margin_right = 48.0
 margin_bottom = 19.0
 text = "Load"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_left = 24.0
-margin_top = 90.0
-margin_right = 264.0
-margin_bottom = 128.0
-custom_styles/bg = SubResource( 1 )
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+anchor_right = 1.0
+margin_left = 9.0
+margin_top = 2.0
+margin_right = 81.0
+margin_bottom = 15.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-unique_name_in_owner = true
+[node name="GameButton" type="Button" parent="Control/HBoxContainer2"]
+margin_right = 68.0
+margin_bottom = 13.0
+toggle_mode = true
+pressed = true
+text = " Game Scores"
 
-[node name="ItemList" type="ItemList" parent="."]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 264.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 11 )
+[node name="LevelButton" type="Button" parent="Control/HBoxContainer2"]
+margin_left = 72.0
+margin_right = 139.0
+margin_bottom = 13.0
+text = "Level Scores"
 
-[connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="Control/CenterContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/CloseTextureButton" to="." method="_on_CloseTextureButton_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer2/GameButton" to="." method="_on_GameButton_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer2/LevelButton" to="." method="_on_LevelButton_pressed"]
