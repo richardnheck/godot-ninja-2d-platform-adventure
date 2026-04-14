@@ -1,11 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/LeaderboardScreen/game_level_buttongroup.tres" type="ButtonGroup" id=2]
 [ext_resource path="res://assets/art/ui/back-button1.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/art/ui/back-button2.png" type="Texture" id=6]
 [ext_resource path="res://src/UI/LeaderboardScreen/LeaderboardScreen.gd" type="Script" id=7]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=17]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.286275, 0.792157, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.85098, 0.627451, 0.4, 1 )
 
 [node name="LeaderboardScreen" type="Control"]
 script = ExtResource( 7 )
@@ -28,11 +38,27 @@ unique_name_in_owner = true
 margin_left = 8.0
 margin_top = 16.0
 margin_right = 312.0
-margin_bottom = 160.0
+margin_bottom = 162.0
 theme = ExtResource( 5 )
 columns = 4
 column_titles_visible = true
 hide_root = true
+select_mode = 1
+
+[node name="Loading" type="Label" parent="Control"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 129.0
+margin_top = 78.0
+margin_right = 182.0
+margin_bottom = 95.0
+custom_colors/font_color = Color( 1, 1, 1, 0.301961 )
+text = "Loading..."
+align = 1
+valign = 1
 
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
@@ -54,13 +80,6 @@ margin_bottom = 19.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 6 )
 
-[node name="LoadButton" type="Button" parent="Control/HBoxContainer"]
-visible = false
-margin_left = 20.0
-margin_right = 48.0
-margin_bottom = 19.0
-text = "Load"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
 anchor_right = 1.0
 margin_left = 9.0
@@ -69,19 +88,32 @@ margin_right = 81.0
 margin_bottom = 15.0
 
 [node name="GameButton" type="Button" parent="Control/HBoxContainer2"]
-margin_right = 68.0
+margin_right = 70.0
 margin_bottom = 13.0
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = true
 pressed = true
-text = " Game Scores"
+group = ExtResource( 2 )
+text = " Game Scores "
 
 [node name="LevelButton" type="Button" parent="Control/HBoxContainer2"]
-margin_left = 72.0
-margin_right = 139.0
+margin_left = 74.0
+margin_right = 146.0
 margin_bottom = 13.0
-text = "Level Scores"
+custom_fonts/font = ExtResource( 4 )
+toggle_mode = true
+group = ExtResource( 2 )
+text = " Level Scores "
+
+[node name="LevelOptionButton" type="OptionButton" parent="Control/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 150.0
+margin_right = 303.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 153, 0 )
+theme = ExtResource( 5 )
+custom_styles/normal = SubResource( 1 )
 
 [connection signal="pressed" from="Control/HBoxContainer/CloseTextureButton" to="." method="_on_CloseTextureButton_pressed"]
-[connection signal="pressed" from="Control/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer2/GameButton" to="." method="_on_GameButton_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer2/LevelButton" to="." method="_on_LevelButton_pressed"]
