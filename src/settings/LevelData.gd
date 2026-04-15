@@ -6,6 +6,8 @@ const WORLD2 = 2	# World2 - Within the Wals
 const WORLD3 = 3    # World3 - Inside the Tower
 const GAME_END = 4
 
+const LEVELS_PER_WORLD = 7
+
 const WORLD1_LEVELS_PATH = "res://src/levels/CaveLevels/World1Level_"
 const WORLD2_LEVELS_PATH = "res://src/levels/World2Levels/World2Level_"
 const WORLD3_LEVELS_PATH = "res://src/levels/World3Levels/World3Level_"
@@ -212,3 +214,10 @@ func get_world(level_index) -> int:
 	var index = level_index if level_index <= max_index else max_index
 	var level = get_levels()[index]
 	return level["world"]
+
+func get_levels_for_world(world:int) -> Array:
+	var levels = []
+	for i in range(0, levelsArray.size()):
+		if levelsArray[i]["world"] == world:
+			levels.append(levelsArray[i])
+	return levels

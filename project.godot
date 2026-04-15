@@ -239,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/characters/enemies/AoAndon/LaserLanternSpawner.gd"
 }, {
+"base": "Reference",
+"class": "LeaderboardUtils",
+"language": "GDScript",
+"path": "res://src/UI/LeaderboardScreen/leaderboard_utils.gd"
+}, {
 "base": "Node2D",
 "class": "LevelBase",
 "language": "GDScript",
@@ -511,6 +516,7 @@ _global_script_class_icons={
 "LaserLantern": "",
 "LaserLanternArray": "",
 "LaserLanternSpawner": "",
+"LeaderboardUtils": "",
 "LevelBase": "",
 "LevelSelect": "",
 "LevelSlidingDoor": "",

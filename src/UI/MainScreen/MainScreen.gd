@@ -6,7 +6,7 @@ onready var title = $"%TitleScreenText"
 onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
 onready var settings = $"%Settings"
-onready var leaderboard_screen = $"%LeaderboardScreen"
+onready var leaderboard_screen = $"%GameLeaderboardScreen"
 
 
 # Called when the node enters the scene tree for the first time.

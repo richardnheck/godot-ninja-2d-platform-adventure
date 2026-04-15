@@ -10,7 +10,7 @@
 [ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=9]
 [ext_resource path="res://src/UI/MainScreen/title-screen-options-button1.png" type="Texture" id=10]
-[ext_resource path="res://src/UI/LeaderboardScreen/LeaderboardScreen.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/UI/LeaderboardScreen/GameLeaderboardScreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -92,7 +92,7 @@ unique_name_in_owner = true
 texture = ExtResource( 9 )
 offset = Vector2( 0, -10 )
 
-[node name="LeaderboardScreen" parent="." instance=ExtResource( 11 )]
+[node name="GameLeaderboardScreen" parent="." instance=ExtResource( 11 )]
 unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 0.5
@@ -125,7 +125,7 @@ anims/Hover = SubResource( 1 )
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="on_closed" from="LeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
+[connection signal="on_closed" from="GameLeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

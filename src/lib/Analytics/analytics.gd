@@ -123,8 +123,11 @@ func get_game_leaderboard_entries(page:int = 0) -> EntriesPage:
 	return _get_leaderboard_entries(LEADERBOARD_GAME_HIGH_SCORE, page)
 
 func get_level_leaderboard_entries(page:int = 0) -> EntriesPage:
-	print("loading...")
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page)
+
+func get_level_leaderboard_entries_for_level(level_index:int, page:int = 0) -> EntriesPage:
+	var filter_prop = TaloProp.new("level_index", level_index)
+	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page, filter_prop)
 
 # Identify the player
 func _identify_player(identifier):
@@ -230,9 +233,12 @@ func _add_leaderboard_entry(internal_name: String, score: float, props: Array = 
 		print("Add leaderboard entry error: ", response, result.response_code)
 	http_request.queue_free()
 
-func _get_leaderboard_entries(internal_name: String, page: int = 0, props: Array = []) -> EntriesPage:
+func _get_leaderboard_entries(internal_name: String, page: int = 0, prop: TaloProp = null) -> EntriesPage:
 	if !_is_enabled(): return null
 	var url = talo_base_url + "leaderboards/%s/entries?%s" % [internal_name, page]
+	if prop:
+		url += "&propKey=%s&propValue=%s" % [prop.key, prop.value]
+		
 	var headers = _get_base_headers()
 	
 	var http_request = HTTPRequest.new()
