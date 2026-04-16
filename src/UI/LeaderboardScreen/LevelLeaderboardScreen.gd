@@ -2,6 +2,7 @@
 # LevelLeaderboardScreen
 #------------------------------
 extends Control
+class_name LevelLeaderBoardScreen
 
 signal on_closed
 

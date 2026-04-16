@@ -20,12 +20,11 @@ centered = false
 
 [node name="Tree" type="Tree" parent="Control"]
 unique_name_in_owner = true
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 312.0
-margin_bottom = 159.0
+margin_top = 20.0
+margin_right = 320.0
+margin_bottom = 180.0
 theme = ExtResource( 2 )
-columns = 4
+columns = 5
 column_titles_visible = true
 hide_root = true
 select_mode = 1
@@ -53,17 +52,13 @@ margin_right = 270.0
 margin_bottom = 132.0
 color = Color( 0.854902, 0.65098, 0.411765, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-margin_left = 2.0
-margin_top = 163.0
-margin_right = 89.0
-margin_bottom = 182.0
-
-[node name="CloseTextureButton" type="TextureButton" parent="Control/HBoxContainer"]
-margin_right = 16.0
-margin_bottom = 19.0
+[node name="CloseTextureButton" type="TextureButton" parent="Control"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 21.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="Control/HBoxContainer/CloseTextureButton" to="." method="_on_CloseTextureButton_pressed"]
+[connection signal="pressed" from="Control/CloseTextureButton" to="." method="_on_CloseTextureButton_pressed"]

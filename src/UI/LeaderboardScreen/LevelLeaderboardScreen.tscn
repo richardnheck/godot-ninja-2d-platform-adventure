@@ -20,12 +20,11 @@ centered = false
 
 [node name="Tree" type="Tree" parent="Control"]
 unique_name_in_owner = true
-margin_left = 4.0
 margin_top = 20.0
-margin_right = 316.0
-margin_bottom = 176.0
+margin_right = 320.0
+margin_bottom = 180.0
 theme = ExtResource( 5 )
-columns = 4
+columns = 5
 column_titles_visible = true
 hide_root = true
 select_mode = 1
@@ -54,15 +53,15 @@ margin_bottom = 132.0
 color = Color( 0.854902, 0.65098, 0.411765, 1 )
 
 [node name="CloseTextureButton" type="TextureButton" parent="Control"]
-margin_left = 6.0
+margin_left = 4.0
 margin_top = 2.0
-margin_right = 22.0
+margin_right = 20.0
 margin_bottom = 19.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 6 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
-margin_left = 9.0
+margin_left = 115.0
 margin_top = 2.0
 margin_right = 316.0
 margin_bottom = 19.0
@@ -70,8 +69,8 @@ alignment = 2
 
 [node name="LevelOptionButton" type="OptionButton" parent="Control/HBoxContainer2"]
 unique_name_in_owner = true
-margin_left = 107.0
-margin_right = 307.0
+margin_left = 1.0
+margin_right = 201.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 200, 13 )
 theme = ExtResource( 5 )

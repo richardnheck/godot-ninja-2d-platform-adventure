@@ -8,6 +8,8 @@ onready var loading_indicator = $Control/LoadingIndicator
 onready var fadeScreen = $FadeScreen
 onready var boss_clear_cutscene_button = $"%BossClearCutsceneButton"
 
+var level_leaderboard_screen:LevelLeaderBoardScreen = null
+
 export(String, FILE) var intro_scene_path:String = ""
 
 # This is the specific world
@@ -17,6 +19,8 @@ export(int, 1,3, 1) var this_world:int
 func _ready() -> void:
 	# Preload the world select to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
+	
+	_add_level_leaderboard_screen()
 	
 	loading_indicator.visible = false
 	
@@ -57,6 +61,14 @@ func _ready() -> void:
 		
 	# Determine if the boss clear cutscene button is visible
 	boss_clear_cutscene_button.visible = current_level > boss_level_index
+
+# Add the level leader board screen
+func _add_level_leaderboard_screen() -> void:
+	level_leaderboard_screen = load("res://src/UI/LeaderboardScreen/LevelLeaderboardScreen.tscn").instance()
+	level_leaderboard_screen.visible = false
+	level_leaderboard_screen.world = this_world
+	level_leaderboard_screen.connect("on_closed", self, "_on_level_leaderboard_closed")
+	add_child(level_leaderboard_screen)
 	
 func _level_button_pressed(levelIndex):
 	Game_AudioManager.sfx_ui_confirm.play()
@@ -91,3 +103,10 @@ func _on_BossClearCutsceneButton_button_up():
 	Game_AudioManager.sfx_ui_confirm.play()
 	var scene_path = LevelData.goto_boss_clear_cutscene(self.this_world, false)
 	fadeScreen.go_to_scene(scene_path)
+
+
+func _on_LeaderboardButton_button_up():
+	level_leaderboard_screen.visible = true
+
+func _on_level_leaderboard_closed():
+	level_leaderboard_screen.visible = false
