@@ -106,6 +106,7 @@ func _on_BossClearCutsceneButton_button_up():
 
 
 func _on_LeaderboardButton_button_up():
+	
 	level_leaderboard_screen.visible = true
 
 func _on_level_leaderboard_closed():

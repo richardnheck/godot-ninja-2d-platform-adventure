@@ -55,7 +55,7 @@ func _populate_level_option_button() -> void:
 		var level_index = start_index + index
 		level_option_button.add_item("%s. %s" % [index + 1, level.name], level_index)
 
-func _on_CloseTextureButton_pressed():
+func _on_CloseButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	emit_signal("on_closed")
 

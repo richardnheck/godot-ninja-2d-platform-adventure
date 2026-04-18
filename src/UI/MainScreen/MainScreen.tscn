@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/UI/MainScreen/title-screen-options-button2.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/MainScreen/user-icon.png" type="Texture" id=3]
 [ext_resource path="res://src/UI/MainScreen/title-screen-bg.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/MainScreen/MainScreen.gd" type="Script" id=6]
 [ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=9]
-[ext_resource path="res://src/UI/MainScreen/title-screen-options-button1.png" type="Texture" id=10]
 [ext_resource path="res://src/UI/LeaderboardScreen/GameLeaderboardScreen.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/UI/LevelSelectScreens/leaderboard-icon.png" type="Texture" id=12]
+[ext_resource path="res://src/UI/LevelSelectScreens/progress-icon.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -70,16 +71,9 @@ margin_top = 19.0
 margin_right = 101.0
 margin_bottom = 34.0
 
-[node name="LeaderboardButton" type="TextureButton" parent="Control/VBoxContainer"]
-margin_top = 38.0
-margin_right = 101.0
-margin_bottom = 53.0
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 3 )
-
 [node name="QuitButton" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 57.0
-margin_bottom = 72.0
+margin_top = 38.0
+margin_bottom = 53.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 anchor_left = 0.5
@@ -92,8 +86,36 @@ unique_name_in_owner = true
 texture = ExtResource( 9 )
 offset = Vector2( 0, -10 )
 
+[node name="LeaderboardButton" type="Button" parent="."]
+unique_name_in_owner = true
+margin_left = 293.0
+margin_top = 156.0
+margin_right = 316.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 12 )
+
+[node name="ProgressButton" type="Button" parent="."]
+unique_name_in_owner = true
+margin_left = 266.0
+margin_top = 156.0
+margin_right = 289.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 13 )
+
+[node name="UserButton" type="Button" parent="."]
+unique_name_in_owner = true
+margin_left = 4.0
+margin_top = 155.0
+margin_right = 27.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 3 )
+
 [node name="GameLeaderboardScreen" parent="." instance=ExtResource( 11 )]
 unique_name_in_owner = true
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -105,6 +127,7 @@ margin_bottom = 90.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 unique_name_in_owner = true
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -123,8 +146,10 @@ anims/Hover = SubResource( 1 )
 [node name="TitleTween" type="Tween" parent="."]
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
+[connection signal="pressed" from="ProgressButton" to="." method="_on_ProgressButton_pressed"]
+[connection signal="pressed" from="UserButton" to="." method="_on_UserButton_pressed"]
 [connection signal="on_closed" from="GameLeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]

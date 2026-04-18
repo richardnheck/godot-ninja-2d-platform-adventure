@@ -35,6 +35,6 @@ func _show_loading(loading:bool) -> void:
 	self.loading = loading
 	loading_label.visible = loading
 	
-func _on_CloseTextureButton_pressed():
+func _on_CloseButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	emit_signal("on_closed")

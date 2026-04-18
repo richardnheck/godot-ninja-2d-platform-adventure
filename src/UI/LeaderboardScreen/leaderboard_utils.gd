@@ -40,7 +40,7 @@ static func add_entry_to_tree(tree:Tree, tree_root:TreeItem, entry:TaloLeaderboa
 	item.set_text(2, Stopwatch.get_time_as_formatted_string(entry.score, Stopwatch.TimeFormat))
 	item.set_text(3, str(entry.get_prop("deaths").value))
 	item.set_text_align(3, TreeItem.ALIGN_CENTER)
-	item.set_text(4, str(entry.updated_at))
+	item.set_text(4, str(entry.updated_at).left(10))  # Grab only date part without time e.g. 2026-04-18
 	
 	# Disable tooltips on hover
 	item.set_tooltip(0," ")

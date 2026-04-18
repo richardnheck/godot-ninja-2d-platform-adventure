@@ -64,9 +64,14 @@ func _on_QuitButton_pressed() -> void:
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 
 func _on_LeaderboardButton_pressed():
-	print("clic")
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	leaderboard_screen.visible = true
 	
 func _on_LeaderboardScreen_on_closed():
 	leaderboard_screen.visible = false
+
+func _on_ProgressButton_pressed():
+	Game_AudioManager.sfx_ui_basic_blip_select.play()
+	
+func _on_UserButton_pressed():
+	Game_AudioManager.sfx_ui_basic_blip_select.play()
