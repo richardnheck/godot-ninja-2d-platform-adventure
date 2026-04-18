@@ -37,7 +37,7 @@ var levelsArray = [
 	{"world": WORLD1, "name" : "Kabe sliding all the way", "scene_path" : WORLD1_LEVELS_PATH + "Level4.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Shiver me shi", "scene_path" : WORLD1_LEVELS_PATH + "Level5.tscn", "bgm" : CAVE_LEVEL_BGM},
 	{"world": WORLD1, "name" : "Deadly dokutsu", "scene_path" : WORLD1_LEVELS_PATH + "Level6.tscn", "bgm" : CAVE_LEVEL_BGM},
-	{"world": WORLD1, "name" : "World1 Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
+	{"world": WORLD1, "name" : "Stage1 Boss", "scene_path" : "res://src/UI/CutScenes/CaveLevel/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/CaveLevel/BossClearCutScene.tscn"},
 	#{"world": WORLD1, "name" : "Across the Abyss", "scene_path" : WORLD1_LEVELS_PATH + "AcrossTheAbyss.tscn", "bgm" : CAVE_LEVEL_BGM},
 	#{"world": WORLD1, "name" : "Oh so many spikey things", "scene_path" : WORLD1_LEVELS_PATH + "ShortAndSpikey.tscn", "bgm" : CAVE_LEVEL_BGM},
 	#{"world": WORLD1, "name" : "Crumble me Crazy", "scene_path" : WORLD1_LEVELS_PATH + "CrabAppleCrumble.tscn", "bgm" : CAVE_LEVEL_BGM},
@@ -50,7 +50,7 @@ var levelsArray = [
 	{"world": WORLD2, "name" : "Uh Oh Ote-mon", "scene_path" : WORLD2_LEVELS_PATH + "Level4.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Help! Help! Hori!", "scene_path" : WORLD2_LEVELS_PATH + "Level5.tscn", "bgm" : WORLD2_LEVEL_BGM},
 	{"world": WORLD2, "name" : "Towards the Tenshu", "scene_path" : WORLD2_LEVELS_PATH + "Level6.tscn", "bgm" : WORLD2_LEVEL_BGM},
-	{"world": WORLD2, "name" : "World2 Boss", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn", "boss_scene_path": "res://src/levels/World2Levels/World2Level_Boss.tscn"},
+	{"world": WORLD2, "name" : "Stage2 Boss", "scene_path" :  "res://src/UI/CutScenes/World2/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World2/BossClearCutScene.tscn", "boss_scene_path": "res://src/levels/World2Levels/World2Level_Boss.tscn"},
 
 	# World 3 (start index = 14)
 	{"world": WORLD3, "name" : "Taste the Tenshu", "scene_path" : WORLD3_LEVELS_PATH + "Level1.tscn", "bgm" : WORLD3_LEVEL_BGM},
@@ -59,7 +59,7 @@ var levelsArray = [
 	{"world": WORLD3, "name" : "Heya, heya and heya", "scene_path" : WORLD3_LEVELS_PATH + "Level4.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "No yuka...no cry", "scene_path" : WORLD3_LEVELS_PATH + "Level5.tscn", "bgm" : WORLD3_LEVEL_BGM},
 	{"world": WORLD3, "name" : "Saigo no nobori", "scene_path" : WORLD3_LEVELS_PATH + "Level6.tscn", "bgm" : WORLD3_LEVEL_BGM},
-	{"world": WORLD3, "name" : "World3 Boss", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn", "boss_scene_path": "res://src/levels/World3Levels/World3Level_Boss.tscn"},
+	{"world": WORLD3, "name" : "Stage3 Boss", "scene_path" :  "res://src/UI/CutScenes/World3/BossintroCutScene.tscn", "is_boss" : true, "boss_clear_scene_path" : "res://src/UI/CutScenes/World3/BossClearCutScenePart1.tscn", "boss_scene_path": "res://src/levels/World3Levels/World3Level_Boss.tscn"},
 	
 	# GAME END (index = 21)
 	{"world": GAME_END, "name" : "The end", "scene_path" : "res://src/UI/CutScenes/GameEndCutscene/GameEndCutScene.tscn", "bgm" : CAVE_LEVEL_BGM},
