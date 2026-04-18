@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/art/ui/close-button1.png" type="Texture" id=2]
 [ext_resource path="res://assets/art/ui/close-button2.png" type="Texture" id=3]
 [ext_resource path="res://src/UI/ProgressScreen/ProgressScreen.gd" type="Script" id=4]
-[ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=6]
 
 [node name="ProgressScreen" type="Control"]
 script = ExtResource( 4 )
@@ -12,7 +12,7 @@ script = ExtResource( 4 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 5 )
+theme = ExtResource( 6 )
 
 [node name="bg" type="Sprite" parent="Control"]
 texture = ExtResource( 1 )
@@ -21,24 +21,26 @@ centered = false
 [node name="GameProgressTree" type="Tree" parent="Control"]
 unique_name_in_owner = true
 margin_left = 24.0
-margin_top = 18.0
+margin_top = 16.0
 margin_right = 296.0
-margin_bottom = 48.0
-theme = ExtResource( 5 )
-columns = 3
+margin_bottom = 43.0
+theme = ExtResource( 6 )
+columns = 4
 column_titles_visible = true
+hide_folding = true
 hide_root = true
 select_mode = 1
 
 [node name="LevelProgressTree" type="Tree" parent="Control"]
 unique_name_in_owner = true
 margin_left = 24.0
-margin_top = 77.0
+margin_top = 67.0
 margin_right = 296.0
-margin_bottom = 176.0
-theme = ExtResource( 5 )
+margin_bottom = 174.0
+theme = ExtResource( 6 )
 columns = 4
 column_titles_visible = true
+hide_folding = true
 hide_root = true
 select_mode = 1
 
@@ -61,17 +63,16 @@ texture_pressed = ExtResource( 3 )
 [node name="StageOptionButton" type="OptionButton" parent="Control"]
 unique_name_in_owner = true
 margin_left = 128.0
-margin_top = 55.0
+margin_top = 48.0
 margin_right = 298.0
-margin_bottom = 72.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 170, 13 )
-theme = ExtResource( 5 )
 
 [node name="GameProgressLabel" type="Label" parent="Control"]
 margin_left = 22.0
-margin_top = 3.0
+margin_top = 1.0
 margin_right = 123.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
@@ -79,9 +80,9 @@ text = "Game Progress"
 
 [node name="LevelProgressLabel" type="Label" parent="Control"]
 margin_left = 24.0
-margin_top = 57.0
+margin_top = 50.0
 margin_right = 125.0
-margin_bottom = 74.0
+margin_bottom = 67.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0

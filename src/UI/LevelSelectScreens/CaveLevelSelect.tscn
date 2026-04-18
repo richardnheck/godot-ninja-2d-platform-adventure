@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/themes/cave-level/cave_level_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UI/LevelSelectScreens/LevelSelect.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/UI/Controls/LoadingIndictator/LoadingIndicator.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/LevelSelectScreens/cutscene-icon.png" type="Texture" id=10]
 [ext_resource path="res://src/UI/LevelSelectScreens/boss-icon-white.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/LevelSelectScreens/progress-icon.png" type="Texture" id=12]
 
 [node name="CaveLevelSelect" type="Control"]
 anchor_left = 0.5
@@ -95,18 +96,26 @@ icon = ExtResource( 11 )
 
 [node name="BossClearCutsceneButton" type="Button" parent="Control"]
 unique_name_in_owner = true
-margin_left = 188.0
+margin_left = 184.0
 margin_top = 112.0
-margin_right = 209.0
+margin_right = 205.0
 margin_bottom = 133.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 10 )
 
+[node name="ProgressButton" type="Button" parent="Control"]
+margin_left = 271.0
+margin_top = 112.0
+margin_right = 292.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 18, 18 )
+icon = ExtResource( 12 )
+
 [node name="LeaderboardButton" type="Button" parent="Control"]
 unique_name_in_owner = true
-margin_left = 294.0
+margin_left = 295.0
 margin_top = 112.0
-margin_right = 315.0
+margin_right = 316.0
 margin_bottom = 133.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 4 )
@@ -161,4 +170,5 @@ color = Color( 0, 0, 0, 1 )
 [connection signal="button_up" from="Control/TopHBoxContainer/IntroButton" to="." method="_on_IntroButton_button_up"]
 [connection signal="button_up" from="Control/BottomHBoxContainer/BossButton" to="." method="_on_BossButton_button_up"]
 [connection signal="button_up" from="Control/BossClearCutsceneButton" to="." method="_on_BossClearCutsceneButton_button_up"]
+[connection signal="button_up" from="Control/ProgressButton" to="." method="_on_ProgressButton_button_up"]
 [connection signal="button_up" from="Control/LeaderboardButton" to="." method="_on_LeaderboardButton_button_up"]

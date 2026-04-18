@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=1507 format=2]
+[gd_resource type="Theme" load_steps=1509 format=2]
 
 [ext_resource path="res://assets/themes/settings/settings-normal-button1.png" type="Texture" id=1]
 [ext_resource path="res://assets/themes/settings/settings-normal-button2.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://src/UI/Settings/option-button-radio.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://src/UI/Settings/option-button-arrow.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/ui/scrollbar-grabber.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/ui/scrollbar-scroll.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -11207,8 +11209,8 @@ border_color = Color( 0.2, 0.23, 0.31, 1 )
 [sub_resource type="StyleBoxFlat" id=1487]
 content_margin_left = 4.0
 content_margin_right = 2048.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
 bg_color = Color( 0.1, 0.115, 0.155, 1 )
 border_color = Color( 0.2, 0.23, 0.31, 1 )
 
@@ -11217,8 +11219,8 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = SubResource( 621 )
-region_rect = Rect2( 0, 0, 12, 12 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 10, 10 )
 margin_left = 6.0
 margin_right = 6.0
 margin_top = 6.0
@@ -11229,8 +11231,8 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = SubResource( 623 )
-region_rect = Rect2( 0, 0, 12, 12 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 10, 10 )
 margin_left = 5.0
 margin_right = 5.0
 margin_top = 5.0
@@ -11241,8 +11243,8 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = SubResource( 625 )
-region_rect = Rect2( 0, 0, 12, 12 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 10, 10 )
 margin_left = 6.0
 margin_right = 6.0
 margin_top = 6.0
@@ -11253,8 +11255,8 @@ content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 0.0
 content_margin_bottom = 0.0
-texture = SubResource( 619 )
-region_rect = Rect2( 0, 0, 12, 12 )
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 10, 10 )
 margin_left = 5.0
 margin_right = 5.0
 margin_top = 5.0
@@ -11265,8 +11267,8 @@ content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 0.0
 content_margin_bottom = 0.0
-texture = SubResource( 619 )
-region_rect = Rect2( 0, 0, 12, 12 )
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 10, 10 )
 margin_left = 5.0
 margin_right = 5.0
 margin_top = 5.0
@@ -12403,7 +12405,7 @@ Tree/constants/draw_guides = 0
 Tree/constants/draw_relationship_lines = 1
 Tree/constants/hseparation = 4
 Tree/constants/item_margin = 10
-Tree/constants/scroll_border = 40
+Tree/constants/scroll_border = 0
 Tree/constants/scroll_speed = 12
 Tree/constants/vseparation = 2
 Tree/fonts/font = ExtResource( 3 )

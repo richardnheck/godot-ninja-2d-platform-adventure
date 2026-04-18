@@ -10,14 +10,14 @@ static func init_tree(tree:Tree) -> TreeItem:
 	tree.set_column_expand(1, false)
 	
 	tree.set_column_title(2, "Time")
-	tree.set_column_min_width(2, 45)
+	tree.set_column_min_width(2, 50)
 	tree.set_column_expand(2, false)
 	
 	tree.set_column_title(3, "Deaths")
 	tree.set_column_min_width(3, 40)
 	tree.set_column_expand(3, false)
 	
-	tree.set_column_title(4, "Date")
+	tree.set_column_title(4, "Submitted")
 	tree.set_column_expand(4, true)
 	
 	return tree.create_item()

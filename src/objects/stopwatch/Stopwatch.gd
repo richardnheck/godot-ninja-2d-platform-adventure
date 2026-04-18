@@ -6,7 +6,7 @@ extends Node
 ## Use this node to measure the total amount of time elapsed. You can both reset the time and also specify to start
 ## the time when the stopwatch enters the scene tree.
 
-const TimeFormat = "{MM}:{ss}:{mm}"
+const TimeFormat = "{MM}:{ss}:{mmm}"
 
 ## Emitted when the stopwatch is requested to reset, returns the elapsed time before it is resetted.
 signal time_resetted(time)

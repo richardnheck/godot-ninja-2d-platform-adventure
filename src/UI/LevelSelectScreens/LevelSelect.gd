@@ -9,6 +9,7 @@ onready var fadeScreen = $FadeScreen
 onready var boss_clear_cutscene_button = $"%BossClearCutsceneButton"
 
 var level_leaderboard_screen:LevelLeaderBoardScreen = null
+var progress_screen:ProgressScreen = null
 
 export(String, FILE) var intro_scene_path:String = ""
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
 	
 	_add_level_leaderboard_screen()
+	_add_progress_screen()
 	
 	loading_indicator.visible = false
 	
@@ -69,6 +71,14 @@ func _add_level_leaderboard_screen() -> void:
 	level_leaderboard_screen.world = this_world
 	level_leaderboard_screen.connect("on_closed", self, "_on_level_leaderboard_closed")
 	add_child(level_leaderboard_screen)
+
+# Add the progress screen
+func _add_progress_screen() -> void:
+	progress_screen = load("res://src/UI/ProgressScreen/ProgressScreen.tscn").instance()
+	progress_screen.visible = false
+	progress_screen.world = this_world
+	progress_screen.connect("on_closed", self, "_on_progress_closed")
+	add_child(progress_screen)
 	
 func _level_button_pressed(levelIndex):
 	Game_AudioManager.sfx_ui_confirm.play()
@@ -106,8 +116,14 @@ func _on_BossClearCutsceneButton_button_up():
 
 
 func _on_LeaderboardButton_button_up():
-	
 	level_leaderboard_screen.visible = true
+
+func _on_ProgressButton_button_up():
+	progress_screen.visible = true
 
 func _on_level_leaderboard_closed():
 	level_leaderboard_screen.visible = false
+	
+func _on_progress_closed():
+	progress_screen.visible = false
+	

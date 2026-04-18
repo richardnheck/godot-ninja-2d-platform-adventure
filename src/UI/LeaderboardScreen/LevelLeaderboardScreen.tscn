@@ -73,7 +73,6 @@ margin_left = 31.0
 margin_right = 201.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 170, 13 )
-theme = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Control"]
 margin_top = 2.0
