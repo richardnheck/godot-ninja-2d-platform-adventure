@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://assets/themes/main/main-button-textures1.png" type="Texture" id=1]
+[ext_resource path="res://assets/themes/main/main-button-textures2.png" type="Texture" id=2]
+[ext_resource path="res://assets/themes/main/main-button-textures3.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[resource]
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/colors/icon_color_disabled = Color( 1, 1, 1, 1 )
+Button/colors/icon_color_focus = Color( 1, 1, 1, 1 )
+Button/colors/icon_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/icon_color_hover_pressed = Color( 1, 1, 1, 1 )
+Button/colors/icon_color_normal = Color( 1, 1, 1, 1 )
+Button/colors/icon_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 3 )

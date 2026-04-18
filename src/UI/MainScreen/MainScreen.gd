@@ -7,6 +7,7 @@ onready var title_tween = $TitleTween
 onready var tween_values = [null, null]
 onready var settings = $"%Settings"
 onready var leaderboard_screen = $"%GameLeaderboardScreen"
+onready var progress_screen = $"%ProgressScreen"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -72,6 +73,14 @@ func _on_LeaderboardScreen_on_closed():
 
 func _on_ProgressButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
-	
+	var level = LevelData.get_current_level()
+	var current_world = level.world
+	progress_screen.world = current_world
+	progress_screen.visible = true
+
+func _on_ProgressScreen_on_closed():
+	progress_screen.visible = false
+
 func _on_UserButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
+

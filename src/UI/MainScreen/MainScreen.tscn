@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://src/UI/Controls/MainPlayButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/Settings/Settings.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/MainScreen/title-screen-text.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/ProgressScreen/ProgressScreen.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/UI/LeaderboardScreen/GameLeaderboardScreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/UI/LevelSelectScreens/leaderboard-icon.png" type="Texture" id=12]
 [ext_resource path="res://src/UI/LevelSelectScreens/progress-icon.png" type="Texture" id=13]
+[ext_resource path="res://assets/themes/main/main_theme.tres" type="Theme" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -86,25 +88,32 @@ unique_name_in_owner = true
 texture = ExtResource( 9 )
 offset = Vector2( 0, -10 )
 
-[node name="LeaderboardButton" type="Button" parent="."]
+[node name="ButtonControls" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 14 )
+
+[node name="LeaderboardButton" type="Button" parent="ButtonControls"]
 unique_name_in_owner = true
-margin_left = 293.0
+margin_left = 296.0
 margin_top = 156.0
-margin_right = 316.0
+margin_right = 317.0
 margin_bottom = 177.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 12 )
+icon_align = 1
 
-[node name="ProgressButton" type="Button" parent="."]
+[node name="ProgressButton" type="Button" parent="ButtonControls"]
 unique_name_in_owner = true
-margin_left = 266.0
+margin_left = 273.0
 margin_top = 156.0
-margin_right = 289.0
+margin_right = 294.0
 margin_bottom = 177.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 13 )
+icon_align = 1
 
-[node name="UserButton" type="Button" parent="."]
+[node name="UserButton" type="Button" parent="ButtonControls"]
 unique_name_in_owner = true
 margin_left = 4.0
 margin_top = 155.0
@@ -112,6 +121,7 @@ margin_right = 27.0
 margin_bottom = 176.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 3 )
+icon_align = 1
 
 [node name="GameLeaderboardScreen" parent="." instance=ExtResource( 11 )]
 unique_name_in_owner = true
@@ -124,6 +134,10 @@ margin_left = -160.0
 margin_top = -90.0
 margin_right = 160.0
 margin_bottom = 90.0
+
+[node name="ProgressScreen" parent="." instance=ExtResource( 10 )]
+unique_name_in_owner = true
+visible = false
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 unique_name_in_owner = true
@@ -147,10 +161,11 @@ anims/Hover = SubResource( 1 )
 
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="pressed" from="LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
-[connection signal="pressed" from="ProgressButton" to="." method="_on_ProgressButton_pressed"]
-[connection signal="pressed" from="UserButton" to="." method="_on_UserButton_pressed"]
+[connection signal="pressed" from="ButtonControls/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
+[connection signal="pressed" from="ButtonControls/ProgressButton" to="." method="_on_ProgressButton_pressed"]
+[connection signal="pressed" from="ButtonControls/UserButton" to="." method="_on_UserButton_pressed"]
 [connection signal="on_closed" from="GameLeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
+[connection signal="on_closed" from="ProgressScreen" to="." method="_on_ProgressScreen_on_closed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

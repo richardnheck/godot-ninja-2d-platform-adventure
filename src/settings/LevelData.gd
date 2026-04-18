@@ -183,6 +183,12 @@ func get_level_name_by_index(level_index:int) -> String:
 	var level = _get_level_by_index(level_index)
 	return level.name	
 	
+func get_level(level_index):
+	return _get_level_by_index(level_index)
+
+func get_current_level():
+	return _get_level_by_index(current_level_index)
+		
 # Get the scene file name of the level given the index	
 func get_level_scene_by_index(level_index:int) -> String:
 	var level = _get_level_by_index(level_index)
