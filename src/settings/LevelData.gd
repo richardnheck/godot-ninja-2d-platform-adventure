@@ -18,9 +18,6 @@ const WORLD2_LEVEL_BGM = "Bgm_World2LevelTheme"
 const WORLD3_LEVEL_BGM = "Bgm_World3LevelTheme"
 const LEVEL_SELECT_SCREENS_PATH = "res://src/UI/LevelSelectScreens/"
 
-# Game save state saved in
-# C:\Users\richa\AppData\Roaming\Godot\app_userdata\Castle Yokai
-
 var worldsArray = [
 	{ "world": WORLD1, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "CaveLevelSelect.tscn"},
 	{ "world": WORLD2, "level_select_scene": LEVEL_SELECT_SCREENS_PATH + "World2LevelSelect.tscn"},

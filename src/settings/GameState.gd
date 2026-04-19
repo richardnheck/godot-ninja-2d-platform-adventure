@@ -1,5 +1,10 @@
 extends Node
 
+# Game save state saved in
+# C:\Users\richa\AppData\Roaming\Godot\app_userdata\Castle Yokai
+# when running locally
+# When run in the browser, it is saved in a virtual filesystem stored within your browser's internal database
+# In Chrome, go to developer tools storage -> IndexedDB -> FILE_DATA to find the key.  It is not possible to view the actual data as it is displayed as an array of bytes
 const SAVE_FILE_PATH := "user://castle-yokai-game.save"
 
 const KEY_CURRENT_LEVEL = "current_level"
