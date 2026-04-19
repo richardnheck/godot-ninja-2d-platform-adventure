@@ -6,7 +6,7 @@ extends Control
 signal on_closed
 
 onready var tree = $"%Tree"
-onready var loading_label = $"%Loading"
+onready var loader = $"%LoaderAnimatedSprite"
 
 var loading:bool = false
 var tree_root:TreeItem = null
@@ -33,7 +33,7 @@ func _load_game_entries() -> void:
 
 func _show_loading(loading:bool) -> void:
 	self.loading = loading
-	loading_label.visible = loading
+	loader.visible = loading
 	
 func _on_CloseButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()

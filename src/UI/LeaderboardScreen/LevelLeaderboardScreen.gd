@@ -10,7 +10,7 @@ signal on_closed
 export(int,1,3) var world = 1
 
 onready var tree = $"%Tree"
-onready var loading_label = $"%Loading"
+onready var loader = $"%LoaderAnimatedSprite"
 onready var level_option_button = $"%LevelOptionButton"
 
 var loading = false
@@ -44,7 +44,7 @@ func _load_level_entries(level_index:int) -> void:
 
 func _show_loading(loading:bool) -> void:
 	self.loading = loading
-	loading_label.visible = loading
+	loader.visible = loading
 	
 # Populate the level option button with all the levels for the specified world
 func _populate_level_option_button() -> void:
