@@ -8,12 +8,16 @@ onready var tween_values = [null, null]
 onready var settings = $"%Settings"
 onready var leaderboard_screen = $"%GameLeaderboardScreen"
 onready var progress_screen = $"%ProgressScreen"
+onready var user_screen = $"%UserScreen"
+onready var overlay = $"%OverlayColorRect"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	overlay.visible = false
 	settings.visible = false
 	leaderboard_screen.visible = false
+	user_screen.visible = false
 	quit_button.visible = not Settings.is_html5_build()
 	
 	# The main screen could be reloaded by navigating back from
@@ -44,11 +48,13 @@ func _start_tween():
 func _on_SettingsButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
 	settings.visible = true
+	overlay.visible = true
 	MainScreenState.settings_open = true 
 
 
 func _on_Settings_on_closed():
 	settings.visible = false
+	overlay.visible = false
 	MainScreenState.settings_open = false
 
 
@@ -83,4 +89,9 @@ func _on_ProgressScreen_on_closed():
 
 func _on_UserButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()
+	user_screen.visible = true
+	overlay.visible = true
 
+func _on_UserScreen_on_closed():
+	user_screen.visible = false
+	overlay.visible = false

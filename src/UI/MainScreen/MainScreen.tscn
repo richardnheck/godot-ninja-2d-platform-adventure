@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/UI/LevelSelectScreens/leaderboard-icon.png" type="Texture" id=12]
 [ext_resource path="res://src/UI/LevelSelectScreens/progress-icon.png" type="Texture" id=13]
 [ext_resource path="res://assets/themes/main/main_theme.tres" type="Theme" id=14]
+[ext_resource path="res://src/UI/UserScreen/UserScreen.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -89,8 +90,14 @@ texture = ExtResource( 9 )
 offset = Vector2( 0, -10 )
 
 [node name="ButtonControls" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -89.0
+margin_right = 159.0
+margin_bottom = 1.0
 theme = ExtResource( 14 )
 
 [node name="LeaderboardButton" type="Button" parent="ButtonControls"]
@@ -115,13 +122,27 @@ icon_align = 1
 
 [node name="UserButton" type="Button" parent="ButtonControls"]
 unique_name_in_owner = true
-margin_left = 4.0
-margin_top = 155.0
-margin_right = 27.0
-margin_bottom = 176.0
+margin_left = 5.0
+margin_top = 154.0
+margin_right = 28.0
+margin_bottom = 175.0
 rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 3 )
 icon_align = 1
+
+[node name="OverlayColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+color = Color( 0, 0, 0, 0.345098 )
 
 [node name="GameLeaderboardScreen" parent="." instance=ExtResource( 11 )]
 unique_name_in_owner = true
@@ -152,6 +173,18 @@ margin_right = -140.0
 margin_bottom = -85.0
 rect_pivot_offset = Vector2( 120, 0 )
 
+[node name="UserScreen" parent="." instance=ExtResource( 15 )]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -83.0
+margin_right = -140.0
+margin_bottom = -83.0
+
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 method_call_mode = 1
@@ -168,4 +201,5 @@ anims/Hover = SubResource( 1 )
 [connection signal="on_closed" from="ProgressScreen" to="." method="_on_ProgressScreen_on_closed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
+[connection signal="on_closed" from="UserScreen" to="." method="_on_UserScreen_on_closed"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

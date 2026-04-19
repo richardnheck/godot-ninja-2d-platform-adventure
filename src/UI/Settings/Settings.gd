@@ -1,5 +1,5 @@
 #------------------------------
-# Settings
+# UserScreen
 #------------------------------
 extends Control
 
@@ -16,9 +16,6 @@ onready var tab_container:TabContainer = $"%TabContainer"
 onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
 onready var player_animated_sprite:= $"%PlayerAnimatedSprite" 
 onready var player_animated_texture_rect := $"%AnimatedTextureRect"
-
-onready var display_name_line_edit = $"%DisplayNameLineEdit"
-onready var update_display_name_button = $"%UpdateButton"
 
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
@@ -57,9 +54,7 @@ func _on_Settings_visibility_changed():
 		_initialize()
 
 # Initialize the settings
-func _initialize():
-	display_name_line_edit.text = GameState.get_player_display_name()
-	
+func _initialize():	
 	level_checkpoints_button.set_on(Settings.get_level_checkpoints_enabled())
 	boss_level_checkpoints_button.set_on(Settings.get_boss_level_checkpoints_enabled())
 	show_level_names_button.set_on(Settings.get_show_level_names_enabled())
@@ -188,9 +183,6 @@ func _on_AnimatedTextureRect_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			_change_player_animation()
-			
-func _on_DisplayNameUpdateButton_pressed():
-	Analytics.update_player_display_name(display_name_line_edit.text)
 
 
 
