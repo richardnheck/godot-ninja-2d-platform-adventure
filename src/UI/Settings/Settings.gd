@@ -1,5 +1,5 @@
 #------------------------------
-# UserScreen
+# Settings
 #------------------------------
 extends Control
 
@@ -14,7 +14,6 @@ onready var resolution_option_button := $"%ResolutionOptionButton"
 onready var window_type_option_button := $"%WindowTypeOptionButton"
 onready var tab_container:TabContainer = $"%TabContainer"
 onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
-onready var player_animated_sprite:= $"%PlayerAnimatedSprite" 
 onready var player_animated_texture_rect := $"%AnimatedTextureRect"
 
 var resolutions = {
