@@ -129,6 +129,17 @@ func get_level_leaderboard_entries_for_level(level_index:int, page:int = 0) -> E
 	var filter_prop = TaloProp.new("level_index", level_index)
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page, filter_prop)
 
+func get_players_by_display_name(display_name:String) -> Array:
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	var base_url = talo_base_url + "players/search"
+	var params = "query="+ display_name.http_escape()
+	var url = base_url + "?" + params
+	http_request.request(url, _get_base_headers(), true, HTTPClient.METHOD_GET)
+	var result = yield(_build_response(http_request),"completed")
+	var response = JSON.parse(result.body.get_string_from_utf8()).result
+	return response.players
+
 # Identify the player
 func _identify_player(identifier):
 	if !_is_enabled(): return

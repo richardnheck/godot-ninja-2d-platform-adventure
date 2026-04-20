@@ -48,6 +48,7 @@ func _show_loading(loading:bool) -> void:
 	
 # Populate the level option button with all the levels for the specified world
 func _populate_level_option_button() -> void:
+	level_option_button.clear()		# clear current items
 	var levels = LevelData.get_levels_for_world(world)
 	var start_index = (world - 1) * LevelData.LEVELS_PER_WORLD
 	for index in range(0, levels.size() - 1): 
