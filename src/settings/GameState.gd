@@ -69,7 +69,9 @@ func load_save() -> void:
 		
 		print("Has completed game?", has_completed_game())
 	else:
-		print("failed", status)
+		print("Loading save file failed: err=", status)
+		user = User.new("")
+		level_results  = LevelResults.new()
 
 # Save the game state to file
 func save() -> void:
