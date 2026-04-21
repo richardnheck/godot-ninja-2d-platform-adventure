@@ -421,7 +421,7 @@ direction = 1
 [node name="MovingPlatformCave2H3" parent="InteractiveProps" instance=ExtResource( 11 )]
 position = Vector2( 1673, 856 )
 
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H3" index="0"]
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H3" index="1"]
 curve = ExtResource( 12 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H3/Path2D" index="0"]
@@ -430,16 +430,16 @@ position = Vector2( 54.5461, 0 )
 [node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave2H3/Path2D" index="1"]
 offset = Vector2( 24, 0 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H3" index="1"]
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H3" index="2"]
 position = Vector2( 54.5461, 0 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H3" index="2"]
+[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H3" index="3"]
 anims/PingPongPathFollow = SubResource( 1 )
 
 [node name="MovingPlatformCave2H4" parent="InteractiveProps" instance=ExtResource( 11 )]
 position = Vector2( 1144, 790 )
 
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H4" index="0"]
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H4" index="1"]
 curve = ExtResource( 12 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H4/Path2D" index="0"]
@@ -448,16 +448,16 @@ position = Vector2( 54.5461, 0 )
 [node name="TrackSprite" parent="InteractiveProps/MovingPlatformCave2H4/Path2D" index="1"]
 offset = Vector2( 24, 0 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H4" index="1"]
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H4" index="2"]
 position = Vector2( 54.5461, 0 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H4" index="2"]
+[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H4" index="3"]
 anims/PingPongPathFollow = SubResource( 2 )
 
 [node name="MovingPlatformCave2H5" parent="InteractiveProps" instance=ExtResource( 11 )]
 position = Vector2( 1048, 782 )
 
-[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H5" index="0"]
+[node name="Path2D" parent="InteractiveProps/MovingPlatformCave2H5" index="1"]
 curve = ExtResource( 13 )
 
 [node name="PathFollow2D" parent="InteractiveProps/MovingPlatformCave2H5/Path2D" index="0"]
@@ -467,10 +467,10 @@ position = Vector2( -23.2741, 8 )
 position = Vector2( -15, 8 )
 offset = Vector2( 24, 0 )
 
-[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H5" index="1"]
+[node name="KinematicBody2D" parent="InteractiveProps/MovingPlatformCave2H5" index="2"]
 position = Vector2( -23.274, 8 )
 
-[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H5" index="2"]
+[node name="AnimationPlayer" parent="InteractiveProps/MovingPlatformCave2H5" index="3"]
 anims/PingPongPathFollow = SubResource( 3 )
 
 [node name="FallingSpike5" parent="InteractiveProps" instance=ExtResource( 5 )]

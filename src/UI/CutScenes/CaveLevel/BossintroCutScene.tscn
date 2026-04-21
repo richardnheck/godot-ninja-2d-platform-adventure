@@ -289,7 +289,7 @@ custom_fonts/font = ExtResource( 9 )
 text = "Onigawara!"
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelBossScene.tscn"
+skip_to_scene_path = "res://src/levels/CaveLevels/World1Level_Boss.tscn"
 
 [node name="ScreenShake" parent="." instance=ExtResource( 7 )]
 
