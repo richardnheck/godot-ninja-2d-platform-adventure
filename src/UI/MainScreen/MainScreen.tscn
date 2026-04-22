@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/UI/Controls/SettingsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/MainScreen/QuitButton.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://src/UI/LevelSelectScreens/progress-icon.png" type="Texture" id=13]
 [ext_resource path="res://assets/themes/main/main_theme.tres" type="Theme" id=14]
 [ext_resource path="res://src/UI/UserScreen/UserScreen.tscn" type="PackedScene" id=15]
+[ext_resource path="res://icon.png" type="Texture" id=16]
+[ext_resource path="res://src/UI/Debug/DebugConsole.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -130,6 +132,17 @@ rect_min_size = Vector2( 18, 18 )
 icon = ExtResource( 3 )
 icon_align = 1
 
+[node name="DebugButton" type="Button" parent="ButtonControls"]
+unique_name_in_owner = true
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 73.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 18, 18 )
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+icon_align = 1
+
 [node name="OverlayColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -158,7 +171,14 @@ margin_bottom = 90.0
 
 [node name="ProgressScreen" parent="." instance=ExtResource( 10 )]
 unique_name_in_owner = true
-visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = -160.0
+margin_bottom = -90.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 unique_name_in_owner = true
@@ -185,6 +205,10 @@ margin_top = -83.0
 margin_right = -140.0
 margin_bottom = -83.0
 
+[node name="DebugConsole" parent="." instance=ExtResource( 17 )]
+unique_name_in_owner = true
+visible = false
+
 [node name="TextAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 method_call_mode = 1
@@ -197,9 +221,11 @@ anims/Hover = SubResource( 1 )
 [connection signal="pressed" from="ButtonControls/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
 [connection signal="pressed" from="ButtonControls/ProgressButton" to="." method="_on_ProgressButton_pressed"]
 [connection signal="pressed" from="ButtonControls/UserButton" to="." method="_on_UserButton_pressed"]
+[connection signal="pressed" from="ButtonControls/DebugButton" to="." method="_on_DebugButton_pressed"]
 [connection signal="on_closed" from="GameLeaderboardScreen" to="." method="_on_LeaderboardScreen_on_closed"]
 [connection signal="on_closed" from="ProgressScreen" to="." method="_on_ProgressScreen_on_closed"]
 [connection signal="on_closed" from="Settings" to="." method="_on_Settings_on_closed"]
 [connection signal="on_tab_changed" from="Settings" to="." method="_on_Settings_on_tab_changed"]
 [connection signal="on_closed" from="UserScreen" to="." method="_on_UserScreen_on_closed"]
+[connection signal="on_close" from="DebugConsole" to="." method="_on_DebugConsole_on_close"]
 [connection signal="tween_completed" from="TitleTween" to="." method="_on_TitleTween_tween_completed"]

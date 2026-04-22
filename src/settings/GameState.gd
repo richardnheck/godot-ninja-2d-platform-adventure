@@ -11,6 +11,12 @@ const KEY_CURRENT_LEVEL = "current_level"
 const KEY_WATCH_INTRO = "has_watched_story_intro"
 const KEY_IDENTIFIER = "identifier"
 
+signal on_log(message)
+
+# This is a history of the console messages made so it can be obtained from
+# the debug console component.  GameState is an Autoload that runs before
+# the debug console is created, so it cannot rely on signals at the start
+var _console_message_history = ""
 
 # Store the player progress
 # Set the default values to start with
@@ -30,19 +36,25 @@ func _ready():
 	
 	# Load the save state
 	load_save()
-	
-	
+
+# Return all the console logs made by GameState	
+func get_console_history()->String:
+	return _console_message_history
+
 # Load data from game save file
 func load_save() -> void:
-	print("Loading Game State from file...") 
+	_print("Loading Game State from file...", true) 
+	
 	# Read the save file
 	var file := File.new()
 	var status = file.open(SAVE_FILE_PATH, File.READ)
 	if status == OK:
+		_print("Loading save file success", true)
 		# File opened successfully
-		print("opened!")
 		#print(file.get_as_text()) 
 		var data: Dictionary = str2var(file.get_as_text())
+		_print(JSON.print(data))
+		
 		file.close()
 	
 		# Apply the saved progress to the local progress
@@ -66,10 +78,8 @@ func load_save() -> void:
 		
 		# Apply progress to games operational level data
 		LevelData.current_level_index = progress[KEY_CURRENT_LEVEL]
-		
-		print("Has completed game?", has_completed_game())
 	else:
-		print("Loading save file failed: err=", status)
+		_print("Loading save file failed: err = $s" % [status])
 		user = User.new("")
 		level_results  = LevelResults.new()
 
@@ -181,6 +191,9 @@ class User:
 			"identifier": identifier,
 			"display_name" : display_name
 		}
+	
+	func to_string() -> String:
+		return JSON.print(self.to_var())
 
 class LevelResults:
 	var levels:Array	# Array<LevelResult>
@@ -301,3 +314,9 @@ class LevelResult:
 	func _get_timestamp_msec() -> int:
 		return int(ceil(Time.get_unix_time_from_system()) * 1000)
 		
+func _print(message:String, log_to_console:bool = true):
+	print(message)
+	if log_to_console:
+		_console_message_history += message + "\n"
+		emit_signal("on_log", message)
+	

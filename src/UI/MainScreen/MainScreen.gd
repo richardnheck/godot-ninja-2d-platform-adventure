@@ -10,21 +10,27 @@ onready var leaderboard_screen = $"%GameLeaderboardScreen"
 onready var progress_screen = $"%ProgressScreen"
 onready var user_screen = $"%UserScreen"
 onready var overlay = $"%OverlayColorRect"
-
-
+onready var debug_console = $"%DebugConsole"
+onready var debug_button = $"%DebugButton"
+	
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void:	
 	overlay.visible = false
 	settings.visible = false
 	leaderboard_screen.visible = false
 	user_screen.visible = false
+	progress_screen.visible = false
 	quit_button.visible = not Settings.is_html5_build()
+	debug_console.visible = false
+	debug_button.visible = true   #TODO set to false
 	
 	# The main screen could be reloaded by navigating back from
 	# some functionality from the Extras tab in the Settings.
 	# Restore the Settings back in this case
 	settings.visible = MainScreenState.settings_open
 	settings.set_current_tab(MainScreenState.settings_current_tab_index)
+	
+	
 	
 	if GameState.get_has_watched_story_intro():
 		# If user has watched the story intro then show the world select screen
@@ -37,6 +43,8 @@ func _ready() -> void:
 	Game_AudioManager.play_bgm_main_theme_skip_start()
 
 	_start_tween()
+	
+	
 
 func _start_tween():
 	if tween_values[0] == null:
@@ -56,6 +64,8 @@ func _on_Settings_on_closed():
 	settings.visible = false
 	overlay.visible = false
 	MainScreenState.settings_open = false
+	print("cheat mode set", Settings.cheat_mode)
+	debug_button.visible = Settings.cheat_mode
 
 
 func _on_Settings_on_tab_changed(tab_index:int):
@@ -95,3 +105,11 @@ func _on_UserButton_pressed():
 func _on_UserScreen_on_closed():
 	user_screen.visible = false
 	overlay.visible = false
+
+func _on_DebugButton_pressed():
+	debug_console.visible = true
+
+
+func _on_DebugConsole_on_close():
+	debug_console.visible = false
+
