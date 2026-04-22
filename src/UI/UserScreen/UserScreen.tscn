@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
@@ -9,6 +9,20 @@
 [ext_resource path="res://src/UI/UserScreen/UserScreen.gd" type="Script" id=7]
 [ext_resource path="res://src/UI/UserScreen/dot-spinner.png" type="Texture" id=8]
 [ext_resource path="res://assets/art/ui/settings-close-word-button2.png" type="Texture" id=15]
+[ext_resource path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" type="Script" id=16]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 0.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.933333, 0.764706, 0.603922, 1 )
+border_width_top = 1
+border_color = Color( 0.380392, 0.027451, 0.027451, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 4.0
+anti_aliasing = false
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 8 )
@@ -31,6 +45,10 @@ animations = [ {
 } ]
 
 [node name="UserScreen" type="Control"]
+margin_left = 19.0
+margin_top = 9.0
+margin_right = 19.0
+margin_bottom = 9.0
 script = ExtResource( 7 )
 
 [node name="FrameSprite" type="Sprite" parent="."]
@@ -90,6 +108,10 @@ margin_right = 135.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 135, 0 )
 max_length = 20
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="UpdateButton" type="Button" parent="Control/Game/VBoxContainer/DisplayNameContainer"]
 unique_name_in_owner = true
@@ -122,6 +144,19 @@ margin_bottom = 22.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 15 )
 
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -19.0
+margin_top = 190.0
+margin_right = 300.0
+margin_bottom = 276.0
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 16 )
+styleBackground = SubResource( 5 )
+
 [node name="OverlayColorRect" type="ColorRect" parent="Control"]
 unique_name_in_owner = true
 visible = false
@@ -142,5 +177,6 @@ playing = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="focus_entered" from="Control/Game/VBoxContainer/DisplayNameContainer/DisplayNameLineEdit" to="." method="_on_DisplayNameLineEdit_focus_entered"]
+[connection signal="text_entered" from="Control/Game/VBoxContainer/DisplayNameContainer/DisplayNameLineEdit" to="." method="_on_DisplayNameLineEdit_text_entered"]
 [connection signal="pressed" from="Control/Game/VBoxContainer/DisplayNameContainer/UpdateButton" to="." method="_on_UpdateButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

@@ -625,7 +625,7 @@ window/stretch=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-console/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-console/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg" )
 
 [importer_defaults]
 

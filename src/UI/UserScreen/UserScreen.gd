@@ -9,14 +9,19 @@ onready var display_name_line_edit = $"%DisplayNameLineEdit"
 onready var display_name_message_label = $"%DisplayNameMessageLabel"
 onready var update_display_name_button = $"%UpdateButton"
 onready var overlay = $"%OverlayColorRect"
+onready var onscreen_keyboard = $"%OnscreenKeyboard"
 
 # Called when the node enters the scene tree for the first time.
 # Things that don't change can be initialized here
 func _ready() -> void:
 	_show_overlay(false)
 	if Settings.is_mobile():
+		OS.hide_virtual_keyboard()
 		display_name_line_edit.virtual_keyboard_enabled = false
-	
+		onscreen_keyboard.autoShow = true
+	else:
+		onscreen_keyboard.autoShow = false
+		
 # Handle when the scene becomes visible
 func _on_Settings_visibility_changed():
 	if is_visible_in_tree():
@@ -69,8 +74,7 @@ func _show_overlay(show:bool):
 	overlay.visible = show
 
 func _on_DisplayNameLineEdit_focus_entered():
-	if Settings.is_mobile():
-		display_name_line_edit.release_focus()
-		# Virtual Keyboard doesn't work on mobile so use a javascript popup prompt instead
-		display_name_line_edit.text = JavaScript.eval("prompt('%s', '%s');" % ["Enter display name:", display_name_line_edit.text],true)
+	OS.hide_virtual_keyboard()
 	
+func _on_DisplayNameLineEdit_text_entered(text):
+	OS.hide_virtual_keyboard()

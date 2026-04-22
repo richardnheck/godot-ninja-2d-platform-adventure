@@ -195,15 +195,14 @@ rect_pivot_offset = Vector2( 120, 0 )
 
 [node name="UserScreen" parent="." instance=ExtResource( 15 )]
 unique_name_in_owner = true
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -140.0
-margin_top = -83.0
+margin_top = -82.0
 margin_right = -140.0
-margin_bottom = -83.0
+margin_bottom = -82.0
 
 [node name="DebugConsole" parent="." instance=ExtResource( 17 )]
 unique_name_in_owner = true
