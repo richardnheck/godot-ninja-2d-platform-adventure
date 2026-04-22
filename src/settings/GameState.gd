@@ -51,15 +51,24 @@ func load_save() -> void:
 	if status == OK:
 		_print("Loading save file success", true)
 		# File opened successfully
-		#print(file.get_as_text()) 
-		var data: Dictionary = str2var(file.get_as_text())
+		var data_variant = str2var(file.get_as_text())
+		var data:Dictionary = {}
+		if typeof(data_variant) == TYPE_DICTIONARY:
+			# successfully contains data to be converted to a dictionary
+			data = data_variant
+			
 		_print(JSON.print(data))
 		
 		file.close()
 	
 		# Apply the saved progress to the local progress
-		progress = data["progress"]
-		#print("progress state", progress)
+		if data.has("progress"):
+			progress = data["progress"]
+			# Handle new state additions that weren't part of first save
+			progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
+		
+			# Apply progress to games operational level data
+			LevelData.current_level_index = progress[KEY_CURRENT_LEVEL]
 		
 		# Apply the saved player details
 		if data.has("user"):
@@ -73,11 +82,7 @@ func load_save() -> void:
 		else:
 			level_results  = LevelResults.new()
 		
-		# Handle new state additions that weren't part of first save
-		progress[KEY_WATCH_INTRO] = data["progress"].get(KEY_WATCH_INTRO, false)
 		
-		# Apply progress to games operational level data
-		LevelData.current_level_index = progress[KEY_CURRENT_LEVEL]
 	else:
 		_print("Loading save file failed: err = $s" % [status])
 		user = User.new("")
