@@ -22,7 +22,7 @@ func _ready() -> void:
 	progress_screen.visible = false
 	quit_button.visible = not Settings.is_html5_build()
 	debug_console.visible = false
-	debug_button.visible = true   #TODO set to false
+	debug_button.visible = false
 	
 	# The main screen could be reloaded by navigating back from
 	# some functionality from the Extras tab in the Settings.

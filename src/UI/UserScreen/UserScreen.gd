@@ -14,6 +14,8 @@ onready var overlay = $"%OverlayColorRect"
 # Things that don't change can be initialized here
 func _ready() -> void:
 	_show_overlay(false)
+	if Settings.is_mobile():
+		display_name_line_edit.virtual_keyboard_enabled = false
 	
 # Handle when the scene becomes visible
 func _on_Settings_visibility_changed():
@@ -65,3 +67,10 @@ func _show_display_name_message(message:String):
 
 func _show_overlay(show:bool):
 	overlay.visible = show
+
+func _on_DisplayNameLineEdit_focus_entered():
+	if Settings.is_mobile():
+		display_name_line_edit.release_focus()
+		# Virtual Keyboard doesn't work on mobile so use a javascript popup prompt instead
+		display_name_line_edit.text = JavaScript.eval("prompt('%s', '%s');" % ["Enter display name:", display_name_line_edit.text],true)
+	

@@ -141,5 +141,6 @@ frames = SubResource( 4 )
 playing = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
+[connection signal="focus_entered" from="Control/Game/VBoxContainer/DisplayNameContainer/DisplayNameLineEdit" to="." method="_on_DisplayNameLineEdit_focus_entered"]
 [connection signal="pressed" from="Control/Game/VBoxContainer/DisplayNameContainer/UpdateButton" to="." method="_on_UpdateButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

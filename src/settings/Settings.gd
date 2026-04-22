@@ -70,6 +70,15 @@ func is_html5_build() -> bool:
 func has_touchscreen() -> bool:
 	return OS.has_touchscreen_ui_hint()
 	
+func is_mobile() -> bool:
+	if OS.has_feature("mobile"):
+		return true
+
+	if is_html5_build():
+		var is_mobile_browser = JavaScript.eval("(function(){var ua=(navigator.userAgent||navigator.vendor||window.opera||'').toLowerCase();var mobile=/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/.test(ua);var ipad_os=(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);return mobile||ipad_os;})()", true)
+		return bool(is_mobile_browser)
+
+	return false		
 		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
