@@ -823,7 +823,7 @@ anims/walk-in = SubResource( 12 )
 anims/walk-out = SubResource( 13 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
-skip_to_scene_path = "res://src/levels/CaveLevels/CaveLevelLearningMechanics.tscn"
+skip_to_scene_path = "res://src/levels/CaveLevels/World1Level_Level1.tscn"
 
 [node name="StopPointArea2D" type="Area2D" parent="."]
 position = Vector2( -45, 0 )
