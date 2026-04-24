@@ -126,6 +126,18 @@ margin_top = 28.0
 margin_right = 253.0
 margin_bottom = 45.0
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Game/VBoxContainer"]
+margin_top = 49.0
+margin_right = 253.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 0, 24 )
+
+[node name="ResetProgressButton" type="Button" parent="Control/Game/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 89.0
+margin_bottom = 24.0
+text = "  Reset Progress  "
+
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -178,5 +190,6 @@ playing = true
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="gui_input" from="Control/Game/VBoxContainer/DisplayNameContainer/DisplayNameLineEdit" to="." method="_on_DisplayNameLineEdit_gui_input"]
 [connection signal="pressed" from="Control/Game/VBoxContainer/DisplayNameContainer/UpdateButton" to="." method="_on_UpdateButton_pressed"]
+[connection signal="pressed" from="Control/Game/VBoxContainer/HBoxContainer/ResetProgressButton" to="." method="_on_ResetProgressButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="visibilityChanged" from="Control/OnscreenKeyboard" to="." method="_on_OnscreenKeyboard_visibilityChanged"]

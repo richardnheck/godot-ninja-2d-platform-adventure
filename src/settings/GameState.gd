@@ -156,8 +156,6 @@ func set_has_watched_story_intro(watched) -> void:
 func get_has_watched_story_intro() -> bool:
 	return progress[KEY_WATCH_INTRO]
 	
-
-
 var prev_progress = null
 func cheat(value):
 	if value:
@@ -177,6 +175,12 @@ func cheat(value):
 		# Uncheat by restoring current progress
 		progress = prev_progress.duplicate(true)
 
+func reset_progress() -> void:
+	set_has_watched_story_intro(false)
+	set_current_level(0)
+	level_results  = LevelResults.new()
+	save()
+	
 
 class User:
 	var identifier:String

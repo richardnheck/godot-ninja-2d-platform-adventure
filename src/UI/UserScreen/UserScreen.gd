@@ -131,3 +131,5 @@ func _on_DisplayNameLineEdit_gui_input(event):
 func _on_OnscreenKeyboard_visibilityChanged(visible):
 	keyboard_visible = visible
 
+func _on_ResetProgressButton_pressed():
+	GameState.reset_progress()
