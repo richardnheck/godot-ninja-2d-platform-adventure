@@ -11,15 +11,25 @@ onready var update_display_name_button = $"%UpdateButton"
 onready var overlay = $"%OverlayColorRect"
 onready var onscreen_keyboard = $"%OnscreenKeyboard"
 
+# onscreen keyboard for mobile 
+var keyboard_enabled = false
+var keyboard_visible = false
+
+
 # Called when the node enters the scene tree for the first time.
 # Things that don't change can be initialized here
 func _ready() -> void:
 	_show_overlay(false)
 	if Settings.is_mobile():
-		OS.hide_virtual_keyboard()
-		display_name_line_edit.virtual_keyboard_enabled = false
-		onscreen_keyboard.autoShow = true
+		# On mobile the onscreen keyboard is not shown automatically
+		# The display name input cannot accept focus and so the keyboard
+		# is toggled when the user clicks on the input
+		keyboard_enabled = true
+		onscreen_keyboard.autoShow = false
+		display_name_line_edit.focus_mode = Control.FOCUS_NONE
 	else:
+		# For non mobile devices user will enter text in the input normally
+		keyboard_enabled = false
 		onscreen_keyboard.autoShow = false
 		
 # Handle when the scene becomes visible
@@ -38,7 +48,11 @@ func _on_CloseButton_pressed() -> void:
 	emit_signal("on_closed")
 
 func _on_UpdateButton_pressed():
+	if display_name_line_edit.text.length() == 0:
+		_show_display_name_message("A display name is required")
+		return
 	_show_overlay(true)
+	_show_onscreen_keyboard(false)
 	
 	# First determine if the player display name is already in use
 	var user := GameState.user
@@ -64,7 +78,6 @@ func _on_UpdateButton_pressed():
 		_show_display_name_message("Name taken!")
 		_show_overlay(false)
 
-
 func _show_display_name_message(message:String):
 	display_name_message_label.text = message
 	yield(get_tree().create_timer(1.5), "timeout")
@@ -73,8 +86,48 @@ func _show_display_name_message(message:String):
 func _show_overlay(show:bool):
 	overlay.visible = show
 
-func _on_DisplayNameLineEdit_focus_entered():
-	OS.hide_virtual_keyboard()
+# The onscreen keyboard addon calls get_tree().input_event(inputEventKey) whenever
+# key is pressed.  This function handles the input and manually updates the display
+# name input.  We need to do this as the display name input is no longer being focussed
+# to prevent the virtual keyboard appearing on mobile devices
+func _unhandled_input(event):
+	# Check if it's a key press and not already handled
+	if event is InputEventKey and event.pressed:	
+		if event.scancode == KEY_BACKSPACE:
+			display_name_line_edit.text = display_name_line_edit.text.left(display_name_line_edit.text.length() - 1)
+			display_name_line_edit.caret_position = display_name_line_edit.text.length()
+		elif event.scancode == KEY_ENTER:
+			_toggle_onscreen_keyboard()
+		else:
+			var character = char(event.unicode)
+			display_name_line_edit.text += character
+			# Move caret to the end
+			display_name_line_edit.caret_position = display_name_line_edit.text.length() 
+
+func _toggle_onscreen_keyboard() -> void:
+	_show_onscreen_keyboard(!keyboard_visible)
 	
-func _on_DisplayNameLineEdit_text_entered(text):
-	OS.hide_virtual_keyboard()
+func _show_onscreen_keyboard(show:bool) -> void:
+	if !keyboard_enabled:
+		return 
+		
+	if show:
+		onscreen_keyboard.show()
+	else:
+		onscreen_keyboard.hide()
+	
+func _on_DisplayNameLineEdit_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			yield(get_tree().create_timer(0.1), "timeout")
+			if display_name_line_edit.text != "":
+				_toggle_onscreen_keyboard()
+			else:
+				# Don't toggle the keyboard if the text input is empty (most likely due to clear button pressed)
+				# Keep it open
+				_show_onscreen_keyboard(true)
+	
+			
+func _on_OnscreenKeyboard_visibilityChanged(visible):
+	keyboard_visible = visible
+
