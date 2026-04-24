@@ -138,6 +138,13 @@ margin_right = 89.0
 margin_bottom = 24.0
 text = "  Reset Progress  "
 
+[node name="ResetProgressMessageLabel" type="Label" parent="Control/Game/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 93.0
+margin_top = 3.0
+margin_right = 101.0
+margin_bottom = 20.0
+
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -164,7 +171,7 @@ anchor_bottom = 1.0
 margin_left = -19.0
 margin_top = 190.0
 margin_right = 300.0
-margin_bottom = 276.0
+margin_bottom = 288.0
 custom_styles/panel = SubResource( 5 )
 script = ExtResource( 16 )
 styleBackground = SubResource( 5 )
@@ -187,9 +194,21 @@ position = Vector2( 135, 76 )
 frames = SubResource( 4 )
 playing = true
 
+[node name="ResetProgressConfirmationDialog" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+visible = true
+margin_left = 72.0
+margin_top = 52.0
+margin_right = 196.0
+margin_bottom = 116.0
+theme = ExtResource( 5 )
+window_title = "Confirm Reset"
+dialog_text = "Reset all saved progress?"
+
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="gui_input" from="Control/Game/VBoxContainer/DisplayNameContainer/DisplayNameLineEdit" to="." method="_on_DisplayNameLineEdit_gui_input"]
 [connection signal="pressed" from="Control/Game/VBoxContainer/DisplayNameContainer/UpdateButton" to="." method="_on_UpdateButton_pressed"]
 [connection signal="pressed" from="Control/Game/VBoxContainer/HBoxContainer/ResetProgressButton" to="." method="_on_ResetProgressButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="visibilityChanged" from="Control/OnscreenKeyboard" to="." method="_on_OnscreenKeyboard_visibilityChanged"]
+[connection signal="confirmed" from="Control/ResetProgressConfirmationDialog" to="." method="_on_ResetProgressConfirmationDialog_confirmed"]

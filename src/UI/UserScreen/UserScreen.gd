@@ -10,6 +10,8 @@ onready var display_name_message_label = $"%DisplayNameMessageLabel"
 onready var update_display_name_button = $"%UpdateButton"
 onready var overlay = $"%OverlayColorRect"
 onready var onscreen_keyboard = $"%OnscreenKeyboard"
+onready var reset_progress_confirmation_dialog:ConfirmationDialog = $"%ResetProgressConfirmationDialog"
+onready var reset_progress_message_label = $"%ResetProgressMessageLabel"
 
 # onscreen keyboard for mobile 
 var keyboard_enabled = false
@@ -19,6 +21,11 @@ var keyboard_visible = false
 # Called when the node enters the scene tree for the first time.
 # Things that don't change can be initialized here
 func _ready() -> void:
+	var ok_button:Button = reset_progress_confirmation_dialog.get_ok()
+	var cancel_button:Button = reset_progress_confirmation_dialog.get_cancel()
+	ok_button.rect_min_size = Vector2(50,22)
+	cancel_button.rect_min_size = Vector2(50,22)
+	
 	_show_overlay(false)
 	if Settings.is_mobile():
 		# On mobile the onscreen keyboard is not shown automatically
@@ -83,6 +90,11 @@ func _show_display_name_message(message:String):
 	yield(get_tree().create_timer(1.5), "timeout")
 	display_name_message_label.text = ""
 
+func _show_reset_progress_message(message:String):
+	reset_progress_message_label.text = message
+	yield(get_tree().create_timer(1.5), "timeout")
+	reset_progress_message_label.text = ""
+
 func _show_overlay(show:bool):
 	overlay.visible = show
 
@@ -132,4 +144,9 @@ func _on_OnscreenKeyboard_visibilityChanged(visible):
 	keyboard_visible = visible
 
 func _on_ResetProgressButton_pressed():
+	_show_onscreen_keyboard(false)
+	reset_progress_confirmation_dialog.popup_centered()
+
+func _on_ResetProgressConfirmationDialog_confirmed() -> void:
 	GameState.reset_progress()
+	_show_reset_progress_message("Progress reset!")
