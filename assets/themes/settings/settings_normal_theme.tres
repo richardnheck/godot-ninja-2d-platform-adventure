@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=1509 format=2]
+[gd_resource type="Theme" load_steps=1510 format=2]
 
 [ext_resource path="res://assets/themes/settings/settings-normal-button1.png" type="Texture" id=1]
 [ext_resource path="res://assets/themes/settings/settings-normal-button2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/UI/Settings/option-button-arrow.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/ui/scrollbar-grabber.png" type="Texture" id=7]
 [ext_resource path="res://assets/art/ui/scrollbar-scroll.png" type="Texture" id=8]
+[ext_resource path="res://src/UI/UserScreen/line-edit-cross.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -12269,7 +12270,7 @@ LineEdit/colors/font_color_selected = Color( 1, 1, 1, 1 )
 LineEdit/colors/read_only = Color( 1, 1, 1, 0.3 )
 LineEdit/colors/selection_color = Color( 0.41, 0.61, 0.91, 0.4 )
 LineEdit/fonts/font = ExtResource( 3 )
-LineEdit/icons/clear = SubResource( 589 )
+LineEdit/icons/clear = ExtResource( 9 )
 LineEdit/styles/focus = SubResource( 1465 )
 LineEdit/styles/normal = SubResource( 1466 )
 LineEdit/styles/read_only = SubResource( 1467 )
