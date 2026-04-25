@@ -51,7 +51,7 @@ func _populate_level_option_button() -> void:
 	level_option_button.clear()		# clear current items
 	var levels = LevelData.get_levels_for_world(world)
 	var start_index = (world - 1) * LevelData.LEVELS_PER_WORLD
-	for index in range(0, levels.size() - 1): 
+	for index in levels.size(): 
 		var level = levels[index]
 		var level_index = start_index + index
 		level_option_button.add_item("%s. %s" % [index + 1, level.name], level_index)
