@@ -20,16 +20,19 @@ func _physics_process(delta: float) -> void:
 	
 func _on_TriggerZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		# Player has entered the trigger zone so make it fall
-		crumbleSound.play()
-		animationPlayer.play("shake")
-		yield(animationPlayer,"animation_finished")
-		crumbleSound.stop()
-		triggered = true	
-		explodeSound.play()
-		explosion.play("explode")
-		yield(explosion, "animation_finished")
-		queue_free()
+		# Player has entered the trigger zone so make it crumble
+		trigger_crumble()
+		
+func trigger_crumble() -> void:
+	crumbleSound.play()
+	animationPlayer.play("shake")
+	yield(animationPlayer,"animation_finished")
+	crumbleSound.stop()
+	triggered = true	
+	explodeSound.play()
+	explosion.play("explode")
+	yield(explosion, "animation_finished")
+	queue_free()
 
 func _on_HitZone_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):

@@ -34,15 +34,15 @@ extents = Vector2( 7.00504, 0.548457 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "explode",
 "speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [node name="CrumblingPlatform" type="KinematicBody2D"]

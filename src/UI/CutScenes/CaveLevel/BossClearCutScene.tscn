@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-tileset.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/CutScenes/stage-clear-text.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=8]
 [ext_resource path="res://src/characters/enemies/CaveLevelBoss/cave_level_boss_spritesheet.tres" type="SpriteFrames" id=11]
 [ext_resource path="res://src/UI/CutScenes/CaveLevel/BossRigidBody.gd" type="Script" id=12]
 [ext_resource path="res://src/objects/japanese-lamp/JapaneseLamp.tscn" type="PackedScene" id=13]
@@ -591,18 +591,51 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.45, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.45, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
+"method": "trigger_talisman"
 }, {
 "args": [  ],
 "method": "do_ending"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerForCutscene:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerForCutscene:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 234, 112 ), Vector2( 281, 112 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerForCutscene:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -614,15 +647,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -664,6 +691,44 @@ tracks/3/keys = {
 "values": [ {
 "args": [  ],
 "method": "play_bgm"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerForCutscene:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerForCutscene:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -30, 112 ), Vector2( 234, 112 ) ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_trigger_platform_explosions"
 } ]
 }
 
@@ -724,8 +789,6 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
-
 [node name="World1 - BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
 
@@ -737,9 +800,6 @@ margin_top = -18.0
 margin_right = 1240.0
 margin_bottom = 10.0
 color = Color( 0, 0, 0, 1 )
-
-[node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 11, 144 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, 90 )
@@ -775,6 +835,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="Props" type="Node" parent="."]
 
 [node name="DemonSeal" parent="Props" instance=ExtResource( 15 )]
+unique_name_in_owner = true
 position = Vector2( 283, 104.53 )
 
 [node name="JapaneseLamp" parent="Props" instance=ExtResource( 13 )]
@@ -833,28 +894,28 @@ anims/walk_in = SubResource( 14 )
 
 [node name="InteractiveProps" type="Node" parent="."]
 
-[node name="CrumblingPlatform" parent="InteractiveProps" instance=ExtResource( 3 )]
-position = Vector2( 112, 144 )
-
-[node name="CrumblingPlatform8" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform0" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 96, 144 )
 
-[node name="CrumblingPlatform2" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform1" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
+position = Vector2( 112, 144 )
+
+[node name="CrumblingPlatform2" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 128, 144 )
 
-[node name="CrumblingPlatform3" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform3" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 144, 144 )
 
-[node name="CrumblingPlatform4" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform4" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 160, 144 )
 
-[node name="CrumblingPlatform5" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform5" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 176, 144 )
 
-[node name="CrumblingPlatform6" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform6" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 192, 144 )
 
-[node name="CrumblingPlatform7" parent="InteractiveProps" instance=ExtResource( 3 )]
+[node name="CrumblingPlatform7" parent="InteractiveProps" groups=["platform"] instance=ExtResource( 3 )]
 position = Vector2( 208, 144 )
 
 [node name="Tween" type="Tween" parent="."]
@@ -871,15 +932,15 @@ margin_top = -56.0
 margin_bottom = 224.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="StopPointArea2D" type="Area2D" parent="."]
-position = Vector2( 6, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StopPointArea2D"]
-position = Vector2( 262, 135.165 )
-shape = SubResource( 17 )
+[node name="PlayerForCutscene" type="AnimatedSprite" parent="." groups=["player"]]
+unique_name_in_owner = true
+position = Vector2( 281, 112 )
+frames = ExtResource( 8 )
+animation = "idle"
+playing = true
+centered = false
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
 
 [editable path="CutSceneBase"]

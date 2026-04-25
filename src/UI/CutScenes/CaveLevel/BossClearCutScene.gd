@@ -4,7 +4,7 @@
 extends Node
 
 onready var cut_scene_base:CutSceneBase = $CutSceneBase
-onready var player:Player = $Player
+onready var player_for_cutscene = $"%PlayerForCutscene"
 onready var boss:RigidBody2D = $Boss
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var text_animation_player:AnimationPlayer = $TextAnimationPlayer
@@ -12,9 +12,8 @@ onready var screen_shake = $ScreenShake
 onready var stage_clear_text = $StageClearText
 onready var tween = $Tween
 onready var fade_screen = $FadeScreen
+onready var demon_seal:DemonSeal = $"%DemonSeal"
 
-var _move_player_right:bool = false
-var _move_player_left:bool = false
 var _move_boss_right:bool = false
 
 
@@ -27,18 +26,9 @@ func _ready() -> void:
 	screen_shake.set_camera_node("Camera2D")
 	stage_clear_text.visible = false
 	animation_player.play("walk_in")	
-	player.get_camera_manager().get_camera().current = false  # make sure the player's camera is not used
-	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if _move_player_right:
-		player.move_right()
-	elif _move_player_left:
-		player.move_left()
-	else:
-		player.move_stop()
-		
+func _physics_process(delta: float) -> void:	
 	if _move_boss_right:
 		boss.linear_velocity = Vector2(90,0)
 
@@ -69,11 +59,14 @@ func do_boss_jump() -> void:
 
 func do_grab_talisman() -> void:
 	animation_player.play("grab_talisman")
+
+func trigger_talisman() -> void:
+	demon_seal.grab_seal()
 	
 func do_ending() -> void:
 	yield(get_tree().create_timer(1), "timeout")
 	show_text()
-	player.celebrate()
+	player_for_cutscene.animation = "celebrate"
 	yield(get_tree().create_timer(2.8), "timeout")
 	Game_AudioManager.stop_bgm()
 	yield(get_tree().create_timer(1), "timeout")
@@ -85,23 +78,9 @@ func show_text() -> void:
 	
 func hover_text() -> void:
 	text_animation_player.play("hover")
-
-func move_player_right() -> void:
-	_move_player_right = true
-	_move_player_left = false
-	
-func move_player_left() -> void:
-	_move_player_left = true
-	_move_player_right = false
-	
-func move_player_stop() -> void:
-	_move_player_left = false
-	_move_player_right = false
-	
+		
 func look_player_left() -> void:
-	move_player_left()
-	yield(get_tree().create_timer(0.05), "timeout")
-	move_player_stop()
+	player_for_cutscene.flip_h = true
 
 func move_boss_right() -> void:
 	_move_boss_right = true
@@ -113,14 +92,11 @@ func move_boss_stop() -> void:
 func play_boss_fall() -> void:
 	Game_AudioManager.sfx_env_cave_boss_cutscene_fall.play()
 	
+func _trigger_platform_explosions() -> void:
+	var platforms = get_tree().get_nodes_in_group("platform")
+	for platform in platforms:
+		platform.trigger_crumble() 
+		yield(get_tree().create_timer(0.2), "timeout")
 		
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	pass
-
-# This Stop Point Area ensures that the player stops at the exact spot
-# This is required because on HTML5 build it can walk further and therefore
-# be off the screen when player collects the gem
-func _on_StopPointArea2D_body_entered(body: Node) -> void:
-	if body.is_in_group(Constants.GROUP_PLAYER):
-		move_player_stop()
-		$StopPointArea2D/CollisionShape2D.set_deferred("disabled", true)
