@@ -112,8 +112,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 400.0 ]
 }
 
-[node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 112, 72 )
+[node name="_TempSpawnPosition" type="Position2D" parent="."]
+position = Vector2( -120, -1400 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -518,11 +518,6 @@ spin_speed = -90
 
 [node name="RotatingOnibi2" parent="Section4/enemies" instance=ExtResource( 13 )]
 position = Vector2( -680, -119 )
-chains = 2
-
-[node name="RotatingOnibi3" parent="Section4/enemies" instance=ExtResource( 13 )]
-position = Vector2( -744, -312 )
-spin_speed = -90
 
 [node name="traps" type="Node2D" parent="Section4"]
 
@@ -618,17 +613,10 @@ direction = -1
 [node name="Bakezori" parent="Section5/enemies" instance=ExtResource( 9 )]
 position = Vector2( 443, -235 )
 
-[node name="ChochinObakeShooter" parent="Section5/enemies" instance=ExtResource( 20 )]
-position = Vector2( 624, -328 )
-
 [node name="traps" type="Node2D" parent="Section5"]
 
 [node name="LongMovingSpike" parent="Section5/traps" instance=ExtResource( 4 )]
-position = Vector2( 264, -216 )
-rotation = 3.14159
-
-[node name="LongMovingSpike2" parent="Section5/traps" instance=ExtResource( 4 )]
-position = Vector2( 280, -216 )
+position = Vector2( 272, -216 )
 rotation = 3.14159
 
 [node name="SectionTemplate2" type="Node2D" parent="."]
