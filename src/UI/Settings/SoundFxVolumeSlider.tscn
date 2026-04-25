@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/themes/settings/settings_normal_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/UI/Settings/SoundFxVolumeSlider.gd" type="Script" id=2]
+
+[node name="SoundFxVolumeSlider" type="HSlider"]
+unique_name_in_owner = true
+margin_left = 109.0
+margin_right = 184.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 75, 20 )
+theme = ExtResource( 1 )
+max_value = 1.0
+step = 0.05
+script = ExtResource( 2 )
+
+[connection signal="value_changed" from="." to="." method="_on_SoundFxVolumeSlider_value_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_SoundFxVolumeSlider_visibility_changed"]

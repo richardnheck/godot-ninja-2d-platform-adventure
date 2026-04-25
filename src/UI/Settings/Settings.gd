@@ -48,10 +48,6 @@ func _ready() -> void:
 	
 	_add_resolutions()
 	_add_window_types()
-	
-	# initialise volume sliders in Audio tab
-	soundfx_volume_slider.value = db2linear(Game_AudioManager.get_sound_fx_volume())
-	music_volume_slider.value = db2linear(Game_AudioManager.get_music_volume())
 
 # Handle when the scene becomes visible
 func _on_Settings_visibility_changed():
@@ -188,16 +184,6 @@ func _on_AnimatedTextureRect_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			_change_player_animation()
-
-func _on_SoundFxHSlider_value_changed(value):
-	var db_volume = linear2db(value)
-	Game_AudioManager.set_sound_fx_volume(db_volume)
-
-func _on_MusicHSlider_value_changed(value):
-	var db_volume = linear2db(value)
-	Game_AudioManager.set_music_volume(db_volume)
-
-
 
 func _on_TestSoundFxButton_pressed():
 	Game_AudioManager.sfx_ui_basic_blip_select.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/UI/Settings/setting-frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/ui/settings-close-word-button1.png" type="Texture" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://src/characters/player/sprites/player.png" type="Texture" id=19]
 [ext_resource path="res://src/lib/UI/animated_texture_rect.gd" type="Script" id=20]
 [ext_resource path="res://src/characters/player/sprites/player_sprite_frames.tres" type="SpriteFrames" id=21]
+[ext_resource path="res://src/UI/Settings/SoundFxVolumeSlider.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/UI/Settings/MusicVolumeSlider.tscn" type="PackedScene" id=23]
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 19 )
@@ -67,7 +69,6 @@ custom_fonts/font = ExtResource( 11 )
 tab_align = 0
 
 [node name="Game" type="Control" parent="Control/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -262,6 +263,7 @@ margin_bottom = 60.0
 color = Color( 0.854902, 0.65098, 0.411765, 1 )
 
 [node name="Audio" type="Control" parent="Control/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -296,14 +298,7 @@ margin_right = 94.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 19, 21 )
 
-[node name="SoundFxHSlider" type="HSlider" parent="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer"]
-unique_name_in_owner = true
-margin_left = 109.0
-margin_right = 184.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 75, 20 )
-max_value = 1.0
-step = 0.05
+[node name="SoundFxHSlider" parent="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer" instance=ExtResource( 22 )]
 
 [node name="TestSoundFxButton" type="Button" parent="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer"]
 margin_left = 199.0
@@ -331,14 +326,7 @@ margin_right = 94.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 19, 21 )
 
-[node name="MusicHSlider" type="HSlider" parent="Control/TabContainer/Audio/VBoxContainer/MusicContainer"]
-unique_name_in_owner = true
-margin_left = 109.0
-margin_right = 184.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 75, 20 )
-max_value = 1.0
-step = 0.05
+[node name="MusicHSlider" parent="Control/TabContainer/Audio/VBoxContainer/MusicContainer" instance=ExtResource( 23 )]
 
 [node name="Extras" type="Control" parent="Control/TabContainer"]
 visible = false
@@ -460,9 +448,7 @@ flat = true
 [connection signal="button_pressed" from="Control/TabContainer/Game/VBoxContainer/ShowLevelTimerContainer/ShowLevelTimerOnOffButton" to="." method="_on_ShowLevelTimerOnOffButton_button_pressed"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer/ResolutionOptionButton" to="." method="_on_ResolutionOptionButton_item_selected"]
 [connection signal="item_selected" from="Control/TabContainer/Display/VBoxContainer/HBoxContainer2/WindowTypeOptionButton" to="." method="_on_WindowTypeOptionButton_item_selected"]
-[connection signal="value_changed" from="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer/SoundFxHSlider" to="." method="_on_SoundFxHSlider_value_changed"]
 [connection signal="pressed" from="Control/TabContainer/Audio/VBoxContainer/SoundFxContainer/TestSoundFxButton" to="." method="_on_TestSoundFxButton_pressed"]
-[connection signal="value_changed" from="Control/TabContainer/Audio/VBoxContainer/MusicContainer/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
 [connection signal="gui_input" from="Control/TabContainer/Extras/AnimatedTextureRect" to="." method="_on_AnimatedTextureRect_gui_input"]
 [connection signal="pressed" from="Control/TabContainer/Extras/HBoxContainer/ShowCreditsButton" to="." method="_on_ShowCreditsButton_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
