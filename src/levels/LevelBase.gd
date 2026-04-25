@@ -17,6 +17,7 @@ onready var player_scene = preload("res://src/characters/player/Player.tscn")
 onready var start_door = get_node("Props/DoorStart")
 onready var intro_title = null
 
+onready var hud = $MobileControlsHUD
 onready var timer_label = $MobileControlsHUD/Control/TimerLabel
 
 var player:Player
@@ -176,8 +177,7 @@ func _on_Door_player_entered() -> void:
 	Stopwatch.toggle_pause()
 	Game_AudioManager.sfx_ui_level_clear.play()
 	player.celebrate();
-	yield(get_tree().create_timer(2), "timeout")
-	_progress_player_and_goto_next_level()
+	_progress_player_and_goto_next_level(true, 2.5)	# delay 2 seconds to allow player to celebrate
 
 
 func _on_EndArea_body_entered(body: Node) -> void:
@@ -191,7 +191,7 @@ func _handle_boss_level_complete() -> void:
 	Stopwatch.toggle_pause()			
 	_progress_player_and_goto_next_level(false)	 # progress player but don't go to the next level as boss level will load the boss clear cutscenes
 	
-func _progress_player_and_goto_next_level(goto:bool = true) -> void:
+func _progress_player_and_goto_next_level(goto:bool = true, goto_delay:float = 0) -> void:
 	Analytics.track_levels_completed()
 	Analytics.track_event_level_completed(LevelData.current_level_index, Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat))
 	print("Level completed in time: " + str(Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat)) + ", " + str(Stopwatch.get_elapsed_time_in_seconds()))
@@ -199,6 +199,10 @@ func _progress_player_and_goto_next_level(goto:bool = true) -> void:
 	
 	var level_result = GameState.update_level_result(LevelData.current_level_index,  Stopwatch.get_elapsed_time_in_seconds(), LevelMetrics.deaths)
 	if level_result:
+		if level_result.get_completion_time_diff() < 0:
+			var time_status = "-%s" % [Stopwatch.get_time_as_formatted_string(abs(level_result.get_completion_time_diff()),Stopwatch.TimeFormat)]
+			print("time_status: " , time_status)
+			hud.set_time_status(time_status)
 		# This means the player added first result or improved on a previous result
 		# NB: The score is the completion time
 		Analytics.add_level_leaderboard_entry(LevelData.current_level_index, level_result.completion_time)
@@ -207,6 +211,8 @@ func _progress_player_and_goto_next_level(goto:bool = true) -> void:
 		GameState.progress_current_level(LevelData.current_level_index + 1)
 
 	if goto:
+		if goto_delay > 0:
+			yield(get_tree().create_timer(goto_delay), "timeout")
 		goto_next_level()
 	
 	

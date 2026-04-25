@@ -297,6 +297,14 @@ class LevelResult:
 			# level result wasn't updated as it wasn't a better result
 			return false
 	
+	# Return the time difference between current result and previous
+	func get_completion_time_diff():
+		if self.previous_completion_time > 0:
+			# A previous time exists so calculate the difference
+			return self.completion_time - self.previous_completion_time
+		else:
+			return 0
+	
 	func is_completed() -> bool:
 		return completion_time > 0;
 	
