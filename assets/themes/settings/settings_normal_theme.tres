@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=1510 format=2]
+[gd_resource type="Theme" load_steps=1512 format=2]
 
 [ext_resource path="res://assets/themes/settings/settings-normal-button1.png" type="Texture" id=1]
 [ext_resource path="res://assets/themes/settings/settings-normal-button2.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/art/ui/scrollbar-grabber.png" type="Texture" id=7]
 [ext_resource path="res://assets/art/ui/scrollbar-scroll.png" type="Texture" id=8]
 [ext_resource path="res://src/UI/UserScreen/line-edit-cross.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/Settings/slider-grabber1.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/Settings/slider-grabber2.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -10943,14 +10945,28 @@ content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-bg_color = Color( 0.4, 0.4225, 0.4825, 1 )
+bg_color = Color( 0.152941, 0.694118, 0.00392157, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.85098, 0.627451, 0.4, 1 )
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id=1458]
 content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-bg_color = Color( 0.4, 0.4225, 0.4825, 1 )
+bg_color = Color( 0.152941, 0.694118, 0.00392157, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.85098, 0.627451, 0.4, 1 )
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id=1459]
 content_margin_left = 0.0
@@ -10958,6 +10974,13 @@ content_margin_right = 0.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
 bg_color = Color( 0.1, 0.115, 0.155, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.85098, 0.627451, 0.4, 1 )
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id=1460]
 texture = SubResource( 15 )
@@ -12233,8 +12256,8 @@ HScrollBar/styles/grabber_pressed = SubResource( 1453 )
 HScrollBar/styles/scroll = SubResource( 1454 )
 HScrollBar/styles/scroll_focus = SubResource( 1455 )
 HSeparator/styles/separator = SubResource( 1456 )
-HSlider/icons/grabber = SubResource( 627 )
-HSlider/icons/grabber_highlight = SubResource( 629 )
+HSlider/icons/grabber = ExtResource( 10 )
+HSlider/icons/grabber_highlight = ExtResource( 11 )
 HSlider/styles/grabber_area = SubResource( 1457 )
 HSlider/styles/grabber_area_highlight = SubResource( 1458 )
 HSlider/styles/slider = SubResource( 1459 )

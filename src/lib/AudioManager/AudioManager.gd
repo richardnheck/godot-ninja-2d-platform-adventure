@@ -108,6 +108,19 @@ func is_music_muted():
 
 func is_sound_fx_muted():
 	return AudioServer.is_bus_mute(SFX_BUS)
+
+func get_sound_fx_volume():
+	return AudioServer.get_bus_volume_db(SFX_BUS)
+	
+func set_sound_fx_volume(volume_in_db):
+	AudioServer.set_bus_volume_db(SFX_BUS, volume_in_db)
+
+func set_music_volume(volume_in_db):
+	AudioServer.set_bus_volume_db(BGM_BUS, volume_in_db)
+	
+func get_music_volume():
+	return AudioServer.get_bus_volume_db(BGM_BUS)
+	
 		
 #BGM (Background Music)
 onready var bgm_core : AudioStreamPlayer = $BGM/BgmCore_DONT_TOUCH_THIS

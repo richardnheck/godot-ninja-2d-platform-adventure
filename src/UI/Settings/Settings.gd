@@ -15,6 +15,8 @@ onready var window_type_option_button := $"%WindowTypeOptionButton"
 onready var tab_container:TabContainer = $"%TabContainer"
 onready var cut_scene_base:CutSceneBase = $"%CutSceneBase"
 onready var player_animated_texture_rect := $"%AnimatedTextureRect"
+onready var soundfx_volume_slider := $"%SoundFxHSlider"
+onready var music_volume_slider := $"%MusicHSlider"
 
 var resolutions = {
 	"2560x1440": Vector2(2560, 1440), # 1440p
@@ -46,6 +48,10 @@ func _ready() -> void:
 	
 	_add_resolutions()
 	_add_window_types()
+	
+	# initialise volume sliders in Audio tab
+	soundfx_volume_slider.value = db2linear(Game_AudioManager.get_sound_fx_volume())
+	music_volume_slider.value = db2linear(Game_AudioManager.get_music_volume())
 
 # Handle when the scene becomes visible
 func _on_Settings_visibility_changed():
@@ -183,5 +189,16 @@ func _on_AnimatedTextureRect_gui_input(event):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			_change_player_animation()
 
+func _on_SoundFxHSlider_value_changed(value):
+	var db_volume = linear2db(value)
+	Game_AudioManager.set_sound_fx_volume(db_volume)
 
+func _on_MusicHSlider_value_changed(value):
+	var db_volume = linear2db(value)
+	Game_AudioManager.set_music_volume(db_volume)
+
+
+
+func _on_TestSoundFxButton_pressed():
+	Game_AudioManager.sfx_ui_basic_blip_select.play()
 
