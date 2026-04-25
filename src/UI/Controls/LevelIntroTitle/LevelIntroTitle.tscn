@@ -5,6 +5,7 @@
 [ext_resource path="res://src/UI/Controls/LevelIntroTitle/embellishment.png" type="Texture" id=3]
 
 [node name="LevelIntroTitle" type="CanvasLayer"]
+layer = 0
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -15,6 +16,7 @@ color = Color( 0, 0, 0, 0.662745 )
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
 anchor_right = 1.0
 margin_bottom = 21.0
+mouse_filter = 2
 alignment = 1
 
 [node name="LeftEmbellishment" type="TextureRect" parent="ColorRect/HBoxContainer"]
