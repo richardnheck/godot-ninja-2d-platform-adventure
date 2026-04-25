@@ -62,7 +62,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="MobileControlsHUD" parent="." instance=ExtResource( 3 )]
-layer = 0
 
 [node name="TutorialPanels" type="Node2D" parent="."]
 position = Vector2( 157, 90 )
