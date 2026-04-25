@@ -1,14 +1,14 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://src/UI/CutScenes/World2/BossClearCutScene.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/art/tilesets/world2/stone-ground-tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://src/UI/CutScenes/World2/Boss.gd" type="Script" id=5]
 [ext_resource path="res://src/UI/CutScenes/stage-clear-text.png" type="Texture" id=6]
 [ext_resource path="res://src/objects/camera-effects/ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/CutScenes/medium-dialogbox.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/8-bit-fortress-font-7px.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/art/tilesets/world2/pylon.png" type="Texture" id=11]
 [ext_resource path="res://assets/art/tilesets/world3/sashimono.png" type="Texture" id=12]
 [ext_resource path="res://assets/art/tilesets/world2/stone-bricks-tileset/tileset_stone-bricks-tileset.tres" type="TileSet" id=13]
@@ -210,6 +210,18 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerForCutscene:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -20, 112 ) ]
 }
 
 [sub_resource type="Animation" id=40]
@@ -413,21 +425,54 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=34]
 length = 2.0
 step = 0.05
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerForCutscene:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.45, 2 ),
+"times": PoolRealArray( 0, 0.1, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 240, 112 ), Vector2( 240, 112 ), Vector2( 275, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerForCutscene:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerForCutscene:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.45, 1.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
+"method": "trigger_talisman"
 }, {
 "args": [  ],
 "method": "do_ending"
@@ -443,14 +488,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2.9 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
+"method": "do_boss_fly_in"
 } ]
 }
 tracks/1/type = "method"
@@ -460,34 +502,6 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.9 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "look_player_left"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 2.9 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "do_boss_fly_in"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -495,17 +509,53 @@ tracks/3/keys = {
 "method": "play_bgm"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boss:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -96, 80 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerForCutscene:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -20, 112 ), Vector2( 240, 112 ) ]
+}
 tracks/4/type = "value"
-tracks/4/path = NodePath("Boss:position")
+tracks/4/path = NodePath("PlayerForCutscene:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -96, 80 ) ]
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerForCutscene:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=36]
@@ -565,8 +615,6 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
-
 [node name="World2 - BossClearCutScene" type="Node"]
 script = ExtResource( 1 )
 
@@ -578,9 +626,6 @@ margin_top = -18.0
 margin_right = 1240.0
 margin_bottom = 10.0
 color = Color( 0, 0, 0, 1 )
-
-[node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 27, 144 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, 90 )
@@ -629,9 +674,19 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 
+[node name="PlayerForCutscene" type="AnimatedSprite" parent="." groups=["player"]]
+unique_name_in_owner = true
+position = Vector2( -20, 112 )
+z_index = 1
+frames = ExtResource( 4 )
+animation = "idle"
+playing = true
+centered = false
+
 [node name="Props" type="Node" parent="."]
 
 [node name="DemonSeal" parent="Props" instance=ExtResource( 15 )]
+unique_name_in_owner = true
 position = Vector2( 277, 104.693 )
 colour = 2
 
@@ -782,7 +837,7 @@ __meta__ = {
 
 [node name="StageClearText" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 176, 87 )
+position = Vector2( 160, 87 )
 texture = ExtResource( 6 )
 
 [node name="CutSceneBase" parent="." instance=ExtResource( 2 )]
@@ -819,13 +874,6 @@ anims/show = SubResource( 37 )
 [node name="FadeScreen" parent="." instance=ExtResource( 16 )]
 position = Vector2( -8, 0 )
 
-[node name="StopPointArea2D" type="Area2D" parent="."]
-position = Vector2( 5, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StopPointArea2D"]
-position = Vector2( 262, 135.165 )
-shape = SubResource( 17 )
-
 [node name="Sashimono" type="Sprite" parent="."]
 position = Vector2( 295, 72 )
 texture = ExtResource( 12 )
@@ -847,7 +895,6 @@ color = Color( 0, 0, 0, 1 )
 
 [connection signal="pressed" from="CutSceneBase/Control/SkipButton" to="CutSceneBase" method="_on_SkipButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="body_entered" from="StopPointArea2D" to="." method="_on_StopPointArea2D_body_entered"]
 
 [editable path="Boss"]
 [editable path="CutSceneBase"]
