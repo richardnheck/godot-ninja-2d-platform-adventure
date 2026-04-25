@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/UI/CutScenes/big-dialogbox.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/CutScenes/CutSceneBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/front-tree-leaves-sheet_158x95.png" type="Texture" id=4]
+[ext_resource path="res://src/UI/CutScenes/player_animations.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/background.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/tilesets/cave-level/cave-props-tileset.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/CutScenes/StoryIntroScreen/StoryIntro.gd" type="Script" id=8]
@@ -619,21 +619,50 @@ animations = [ {
 
 [sub_resource type="Animation" id=11]
 step = 0.05
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("PlayerForCutscene:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.55 ),
+"points": PoolRealArray( 180, -0.25, 0, 0.2, 9.86499, 223, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.55 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("PlayerForCutscene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 114, -0.25, 0, 0.55, -99.16, 170.527, -0.2, 0.113541, 1.05, 0.598053 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerForCutscene:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "jump-up", "jump-down" ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
+"method": "_goto_next_scene"
 } ]
 }
 
@@ -647,23 +676,6 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.95 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 1.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -671,33 +683,64 @@ tracks/1/keys = {
 "method": "start_dialog"
 } ]
 }
-
-[sub_resource type="Animation" id=13]
-length = 1.5
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "move_player_right"
-}, {
-"args": [  ],
-"method": "move_player_stop"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerForCutscene:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "talk" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerForCutscene:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 114 ), Vector2( 117, 114 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerForCutscene:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "walk", "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerForCutscene:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 117, 114 ), Vector2( 180, 114 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 1.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -710,6 +753,9 @@ tracks/1/keys = {
 
 [node name="StoryIntro" type="Node"]
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 31.0 ]
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -726,16 +772,13 @@ current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 16, 146 )
-
 [node name="TileMapWorld" type="TileMap" parent="."]
 position = Vector2( 0, 2 )
 tile_set = SubResource( 10 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 524289, 536870914, 65540, 524291, 2, 65540, 524304, 536870914, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589831, 0, 196610, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196610, 589837, 16, 3, 589840, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655372, 13, 3, 655373, 0, 65541, 655376, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
+tile_data = PoolIntArray( 131091, 0, 65541, 524289, 536870914, 65540, 524291, 2, 65540, 589824, 0, 196610, 589825, 0, 196610, 589826, 0, 196610, 589827, 0, 196610, 589828, 0, 196610, 589829, 0, 196610, 589830, 0, 196610, 589831, 0, 196610, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 196610, 589841, 0, 196610, 589842, 0, 196610, 589843, 0, 196610, 655360, 13, 3, 655361, 13, 3, 655362, 13, 3, 655363, 13, 3, 655364, 13, 3, 655365, 13, 3, 655366, 13, 3, 655367, 13, 3, 655368, 13, 3, 655369, 13, 3, 655370, 13, 3, 655371, 13, 3, 655377, 13, 3, 655378, 13, 3, 655379, 13, 3 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 6 )
@@ -754,6 +797,13 @@ texture = ExtResource( 10 )
 position = Vector2( -3, -2 )
 frames = SubResource( 30 )
 playing = true
+
+[node name="PlayerForCutscene" type="AnimatedSprite" parent="." groups=["player"]]
+position = Vector2( 180, 114 )
+frames = ExtResource( 5 )
+animation = "idle"
+playing = true
+centered = false
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -813,9 +863,6 @@ So let's get this show on the road.
 
 
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/jump = SubResource( 11 )
