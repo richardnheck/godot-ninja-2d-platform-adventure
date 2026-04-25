@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/objects/falling-spike/FallingSpike.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/characters/enemies/CaveLevelBoss/BossFallingSpikeArray.gd" type="Script" id=2]
+[ext_resource path="res://src/objects/falling-spike/BossFallingSpike.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 97.7719, 4.16627 )
@@ -13,18 +14,35 @@ script = ExtResource( 2 )
 position = Vector2( 90.7874, 0.603149 )
 collision_mask = 97
 
+[node name="Sprite" parent="FallingSpike4" index="1"]
+texture = ExtResource( 3 )
+
 [node name="FallingSpike3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 26.7874, 0.603149 )
 collision_mask = 97
+
+[node name="Sprite" parent="FallingSpike3" index="1"]
+texture = ExtResource( 3 )
 
 [node name="FallingSpike2" parent="." instance=ExtResource( 1 )]
 position = Vector2( -37.2126, 0.603149 )
 collision_mask = 97
 
+[node name="Sprite" parent="FallingSpike2" index="1"]
+texture = ExtResource( 3 )
+
 [node name="FallingSpike1" parent="." instance=ExtResource( 1 )]
 position = Vector2( -93.2126, 0.603149 )
 collision_mask = 97
 
+[node name="Sprite" parent="FallingSpike1" index="1"]
+texture = ExtResource( 3 )
+
 [node name="WidthMeasurement" type="CollisionShape2D" parent="."]
 position = Vector2( 5.78745, 0.603149 )
 shape = SubResource( 1 )
+
+[editable path="FallingSpike4"]
+[editable path="FallingSpike3"]
+[editable path="FallingSpike2"]
+[editable path="FallingSpike1"]
