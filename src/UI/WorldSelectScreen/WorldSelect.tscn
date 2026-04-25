@@ -43,15 +43,6 @@ margin_bottom = 90.0
 texture = ExtResource( 5 )
 centered = false
 
-[node name="BackButton" parent="." instance=ExtResource( 8 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = -21.0
-margin_right = 21.0
-margin_bottom = -5.0
-next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -97,6 +88,24 @@ texture_hover = ExtResource( 7 )
 texture_disabled = ExtResource( 16 )
 
 [node name="FadeScreen" parent="." instance=ExtResource( 9 )]
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+mouse_filter = 2
+
+[node name="BackButton" parent="Control" instance=ExtResource( 8 )]
+margin_left = 5.0
+margin_top = 159.0
+margin_right = 21.0
+margin_bottom = 175.0
+next_scene_path = "res://src/UI/MainScreen/MainScreen.tscn"
 
 [connection signal="button_up" from="HBoxContainer/World1Button" to="." method="_on_World1Button_button_up"]
 [connection signal="pressed" from="HBoxContainer/World2Button" to="." method="_on_World2Button_pressed"]
