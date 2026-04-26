@@ -34,3 +34,7 @@ func _on_tween_completed(object: Object, key: NodePath) -> void:
 	._on_tween_completed(object,key)
 	animated_sprite.flip_h = false
 	animated_sprite.flip_v = not animated_sprite.flip_v
+	if animated_sprite.flip_v:
+		animated_sprite.offset.y = -20
+	else:
+		animated_sprite.offset.y = 0
