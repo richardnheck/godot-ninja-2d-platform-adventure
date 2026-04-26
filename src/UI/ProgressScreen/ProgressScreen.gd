@@ -9,8 +9,8 @@ signal on_closed
 # Specify the world(stage) for which to show the levels
 export(int,1,3) var world = 1
 
-onready var game_tree = $"%GameProgressTree"
-onready var level_tree = $"%LevelProgressTree"
+onready var game_grid = $"%GameProgressGrid"
+onready var level_grid = $"%LevelProgressGrid"
 onready var stage_option_button = $"%StageOptionButton"
 onready var control = $Control
 onready var game_header_panel = $Control/GameProgressHeaderPanel
@@ -52,6 +52,7 @@ func _configure_data_cell_stylebox() -> void:
 	data_cell_stylebox.content_margin_bottom = 0
 
 func _apply_header_style() -> void:
+	# Get the same header style from the tree component used in leaderboards
 	var tree_style = control.theme.get_stylebox("title_button_normal", "Tree")
 	if tree_style:
 		game_header_panel.add_stylebox_override("panel", tree_style)
@@ -91,19 +92,19 @@ func _populate_game_grid() -> void:
 	var completed_game = GameState.has_completed_game()
 	var total_deaths = GameState.level_results.get_total_deaths()
 	var total_time = GameState.level_results.get_total_completion_time()
-	_clear_grid(game_tree)
+	_clear_grid(game_grid)
 	
 	var time = Stopwatch.get_time_as_formatted_string(total_time, Stopwatch.TimeFormat)
 	var submitted = _get_iso_date_from_msecs(total_time) if completed_game else NO_SUBMITTED_DATE
 
-	_add_grid_cell(game_tree, "Yes" if completed_game else "No", GAME_COLUMN_WIDTHS[0], true)
-	_add_grid_cell(game_tree, time, GAME_COLUMN_WIDTHS[1], false)
-	_add_grid_cell(game_tree, str(total_deaths), GAME_COLUMN_WIDTHS[2], true)
-	_add_grid_cell(game_tree, submitted, GAME_COLUMN_WIDTHS[3], false, true)
+	_add_grid_cell(game_grid, "Yes" if completed_game else "No", GAME_COLUMN_WIDTHS[0], true)
+	_add_grid_cell(game_grid, time, GAME_COLUMN_WIDTHS[1], false)
+	_add_grid_cell(game_grid, str(total_deaths), GAME_COLUMN_WIDTHS[2], true)
+	_add_grid_cell(game_grid, submitted, GAME_COLUMN_WIDTHS[3], false, true)
 
 func _populate_level_grid() -> void:
 	print("Populated level for world: ", current_world)
-	_clear_grid(level_tree)
+	_clear_grid(level_grid)
 
 	var num_levels = LevelData.get_levels_for_world(current_world).size()
 	var start_index = (current_world - 1) * LevelData.LEVELS_PER_WORLD
@@ -112,15 +113,15 @@ func _populate_level_grid() -> void:
 		print("level_index", level_index)
 		var level_result = GameState.level_results.get_level_result(level_index)
 		print(level_result)
-		_add_grid_cell(level_tree, str(index + 1) if index < num_levels - 1 else "Boss", LEVEL_COLUMN_WIDTHS[0], true)
+		_add_grid_cell(level_grid, str(index + 1) if index < num_levels - 1 else "Boss", LEVEL_COLUMN_WIDTHS[0], true)
 		
 		var completed_level = level_result.completion_time > 0.0
 		var time = Stopwatch.get_time_as_formatted_string(level_result.completion_time, Stopwatch.TimeFormat) if completed_level else NO_TIME
 		var deaths = str(level_result.deaths) if completed_level else "-"
 		var submitted = _get_iso_date_from_msecs(level_result.timestamp) if completed_level else NO_SUBMITTED_DATE
-		_add_grid_cell(level_tree, time, LEVEL_COLUMN_WIDTHS[1], false)
-		_add_grid_cell(level_tree, deaths, LEVEL_COLUMN_WIDTHS[2], true)
-		_add_grid_cell(level_tree, submitted, LEVEL_COLUMN_WIDTHS[3], false, true)
+		_add_grid_cell(level_grid, time, LEVEL_COLUMN_WIDTHS[1], false)
+		_add_grid_cell(level_grid, deaths, LEVEL_COLUMN_WIDTHS[2], true)
+		_add_grid_cell(level_grid, submitted, LEVEL_COLUMN_WIDTHS[3], false, true)
 
 func _clear_grid(grid: GridContainer) -> void:
 	while grid.get_child_count() > 0:

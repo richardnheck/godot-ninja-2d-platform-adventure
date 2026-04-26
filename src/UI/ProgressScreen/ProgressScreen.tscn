@@ -28,6 +28,7 @@ theme = ExtResource( 6 )
 [node name="GameProgressHeader" type="HBoxContainer" parent="Control/GameProgressHeaderPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 
 [node name="CompletedLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
 margin_right = 60.0
@@ -37,35 +38,36 @@ text = "Completed"
 align = 1
 
 [node name="TimeLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
-margin_left = 64.0
-margin_right = 134.0
+margin_left = 60.0
+margin_right = 130.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 70, 0 )
 text = "Time"
 
 [node name="DeathsLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
-margin_left = 138.0
-margin_right = 188.0
+margin_left = 130.0
+margin_right = 180.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 50, 0 )
 text = "Deaths"
 align = 1
 
 [node name="SubmittedLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
-margin_left = 192.0
+margin_left = 180.0
 margin_right = 272.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "Submitted"
 
-[node name="GameProgressTree" type="GridContainer" parent="Control"]
+[node name="GameProgressGrid" type="GridContainer" parent="Control"]
 unique_name_in_owner = true
 margin_left = 24.0
-margin_top = 30.0
+margin_top = 28.0
 margin_right = 296.0
-margin_bottom = 43.0
+margin_bottom = 41.0
 theme = ExtResource( 6 )
-custom_constants/hseparation = 4
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 4
 
 [node name="LevelProgressHeaderPanel" type="Panel" parent="Control"]
@@ -78,6 +80,7 @@ theme = ExtResource( 6 )
 [node name="LevelProgressHeader" type="HBoxContainer" parent="Control/LevelProgressHeaderPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 
 [node name="LevelLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
 margin_right = 35.0
@@ -87,35 +90,36 @@ text = "Level"
 align = 1
 
 [node name="TimeLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
-margin_left = 39.0
-margin_right = 119.0
+margin_left = 35.0
+margin_right = 115.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 80, 0 )
 text = "Time"
 
 [node name="DeathsLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
-margin_left = 123.0
-margin_right = 173.0
+margin_left = 115.0
+margin_right = 165.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 50, 0 )
 text = "Deaths"
 align = 1
 
 [node name="SubmittedLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
-margin_left = 177.0
+margin_left = 165.0
 margin_right = 272.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "Submitted"
 
-[node name="LevelProgressTree" type="GridContainer" parent="Control"]
+[node name="LevelProgressGrid" type="GridContainer" parent="Control"]
 unique_name_in_owner = true
 margin_left = 24.0
 margin_top = 81.0
 margin_right = 296.0
 margin_bottom = 174.0
 theme = ExtResource( 6 )
-custom_constants/hseparation = 4
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 4
 
 [node name="ColorRect3" type="ColorRect" parent="Control"]
