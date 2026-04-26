@@ -7,8 +7,7 @@ onready var right_touch_screen_button = $Control/HBoxContainerLeft/RightTouchScr
 onready var jump_touch_screen_button = $Control/HBoxContainerRight/JumpTouchScreenButton
 onready var pause_button = $Control/PauseButton
 onready var hud_key = $Control/Key
-onready var timer_label = $"%TimerLabel"
-onready var time_status_label = $"%TimeStatusLabel"
+onready var level_timer := $"%LevelTimer"
 
 var paused: = false setget set_paused
 
@@ -26,8 +25,8 @@ func _ready() -> void:
 	hud_key.visible = LevelData.has_key 	# default value in LevelData
 	LevelData.connect("key_status_changed", self, "_on_key_status_changed")
 	
-	timer_label.visible = Settings.get_show_level_timer_enabled()
-	time_status_label.visible = false
+	#timer_label.visible = Settings.get_show_level_timer_enabled()
+	#time_status_label.visible = false
 # 
 # Handle when controls in the settings are changed
 #	
@@ -71,10 +70,9 @@ func _on_PauseButton_pressed() -> void:
 func _on_CloseButton_pressed() -> void:
 	_on_PausedPlayButton_pressed()
 
+# Set the time status indicating difference in time from their current best time
 func set_time_status(message:String) -> void:
-	time_status_label.text = message
-	time_status_label.visible = true
-
+	level_timer.set_status(message)
 
 func _show_touch_screen_controls(controls_visible:bool):
 	left_touch_screen_button.visible = controls_visible

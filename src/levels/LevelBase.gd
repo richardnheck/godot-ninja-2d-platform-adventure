@@ -18,7 +18,6 @@ onready var start_door = get_node("Props/DoorStart")
 onready var intro_title = null
 
 onready var hud = $MobileControlsHUD
-onready var timer_label = $MobileControlsHUD/Control/TimerLabel
 
 var player:Player
 var fadeScreen:FadeScreen
@@ -136,12 +135,6 @@ func _ready() -> void:
 	
 	print("LevelBase: _ready() end")	
 
-
-func _process(_delta: float) -> void:
-	if timer_label and Settings.get_show_level_timer_enabled():
-		timer_label.text = Stopwatch.get_elapsed_time_as_formatted_string(Stopwatch.TimeFormat)
-
-
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:
 #		return 'Remove Temporary Spawn Position!!!'
@@ -199,13 +192,23 @@ func _progress_player_and_goto_next_level(goto:bool = true, goto_delay:float = 0
 	
 	var level_result = GameState.update_level_result(LevelData.current_level_index,  Stopwatch.get_elapsed_time_in_seconds(), LevelMetrics.deaths)
 	if level_result:
-		if level_result.get_completion_time_diff() < 0:
-			var time_status = "-%s" % [Stopwatch.get_time_as_formatted_string(abs(level_result.get_completion_time_diff()),Stopwatch.TimeFormat)]
+		var time_diff = level_result.get_completion_time_diff()
+		if time_diff != 0:
+			# Get the time difference to display as the status
+			# NB: The stopwatch format function is janky with negatives so this is why we calculate the sign separate and always format the time as a positive number
+			var status_sign = "-" if time_diff < 0 else "+"   
+			var time_status = "%s%s" % [status_sign, Stopwatch.get_time_as_formatted_string(abs(time_diff),Stopwatch.TimeFormat)]
 			print("time_status: " , time_status)
 			hud.set_time_status(time_status)
-		# This means the player added first result or improved on a previous result
-		# NB: The score is the completion time
-		Analytics.add_level_leaderboard_entry(LevelData.current_level_index, level_result.completion_time)
+		
+		if time_diff < 0 or time_diff == 0:
+			# This means the player added first result or improved on a previous result 
+			# Update the players score on the leaderboard NB: The score is the completion time
+			Analytics.add_level_leaderboard_entry(LevelData.current_level_index, level_result.completion_time)
+		
+		
+		
+	
 	
 	if LevelData.current_level_index < LevelData.levelsArray.size() - 1:	
 		GameState.progress_current_level(LevelData.current_level_index + 1)

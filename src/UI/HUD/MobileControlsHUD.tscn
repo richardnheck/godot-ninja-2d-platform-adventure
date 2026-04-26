@@ -22,6 +22,7 @@
 [ext_resource path="res://src/UI/HUD/hud-key.png" type="Texture" id=20]
 [ext_resource path="res://src/UI/Settings/SoundFxVolumeSlider.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/UI/Settings/MusicVolumeSlider.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/UI/LevelTimer/LevelTimer.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( -40, -115, 25, -115, 25, 70, -40, 70 )
@@ -34,13 +35,6 @@ points = PoolVector2Array( -40, 85, 52, 85, 52, -100, -40, -100 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 10 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-content_margin_left = 3.0
-content_margin_right = 3.0
-content_margin_top = 3.0
-content_margin_bottom = 0.0
-bg_color = Color( 0, 0, 0, 0.403922 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 0, 0, 0.709804 )
@@ -179,21 +173,8 @@ margin_left = -16.0
 margin_bottom = 16.0
 texture = ExtResource( 20 )
 
-[node name="TimerLabel" type="Label" parent="Control"]
+[node name="LevelTimer" parent="Control" instance=ExtResource( 23 )]
 unique_name_in_owner = true
-margin_right = 53.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 13 )
-custom_styles/normal = SubResource( 8 )
-
-[node name="TimeStatusLabel" type="Label" parent="Control"]
-unique_name_in_owner = true
-margin_left = 53.0
-margin_right = 109.0
-margin_bottom = 13.0
-custom_colors/font_color = Color( 0, 0.819608, 0, 1 )
-custom_fonts/font = ExtResource( 13 )
-custom_styles/normal = SubResource( 8 )
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false

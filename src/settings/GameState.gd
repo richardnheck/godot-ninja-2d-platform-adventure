@@ -227,7 +227,10 @@ class LevelResults:
 				var previous_completion_time:float = level.previous_completion_time if "previous_completion_time" in level else 0.0
 				var previous_timestamp:int = level.previous_timestamp if "previous_timestamp" in level else 0
 				var previous_deaths:int = level.previous_deaths if "previous_deaths" in level else 0
-				levels.append(LevelResult.new(completion_time, timestamp, deaths, previous_completion_time, previous_timestamp, previous_deaths))
+				var latest_completion_time:float = level.latest_completion_time if "latest_completion_time" in level else 0.0
+				var latest_timestamp:int = level.latest_timestamp if "latest_timestamp" in level else 0
+				var latest_deaths:int = level.latest_deaths if "latest_deaths" in level else 0
+				levels.append(LevelResult.new(completion_time, timestamp, deaths, previous_completion_time, previous_timestamp, latest_deaths, latest_timestamp, latest_deaths))
 			return LevelResults.new(levels)
 		else:	
 			return LevelResults.new()
@@ -243,8 +246,8 @@ class LevelResults:
 	func update_level_result(level_index:int, completion_time:float, deaths:int) -> LevelResult:
 		if level_index >= levels.size(): return null
 		var level_result:LevelResult = levels[level_index]	
-		var updated:bool = level_result.update(completion_time, deaths)
-		return level_result if updated else null
+		level_result.update(completion_time, deaths)
+		return level_result
 		
 	func get_level_result(level_index:int) -> LevelResult:
 		if level_index >= levels.size(): return null
@@ -263,6 +266,7 @@ class LevelResults:
 		return deaths	
 
 class LevelResult:
+	# Best current result
 	var completion_time:float   # completion time of level in seconds
 	var timestamp:int			# unix timestamp in msecs (compatible with Talo analytics)
 	var deaths:int				# number of deaths for the level
@@ -272,15 +276,30 @@ class LevelResult:
 	var previous_timestamp:int
 	var previous_deaths:int
 	
-	func _init(completion_time:float = 0, timestamp:int = 0, deaths:int = 0, previous_completion_time:float = 0, previous_timestamp:int = 0, previous_deaths:int = 0):
+	# Players latest (i.e most recent) result
+	var latest_completion_time:float
+	var latest_timestamp:int
+	var latest_deaths:int
+	
+	func _init(completion_time:float = 0, timestamp:int = 0, deaths:int = 0, previous_completion_time:float = 0, previous_timestamp:int = 0, previous_deaths:int = 0, latest_completion_time:float = 0, latest_timestamp:int = 0, latest_deaths:int = 0):
 		self.completion_time = completion_time
 		self.timestamp = timestamp
 		self.deaths = deaths
 		self.previous_completion_time = previous_completion_time
 		self.previous_timestamp = previous_timestamp
 		self.previous_deaths = previous_deaths
-	
+		self.latest_completion_time = latest_completion_time
+		self.latest_timestamp = latest_timestamp
+		self.latest_deaths = latest_deaths
+		
+	# Update the result
+	# Returns true if a better result, false otherwise
 	func update(completion_time:float = 0, deaths:int = 0) -> bool:
+		# Always record the latest result
+		self.latest_completion_time = completion_time
+		self.latest_timestamp = _get_timestamp_msec()
+		self.latest_deaths = deaths
+		
 		if self.completion_time == 0.0 or (completion_time > 0 and completion_time <= self.completion_time):
 			# Update the record since this is a better result (i.e. faster)
 			# First the current record as the previous
@@ -294,16 +313,17 @@ class LevelResult:
 			self.deaths = deaths
 			return true
 		else:
-			# level result wasn't updated as it wasn't a better result
+			# level result wasn't updated with a better time
 			return false
 	
-	# Return the time difference between current result and previous
+	# Return the time difference between latest result and best result
 	func get_completion_time_diff():
-		if self.previous_completion_time > 0:
-			# A previous time exists so calculate the difference
-			return self.completion_time - self.previous_completion_time
+		if self.latest_completion_time == self.completion_time:
+			# latest time was the best time
+			return self.latest_completion_time - self.previous_completion_time if self.previous_completion_time > 0 else 0
 		else:
-			return 0
+			# latest time wasn't the best time
+			return self.latest_completion_time - self.completion_time
 	
 	func is_completed() -> bool:
 		return completion_time > 0;
@@ -315,7 +335,10 @@ class LevelResult:
 			"deaths" :deaths,
 			"previous_completion_time": previous_completion_time,
 			"previous_timestamp" : previous_timestamp,
-			"previous_deaths" : previous_deaths
+			"previous_deaths" : previous_deaths,
+			"latest_completion_time": latest_completion_time,
+			"latest_timestamp" : latest_timestamp,
+			"latest_deaths" : latest_deaths
 		}
 
 	static func from_dictionary(dict:Dictionary) -> LevelResult:
@@ -325,7 +348,10 @@ class LevelResult:
 		var previous_completion_time = dict.previous_completion_time if dict.has("previous_completion_time") else 0.0
 		var previous_timestamp = dict.previous_timestamp if dict.has("previous_timetamp") else 0
 		var previous_deaths = dict.previous_deaths if dict.has("previous_deaths") else 0
-		return LevelResult.new(completion_time, timestamp, deaths)
+		var latest_completion_time = dict.previous_completion_time if dict.has("latest_completion_time") else 0.0
+		var latest_timestamp = dict.previous_timestamp if dict.has("latest_timetamp") else 0
+		var latest_deaths = dict.previous_deaths if dict.has("latest_deaths") else 0
+		return LevelResult.new(completion_time, timestamp, deaths, previous_completion_time, previous_timestamp, previous_deaths, latest_completion_time, latest_timestamp, latest_deaths)
 
 	# Get the current timestamp in unix msecs (compatible with Taol analytics)
 	func _get_timestamp_msec() -> int:
