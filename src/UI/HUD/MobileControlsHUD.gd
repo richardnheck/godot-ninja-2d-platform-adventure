@@ -8,6 +8,7 @@ onready var jump_touch_screen_button = $Control/HBoxContainerRight/JumpTouchScre
 onready var pause_button = $Control/PauseButton
 onready var hud_key = $Control/Key
 onready var level_timer := $"%LevelTimer"
+onready var show_level_timer_button = $"%ShowLevelTimerOnOffButton"
 
 var paused: = false setget set_paused
 
@@ -56,6 +57,9 @@ func set_paused(value:bool) -> void:
 		var backButton = get_node("%BigBackButton")
 		backButton.next_scene_path = LevelData.get_current_world_level_select_scene()
 	
+		# update controls that rely on the settings
+		# NB: Volume sliders are components that update their own values so not required here
+		show_level_timer_button.set_on(Settings.get_show_level_timer_enabled())	
 	
 func _on_PauseButton_pressed() -> void:
 	Game_AudioManager.sfx_ui_pause.play()
@@ -71,8 +75,12 @@ func _on_CloseButton_pressed() -> void:
 	_on_PausedPlayButton_pressed()
 
 # Set the time status indicating difference in time from their current best time
-func set_time_status(message:String) -> void:
+func set_level_time_status(message:String) -> void:
 	level_timer.set_status(message)
+
+# Get the current formatted time shown by the level timer
+func get_level_time_formatted() -> String:
+	return level_timer.get_time_formatted()
 
 func _show_touch_screen_controls(controls_visible:bool):
 	left_touch_screen_button.visible = controls_visible
@@ -134,7 +142,6 @@ func _on_LeftButton_gui_input(event: InputEvent) -> void:
 		ev.pressed = false
 		Input.parse_input_event(ev)
 
-
 func _on_RightButton_gui_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton && event.pressed):
 		var ev = InputEventAction.new()
@@ -147,5 +154,6 @@ func _on_RightButton_gui_input(event: InputEvent) -> void:
 		ev.pressed = false
 		Input.parse_input_event(ev)
 
-
-
+func _on_ShowLevelTimerOnOffButton_button_pressed(on):
+	Settings.set_show_level_timer_enabled(on)
+	level_timer.visible = on

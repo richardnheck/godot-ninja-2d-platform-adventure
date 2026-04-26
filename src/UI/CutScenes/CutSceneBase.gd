@@ -7,6 +7,8 @@ onready var fadeScreenScene = preload("res://src/UI/FadeScreen/FadeScreen.tscn")
 onready var screenShakeScene = preload("res://src/objects/camera-effects/ScreenShake.tscn")
 onready var skip_button = $Control/SkipButton
 onready var continue_button = $Control/ContinueButton
+onready var level_timer = $Control/LevelTimer
+
 
 var fadeScreen:FadeScreen
 var screenShake:ScreenShake
@@ -23,6 +25,21 @@ func _ready() -> void:
 	# Add the screen shake scene
 	screenShake = screenShakeScene.instance()
 	add_child(screenShake)
+	
+	# Initialise the level timer with saved latest values from the GameState
+	# Show the level timer if a time has been set.  A time will be set if the player has
+	# transitioned from the end of a level to a cutscene.  
+	level_timer.set_time_formatted(GameState.latest_level_time_formatted)
+	level_timer.set_status(GameState.latest_level_time_status)
+	level_timer.visible = level_timer.has_time()
+	if level_timer.visible:
+		# Show the time and status for a few seconds at the start of the cutscene
+		yield(get_tree().create_timer(3), "timeout")
+		level_timer.visible = false
+		# Clear the GameState
+		GameState.latest_level_time_formatted = ""
+		GameState.latest_level_time_status = ""		
+	
 
 
 func goto_next_scene(show_loading_message = false, source_scene_path:String = "") -> void:

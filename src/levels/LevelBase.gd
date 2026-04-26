@@ -199,9 +199,20 @@ func _progress_player_and_goto_next_level(goto:bool = true, goto_delay:float = 0
 			var status_sign = "-" if time_diff < 0 else "+"   
 			var time_status = "%s%s" % [status_sign, Stopwatch.get_time_as_formatted_string(abs(time_diff),Stopwatch.TimeFormat)]
 			print("time_status: " , time_status)
-			hud.set_time_status(time_status)
-		
-		if time_diff < 0 or time_diff == 0:
+			
+			# Display the status to the player
+			hud.set_level_time_status(time_status)
+			
+			# Save the time and status so it can be shown if necessary on a proceeding cutscene
+			# This is required for Level 6 and Boss transitions as there is no pause to show the time and status
+			# before transitioning to the cutscene
+			GameState.latest_level_time_status = time_status
+			GameState.latest_level_time_formatted = hud.get_level_time_formatted()
+		else:
+			GameState.latest_level_time_status = ""
+			GameState.latest_level_time_formatted = hud.get_level_time_formatted()
+			
+		if time_diff <= 0:
 			# This means the player added first result or improved on a previous result 
 			# Update the players score on the leaderboard NB: The score is the completion time
 			Analytics.add_level_leaderboard_entry(LevelData.current_level_index, level_result.completion_time)

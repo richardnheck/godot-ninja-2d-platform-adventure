@@ -7,6 +7,8 @@ onready var time_status_label:Label = $"%TimeStatusLabel"
 var Red = Color("#901b00")		
 var Green = Color("#00d100")
 
+var TimeZero = "00:00:00"
+
 func _ready():
 	visible = _enabled()
 	
@@ -15,6 +17,10 @@ func _ready():
 
 # Set the time status message
 func set_status(message:String) -> void:
+	if message == "":
+		time_status_label.visible = false
+		return
+		
 	var better_time:bool = message.substr(0, 1) == "-"	 # a better time is has a negative sign at the start, a worse time has a + sign	
 	time_status_label.text = message
 	time_status_label.visible = true
@@ -25,7 +31,15 @@ func set_status(message:String) -> void:
 		color = Green
 	
 	time_status_label.add_color_override("font_color", color)
-	
+
+func set_time_formatted(time_formatted:String) -> void:
+	timer_label.text = time_formatted
+
+func get_time_formatted() -> String:
+	return timer_label.text	
+
+func has_time() -> bool:
+	return timer_label.text != "" and timer_label.text != TimeZero
 
 func _enabled() -> bool:
 	return Settings.get_show_level_timer_enabled()

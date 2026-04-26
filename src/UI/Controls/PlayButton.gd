@@ -14,6 +14,8 @@ func _on_pressed() -> void:
 		player.play()	
 	else:
 		Game_AudioManager.sfx_ui_basic_blip_select.play()
+	
+	Stopwatch.reset()
 			
 	get_tree().change_scene(next_scene_path)
 

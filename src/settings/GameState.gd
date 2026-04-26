@@ -31,6 +31,14 @@ var progress = {
 var user:User = null
 var level_results:LevelResults = null
 
+# This is for remembering the latest level time so it can be displayed in a different scene
+# This is required when there is no pause between the end of the level and the transition to a cutscene
+# which occurs at the end of Level 6's and at the end of the Boss levels.  So we need to grab these
+# value in order to show the time to the user at the start of the cutscene
+var latest_level_time_formatted:String = ""
+var latest_level_time_status:String = ""
+
+
 func _ready():
 	print("GameState ready")
 	
