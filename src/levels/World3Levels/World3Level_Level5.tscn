@@ -428,6 +428,7 @@ position = Vector2( 2304, -80 )
 
 [node name="CheckPoint2" parent="InteractiveProps" instance=ExtResource( 14 )]
 position = Vector2( 3904, -80 )
+id = "2"
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 2.0
