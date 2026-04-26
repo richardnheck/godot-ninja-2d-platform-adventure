@@ -15,7 +15,10 @@ func _on_pressed() -> void:
 	else:
 		Game_AudioManager.sfx_ui_basic_blip_select.play()
 	
+	# Stop the stopwatch and clear the latest level time details
 	Stopwatch.reset()
+	GameState.latest_level_time_formatted = ""
+	GameState.latest_level_time_status = ""
 			
 	get_tree().change_scene(next_scene_path)
 
