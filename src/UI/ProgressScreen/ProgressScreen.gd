@@ -13,18 +13,63 @@ onready var game_tree = $"%GameProgressTree"
 onready var level_tree = $"%LevelProgressTree"
 onready var stage_option_button = $"%StageOptionButton"
 onready var control = $Control
+onready var game_header_panel = $Control/GameProgressHeaderPanel
+onready var level_header_panel = $Control/LevelProgressHeaderPanel
+onready var game_header_labels = [
+	$Control/GameProgressHeaderPanel/GameProgressHeader/CompletedLabel,
+	$Control/GameProgressHeaderPanel/GameProgressHeader/TimeLabel,
+	$Control/GameProgressHeaderPanel/GameProgressHeader/DeathsLabel,
+	$Control/GameProgressHeaderPanel/GameProgressHeader/SubmittedLabel
+]
+onready var level_header_labels = [
+	$Control/LevelProgressHeaderPanel/LevelProgressHeader/LevelLabel,
+	$Control/LevelProgressHeaderPanel/LevelProgressHeader/TimeLabel,
+	$Control/LevelProgressHeaderPanel/LevelProgressHeader/DeathsLabel,
+	$Control/LevelProgressHeaderPanel/LevelProgressHeader/SubmittedLabel
+]
 
 const NO_TIME = "        -"
 const NO_SUBMITTED_DATE = "            -"
+const DATA_CELL_BG_ALPHA = 0.35
 
-var game_tree_root = null
-var level_tree_root = null
+const GAME_COLUMN_WIDTHS = [60, 70, 50, 40]
+const LEVEL_COLUMN_WIDTHS = [35, 80, 50, 40]
+
 var current_world = 1
+var data_cell_stylebox: StyleBoxFlat = null
 
 func _ready() -> void:
+	_configure_data_cell_stylebox()
+	_apply_header_style()
 	_populate_stage_option_button()
-	_init_game_tree()
-	_init_level_tree()
+
+func _configure_data_cell_stylebox() -> void:
+	data_cell_stylebox = StyleBoxFlat.new()
+	data_cell_stylebox.bg_color = Color(0, 0, 0, DATA_CELL_BG_ALPHA)
+	data_cell_stylebox.content_margin_left = 2
+	data_cell_stylebox.content_margin_right = 2
+	data_cell_stylebox.content_margin_top = 0
+	data_cell_stylebox.content_margin_bottom = 0
+
+func _apply_header_style() -> void:
+	var tree_style = control.theme.get_stylebox("title_button_normal", "Tree")
+	if tree_style:
+		game_header_panel.add_stylebox_override("panel", tree_style)
+		level_header_panel.add_stylebox_override("panel", tree_style)
+
+	var tree_title_font = control.theme.get_font("title_button_font", "Tree")
+	for label in game_header_labels:
+		_style_header_label(label, tree_title_font)
+	for label in level_header_labels:
+		_style_header_label(label, tree_title_font)
+
+func _style_header_label(label: Label, header_font: Font) -> void:
+	if header_font:
+		label.add_font_override("font", header_font)
+	label.add_color_override("font_color", Color.white)
+	label.add_color_override("font_color_shadow", Color.black)
+	label.add_constant_override("shadow_offset_x", 0)
+	label.add_constant_override("shadow_offset_y", 1)
 	
 
 func _process(delta):
@@ -39,73 +84,26 @@ func _initialize() -> void:
 	current_world = world
 	stage_option_button.select(current_world - 1)
 	
-	_populate_game_tree()
-	_populate_level_tree()
-	
-func _init_game_tree() -> void:
-	var index = 0
-	game_tree.hide_folding = true
-	game_tree.set_column_title(index, "Completed")
-	game_tree.set_column_min_width(index, 60)
-	game_tree.set_column_expand(index, false)
-	index = index + 1
-	game_tree.set_column_title(index, "Time")
-	game_tree.set_column_min_width(index, 70)
-	game_tree.set_column_expand(index, false)
-	index = index + 1
-	game_tree.set_column_title(index, "   Deaths")
-	game_tree.set_column_min_width(index, 50)
-	game_tree.set_column_expand(index, false)
-	index = index + 1
-	game_tree.set_column_title(index, "Submitted")
-	game_tree.set_column_min_width(index, 40)
-	game_tree.set_column_expand(index, true)
-	index = index + 1
-	game_tree_root = game_tree.create_item()
-	
-func _init_level_tree() -> void:
-	level_tree.set_column_title(0, "Level")
-	level_tree.set_column_min_width(0, 35)
-	level_tree.set_column_expand(0, false)
-	
-	level_tree.set_column_title(1, "Time")
-	level_tree.set_column_min_width(1, 80)
-	level_tree.set_column_expand(1, false)
-	
-	level_tree.set_column_title(2, "   Deaths")
-	level_tree.set_column_min_width(2, 50)
-	level_tree.set_column_expand(2, false)
-	
-	level_tree.set_column_title(3, "Submitted")
-	level_tree.set_column_expand(3, true)
-	
-	level_tree_root = level_tree.create_item()
+	_populate_game_grid()
+	_populate_level_grid()
 
-func _populate_game_tree() -> void:
+func _populate_game_grid() -> void:
 	var completed_game = GameState.has_completed_game()
 	var total_deaths = GameState.level_results.get_total_deaths()
 	var total_time = GameState.level_results.get_total_completion_time()
-	game_tree_root = _clear_tree(game_tree)
-	var item = game_tree.create_item(game_tree_root)
-	item.set_text(0, "Yes" if completed_game else "No")
-	item.set_text_align(0, TreeItem.ALIGN_CENTER)
+	_clear_grid(game_tree)
 	
 	var time = Stopwatch.get_time_as_formatted_string(total_time, Stopwatch.TimeFormat)
 	var submitted = _get_iso_date_from_msecs(total_time) if completed_game else NO_SUBMITTED_DATE
-	
-	item.set_text(1, time)
-	item.set_text(2, str(total_deaths))
-	item.set_text_align(2, TreeItem.ALIGN_CENTER)
-	item.set_text(3, submitted) 
 
-	# Disable tooltips on hover
-	item.set_tooltip(0," ")
-	item.set_tooltip(1," ")
-	item.set_tooltip(2," ")
-	
-func _populate_level_tree() -> void:
+	_add_grid_cell(game_tree, "Yes" if completed_game else "No", GAME_COLUMN_WIDTHS[0], true)
+	_add_grid_cell(game_tree, time, GAME_COLUMN_WIDTHS[1], false)
+	_add_grid_cell(game_tree, str(total_deaths), GAME_COLUMN_WIDTHS[2], true)
+	_add_grid_cell(game_tree, submitted, GAME_COLUMN_WIDTHS[3], false, true)
+
+func _populate_level_grid() -> void:
 	print("Populated level for world: ", current_world)
-	level_tree_root = _clear_tree(level_tree)
+	_clear_grid(level_tree)
 
 	var num_levels = LevelData.get_levels_for_world(current_world).size()
 	var start_index = (current_world - 1) * LevelData.LEVELS_PER_WORLD
@@ -114,27 +112,46 @@ func _populate_level_tree() -> void:
 		print("level_index", level_index)
 		var level_result = GameState.level_results.get_level_result(level_index)
 		print(level_result)
-		var item = level_tree.create_item(level_tree_root)
-		item.set_text(0, str(index+1) if index < num_levels - 1 else "Boss" )
-		item.set_text_align(0, TreeItem.ALIGN_CENTER)
+		_add_grid_cell(level_tree, str(index + 1) if index < num_levels - 1 else "Boss", LEVEL_COLUMN_WIDTHS[0], true)
 		
 		var completed_level = level_result.completion_time > 0.0
 		var time = Stopwatch.get_time_as_formatted_string(level_result.completion_time, Stopwatch.TimeFormat) if completed_level else NO_TIME
 		var deaths = str(level_result.deaths) if completed_level else "-"
 		var submitted = _get_iso_date_from_msecs(level_result.timestamp) if completed_level else NO_SUBMITTED_DATE
-		item.set_text(1, time)
-		item.set_text(2, deaths)
-		item.set_text_align(2, TreeItem.ALIGN_CENTER)
-		item.set_text(3, submitted)  # Grab only date part without time e.g. 2026-04-18
+		_add_grid_cell(level_tree, time, LEVEL_COLUMN_WIDTHS[1], false)
+		_add_grid_cell(level_tree, deaths, LEVEL_COLUMN_WIDTHS[2], true)
+		_add_grid_cell(level_tree, submitted, LEVEL_COLUMN_WIDTHS[3], false, true)
 
-		# Disable tooltips on hover
-		item.set_tooltip(0," ")
-		item.set_tooltip(1," ")
-		item.set_tooltip(2," ")
-	
-func _clear_tree(tree:Tree) -> TreeItem:
-	tree.clear()
-	return tree.create_item()   # create and return the root
+func _clear_grid(grid: GridContainer) -> void:
+	while grid.get_child_count() > 0:
+		var child = grid.get_child(0)
+		grid.remove_child(child)
+		child.queue_free()
+
+func _add_grid_cell(grid: GridContainer, text: String, width: int, centered: bool = false, expand: bool = false) -> void:
+	var cell = Panel.new()
+	cell.rect_min_size = Vector2(width, 13)
+	if expand:
+		cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	if data_cell_stylebox:
+		cell.add_stylebox_override("panel", data_cell_stylebox)
+	cell.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var label = Label.new()
+	label.text = text
+	label.anchor_right = 1.0
+	label.anchor_bottom = 1.0
+	label.margin_left = 2.0
+	label.margin_right = -2.0
+	label.add_color_override("font_color", Color.white)
+	label.add_color_override("font_color_shadow", Color.black)
+	label.add_constant_override("shadow_offset_x", 0)
+	label.add_constant_override("shadow_offset_y", 1)
+	if centered:
+		label.align = Label.ALIGN_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cell.add_child(label)
+	grid.add_child(cell)
 
 # Populate the stage option button with all the levels for the specified world
 func _populate_stage_option_button() -> void:
@@ -148,7 +165,7 @@ func _on_CloseButton_pressed():
 
 func _on_StageOptionButton_item_selected(index):
 	current_world = stage_option_button.get_item_id(index)
-	_populate_level_tree()
+	_populate_level_grid()
 
 func _get_iso_date_from_msecs(msecs: int) -> String:
 	# 1. Convert milliseconds to seconds

@@ -18,31 +18,105 @@ theme = ExtResource( 6 )
 texture = ExtResource( 1 )
 centered = false
 
-[node name="GameProgressTree" type="Tree" parent="Control"]
-unique_name_in_owner = true
+[node name="GameProgressHeaderPanel" type="Panel" parent="Control"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
+margin_bottom = 29.0
+theme = ExtResource( 6 )
+
+[node name="GameProgressHeader" type="HBoxContainer" parent="Control/GameProgressHeaderPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CompletedLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
+margin_right = 60.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 60, 0 )
+text = "Completed"
+align = 1
+
+[node name="TimeLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
+margin_left = 64.0
+margin_right = 134.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 70, 0 )
+text = "Time"
+
+[node name="DeathsLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
+margin_left = 138.0
+margin_right = 188.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 50, 0 )
+text = "Deaths"
+align = 1
+
+[node name="SubmittedLabel" type="Label" parent="Control/GameProgressHeaderPanel/GameProgressHeader"]
+margin_left = 192.0
+margin_right = 272.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Submitted"
+
+[node name="GameProgressTree" type="GridContainer" parent="Control"]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 30.0
+margin_right = 296.0
 margin_bottom = 43.0
 theme = ExtResource( 6 )
+custom_constants/hseparation = 4
 columns = 4
-column_titles_visible = true
-hide_folding = true
-hide_root = true
-select_mode = 1
 
-[node name="LevelProgressTree" type="Tree" parent="Control"]
-unique_name_in_owner = true
+[node name="LevelProgressHeaderPanel" type="Panel" parent="Control"]
 margin_left = 24.0
 margin_top = 67.0
 margin_right = 296.0
+margin_bottom = 80.0
+theme = ExtResource( 6 )
+
+[node name="LevelProgressHeader" type="HBoxContainer" parent="Control/LevelProgressHeaderPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LevelLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
+margin_right = 35.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 35, 0 )
+text = "Level"
+align = 1
+
+[node name="TimeLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
+margin_left = 39.0
+margin_right = 119.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Time"
+
+[node name="DeathsLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
+margin_left = 123.0
+margin_right = 173.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 50, 0 )
+text = "Deaths"
+align = 1
+
+[node name="SubmittedLabel" type="Label" parent="Control/LevelProgressHeaderPanel/LevelProgressHeader"]
+margin_left = 177.0
+margin_right = 272.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Submitted"
+
+[node name="LevelProgressTree" type="GridContainer" parent="Control"]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 81.0
+margin_right = 296.0
 margin_bottom = 174.0
 theme = ExtResource( 6 )
+custom_constants/hseparation = 4
 columns = 4
-column_titles_visible = true
-hide_folding = true
-hide_root = true
-select_mode = 1
 
 [node name="ColorRect3" type="ColorRect" parent="Control"]
 visible = false
