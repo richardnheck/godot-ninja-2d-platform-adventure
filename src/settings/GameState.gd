@@ -88,13 +88,21 @@ func load_save() -> void:
 		if data.has("level_results"):
 			level_results = LevelResults.from_dictionary(data["level_results"])
 		else:
+			# If there are no level results then this is likely to be from an old demo
+			# build, so we want to also ensure that the player starts from the beginning
+			# again in order to build up a complete level result history, especially since
+			# the game completion event gets time by adding up all level times
 			level_results  = LevelResults.new()
-		
-		
+			progress[KEY_CURRENT_LEVEL] =  0
+			progress[KEY_WATCH_INTRO] = false
+			LevelData.current_level_index = 0
+			
 	else:
 		_print("Loading save file failed: err = $s" % [status])
+		# NB: progress isn't a class and is already created and initialised
 		user = User.new("")
 		level_results  = LevelResults.new()
+		
 
 # Save the game state to file
 func save() -> void:
