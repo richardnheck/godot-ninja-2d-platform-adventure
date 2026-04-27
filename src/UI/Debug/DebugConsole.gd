@@ -8,6 +8,7 @@ onready var input_container := $Console/InputContainer
 func _ready():
 	print("DebugConsole ready")
 	GameState.connect("on_log", self, "_on_log_print")
+	Analytics.connect("on_log", self, "_on_log_print")
 	
 	console.log_raw("Is mobile: %s" % [ Settings.is_mobile()])
 	console.log_raw("Has touchscreen: %s" % [ Settings.has_touchscreen()])

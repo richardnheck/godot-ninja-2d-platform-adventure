@@ -23,6 +23,7 @@ const EVENT_GAME_COMPLETED  = "game-completed"		# fire when user completes the g
 const LEADERBOARD_LEVEL_HIGH_SCORE = "level-high-score"
 const LEADERBOARD_GAME_HIGH_SCORE = "game-high-score"
 
+signal on_log(message)
 
 func _ready():
 	print("Initializing Analytics...")
@@ -120,12 +121,14 @@ func add_game_leaderboard_entry(score: float, deaths:int) -> void:
 	_add_leaderboard_entry(LEADERBOARD_GAME_HIGH_SCORE, score, props)
 
 func get_game_leaderboard_entries(page:int = 0) -> EntriesPage:
+	_log("Getting game leaderboard entries...")
 	return _get_leaderboard_entries(LEADERBOARD_GAME_HIGH_SCORE, page)
 
 func get_level_leaderboard_entries(page:int = 0) -> EntriesPage:
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page)
 
 func get_level_leaderboard_entries_for_level(level_index:int, page:int = 0) -> EntriesPage:
+	_log("Getting level leaderboard entries for level: %s" % [level_index])
 	var filter_prop = TaloProp.new("level_index", level_index)
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page, filter_prop)
 
@@ -222,7 +225,6 @@ func _track_event(event):
 
 ## Add an entry to a leaderboard. The props (key-value pairs) parameter is used to store additional data with the entry.
 func _add_leaderboard_entry(internal_name: String, score: float, props: Array = []) -> void:
-	print(">>>>>>>>>>>>add leader board entry")
 	if !_is_enabled(): return
 	var url = talo_base_url + "leaderboards/%s/entries" % internal_name
 	var headers = _get_base_headers()
@@ -266,9 +268,12 @@ func _get_leaderboard_entries(internal_name: String, page: int = 0, prop: TaloPr
 				var talo_entry := TaloLeaderboardEntry.new(entry)
 				talo_entries.append(talo_entry)
 			entries_page = EntriesPage.new(talo_entries, response.count, response.itemsPerPage, response.isLastPage)
-			print("count=", entries_page.entries)
+			print("Success: Entries count=", entries_page.entries)
+			_log("Success: Entries count = %s" % [entries_page.entries.size()])
 		_:
 			print("Get leaderboard entries error: ", response, result.response_code)
+			_log("Error: %s $s" % [response, result.response_code])
+			emit_signal("on")
 		
 	http_request.queue_free()
 	return entries_page
@@ -349,6 +354,8 @@ func _generate_identifier() -> String:
 	var split_start := RandomNumberGenerator.new().randi_range(0, time_hash.length() - size)
 	return time_hash.substr(split_start, size)
 
+func _log(message:String) -> void:
+	emit_signal("on_log", message)
 	
 class TaloClientResponse:
 	var result: int
