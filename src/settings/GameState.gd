@@ -84,10 +84,9 @@ func load_save() -> void:
 			level_results  = LevelResults.new()
 			progress[KEY_CURRENT_LEVEL] =  0
 			progress[KEY_WATCH_INTRO] = false
-			LevelData.current_level_index = 0
-			
+			LevelData.current_level_index = 0		
 	else:
-		DebugLog.log("Loading save file failed: err = $s" % [status])
+		DebugLog.log("No save file loaded! Initialising new data")
 		# NB: progress isn't a class and is already created and initialised
 		user = User.new("")
 		level_results  = LevelResults.new()
