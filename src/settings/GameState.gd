@@ -11,13 +11,6 @@ const KEY_CURRENT_LEVEL = "current_level"
 const KEY_WATCH_INTRO = "has_watched_story_intro"
 const KEY_IDENTIFIER = "identifier"
 
-signal on_log(message)
-
-# This is a history of the console messages made so it can be obtained from
-# the debug console component.  GameState is an Autoload that runs before
-# the debug console is created, so it cannot rely on signals at the start
-var _console_message_history = ""
-
 # Store the player progress
 # Set the default values to start with
 var progress = {	
@@ -45,19 +38,15 @@ func _ready():
 	# Load the save state
 	load_save()
 
-# Return all the console logs made by GameState	
-func get_console_history()->String:
-	return _console_message_history
-
 # Load data from game save file
 func load_save() -> void:
-	_print("Loading Game State from file...", true) 
+	DebugLog.log("Loading Game State from file...") 
 	
 	# Read the save file
 	var file := File.new()
 	var status = file.open(SAVE_FILE_PATH, File.READ)
 	if status == OK:
-		_print("Loading save file success", true)
+		DebugLog.log("Loading save file success")
 		# File opened successfully
 		var data_variant = str2var(file.get_as_text())
 		var data:Dictionary = {}
@@ -65,7 +54,7 @@ func load_save() -> void:
 			# successfully contains data to be converted to a dictionary
 			data = data_variant
 			
-		_print(JSON.print(data))
+		DebugLog.log(JSON.print(data))
 		
 		file.close()
 	
@@ -98,7 +87,7 @@ func load_save() -> void:
 			LevelData.current_level_index = 0
 			
 	else:
-		_print("Loading save file failed: err = $s" % [status])
+		DebugLog.log("Loading save file failed: err = $s" % [status])
 		# NB: progress isn't a class and is already created and initialised
 		user = User.new("")
 		level_results  = LevelResults.new()
@@ -371,11 +360,4 @@ class LevelResult:
 
 	# Get the current timestamp in unix msecs (compatible with Taol analytics)
 	func _get_timestamp_msec() -> int:
-		return int(ceil(Time.get_unix_time_from_system()) * 1000)
-		
-func _print(message:String, log_to_console:bool = true):
-	print(message)
-	if log_to_console:
-		_console_message_history += message + "\n"
-		emit_signal("on_log", message)
-	
+		return int(ceil(Time.get_unix_time_from_system()) * 1000)	

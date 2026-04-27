@@ -616,6 +616,7 @@ MainScreenState="*res://src/UI/MainScreen/MainScreenState.gd"
 Analytics="*res://src/lib/Analytics/analytics.gd"
 LevelMetrics="*res://src/levels/LevelMetrics.gd"
 Stopwatch="*res://src/objects/stopwatch/Stopwatch.gd"
+DebugLog="*res://src/UI/Debug/DebugLog.gd"
 
 [display]
 

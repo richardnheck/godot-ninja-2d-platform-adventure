@@ -23,8 +23,6 @@ const EVENT_GAME_COMPLETED  = "game-completed"		# fire when user completes the g
 const LEADERBOARD_LEVEL_HIGH_SCORE = "level-high-score"
 const LEADERBOARD_GAME_HIGH_SCORE = "game-high-score"
 
-signal on_log(message)
-
 func _ready():
 	print("Initializing Analytics...")
 	
@@ -121,14 +119,14 @@ func add_game_leaderboard_entry(score: float, deaths:int) -> void:
 	_add_leaderboard_entry(LEADERBOARD_GAME_HIGH_SCORE, score, props)
 
 func get_game_leaderboard_entries(page:int = 0) -> EntriesPage:
-	_log("Getting game leaderboard entries...")
+	DebugLog.log("Getting game leaderboard entries...")
 	return _get_leaderboard_entries(LEADERBOARD_GAME_HIGH_SCORE, page)
 
 func get_level_leaderboard_entries(page:int = 0) -> EntriesPage:
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page)
 
 func get_level_leaderboard_entries_for_level(level_index:int, page:int = 0) -> EntriesPage:
-	_log("Getting level leaderboard entries for level: %s" % [level_index])
+	DebugLog.log("Getting level leaderboard entries for level: %s" % [level_index])
 	var filter_prop = TaloProp.new("level_index", level_index)
 	return _get_leaderboard_entries(LEADERBOARD_LEVEL_HIGH_SCORE, page, filter_prop)
 
@@ -147,6 +145,7 @@ func get_players_by_display_name(display_name:String) -> Array:
 func _identify_player(identifier):
 	if !_is_enabled(): return
 	print("Identifying player: " + identifier)
+	DebugLog.log("Identifying player: %s" % [identifier])
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
@@ -159,6 +158,8 @@ func _identify_player(identifier):
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
 		print("Player identified: ", response)
+		DebugLog.log("Player identified!")
+		DebugLog.log(JSON.print(response))
 		# remember player alias id as this is required in subsequent requests
 		if response.has("alias"):
 			player_alias_id = response.alias.id
@@ -169,6 +170,7 @@ func _identify_player(identifier):
 	else:
 		var error_response = result.response if result.body else ""
 		print("Error identifying player: ", error_response, result.response_code)
+		DebugLog.log("Error identifying player: %s, %s" % [error_response, result.response_code])
 	http_request.queue_free()
 
 func _update_player_props(props:Array) -> bool:
@@ -269,10 +271,10 @@ func _get_leaderboard_entries(internal_name: String, page: int = 0, prop: TaloPr
 				talo_entries.append(talo_entry)
 			entries_page = EntriesPage.new(talo_entries, response.count, response.itemsPerPage, response.isLastPage)
 			print("Success: Entries count=", entries_page.entries)
-			_log("Success: Entries count = %s" % [entries_page.entries.size()])
+			DebugLog.log("Success: Entries count = %s" % [entries_page.entries.size()])
 		_:
 			print("Get leaderboard entries error: ", response, result.response_code)
-			_log("Error: %s $s" % [response, result.response_code])
+			DebugLog.log("Error: %s $s" % [response, result.response_code])
 			emit_signal("on")
 		
 	http_request.queue_free()
@@ -353,9 +355,6 @@ func _generate_identifier() -> String:
 	var size := 12
 	var split_start := RandomNumberGenerator.new().randi_range(0, time_hash.length() - size)
 	return time_hash.substr(split_start, size)
-
-func _log(message:String) -> void:
-	emit_signal("on_log", message)
 	
 class TaloClientResponse:
 	var result: int

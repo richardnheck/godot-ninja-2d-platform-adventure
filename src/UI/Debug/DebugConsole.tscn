@@ -28,6 +28,7 @@ margin_bottom = 16.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 3 )
 
+[connection signal="visibility_changed" from="." to="." method="_on_DebugConsole_visibility_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
 
 [editable path="Console"]
