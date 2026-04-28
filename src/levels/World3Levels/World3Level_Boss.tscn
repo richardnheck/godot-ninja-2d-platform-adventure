@@ -296,11 +296,11 @@ position = Vector2( 3368, -64 )
 texture = SubResource( 20 )
 
 [node name="BannerWithLines" type="Sprite" parent="Props"]
-position = Vector2( 4208, 64 )
+position = Vector2( 4235, 64 )
 texture = SubResource( 21 )
 
 [node name="BannerWithLines2" type="Sprite" parent="Props"]
-position = Vector2( 4352, 64 )
+position = Vector2( 4370, 64 )
 texture = SubResource( 21 )
 
 [node name="Pane4" type="Sprite" parent="Props"]
@@ -314,7 +314,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 43, 112 )
 
 [node name="Pane5" type="Sprite" parent="Props"]
-position = Vector2( 4233, -32 )
+position = Vector2( 4144, -32 )
 z_index = 10
 z_as_relative = false
 texture = ExtResource( 43 )
