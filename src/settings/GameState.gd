@@ -55,6 +55,7 @@ func load_save() -> void:
 			data = data_variant
 			
 		DebugLog.log(JSON.print(data))
+		print("data", data)
 		
 		file.close()
 	
