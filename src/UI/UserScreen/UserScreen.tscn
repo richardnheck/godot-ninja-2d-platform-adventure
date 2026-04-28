@@ -106,7 +106,7 @@ margin_right = 200.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 22 )
 theme = ExtResource( 5 )
-max_length = 20
+max_length = 16
 context_menu_enabled = false
 virtual_keyboard_enabled = false
 clear_button_enabled = true
@@ -196,7 +196,6 @@ playing = true
 
 [node name="ResetProgressConfirmationDialog" type="ConfirmationDialog" parent="Control"]
 unique_name_in_owner = true
-visible = true
 margin_left = 72.0
 margin_top = 52.0
 margin_right = 196.0
