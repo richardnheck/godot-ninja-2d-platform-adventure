@@ -2,19 +2,19 @@ class_name LeaderboardUtils
 
 static func init_tree(tree:Tree) -> TreeItem:
 	tree.set_column_title(0, "Rank")
-	tree.set_column_min_width(0, 30)
+	tree.set_column_min_width(0, 26)
 	tree.set_column_expand(0, false)
 	
 	tree.set_column_title(1, "Name")
-	tree.set_column_min_width(1, 125)
+	tree.set_column_min_width(1, 115)
 	tree.set_column_expand(1, false)
 	
 	tree.set_column_title(2, "Time")
-	tree.set_column_min_width(2, 50)
+	tree.set_column_min_width(2, 65)
 	tree.set_column_expand(2, false)
 	
 	tree.set_column_title(3, "Deaths")
-	tree.set_column_min_width(3, 40)
+	tree.set_column_min_width(3, 38)
 	tree.set_column_expand(3, false)
 	
 	tree.set_column_title(4, "Submitted")
