@@ -64,9 +64,11 @@ func _ready() -> void:
 	get_tree().call_group("enemy", "set_player", player)
 	
 	if key: 
-		key.connect("captured", self, "_on_Key_captured")
+		if not is_connected("captured", self, "_on_Key_captured"):
+			key.connect("captured", self, "_on_Key_captured")
 	if door:
-		door.connect("player_entered", self, "_on_Door_player_entered");
+		if not is_connected("player_entered", self, "_on_Door_player_entered"):
+			door.connect("player_entered", self, "_on_Door_player_entered");
 	
 	fadeScreen = fadeScreenScene.instance()
 	add_child(fadeScreen)
