@@ -596,7 +596,7 @@ config/version="0.99"
 [audio]
 
 output_latency=50
-output_latency.web=100
+output_latency.web=150
 
 [autoload]
 
