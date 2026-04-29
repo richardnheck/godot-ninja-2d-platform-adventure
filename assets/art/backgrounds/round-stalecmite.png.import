@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/round-stalecmite.png-a90ee0ed2fc59c5b6e7d700f1913e217.stex"
+path="res://.import/round-stalecmite.png-79b1ddee83cde33fdf52c215e3349e64.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ideas/round-stalecmite.png"
-dest_files=[ "res://.import/round-stalecmite.png-a90ee0ed2fc59c5b6e7d700f1913e217.stex" ]
+source_file="res://assets/art/backgrounds/round-stalecmite.png"
+dest_files=[ "res://.import/round-stalecmite.png-79b1ddee83cde33fdf52c215e3349e64.stex" ]
 
 [params]
 
