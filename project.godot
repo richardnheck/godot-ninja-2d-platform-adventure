@@ -591,7 +591,7 @@ debug_mode=true
 config/name="Castle Yokai"
 run/main_scene="res://src/UI/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
-config/version="0.99"
+config/version="1.00"
 
 [audio]
 
