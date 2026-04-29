@@ -7,8 +7,8 @@ func _on_SoundFxVolumeSlider_value_changed(value):
 	var db_volume = linear2db(value)
 	Game_AudioManager.set_sound_fx_volume(db_volume)
 
-func _on_SoundFxVolumeSlider_visibility_changed(visible):
-	if visible:
+func _on_SoundFxVolumeSlider_visibility_changed():
+	if is_visible_in_tree():
 		_init_volume()
 
 func _init_volume():
