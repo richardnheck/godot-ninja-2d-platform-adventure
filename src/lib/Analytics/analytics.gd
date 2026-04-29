@@ -307,7 +307,7 @@ func _track_stat(stat_name:String):
 	if result.response_code == 200:
 		pass
 	else:
-		print("Track stat error: ", result.response, result.response_code)
+		print("Track stat error: ", response, result.response_code)
 	http_request.queue_free()
 
 ## Get an ISO 8601 datetime string (YYYY-MM-DDTHH:MM:SS) from the current time.
