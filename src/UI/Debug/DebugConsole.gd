@@ -6,14 +6,13 @@ onready var console := $Console
 onready var input_container := $Console/InputContainer
 
 func _ready():
-	print("DebugConsole ready")
+	pass
 	
 func _on_CloseButton_pressed():
 	emit_signal("on_close")
 
 func _on_DebugConsole_visibility_changed():
 	if is_visible_in_tree():
-		print("her")
 		console.clear_console()
 		console.log_raw("Is mobile: %s" % [ Settings.is_mobile()])
 		console.log_raw("Has touchscreen: %s" % [ Settings.has_touchscreen()])

@@ -32,9 +32,7 @@ var latest_level_time_formatted:String = ""
 var latest_level_time_status:String = ""
 
 
-func _ready():
-	print("GameState ready")
-	
+func _ready():	
 	# Load the save state
 	load_save()
 
@@ -108,7 +106,6 @@ func save() -> void:
 	file.open(SAVE_FILE_PATH, File.WRITE)
 	file.store_string(data_as_string)
 	file.close()
-	print("done")
 	
 # Get the unique player identifier (used for analytics and leaderboards)	
 func get_player_identifier() -> String:
@@ -124,7 +121,6 @@ func get_player_display_name() -> String:
 	
 # Set the player display_name
 func set_player_display_name(display_name:String) -> void:
-	print("set player display naem", display_name)
 	user.display_name = display_name	
 	
 # Set the current level based on its index in the levels array
@@ -164,19 +160,12 @@ func get_has_watched_story_intro() -> bool:
 var prev_progress = null
 func cheat(value):
 	if value:
-		print("Cheat enabled")
 		# Set cheat progress settings which enables all levels
 		prev_progress = progress.duplicate(true);
 		
-		print("Previous progress", prev_progress)
-		
 		# Set level to the maximum
 		set_current_level(LevelData.get_levels().size() - 1)  
-	
-		print("Current progress", progress)
 	else:
-		print("Cheat disabled")
-		print(prev_progress)		
 		# Uncheat by restoring current progress
 		progress = prev_progress.duplicate(true)
 

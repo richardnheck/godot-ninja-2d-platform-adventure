@@ -64,7 +64,6 @@ func _on_Settings_on_closed():
 	settings.visible = false
 	overlay.visible = false
 	MainScreenState.settings_open = false
-	print("cheat mode set", Settings.cheat_mode)
 	debug_button.visible = Settings.cheat_mode
 
 

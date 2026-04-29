@@ -103,16 +103,13 @@ func _populate_game_grid() -> void:
 	_add_grid_cell(game_grid, submitted, GAME_COLUMN_WIDTHS[3], false, true)
 
 func _populate_level_grid() -> void:
-	print("Populated level for world: ", current_world)
 	_clear_grid(level_grid)
 
 	var num_levels = LevelData.get_levels_for_world(current_world).size()
 	var start_index = (current_world - 1) * LevelData.LEVELS_PER_WORLD
 	for index in num_levels:
 		var level_index = start_index + index
-		print("level_index", level_index)
 		var level_result = GameState.level_results.get_level_result(level_index)
-		print(level_result)
 		_add_grid_cell(level_grid, str(index + 1) if index < num_levels - 1 else "Boss", LEVEL_COLUMN_WIDTHS[0], true)
 		
 		var completed_level = level_result.completion_time > 0.0

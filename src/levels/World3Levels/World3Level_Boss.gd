@@ -23,8 +23,6 @@ func _ready():
 
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		print("GAME COMPLETED!")
-		
 		# handle level completion stuff such as analytics and progress
 		# NB: this updates the game state progress level index so that player will have completed the game
 		._handle_boss_level_complete()

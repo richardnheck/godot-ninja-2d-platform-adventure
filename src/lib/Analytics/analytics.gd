@@ -28,10 +28,12 @@ func _ready():
 	
 	var existing_player = true if GameState.get_player_identifier() else false
 	if existing_player:
+		print("Existing player")
 		# Get the player identifier from the game save state
 		alias_identifier = GameState.get_player_identifier()
 	else:
 		# No player exists yet so create a unique identifier
+		print("New player")
 		alias_identifier = _generate_identifier()
 				
 	yield(_identify_player(alias_identifier), "completed")
@@ -219,7 +221,6 @@ func _track_event(event):
 	var result = yield(_build_response(http_request),"completed")
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
-		#print("Track event: ", response)
 		pass
 	else:
 		print("Track event error: ", response, result.response_code)
@@ -242,7 +243,6 @@ func _add_leaderboard_entry(internal_name: String, score: float, props: Array = 
 	var result = yield(_build_response(http_request),"completed")
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
-		print("Add leaderboard entry: ", response)
 		pass
 	else:
 		print("Add leaderboard entry error: ", response, result.response_code)
@@ -264,16 +264,13 @@ func _get_leaderboard_entries(internal_name: String, page: int = 0, prop: TaloPr
 	var entries_page = null
 	match result.response_code:
 		200: 
-			#print("Get leaderboard entries: ", response)
 			var talo_entries: Array 
 			for entry in response.entries:
 				var talo_entry := TaloLeaderboardEntry.new(entry)
 				talo_entries.append(talo_entry)
 			entries_page = EntriesPage.new(talo_entries, response.count, response.itemsPerPage, response.isLastPage)
-			print("Success: Entries count=", entries_page.entries)
 			DebugLog.log("Success: Entries count = %s" % [entries_page.entries.size()])
 		_:
-			print("Get leaderboard entries error: ", response, result.response_code)
 			DebugLog.log("Error: %s $s" % [response, result.response_code])
 			emit_signal("on")
 		
@@ -308,7 +305,6 @@ func _track_stat(stat_name:String):
 	var result = yield(_build_response(http_request),"completed")
 	var response = JSON.parse(result.body.get_string_from_utf8()).result
 	if result.response_code == 200:
-		#print("Track stat: ", response)
 		pass
 	else:
 		print("Track stat error: ", result.response, result.response_code)

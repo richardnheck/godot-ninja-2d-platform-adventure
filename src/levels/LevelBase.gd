@@ -27,9 +27,7 @@ var checkpoints:Array
 var camera:Camera2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("LevelBase: _ready() start")
-	
+func _ready() -> void:	
 	# Preload the world screen to prevent HTML5 audio stutter when transitioning
 	preload("res://src/UI/WorldSelectScreen/WorldSelect.tscn")
 	
@@ -132,8 +130,6 @@ func _ready() -> void:
 			yield(intro_title, "finished")
 			intro_title.queue_free()
 		LevelData.is_reload = false
-	
-	print("LevelBase: _ready() end")	
 
 #func _get_configuration_warning():
 #	if temp_spawn_position != null:
@@ -151,7 +147,6 @@ func _spawn_player() -> KinematicBody2D:
 	elif LevelData.level_checkpoint_reached != Constants.NO_CHECKPOINT:
 		var checkpoint_id = LevelData.level_checkpoint_reached
 		var checkpoint = _get_checkpoint(checkpoint_id)
-		print(checkpoint)
 		spawn_point = checkpoint.position
 		spawned_at_checkpoint = true
 	elif player_spawn_position != null:
@@ -316,7 +311,6 @@ func get_collision_tile_name(collision: KinematicCollision2D) -> String:
 			
 			if tile_id > 0:
 				var tile_name = tilemap.tile_set.tile_get_name(tile_id)
-				#print("tile_id=%d tile_name=%s" % [tile_id, tile_name])
 				return tile_name
 				
 		return ""
