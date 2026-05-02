@@ -259,7 +259,7 @@ __meta__ = {
 }
 
 [node name="TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 6674, -1470 )
+position = Vector2( 6626, -1484 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -832,12 +832,8 @@ position = Vector2( 192, 0 )
 position = Vector2( 256, 0 )
 
 [node name="ElectricityBeam" parent="Section3/traps" instance=ExtResource( 22 )]
-position = Vector2( 1960, -290 )
+position = Vector2( 1960, -288 )
 rotation = -1.57079
-
-[node name="ElectricityBeam2" parent="Section3/traps" instance=ExtResource( 22 )]
-position = Vector2( 2048, -328 )
-rotation = -3.14159
 
 [node name="ElectricityBeam3" parent="Section3/traps" instance=ExtResource( 22 )]
 position = Vector2( 2048, -424 )
@@ -846,6 +842,7 @@ rotation = -3.14159
 [node name="ElectricityBeam4" parent="Section3/traps" instance=ExtResource( 22 )]
 position = Vector2( 2088, -480 )
 rotation = -1.57079
+delay_time = 0.5
 
 [node name="platforms" type="Node2D" parent="Section3"]
 
@@ -1007,10 +1004,11 @@ target_position = Vector2( 0, 200 )
 
 [node name="ChochinObake" parent="Section4/enemies" instance=ExtResource( 21 )]
 position = Vector2( 384, -96 )
+speed = 35.0
 
 [node name="RotatingOnibi" parent="Section4/enemies" instance=ExtResource( 31 )]
 position = Vector2( 600, -104 )
-spin_speed = 70
+spin_speed = 60
 chains = 3
 
 [node name="traps" type="Node2D" parent="Section4"]
@@ -1101,6 +1099,8 @@ target_position = Vector2( 0, 150 )
 
 [node name="RotatingOnibi3" parent="Section5/enemies" instance=ExtResource( 31 )]
 position = Vector2( 2168, -352 )
+spin_speed = 70
+chains = 2
 
 [node name="Pane9" type="Sprite" parent="Section5"]
 position = Vector2( 1327, -432 )
@@ -1263,13 +1263,6 @@ position = Vector2( 1416, -328 )
 position = Vector2( 1416, -440 )
 rotation = 3.14159
 
-[node name="LongMovingSpike7" parent="Section5/traps" instance=ExtResource( 9 )]
-position = Vector2( 1320, -328 )
-
-[node name="LongMovingSpike8" parent="Section5/traps" instance=ExtResource( 9 )]
-position = Vector2( 1320, -440 )
-rotation = -3.14159
-
 [node name="Node2D2" type="Node2D" parent="Section5/traps"]
 position = Vector2( 8, 0 )
 
@@ -1342,7 +1335,7 @@ position = Vector2( -8, 0 )
 anims/PingPongPathFollow = SubResource( 10 )
 
 [node name="MovingPlatformCave1H6" parent="Section5/platforms" instance=ExtResource( 35 )]
-position = Vector2( 944, -239 )
+position = Vector2( 944, -249 )
 
 [node name="Path2D" parent="Section5/platforms/MovingPlatformCave1H6" index="1"]
 curve = ExtResource( 36 )
@@ -1360,7 +1353,7 @@ position = Vector2( 8, 15.2734 )
 anims/PingPongPathFollow = SubResource( 11 )
 
 [node name="MovingPlatformCave1H8" parent="Section5/platforms" instance=ExtResource( 35 )]
-position = Vector2( 1056, -239 )
+position = Vector2( 1056, -249 )
 
 [node name="Path2D" parent="Section5/platforms/MovingPlatformCave1H8" index="1"]
 curve = ExtResource( 36 )
@@ -1488,7 +1481,7 @@ anims/PingPongPathFollow = SubResource( 17 )
 position = Vector2( 2312, -328 )
 
 [node name="FallingPlatform4" parent="Section5/platforms" instance=ExtResource( 17 )]
-position = Vector2( 2296, -200 )
+position = Vector2( 2335, -200 )
 
 [node name="CameraAreas" type="Node2D" parent="."]
 
