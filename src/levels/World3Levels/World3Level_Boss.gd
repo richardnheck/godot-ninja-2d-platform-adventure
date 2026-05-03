@@ -14,13 +14,16 @@ func _ready():
 	Game_AudioManager.play_bgm_world3_level_boss()
 
 	if spawned_at_checkpoint:
+
 		# The player died, but spawned at the checkpoint.
 		# Set the boss at a position just behind the player
 		# This number was visually determined by adjusting the boss PathFollow2D unit offset 
-		yield(get_tree().create_timer(0), "timeout")
+		yield(get_tree().create_timer(0.1), "timeout")
 		boss.set_spawn_offset(0.45)
-
-
+	else:
+		yield(get_tree().create_timer(0.1), "timeout")
+		boss.set_spawn_offset(0.006)  # So AoAndon appears on the screen at the start
+		
 func _on_EndArea_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		# handle level completion stuff such as analytics and progress

@@ -23,7 +23,7 @@ var state = STATE_PHASE1
 var player = null
 var ceiling_position:Position2D = null
 
-const SPEED:int = 70
+const SPEED:int = 65
 
 # The delay to wait after a homing lantern finishes before spawning a new one
 const SHOOT_DELAY:float = 1.0
