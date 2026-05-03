@@ -42,8 +42,8 @@ func _ready() -> void:
 	
 
 
-func goto_next_scene(show_loading_message = false, source_scene_path:String = "") -> void:
-	if Settings.is_html5_build():
+func goto_next_scene(show_loading_message = false, source_scene_path:String = "", stop_bgm_on_html5:bool = true) -> void:
+	if Settings.is_html5_build() and stop_bgm_on_html5:
 		# Prevent HTML5 Audio stutter by stopping background music before transitioning
 		# to the level
 		Game_AudioManager.stop_bgm()

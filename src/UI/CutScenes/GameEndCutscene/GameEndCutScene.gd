@@ -61,7 +61,10 @@ func _start_dialog() -> void:
 	_goto_next_scene()
 
 func _goto_next_scene() -> void:
-	$CutSceneBase.goto_next_scene()
+	var show_loading_message = false
+	var source_scene_path:String = ""
+	var stop_bgm_on_html5:bool = false	 # In this case we a playing the same bgm music in the next scene so don't stop it on html5
+	$CutSceneBase.goto_next_scene(show_loading_message, source_scene_path, stop_bgm_on_html5)
 	
 func _on_continue()->void:
 	if cut_scene_base.is_continue_button_showing():

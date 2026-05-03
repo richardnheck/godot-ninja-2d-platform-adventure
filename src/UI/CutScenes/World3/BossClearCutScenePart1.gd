@@ -61,7 +61,10 @@ func do_enter_boss() -> void:
 	animation_player.play("enter-boss")
 	
 func _goto_next_scene() -> void:
-	$CutSceneBase.goto_next_scene()
+	var show_loading_message = false
+	var source_scene_path:String = ""
+	var stop_bgm_on_html5:bool = false	 # In this case we a playing the same bgm music in the next scene so don't stop it on html5
+	$CutSceneBase.goto_next_scene(show_loading_message, source_scene_path, stop_bgm_on_html5)
 
 # Shake the screen when the boss hits the ground
 func _shake_screen() -> void:
