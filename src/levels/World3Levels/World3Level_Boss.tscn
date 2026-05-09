@@ -149,7 +149,7 @@ __meta__ = {
 position = Vector2( 3584, 9 )
 
 [node name="_TempSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 8200, 64 )
+position = Vector2( 5896, 16 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -337,6 +337,10 @@ region_rect = Rect2( 0, 0, 43, 176 )
 
 [node name="CheckPoint" parent="InteractiveProps" instance=ExtResource( 35 )]
 position = Vector2( 3600, 144 )
+
+[node name="CheckPoint2" parent="InteractiveProps" instance=ExtResource( 35 )]
+position = Vector2( 5912, 32 )
+id = "2"
 
 [node name="EndArea" type="Area2D" parent="InteractiveProps"]
 position = Vector2( 8208, 40 )
@@ -871,6 +875,15 @@ script = ExtResource( 23 )
 position = Vector2( 0, -48 )
 shape = SubResource( 2 )
 
+[node name="BossPhaseTransitionArea2D2" type="Area2D" parent="."]
+position = Vector2( 5911, 16 )
+collision_layer = 0
+script = ExtResource( 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossPhaseTransitionArea2D2"]
+position = Vector2( 0, -48 )
+shape = SubResource( 2 )
+
 [node name="TEMP-TransitionArea2" type="Area2D" parent="."]
 position = Vector2( 6624, -40 )
 collision_layer = 0
@@ -916,6 +929,7 @@ shape = SubResource( 18 )
 [connection signal="body_entered" from="InteractiveProps/EndArea" to="." method="_on_EndArea_body_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 [connection signal="body_entered" from="BossPhaseTransitionArea2D" to="BossPhaseTransitionArea2D" method="_on_body_entered"]
+[connection signal="body_entered" from="BossPhaseTransitionArea2D2" to="BossPhaseTransitionArea2D2" method="_on_body_entered"]
 [connection signal="body_entered" from="TEMP-TransitionArea2" to="TEMP-TransitionArea2" method="_on_body_entered"]
 
 [editable path="Props/CaveDoorBackground"]

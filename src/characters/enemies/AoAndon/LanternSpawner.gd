@@ -13,12 +13,14 @@ export (Vector2) var direction := Vector2.RIGHT
 
 onready var _delay_timer := $DelayTimer
 onready var _shoot_position := $ShootPosition
+onready var _animated_sprite := $AnimatedSprite
 
 func _ready():
 	pass
 		
 # Called by the spawner		
 func set_ready():
+	_animated_sprite.play("Spawn")
 	if delay_time > 0:
 		_delay_timer.wait_time = delay_time
 		_delay_timer.start()
@@ -28,6 +30,7 @@ func set_ready():
 
 
 func _spawn() -> void:
+	_animated_sprite.play("Spawn")
 	var lantern:FallingShardLantern = object_scene.instance()
 	lantern.lifetime = lantern_lifetime
 	lantern.spread = 120
