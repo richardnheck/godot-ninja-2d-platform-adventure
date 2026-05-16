@@ -55,7 +55,7 @@ The Boss level reuses the same set (no pylon tileset — the boss uses `pylon.pn
 - **Boat (`Boat.tscn`)** — Level 5 only. Player-driven raft across water sections. See [../../objects/interactive/boat.md](../../objects/interactive/boat.md).
 - **WaterJumpYokai spawners** — fish that breach the water surface as moving hazards (Level 1, Level 5). See [../../objects/hazards/water-jump-yokai.md](../../objects/hazards/water-jump-yokai.md).
 - **CloudPlatforms** stretched out as long traversal paths over water and gaps (Level 1, Level 5, Level 6). See [../../objects/platforms/cloud-platform.md](../../objects/platforms/cloud-platform.md).
-- **Canon turrets** (`Canon.tscn` + `CanonBall.tscn`) — used widely from Level 2 onward as stationary throwers despite being implemented in the `test-objects/Guns/` folder. See [../../objects/test/guns.md](../../objects/test/guns.md).
+- **Cannon turrets** (`Canon.tscn` + `CanonBall.tscn`, mis-spelled `Canon` in the source) — used widely from Level 2 onward as stationary throwers. See [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md).
 - **FireBallSpinner** — the dominant World 2 hazard, present in every level from Level 2 onward. See [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md).
 - **ClockSwitch** — appears from Level 3 onward, gating timing puzzles around FireBallSpinners. See [../../objects/interactive/clock-switch.md](../../objects/interactive/clock-switch.md).
 - **Multiple checkpoints per level** — Level 4 and Level 5 ship with 3 / 2 `CheckPoint` instances respectively (the cave levels mostly had at most one). See [../../objects/interactive/checkpoint.md](../../objects/interactive/checkpoint.md).

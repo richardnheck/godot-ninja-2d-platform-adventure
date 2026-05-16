@@ -7,7 +7,7 @@
 ## Display name & BGM
 "Uh Oh Ote-mon" / `Bgm_World2LevelTheme`.
 
-The `Ote-mon` is the main castle gate. The level is the densest of the World 2 line-up — a long sprawl past gatehouses, Canon batteries on the walls, and Hyakume sentries.
+The `Ote-mon` is the main castle gate. The level is the densest of the World 2 line-up — a long sprawl past gatehouses, Cannon batteries on the walls, and Hyakume sentries.
 
 ## Tilesets used
 - `assets/art/tilesets/world2/world2-tileset.tres` — `TileMapTraps`.
@@ -36,7 +36,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 
 | Enemy | Count | Doc |
 |-------|------:|-----|
-| Canon | 16 | [../../objects/test/guns.md](../../objects/test/guns.md) |
+| Cannon | 16 | [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) |
 | FireBallSpinner | 9 | [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md) |
 | Hyakume | 8 | [../../enemies/path-follow/hyakume.md](../../enemies/path-follow/hyakume.md) |
 | Shirime | 4 | [../../enemies/patrol/shirime.md](../../enemies/patrol/shirime.md) |
@@ -44,7 +44,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 | Zugaikotsu | 2 | [../../enemies/path-follow/zugaikotsu.md](../../enemies/path-follow/zugaikotsu.md) |
 | ClockSwitch | 1 | [../../objects/interactive/clock-switch.md](../../objects/interactive/clock-switch.md) |
 
-First appearance of TsurubeOtoshi and Shirime in World 2. The 16 Canon turrets are the heaviest projectile concentration in the world.
+First appearance of TsurubeOtoshi and Shirime in World 2. The 16 Cannon turrets are the heaviest projectile concentration in the world.
 
 ## Objects placed
 
@@ -64,7 +64,7 @@ No `CameraAdjustArea2D` nodes — the level is largely horizontal.
 
 ## Notes
 
-- Densest enemy roster in World 2 (43 enemy-class instances counting all Canons / FireBallSpinners / ClockSwitch).
+- Densest enemy roster in World 2 (43 enemy-class instances counting all Cannons / FireBallSpinners / ClockSwitch).
 - Introduces the four-checkpoint length pattern that Level 5 also adopts.
 - Continues the `TileMapPylons` theme from Level 3.
 

@@ -37,7 +37,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 | Enemy | Count | Doc |
 |-------|------:|-----|
 | FireBallSpinner | 19 | [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md) |
-| Canon | 4 | [../../objects/test/guns.md](../../objects/test/guns.md) |
+| Cannon | 4 | [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) |
 | Zugaikotsu | 2 | [../../enemies/path-follow/zugaikotsu.md](../../enemies/path-follow/zugaikotsu.md) |
 | Hyakume | 2 | [../../enemies/path-follow/hyakume.md](../../enemies/path-follow/hyakume.md) |
 | ClockSwitch | 1 | [../../objects/interactive/clock-switch.md](../../objects/interactive/clock-switch.md) |

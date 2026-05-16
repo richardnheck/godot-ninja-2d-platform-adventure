@@ -40,7 +40,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md) and [../til
 |-------|------:|-----|
 | FireBallSpinner | 19 | [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md) |
 | ClockSwitch | 6 | [../../objects/interactive/clock-switch.md](../../objects/interactive/clock-switch.md) |
-| Canon | 6 | [../../objects/test/guns.md](../../objects/test/guns.md) |
+| Cannon | 6 | [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) |
 | WanyudoMiniSpawner | 6 | [../../enemies/bosses/wanyudo.md](../../enemies/bosses/wanyudo.md) |
 | FunaYurei | 3 | [../../enemies/path-follow/funa-yurei.md](../../enemies/path-follow/funa-yurei.md) |
 | Zugaikotsu | 3 | [../../enemies/path-follow/zugaikotsu.md](../../enemies/path-follow/zugaikotsu.md) |

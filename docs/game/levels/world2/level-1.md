@@ -55,7 +55,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 ## Notes
 
 - First World 2 level. No `CameraAdjustArea2D`s — camera is flat horizontal travel.
-- No FireBallSpinners, no Canons, no ClockSwitches — the level is intentionally a gentle introduction focused on platforming over water with the new WaterJumpYokai hazard and Kappa enemies.
+- No FireBallSpinners, no Cannons, no ClockSwitches — the level is intentionally a gentle introduction focused on platforming over water with the new WaterJumpYokai hazard and Kappa enemies.
 - The bulk of the CloudPlatform instances form the moat-crossing path.
 
 ## Dependencies

@@ -189,7 +189,7 @@ Inner classes `User`, `LevelResults`, `LevelResult` each have `to_var()` / `from
 
 ## Projectiles
 
-**Path:** `src/objects/test-objects/Guns/Projectiles.tscn` — pooled projectile container for the test guns. Not used in shipping levels. See [../objects/test/guns.md](../objects/test/guns.md).
+**Path:** `src/objects/test-objects/Guns/Projectiles.tscn` (`Projectiles.gd`, extends `Node2D`) — pooled projectile container. Every bullet spawned by `Gun._shoot()` is parented under this autoload via `Projectiles.add_child(bullet)`. Used in shipping by the Cannon turret (see [../objects/hazards/cannon.md](../objects/hazards/cannon.md)) and the WaterJumpYokaiSpawner (see [../enemies/jumpers/water-jump-yokai.md](../enemies/jumpers/water-jump-yokai.md)). Exposes a single helper: `remove_all()` (iterates and `queue_free()`s every child) — called by [`LevelBase`](../levels/level-base.md) on level load to clear any stale projectiles.
 
 ---
 

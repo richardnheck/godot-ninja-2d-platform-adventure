@@ -28,14 +28,13 @@ This tree documents every gameplay-relevant component of `godot-ninja-2d-platfor
 
 ### Objects
 - [objects/_category-overview.md](objects/_category-overview.md)
-- [objects/hazards/](objects/hazards/) — 10 hazards
+- [objects/hazards/](objects/hazards/) — 11 hazards (incl. [Cannon](objects/hazards/cannon.md), split electricity docs)
 - [objects/platforms/](objects/platforms/) — 7 platforms (incl. grouped moving-platforms)
 - [objects/interactive/](objects/interactive/) — Spring, HelpSign, ClockSwitch, Boat, Checkpoint, KamonKey
 - [objects/doors/](objects/doors/) — CaveDoor, CaveSlidingDoor
 - [objects/decoration/decorations.md](objects/decoration/decorations.md)
 - [objects/camera/](objects/camera/) — CameraManager, CameraAdjustArea, ScreenShake
 - [objects/tutorial/jump-dot.md](objects/tutorial/jump-dot.md)
-- [objects/test/guns.md](objects/test/guns.md)
 
 ### Levels
 - [levels/level-base.md](levels/level-base.md) — LevelBase + LevelCamera + LevelMetrics + helpers

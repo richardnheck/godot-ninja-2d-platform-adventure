@@ -24,14 +24,16 @@ A fish-yokai that leaps out of the water along an arc and kills the player on co
 Internal: `gravity_scale = 5` (overridden to 5 in `_ready`, scene default 5.97), `direction = Vector2.RIGHT`, `impulse = 1000`. The `direction` and `impulse` are setget properties — setting `impulse` immediately calls `apply_central_impulse(direction * value)`.
 
 ### WaterJumpYokaiSpawner (`Gun.gd` instance)
-Scene overrides on `Gun.gd`:
+Scene overrides on `src/objects/test-objects/Guns/Gun.gd` (`class_name Gun`, extends `Node2D`):
 - `bullet_scene` = `WaterJumpYokai.tscn`
-- `shoot_rate = 3.0`
-- `mode = 3`
+- `shoot_rate = 3.0` — seconds between spawns (`ShootTimer.wait_time`).
+- `mode = 3` (`TIMED` — fires on `ShootTimer.timeout`).
 - `max_charge_time = 0.0`
-- `direction = Vector2(0, -1)` (straight up)
+- `direction = Vector2(0, -1)` (straight up).
 
-See [test/guns.md](../test/guns.md) for the full `Gun.gd` interface. A `VisibilityEnabler2D` (`process_parent = true`, `physics_process_parent = true`) pauses the spawner when off-screen.
+The `Gun` base script provides a timer-driven shoot loop: on `_ready()` (since `requires_target = false`) it calls `_initialize()`, which in TIMED mode arms `ShootTimer` with `wait_time = shoot_rate`. On every `ShootTimer.timeout` it instances `bullet_scene` under the [`Projectiles` autoload](../../systems/autoloads.md), sets the bullet's `direction`, `impulse`, and (if defined) `charge`, places it at `ShootPosition.global_position`, and calls `bullet.fire(target)` if available. See [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) for a fuller breakdown of the `Gun` script — Cannon is the only other shipping consumer.
+
+A `VisibilityEnabler2D` (`process_parent = true`, `physics_process_parent = true`) pauses the spawner when off-screen.
 
 ## Behavior
 - Spawner emits a fish upward on each `ShootTimer.timeout`.
@@ -50,5 +52,5 @@ None emitted.
 ## Dependencies
 - [systems/autoloads.md](../../systems/autoloads.md) — `Constants.GROUP_PLAYER`, `Game_AudioManager`.
 - [decoration/decorations.md](../decoration/decorations.md) — `WaterSplash` is documented there.
-- [test/guns.md](../test/guns.md) — `Gun.gd` powers the spawner.
+- [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) — the `Gun` script that powers the spawner is also documented there (Cannon is the other shipping consumer).
 - Player — `die()` receiver.

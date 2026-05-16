@@ -43,7 +43,7 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 | FireBallSpinner | 4 | [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md) |
 | TsurubeOtoshi | 2 | [../../enemies/jumpers/tsurube-otoshi.md](../../enemies/jumpers/tsurube-otoshi.md) |
 | Zugaikotsu | 2 | [../../enemies/path-follow/zugaikotsu.md](../../enemies/path-follow/zugaikotsu.md) |
-| Canon | 2 | [../../objects/test/guns.md](../../objects/test/guns.md) |
+| Cannon | 2 | [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) |
 | Shirime | 1 | [../../enemies/patrol/shirime.md](../../enemies/patrol/shirime.md) |
 | ClockSwitch | 1 | [../../objects/interactive/clock-switch.md](../../objects/interactive/clock-switch.md) |
 

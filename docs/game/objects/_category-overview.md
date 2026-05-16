@@ -6,14 +6,13 @@ All objects live in `src/objects/**`. They are non-character scenes that the lev
 
 | Category | Folder | Count | Defining trait |
 |----------|--------|------:|----------------|
-| Hazards | [hazards/](hazards/) | 10 | Kill the player on contact. Includes static electricity (`megaman-electricity.md` always-on, `electricity-beam.md` pulsing), spikes (falling/long-moving/bamboo/trigger), kinetic (spikey-rock, water-jump-yokai), and rotating systems (fireball-spinner, rotating-onibi). |
+| Hazards | [hazards/](hazards/) | 11 | Kill the player on contact. Includes static electricity (`megaman-electricity.md` always-on, `electricity-beam.md` pulsing), spikes (falling/long-moving/bamboo/trigger), kinetic (spikey-rock, water-jump-yokai), rotating systems (fireball-spinner, rotating-onibi), and the World 2 Cannon turret (mis-spelled `Canon` in source). |
 | Platforms | [platforms/](platforms/) | 7 | Surface the player can stand on. Includes static (conveyor belt), destructible (cloud, crumbling, falling), and moving (platform belt, rotating platform, moving platforms). |
 | Interactive | [interactive/](interactive/) | 6 | Player triggers a response — Spring, HelpSign, ClockSwitch, Boat, Checkpoint, KamonKey. |
 | Doors | [doors/](doors/) | 2 | Gates progression — CaveDoor (incl. DoorStart and DoorBackground) and CaveSlidingDoor. |
 | Decoration | [decoration/](decoration/) | 1 file | Purely visual — `decorations.md` covers JapaneseLamp, World3 SmallLantern, WaterSplash. |
 | Camera | [camera/](camera/) | 3 | CameraManager (smart follow), CameraAdjustArea2D (zone-based overrides), ScreenShake. |
 | Tutorial | [tutorial/](tutorial/) | 1 | JumpDot (onboarding marker). |
-| Test | [test/](test/) | 1 file | `guns.md` covers all test weapons (Pistol, MachineGun, GrenadeLauncher, Canon, etc.). Not used in shipping levels. |
 
 ## Common patterns
 

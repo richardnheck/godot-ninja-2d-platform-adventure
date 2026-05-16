@@ -7,7 +7,7 @@
 ## Display name & BGM
 "Klimb that Kuruwa" / `Bgm_World2LevelTheme`.
 
-A `kuruwa` is a castle bailey / enclosure. The level introduces the World 2 castle interior — Canon turrets line the walls and FireBallSpinners guard ledges as the player climbs.
+A `kuruwa` is a castle bailey / enclosure. The level introduces the World 2 castle interior — Cannon turrets line the walls and FireBallSpinners guard ledges as the player climbs.
 
 ## Tilesets used
 - `assets/art/tilesets/world2/world2-tileset.tres` — `TileMapTraps`, also referenced as `TileMapBg`.
@@ -36,10 +36,10 @@ See [../tilemaps/world2-tilesets.md](../tilemaps/world2-tilesets.md).
 | Enemy | Count | Doc |
 |-------|------:|-----|
 | Hyakume | 6 | [../../enemies/path-follow/hyakume.md](../../enemies/path-follow/hyakume.md) |
-| Canon | 5 | [../../objects/test/guns.md](../../objects/test/guns.md) |
+| Cannon | 5 | [../../objects/hazards/cannon.md](../../objects/hazards/cannon.md) |
 | FireBallSpinner | 3 | [../../objects/hazards/fireball-spinner.md](../../objects/hazards/fireball-spinner.md) |
 
-The Canon scene is implemented in `src/objects/test-objects/Guns/Canon/` but is used as a shipping enemy/hazard from Level 2 onward.
+The Cannon scene file is `Canon.tscn` (mis-spelled in source) and still lives under `src/objects/test-objects/Guns/Canon/`; it is the only shipping member of that historic dev folder.
 
 ## Objects placed
 
@@ -57,7 +57,7 @@ The Canon scene is implemented in `src/objects/test-objects/Guns/Canon/` but is 
 
 ## Notes
 
-- Introduces Canon turrets and FireBallSpinners — the two hazards that dominate the rest of World 2.
+- Introduces Cannon turrets and FireBallSpinners — the two hazards that dominate the rest of World 2.
 - Six Hyakume eyeballs are the bulk of the enemy roster; they patrol on Path2D loops around walls and ceilings.
 - Adds a `TileMapBg` layer that the other World 2 levels do not use.
 
