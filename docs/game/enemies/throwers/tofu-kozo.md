@@ -1,6 +1,6 @@
 # TofuKozo
 
-**Category:** Enemy / Thrower
+**Category:** Enemy / Thrower (trigger-and-throw)
 **Scene:** `src/characters/enemies/tofu-kozo/TofuKozo.tscn`
 **Script:** `src/characters/enemies/tofu-kozo/TofuKozo.gd` (`class_name TofuKozo`)
 **Extends:** `Area2D` (in `enemy` group)

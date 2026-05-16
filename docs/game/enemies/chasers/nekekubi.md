@@ -1,12 +1,12 @@
 # Nekekubi
 
-**Category:** Enemy / Chaser
+**Category:** Enemy / Chaser (trigger-and-charge player location)
 **Scene:** `src/characters/enemies/nekekubi/Nekekubi.tscn`
 **Script:** `src/characters/enemies/nekekubi/Nekekubi.gd` (`class_name Nekekubi`)
 **Extends:** `Node2D`
 
 ## Purpose
-A "flying head" yokai. The body sits still on the floor; when the player enters a wide circular detection range, the detached head (`Head` KinematicBody2D) tweens out to the player's position, then tweens back. While the player remains in range a `ChaseTimer` cooldown queues the next attack cycle.
+A "flying head" female yokai. The body sits still on the floor; when the player enters a wide circular detection range, the detached head (`Head` KinematicBody2D) tweens out to the player's position, then tweens back. While the player remains in range a `ChaseTimer` cooldown queues the next attack cycle.
 
 ## Assets
 - Body sprite: `nekekubi-body.png` (single-frame `default` at 5 fps).

@@ -6,7 +6,7 @@
 **Extends:** `Node2D`
 
 ## Purpose
-A vertical sliding gate that physically blocks the player until the level's key is captured. Distinct from the level-end `Door` — this is a mid-level barrier that opens once and stays open. Used as the locked exit corridor in most World 2 and World 3 levels.
+A vertical sliding gate that physically blocks the player until the level's key is captured. Distinct from the level-end `Door` — Used as the locked exit corridor of the final level of each world to indicate that boss is next level
 
 ## Assets
 - Sprite: `src/objects/cave-level-sliding-door/door.png` (uncentered, offset y=-96 — slides up out of frame when opening).
