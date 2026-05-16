@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\richa\\\\Documents\\\\My Games\\\\godot-ninja-2d-platform-adventure\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\richa\\\\Documents\\\\My Games\\\\godot-ninja-2d-platform-adventure\\\\src\\\\characters\\\\enemies\\\\\" -Recurse | Select-Object FullName | Sort-Object FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\richa\\\\Documents\\\\My Games\\\\godot-ninja-2d-platform-adventure\\\\src\\\\objects\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\richa\\\\Documents\\\\My Games\\\\godot-ninja-2d-platform-adventure\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Bash(grep -E \"\\\\.\\(tscn|gd\\)$\")"
+    ]
+  }
+}
