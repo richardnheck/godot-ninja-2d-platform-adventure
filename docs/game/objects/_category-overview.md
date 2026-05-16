@@ -6,7 +6,7 @@ All objects live in `src/objects/**`. They are non-character scenes that the lev
 
 | Category | Folder | Count | Defining trait |
 |----------|--------|------:|----------------|
-| Hazards | [hazards/](hazards/) | 9 | Kill the player on contact. Includes static (spikes, electricity), kinetic (falling spike, spikey rock), and rotating systems (fireball spinner, rotating onibi). Variants of the same hazard group into one file. |
+| Hazards | [hazards/](hazards/) | 10 | Kill the player on contact. Includes static electricity (`megaman-electricity.md` always-on, `electricity-beam.md` pulsing), spikes (falling/long-moving/bamboo/trigger), kinetic (spikey-rock, water-jump-yokai), and rotating systems (fireball-spinner, rotating-onibi). |
 | Platforms | [platforms/](platforms/) | 7 | Surface the player can stand on. Includes static (conveyor belt), destructible (cloud, crumbling, falling), and moving (platform belt, rotating platform, moving platforms). |
 | Interactive | [interactive/](interactive/) | 6 | Player triggers a response — Spring, HelpSign, ClockSwitch, Boat, Checkpoint, KamonKey. |
 | Doors | [doors/](doors/) | 2 | Gates progression — CaveDoor (incl. DoorStart and DoorBackground) and CaveSlidingDoor. |

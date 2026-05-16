@@ -82,7 +82,7 @@ These rules avoid one-file-per-thing sprawl. The plan in `~/.claude/plans/i-am-g
 - **Mini-bosses are standard enemies.** CaveLevelMiniBoss is a jumper; WanyudoMini is documented inline in `wanyudo.md`.
 - **Projectiles are inline** in the enemy/boss that spawns them — never a standalone file.
 - **UI controls are referenced, not documented.** Buttons, sliders, toggles, FadeScreen, MobileControlsHUD, LevelTimer, LevelIntroTitle, DebugConsole, etc. appear in the **Dependencies** section of the screen/level that uses them.
-- **Object variants group together.** One `electricity.md` covers BlueFlame/MegamanElectricity/ElectricityBeam; one `moving-platforms.md` covers Base/Vertical/Cave1H/Cave2H; one `decorations.md` covers JapaneseLamp/SmallLantern/WaterSplash; one `guns.md` covers all test weapons.
+- **Object variants group together** where they share enough behaviour. Examples: `moving-platforms.md` covers Base/Vertical/Cave1H/Cave2H; `decorations.md` covers JapaneseLamp/SmallLantern/WaterSplash; `guns.md` covers all test weapons. Variants with distinct behaviour get their own file — e.g. `electricity-beam.md` (pulsing, timer-driven) and `megaman-electricity.md` (always-on) are separate. The unused experimental `Electricity.tscn` / `BlueFlame.tscn` scenes are not documented.
 - **Systems are grouped.** `autoloads.md` (one section per singleton), `frameworks.md` (helpers + FadeScreen utility), `project-config.md` (`project.godot`).
 - **Cutscenes group by type.** `boss-intro-cutscenes.md` and `boss-clear-cutscenes.md` cover all three worlds inline.
 - **Tilemaps & tilesets live in `levels/tilemaps/`.** Per-level docs only list which tilesets they use; tileset detail (atlas region, collision, autotile, animation) lives in the tilemap docs.

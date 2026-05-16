@@ -52,10 +52,10 @@ The boss BGM is played explicitly in `_ready()` via `Game_AudioManager.play_bgm_
 
 | Object | Count | Doc |
 |--------|-------|-----|
-| MegamanElectricity | 23 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| MegamanElectricity | 23 | [../../objects/hazards/megaman-electricity.md](../../objects/hazards/megaman-electricity.md) |
 | TriggerSpike | 24 | [../../objects/hazards/trigger-spike.md](../../objects/hazards/trigger-spike.md) |
 | LongMovingSpike | 11 | [../../objects/hazards/long-moving-spike.md](../../objects/hazards/long-moving-spike.md) |
-| ElectricityBeam | 1 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| ElectricityBeam | 1 | [../../objects/hazards/electricity-beam.md](../../objects/hazards/electricity-beam.md) |
 | FallingPlatform | 8 | [../../objects/platforms/falling-platform.md](../../objects/platforms/falling-platform.md) |
 | ConveyorBelt | 4 | [../../objects/platforms/conveyor-belt.md](../../objects/platforms/conveyor-belt.md) |
 | PlatformBelt | 2 | [../../objects/platforms/platform-belt.md](../../objects/platforms/platform-belt.md) |

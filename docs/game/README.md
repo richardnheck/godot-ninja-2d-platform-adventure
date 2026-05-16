@@ -28,7 +28,7 @@ This tree documents every gameplay-relevant component of `godot-ninja-2d-platfor
 
 ### Objects
 - [objects/_category-overview.md](objects/_category-overview.md)
-- [objects/hazards/](objects/hazards/) — 9 hazards
+- [objects/hazards/](objects/hazards/) — 10 hazards
 - [objects/platforms/](objects/platforms/) — 7 platforms (incl. grouped moving-platforms)
 - [objects/interactive/](objects/interactive/) — Spring, HelpSign, ClockSwitch, Boat, Checkpoint, KamonKey
 - [objects/doors/](objects/doors/) — CaveDoor, CaveSlidingDoor

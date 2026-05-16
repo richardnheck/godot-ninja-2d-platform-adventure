@@ -32,8 +32,8 @@
 
 | Object | Count | Doc |
 |--------|-------|-----|
-| MegamanElectricity | 22 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
-| ElectricityBeam | 7 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| MegamanElectricity | 22 | [../../objects/hazards/megaman-electricity.md](../../objects/hazards/megaman-electricity.md) |
+| ElectricityBeam | 7 | [../../objects/hazards/electricity-beam.md](../../objects/hazards/electricity-beam.md) |
 | LongMovingSpike | 5 | [../../objects/hazards/long-moving-spike.md](../../objects/hazards/long-moving-spike.md) |
 | Spring | 11 | [../../objects/interactive/spring.md](../../objects/interactive/spring.md) |
 | ConveyorBelt | 9 | [../../objects/platforms/conveyor-belt.md](../../objects/platforms/conveyor-belt.md) |

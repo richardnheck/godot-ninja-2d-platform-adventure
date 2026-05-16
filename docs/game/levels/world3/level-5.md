@@ -47,7 +47,7 @@ Note: this is the first World 3 level to use `World3-Props-Tileset.tres`. No `Ti
 | Spring | 4 | [../../objects/interactive/spring.md](../../objects/interactive/spring.md) |
 | TriggerSpike | 3 | [../../objects/hazards/trigger-spike.md](../../objects/hazards/trigger-spike.md) |
 | LongMovingSpike | 1 | [../../objects/hazards/long-moving-spike.md](../../objects/hazards/long-moving-spike.md) |
-| ElectricityBeam | 1 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| ElectricityBeam | 1 | [../../objects/hazards/electricity-beam.md](../../objects/hazards/electricity-beam.md) |
 | SmallLantern | 13 | [../../objects/decoration/decorations.md](../../objects/decoration/decorations.md) |
 | KamonKey | 1 | [../../objects/interactive/kamon-key.md](../../objects/interactive/kamon-key.md) |
 | Door | 1 | [../../objects/doors/cave-door.md](../../objects/doors/cave-door.md) |

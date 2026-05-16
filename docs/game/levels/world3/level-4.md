@@ -35,7 +35,7 @@
 | Object | Count | Doc |
 |--------|-------|-----|
 | FallingPlatform | 31 | [../../objects/platforms/falling-platform.md](../../objects/platforms/falling-platform.md) |
-| MegamanElectricity | 12 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| MegamanElectricity | 12 | [../../objects/hazards/megaman-electricity.md](../../objects/hazards/megaman-electricity.md) |
 | LongMovingSpike | 4 | [../../objects/hazards/long-moving-spike.md](../../objects/hazards/long-moving-spike.md) |
 | TriggerSpike | 2 | [../../objects/hazards/trigger-spike.md](../../objects/hazards/trigger-spike.md) |
 | RotatingPlatform | 4 | [../../objects/platforms/rotating-platform.md](../../objects/platforms/rotating-platform.md) |

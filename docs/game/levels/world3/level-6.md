@@ -42,10 +42,10 @@ No `TileMapSky` and no World3-Props-Tileset on this level — it is entirely int
 
 | Object | Count | Doc |
 |--------|-------|-----|
-| MegamanElectricity | 40 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| MegamanElectricity | 40 | [../../objects/hazards/megaman-electricity.md](../../objects/hazards/megaman-electricity.md) |
 | TriggerSpike | 36 | [../../objects/hazards/trigger-spike.md](../../objects/hazards/trigger-spike.md) |
 | LongMovingSpike | 9 | [../../objects/hazards/long-moving-spike.md](../../objects/hazards/long-moving-spike.md) |
-| ElectricityBeam | 5 | [../../objects/hazards/electricity.md](../../objects/hazards/electricity.md) |
+| ElectricityBeam | 5 | [../../objects/hazards/electricity-beam.md](../../objects/hazards/electricity-beam.md) |
 | Spring | 9 | [../../objects/interactive/spring.md](../../objects/interactive/spring.md) |
 | ConveyorBelt | 4 | [../../objects/platforms/conveyor-belt.md](../../objects/platforms/conveyor-belt.md) |
 | FallingPlatform | 8 | [../../objects/platforms/falling-platform.md](../../objects/platforms/falling-platform.md) |
