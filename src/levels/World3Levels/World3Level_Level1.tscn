@@ -474,25 +474,6 @@ position = Vector2( 184, 72 )
 [node name="TriggerSpike3" parent="Section4/traps" instance=ExtResource( 3 )]
 position = Vector2( 312, 72 )
 
-[node name="SectionTemplate" type="Node2D" parent="."]
-position = Vector2( 520, 48 )
-
-[node name="TileMap" type="TileMap" parent="SectionTemplate"]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 2
-format = 1
-
-[node name="TileMapTraps" type="TileMap" parent="SectionTemplate" groups=["trap"]]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 4
-format = 1
-
-[node name="enemies" type="Node2D" parent="SectionTemplate"]
-
-[node name="traps" type="Node2D" parent="SectionTemplate"]
-
 [connection signal="captured" from="InteractiveProps/KamonKey" to="." method="_on_Key_captured"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]
 
