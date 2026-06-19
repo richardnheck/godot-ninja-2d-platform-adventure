@@ -16,6 +16,7 @@ const SPIKE_UPTIME:float = 1.0
 func _ready():
 	_show_spike(false)
 
+# Trigger the trap
 func _trigger_trap() -> void:
 	Game_AudioManager.sfx_env_trigger_spike_press.play()
 	yield(get_tree().create_timer(TRIGGER_DELAY), "timeout")
@@ -29,6 +30,7 @@ func _show_spike(show:bool) -> void:
 	spikeCollisionShape.set_deferred("disabled", not show)
 	spikeCollisionShape.visible = show;
 
+# Handle when the player touches the spike
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		body.die()
